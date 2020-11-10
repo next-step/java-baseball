@@ -3,7 +3,11 @@ package learning;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,5 +45,21 @@ public class StringTest {
         int endIndex = testTarget.length() - 1;
 
         assertThat(testTarget.substring(beginIndex, endIndex)).isEqualTo(expected);
+    }
+
+    @DisplayName("주어진 값에서 String 클래스의 내장 charAt 메서드로 특정 위치의 문자열을 가져올 수 있는지 확인")
+    @ParameterizedTest
+    @MethodSource("charAtTestResource")
+    void charAtTest(int index, char expectedResult) {
+        String testTarget = "abc";
+
+        assertThat(testTarget.charAt(index)).isEqualTo(expectedResult);
+    }
+    public static Stream<Arguments> charAtTestResource() {
+        return Stream.of(
+                Arguments.of(0, 'a'),
+                Arguments.of(1, 'b'),
+                Arguments.of(2, 'c')
+        );
     }
 }
