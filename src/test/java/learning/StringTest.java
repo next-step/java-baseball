@@ -14,9 +14,9 @@ public class StringTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "2"})
     void splitManyStringTest(String expectedResult) {
-        String testString = "1,2";
+        String testTarget = "1,2";
 
-        String[] splitResult = testString.split(separator);
+        String[] splitResult = testTarget.split(separator);
 
         assertThat(splitResult).contains(expectedResult);
     }
@@ -24,22 +24,22 @@ public class StringTest {
     @DisplayName("String 클래스의 split 메서드가 구분자로 구분되지 않는 단수 요소를 잘 반환하는지 확인")
     @Test
     void splitSingleStringTest() {
-        String testString = "1";
+        String testTarget = "1";
 
-        String[] splitResult = testString.split(separator);
+        String[] splitResult = testTarget.split(separator);
 
-        assertThat(splitResult).containsExactly(testString);
+        assertThat(splitResult).containsExactly(testTarget);
     }
 
     @DisplayName("String 클래스의 substring 메서드로 문자열을 원하는만큼 잘라낼 수 있는지 확인")
     @Test
     void substringTest() {
-        String testString = "(1,2)";
-        String expectedString = "1,2";
+        String testTarget = "(1,2)";
+        String expected = "1,2";
 
         int beginIndex = 1;
-        int endIndex = testString.length() - 1;
+        int endIndex = testTarget.length() - 1;
 
-        assertThat(testString.substring(beginIndex, endIndex)).isEqualTo(expectedString);
+        assertThat(testTarget.substring(beginIndex, endIndex)).isEqualTo(expected);
     }
 }
