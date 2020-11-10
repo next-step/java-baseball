@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능목록
+(1) 랜덤텍스트 생성 기능
+
+    - 자리수는 3자리로 한정한다.    
+    - 0 ~ 9 까지의 자연수로 한정한다.
+    - 중복되지 않아야 한다. 
