@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     private String separator = ",";
@@ -61,5 +62,15 @@ public class StringTest {
                 Arguments.of(1, 'b'),
                 Arguments.of(2, 'c')
         );
+    }
+
+    @DisplayName("주어진 문자열의 index를 벗어난 위치로 charAt 메서드를 실행 시 어떤 에러가 발생하는지 확인")
+    @Test
+    void charAtOutOfBoundTest() {
+        String testTarget = "abc";
+        int outOfBoundIndex = testTarget.length();
+
+        assertThatThrownBy(() -> testTarget.charAt(outOfBoundIndex))
+                .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
