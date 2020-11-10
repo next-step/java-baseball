@@ -15,7 +15,7 @@
     - [X] "abc" 값이 주어졌을 때 charAt 메서드를 활용해서 특정 위치의 문자를 가져오는 학습을 진행한다.
     - [X] charAt 메서드가 찾는 문자가 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생하는지 확인한다.
 - Set Collection
-    - [ ] Set의 사이즈 메소드를 활용해 Set의 크기를 확인하는 학습을 진행한다.
+    - [X] Set의 size 메서드를 활용해 Set의 크기를 확인하는 학습을 진행한다.
     - [ ] contains 메서드를 통해 Set 안에 1,2,3의 값이 존재하는지 확인하는 학습을 진행한다
         - 제약조건: 반복문 없이 진행한다.
     - [ ] contains 메서드를 통해 true인 경우와 false인 경우를 모두 확인하는 학습을 진행한다.
