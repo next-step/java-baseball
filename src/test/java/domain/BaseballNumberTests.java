@@ -2,6 +2,7 @@ package domain;
 
 import domain.exceptions.OutOfBoundBaseballNumberException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -39,5 +40,12 @@ class BaseballNumberTests {
     void createBaseballNumberOutOfBoundTest(int outOfBoundValue) {
         assertThatThrownBy(() -> BaseballNumber.of(outOfBoundValue))
                 .isInstanceOf(OutOfBoundBaseballNumberException.class);
+    }
+
+    @DisplayName("객체 간 동등성 비교가 가능하다.")
+    @Test
+    void equalTest() {
+        assertThat(BaseballNumber.of(1)).isEqualTo(BaseballNumber.ONE);
+        assertThat(BaseballNumber.of(2)).isNotEqualTo(BaseballNumber.ONE);
     }
 }
