@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 정의
+1. 숫자 입력(3자리만 입력 가능, 같은 숫자 입력 불가능)
+2. 랜덤 숫자 발생(모두 다른 숫자 발생)
+3. 값 비교
+4. 자리 계산
+5. 결과 출력
