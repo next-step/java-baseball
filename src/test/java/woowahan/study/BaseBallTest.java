@@ -40,6 +40,17 @@ public class BaseBallTest {
     assertFalse(isDuplication(getRandomText));
   }
 
+  @Test
+  void testIsStrike() {
+    // given
+    String inputData = "-1";
+    int idx = 0;
+    // when
+    int strike = baseBall.isStrike(inputData, idx);
+    // then
+    assertEquals(strike, 0);
+  }
+
   private boolean isNumber(String[] s) {
     try {
       for(String value : s) {
