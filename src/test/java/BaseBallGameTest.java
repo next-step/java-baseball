@@ -88,8 +88,4 @@ class BaseBallGameTest {
         assertEquals(2, game.execution(new int[] {1,2,3}, new int[] {1,2,3}));
         assertEquals(2, game.execution(new int[] {3,6,8}, new int[] {3,6,8}));
     }
-
-    @Test
-    void isExitTest() {
-    }
 }

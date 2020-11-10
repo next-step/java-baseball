@@ -136,9 +136,15 @@ public class BaseBallGame {
      * 게임 종료 확인 (1 : (재)시작, 2 : 종료)
      * @return int
      */
-    private static int isExit() {
+    public int isExit() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료.");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        return 2;
+
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            int result = sc.nextInt();
+            if (result == 1) return result;
+            if (result == 2) return result;
+        }
     }
 }
