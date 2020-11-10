@@ -2,9 +2,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BaseBallGame {
-    private int cnt = 3;
+    private static int cnt = 3;
 
-    public void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         int[] answer = new int[cnt];
         int status = 1; //1 : (재)시작, 2 : 종료, 3 : 진행중
 
@@ -19,7 +19,7 @@ public class BaseBallGame {
      * 컴퓨터가 서로 다른 임의의 수 3개 선택.
      * @return int[]
      */
-    public int[] setNumber() {
+    public static int[] setNumber() {
         int[] answer = new int[cnt];
         Random random = new Random();
         while (true) {
@@ -35,7 +35,7 @@ public class BaseBallGame {
      * 유저가 임의의 수 3개 선택.
      * @return int[]
      */
-    public int[] inputNumber() throws Exception {
+    public static int[] inputNumber() throws Exception {
         Scanner sc = new Scanner(System.in);
         String input = "";
         int[] inputNumbers = new int[cnt];
@@ -53,7 +53,7 @@ public class BaseBallGame {
      * @param input
      * @return boolean
      */
-    public boolean checkNumber(String input) {
+    public static boolean checkNumber(String input) {
         if (input.length() != cnt) return false;
         char[] charArr = input.toCharArray();
         for (char c : charArr) {
@@ -68,7 +68,7 @@ public class BaseBallGame {
      * @param answer
      * @return int
      */
-    public int execution(int[] inputNumbers, int[] answer) {
+    public static int execution(int[] inputNumbers, int[] answer) {
         int strikeCnt = 0;
         int ballCnt = 0;
         int nothingCnt = 0;
@@ -96,7 +96,7 @@ public class BaseBallGame {
      * @param answer
      * @return int
      */
-    public int isStrike(int index, int num, int[] answer) {
+    public static int isStrike(int index, int num, int[] answer) {
         if (num == answer[index]) return 1;
         return 0;
     }
@@ -109,10 +109,13 @@ public class BaseBallGame {
      * @param answer
      * @return int
      */
-    public int isBall(int index, int num, int[] answer) {
+    public static int isBall(int index, int num, int[] answer) {
         boolean result = false;
         for (int i = 0; i < cnt; i++) {
-            if (i != index && num == answer[i]) result = true;
+            if (i != index && num == answer[i]) {
+                result = true;
+                break;
+            }
         }
         return result ? 1 : 0;
     }
@@ -124,10 +127,13 @@ public class BaseBallGame {
      * @param answer
      * @return int
      */
-    public int isNothing(int num, int[] answer) {
+    public static int isNothing(int num, int[] answer) {
         boolean result = true;
         for (int i = 0; i < cnt; i++) {
-            if (num == answer[i]) result = false;
+            if (num == answer[i]) {
+                result = false;
+                break;
+            }
         }
         return result ? 1 : 0;
     }
@@ -136,7 +142,7 @@ public class BaseBallGame {
      * 게임 종료 확인 (1 : (재)시작, 2 : 종료)
      * @return int
      */
-    public int isExit() {
+    public static int isExit() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료.");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 
