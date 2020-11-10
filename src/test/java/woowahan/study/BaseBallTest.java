@@ -84,6 +84,14 @@ public class BaseBallTest {
     assertEquals(message, "2 스트라이크 1 볼");
   }
 
+  @Test
+  void testResetGame() {
+    // given
+    String selected = "2";
+    // when
+    //baseBall.resetGame(selected);
+  }
+
   private boolean isNumber(String[] s) {
     try {
       for(String value : s) {
