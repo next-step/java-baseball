@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+---
+## 학습테스트
+* [ ] String 클래스에 대한 학습 테스트
+* [ ] Set Collection에 대한 학습 테스트
