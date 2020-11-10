@@ -30,4 +30,16 @@ public class StringTest {
 
         assertThat(splitResult).containsExactly(testString);
     }
+
+    @DisplayName("String 클래스의 substring 메서드로 문자열을 원하는만큼 잘라낼 수 있는지 확인")
+    @Test
+    void substringTest() {
+        String testString = "(1,2)";
+        String expectedString = "1,2";
+
+        int beginIndex = 1;
+        int endIndex = testString.length() - 1;
+
+        assertThat(testString.substring(beginIndex, endIndex)).isEqualTo(expectedString);
+    }
 }
