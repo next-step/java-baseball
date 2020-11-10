@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+- 컴퓨터 난수 생성
+- 스트라이크/볼/낫싱 구현
+- 다시 시작/종료 기능
