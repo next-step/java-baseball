@@ -38,4 +38,14 @@ class BaseBall {
     return 0;
   }
 
+  /**
+   * 볼 여부 카운트
+   */
+  public int isBall(String inputData, int idx) {
+    if (isStrike(inputData, idx) == 0) {
+      return inputData.contains(randomData[idx]) ? 1 : 0;
+    }
+    return 0;
+  }
+
 }

@@ -51,6 +51,17 @@ public class BaseBallTest {
     assertEquals(strike, 0);
   }
 
+  @Test
+  void testIsBall() {
+    // given
+    String inputData = "-1";
+    int idx = 0;
+    // when
+    int ball = baseBall.isBall(inputData, idx);
+    // then
+    assertEquals(ball, 0);
+  }
+
   private boolean isNumber(String[] s) {
     try {
       for(String value : s) {
