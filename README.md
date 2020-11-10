@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 구현 목록
+* 컴퓨터가 서로 다른 임의의 수 3개 선택 로직 구현
+* 유저가 임의의 수 3개 선택 로직 구현
+* 게임 진행 로직 구현
+* 게임 재시작 및 종료 로직 구현
