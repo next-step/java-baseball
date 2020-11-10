@@ -3,6 +3,8 @@ package learning;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,5 +29,12 @@ public class SetTest {
         int expectedSize = 3;
 
         assertThat(numbers.size()).isEqualTo(expectedSize);
+    }
+
+    @DisplayName("Set의 내장 메서드로 특정 요소의 포함 여부를 확인할 수 있다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void containsTest(int expectedResult) {
+        assertThat(numbers).contains(expectedResult);
     }
 }
