@@ -1,0 +1,35 @@
+package domain;
+
+import domain.exceptions.InvalidBaseballNumbersSizeException;
+
+import java.util.List;
+
+public class BaseballNumbers {
+    private final List<BaseballNumber> baseballNumbers;
+
+    public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
+        validateSize(baseballNumbers);
+        this.baseballNumbers = baseballNumbers;
+    }
+
+    public int countMatchNumbers(BaseballNumbers compareTarget) {
+        int count = 0;
+        for (BaseballNumber baseballNumber : baseballNumbers) {
+            count += getCount(compareTarget, baseballNumber);
+        }
+        return count;
+    }
+
+    private int getCount(BaseballNumbers compareTarget, BaseballNumber baseballNumber) {
+        if (compareTarget.baseballNumbers.contains(baseballNumber)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private void validateSize(List<BaseballNumber> baseballNumbers) {
+        if (baseballNumbers.size() != 3) {
+            throw new InvalidBaseballNumbersSizeException();
+        }
+    }
+}
