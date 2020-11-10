@@ -8,5 +8,5 @@
 
 ---
 ## 학습테스트
-* [ ] String 클래스에 대한 학습 테스트
-* [ ] Set Collection에 대한 학습 테스트
+* [x] String 클래스에 대한 학습 테스트
+* [x] Set Collection에 대한 학습 테스트
