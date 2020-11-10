@@ -62,6 +62,28 @@ public class BaseBallTest {
     assertEquals(ball, 0);
   }
 
+  @Test
+  void testWriteMessage_낫싱() {
+    // given
+    int strike = 0;
+    int ball = 0;
+    // when
+    String message = baseBall.writeMessage(strike, ball);
+    // then
+    assertEquals(message, "낫싱");
+  }
+
+  @Test
+  void testWriteMessage_2스트라이크1볼() {
+    // given
+    int strike = 2;
+    int ball = 1;
+    // when
+    String message = baseBall.writeMessage(strike, ball);
+    // then
+    assertEquals(message, "2 스트라이크 1 볼");
+  }
+
   private boolean isNumber(String[] s) {
     try {
       for(String value : s) {

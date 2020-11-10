@@ -48,4 +48,14 @@ class BaseBall {
     return 0;
   }
 
+  /**
+   * 판독결과 메세지 반환
+   */
+  public String writeMessage(int strike, int ball) {
+    if (strike == 0 && ball == 0) {
+      return "낫싱";
+    }
+    return strike + " 스트라이크 " + ball + " 볼";
+  }
+
 }
