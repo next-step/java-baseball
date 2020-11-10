@@ -13,12 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
-    private String separator = ",";
-
     @DisplayName("String 클래스의 split 메서드가 구분자로 구분된 복수의 요소를 잘 반환하는지 확인")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2"})
     void splitManyStringTest(String expectedResult) {
+        String separator = ",";
         String testTarget = "1,2";
 
         String[] splitResult = testTarget.split(separator);
@@ -29,6 +28,7 @@ public class StringTest {
     @DisplayName("String 클래스의 split 메서드가 구분자로 구분되지 않는 단수 요소를 잘 반환하는지 확인")
     @Test
     void splitSingleStringTest() {
+        String separator = ",";
         String testTarget = "1";
 
         String[] splitResult = testTarget.split(separator);
