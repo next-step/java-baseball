@@ -2,20 +2,17 @@ package domain;
 
 import domain.exceptions.BaseballNumberDuplicatedException;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class StaticBaseballNumberGenerator implements BaseballNumberGenerator {
+public class StaticBaseballNumbersGenerator implements BaseballNumbersGenerator {
     private final List<Integer> values;
 
-    public StaticBaseballNumberGenerator(int first, int second, int third) {
+    public StaticBaseballNumbersGenerator(int first, int second, int third) {
         this.values = Arrays.asList(first, second, third);
     }
 
     @Override
-    public Set<BaseballNumber> generate() {
+    public BaseballNumbers generate() {
         Set<BaseballNumber> baseballNumbers = new HashSet<>();
 
         for (Integer value : values) {
@@ -24,7 +21,7 @@ public class StaticBaseballNumberGenerator implements BaseballNumberGenerator {
 
         validateDuplicatedNumber(baseballNumbers);
 
-        return baseballNumbers;
+        return new BaseballNumbers(new ArrayList<>(baseballNumbers));
     }
 
     private void validateDuplicatedNumber(Set<BaseballNumber> baseballNumbers) {

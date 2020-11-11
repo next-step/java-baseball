@@ -4,16 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomBaseballNumberGeneratorTests {
-    private BaseballNumberGenerator baseballNumberGenerator;
+class RandomBaseballNumbersGeneratorTests {
+    private BaseballNumbersGenerator baseballNumbersGenerator;
 
     @BeforeEach
     void setup() {
-        baseballNumberGenerator = new RandomBaseballNumberGenerator();
+        baseballNumbersGenerator = new RandomBaseballNumbersGenerator();
     }
 
     @DisplayName("랜덤으로 중복되지 않는 세 개의 야구게임숫자로 이루어진 컬렉션을 생성할 수 있다.")
@@ -21,7 +19,7 @@ class RandomBaseballNumberGeneratorTests {
     void generateBaseballNumbers() {
         int expectedSize = 3;
 
-        Set<BaseballNumber> baseballNumbers = baseballNumberGenerator.generate();
+        BaseballNumbers baseballNumbers = baseballNumbersGenerator.generate();
 
         assertThat(baseballNumbers.size()).isEqualTo(expectedSize);
     }

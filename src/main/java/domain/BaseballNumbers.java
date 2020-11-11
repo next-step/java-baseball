@@ -3,6 +3,7 @@ package domain;
 import domain.exceptions.InvalidBaseballNumbersSizeException;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BaseballNumbers {
     private static final int BASEBALL_NUMBER_SIZE = 3;
@@ -32,6 +33,14 @@ public class BaseballNumbers {
         return count;
     }
 
+    public int size() {
+        return this.baseballNumbers.size();
+    }
+
+    public boolean contains(BaseballNumber baseballNumber) {
+        return this.baseballNumbers.contains(baseballNumber);
+    }
+
     private int getCount(BaseballNumbers compareTarget, BaseballNumber baseballNumber) {
         if (compareTarget.baseballNumbers.contains(baseballNumber)) {
             return 1;
@@ -43,5 +52,18 @@ public class BaseballNumbers {
         if (baseballNumbers.size() != 3) {
             throw new InvalidBaseballNumbersSizeException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseballNumbers that = (BaseballNumbers) o;
+        return Objects.equals(baseballNumbers, that.baseballNumbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(baseballNumbers);
     }
 }

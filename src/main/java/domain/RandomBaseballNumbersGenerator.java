@@ -2,17 +2,17 @@ package domain;
 
 import java.util.*;
 
-public class RandomBaseballNumberGenerator implements BaseballNumberGenerator {
+public class RandomBaseballNumbersGenerator implements BaseballNumbersGenerator {
     private static final Random RANDOM = new Random();
 
-    public Set<BaseballNumber> generate() {
+    public BaseballNumbers generate() {
         Set<BaseballNumber> baseballNumbers = new HashSet<>();
 
         while (baseballNumbers.size() < 3) {
             baseballNumbers.add(BaseballNumber.of(pickRandomInt()));
         }
 
-        return baseballNumbers;
+        return new BaseballNumbers(new ArrayList<>(baseballNumbers));
     }
 
     private int pickRandomInt() {
