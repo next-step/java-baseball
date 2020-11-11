@@ -5,6 +5,7 @@ import domain.exceptions.InvalidBaseballNumbersSizeException;
 import java.util.List;
 
 public class BaseballNumbers {
+    private final int BASEBALL_NUMBER_SIZE = 3;
     private final List<BaseballNumber> baseballNumbers;
 
     public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
@@ -16,6 +17,16 @@ public class BaseballNumbers {
         int count = 0;
         for (BaseballNumber baseballNumber : baseballNumbers) {
             count += getCount(compareTarget, baseballNumber);
+        }
+        return count;
+    }
+
+    public int countExactMatch(BaseballNumbers compareTarget) {
+        int count = 0;
+        for (int i = 0; i < BASEBALL_NUMBER_SIZE; i ++) {
+            if (compareTarget.baseballNumbers.get(i) == this.baseballNumbers.get(i)) {
+                count += 1;
+            }
         }
         return count;
     }
