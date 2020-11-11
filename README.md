@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+## 기능추가할것
+* 컴퓨터가 사용할 랜덤숫자 생성 클래스
+* 사용자가 게임을 진행하는데에 필요한 숫자 입력받는 클래스
+* UI 클래스
+* 비즈니스 로직
