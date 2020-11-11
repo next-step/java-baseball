@@ -1,6 +1,6 @@
 package domain;
 
-import domain.exceptions.InvalidFourBallStatusException;
+import domain.exceptions.InvalidBaseballResultParameterException;
 
 import java.util.Objects;
 
@@ -11,6 +11,7 @@ public class BaseballResult {
 
     BaseballResult(int ballCount, int strikeCount, boolean fourBall) {
         validateFourBall(ballCount, strikeCount, fourBall);
+        validateNegativeNumber(ballCount, strikeCount);
         this.ballCount = ballCount;
         this.strikeCount = strikeCount;
         this.fourBall = fourBall;
@@ -35,7 +36,13 @@ public class BaseballResult {
         if (ballCount == 0 && strikeCount == 0) {
             return;
         }
-        throw new InvalidFourBallStatusException();
+        throw new InvalidBaseballResultParameterException();
+    }
+
+    private void validateNegativeNumber(int ballCount, int strikeCount) {
+        if (ballCount < 0 || strikeCount <0) {
+            throw new InvalidBaseballResultParameterException();
+        }
     }
 
     @Override

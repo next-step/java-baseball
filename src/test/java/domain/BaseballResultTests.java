@@ -1,6 +1,6 @@
 package domain;
 
-import domain.exceptions.InvalidFourBallStatusException;
+import domain.exceptions.InvalidBaseballResultParameterException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,6 +39,14 @@ class BaseballResultTests {
     @CsvSource(value = {"1:1:true", "2:1:true", "1:0:true", "0:1:true"}, delimiter = ':')
     void fourBallValidationTest(int ballCount, int strikeCount, boolean fourBall) {
         assertThatThrownBy(() -> new BaseballResult(ballCount, strikeCount, fourBall))
-                .isInstanceOf(InvalidFourBallStatusException.class);
+                .isInstanceOf(InvalidBaseballResultParameterException.class);
+    }
+
+    @DisplayName("음수로 볼이나 스트라이크 결과를 만들 수 없다.")
+    @ParameterizedTest
+    @CsvSource(value = {"-1:-1", "-2:0", "0:-2"}, delimiter = ':')
+    void validateBallStrikeTest(int ballCount, int strikeCount) {
+        assertThatThrownBy(() -> BaseballResult.of(ballCount, strikeCount))
+                .isInstanceOf(InvalidBaseballResultParameterException.class);
     }
 }
