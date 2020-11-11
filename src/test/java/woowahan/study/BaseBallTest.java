@@ -95,14 +95,6 @@ public class BaseBallTest {
     assertEquals(message, "3개의 숫자를 모두 맞히셨습니다! 게임종료!");
   }
 
-  @Test
-  void testResetGame() {
-    // given
-    String selected = "2";
-    // when
-    //baseBall.resetGame(selected);
-  }
-
   private boolean isNumber(String[] s) {
     try {
       for(String value : s) {

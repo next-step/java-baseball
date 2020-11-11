@@ -5,37 +5,42 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-class BaseBall {
+public class BaseBall {
 
   private final String[] randomData;
+  private Scanner scanner;
 
-  BaseBall() {
+  public BaseBall() {
     this.randomData = this.getRandomText();
+    this.scanner = new Scanner(System.in);
   }
 
-  void play() throws Exception {
-    Scanner scanner = new Scanner(System.in);
+  public void play() {
     System.out.println("숫자를 입력해주세요 :");
+    try {
+      String inputDataStr = scanner.next();
 
-    String inputDataStr = scanner.next();
-    if (inputDataStr == null || inputDataStr.length() != 3) {
-      throw new Exception("[필수] 입력값은 자릿수 3자리입니다.");
+      if (inputDataStr.length() != 3) {
+        System.out.println("입력 값은 3자리의 자연수를 입력하여야 합니다.");
+        play();
+      }
+
+      int strike = 0;
+      int ball = 0;
+      for (int t = 0; t < randomData.length; t++) {
+        strike += isStrike(inputDataStr, t);
+        ball += isBall(inputDataStr, t);
+      }
+
+      System.out.println(writeMessage(strike, ball));
+      if (strike == 3) {
+        resetGame();
+      }
+      play();
+    } catch (Exception e) {
+      System.out.println("게임진행에 실패하였습니다. 원인: ".concat(e.getMessage()));
+      exitGame();
     }
-
-    int strike = 0;
-    int ball = 0;
-    for (int t=0; t<randomData.length; t++) {
-      strike += isStrike(inputDataStr, t);
-      ball += isBall(inputDataStr, t);
-    }
-
-    System.out.println(writeMessage(strike, ball));
-    if (strike == 3) {
-      System.out.println("개임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-
-      resetGame(scanner.next());
-    }
-    play();
   }
 
   /**
@@ -51,6 +56,7 @@ class BaseBall {
     } while (randomDataSet.size() < 3);
     String[] randomText = new String[randomDataSet.size()];
     randomDataSet.toArray(randomText);
+
     return randomText;
   }
 
@@ -88,14 +94,29 @@ class BaseBall {
   }
 
   /**
-   * 리셋 및 종료 처리
-   * @param selected 1: 새로시작 / 2: 종료
+   * 리셋처리
    */
-  public void resetGame(String selected) {
-    if (selected.equals("2")) {
-      System.exit(0);
+  public void resetGame() {
+    System.out.println("개임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+    String selected = scanner.next();
+
+    if (selected.equals("1")) {
+      GameStart.main(null);
     }
-    GameStart.main(null);
+    if (selected.equals("2")) {
+      exitGame();
+    }
+    resetGame();
+  }
+
+  /**
+   * 종료처리
+   */
+  private void exitGame() {
+    if (scanner != null) {
+      scanner.close();
+    }
+    System.exit(0);
   }
 
 }
