@@ -74,7 +74,7 @@ public class BaseBallTest {
   }
 
   @Test
-  void testWriteMessage_2스트라이크1볼() {
+  void testWriteMessage_2스트라이크1() {
     // given
     int strike = 2;
     int ball = 1;
@@ -82,6 +82,17 @@ public class BaseBallTest {
     String message = baseBall.writeMessage(strike, ball);
     // then
     assertEquals(message, "2 스트라이크 1 볼");
+  }
+
+  @Test
+  void testWriteMessage_게임종료() {
+    // given
+    int strike = 3;
+    int ball = 0;
+    // when
+    String message = baseBall.writeMessage(strike, ball);
+    // then
+    assertEquals(message, "3개의 숫자를 모두 맞히셨습니다! 게임종료!");
   }
 
   @Test

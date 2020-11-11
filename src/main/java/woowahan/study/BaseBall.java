@@ -31,7 +31,6 @@ class BaseBall {
 
     System.out.println(writeMessage(strike, ball));
     if (strike == 3) {
-      System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료!");
       System.out.println("개임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 
       resetGame(scanner.next());
@@ -79,6 +78,9 @@ class BaseBall {
    * 판독결과 메세지 반환
    */
   public String writeMessage(int strike, int ball) {
+    if (strike == 3) {
+      return "3개의 숫자를 모두 맞히셨습니다! 게임종료!";
+    }
     if (strike == 0 && ball == 0) {
       return "낫싱";
     }
