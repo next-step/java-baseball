@@ -15,7 +15,7 @@ public class UtilTest {
 	private int randomNumber;
 	private int min = 100;
 	private int max = 999;
-	
+	private int userNumber;
 	/**
 	 * @author : chano
 	 * @Date   : 2020. 11. 11.
@@ -24,10 +24,25 @@ public class UtilTest {
 	 * @return : void
 	 */
 	@Test
-	void utilTest() {
+	void randomNumberTest() {
 		for (int i = 0; i < 1000000; i++) {
 			randomNumber = BaseBallUtils.ballNumberGenerator();
 			assertTrue(min <= randomNumber && randomNumber <= max);
 		}
 	}
+	
+	
+	/**
+	 * @author : chano
+	 * @Date   : 2020. 11. 11.
+	 * @Description : BaseBallUtils.inputNumber() 입력기능 테스트이며 100미만이거나 999초과의 값이 나올경우 테스트실패함.
+	 * @Method Name : inputNumberTest
+	 * @return : void
+	 */
+	@Test
+	void inputNumberTest() {
+		userNumber = BaseBallUtils.inputNumber();
+		assertTrue(min <= userNumber && userNumber <= max);	
+	}
+	
 }
