@@ -27,11 +27,17 @@
     * Util성 객체로 처리한다.  
 * Result  
     * 결과 객체  
-    * Strike, Ball 정보를 갖는다 . 
+    * Strike, Ball 정보를 갖는다. 
     * Strike, Ball 정보를 토대로 낫싱(볼넷) 여부를 판단한다.  
     * String으로 결과를 뱉어준다.  
 * BaseballGame (Controller): 게임 진행 Controller  
     * RandomNumberGenerator를 이용해 랜덤 BallNumbers를 생성하여 출력한다.  
     * 사용자에게 입력받은 숫자를 토대로 BallNumbers 객체를 생성한다.  
     * Referee 객체를 
-* RandomNumberGenerator: 랜덤 숫자 생성을 도와주는 클래스
+* RandomNumberGenerator: 랜덤 숫자 생성을 도와주는 클래스  
+* InputView / OutputView  
+
+## 고려 사항  
+* 룰이 바뀔 경우를 고려한다. (Refree에 Rule 주입?)  
+* Strike, Ball에 대한 Enum 필요성 고려  
+* 
