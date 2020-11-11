@@ -39,7 +39,8 @@ class BaseballResultTests {
     @CsvSource(value = {"1:1:true", "2:1:true", "1:0:true", "0:1:true"}, delimiter = ':')
     void fourBallValidationTest(int ballCount, int strikeCount, boolean fourBall) {
         assertThatThrownBy(() -> new BaseballResult(ballCount, strikeCount, fourBall))
-                .isInstanceOf(InvalidBaseballResultParameterException.class);
+                .isInstanceOf(InvalidBaseballResultParameterException.class)
+                .hasMessage("FourBall cannot be Ball or Strike");
     }
 
     @DisplayName("음수로 볼이나 스트라이크 결과를 만들 수 없다.")
@@ -47,7 +48,8 @@ class BaseballResultTests {
     @CsvSource(value = {"-1:-1", "-2:0", "0:-2"}, delimiter = ':')
     void validateBallStrikeTest(int ballCount, int strikeCount) {
         assertThatThrownBy(() -> BaseballResult.of(ballCount, strikeCount))
-                .isInstanceOf(InvalidBaseballResultParameterException.class);
+                .isInstanceOf(InvalidBaseballResultParameterException.class)
+                .hasMessage("BaseballResult not allowed negative number");
     }
 
     @DisplayName("볼과 스트라이트의 총합이 3을 넘을 수 없다.")
@@ -55,6 +57,7 @@ class BaseballResultTests {
     @CsvSource(value = {"4:0", "0:4", "1:3", "3:1"}, delimiter = ':')
     void validateMaxCount(int ballCount, int strikeCount) {
         assertThatThrownBy(() -> BaseballResult.of(ballCount, strikeCount))
-                .isInstanceOf(InvalidBaseballResultParameterException.class);
+                .isInstanceOf(InvalidBaseballResultParameterException.class)
+                .hasMessage("Over max count sum of ball and strike(max: 3)");
     }
 }

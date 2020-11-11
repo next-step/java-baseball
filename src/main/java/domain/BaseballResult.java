@@ -41,18 +41,18 @@ public class BaseballResult {
         if (ballCount == 0 && strikeCount == 0) {
             return;
         }
-        throw new InvalidBaseballResultParameterException();
+        throw new InvalidBaseballResultParameterException("FourBall cannot be Ball or Strike");
     }
 
     private void validateNegativeNumber(int ballCount, int strikeCount) {
         if (ballCount < 0 || strikeCount <0) {
-            throw new InvalidBaseballResultParameterException();
+            throw new InvalidBaseballResultParameterException("BaseballResult not allowed negative number");
         }
     }
 
     private void validateMaxCount(int ballCount, int strikeCount) {
         if ((ballCount + strikeCount) > 3) {
-            throw new InvalidBaseballResultParameterException();
+            throw new InvalidBaseballResultParameterException("Over max count sum of ball and strike(max: 3)");
         }
     }
 
