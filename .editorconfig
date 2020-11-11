@@ -27,3 +27,14 @@ trim_trailing_whitespace = true
 
 [line-length-120]
 max_line_length = 120
+
+# Ignore paths
+[/node_modules/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+indent_style = unset
+indent_size = unset
+tab_width = unset
+trim_trailing_whitespace = unset
+max_line_length = unset
