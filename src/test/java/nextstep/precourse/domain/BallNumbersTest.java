@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static nextstep.precourse.domain.BallNumbers.*;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class BallNumbersTest {
@@ -17,7 +18,7 @@ public class BallNumbersTest {
 
     @Test
     @DisplayName("BallNumber는 3개만으로 구성되어야 한다. 그렇지 않으면 Exception을 반환한다.")
-    void assertNumbersCount() {
+    void assertCount() {
         List<BallNumber> ballNumbers= new ArrayList<>();
         ballNumbers.add(BALLNUMBER_ONE);
         ballNumbers.add(BALLNUMBER_TWO);
@@ -26,12 +27,12 @@ public class BallNumbersTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumbers(ballNumbers);
-        }).withMessage("숫자는 3개로만 구성되어 있어야 합니다.");
+        }).withMessage(BALLNUMBERS_COUNT_INVALID_MESSAGE);
     }
 
     @Test
     @DisplayName("BallNumber는 1,2,3 각각 다른 포지션에 포진되어 있어야 한다. 그렇지 않으면 Exception을 반환한다.")
-    void assertNumbersPosition() {
+    void assertPosition() {
         List<BallNumber> ballNumbers = new ArrayList<>();
         ballNumbers.add(BALLNUMBER_ONE);
         ballNumbers.add(BALLNUMBER_TWO);
@@ -39,12 +40,12 @@ public class BallNumbersTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumbers(ballNumbers);
-        }).withMessage("숫자들은 서로 다른 포지션에 포진되어 있어야 합니다.");
+        }).withMessage(BALLNUMBERS_POSITION_INVALID_MESSAGE);
     }
 
     @Test
     @DisplayName("BallNumber 서로 다른 숫자로 구성되어 있어야 한다. 그렇지 않으면 Exception을 반환한다.")
-    void assertNumbersDifference() {
+    void assertNumber() {
         List<BallNumber> ballNumbers = new ArrayList<>();
         ballNumbers.add(BALLNUMBER_ONE);
         ballNumbers.add(BALLNUMBER_TWO);
@@ -52,6 +53,6 @@ public class BallNumbersTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumbers(ballNumbers);
-        }).withMessage("서로 다른 숫자를 제시해주세요.");
+        }).withMessage(BALLNUMBERS_NUMBER_INVALID_MESSAGE);
     }
 }

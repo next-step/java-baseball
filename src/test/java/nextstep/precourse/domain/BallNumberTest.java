@@ -3,8 +3,8 @@ package nextstep.precourse.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static nextstep.precourse.domain.BallNumber.NUMBER_INVALID_MESSAGE;
-import static nextstep.precourse.domain.BallNumber.POSITION_INVALID_MESSAGE;
+import static nextstep.precourse.domain.BallNumber.BALLNUMBER_NUMBER_INVALID_MESSAGE;
+import static nextstep.precourse.domain.BallNumber.BALLNUMBER_POSITION_INVALID_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class BallNumberTest {
@@ -18,11 +18,11 @@ public class BallNumberTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumberZero, ballPosition);
-        }).withMessage(NUMBER_INVALID_MESSAGE);
+        }).withMessage(BALLNUMBER_NUMBER_INVALID_MESSAGE);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumberTen, ballPosition);
-        }).withMessage(NUMBER_INVALID_MESSAGE);
+        }).withMessage(BALLNUMBER_NUMBER_INVALID_MESSAGE);
     }
 
     @Test
@@ -34,10 +34,10 @@ public class BallNumberTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumber, ballPositionZero);
-        }).withMessage(POSITION_INVALID_MESSAGE);
+        }).withMessage(BALLNUMBER_POSITION_INVALID_MESSAGE);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumber, ballPositionFour);
-        }).withMessage(POSITION_INVALID_MESSAGE);
+        }).withMessage(BALLNUMBER_POSITION_INVALID_MESSAGE);
     }
 }
