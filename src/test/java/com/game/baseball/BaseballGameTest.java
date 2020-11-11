@@ -17,6 +17,30 @@ class BaseballGameTest {
     }
 
     @Test
+    void isValidInput_successTest() {
+        // given
+        String input = "123";
+
+        // when
+        boolean isValidInput = baseballGame.isValidInput(input);
+
+        // then
+        assertThat(isValidInput).isTrue();
+    }
+
+    @Test
+    void isValidInput_failureTest() {
+        // given
+        String input = "112";
+
+        // when
+        boolean isValidInput = baseballGame.isValidInput(input);
+
+        // then
+        assertThat(isValidInput).isFalse();
+    }
+
+    @Test
     void isValidBaseBallNumber_successTest() {
         // given
         String number = baseballGame.generateNumber();

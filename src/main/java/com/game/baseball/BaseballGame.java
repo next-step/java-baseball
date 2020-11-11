@@ -1,17 +1,40 @@
 package com.game.baseball;
 
+import com.game.code.ErrorCode;
 import com.game.common.Game;
+import com.game.exception.GameException;
 import com.game.util.NumberUtil;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class BaseballGame implements Game {
 
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 9;
+
+    @Override
+    public boolean isValidInput(String input) {
+        Set<Integer> integerSet = new HashSet<>();
+
+        for (char ch : input.toCharArray()) {
+            int number = Character.getNumericValue(ch);
+            isValidNumber(number);
+            integerSet.add(number);
+        }
+        return integerSet.size() == 3;
+    }
+
+    private void isValidNumber(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER)
+            throw new GameException(ErrorCode.INVALID_BASEBALL_NUMBER);
+    }
+
     public String generateNumber() {
         Set<Integer> integerSet = new LinkedHashSet<>();
         while (integerSet.size() < 3) {
-            int number = NumberUtil.randomNumber(1, 9);
+            int number = NumberUtil.randomNumber(MIN_NUMBER, MAX_NUMBER);
             integerSet.add(number);
         }
 
