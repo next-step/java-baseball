@@ -3,6 +3,8 @@ package study;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,11 +31,10 @@ public class SetTest {
     }
 
     @DisplayName("값 포함 여부 확인 테스트")
-    @Test
-    public void contains() {
-        assertThat(numbers.contains(1)).isTrue();
-        assertThat(numbers.contains(2)).isTrue();
-        assertThat(numbers.contains(3)).isTrue();
+    @ParameterizedTest
+    @CsvSource({"1", "2", "3"})
+    public void contains(int value) {
+        assertThat(numbers.contains(value)).isTrue();
     }
 
 }

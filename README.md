@@ -30,4 +30,4 @@
 
 ### 요구사항 2
 * [X] Set의 contains() 메소드를 활용해 1, 2, 3의 값이 존재하는지를 확인하는 학습테스트를 구현
-* [ ] JUnit의 ParameterizedTest를 활용해 중복 코드를 제거해 본다
+* [X] JUnit의 ParameterizedTest를 활용해 중복 코드를 제거해 본다
