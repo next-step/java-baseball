@@ -24,9 +24,9 @@ public class BaseballNumbers {
     public int countExactMatch(BaseballNumbers compareTarget) {
         int count = 0;
         for (int i = 0; i < BASEBALL_NUMBER_SIZE; i ++) {
-            if (compareTarget.baseballNumbers.get(i) == this.baseballNumbers.get(i)) {
-                count += 1;
-            }
+            BaseballNumber number = this.baseballNumbers.get(i);
+            BaseballNumber compareTargetNumber = compareTarget.baseballNumbers.get(i);
+            count += number.countSameNumber(compareTargetNumber);
         }
         return count;
     }

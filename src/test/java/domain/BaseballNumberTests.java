@@ -48,4 +48,11 @@ class BaseballNumberTests {
         assertThat(BaseballNumber.of(1)).isEqualTo(BaseballNumber.ONE);
         assertThat(BaseballNumber.of(2)).isNotEqualTo(BaseballNumber.ONE);
     }
+
+    @DisplayName("BaseballNumber 끼리 비교하여 값이 일치하면 1, 값이 다르면 0을 반환한다.")
+    @Test
+    void countSameNumberTest() {
+        assertThat(BaseballNumber.ONE.countSameNumber(BaseballNumber.ONE)).isEqualTo(1);
+        assertThat(BaseballNumber.ONE.countSameNumber(BaseballNumber.TWO)).isEqualTo(0);
+    }
 }

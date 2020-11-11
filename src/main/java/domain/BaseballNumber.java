@@ -26,4 +26,11 @@ public enum BaseballNumber {
 
         throw new OutOfBoundBaseballNumberException();
     }
+
+    public int countSameNumber(BaseballNumber compareTarget) {
+        if (this.value == compareTarget.value) {
+            return 1;
+        }
+        return 0;
+    }
 }
