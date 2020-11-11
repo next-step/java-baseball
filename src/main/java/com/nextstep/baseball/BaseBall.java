@@ -1,3 +1,5 @@
+package com.nextstep.baseball;
+
 import java.io.IOException;
 import java.util.*;
 

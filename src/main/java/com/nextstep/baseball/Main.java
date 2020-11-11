@@ -1,3 +1,6 @@
+package com.nextstep.baseball;
+
+import com.nextstep.baseball.BaseBall;
 
 public class Main {
 
