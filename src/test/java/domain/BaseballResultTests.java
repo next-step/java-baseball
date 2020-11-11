@@ -49,4 +49,12 @@ class BaseballResultTests {
         assertThatThrownBy(() -> BaseballResult.of(ballCount, strikeCount))
                 .isInstanceOf(InvalidBaseballResultParameterException.class);
     }
+
+    @DisplayName("볼과 스트라이트의 총합이 3을 넘을 수 없다.")
+    @ParameterizedTest
+    @CsvSource(value = {"4:0", "0:4", "1:3", "3:1"}, delimiter = ':')
+    void validateMaxCount(int ballCount, int strikeCount) {
+        assertThatThrownBy(() -> BaseballResult.of(ballCount, strikeCount))
+                .isInstanceOf(InvalidBaseballResultParameterException.class);
+    }
 }

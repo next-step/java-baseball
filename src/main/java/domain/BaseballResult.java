@@ -31,6 +31,7 @@ public class BaseballResult {
     private void validate(int ballCount, int strikeCount, boolean fourBall) {
         validateFourBall(ballCount, strikeCount, fourBall);
         validateNegativeNumber(ballCount, strikeCount);
+        validateMaxCount(ballCount, strikeCount);
     }
 
     private void validateFourBall(int ballCount, int strikeCount, boolean fourBall) {
@@ -45,6 +46,12 @@ public class BaseballResult {
 
     private void validateNegativeNumber(int ballCount, int strikeCount) {
         if (ballCount < 0 || strikeCount <0) {
+            throw new InvalidBaseballResultParameterException();
+        }
+    }
+
+    private void validateMaxCount(int ballCount, int strikeCount) {
+        if ((ballCount + strikeCount) > 3) {
             throw new InvalidBaseballResultParameterException();
         }
     }
