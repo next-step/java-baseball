@@ -1,10 +1,10 @@
 package nextstep.precourse.domain;
 
-import nextstep.precourse.domain.BallNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static nextstep.precourse.domain.BallNumber.NUMBER_INVALID_MESSAGE;
+import static nextstep.precourse.domain.BallNumber.POSITION_INVALID_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class BallNumberTest {
@@ -18,11 +18,11 @@ public class BallNumberTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumberZero, ballPosition);
-        }).withMessage("1에서 9사이의 숫자여야 합니다.");
+        }).withMessage(NUMBER_INVALID_MESSAGE);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumberTen, ballPosition);
-        }).withMessage("1에서 9사이의 숫자여야 합니다.");
+        }).withMessage(NUMBER_INVALID_MESSAGE);
     }
 
     @Test
@@ -34,10 +34,10 @@ public class BallNumberTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumber, ballPositionZero);
-        }).withMessage("1에서 9사이의 숫자여야 합니다.");
+        }).withMessage(POSITION_INVALID_MESSAGE);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumber, ballPositionFour);
-        }).withMessage("1에서 9사이의 숫자여야 합니다.");
+        }).withMessage(POSITION_INVALID_MESSAGE);
     }
 }
