@@ -5,7 +5,8 @@ import domain.exceptions.InvalidBaseballNumbersSizeException;
 import java.util.List;
 
 public class BaseballNumbers {
-    private final int BASEBALL_NUMBER_SIZE = 3;
+    private static final int BASEBALL_NUMBER_SIZE = 3;
+
     private final List<BaseballNumber> baseballNumbers;
 
     public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
