@@ -10,8 +10,7 @@ public class BaseballResult {
     private final boolean fourBall;
 
     BaseballResult(int ballCount, int strikeCount, boolean fourBall) {
-        validateFourBall(ballCount, strikeCount, fourBall);
-        validateNegativeNumber(ballCount, strikeCount);
+        validate(ballCount, strikeCount, fourBall);
         this.ballCount = ballCount;
         this.strikeCount = strikeCount;
         this.fourBall = fourBall;
@@ -27,6 +26,11 @@ public class BaseballResult {
 
     public boolean isFourBall() {
         return fourBall;
+    }
+
+    private void validate(int ballCount, int strikeCount, boolean fourBall) {
+        validateFourBall(ballCount, strikeCount, fourBall);
+        validateNegativeNumber(ballCount, strikeCount);
     }
 
     private void validateFourBall(int ballCount, int strikeCount, boolean fourBall) {
