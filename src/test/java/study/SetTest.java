@@ -28,4 +28,12 @@ public class SetTest {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
+    @DisplayName("값 포함 여부 확인 테스트")
+    @Test
+    public void contains() {
+        assertThat(numbers.contains(1)).isTrue();
+        assertThat(numbers.contains(2)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
+    }
+
 }
