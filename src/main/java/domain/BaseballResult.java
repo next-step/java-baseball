@@ -1,5 +1,7 @@
 package domain;
 
+import domain.exceptions.InvalidFourBallStatusException;
+
 import java.util.Objects;
 
 public class BaseballResult {
@@ -8,6 +10,7 @@ public class BaseballResult {
     private final boolean fourBall;
 
     BaseballResult(int ballCount, int strikeCount, boolean fourBall) {
+        validateFourBall(ballCount, strikeCount, fourBall);
         this.ballCount = ballCount;
         this.strikeCount = strikeCount;
         this.fourBall = fourBall;
@@ -23,6 +26,16 @@ public class BaseballResult {
 
     public boolean isFourBall() {
         return fourBall;
+    }
+
+    private void validateFourBall(int ballCount, int strikeCount, boolean fourBall) {
+        if (!fourBall) {
+            return;
+        }
+        if (ballCount == 0 && strikeCount == 0) {
+            return;
+        }
+        throw new InvalidFourBallStatusException();
     }
 
     @Override
