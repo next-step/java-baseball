@@ -9,6 +9,7 @@ public class BaseBall {
 	Scanner sc = new Scanner(System.in);
 
 	public void start() {
+		//4. 게임 재시작 또는 종료 기능
 		String restart = null;
 		do {
 			playGame();
@@ -33,8 +34,52 @@ public class BaseBall {
 		do {
 			strikePosition = detectStrike(answerList, inputNumberList);
 			removeStrike(strikePosition, answerList, inputNumberList);
+			int ballCount = detectBall(answerList, inputNumberList);
+			boolean isNothing = isNothing(answerList);
+			int strikeCnt = calcuateStrike(strikePosition);
+			printResult(strikeCnt, ballCount, isNothing); //결과 출력
 		} while (answerList.size() != 0);
+	}
 
+	private void printResult(int strikeCnt, int ballCount, boolean isNothing) {
+		StringBuffer sb = new StringBuffer();
+		if(isNothing){
+			sb.append("낫싱");
+		}
+		if (strikeCnt != 0){
+			sb.append(String.format("{} 스트라이크", strikeCnt));
+		}
+		if (ballCount !=0){
+			sb.append(String.format("{} 볼", ballCount));
+		}
+		System.out.println(sb.toString());
+	}
+
+	private int calcuateStrike(List<Boolean> strikePosition) {
+		int strikeCnt = 0;
+		for (int i = 0; i < strikePosition.size(); i++) {
+			strikeCnt += calcuateStrike(strikePosition.get(i));
+		}
+		return strikeCnt;
+	}
+
+	private int calcuateStrike(Boolean isStrike) {
+		if(isStrike){
+			return 1;
+		}
+		return 0;
+	}
+
+	private boolean isNothing(List<Integer> answerList) {
+		if (answerList.size() == 3) {
+			return true;
+		}
+		return false;
+	}
+
+	private int detectBall(List<Integer> answerList, List<Integer> inputNumberList) {
+		answerList.retainAll(inputNumberList);
+		return answerList.size();
 	}
 
 	private void removeStrike(List<Boolean> strikePosition, List<Integer> answerList, List<Integer> inputNumberList) {
@@ -55,10 +100,8 @@ public class BaseBall {
 		for (int i = 0; i < answerList.size(); i++) {
 			Integer answer = answerList.get(i);
 			Integer input = inputNumberList.get(i);
-
 			detectStrike(answer, input, strikePosition, i);
 		}
-
 		return strikePosition;
 	}
 
