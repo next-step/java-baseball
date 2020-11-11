@@ -2,6 +2,7 @@ package study;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringTest {
@@ -19,4 +20,12 @@ public class StringTest {
         String str = "1";
         assertThat(str.split(",")).containsExactly("1");
     }
+
+    @DisplayName("문자열 자르기")
+    @Test
+    public void substring() {
+        String str = "(1,2)";
+        assertThat(str.substring(1, str.length() - 1)).isEqualTo("1,2");
+    }
+
 }
