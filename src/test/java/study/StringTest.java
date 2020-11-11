@@ -12,4 +12,11 @@ public class StringTest {
         String str = "1,2";
         assertThat(str.split(",")).contains("1", "2");
     }
+
+    @DisplayName("콤마 없을때 콤마로 분리")
+    @Test
+    public void splitNotContainDelimiter() {
+        String str = "1";
+        assertThat(str.split(",")).containsExactly("1");
+    }
 }
