@@ -8,7 +8,18 @@ public class BaseBall {
 
 	Scanner sc = new Scanner(System.in);
 
-	public boolean play() {
+	public void start() {
+		String restart = null;
+		do {
+			playGame();
+			printMessage("3개 숫자를 모두 맞히셨습니다. 게임 종료");
+			printMessage("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			restart = sc.next();
+		} while (Boolean.valueOf(restart));
+
+	}
+
+	public void playGame() {
 		//1. 1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능
 		List<Integer> answerList = selectNonoverlapThreeNumber();
 
@@ -22,23 +33,8 @@ public class BaseBall {
 		do {
 			strikePosition = detectStrike(answerList, inputNumberList);
 			removeStrike(strikePosition, answerList, inputNumberList);
-			int ballCount = detectBall(answerList, inputNumberList);
-			boolean isNothing = isNothing(answerList);
-		} while (strikePosition.size() == 0);
+		} while (answerList.size() != 0);
 
-		return true;
-	}
-
-	private boolean isNothing(List<Integer> answerList) {
-		if (answerList.size() == 3) {
-			return true;
-		}
-		return false;
-	}
-
-	private int detectBall(List<Integer> answerList, List<Integer> inputNumberList) {
-		answerList.retainAll(inputNumberList);
-		return answerList.size();
 	}
 
 	private void removeStrike(List<Boolean> strikePosition, List<Integer> answerList, List<Integer> inputNumberList) {
