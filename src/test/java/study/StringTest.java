@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
 
@@ -37,6 +38,16 @@ public class StringTest {
     public void charAt(int index, char target) {
         String str = "abc";
         assertThat(str.charAt(index)).isEqualTo(target);
+    }
+
+    @DisplayName("인덱스 벗어난 위치의 문자 가져오면 StringIndexOutOfBoundsException")
+    @Test
+    public void charAtException() {
+        String str = "abc";
+        // assertThatExceptionOfType(StringIndexOutOfBoundsException.class).isThrownBy(() -> str.charAt(3));
+        assertThatThrownBy(() -> {
+            str.charAt(3);
+        }).isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 
 }
