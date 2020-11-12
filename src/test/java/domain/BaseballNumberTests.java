@@ -1,5 +1,6 @@
 package domain;
 
+import domain.baseballNumber.BaseballNumber;
 import domain.exceptions.OutOfBoundBaseballNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

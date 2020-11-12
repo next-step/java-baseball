@@ -1,6 +1,6 @@
 package fixtures;
 
-import domain.BaseballNumber;
+import domain.baseballNumber.BaseballNumber;
 import domain.BaseballNumbers;
 
 import java.util.Arrays;

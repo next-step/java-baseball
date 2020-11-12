@@ -1,5 +1,6 @@
 package domain;
 
+import domain.baseballNumber.BaseballNumber;
 import domain.exceptions.BaseballNumberDuplicatedException;
 
 import java.util.*;

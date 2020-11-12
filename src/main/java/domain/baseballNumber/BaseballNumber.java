@@ -1,4 +1,4 @@
-package domain;
+package domain.baseballNumber;
 
 import domain.exceptions.OutOfBoundBaseballNumberException;
 

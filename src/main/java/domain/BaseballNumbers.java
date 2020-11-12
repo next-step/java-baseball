@@ -1,5 +1,6 @@
 package domain;
 
+import domain.baseballNumber.BaseballNumber;
 import domain.exceptions.InvalidBaseballNumbersSizeException;
 
 import java.util.List;

@@ -1,5 +1,7 @@
 package domain;
 
+import domain.baseballNumber.BaseballNumber;
+
 import java.util.*;
 
 public class RandomBaseballNumbersGenerator implements BaseballNumbersGenerator {
