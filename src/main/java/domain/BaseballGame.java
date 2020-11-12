@@ -1,9 +1,11 @@
 package domain;
 
 public class BaseballGame {
+    private boolean finished;
     private final BaseballNumbers baseballNumbers;
 
     BaseballGame(BaseballNumbers baseballNumbers) {
+        this.finished = false;
         this.baseballNumbers = baseballNumbers;
     }
 
@@ -12,10 +14,18 @@ public class BaseballGame {
     }
 
     public BaseballResult play(BaseballNumbers playerBalls) {
-        return calculateResult(
+        BaseballResult baseballResult = calculateResult(
                 baseballNumbers.countMatchNumbers(playerBalls),
                 baseballNumbers.countExactMatch(playerBalls)
         );
+
+        checkEndOfGame(baseballResult);
+
+        return baseballResult;
+    }
+
+    public boolean isFinished() {
+        return finished;
     }
 
     private BaseballResult calculateResult(int numberOfMatchedNumbers, int numberOfStrikes) {
@@ -26,5 +36,11 @@ public class BaseballGame {
         int numberOfBalls = numberOfMatchedNumbers - numberOfStrikes;
 
         return BaseballResult.of(numberOfBalls, numberOfStrikes);
+    }
+
+    private void checkEndOfGame(BaseballResult baseballResult) {
+        if (baseballResult.getStrikeCount() == 3) {
+            finished = true;
+        }
     }
 }

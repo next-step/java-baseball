@@ -9,18 +9,23 @@ import ui.exceptions.InvalidSizeException;
 import java.util.Scanner;
 
 public class BaseballGameRunner {
+    private static final String GAME_ENDING = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         try {
             BaseballGame baseballGame = BaseballGame.init(new RandomBaseballNumbersGenerator());
 
-            System.out.println("숫자를 입력해주세요: ");
-            UserInput userInput = new UserInput(scanner.nextLine());
+            while(!baseballGame.isFinished()) {
+                System.out.println("숫자를 입력해주세요: ");
+                UserInput userInput = new UserInput(scanner.nextLine());
 
-            BaseballResult baseballResult = baseballGame.play(userInput.convertToBaseballNumbers());
+                BaseballResult baseballResult = baseballGame.play(userInput.convertToBaseballNumbers());
 
-            System.out.println(UserOutput.parseResult(baseballResult));
+                System.out.println(UserOutput.parseResult(baseballResult));
+            }
+
+            System.out.println(GAME_ENDING);
         } catch (OutOfBoundBaseballNumberException e) {
             System.out.println("1 ~ 9 사이의 숫자를 입력해주세요.");
         } catch (NumberFormatException e) {
