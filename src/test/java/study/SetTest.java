@@ -37,4 +37,11 @@ public class SetTest {
         assertThat(numbers.contains(value)).isTrue();
     }
 
+    @DisplayName("input 별로 다른 contains 기대값 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"})
+    public void contains(int value, boolean expected) {
+        assertThat(numbers.contains(value)).isEqualTo(expected);
+    }
+
 }
