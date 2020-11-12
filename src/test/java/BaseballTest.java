@@ -1,22 +1,15 @@
 import org.junit.jupiter.api.BeforeAll;
-
 import org.junit.jupiter.api.DisplayName;
-
 import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.params.ParameterizedTest;
-
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-
 import org.junit.jupiter.params.provider.ValueSource;
-
 import org.junit.platform.commons.util.StringUtils;
 
 import java.security.InvalidParameterException;
-
 import java.util.ArrayList;
-
 import java.util.Arrays;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -77,8 +70,57 @@ public class BaseballTest {
 		assertEquals(ExceptionMessageEnum.INVALID_SIZE.getMessage(), exception.getMessage());
 	}
 
-	private void checkDuplicationNumberFromInput(ArrayList<String> originArray, String inputNumber) {
-		if (originArray.contains(inputNumber)) {
+	@DisplayName("사용자로부터 받은 번호 검증 정상")
+	@ParameterizedTest
+	@ValueSource(strings = {"123"})
+	void checkNumberFromUserInput_isOk(String input) {
+		ArrayList<String> compareArray = new ArrayList<>(Arrays.asList("1", "2", "3"));
+		assertEquals(input.length(), 3);
+
+		for (char number : input.toCharArray()) {
+			int convertNumberFromChar = Integer.parseInt(convertCharToString(number));
+			assertTrue((convertNumberFromChar < 10 && convertNumberFromChar > 0));
+			userInputNumbers.add(String.valueOf(number));
+		}
+
+		assertEquals(userInputNumbers.size(), 3);
+		assertArrayEquals(userInputNumbers.toArray(), compareArray.toArray());
+	}
+
+	@DisplayName("사용자로부터 받은 번호 검증 중복")
+	@ParameterizedTest
+	@ValueSource(strings = {"113"})
+	void checkNumberFromUserInput_isDuplicate(String input) {
+		assertEquals(input.length(), 3);
+
+		Throwable exception = assertThrows(CustomException.class,
+				() -> checkDuplicationNumberFromUserInput(input));
+
+		assertEquals(ExceptionMessageEnum.DUPLICATE.getMessage(), exception.getMessage());
+	}
+
+	@DisplayName("사용자로부터 받은 번호 검증 사이즈 잘못되었을때")
+	@ParameterizedTest
+	@ValueSource(strings = {"12", "13", "1"})
+	void checkNumberFromUserInput_sizeIsNotValid(String input) {
+		Throwable exception = assertThrows(CustomException.class,
+				() -> checkNumberStringSize(input));
+
+		assertEquals(ExceptionMessageEnum.INVALID_SIZE.getMessage(), exception.getMessage());
+	}
+
+	@DisplayName("사용자로부터 받은 번호 검증 숫자가 아닐경우")
+	@ParameterizedTest
+	@ValueSource(strings = {"A", " ", ""})
+	void checkNumberFromUserInput_isNotInteger(String input) {
+		Throwable exception = assertThrows(NumberFormatException.class,
+				() -> checkIntegerFromInputString(input));
+
+		assertEquals(ExceptionMessageEnum.INVALID.getMessage(), exception.getMessage());
+	}
+
+	private void checkDuplicationNumberFromInput(ArrayList<String> originArray, String input) {
+		if (originArray.contains(input)) {
 			throw new InvalidParameterException(ExceptionMessageEnum.INVALID.getMessage());
 		}
 	}
@@ -89,9 +131,45 @@ public class BaseballTest {
 		}
 	}
 
-	private void checkNumberListSize(ArrayList<String> inputNumbers) throws CustomException {
-		if (inputNumbers.size() != 3) {
+	private void checkNumberListSize(ArrayList<String> input) throws CustomException {
+		if (input.size() != 3) {
 			throw new CustomException(ExceptionMessageEnum.INVALID_SIZE.getMessage());
 		}
+	}
+
+	private void checkDuplicationNumberFromUserInput(String input) throws CustomException {
+		HashSet<String> numberSet = new HashSet<>();
+
+		for (char number : input.toCharArray()) {
+			numberSet.add(convertCharToString(number));
+		}
+
+		if (numberSet.size() < 3) {
+			throw new CustomException(ExceptionMessageEnum.DUPLICATE.getMessage());
+		}
+	}
+
+	private void checkNumberStringSize(String input) throws CustomException {
+		if (input.length() != 3) {
+			throw new CustomException(ExceptionMessageEnum.INVALID_SIZE.getMessage());
+		}
+	}
+
+	private void checkIntegerFromInputString(String input) throws CustomException {
+		for (char number : input.toCharArray()) {
+			convertStringToInteger(convertCharToString(number));
+		}
+	}
+
+	private int convertStringToInteger(String input) throws CustomException {
+		try {
+			return Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new CustomException(ExceptionMessageEnum.INVALID.getMessage());
+		}
+	}
+
+	private String convertCharToString(char input) {
+		return String.valueOf(input);
 	}
 }
