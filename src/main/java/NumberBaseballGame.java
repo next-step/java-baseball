@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class NumberBaseballGame {
@@ -11,6 +12,8 @@ public class NumberBaseballGame {
 		//System.out.print("숫자를 입력해주세요 : ");
 
 		//String str = scanner.next();
+		
+		int tempNum = 123; //임시로 숫자 입력받지 않고 선언해서 테스트 TODO: 개발 후 삭제
 
 		// 랜덤 세자리 정수 생성
 		generateRandomNumDigitException(RANDOM_DIGIT);
@@ -19,10 +22,14 @@ public class NumberBaseballGame {
 		System.out.println("랜덤 생성된 정수 : " + randomNum);
 
 		// 숫자 입력 받아서 스트라이크/ 볼 / 게임종료 판정
+		
+		
+		//볼카운트
+		int ballCount = countBall(randomNum, tempNum);
 
 		// 게임을 새로 시작할지 ? 게임을 종료할지 여부 받기
 		
-		System.out.println("정상종료");
+		System.out.println("볼카운트 : " + ballCount);
 
 		//scanner.close();
 
@@ -68,6 +75,29 @@ public class NumberBaseballGame {
 		}
 
 	}
+	
+	
+	
+	/**
+	 * 
+	 * ball 카운트
+	 * 
+	 * @param randomNum 랜덤정수, inputNum 입력받은 정수
+	 * @return ball ball 카운트
+	 * @author somi
+	 * 
+	 */
+	private static int countBall(int randomNum, int inputNum) {
+		int ball = 0;
+		String[] randomNumArr = (randomNum + "").split("");
+		
+		for (String randomNumArrInex : randomNumArr) {
+			ball = ((inputNum + "").contains(randomNumArrInex)) ? ball + 1 : ball;
+		}
+		
+		return ball;
+	}
+	
 	
 	
 }
