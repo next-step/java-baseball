@@ -19,35 +19,21 @@ public class BallNumbers {
     }
 
     public Integer getNumberByPosition(int position) {
-        Integer number = null;
 
         for(BallNumber ballNumber : ballNumbers) {
-            number = returnNumberIfPosition(ballNumber, position);
+            if(ballNumber.isPosition(position)) {
+                return ballNumber.getNumber();          //TODO: Depth Refactoring
+            }
         }
-
-        return number;
-    }
-
-    private Integer returnNumberIfPosition(BallNumber ballNumber, int position) {
-        if(ballNumber.isPosition(position)) {
-            return ballNumber.getNumber();
-        }
-
         return null;
     }
 
     public BallNumber getBallNumberByPosition(int position) {
-        BallNumber ballNumberAtPosition = null;
 
         for(BallNumber ballNumber : ballNumbers) {
-            ballNumberAtPosition = returnBallNumberIfPosition(ballNumber, position);
-        }
-        return ballNumberAtPosition;
-    }
-
-    private BallNumber returnBallNumberIfPosition(BallNumber ballNumber, int position) {
-        if(ballNumber.isPosition(position)) {
-            return ballNumber;
+            if(ballNumber.isPosition(position)) {       //TODO: Depth Refactoring
+                return ballNumber;
+            }
         }
         return null;
     }
@@ -57,17 +43,10 @@ public class BallNumbers {
     }
 
     public boolean isContain(Integer number) {
-        boolean isContain = false;
-
         for(BallNumber ballNumber : ballNumbers) {
-            isContain = returnTrueIfNumber(ballNumber, number);
-        }
-        return isContain;
-    }
-
-    private boolean returnTrueIfNumber(BallNumber ballNumber, Integer number) {
-        if(ballNumber.isNumber(number)) {
-            return true;
+            if(ballNumber.isNumber(number)) {           //TODO: Depth Refactoring
+                return true;
+            }
         }
         return false;
     }
