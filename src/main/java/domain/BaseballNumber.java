@@ -13,18 +13,17 @@ public enum BaseballNumber {
 
     BaseballNumber(int value) {
         this.value = value;
+        BaseballNumberCache.lookup.put(value, this);
     }
 
     public static BaseballNumber of(int value) {
-        BaseballNumber[] baseballNumbers = BaseballNumber.values();
+        BaseballNumber baseballNumber = BaseballNumberCache.lookup.get(value);
 
-        for (BaseballNumber baseballNumber : baseballNumbers) {
-            if (baseballNumber.value == value) {
-                return baseballNumber;
-            }
+        if (baseballNumber == null) {
+            throw new OutOfBoundBaseballNumberException();
         }
 
-        throw new OutOfBoundBaseballNumberException();
+        return baseballNumber;
     }
 
     public int countSameNumber(BaseballNumber compareTarget) {
