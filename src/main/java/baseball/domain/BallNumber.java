@@ -2,6 +2,8 @@ package baseball.domain;
 
 import baseball.exception.IllegalBallNumberException;
 
+import java.util.Objects;
+
 public class BallNumber {
 
     private static final int MAX_NUMBER = 9;
@@ -18,5 +20,17 @@ public class BallNumber {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalBallNumberException();
         }
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BallNumber that = (BallNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

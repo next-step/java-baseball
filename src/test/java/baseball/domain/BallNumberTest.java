@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.exception.IllegalBallNumberException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,5 +25,20 @@ class BallNumberTest {
                 () -> new BallNumber(input)
         ).isInstanceOf(IllegalBallNumberException.class)
                 .hasMessage("1~9 사이의 정수만 생성 가능");
+    }
+
+    @DisplayName("동일성 비교")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
+    public void compare_success(int input) throws Exception {
+        //given
+        BallNumber compare1 = new BallNumber(input);
+        BallNumber compare2 = new BallNumber(input);
+
+        //when
+        boolean result = compare1.equals(compare2);
+
+        //then
+        Assertions.assertTrue(result);
     }
 }
