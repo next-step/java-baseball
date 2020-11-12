@@ -3,21 +3,29 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Baseball {
+
+	static ArrayList<String> defaultNumbers = new ArrayList<>();
+	static ArrayList<String> userInputNumbers = new ArrayList<>();
+
 	public static void main(String[] args) {
-		System.out.println(pickDefaultNumbers().toString());
+		pickDefaultNumbers();
+		System.out.println(defaultNumbers.toString());
+
+		System.out.println("숫자를 입력해주세요 : ");
 	}
 
-	private static ArrayList<String> pickDefaultNumbers () {
+	private static void pickDefaultNumbers() {
 		HashSet<String> numberSet = new HashSet<>();
-		ArrayList<String> numbers = new ArrayList<>();
 
 		while (numberSet.size() < 3) {
 			int pickNumber = (int) (Math.random() * 9) + 1;
 			numberSet.add("" + pickNumber);
 		}
 
-		numberSet.iterator().forEachRemaining(numbers::add);
+		numberSet.iterator().forEachRemaining(defaultNumbers::add);
+	}
 
-		return numbers;
+	private static void inputNumberFromUser() {
+
 	}
 }
