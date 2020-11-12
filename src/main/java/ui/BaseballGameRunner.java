@@ -16,14 +16,7 @@ public class BaseballGameRunner {
         try {
             BaseballGame baseballGame = BaseballGame.init(new RandomBaseballNumbersGenerator());
 
-            while(!baseballGame.isFinished()) {
-                System.out.println("숫자를 입력해주세요: ");
-                UserInput userInput = new UserInput(scanner.nextLine());
-
-                BaseballResult baseballResult = baseballGame.play(userInput.convertToBaseballNumbers());
-
-                System.out.println(UserOutput.parseResult(baseballResult));
-            }
+            playOneGame(baseballGame);
 
             System.out.println(GAME_ENDING);
         } catch (OutOfBoundBaseballNumberException e) {
@@ -34,6 +27,17 @@ public class BaseballGameRunner {
             System.out.println("세자리 숫자만 입력 가능합니다.");
         } catch (Exception e) {
             System.out.println("알 수 없는 오류로 인해 게임을 종료합니다.");
+        }
+    }
+
+    private static void playOneGame(BaseballGame baseballGame) {
+        while(!baseballGame.isFinished()) {
+            System.out.println("숫자를 입력해주세요: ");
+            UserInput userInput = new UserInput(scanner.nextLine());
+
+            BaseballResult baseballResult = baseballGame.play(userInput.convertToBaseballNumbers());
+
+            System.out.println(UserOutput.parseResult(baseballResult));
         }
     }
 }
