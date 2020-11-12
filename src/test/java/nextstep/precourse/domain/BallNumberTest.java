@@ -8,6 +8,14 @@ import static nextstep.precourse.domain.BallNumber.BALLNUMBER_POSITION_INVALID_M
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class BallNumberTest {
+    public static final BallNumber BALLNUMBER_ONE = new BallNumber(1, 1);
+    public static final BallNumber BALLNUMBER_TWO = new BallNumber(2, 2);
+    public static final BallNumber BALLNUMBER_THREE = new BallNumber(3, 3);
+    public static final BallNumber BALLNUMBER_FOUR = new BallNumber(4, 1);
+    public static final BallNumber BALLNUMBER_FIVE = new BallNumber(5, 2);
+    public static final BallNumber BALLNUMBER_SIX = new BallNumber(6, 3);
+    public static final BallNumber BALLNUMBER_SAME_POSITION = new BallNumber(4, 2);
+    public static final BallNumber BALLNUMBER_SAME_NUMBER = new BallNumber(2, 3);
 
     @Test
     @DisplayName("Ball Number의 숫자는 1~9 중 하나여야 한다. 그렇지 않을 경우 Exception을 반환한다.")
