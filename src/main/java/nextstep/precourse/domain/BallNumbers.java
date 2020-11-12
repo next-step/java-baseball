@@ -19,34 +19,57 @@ public class BallNumbers {
     }
 
     public Integer getNumberByPosition(int position) {
+        Integer number = null;
+
         for(BallNumber ballNumber : ballNumbers) {
-            if(ballNumber.isPosition(position)) {       //TODO: Depth Refactoring
-                return ballNumber.getNumber();
-            }
+            number = returnNumberIfPosition(ballNumber, position);
         }
+
+        return number;
+    }
+
+    private Integer returnNumberIfPosition(BallNumber ballNumber, int position) {
+        if(ballNumber.isPosition(position)) {
+            return ballNumber.getNumber();
+        }
+
         return null;
     }
 
     public BallNumber getBallNumberByPosition(int position) {
+        BallNumber ballNumberAtPosition = null;
+
         for(BallNumber ballNumber : ballNumbers) {
-            if(ballNumber.isPosition(position)) {       //TODO: Depth Refactoring
-                return ballNumber;
-            }
+            ballNumberAtPosition = returnBallNumberIfPosition(ballNumber, position);
+        }
+        return ballNumberAtPosition;
+    }
+
+    private BallNumber returnBallNumberIfPosition(BallNumber ballNumber, int position) {
+        if(ballNumber.isPosition(position)) {
+            return ballNumber;
         }
         return null;
     }
 
-    public boolean isContain(Integer number) {
-        for(BallNumber ballNumber : ballNumbers) {
-            if(ballNumber.isNumber(number)) {           //TODO: Depth Refactoring
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean isSameNumberAtPosition(BallNumbers target, int position) {
         return getBallNumberByPosition(position).isSameNumber(target.getBallNumberByPosition(position));
+    }
+
+    public boolean isContain(Integer number) {
+        boolean isContain = false;
+
+        for(BallNumber ballNumber : ballNumbers) {
+            isContain = returnTrueIfNumber(ballNumber, number);
+        }
+        return isContain;
+    }
+
+    private boolean returnTrueIfNumber(BallNumber ballNumber, Integer number) {
+        if(ballNumber.isNumber(number)) {
+            return true;
+        }
+        return false;
     }
 
     private void assertCount(List<BallNumber> ballNumbers) {

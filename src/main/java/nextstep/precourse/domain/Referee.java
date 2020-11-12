@@ -28,6 +28,7 @@ public class Referee {
         if(computerBallNumbers.isContain(userBallNumbers.getNumberByPosition(position))) {
             return 1;
         }
+
         return 0;
     }
 }
