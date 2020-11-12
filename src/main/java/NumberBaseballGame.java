@@ -4,6 +4,8 @@ public class NumberBaseballGame {
 	
 	public final static int RANDOM_DIGIT = 3;
 	
+	static Scanner scanner = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		
 		//Scanner scanner = new Scanner(System.in);
@@ -18,15 +20,16 @@ public class NumberBaseballGame {
 		generateRandomNumDigitException(RANDOM_DIGIT);
 		int randomNum = generateRandomNumDigit(RANDOM_DIGIT);
 		
-		System.out.println("랜덤 생성된 정수 : " + randomNum);
+		randomNum = 123; //TODO: 삭제
+		
+		System.out.println("랜덤 생성된 정수 : " + randomNum); // TODO: 개발 후 삭제
 
-		// 숫자 입력 받아서 스트라이크/ 볼 / 게임종료 판정
-		
-		
 		int strikeCount = countStrike(randomNum, tempNum);
 		int ballCount = countBall(randomNum, tempNum) - strikeCount;
 		
 		System.out.println(printBaseball(ballCount, strikeCount));
+		
+		System.out.println(isWinGame(strikeCount));
 		
 
 		// 게임을 새로 시작할지 ? 게임을 종료할지 여부 받기
@@ -142,5 +145,25 @@ public class NumberBaseballGame {
 		}
 		return strikeCount + " 스트라이크 " + ballCount + " 볼";
 	}
+
+	
+	/**
+	 * 
+	 * 게임 승리 여부 반환 (스트라이크 3)
+	 * 
+	 * @param strikeCount 스트라이크
+	 * @return true(게임승리), false(게임진행중)
+	 * @author somi
+	 * 
+	 */
+	private static boolean isWinGame(int strikeCount) {
+		if (strikeCount == 3) {
+			System.out.println(RANDOM_DIGIT + "개의 숫자를 모두 맞히셨습니다! 게임종료");
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 }
