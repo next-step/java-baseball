@@ -109,4 +109,24 @@ class BaseBallTest {
     }
   }
 
+  @DisplayName("사용자 입력 받은 값과 컴퓨터 입력 한 숫자와 스트라이크 비교")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}")
+  @CsvSource({
+    "1, 4, 9, 1, 4, 5",
+    "1, 8, 5, 1, 8, 2",
+  })
+  void check_user_ball_and_computer_ball(final int oneNumber,
+                                         final int twoNumber,
+                                         final int threeNumber,
+                                         final int fourNumber,
+                                         final int fiveNumber,
+                                         final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+      new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    assertEquals(baseBall.getStrike(), 2);
+  }
+
 }

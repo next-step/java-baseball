@@ -3,8 +3,10 @@ package baseball.game;
 import baseball.common.Print;
 import baseball.computer.Computer;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class BaseBall {
@@ -15,9 +17,16 @@ public class BaseBall {
 
   private final Scanner scanner;
 
+  private int strike;
+
   public BaseBall() {
     this.computer = new Computer();
     this.scanner = new Scanner(System.in);
+    this.strike = 0;
+  }
+
+  int getStrike() {
+    return this.strike;
   }
 
   private LinkedHashSet<Integer> getComputerBalls() {
@@ -35,6 +44,8 @@ public class BaseBall {
     validateInputNumberSize(inputNumber);
 
     LinkedHashSet<Integer> balls = createInputNumberToBalls(inputNumber);
+
+    checkUserBallAndComputerBall(balls, getComputerBalls());
   }
 
   /**
@@ -90,6 +101,35 @@ public class BaseBall {
   void validateInputNumberToBallSize(final LinkedHashSet<Integer> balls) {
     if (balls.size() != BALL_SIZE) {
       throw new IllegalArgumentException("중복 된 숫자가 포함되어 있습니다.");
+    }
+  }
+
+  /**
+   * 사용자 입력 받은 숫자와 컴퓨터 숫자의 비교 메소드
+   * @param computerBalls 컴퓨터 숫자 LinkedHashSet
+   * @param userBalls 사용자 숫자 LinkedHashSet
+   */
+  void checkUserBallAndComputerBall(final LinkedHashSet<Integer> computerBalls,
+                                    final LinkedHashSet<Integer> userBalls) {
+    List<Integer> converterUserBalls = new ArrayList<>(userBalls);
+    List<Integer> converterComputerBalls = new ArrayList<>(computerBalls);
+
+    for (int i = 0; i < BALL_SIZE; i++) {
+      checkStrike(converterUserBalls.get(i), converterComputerBalls.get(i), converterComputerBalls);
+    }
+  }
+
+  /**
+   * 스트라이크 체크
+   * @param userBall 사용자 가지고 있는 ball
+   * @param computerBall 컴퓨터 가지고 있는 ball
+   * @param computerBalls 컴퓨터 숫자 LinkedHashSet
+   */
+  private void checkStrike(final Integer userBall,
+                           final Integer computerBall,
+                           final List<Integer> computerBalls) {
+    if (userBall.equals(computerBall)) {
+      this.strike++;
     }
   }
 
