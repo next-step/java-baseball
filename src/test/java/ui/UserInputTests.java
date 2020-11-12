@@ -1,9 +1,17 @@
 package ui;
 
+import domain.BaseballNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import ui.exceptions.InvalidSizeException;
 
+import java.util.stream.Stream;
+
+import static fixtures.FakeBaseballNumbers.FIVE_ONE_TWO;
+import static fixtures.FakeBaseballNumbers.ONE_TWO_THREE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,5 +28,18 @@ class UserInputTests {
     @Test
     void createFailTest() {
         assertThatThrownBy(() -> new UserInput("1234")).isInstanceOf(InvalidSizeException.class);
+    }
+
+    @DisplayName("입력값을 야구게임숫자 일급컬렉션으로 변환할 수 있다.")
+    @ParameterizedTest()
+    @MethodSource("convertToBaseballNumbersResource")
+    void convertToBaseballNumbersTest(UserInput userInput, BaseballNumbers expectedResult) {
+        assertThat(userInput.convertToBaseballNumbers()).isEqualTo(expectedResult);
+    }
+    public static Stream<Arguments> convertToBaseballNumbersResource() {
+        return Stream.of(
+                Arguments.of(new UserInput("123"), ONE_TWO_THREE),
+                Arguments.of(new UserInput("512"), FIVE_ONE_TWO)
+        );
     }
 }
