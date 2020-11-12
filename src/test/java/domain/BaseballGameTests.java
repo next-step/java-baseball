@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static fixtures.FakeBaseballNumbers.FOUR_FIVE_SIX;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BaseballGameTests {
@@ -15,5 +16,15 @@ class BaseballGameTests {
 
         assertThat(baseballGame).isNotNull();
         assertThat(generator.isGenerated()).isTrue();
+    }
+
+    @DisplayName("게임을 1회 진행하고 결과를 확인할 수 있다.")
+    @Test
+    void playTest() {
+        MockBaseballNumbersGenerator generator = new MockBaseballNumbersGenerator(1, 2, 3);
+
+        BaseballGame baseballGame = BaseballGame.init(generator);
+
+        assertThat(baseballGame.play(FOUR_FIVE_SIX)).isEqualTo(BaseballResult.makeFourBall());
     }
 }
