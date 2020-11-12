@@ -26,11 +26,10 @@ public class NumberBaseballGame {
 		int strikeCount = countStrike(randomNum, tempNum);
 		int ballCount = countBall(randomNum, tempNum) - strikeCount;
 		
+		System.out.println(printBaseball(ballCount, strikeCount));
+		
 
 		// 게임을 새로 시작할지 ? 게임을 종료할지 여부 받기
-		
-		System.out.println("볼카운트 : " + ballCount);
-		System.out.println("스트라이크 : " + strikeCount);
 
 		//scanner.close();
 
@@ -122,5 +121,26 @@ public class NumberBaseballGame {
 	}
 	
 	
+	/**
+	 * 
+	 * 볼 / 스트라이크 / 포볼(낫싱) 출력
+	 * 
+	 * @param ballCount 볼, strikeCount 스트라이크
+	 * @return 카운트 출력값
+	 * @author somi
+	 * 
+	 */
+	private static String printBaseball(int ballCount, int strikeCount) {
+		if (ballCount == 0 && strikeCount == 0) {
+			return "포볼(낫싱)";
+		}
+		if (ballCount == 0) {
+			return strikeCount + " 스트라이크";
+		}
+		if (strikeCount == 0) {
+			return ballCount + " 볼";
+		}
+		return strikeCount + " 스트라이크 " + ballCount + " 볼";
+	}
 	
 }
