@@ -1,8 +1,10 @@
 package com.game.baseball;
 
 import com.game.code.ErrorCode;
+import com.game.code.OptionCode;
 import com.game.common.Game;
 import com.game.exception.GameException;
+import com.game.util.EnumUtil;
 import com.game.util.NumberUtil;
 
 import java.util.HashSet;
@@ -30,6 +32,25 @@ public class BaseballGame implements Game {
             System.out.println(result.toString());
         }
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        restart();
+    }
+
+    @Override
+    public void restart() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String option = scanner.next();
+
+        if (EnumUtil.isEqual(option, OptionCode.RESTART_GAME))
+            start();
+        if (EnumUtil.isEqual(option, OptionCode.EXIT_GAME))
+            exit();
+        restart();
+    }
+
+    @Override
+    public void exit() {
+        scanner.close();
+        System.exit(0);
     }
 
     @Override

@@ -1,9 +1,10 @@
 package com.game.code;
 
+import com.game.common.EnumCode;
 import lombok.Getter;
 
 @Getter
-public enum ErrorCode {
+public enum ErrorCode implements EnumCode {
 
     // [00xx] Common
     INVALID_INPUT("0001", "유효하지 않은 입력 값입니다."),
