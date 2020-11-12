@@ -18,6 +18,6 @@ public class BaseballGame {
             return BaseballResult.makeFourBall();
         }
 
-        return null;
+        return BaseballResult.of(numberOfMatchedNumbers, 0);
     }
 }
