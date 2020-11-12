@@ -1,21 +1,17 @@
 package baseball.domain;
 
-import java.util.Objects;
-import java.util.regex.Pattern;
-
 public class Ball {
-    private static final String NUMBER_RANGE_REX = "[1-9]";
-    private String number;
+    private int number;
     private int order;
 
-    public Ball(String number, int order) {
+    public Ball(int number, int order) {
         validate(number, order);
         this.number = number;
         this.order = order;
     }
 
-    private void validate(String number, int order) {
-        if (!Pattern.matches(NUMBER_RANGE_REX, number)) {
+    private void validate(int number, int order) {
+        if (number < 1 || number > 9) {
             throw new IllegalArgumentException("1-9 사이 값을 입력해주세요");
         }
 
@@ -25,7 +21,7 @@ public class Ball {
     }
 
     public Matcher compare(Ball ball) {
-        if (!this.number.equals(ball.number)) {
+        if (this.number != ball.number) {
             return Matcher.find(-1);
         }
 

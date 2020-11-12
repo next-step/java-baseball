@@ -13,8 +13,8 @@ class BallTest {
 
     @DisplayName("Ball 객체 정상 생성. 1-9 사이의 숫자를 입력받은 경우.")
     @ParameterizedTest
-    @ValueSource(strings = {"1", "9"})
-    void create(String number) {
+    @ValueSource(ints = {1, 9})
+    void create(int number) {
         Ball actual = new Ball(number, 0);
 
         //then
@@ -23,8 +23,8 @@ class BallTest {
 
     @DisplayName("Ball 객체 생성 오류. 잘못된 값을 입력받은 경우.")
     @ParameterizedTest
-    @ValueSource(strings = {"0", "10", "x"})
-    void create_with_wrong_value(String value) {
+    @ValueSource(ints = {0, 10})
+    void create_with_wrong_number(int value) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Ball(value, 0))
                 .withMessage("1-9 사이 값을 입력해주세요");
@@ -33,18 +33,18 @@ class BallTest {
     @DisplayName("Ball 객체 생성 오류. 잘못된 순서값을 입력받은 경우.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 3})
-    void create_with_wrong_value(int order) {
+    void create_with_wrong_order(int order) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Ball("1", order))
+                .isThrownBy(() -> new Ball(1, order))
                 .withMessage("순서값이 잘못됐습니다.");
     }
 
     @DisplayName("숫자와 위치를 비교한다.")
     @ParameterizedTest
     @CsvSource(value = {"5,1,1", "5,0,0", "4,1,-1"})
-    void compare(String number, int order, int expected) {
+    void compare(int number, int order, int expected) {
         //given
-        Ball computerBall = new Ball("5", 1);
+        Ball computerBall = new Ball(5, 1);
         Ball userBall = new Ball(number, order);
 
         //when
