@@ -20,7 +20,7 @@ public class BallNumber {
         return this.position == position;
     }
 
-    public boolean isNumber(Integer number) {
+    public boolean isNumber(int number) {
         return this.number == number;
     }
 

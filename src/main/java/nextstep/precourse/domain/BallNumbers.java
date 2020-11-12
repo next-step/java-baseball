@@ -43,7 +43,6 @@ public class BallNumbers {
     }
 
     private void assertPosition(List<BallNumber> ballNumbers) {
-        //TODO: Position 을 Enum으로 뽑아봐도 되지 않을지 고민해보기
         Set<Integer> positionSet = new HashSet<>();
 
         for(BallNumber ballNumber : ballNumbers) {
