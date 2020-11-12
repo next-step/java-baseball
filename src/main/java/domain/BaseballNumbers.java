@@ -15,7 +15,7 @@ public class BaseballNumbers {
     public static final int MINIMUM_NUMBER_OF_BASEBALL_GAME = 1;
     public static final int MAXIMUM_NUMBER_OF_BASEBALL_GAME = 9;
 
-    private List<BaseballNumber> values;
+    private final List<BaseballNumber> values;
 
     public BaseballNumbers() {
         values = new ArrayList<>();
@@ -26,6 +26,14 @@ public class BaseballNumbers {
         this.values = shuffledAndFilteredBaseballNumber;
     }
 
+    public BaseballNumbers(String playerBaseballNumber) {
+        values = new ArrayList<>();
+        char[] baseballNumberArray = playerBaseballNumber.toCharArray();
+        for (char c : baseballNumberArray) {
+            values.add(new BaseballNumber(String.valueOf(c)));
+        }
+        validate(values);
+    }
 
     private void validate(List<BaseballNumber> tempBaseballNumbers) {
         validateBaseballNumberSize(tempBaseballNumbers);
@@ -38,7 +46,11 @@ public class BaseballNumbers {
     }
 
     private void validateDuplicateBaseballNumber(List<BaseballNumber> tempBaseballNumbers) {
-        Set<BaseballNumber> duplicateBaseballNumberFiltered = new HashSet<>(tempBaseballNumbers);
+        Set<Integer> duplicateBaseballNumberFiltered = new HashSet<>();
+        for (BaseballNumber baseballNumber : tempBaseballNumbers) {
+            duplicateBaseballNumberFiltered.add(baseballNumber.getValue());
+        }
+
         if (duplicateBaseballNumberFiltered.size() != tempBaseballNumbers.size())
             throw new IllegalStateException("중복된 숫자가 존재합니다.");
     }

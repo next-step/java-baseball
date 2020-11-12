@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author : byungkyu
  * @date : 2020/11/12
- * @description :
+ * @description : 야구게임 상대방(컴퓨터) 숫자 생성
  **/
 public class BaseballNumberFactory {
     private static List<BaseballNumber> RAW_BASEBALL_NUMBERS = new ArrayList<>();
