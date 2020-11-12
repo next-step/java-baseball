@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import ui.exceptions.InvalidSizeException;
 
 import java.util.stream.Stream;
@@ -25,10 +26,11 @@ class UserInputTests {
         assertThat(userInput).isNotNull();
     }
 
-    @DisplayName("사용자가 입력한 문자열의 크기가 3이 아닌 경우 예외가 발생한다.")
-    @Test
-    void createFailTest() {
-        assertThatThrownBy(() -> new UserInput("1234")).isInstanceOf(InvalidSizeException.class);
+    @DisplayName("사용자가 입력한 문자열의 크기가 중복 없이 3이 아닌 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1234", "111", "221", "1"})
+    void createFailTest(String playerBall) {
+        assertThatThrownBy(() -> new UserInput(playerBall)).isInstanceOf(InvalidSizeException.class);
     }
 
     @DisplayName("입력값을 야구게임숫자 일급컬렉션으로 변환할 수 있다.")
