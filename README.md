@@ -54,7 +54,7 @@
     * int 필드를 이용하여 equal 비교
     * int 1개를 받는 생성자
     * 1~9 범위의 숫자로 초기화 되었는지 validate
-- [] 위의 숫자 class 3개를 List로 가지는 class 생성 
+- [ ] 위의 숫자 class 3개를 List로 가지는 class 생성 
     * 3개의 숫자가 중복인지 validate
 - [ ] 1~9 범위의 숫자를 생성하는 strategy
 - [ ] 중복 없는 숫자 3개를 생성하는 strategy
