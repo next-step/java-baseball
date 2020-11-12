@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -113,10 +114,9 @@ public class BaseballTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"A", " ", ""})
 	void checkNumberFromUserInput_isNotInteger(String input) {
-		Throwable exception = assertThrows(NumberFormatException.class,
-				() -> checkIntegerFromInputString(input));
-
-		assertEquals(ExceptionMessageEnum.INVALID.getMessage(), exception.getMessage());
+		Assertions.assertThrows(NumberFormatException.class, () -> {
+			Integer.parseInt(input);
+		});
 	}
 
 	private void checkDuplicationNumberFromInput(ArrayList<String> originArray, String input) {
@@ -152,20 +152,6 @@ public class BaseballTest {
 	private void checkNumberStringSize(String input) throws CustomException {
 		if (input.length() != 3) {
 			throw new CustomException(ExceptionMessageEnum.INVALID_SIZE.getMessage());
-		}
-	}
-
-	private void checkIntegerFromInputString(String input) throws CustomException {
-		for (char number : input.toCharArray()) {
-			convertStringToInteger(convertCharToString(number));
-		}
-	}
-
-	private int convertStringToInteger(String input) throws CustomException {
-		try {
-			return Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new CustomException(ExceptionMessageEnum.INVALID.getMessage());
 		}
 	}
 
