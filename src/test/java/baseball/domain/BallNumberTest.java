@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.exception.IllegalBallNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -21,6 +22,7 @@ class BallNumberTest {
     public void constructor_fail(int input) {
         assertThatThrownBy(
                 () -> new BallNumber(input)
-        ).isInstanceOf(IllegalArgumentException.class);
+        ).isInstanceOf(IllegalBallNumberException.class)
+                .hasMessage("1~9 사이의 정수만 생성 가능");
     }
 }
