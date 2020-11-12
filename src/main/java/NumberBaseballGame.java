@@ -7,36 +7,42 @@ public class NumberBaseballGame {
 	static Scanner scanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
+		boolean isKeep = true;
 		
-		//Scanner scanner = new Scanner(System.in);
+		while (isKeep) {
+			// 랜덤 세자리 정수 생성
+			generateRandomNumDigitException(RANDOM_DIGIT);
+			int randomNum = generateRandomNumDigit(RANDOM_DIGIT);
+						
+			System.out.println("랜덤 생성된 정수 : " + randomNum); // TODO: 개발 후 삭제
 
-		//System.out.print("숫자를 입력해주세요 : ");
-
-		//String str = scanner.next();
-		
-		int tempNum = 123; //임시로 숫자 입력받지 않고 선언해서 테스트 TODO: 개발 후 삭제
-
-		// 랜덤 세자리 정수 생성
-		generateRandomNumDigitException(RANDOM_DIGIT);
-		int randomNum = generateRandomNumDigit(RANDOM_DIGIT);
-		
-		randomNum = 123; //TODO: 삭제
-		
-		System.out.println("랜덤 생성된 정수 : " + randomNum); // TODO: 개발 후 삭제
-
-		int strikeCount = countStrike(randomNum, tempNum);
-		int ballCount = countBall(randomNum, tempNum) - strikeCount;
-		
-		System.out.println(printBaseball(ballCount, strikeCount));
-		
-		System.out.println(isWinGame(strikeCount));
-		
-
-		// 게임을 새로 시작할지 ? 게임을 종료할지 여부 받기
-
-		//scanner.close();
-
+			playBaseBall(randomNum);
+		}
+		scanner.close();
 	}
+	
+	/**
+	 * 
+	 * 숫자를 입력받아 게임 진행
+	 * 
+	 * @param randomNum 생성된 랜덤 정수
+	 * 
+	 */
+	private static void playBaseBall(int randomNum) {
+		boolean isKeep = true;
+		do {
+			System.out.print("숫자를 입력해주세요 : ");
+
+			String inputNumStr = scanner.next();
+			
+			int inputNum = Integer.parseInt(inputNumStr);
+			int strikeCount = countStrike(randomNum, inputNum);
+			int ballCount = countBall(randomNum, inputNum) - strikeCount;
+			System.out.println(printBaseball(ballCount, strikeCount));
+			isKeep = !(isWinGame(strikeCount));
+		} while(isKeep);
+	}
+	
 
 	/**
 	 * 
@@ -44,7 +50,6 @@ public class NumberBaseballGame {
 	 * 
 	 * @param digit 랜덤 생성할 수의 자릿수
 	 * @return randomNum 생성된 랜덤 정수
-	 * @author somi
 	 * 
 	 */
 	private static int generateRandomNumDigit(int digit) {
@@ -65,7 +70,6 @@ public class NumberBaseballGame {
 	 * generateRandomNumDigit 실행시 범위를 벗어날 경우 예외처리 (범위 : 1~9)
 	 * 
 	 * @param digit 랜덤 생성할 수의 자릿수
-	 * @author somi
 	 * 
 	 */
 	private static void generateRandomNumDigitException(int digit) {
@@ -80,14 +84,12 @@ public class NumberBaseballGame {
 	}
 	
 	
-	
 	/**
 	 * 
 	 * ball 카운트 (같은 수가 다른 자리에 있으면 볼)
 	 * 
 	 * @param randomNum 랜덤정수, inputNum 입력받은 정수
 	 * @return ball ball 카운트
-	 * @author somi
 	 * 
 	 */
 	private static int countBall(int randomNum, int inputNum) {
@@ -108,7 +110,6 @@ public class NumberBaseballGame {
 	 * 
 	 * @param randomNum 랜덤정수, inputNum 입력받은 정수
 	 * @return strike strike 카운트
-	 * @author somi
 	 * 
 	 */
 	private static int countStrike(int randomNum, int inputNum) {
@@ -130,7 +131,6 @@ public class NumberBaseballGame {
 	 * 
 	 * @param ballCount 볼, strikeCount 스트라이크
 	 * @return 카운트 출력값
-	 * @author somi
 	 * 
 	 */
 	private static String printBaseball(int ballCount, int strikeCount) {
@@ -153,17 +153,16 @@ public class NumberBaseballGame {
 	 * 
 	 * @param strikeCount 스트라이크
 	 * @return true(게임승리), false(게임진행중)
-	 * @author somi
 	 * 
 	 */
 	private static boolean isWinGame(int strikeCount) {
 		if (strikeCount == 3) {
 			System.out.println(RANDOM_DIGIT + "개의 숫자를 모두 맞히셨습니다! 게임종료");
+			
 			return true;
 		}
 		return false;
 	}
-	
 	
 	
 }
