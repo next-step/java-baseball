@@ -53,7 +53,8 @@ class BaseballNumbersTests {
                 Arguments.of(ONE_TWO_FIVE, ONE_FIVE_NINE, 1),
                 Arguments.of(ONE_TWO_FIVE, ONE_NINE_FIVE, 2),
                 Arguments.of(ONE_TWO_FIVE, ONE_THREE_TWO, 1),
-                Arguments.of(ONE_TWO_FIVE, ONE_TWO_THREE, 2)
+                Arguments.of(ONE_TWO_FIVE, ONE_TWO_THREE, 2),
+                Arguments.of(FIVE_ONE_TWO, ONE_TWO_FIVE, 0)
         );
     }
 }

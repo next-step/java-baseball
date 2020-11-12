@@ -66,4 +66,11 @@ public class BaseballNumbers {
     public int hashCode() {
         return Objects.hash(baseballNumbers);
     }
+
+    @Override
+    public String toString() {
+        return "BaseballNumbers{" +
+                "baseballNumbers=" + baseballNumbers +
+                '}';
+    }
 }

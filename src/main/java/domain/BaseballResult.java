@@ -70,4 +70,13 @@ public class BaseballResult {
     public int hashCode() {
         return Objects.hash(ballCount, strikeCount, fourBall);
     }
+
+    @Override
+    public String toString() {
+        return "BaseballResult{" +
+                "ballCount=" + ballCount +
+                ", strikeCount=" + strikeCount +
+                ", fourBall=" + fourBall +
+                '}';
+    }
 }

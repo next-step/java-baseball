@@ -13,7 +13,7 @@ public class MockBaseballNumbersGenerator implements BaseballNumbersGenerator {
 
     @Override
     public BaseballNumbers generate() {
-        Set<BaseballNumber> baseballNumbers = new HashSet<>();
+        List<BaseballNumber> baseballNumbers = new ArrayList<>();
 
         for (Integer value : values) {
             baseballNumbers.add(BaseballNumber.of(value));
@@ -28,8 +28,9 @@ public class MockBaseballNumbersGenerator implements BaseballNumbersGenerator {
         return (this.values.size() == 3);
     }
 
-    private void validateDuplicatedNumber(Set<BaseballNumber> baseballNumbers) {
-        if (baseballNumbers.size() != 3) {
+    private void validateDuplicatedNumber(List<BaseballNumber> baseballNumbers) {
+        Set<BaseballNumber> dupRemoved = new HashSet<>(baseballNumbers);
+        if (dupRemoved.size() != 3) {
             throw new BaseballNumberDuplicatedException();
         }
     }

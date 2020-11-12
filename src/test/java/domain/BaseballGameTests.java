@@ -41,7 +41,15 @@ class BaseballGameTests {
                 Arguments.of(new MockBaseballNumbersGenerator(5, 1, 2), ONE_TWO_FIVE,
                         BaseballResult.of(3, 0)),
                 Arguments.of(new MockBaseballNumbersGenerator(5, 1, 7), ONE_TWO_FIVE,
-                        BaseballResult.of(2, 0))
+                        BaseballResult.of(2, 0)),
+                Arguments.of(new MockBaseballNumbersGenerator(1, 2, 5), ONE_TWO_FIVE,
+                        BaseballResult.of(0, 3)),
+                Arguments.of(new MockBaseballNumbersGenerator(6, 2, 1), ONE_TWO_FIVE,
+                        BaseballResult.of(1, 1)),
+                Arguments.of(new MockBaseballNumbersGenerator(5, 2, 1), ONE_TWO_FIVE,
+                        BaseballResult.of(2, 1)),
+                Arguments.of(new MockBaseballNumbersGenerator(1, 3, 4), ONE_TWO_FIVE,
+                        BaseballResult.of(0, 1))
         );
     }
 }

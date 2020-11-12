@@ -18,4 +18,6 @@ public class FakeBaseballNumbers {
             new BaseballNumbers(Arrays.asList(BaseballNumber.ONE, BaseballNumber.NINE, BaseballNumber.FIVE));
     public static final BaseballNumbers FOUR_FIVE_SIX =
             new BaseballNumbers(Arrays.asList(BaseballNumber.FOUR, BaseballNumber.FIVE, BaseballNumber.SIX));
+    public static final BaseballNumbers FIVE_ONE_TWO =
+            new BaseballNumbers(Arrays.asList(BaseballNumber.FIVE, BaseballNumber.ONE, BaseballNumber.TWO));
 }
