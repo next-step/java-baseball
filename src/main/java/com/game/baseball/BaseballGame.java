@@ -7,12 +7,30 @@ import com.game.util.NumberUtil;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class BaseballGame implements Game {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 9;
+    private static final Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public void start() {
+        String target = generateNumber();
+        BaseballGameResult result = new BaseballGameResult();
+
+        while (result.getStrike() != 3) {
+            System.out.print("숫자를 입력해주세요 : ");
+            String input = scanner.next();
+            if (!isValidInput(input)) throw new GameException(ErrorCode.INVALID_INPUT);
+
+            result = play(target, input);
+            System.out.println(result.toString());
+        }
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    }
 
     @Override
     public boolean isValidInput(String input) {

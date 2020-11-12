@@ -5,6 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
+    // [00xx] Common
+    INVALID_INPUT("0001", "유효하지 않은 입력 값입니다."),
+
     // [01xx] BaseballGame
     INVALID_BASEBALL_NUMBER("0101", "유효하지 않은 숫자입니다.");
 

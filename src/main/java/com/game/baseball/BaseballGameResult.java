@@ -10,6 +10,11 @@ public class BaseballGameResult {
     private final int strike;
     private final int ball;
 
+    public BaseballGameResult() {
+        this.strike = 0;
+        this.ball = 0;
+    }
+
     @Override
     public String toString() {
         if ((strike + ball) == 0)
