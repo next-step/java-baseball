@@ -73,6 +73,9 @@ public class RefereeTest {
         assertThat(result.isFourBall()).isFalse();
     }
 
+    /**
+     * (123, 456) -> four ball
+     */
     @Test
     void judge_fourball() {
         List<BallNumber> computerBallNumberList = new ArrayList<>();

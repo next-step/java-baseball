@@ -17,6 +17,7 @@ public class Referee {
         if(computerBallNumbers.isSameNumberAtPosition(userBallNumbers, position)) {
             return 1;
         }
+
         return 0;
     }
 

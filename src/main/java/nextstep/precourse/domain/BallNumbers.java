@@ -19,22 +19,22 @@ public class BallNumbers {
     }
 
     public Integer getNumberByPosition(int position) {
-
         for(BallNumber ballNumber : ballNumbers) {
             if(ballNumber.isPosition(position)) {
                 return ballNumber.getNumber();          //TODO: Depth Refactoring
             }
         }
+
         return null;
     }
 
     public BallNumber getBallNumberByPosition(int position) {
-
         for(BallNumber ballNumber : ballNumbers) {
             if(ballNumber.isPosition(position)) {       //TODO: Depth Refactoring
                 return ballNumber;
             }
         }
+
         return null;
     }
 
@@ -48,6 +48,7 @@ public class BallNumbers {
                 return true;
             }
         }
+
         return false;
     }
 
