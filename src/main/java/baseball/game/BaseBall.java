@@ -13,20 +13,29 @@ public class BaseBall {
 
   private final static int BALL_SIZE = 3;
 
+  private final static int INDEX_OF_RESULT = -1;
+
   private final Computer computer;
 
   private final Scanner scanner;
 
   private int strike;
 
+  private int ball;
+
   public BaseBall() {
     this.computer = new Computer();
     this.scanner = new Scanner(System.in);
     this.strike = 0;
+    this.ball = 0;
   }
 
   int getStrike() {
     return this.strike;
+  }
+
+  int getBall() {
+    return this.ball;
   }
 
   private LinkedHashSet<Integer> getComputerBalls() {
@@ -128,8 +137,29 @@ public class BaseBall {
   private void checkStrike(final Integer userBall,
                            final Integer computerBall,
                            final List<Integer> computerBalls) {
+    boolean isStrike = false;
+
     if (userBall.equals(computerBall)) {
       this.strike++;
+      isStrike = true;
+    }
+
+    if (!isStrike) {
+      checkBall(userBall, computerBalls);
+    }
+
+  }
+
+  /**
+   * 스트라이크가 아닌 경우 볼 체크 하기
+   * @param userBall 사용자 가지고 있는 ball
+   * @param computerBalls 컴퓨터 숫자 LinkedHashSet
+   */
+  private void checkBall(final Integer userBall,
+                         final List<Integer> computerBalls) {
+
+    if (computerBalls.indexOf(userBall) != INDEX_OF_RESULT) {
+      this.ball++;
     }
   }
 
