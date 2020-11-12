@@ -24,7 +24,7 @@ public class BaseballGameRunner {
         } catch (NumberFormatException e) {
             System.out.println("숫자만 입력 가능합니다.");
         } catch (InvalidSizeException e) {
-            System.out.println("세자리 숫자만 입력 가능합니다.");
+            System.out.println("중복 없는 세자리 숫자만 입력 가능합니다.");
         } catch (Exception e) {
             System.out.println("알 수 없는 오류로 인해 게임을 종료합니다.");
         }
