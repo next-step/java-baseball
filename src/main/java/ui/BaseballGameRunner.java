@@ -1,5 +1,8 @@
 package ui;
 
+import domain.BaseballGame;
+import domain.BaseballResult;
+import domain.RandomBaseballNumbersGenerator;
 import domain.exceptions.OutOfBoundBaseballNumberException;
 import ui.exceptions.InvalidSizeException;
 
@@ -10,11 +13,14 @@ public class BaseballGameRunner {
 
     public static void main(String[] args) {
         try {
-            System.out.println("숫자를 입력해주세요: ");
+            BaseballGame baseballGame = BaseballGame.init(new RandomBaseballNumbersGenerator());
 
+            System.out.println("숫자를 입력해주세요: ");
             UserInput userInput = new UserInput(scanner.nextLine());
-            
-            // TODO. 게임 진행 로직 추가해야 함.
+
+            BaseballResult baseballResult = baseballGame.play(userInput.convertToBaseballNumbers());
+
+            System.out.println(UserOutput.parseResult(baseballResult));
         } catch (OutOfBoundBaseballNumberException e) {
             System.out.println("1 ~ 9 사이의 숫자를 입력해주세요.");
         } catch (NumberFormatException e) {

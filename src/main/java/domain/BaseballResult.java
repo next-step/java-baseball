@@ -28,6 +28,14 @@ public class BaseballResult {
         return fourBall;
     }
 
+    public int getBallCount() {
+        return ballCount;
+    }
+
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
     private void validate(int ballCount, int strikeCount, boolean fourBall) {
         validateFourBall(ballCount, strikeCount, fourBall);
         validateNegativeNumber(ballCount, strikeCount);
