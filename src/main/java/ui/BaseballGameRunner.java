@@ -12,18 +12,21 @@ public class BaseballGameRunner {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        BaseballGameTemplate.runBaseballGame(() -> {
-            GameLatch gameLatch = GameLatch.of();
-            while (gameLatch.isContinued()) {
-                BaseballGame baseballGame = BaseballGame.init(new RandomBaseballNumbersGenerator());
+        BaseballGameTemplate.runBaseballGame(BaseballGameRunner::playBaseballGame);
+    }
 
-                playOneRound(baseballGame);
+    private static void playBaseballGame() {
+        GameLatch gameLatch = GameLatch.of();
 
-                System.out.println(GAME_ENDING);
+        while (gameLatch.isContinued()) {
+            BaseballGame baseballGame = BaseballGame.init(new RandomBaseballNumbersGenerator());
 
-                gameLatch.judgeKeepGoing(SCANNER.nextLine());
-            }
-        });
+            playOneRound(baseballGame);
+
+            System.out.println(GAME_ENDING);
+
+            gameLatch.judgeKeepGoing(SCANNER.nextLine());
+        }
     }
 
     private static void playOneRound(BaseballGame baseballGame) {
