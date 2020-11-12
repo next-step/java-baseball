@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class NumberBaseballGame {
@@ -24,12 +23,14 @@ public class NumberBaseballGame {
 		// 숫자 입력 받아서 스트라이크/ 볼 / 게임종료 판정
 		
 		
-		//볼카운트
-		int ballCount = countBall(randomNum, tempNum);
+		int strikeCount = countStrike(randomNum, tempNum);
+		int ballCount = countBall(randomNum, tempNum) - strikeCount;
+		
 
 		// 게임을 새로 시작할지 ? 게임을 종료할지 여부 받기
 		
 		System.out.println("볼카운트 : " + ballCount);
+		System.out.println("스트라이크 : " + strikeCount);
 
 		//scanner.close();
 
@@ -80,7 +81,7 @@ public class NumberBaseballGame {
 	
 	/**
 	 * 
-	 * ball 카운트
+	 * ball 카운트 (같은 수가 다른 자리에 있으면 볼)
 	 * 
 	 * @param randomNum 랜덤정수, inputNum 입력받은 정수
 	 * @return ball ball 카운트
@@ -96,6 +97,28 @@ public class NumberBaseballGame {
 		}
 		
 		return ball;
+	}
+	
+	
+	/**
+	 * 
+	 * strike 카운트 (같은 수가 같은 자리에 있으면 스트라이크)
+	 * 
+	 * @param randomNum 랜덤정수, inputNum 입력받은 정수
+	 * @return strike strike 카운트
+	 * @author somi
+	 * 
+	 */
+	private static int countStrike(int randomNum, int inputNum) {
+		int strike = 0;
+		String[] randomNumArr = (randomNum + "").split("");
+		String[] inputNumArr = (inputNum + "").split("");
+		
+		for (int i = 0; i < randomNumArr.length; i++) {
+			strike = (randomNumArr[i].equals(inputNumArr[i])) ? strike + 1 : strike;
+		}
+		
+		return strike;
 	}
 	
 	
