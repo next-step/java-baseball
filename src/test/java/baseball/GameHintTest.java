@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class GameHintTest {
 	@DisplayName("스트라이크 갯수를 센다.")
 	@ParameterizedTest
-	@CsvSource(value = {"456:0", "425:1", "423:2"}, delimiter = ':')
+	@CsvSource(value = {"456:0", "425:1", "423:2", "315:0"}, delimiter = ':')
 	public void countStrike(String input, int count) throws Exception {
 		// Given
 		String answer = "123";
@@ -19,5 +19,19 @@ public class GameHintTest {
 
 		// Then
 		assertThat(gameHint.countStrike()).isEqualTo(count);
+	}
+
+	@DisplayName("볼 갯수를 센다.")
+	@ParameterizedTest
+	@CsvSource(value = {"456:0", "415:1", "315:2", "231:3", "132:2"}, delimiter = ':')
+	public void countBall(String input, int count) throws Exception {
+	    // Given
+		String answer = "123";
+	    
+	    // When
+		GameHint gameHint = new GameHint(answer, input);
+	    
+	    // Then
+		assertThat(gameHint.countBall()).isEqualTo(count);
 	}
 }
