@@ -18,6 +18,24 @@ public class BallNumbers {
         this.ballNumbers = ballNumbers;
     }
 
+    public Integer getNumberByPosition(int position) {
+        for(BallNumber ballNumber : ballNumbers) {
+            if(ballNumber.isPosition(position)) {       //TODO: Depth Refactoring
+                return ballNumber.getNumber();
+            }
+        }
+        return null;
+    }
+
+    public boolean isContain(Integer number) {
+        for(BallNumber ballNumber : ballNumbers) {
+            if(ballNumber.isNumber(number)) {           //TODO: Depth Refactoring
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void assertCount(List<BallNumber> ballNumbers) {
         if(ballNumbers.size() != 3) {
             throw new IllegalArgumentException(BALLNUMBERS_COUNT_INVALID_MESSAGE);

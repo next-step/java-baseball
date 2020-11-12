@@ -16,6 +16,14 @@ public class BallNumber {
         this.position = position;
     }
 
+    public boolean isPosition(int position) {
+        return this.position == position;
+    }
+
+    public boolean isNumber(Integer number) {
+        return this.number == number;
+    }
+
     private void assertNumber(int number) {
         if(number > 9 || number < 1) {
             throw new IllegalArgumentException(BALLNUMBER_NUMBER_INVALID_MESSAGE);
@@ -35,5 +43,4 @@ public class BallNumber {
     public int getPosition() {
         return position;
     }
-
 }

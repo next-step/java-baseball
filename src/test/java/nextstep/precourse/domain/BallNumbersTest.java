@@ -51,4 +51,10 @@ public class BallNumbersTest {
             new BallNumbers(ballNumbers);
         }).withMessage(BALLNUMBERS_NUMBER_INVALID_MESSAGE);
     }
+
+    @Test
+    @DisplayName("숫자를 입력받아, 해당 숫자가 BallNumbers에 포함되는지 여부를 확인한다.")
+    void isContain() {
+
+    }
 }
