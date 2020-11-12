@@ -15,12 +15,6 @@ public class UserInput {
         this.playerBall = playerBall;
     }
 
-    private void validateSize(String playerBall) {
-        if (playerBall.length() != 3) {
-            throw new InvalidSizeException();
-        }
-    }
-
     public BaseballNumbers convertToBaseballNumbers() {
         List<BaseballNumber> baseballNumbers = new ArrayList<>();
 
@@ -29,5 +23,11 @@ public class UserInput {
         }
 
         return new BaseballNumbers(baseballNumbers);
+    }
+
+    private void validateSize(String playerBall) {
+        if (playerBall.length() != 3) {
+            throw new InvalidSizeException();
+        }
     }
 }
