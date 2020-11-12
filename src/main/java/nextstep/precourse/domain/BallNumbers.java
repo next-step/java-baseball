@@ -27,6 +27,15 @@ public class BallNumbers {
         return null;
     }
 
+    public BallNumber getBallNumberByPosition(int position) {
+        for(BallNumber ballNumber : ballNumbers) {
+            if(ballNumber.isPosition(position)) {       //TODO: Depth Refactoring
+                return ballNumber;
+            }
+        }
+        return null;
+    }
+
     public boolean isContain(Integer number) {
         for(BallNumber ballNumber : ballNumbers) {
             if(ballNumber.isNumber(number)) {           //TODO: Depth Refactoring
@@ -34,6 +43,10 @@ public class BallNumbers {
             }
         }
         return false;
+    }
+
+    public boolean isSameNumberAtPosition(BallNumbers target, int position) {
+        return getBallNumberByPosition(position).isSameNumber(target.getBallNumberByPosition(position));
     }
 
     private void assertCount(List<BallNumber> ballNumbers) {

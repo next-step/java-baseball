@@ -13,19 +13,19 @@ public class Referee {
         return new GameResult(strike, ball);
     }
 
-    public static int isStrike(BallNumbers computerBallNumbers, BallNumbers userBallNumbers, int index) {
-        if(computerBallNumbers.getNumberByPosition(index) == userBallNumbers.getNumberByPosition(index)) {
+    public static int isStrike(BallNumbers computerBallNumbers, BallNumbers userBallNumbers, int position) {
+        if(computerBallNumbers.isSameNumberAtPosition(userBallNumbers, position)) {
             return 1;
         }
         return 0;
     }
 
-    public static int isBall(BallNumbers computerBallNumbers, BallNumbers userBallNumbers, int index) {
-        if(isStrike(computerBallNumbers, userBallNumbers, index) == 1) {
+    public static int isBall(BallNumbers computerBallNumbers, BallNumbers userBallNumbers, int position) {
+        if(isStrike(computerBallNumbers, userBallNumbers, position) == 1) {
             return 0;
         }
 
-        if(computerBallNumbers.isContain(userBallNumbers.getNumberByPosition(index))) {
+        if(computerBallNumbers.isContain(userBallNumbers.getNumberByPosition(position))) {
             return 1;
         }
         return 0;

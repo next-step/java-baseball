@@ -80,4 +80,25 @@ public class BallNumbersTest {
         assertThat(ballNumbers.isContain(1)).isTrue();
         assertThat(ballNumbers.isContain(4)).isFalse();
     }
+
+    @Test
+    @DisplayName("두 개의 BallNumbers 객체와 position을 입력받아 해당 position에서의 숫자가 같은지 여부를 판단한다.")
+    void isSameNumberAtPosition() {
+        List<BallNumber> ballNumberList1 = new ArrayList<>();
+        ballNumberList1.add(BALLNUMBER_ONE);
+        ballNumberList1.add(BALLNUMBER_TWO);
+        ballNumberList1.add(BALLNUMBER_THREE);
+
+        BallNumbers ballNumbers1 = new BallNumbers(ballNumberList1);
+
+        List<BallNumber> ballNumberList2 = new ArrayList<>();
+        ballNumberList2.add(BALLNUMBER_ONE);
+        ballNumberList2.add(BALLNUMBER_FIVE);
+        ballNumberList2.add(BALLNUMBER_THREE);
+
+        BallNumbers ballNumbers2 = new BallNumbers(ballNumberList2);
+
+        assertThat(ballNumbers1.isSameNumberAtPosition(ballNumbers2, 1)).isTrue();
+        assertThat(ballNumbers1.isSameNumberAtPosition(ballNumbers2, 2)).isFalse();
+    }
 }

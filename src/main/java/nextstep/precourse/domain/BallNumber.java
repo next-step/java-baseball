@@ -24,6 +24,10 @@ public class BallNumber {
         return this.number == number;
     }
 
+    public boolean isSameNumber(BallNumber ballNumber) {
+        return this.number == ballNumber.getNumber();
+    }
+
     private void assertNumber(int number) {
         if(number > 9 || number < 1) {
             throw new IllegalArgumentException(BALLNUMBER_NUMBER_INVALID_MESSAGE);
