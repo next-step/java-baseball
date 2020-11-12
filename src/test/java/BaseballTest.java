@@ -10,7 +10,7 @@ import org.junit.platform.commons.util.StringUtils;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -138,13 +138,13 @@ public class BaseballTest {
 	}
 
 	private void checkDuplicationNumberFromUserInput(String input) throws CustomException {
-		HashSet<String> numberSet = new HashSet<>();
+		LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
 
 		for (char number : input.toCharArray()) {
-			numberSet.add(convertCharToString(number));
+			linkedHashMap.put(convertCharToString(number), convertCharToString(number));
 		}
 
-		if (numberSet.size() < 3) {
+		if (linkedHashMap.size() < 3) {
 			throw new CustomException(ExceptionMessageEnum.DUPLICATE.getMessage());
 		}
 	}
