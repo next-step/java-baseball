@@ -10,8 +10,4 @@ public class BaseballGame {
     public static BaseballGame init(BaseballNumbersGenerator generator) {
         return new BaseballGame(generator.generate());
     }
-
-    int getSizeOfBaseballNumbers() {
-        return baseballNumbers.size();
-    }
 }

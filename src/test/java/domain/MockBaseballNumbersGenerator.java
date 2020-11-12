@@ -4,10 +4,10 @@ import domain.exceptions.BaseballNumberDuplicatedException;
 
 import java.util.*;
 
-public class StaticBaseballNumbersGenerator implements BaseballNumbersGenerator {
+public class MockBaseballNumbersGenerator implements BaseballNumbersGenerator {
     private final List<Integer> values;
 
-    public StaticBaseballNumbersGenerator(int first, int second, int third) {
+    public MockBaseballNumbersGenerator(int first, int second, int third) {
         this.values = Arrays.asList(first, second, third);
     }
 
@@ -22,6 +22,10 @@ public class StaticBaseballNumbersGenerator implements BaseballNumbersGenerator 
         validateDuplicatedNumber(baseballNumbers);
 
         return new BaseballNumbers(new ArrayList<>(baseballNumbers));
+    }
+
+    public boolean isGenerated() {
+        return (this.values.size() == 3);
     }
 
     private void validateDuplicatedNumber(Set<BaseballNumber> baseballNumbers) {
