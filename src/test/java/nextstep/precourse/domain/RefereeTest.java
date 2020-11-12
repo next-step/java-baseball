@@ -10,6 +10,7 @@ import static nextstep.precourse.domain.BallNumberTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RefereeTest {
+    //TODO: 반복 코드 Refactoring
 
     @Test
     @DisplayName("Strike 여부를 판정한다.")

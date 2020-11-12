@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static nextstep.precourse.domain.BallNumber.BALLNUMBER_NUMBER_INVALID_MESSAGE;
 import static nextstep.precourse.domain.BallNumber.BALLNUMBER_POSITION_INVALID_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class BallNumberTest {
@@ -47,5 +48,19 @@ public class BallNumberTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new BallNumber(ballNumber, ballPositionFour);
         }).withMessage(BALLNUMBER_POSITION_INVALID_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("해당 숫자의 포지션이 입력받은 포지션과 일치하는지 판단한다.")
+    void isPosition() {
+        assertThat(BALLNUMBER_ONE.isPosition(1)).isTrue();
+        assertThat(BALLNUMBER_TWO.isPosition(3)).isFalse();
+    }
+
+    @Test
+    @DisplayName("해당 숫자가 입력받은 숫자와 일치하는지 판단한다.")
+    void isNumber() {
+        assertThat(BALLNUMBER_ONE.isNumber(1)).isTrue();
+        assertThat(BALLNUMBER_TWO.isNumber(3)).isFalse();
     }
 }
