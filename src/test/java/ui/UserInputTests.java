@@ -1,6 +1,7 @@
 package ui;
 
 import domain.BaseballNumbers;
+import domain.exceptions.OutOfBoundBaseballNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,6 +41,35 @@ class UserInputTests {
         return Stream.of(
                 Arguments.of(new UserInput("123"), ONE_TWO_THREE),
                 Arguments.of(new UserInput("512"), FIVE_ONE_TWO)
+        );
+    }
+
+    @DisplayName("1 ~ 9를 벗어난 숫자가 포함된 입력값으로 일급컬렉션 변환 시도 시 예외가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("convertToBaseballNumbersWithOutOfBoundResource")
+    void convertToBaseballNumbersWithOutOfBoundTest(UserInput userInput) {
+        assertThatThrownBy(userInput::convertToBaseballNumbers).isInstanceOf(OutOfBoundBaseballNumberException.class);
+    }
+    public static Stream<Arguments> convertToBaseballNumbersWithOutOfBoundResource() {
+        return Stream.of(
+                Arguments.of(new UserInput("103")),
+                Arguments.of(new UserInput("012")),
+                Arguments.of(new UserInput("780"))
+        );
+    }
+
+    @DisplayName("숫자와 문자열이 섞인 입력값으로 일급컬렉션 변환 시도 시 예외가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("convertToBaseballNumbersWithNotIntResource")
+    void convertToBaseballNumbersWithNotIntTest(UserInput userInput) {
+        assertThatThrownBy(userInput::convertToBaseballNumbers).isInstanceOf(NumberFormatException.class);
+    }
+    public static Stream<Arguments> convertToBaseballNumbersWithNotIntResource() {
+        return Stream.of(
+                Arguments.of(new UserInput("17b")),
+                Arguments.of(new UserInput("a8b")),
+                Arguments.of(new UserInput("ab9")),
+                Arguments.of(new UserInput("a39"))
         );
     }
 }
