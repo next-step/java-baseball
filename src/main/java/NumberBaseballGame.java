@@ -39,10 +39,10 @@ public class NumberBaseballGame {
 	 */
 	private static int generateRandomNumDigit(int digit) {
 		int randomTmp;
-		String randomNum = (int) ((Math.random() * 10000) % 9) + 1 + "";
+		String randomNum = (int)((Math.random() * 10000) % 9) + 1 + "";
 
 		while (randomNum.length() != digit) { // 입력받은 자릿수가 될 때 까지
-			randomTmp = (int) ((Math.random() * 10000) % 9) + 1; // 1자리 정수 생성
+			randomTmp = (int)((Math.random() * 10000) % 9) + 1; // 1자리 정수 생성
 			randomNum = (randomNum.contains(randomTmp + "")) ? randomNum : randomNum + randomTmp;
 		}
 
