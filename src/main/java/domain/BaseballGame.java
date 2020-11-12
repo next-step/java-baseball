@@ -12,14 +12,17 @@ public class BaseballGame {
     }
 
     public BaseballResult play(BaseballNumbers playerBalls) {
-        System.out.println(baseballNumbers);
-        int numberOfMatchedNumbers = baseballNumbers.countMatchNumbers(playerBalls);
+        return calculateResult(
+                baseballNumbers.countMatchNumbers(playerBalls),
+                baseballNumbers.countExactMatch(playerBalls)
+        );
+    }
 
+    private BaseballResult calculateResult(int numberOfMatchedNumbers, int numberOfStrikes) {
         if (numberOfMatchedNumbers == 0) {
             return BaseballResult.makeFourBall();
         }
 
-        int numberOfStrikes = baseballNumbers.countExactMatch(playerBalls);
         int numberOfBalls = numberOfMatchedNumbers - numberOfStrikes;
 
         return BaseballResult.of(numberOfBalls, numberOfStrikes);
