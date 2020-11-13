@@ -1,6 +1,7 @@
 package domain;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static utils.BusinessException.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,7 +38,7 @@ class BaseballNumbersTest {
 	@DisplayName("2.1.2.사용자_숫자_입력/전체_입력값들은_각각_1부터_9까지_입력할_수_있다_벗어난_값은_에러발생")
 	@ValueSource(strings = {"109", "310", "035"})
 	void baseballNumbersValidOnZeroToNineException(String arg) {
-		assertThrows(IllegalStateException.class, () -> new BaseballNumbers(arg));
+		assertThrows(BaseballNumberOutOfInvalidArrangeException.class, () -> new BaseballNumbers(arg));
 	}
 
 	@Order(3)
@@ -60,7 +61,7 @@ class BaseballNumbersTest {
 	@DisplayName("2.1.4.사용자_숫자_입력/전체_입력값들은_각각_서로_다른_수이다_같은_수가_있으면_에러발생")
 	@ValueSource(strings = {"121", "335", "944"})
 	void baseballNumbersAllDifferentException(String arg) {
-		assertThrows(IllegalStateException.class, () -> new BaseballNumbers(arg));
+		assertThrows(BaseballNumberDuplicatedException.class, () -> new BaseballNumbers(arg));
 	}
 
 	@Order(5)
@@ -78,6 +79,6 @@ class BaseballNumbersTest {
 	@DisplayName("2.1.6.사용자_숫자_입력/전체_입력값들은_3자리수이다_3자리수가_아닐_경우_에러발생")
 	@ValueSource(strings = {"1211", "3355", "9441123"})
 	void baseballNumbersLengthIsThreeException(int arg) {
-		assertThrows(IllegalStateException.class, () -> new BaseballNumber(arg));
+		assertThrows(BaseballNumberOutOfInvalidArrangeException.class, () -> new BaseballNumber(arg));
 	}
 }

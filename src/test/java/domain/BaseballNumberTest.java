@@ -11,6 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import application.BaseballService;
+import utils.BusinessException.BaseballNumberOnlyNumberException;
+import utils.BusinessException.BaseballNumberOutOfInvalidArrangeException;
 
 /**
  * @author : byungkyu
@@ -41,7 +43,7 @@ class BaseballNumberTest {
 	@DisplayName("2.2.2.사용자_숫자_입력/각_숫자들이_1부터_9까지의_범위를_벗어난_값은_에러발생")
 	@ValueSource(ints = {0, 10, 15, 20})
 	void baseballNumberValidOnZeroToNineThrowException(int arg) {
-		assertThrows(IllegalStateException.class, () -> new BaseballNumber(arg));
+		assertThrows(BaseballNumberOutOfInvalidArrangeException.class, () -> new BaseballNumber(arg));
 	}
 
 	@Order(3)
@@ -49,6 +51,6 @@ class BaseballNumberTest {
 	@DisplayName("2.2.3.사용자_숫자_입력/문자열을_입력할_경우_에러발생")
 	@ValueSource(strings = {"asd", "12a", "as4"})
 	void baseballNumberInvalidCharacterException(String arg) {
-		assertThrows(IllegalStateException.class, () -> new BaseballNumber(arg));
+		assertThrows(BaseballNumberOnlyNumberException.class, () -> new BaseballNumber(arg));
 	}
 }

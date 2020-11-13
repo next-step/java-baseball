@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import utils.BusinessException.BaseballNumberDuplicatedException;
+import utils.BusinessException.BaseballNumberMustThreeNumberException;
+
 /**
  * @author : byungkyu
  * @date : 2020/11/12
@@ -42,7 +45,8 @@ public class BaseballNumbers {
 
 	private void validateBaseballNumberSize(List<BaseballNumber> tempBaseballNumbers) {
 		if (tempBaseballNumbers.size() != NUMBER_OF_BASEBALL_GAME)
-			throw new IllegalStateException("입력가능한 숫자는 3자리 숫자입니다.");
+			throw new BaseballNumberMustThreeNumberException();
+
 	}
 
 	private void validateDuplicateBaseballNumber(List<BaseballNumber> tempBaseballNumbers) {
@@ -52,7 +56,7 @@ public class BaseballNumbers {
 		}
 
 		if (duplicateBaseballNumberFiltered.size() != tempBaseballNumbers.size())
-			throw new IllegalStateException("중복된 숫자가 존재합니다.");
+			throw new BaseballNumberDuplicatedException();
 	}
 
 	public int getBaseballPosition(BaseballNumber baseballNumber) {

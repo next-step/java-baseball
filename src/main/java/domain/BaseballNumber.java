@@ -2,6 +2,9 @@ package domain;
 
 import static java.lang.Integer.*;
 
+import utils.BusinessException;
+import utils.BusinessException.BaseballNumberOnlyNumberException;
+
 /**
  * @author : byungkyu
  * @date : 2020/11/12
@@ -18,7 +21,7 @@ public class BaseballNumber {
 	private void validateRange(int value) {
 		if (value < BaseballNumbers.MINIMUM_NUMBER_OF_BASEBALL_GAME
 			|| value > BaseballNumbers.MAXIMUM_NUMBER_OF_BASEBALL_GAME) {
-			throw new IllegalStateException(("숫자는 1부터 9까지 입력할 수 있습니다."));
+			throw new BusinessException.BaseballNumberOutOfInvalidArrangeException();
 		}
 	}
 
@@ -27,7 +30,8 @@ public class BaseballNumber {
 			this.value = parseInt(str);
 			validateRange(this.value);
 		} catch (NumberFormatException e) {
-			throw new IllegalStateException("숫자만 입력할 수 있습니다.");
+			throw new BaseballNumberOnlyNumberException();
+
 		}
 	}
 
