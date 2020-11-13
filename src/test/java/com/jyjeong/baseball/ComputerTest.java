@@ -7,18 +7,18 @@ class ComputerTest {
 
     Computer computer = new Computer();
 
-    @Test
-    @DisplayName("랜덤한 숫자 3가지 생성 테스트")
-    void createRandom() {
-        //given
-        int[] num;
-
-        //when
-        num = computer.createRandom();
-
-        //then
-        for (int i : num) {
-            System.out.print(i + " ");
-        }
-    }
+//    @Test
+//    @DisplayName("랜덤한 숫자 3가지 생성 테스트")
+//    void createRandom() {
+//        //given
+//        int[] num;
+//
+//        //when
+//        num = computer.createRandom();
+//
+//        //then
+//        for (int i : num) {
+//            System.out.print(i + " ");
+//        }
+//    }
 }
