@@ -20,23 +20,24 @@
   
 ## 객체 간단 모델링
 
-### domain.CorrectNumber
+### domain.AnswerNumber
 
 - 사용자가 맞춰야 하는 수를 담은 객체
-- (correctNumber)
+- (number)
 - 3자리의 서로 다른 수를 가져야 한다.
+- [ ] 3자리의 숫자를 생성한다.
 - [ ] 3자리를 가지지 않으면 예외를 발생시킨다.
 - [ ] 각 자리수가 같은 숫자가 있으면 예외를 발생시킨다.
 
 ### domain.UserNumber
 
 - 사용자가 입력한 수를 담은 객체
-- (userNumber)
+- (number)
 - 3자리의 서로 다른 수를 가져야 한다.
 - [ ] 3자리를 가지지 않으면 예외를 발생시킨다.
 - [ ] 각 자리수가 같은 숫자가 있으면 예외를 발생시킨다.
 
 ### domain.Referee
 
-- UserNumber와 CorrectNumber를 비교해 스트라이크, 볼, 낫띵 을 판별한다.
-- (userNumber, correctNumber)
+- UserNumber와 AnswerNumber를 비교해 스트라이크, 볼, 낫띵 을 판별하는 객체
+- (userNumber, answerNumber)
