@@ -22,4 +22,13 @@ public class StringTest {
                 .contains("1")
                 .containsExactly("1");
     }
+
+    @Test
+    void substring() {
+        String value = "(1,2)";
+
+        String result = value.substring(value.indexOf("(") + 1, value.indexOf(")"));
+
+        assertThat(result).isEqualTo("1,2");
+    }
 }
