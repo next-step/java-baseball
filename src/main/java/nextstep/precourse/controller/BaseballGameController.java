@@ -17,11 +17,9 @@ public class BaseballGameController {
         game.init();
 
         while(true) {
-            String userNumberString = inputView.getNumber();
-            BallNumbers userBallNumbers = makeBallNumbers(userNumberString);
+            BallNumbers userBallNumbers = makeBallNumbers(inputView.getNumber());
 
             GameResult gameResult = game.play(userBallNumbers);
-
             outputView.showResult(gameResult);
 
             if(game.play(userBallNumbers).isThreeStrike()) {
