@@ -24,9 +24,11 @@ public class BaseballGameController {
 
             if(game.play(userBallNumbers).isThreeStrike()) {
                 outputView.showCorrectMessage();
+
                 if(inputView.getContinue() == 2) {
                     break;
                 }
+
                 game.init();
             }
         }
