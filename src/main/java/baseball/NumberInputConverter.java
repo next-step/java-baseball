@@ -7,6 +7,11 @@ import java.util.List;
  * Created by JunSeok Youn on 2020-11-13
  */
 class NumberInputConverter {
+
+	private NumberInputConverter() {
+
+	}
+
 	static List<Integer> toNumbers(String input) {
 		if (input.length() != 3) {
 			throw new WrongNumberInputException("길이가 3이 아닙니다.");
