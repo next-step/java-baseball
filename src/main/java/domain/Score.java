@@ -19,6 +19,10 @@ public class Score {
         return strike == 0 && ball == 0;
     }
 
+    public boolean isAllStrike() {
+        return strike == 3;
+    }
+
     public void printScore() {
         StringBuilder stringBuilder = new StringBuilder();
         if (isNothing()) {

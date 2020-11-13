@@ -44,4 +44,14 @@ class ScoreTest {
         }
         assertThat(score.isNothing()).isEqualTo(expected);
     }
+
+    @DisplayName("모든 숫자가 일치")
+    @ParameterizedTest
+    @CsvSource(value = {"3:true", "1:false"}, delimiter = ':')
+    void isAllStrike(int count, boolean expected) {
+        for (int i = 0; i < count; i++) {
+            score.addStrike();
+        }
+        assertThat(score.isAllStrike()).isEqualTo(expected);
+    }
 }
