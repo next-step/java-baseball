@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserNumber {
-    private final Integer number;
+    private final int number;
 
     public UserNumber(int number) {
         validate(number);
@@ -31,5 +31,9 @@ public class UserNumber {
         if (set.size() != 3) {
             throw new IllegalArgumentException("중복되지 않은 숫자를 입력하세요.");
         }
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

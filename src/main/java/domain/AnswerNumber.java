@@ -7,20 +7,20 @@ public class AnswerNumber {
 
     private final int number;
 
-    private AnswerNumber(int number) {
+    public AnswerNumber(int number) {
         this.number = number;
     }
 
     public static AnswerNumber init() {
-        int randomNumber;
-        do {
+        int randomNumber = generateThreeLengthRandomNumber();
+        while (!isValidNumber(randomNumber)) {
             randomNumber = generateThreeLengthRandomNumber();
-        } while (!isValidNumber(randomNumber));
+        }
         return new AnswerNumber(randomNumber);
     }
 
     private static boolean isValidNumber(int randomNumber) {
-        if (!isDuplicateNumberExist(randomNumber)) {
+        if (isDuplicateNumberExist(randomNumber)) {
             return false;
         }
         return isThreeLengthNumber(randomNumber);

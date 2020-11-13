@@ -40,4 +40,6 @@
 ### domain.Referee
 
 - UserNumber와 AnswerNumber를 비교해 스트라이크, 볼, 낫띵 을 판별하는 객체
-- (userNumber, answerNumber)
+- (answerNumber)
+- [x] 입력받은 숫자의 스트라이크가 몇 개인지 리턴한다.
+- [ ] 
