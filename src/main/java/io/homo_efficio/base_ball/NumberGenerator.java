@@ -24,19 +24,11 @@ public class NumberGenerator {
     }
 
     private static boolean allUnique(String nums) {
-        check3Digits(nums);
-
         Set<String> numbers = new HashSet<>(3);
         String[] split = nums.split("");
         for (String num : split) {
             numbers.add(num);
         }
         return numbers.size() == 3;
-    }
-
-    private static void check3Digits(String nums) {
-        if (nums == null || nums.length() != 3) {
-            throw new IllegalArgumentException("숫자는 세 자리여야 합니다.");
-        }
     }
 }
