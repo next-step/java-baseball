@@ -25,7 +25,6 @@ public class BaseballMaster implements Master {
 
     @Override
     public void open() {
-        System.out.println(Arrays.toString(this.answer));
         Boolean check = Boolean.FALSE;
 
         while (!check) {
