@@ -1,5 +1,7 @@
 package com.yebgi83.baseball;
 
+import com.yebgi83.baseball.model.ThreeDigits;
+
 import java.util.*;
 
 public class AnswerCreator {
