@@ -20,16 +20,12 @@ public class BaseballNumberFactory {
         for (int i = BaseballNumbers.MINIMUM_NUMBER_OF_BASEBALL_GAME; i < BaseballNumbers.MAXIMUM_NUMBER_OF_BASEBALL_GAME + 1; i++) {
             RAW_BASEBALL_NUMBERS.add(new BaseballNumber(i));
         }
-        //baseballNumbers = generateNumbers();
     }
 
     public BaseballNumbers generateNumbers() {
         Collections.shuffle(RAW_BASEBALL_NUMBERS);
         List<BaseballNumber> shuffledAndFilteredBaseballNumber = RAW_BASEBALL_NUMBERS.subList(0, BaseballNumbers.NUMBER_OF_BASEBALL_GAME);
         baseballNumbers = new BaseballNumbers(shuffledAndFilteredBaseballNumber);
-        for (BaseballNumber baseballNumber : baseballNumbers.getValues()) {
-            System.out.println("answer : " + baseballNumber.getValue());
-        }
         return baseballNumbers;
     }
 }

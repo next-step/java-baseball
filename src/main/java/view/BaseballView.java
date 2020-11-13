@@ -26,32 +26,48 @@ public class BaseballView {
     public static void start() {
         boolean isGameEnd = false;
         baseballService = new BaseballService();
-
+        BaseballNumbers answer = baseballService.generateAnswer();
         while (!isGameEnd) {
-            BaseballNumbers answer = baseballService.generateAnswer();
             String playerBaseballNumber = requirePlayerBaseballNumber();
-            Score score = baseballService.checkBaseballNumber(playerBaseballNumber, answer);
-            printScore(score);
-            isGameEnd = isGameOver(score);
+            boolean isCorrectAnswer = checkBaseballNumber(playerBaseballNumber, answer);
+            isGameEnd = isGameOver(isCorrectAnswer);
+            reGenerateAnswer(answer, isCorrectAnswer, isGameEnd);
         }
-        askRetry();
     }
 
-    private static void askRetry() {
+    private static BaseballNumbers reGenerateAnswer(BaseballNumbers answer, boolean isCorrectAnswer, boolean isGameEnd) {
+        if (isCorrectAnswer && !isGameEnd) {
+            answer = baseballService.generateAnswer();
+        }
+        return answer;
+    }
+
+    private static boolean isGameOver(boolean correctAnswer) {
+        return (correctAnswer && (askRetry() == 2));
+    }
+
+    private static boolean checkBaseballNumber(String playerBaseballNumber, BaseballNumbers answer) {
+        Score score = baseballService.checkBaseballNumber(playerBaseballNumber, answer);
+        printScore(score);
+        return isCorrectNumber(score);
+    }
+
+    private static int askRetry() {
         System.out.println(ASK_RETRY_GAME_MESSAGE);
+        return scanner.nextInt();
     }
 
-    private static boolean isGameOver(Score score) {
+    private static boolean isCorrectNumber(Score score) {
         return score.isAllStrike();
     }
 
     private static void printScore(Score score) {
-        combinePrintScoreMessage(score);
+        printCombineScoreMessage(score);
         if (score.isNothing()) System.out.println(NOTHING_MESSAGE);
         if (score.isAllStrike()) System.out.println(BaseballNumbers.NUMBER_OF_BASEBALL_GAME + GAME_OVER_MESSAGE);
     }
 
-    private static void combinePrintScoreMessage(Score score) {
+    private static void printCombineScoreMessage(Score score) {
         StringBuilder sb = new StringBuilder();
         if (score.getStrike() != 0) {
             sb.append(score.getStrike()).append(" ").append(STRIKE_MESSAGE);
