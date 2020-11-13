@@ -24,4 +24,13 @@ public class StringTest {
         String[] split = input.split(",");
         assertThat(split).containsExactly("1");
     }
+
+    @Test
+    @DisplayName("substring() 테스트")
+    public void replace(){
+        String input = "(1,2)";
+        String result = input.substring(1, input.length() - 1);
+
+        assertThat(result).isEqualTo("1,2");
+    }
 }
