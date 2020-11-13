@@ -5,3 +5,7 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 중복 제외 랜덤 숫자 3자리수 생성
+* 스트라이크 여부 확인
