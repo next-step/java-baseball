@@ -31,7 +31,7 @@ public class Hint {
      */
     private void printStrike(int[] hint){
         if(hint[0] != 0) {
-            System.out.print(hint[0] + "스트라이크");
+            System.out.print(hint[0] + " 스트라이크 ");
         }
     }
 
@@ -40,7 +40,7 @@ public class Hint {
      */
     private void printBall(int[] hint){
         if(hint[1] != 0) {
-            System.out.print(hint[1] + "볼");
+            System.out.print(hint[1] + " 볼 ");
         }
     }
 
