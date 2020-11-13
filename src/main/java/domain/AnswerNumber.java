@@ -14,7 +14,7 @@ public class AnswerNumber {
     public static AnswerNumber init() {
         int randomNumber;
         do {
-            randomNumber = generateThreeRandomNumber();
+            randomNumber = generateThreeLengthRandomNumber();
         } while (!isValidNumber(randomNumber));
         return new AnswerNumber(randomNumber);
     }
@@ -31,7 +31,7 @@ public class AnswerNumber {
         return numberString.length() == 3;
     }
 
-    private static int generateThreeRandomNumber() {
+    private static int generateThreeLengthRandomNumber() {
         return random.nextInt(900) + 100;
     }
 
