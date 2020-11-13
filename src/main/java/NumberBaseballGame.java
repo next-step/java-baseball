@@ -92,6 +92,7 @@ public class NumberBaseballGame {
 
 		if (digit < 1 || digit > 9) {
 			System.out.println(message);
+			scanner.close();
 			System.exit(0);
 		}
 
