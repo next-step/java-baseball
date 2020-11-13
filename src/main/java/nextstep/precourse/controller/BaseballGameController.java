@@ -8,7 +8,6 @@ import nextstep.precourse.view.InputView;
 import nextstep.precourse.view.OutputView;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class BaseballGameController {
