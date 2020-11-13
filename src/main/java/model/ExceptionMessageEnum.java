@@ -1,3 +1,5 @@
+package model;
+
 public enum ExceptionMessageEnum {
 
 	INVALID("this number is invalid"),
