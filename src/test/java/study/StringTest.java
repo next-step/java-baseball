@@ -16,4 +16,12 @@ public class StringTest {
         assertThat(split).containsExactly("1", "2");
     }
 
+    @Test
+    @DisplayName("split 1 테스트")
+    public void split1(){
+        final String input = "1";
+
+        String[] split = input.split(",");
+        assertThat(split).containsExactly("1");
+    }
 }
