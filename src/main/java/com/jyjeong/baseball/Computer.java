@@ -4,7 +4,7 @@ public class Computer {
 
     NumberCheck uniqueNumber = new NumberCheck();
 
-    public int[] createRandom(){
+    private int[] createRandom(){
         int[] randomNumber = new int[3];
         for(int i = 0 ; i < randomNumber.length ; i++){
             randomNumber[i] = (int)((Math.random()*9)+1);
