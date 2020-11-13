@@ -20,16 +20,14 @@ class Game {
 
 	void start() {
 		this.computerNumbers = RandomNumberGenerator.generate();
+		printer.print(computerNumbers.toString()); // TODO : remove this
 
 		while (true) {
 			printer.print(MESSAGE_ENTER_NUMBERS);
 			String input = scanner.next();
 			List<Integer> myNumbers = NumberInputConverter.toNumbers(input);
-
-			printer.print(myNumbers.toString()); // TODO : remove this
-			printer.print(computerNumbers.toString()); // TODO : remove this
+			GuessResult result = Guesser.guess(computerNumbers, myNumbers);
+			printer.print(result.getMessage());
 		}
-
 	}
-
 }
