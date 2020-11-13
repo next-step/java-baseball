@@ -48,15 +48,12 @@ public class BaseballView {
 
 	private static boolean isGameOver(boolean correctAnswer) {
 		String retryCode = "";
-		if (correctAnswer) {
+		if (correctAnswer)
 			retryCode = askRetry();
-		}
-		if (correctAnswer && (RetryType.EXIT.getCode().equals(retryCode))) {
+		if (correctAnswer && (RetryType.EXIT.getCode().equals(retryCode)))
 			return true;
-		}
-		if (correctAnswer && (RetryType.NEW_GAME.getCode().equals(retryCode))) {
+		if (correctAnswer && (RetryType.NEW_GAME.getCode().equals(retryCode)))
 			return false;
-		}
 		throw new ChooseRetryNumberException();
 	}
 
@@ -89,7 +86,6 @@ public class BaseballView {
 		if (score.getStrike() != 0) {
 			sb.append(score.getStrike()).append(" ").append(STRIKE_MESSAGE);
 		}
-
 		if (score.getBall() != 0) {
 			sb.append(" ").append(score.getBall()).append(" ").append(BALL_MESSAGE);
 		}
