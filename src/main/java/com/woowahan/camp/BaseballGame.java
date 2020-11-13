@@ -19,7 +19,7 @@ public class BaseballGame {
 		GameResult gameResult;
 		do {
 			gameResult = getUserInput(scanner, computerNumber);
-			System.out.println(gameResult);
+			System.out.println(gameResult.getResultMsg());
 		} while (!gameResult.isWin());
 		retryOrExit(scanner);
 	}

@@ -1,5 +1,7 @@
 package com.woowahan.camp.model;
 
+import com.woowahan.camp.constant.Message;
+
 public class GameResult {
 	private int strike;
 	private int ball;
@@ -20,6 +22,47 @@ public class GameResult {
 
 	public boolean isWin() {
 		return this.strike == 3;
+	}
+
+	public String getResultMsg() {
+		String resultMsg = "";
+		resultMsg += getStrikeMsg();
+		resultMsg += getBallMsg();
+		resultMsg += getWinMsg();
+		resultMsg += getNothingMsg();
+		return resultMsg;
+	}
+
+	public String getStrikeMsg() {
+		String result = "";
+		if (this.strike > 0 && this.strike < 3) {
+			result = String.format(Message.STRIKE_MSG, this.strike);
+		}
+		return result;
+	}
+
+	public String getBallMsg() {
+		String result = "";
+		if (this.ball > 0) {
+			result = String.format(Message.BALL_MSG, this.ball);
+		}
+		return result;
+	}
+
+	public String getWinMsg() {
+		String result = "";
+		if (this.strike == 3) {
+			result = Message.GAME_WIN_MSG;
+		}
+		return result;
+	}
+
+	public String getNothingMsg() {
+		String result = "";
+		if (this.strike == 0 && this.ball == 0) {
+			result = Message.NOTHING_MSG;
+		}
+		return result;
 	}
 
 	@Override
