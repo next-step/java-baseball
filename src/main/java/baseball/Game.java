@@ -12,6 +12,7 @@ class Game {
 	private Printer printer;
 	private Scanner scanner;
 	private Converter converter;
+	private List<Integer> computerNumbers;
 
 	Game() {
 		this.printer = new Printer();
@@ -20,6 +21,7 @@ class Game {
 	}
 
 	void start() {
+		this.computerNumbers = RandomNumberGenerator.generate();
 
 		while (true) {
 			printer.print(MESSAGE_ENTER_NUMBERS);
@@ -27,7 +29,9 @@ class Game {
 			List<Integer> myNumbers = converter.toNumbers(input);
 
 			printer.print(myNumbers.toString()); // TODO : remove this
+			printer.print(computerNumbers.toString()); // TODO : remove this
 		}
 
 	}
+
 }
