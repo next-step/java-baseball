@@ -22,4 +22,14 @@ public class GameResult {
 		return this.strike == 3;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("GameResult{");
+		sb.append("strike=").append(strike);
+		sb.append(", ball=").append(ball);
+		sb.append(", computerValue='").append(computerValue).append('\'');
+		sb.append(", userValue='").append(userValue).append('\'');
+		sb.append('}');
+		return sb.toString();
+	}
 }

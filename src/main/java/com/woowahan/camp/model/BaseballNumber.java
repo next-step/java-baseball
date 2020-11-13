@@ -27,7 +27,7 @@ public class BaseballNumber {
 	}
 
 	public GameResult checkStrikeAndBall(BaseballNumber other) {
-		throw new RuntimeException("사용자 입력값과 비교하여 스트라이크와 볼등의 결과 정보가 담긴 결과객체를 반환한다.");
+		return GameResult.of(getStrikeCnt(other), getBallCnt(other), getInputValue(), other.getInputValue());
 	}
 
 	public static String randomGenerator() {
@@ -39,6 +39,27 @@ public class BaseballNumber {
 			numberList.remove(random);
 		}
 		return result.toString();
+	}
+
+	public int getStrikeCnt(BaseballNumber other) {
+		int strike = 0;
+		for (int i = 0; i < 3; i++) {
+			strike += this.numbers.get(i).equals(other.numbers.get(i)) ? 1 : 0;
+		}
+		return strike;
+	}
+
+	public int getBallCnt(BaseballNumber other) {
+		int ball = 0;
+		for (int i = 0; i < 3; i++) {
+			ball += !this.numbers.get(i).equals(other.numbers.get(i))
+				&& this.numbers.contains(other.numbers.get(i)) ? 1 : 0;
+		}
+		return ball;
+	}
+
+	public String getInputValue() {
+		return String.join("", this.numbers);
 	}
 
 }
