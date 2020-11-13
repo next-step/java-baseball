@@ -11,14 +11,15 @@ public class OutputView {
 
     public void showResult(GameResult gameResult) {
         if(!gameResult.isZeroStrike()) {
-            ViewUtils.printLine(gameResult.getStrike() + STRIKE_MESSAGE);
+            ViewUtils.print(gameResult.getStrike() + STRIKE_MESSAGE);
         }
         if(!gameResult.isZeroBall()) {
-            ViewUtils.printLine(gameResult.getBall() + BALL_MESSAGE);
+            ViewUtils.print(gameResult.getBall() + BALL_MESSAGE);
         }
         if(gameResult.isFourBall()) {
-            ViewUtils.printLine(FOUR_BALL_MESSAGE);
+            ViewUtils.print(FOUR_BALL_MESSAGE);
         }
+        ViewUtils.printLine("");
     }
 
     public void showCorrectMessage() {
