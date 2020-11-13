@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class BaseballCheckor implements Checkor {
+public class BaseballCheckor implements Checkor<String> {
 
     private final int[] numbers;
     private List<Integer> numberList;

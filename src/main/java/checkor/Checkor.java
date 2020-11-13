@@ -1,7 +1,5 @@
 package checkor;
 
-public interface Checkor {
-
-    String check(int[] input);
-
+public interface Checkor<T> {
+    T check(int[] input);
 }

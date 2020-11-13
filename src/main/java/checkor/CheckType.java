@@ -3,8 +3,8 @@ package checkor;
 public enum CheckType {
 
     NOTHING("낫싱"),
-    STRIKE(" 스트라이크 "),
-    BALL(" 볼 ");
+    STRIKE("스트라이크 "),
+    BALL("볼 ");
 
     private String print;
 
