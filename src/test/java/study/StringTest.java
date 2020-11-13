@@ -13,6 +13,8 @@ public class StringTest {
     private static final String ONE = "1";
     private static final String TWO = "2";
 
+    private static final String ONE_AND_TWO = "1,2";
+
     @ParameterizedTest
     @ValueSource(strings = "1,2")
     @DisplayName("[요구사항 1] '1,2' 문자열을 ','으로 split 할 때 '1', '2'로 잘 분리되는지 확인")
@@ -33,5 +35,14 @@ public class StringTest {
         final String[] splitStrArr = givenInput.split(SEPARATOR);
 
         assertThat(splitStrArr).containsExactly(ONE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = "(1,2)")
+    @DisplayName("[요구사항 2] '(1,2)' 문자열을 substring 메서드를 사용하여 '('와 ')'을 제거하여 '1,2'만을 포함하는 배열을 반환하는지 확인")
+    void validateEqualsReturnStringOneAndTwoWhenSubstringParam(final String givenInput) {
+        final String oneAndTwo = givenInput.substring(1, givenInput.length() - 1);
+
+        assertThat(oneAndTwo).isEqualTo(ONE_AND_TWO);
     }
 }
