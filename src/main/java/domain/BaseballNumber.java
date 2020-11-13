@@ -41,16 +41,10 @@ public class BaseballNumber {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
+        if(obj == null) return false;
+        if(this.getClass() != obj.getClass() ) return false;
+        
+        BaseballNumber check = (BaseballNumber) obj;
+        return check.value == value;
     }
 }

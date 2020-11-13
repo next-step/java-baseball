@@ -55,6 +55,14 @@ public class BaseballNumbers {
             throw new IllegalStateException("중복된 숫자가 존재합니다.");
     }
 
+    public int getBaseballPosition(BaseballNumber baseballNumber) {
+        return this.values.indexOf(baseballNumber);
+    }
+
+    public boolean contains(BaseballNumber baseballNumber) {
+        return this.values.contains(baseballNumber);
+    }
+
     public List<BaseballNumber> getValues() {
         return this.values;
     }
