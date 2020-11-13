@@ -3,8 +3,8 @@ package nextstep.precourse.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static nextstep.precourse.domain.BallNumberTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,13 +15,13 @@ public class RefereeTest {
     @Test
     @DisplayName("Strike 여부를 판정한다.")
     void isStrike() {
-        List<BallNumber> computerBallNumberList = new ArrayList<>();
+        Set<BallNumber> computerBallNumberList = new HashSet<>();
         computerBallNumberList.add(BALLNUMBER_ONE);
         computerBallNumberList.add(BALLNUMBER_TWO);
         computerBallNumberList.add(BALLNUMBER_THREE);
         BallNumbers computerBallNumbers = new BallNumbers(computerBallNumberList);
 
-        List<BallNumber> userBallNumberList = new ArrayList<>();
+        Set<BallNumber> userBallNumberList = new HashSet<>();
         userBallNumberList.add(BALLNUMBER_ONE);
         userBallNumberList.add(BALLNUMBER_SAME_POSITION);
         userBallNumberList.add(BALLNUMBER_SAME_NUMBER);
@@ -33,13 +33,13 @@ public class RefereeTest {
     @Test
     @DisplayName("Ball 여부를 판정한다.")
     void isBall() {
-        List<BallNumber> computerBallNumberList = new ArrayList<>();
+        Set<BallNumber> computerBallNumberList = new HashSet<>();
         computerBallNumberList.add(BALLNUMBER_ONE);
         computerBallNumberList.add(BALLNUMBER_TWO);
         computerBallNumberList.add(BALLNUMBER_THREE);
         BallNumbers computerBallNumbers = new BallNumbers(computerBallNumberList);
 
-        List<BallNumber> userBallNumberList = new ArrayList<>();
+        Set<BallNumber> userBallNumberList = new HashSet<>();
         userBallNumberList.add(BALLNUMBER_ONE);
         userBallNumberList.add(BALLNUMBER_SAME_POSITION);
         userBallNumberList.add(BALLNUMBER_SAME_NUMBER);
@@ -54,13 +54,13 @@ public class RefereeTest {
     @Test
     @DisplayName("BallNumber 두 쌍을 입력받아 결과를 도출한다.")
     void judge() {
-        List<BallNumber> computerBallNumberList = new ArrayList<>();
+        Set<BallNumber> computerBallNumberList = new HashSet<>();
         computerBallNumberList.add(BALLNUMBER_ONE);
         computerBallNumberList.add(BALLNUMBER_TWO);
         computerBallNumberList.add(BALLNUMBER_THREE);
         BallNumbers computerBallNumbers = new BallNumbers(computerBallNumberList);
 
-        List<BallNumber> userBallNumberList = new ArrayList<>();
+        Set<BallNumber> userBallNumberList = new HashSet<>();
         userBallNumberList.add(BALLNUMBER_ONE);
         userBallNumberList.add(BALLNUMBER_SAME_POSITION);
         userBallNumberList.add(BALLNUMBER_SAME_NUMBER);
@@ -78,13 +78,13 @@ public class RefereeTest {
      */
     @Test
     void judge_fourball() {
-        List<BallNumber> computerBallNumberList = new ArrayList<>();
+        Set<BallNumber> computerBallNumberList = new HashSet<>();
         computerBallNumberList.add(BALLNUMBER_ONE);
         computerBallNumberList.add(BALLNUMBER_TWO);
         computerBallNumberList.add(BALLNUMBER_THREE);
         BallNumbers computerBallNumbers = new BallNumbers(computerBallNumberList);
 
-        List<BallNumber> userBallNumberList = new ArrayList<>();
+        Set<BallNumber> userBallNumberList = new HashSet<>();
         userBallNumberList.add(BALLNUMBER_FOUR);
         userBallNumberList.add(BALLNUMBER_FIVE);
         userBallNumberList.add(BALLNUMBER_SIX);
