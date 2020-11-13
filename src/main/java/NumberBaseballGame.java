@@ -7,17 +7,9 @@ public class NumberBaseballGame {
 	static Scanner scanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		boolean isKeep = true;
 		
-		while (isKeep) {
-			// 랜덤 세자리 정수 생성
-			generateRandomNumDigitException(RANDOM_DIGIT);
-			int randomNum = generateRandomNumDigit(RANDOM_DIGIT);
-						
-			System.out.println("랜덤 생성된 정수 : " + randomNum); // TODO: 개발 후 삭제
-
-			playBaseBall(randomNum);
-		}
+		readyBaseball();
+		
 		scanner.close();
 	}
 	
@@ -28,7 +20,29 @@ public class NumberBaseballGame {
 	 * @param randomNum 생성된 랜덤 정수
 	 * 
 	 */
-	private static void playBaseBall(int randomNum) {
+	private static void readyBaseball() {
+		boolean isKeep = true;
+		
+		while (isKeep) {
+			generateRandomNumDigitException(RANDOM_DIGIT);
+			int randomNum = generateRandomNumDigit(RANDOM_DIGIT);
+						
+			System.out.println("랜덤 생성된 정수 : " + randomNum); // TODO: 개발 후 삭제
+
+			playBaseball(randomNum);
+			isKeep = isKeepGame();
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * 숫자를 입력받아 게임 진행
+	 * 
+	 * @param randomNum 생성된 랜덤 정수
+	 * 
+	 */
+	private static void playBaseball(int randomNum) {
 		boolean isKeep = true;
 		do {
 			System.out.print("숫자를 입력해주세요 : ");
@@ -162,6 +176,23 @@ public class NumberBaseballGame {
 			return true;
 		}
 		return false;
+	}
+	
+
+	/**
+	 * 
+	 * 게임 승리 후 지속 여부
+	 * 
+	 * @param strikeCount 스트라이크
+	 * @return true(게임지속), false(게임종료)
+	 * @author somi
+	 * 
+	 */
+	private static boolean isKeepGame() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+		String str = scanner.next();
+		//str 예외처리 함수 TODO
+		return (str.equals("1")) ? true : false;
 	}
 	
 	
