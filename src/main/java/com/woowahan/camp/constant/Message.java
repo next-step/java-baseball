@@ -7,5 +7,4 @@ public class Message {
 	public static final String STRIKE_MSG = "%d 스트라이크 ";
 	public static final String BALL_MSG = "%d볼";
 	public static final String NOTHING_MSG = "낫싱";
-
 }
