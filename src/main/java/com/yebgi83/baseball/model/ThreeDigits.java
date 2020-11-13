@@ -3,29 +3,39 @@ package com.yebgi83.baseball.model;
 import java.util.Arrays;
 
 public class ThreeDigits {
-    public static ThreeDigits createFromString(String value) {
+    public static ThreeDigits createFrom(String value) {
         char digit1 = value.charAt(0);
         char digit2 = value.charAt(1);
         char digit3 = value.charAt(2);
         return new ThreeDigits(digit1, digit2, digit3);
     }
 
-    private final int[] numbers;
+    private final int[] digits;
 
     public ThreeDigits(char digit1, char digit2, char digit3) {
-        this.numbers = new int[3];
-        this.numbers[0] = Character.getNumericValue(digit1);
-        this.numbers[1] = Character.getNumericValue(digit2);
-        this.numbers[2] = Character.getNumericValue(digit3);
+        this.digits = new int[3];
+        this.digits[0] = Character.getNumericValue(digit1);
+        this.digits[1] = Character.getNumericValue(digit2);
+        this.digits[2] = Character.getNumericValue(digit3);
     }
 
-    public int getNumberAt(int index) {
-        return numbers[index];
+    public boolean contains(int expected) {
+        for (int digit : digits) {
+            if (digit == expected) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public int getDigitAt(int index) {
+        return digits[index];
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(numbers);
+        return Arrays.toString(digits);
     }
 
     @Override
@@ -39,11 +49,11 @@ public class ThreeDigits {
         }
 
         ThreeDigits that = (ThreeDigits) o;
-        return Arrays.equals(numbers, that.numbers);
+        return Arrays.equals(digits, that.digits);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(numbers);
+        return Arrays.hashCode(digits);
     }
 }
