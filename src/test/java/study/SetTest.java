@@ -30,4 +30,11 @@ public class SetTest {
     void validateSetSizeWhenSize(final int expectedSize) {
         assertThat(numbers.size()).isEqualTo(expectedSize);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("[요구사항 2] Set의 contains() 메서드를 사용하여 Set에 특정 원소가 포함되어 있는지 확인")
+    void validateContainsValueInSetWhenContains(final int expectedSize) {
+        assertThat(numbers.contains(expectedSize)).isTrue();
+    }
 }
