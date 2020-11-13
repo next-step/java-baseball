@@ -28,7 +28,8 @@ public class AnswerCreator {
                 numbers[index] = number;
             }
 
-            shuffle(numbers.length / 2);
+            int shuffleTimes = numbers.length / 2;
+            shuffle(shuffleTimes);
         }
 
         @Override
