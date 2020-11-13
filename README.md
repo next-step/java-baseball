@@ -12,4 +12,9 @@
 - 생성된 숫자와 입력받는 숫자가 존재하면 볼, 존재하면서 자리가 같으면 스트라이크 아무것도 일치하지 않으면 낫싱으로 판단
 - 게임을 계속할지 여부를 물어 게임 진행
 
-
+## 기능 목록
+- 숫자 랜덤 생성 (RandomNumberFactory)
+- 숫자 입력 (InputScanner)
+- 볼카운트 계산 (BallCountChecker)
+- 볼카운트 출력 (BallCountPrinter)
+- 게임 시작/종료/재시작여부 (BaseBallGame)
