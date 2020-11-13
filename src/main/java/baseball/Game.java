@@ -25,8 +25,6 @@ class Game {
 
 	NextStepType start() {
 		List<Integer> computerNumbers = RandomNumberGenerator.generate();
-		printer.print(computerNumbers.toString()); // TODO : remove this
-
 		while (!isEnd) {
 			printer.print(MESSAGE_ENTER_NUMBERS);
 			List<Integer> myNumbers = waitAndGetNumberInput();
@@ -34,7 +32,6 @@ class Game {
 			printer.print(result.getMessage());
 			endGameOnGuessRight(result);
 		}
-
 		return nextStepType;
 	}
 
