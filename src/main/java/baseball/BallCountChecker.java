@@ -1,7 +1,7 @@
 package baseball;
 
 public class BallCountChecker {
-    public static String check(final String input, final String answer) {
+    public static BallCount check(final String input, final String answer) {
         BallCount ballCount = new BallCount();
 
         for(int i = 0; i < BallCount.BALL_COUNT_SIZE; i++) {
@@ -12,7 +12,7 @@ public class BallCountChecker {
             }
         }
 
-        return ballCount.toString();
+        return ballCount;
     }
 
     private static boolean isStrike(final char input, final char answer) {

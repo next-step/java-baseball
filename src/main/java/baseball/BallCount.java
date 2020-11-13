@@ -12,6 +12,11 @@ public class BallCount {
         this.ball = 0;
     }
 
+    public BallCount(final int strike, final int ball){
+        this.strike = strike;
+        this.ball = ball;
+    }
+
     public boolean isNoting(){
         return strike == 0 && ball == 0 ? true : false;
     }

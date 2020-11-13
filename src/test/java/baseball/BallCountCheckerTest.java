@@ -15,11 +15,11 @@ public class BallCountCheckerTest {
         this.answer = "713";
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"123:1S1B", "145:0S1B", "671:0S2B", "216:1S0B", "713:3S0B"}, delimiter = ':')
-    public void checkNumber(final String number, final String expected){
-        String result = BallCountChecker.check(number, this.answer);
+    @ParameterizedTest(name = "{index} => input={0}, {1}S {2}B")
+    @CsvSource(value = {"123:1:1", "145:0:1", "671:0:2", "216:1:0", "713:3:0"}, delimiter = ':')
+    public void checkNumber(final String input, final int expectedStrike, final int expectedBall){
+        BallCount result = BallCountChecker.check(input, this.answer);
 
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).isEqualToComparingFieldByField(new BallCount(expectedStrike, expectedBall));
     }
 }
