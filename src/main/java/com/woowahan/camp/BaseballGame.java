@@ -35,7 +35,8 @@ public class BaseballGame {
 			System.out.println(Message.VALIDATION_ERR_MSG);
 			return getUserInput(scanner, computerNumber);
 		}
-		throw new RuntimeException("입력값 validation 후 사용자 데이터 받아 결과값 반환");
+		BaseballNumber inputNumber = BaseballNumber.getBaseballNumber(inputValue);
+		return computerNumber.checkStrikeAndBall(inputNumber);
 	}
 
 }
