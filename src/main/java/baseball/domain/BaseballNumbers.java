@@ -4,11 +4,14 @@ import java.util.*;
 
 public class BaseballNumbers implements Iterable<BaseballNumber> {
 
+    private static final int MAX_LENGTH = 3;
+    private static final String MAX_LENGTH_VIOLATION_MESSAGE = "3개만 입력할 수 있습니다.";
+    private static final String DUPLICATED_VIOLATION_MESSAGE = "중복된 야구번호 입니다.";
     private List<BaseballNumber> baseballNumbers = new ArrayList<>();
 
     private BaseballNumbers(int ... numbers) {
-        if (numbers.length != 3) {
-            throw new IllegalArgumentException("3개만 입력할 수 있습니다.");
+        if (numbers.length != MAX_LENGTH) {
+            throw new IllegalArgumentException(MAX_LENGTH_VIOLATION_MESSAGE);
         }
         for (int number : numbers) {
             BaseballNumber baseballNumber = new BaseballNumber(number);
@@ -35,7 +38,7 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
 
     private void validateDuplicatedNumber(BaseballNumber baseballNumber) {
         if (baseballNumbers.contains(baseballNumber)) {
-            throw new IllegalArgumentException("중복된 야구번호 입니다.");
+            throw new IllegalArgumentException(DUPLICATED_VIOLATION_MESSAGE);
         }
     }
 
