@@ -7,4 +7,5 @@ public class Message {
 	public static final String STRIKE_MSG = "%d 스트라이크 ";
 	public static final String BALL_MSG = "%d볼";
 	public static final String NOTHING_MSG = "낫싱";
+	public static final String VALIDATION_ERR_MSG = "세자리 숫자만 입력가능합니다. 다시 입력해주세요.";
 }

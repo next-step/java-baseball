@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.woowahan.camp.constant.Message;
 import com.woowahan.camp.model.BaseballNumber;
 import com.woowahan.camp.model.GameResult;
+import com.woowahan.camp.util.ValidationUtil;
 
 public class BaseballGame {
 
@@ -29,6 +30,11 @@ public class BaseballGame {
 
 	private static GameResult getUserInput(Scanner scanner, BaseballNumber computerNumber) {
 		System.out.println(Message.REQUEST_INPUT_MSG);
+		String inputValue = scanner.nextLine();
+		if (ValidationUtil.isNotNumber(inputValue) || ValidationUtil.isNotLengthThree(inputValue)) {
+			System.out.println(Message.VALIDATION_ERR_MSG);
+			return getUserInput(scanner, computerNumber);
+		}
 		throw new RuntimeException("입력값 validation 후 사용자 데이터 받아 결과값 반환");
 	}
 
