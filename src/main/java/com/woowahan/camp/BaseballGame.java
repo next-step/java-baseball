@@ -3,6 +3,7 @@ package com.woowahan.camp;
 import java.util.Scanner;
 
 import com.woowahan.camp.constant.Message;
+import com.woowahan.camp.constant.RetryOrExit;
 import com.woowahan.camp.model.BaseballNumber;
 import com.woowahan.camp.model.GameResult;
 import com.woowahan.camp.util.ValidationUtil;
@@ -26,7 +27,14 @@ public class BaseballGame {
 
 	private static void retryOrExit(Scanner scanner) {
 		System.out.println(Message.RETRY_OR_EXIT_MSG);
-		throw new RuntimeException("재시도 입력 값 받아 검증 후 로직");
+		String inputValue = scanner.nextLine();
+		if (RetryOrExit.RETRY.equals(inputValue)) {
+			runGame();
+		}
+		if (RetryOrExit.EXIT.equals(inputValue)) {
+			System.exit(0);
+		}
+		retryOrExit(scanner);
 	}
 
 	private static GameResult getUserInput(Scanner scanner, BaseballNumber computerNumber) {
