@@ -15,6 +15,7 @@ public class Result {
     }
 
     public String getText() {
-        return "";
+        String s = strikes > 0 ? strikes + " 스트라이크" : "";
+        return s;
     }
 }

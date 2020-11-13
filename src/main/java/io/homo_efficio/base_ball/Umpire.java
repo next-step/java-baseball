@@ -15,6 +15,19 @@ public class Umpire {
     }
 
     public Result judge() {
-        return null;
+        return new Result(0, countStrikes());
+    }
+
+    private int countStrikes() {
+        int strikes = 0;
+        String[] genSplit = genNumber.split("");
+        String[] inputSplit = inputNumber.split("");
+
+        for (int i = 0; i < genSplit.length; i++) {
+            if (genSplit[i].equals(inputSplit[i])) {
+                strikes++;
+            }
+        }
+        return strikes;
     }
 }
