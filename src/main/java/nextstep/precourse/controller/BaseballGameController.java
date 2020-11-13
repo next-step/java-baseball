@@ -12,12 +12,11 @@ import java.util.Set;
 
 public class BaseballGameController {
 
-    public void play(InputView inputView, OutputView outputView) {
+    public static void play(InputView inputView, OutputView outputView) {
         BaseballGame game = new BaseballGame();
+        game.init();
 
         while(true) {
-            game.init();
-
             String userNumberString = inputView.getNumber();
             BallNumbers userBallNumbers = makeBallNumbers(userNumberString);
 
@@ -30,13 +29,14 @@ public class BaseballGameController {
                 if(inputView.getContinue() == 2) {
                     break;
                 }
+                game.init();
             }
         }
 
         game.exit();
     }
 
-    private BallNumbers makeBallNumbers(String userNumberString) {
+    private static BallNumbers makeBallNumbers(String userNumberString) {
         Set<BallNumber> ballNumberSet = new HashSet<>();
 
         for(int i = 0; i < 3; i++) {
