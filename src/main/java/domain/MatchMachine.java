@@ -11,14 +11,23 @@ public class MatchMachine {
     public Score compare(String baseballNumber) {
         Score score = new Score();
         for (int i = 0; i < NUMBER_LENGTH; i++) {
-            if (computerNumber.charAt(i) == baseballNumber.charAt(i)) {
-                score.addStrike();
-                continue;
-            }
-            if (computerNumber.contains(String.valueOf(baseballNumber.charAt(i)))) {
-                score.addBall();
-            }
+            boolean isStrike = checkStrike(i, baseballNumber.charAt(i), score);
+            checkBall(isStrike, baseballNumber.charAt(i), score);
         }
         return score;
+    }
+
+    private boolean checkStrike(int index, char charBN, Score score) {
+        if (computerNumber.charAt(index) == charBN) {
+            score.addStrike();
+            return true;
+        }
+        return false;
+    }
+
+    private void checkBall(boolean isStrike, char charBN, Score score) {
+        if (!isStrike && computerNumber.contains(String.valueOf(charBN))) {
+            score.addBall();
+        }
     }
 }
