@@ -5,3 +5,17 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+---
+### 기능 정의
+#### User interface
+- [ ] 사용자 입력을 받는 기능
+- [ ] 사용자 콘솔에 message를 출력하는 기능
+
+#### Baseball Game
+- [ ] 입력 유효성을 검사
+  - [ ] 각 자리 숫자가 1~9 까지의 숫자인지 검사
+  - [ ] 중복되는 숫자가 없는지 검사
+- [ ] 정답 (3자리 숫자)를 Random 생성
+- [ ] 입력과 정답을 비교하여 결과(스트라이크, 볼 갯수) 생성
+- [ ] 사용자가 정답을 맞췄는지를 판별
