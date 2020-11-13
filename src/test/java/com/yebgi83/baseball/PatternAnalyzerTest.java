@@ -64,7 +64,7 @@ public class PatternAnalyzerTest {
 
     @Test
     @DisplayName("모든 숫자가 위치와 숫자까지 다르면, 0개의 스트라이크와 볼이 나와야 한다.")
-    void getZeroBallAndStritelIfAllDigitsAreDifferent() {
+    void getZeroBallAndStrikeIfAllDigitsAreDifferent() {
         PatternResult patternResult = analyze("795", "312");
 
         assertSame(patternResult.getStrikeCount(), 0);
