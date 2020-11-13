@@ -24,7 +24,7 @@ public class BaseballCheckor implements Checkor {
 
     @Override
     public String check(int[] input) {
-        for (int i : input) numberSet.add(i);
+        setInput(input);
         int strike = strike(input);
         int ball = ball(input, strike);
         return CheckType.printCheckType(strike, ball);
@@ -40,5 +40,9 @@ public class BaseballCheckor implements Checkor {
 
     protected int ball(int[] input, int strike) {
         return (numbers.length + input.length) - strike - numberSet.size();
+    }
+
+    protected void setInput(int[] input) {
+        for (int i : input) numberSet.add(i);
     }
 }
