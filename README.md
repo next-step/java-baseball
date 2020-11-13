@@ -5,3 +5,12 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능
+
+- 중복 없는 3자리수 생성
+- 3자리수 입력 받기
+- 스트라이크 판정
+- 볼 판정
+- 판정 결과 출력
+- 게임 종료/계속 처리
