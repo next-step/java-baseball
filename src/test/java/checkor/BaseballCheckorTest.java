@@ -22,9 +22,8 @@ class BaseballCheckorTest {
 
     @ParameterizedTest
     @MethodSource("generateCheckData")
-    @DisplayName("숫자를 입력하면 strike 개수, ball 개수 또는 낫싱을 알려주는 통합 테스트")
-    public void check(String input, String expected) {
-        System.out.println(input);
+    @DisplayName("숫자를 입력하면 통과(3스트라이크)인지 확인하는 테스트")
+    public void check(String input, boolean expected) {
         assertThat(baseballCheckor.check(input)).isEqualTo(expected);
     }
 
@@ -41,12 +40,10 @@ class BaseballCheckorTest {
 
     static Stream<Arguments> generateCheckData() {
         return Stream.of(
-                Arguments.of("123", "1스트라이크 "),
-                Arguments.of("179", "3스트라이크 "),
-                Arguments.of("197", "1스트라이크 2볼 "),
-                Arguments.of("172", "2스트라이크 "),
-                Arguments.of("791", "3볼 "),
-                Arguments.of("258", "낫싱")
+                Arguments.of("123", false),
+                Arguments.of("179", true),
+                Arguments.of("791", false),
+                Arguments.of("258", false)
         );
     }
 
