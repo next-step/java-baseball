@@ -29,21 +29,22 @@ public class Baseball {
         int strike = 0;
         int ball = 0;
         for(int i = 0; i < BASEBALL_SIZE; i++) {
-            ball += checkBall(userBaseball.baseball.get(i)); // 비교대상만 있으면 되지
-            strike += checkStrike(userBaseball.baseball, i); // 자리수까지 필요해.
+            ball += checkBall(userBaseball.baseball, i);
+            strike += checkStrike(userBaseball.baseball, i);
         }
-        ball = ball - strike;
-        return new Result(ball, strike);
-
+        return new Result(Ball.of(ball), Strike.of(strike));
     }
+
     private int checkStrike (List<BaseballNo> baseballByUser, int idx) {
-        if(baseballByUser.get(idx).equals(baseball.get(idx))){
+        if(baseball.get(idx).equals(baseballByUser.get(idx))){
             return 1;
         }
         return 0;
     }
-    private int checkBall (BaseballNo baseballNo) {
-        if(baseball.contains(baseballNo)){
+
+    private int checkBall (List<BaseballNo> baseballByUser, int idx) {
+        if(baseball.contains(baseballByUser.get(idx)) &&
+                !baseball.get(idx).equals(baseballByUser.get(idx))) {
             return 1;
         }
         return 0;

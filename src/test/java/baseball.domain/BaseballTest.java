@@ -47,8 +47,8 @@ public class BaseballTest {
         Baseball answer = Baseball.of(new ArrayList<>(Arrays.asList(4,5,6)));
         Baseball user = Baseball.of(new ArrayList<>(Arrays.asList(1,2,4)));
         Result result = answer.match(user);
-        assertThat(result.getStrike()).isEqualTo(0);
-        assertThat(result.getBall()).isEqualTo(1);
+        assertThat(result.getStrike().toString()).isEqualTo("0");
+        assertThat(result.getBall().toString()).isEqualTo("1");
 
     }
 

@@ -3,19 +3,19 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Result {
-    private final int ball;
-    private final int strike;
+    private final Ball ball;
+    private final Strike strike;
 
-    public Result(int ball, int strike){
+    public Result(Ball ball, Strike strike){
         this.ball = Objects.requireNonNull(ball);
         this.strike = Objects.requireNonNull(strike);;
     }
 
-    public int getBall() {
+    public Ball getBall() {
         return ball;
     }
 
-    public int getStrike() {
+    public Strike getStrike() {
         return strike;
     }
 }
