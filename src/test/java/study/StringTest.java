@@ -56,4 +56,12 @@ public class StringTest {
             .hasMessageContaining("String index out of range: 3");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = "abc")
+    @DisplayName("[요구사항 3-2] 'abc' 문자열을 charAt 메서드를 사용하여 유요한 위치값을 벗어나면 StringIndexOutOfBoundsException 예외가 발생하는지 확인")
+    void validateStringIndexOutOfBoundsExceptionWhenCharAtParam2(final String givenInput) {
+        assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
+            .isThrownBy(() -> givenInput.charAt(givenInput.length()))
+            .withMessageMatching("String index out of range: 3");
+    }
 }
