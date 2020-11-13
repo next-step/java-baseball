@@ -7,10 +7,6 @@ public class Referee {
         this.answerNumber = answerNumber;
     }
 
-    public static Referee of() {
-        return new Referee(AnswerNumber.init());
-    }
-
     public int getCountOfStrike(UserNumber userNumber) {
         String answerNumberString = String.valueOf(answerNumber.getNumber());
         String userNumberString = String.valueOf(userNumber.getNumber());
