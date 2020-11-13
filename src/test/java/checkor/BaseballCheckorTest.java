@@ -23,7 +23,8 @@ class BaseballCheckorTest {
     @ParameterizedTest
     @MethodSource("generateCheckData")
     @DisplayName("숫자를 입력하면 strike 개수, ball 개수 또는 낫싱을 알려주는 통합 테스트")
-    public void check(int[] input, String expected) {
+    public void check(String input, String expected) {
+        System.out.println(input);
         assertThat(baseballCheckor.check(input)).isEqualTo(expected);
     }
 
@@ -31,21 +32,21 @@ class BaseballCheckorTest {
     @MethodSource("generateStrikeAndBallData")
     @DisplayName("strike, ball 개수 맞추기 기능 테스트")
     public void countStrike(int[] input, int strikeExpected, int ballExpected) {
-        baseballCheckor.setInput(input);
+        baseballCheckor.initSet(input);
         int strike = baseballCheckor.strike(input);
         int ball = baseballCheckor.ball(input, strike);
         assertThat(strike).isEqualTo(strikeExpected);
-        assertThat(ball).isEqualTo(ball);
+        assertThat(ball).isEqualTo(ballExpected);
     }
 
     static Stream<Arguments> generateCheckData() {
         return Stream.of(
-                Arguments.of(new int[]{1,2,3}, "1스트라이크 "),
-                Arguments.of(new int[]{1,7,9}, "3스트라이크 "),
-                Arguments.of(new int[]{1,9,7}, "1스트라이크 2볼 "),
-                Arguments.of(new int[]{1,7,2}, "2스트라이크 "),
-                Arguments.of(new int[]{7,9,1}, "3볼 "),
-                Arguments.of(new int[]{2,5,8}, "낫싱")
+                Arguments.of("123", "1스트라이크 "),
+                Arguments.of("179", "3스트라이크 "),
+                Arguments.of("197", "1스트라이크 2볼 "),
+                Arguments.of("172", "2스트라이크 "),
+                Arguments.of("791", "3볼 "),
+                Arguments.of("258", "낫싱")
         );
     }
 
@@ -54,7 +55,7 @@ class BaseballCheckorTest {
                 Arguments.of(new int[]{1,2,3}, 1, 0),
                 Arguments.of(new int[]{1,7,9}, 3, 0),
                 Arguments.of(new int[]{1,9,7}, 1, 2),
-                Arguments.of(new int[]{1,7,2}, 2, 1),
+                Arguments.of(new int[]{1,7,2}, 2, 0),
                 Arguments.of(new int[]{7,9,1}, 0, 3),
                 Arguments.of(new int[]{2,5,8}, 0, 0)
         );
