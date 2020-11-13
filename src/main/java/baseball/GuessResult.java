@@ -7,7 +7,7 @@ import java.util.List;
  * Created by JunSeok Youn on 2020-11-13
  */
 public class GuessResult {
-	private static final String FOUR_BALL_MESSAGE_FORMAT = "포볼";
+	private static final String NOTHING_MESSAGE = "낫싱";
 	private static final String STRIKE_MESSAGE_FORMAT = "%d 스트라이크";
 	private static final String BALL_MESSAGE_FORMAT = "%d 볼";
 	private static final String DELIMITER = " ";
@@ -22,7 +22,7 @@ public class GuessResult {
 
 	String getMessage() {
 		if (strikeCount == 0 && ballCount == 0) {
-			return FOUR_BALL_MESSAGE_FORMAT;
+			return NOTHING_MESSAGE;
 		}
 
 		List<String> messages = new ArrayList<>();

@@ -16,7 +16,7 @@ class GuessResultTest {
 		assertThat(new GuessResult(0, 3).getMessage()).isEqualTo("3 볼");
 		assertThat(new GuessResult(0, 2).getMessage()).isEqualTo("2 볼");
 		assertThat(new GuessResult(0, 1).getMessage()).isEqualTo("1 볼");
-		assertThat(new GuessResult(0, 0).getMessage()).isEqualTo("포볼");
+		assertThat(new GuessResult(0, 0).getMessage()).isEqualTo("낫싱");
 	}
 
 	@Test
