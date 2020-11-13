@@ -1,33 +1,30 @@
 package checkor;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class BaseballCheckor implements Checkor<String> {
+public class BaseballCheckor implements Checkor<Boolean> {
 
     private final int[] numbers;
     private List<Integer> numberList;
     private Set<Integer> numberSet;
 
-    public BaseballCheckor(int[] numbers) {
-        this.numbers = numbers;
+    public BaseballCheckor(int[] input) {
+        this.numbers = input;
         this.numberList = new ArrayList<>();
-        this.numberSet = new HashSet<>();
 
         for (int i=0; i<numbers.length; i++) {
             numberList.add(numbers[i]);
-            numberSet.add(numbers[i]);
         }
     }
 
     @Override
-    public String check(int[] input) {
-        setInput(input);
-        int strike = strike(input);
-        int ball = ball(input, strike);
-        return CheckType.printCheckType(strike, ball);
+    public Boolean check(String input) {
+        int[] inputArr = stringToIntArr(input);
+        initSet(inputArr);
+        int strike = strike(inputArr);
+        int ball = ball(inputArr, strike);
+        System.out.println(CheckType.printCheckType(strike, ball));
+        return strike == 3 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     protected int strike(int[] input) {
@@ -42,7 +39,11 @@ public class BaseballCheckor implements Checkor<String> {
         return (numbers.length + input.length) - strike - numberSet.size();
     }
 
-    protected void setInput(int[] input) {
-        for (int i : input) numberSet.add(i);
+    protected void initSet(int[] input) {
+        numberSet = new HashSet<>();
+        for (int i=0; i<input.length; i++) {
+            numberSet.add(numbers[i]);
+            numberSet.add(input[i]);
+        }
     }
 }
