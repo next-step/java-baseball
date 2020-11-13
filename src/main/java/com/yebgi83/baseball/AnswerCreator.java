@@ -3,17 +3,17 @@ package com.yebgi83.baseball;
 import java.util.*;
 
 public class AnswerCreator {
-    public String createAnswer() {
+    public ThreeDigits createAnswer() {
         Iterator<Integer> iterator = new UniqueRandomNumbers(1, 9)
                 .iterator();
 
-        StringBuilder answer = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (int count = 1; count <= 3; count++) {
-            answer.append(iterator.next());
+            stringBuilder.append(iterator.next());
         }
 
-        return answer.toString();
+        return ThreeDigits.createFromString(stringBuilder.toString());
     }
 
     private static class UniqueRandomNumbers implements Iterable<Integer> {
