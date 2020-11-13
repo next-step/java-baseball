@@ -5,7 +5,10 @@ import com.yebgi83.baseball.model.ThreeDigits;
 import java.util.*;
 
 public class AnswerCreator {
-    public ThreeDigits createAnswer() {
+    private AnswerCreator() {
+    }
+
+    static public ThreeDigits createAnswer() {
         Iterator<Integer> iterator = new UniqueRandomNumbers(1, 9)
                 .iterator();
 
@@ -15,7 +18,7 @@ public class AnswerCreator {
             stringBuilder.append(iterator.next());
         }
 
-        return ThreeDigits.createFromString(stringBuilder.toString());
+        return ThreeDigits.createFrom(stringBuilder.toString());
     }
 
     private static class UniqueRandomNumbers implements Iterable<Integer> {

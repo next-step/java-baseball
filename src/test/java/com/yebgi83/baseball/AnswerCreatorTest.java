@@ -10,12 +10,10 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AnswerCreatorTest {
-    private final AnswerCreator answerCreator = new AnswerCreator();
-
     @Test
     @DisplayName("정답을 구성하는 3자리 숫자는 중복이 아니어야 한다.")
     void digitsOfAnswerShouldBeUniqueDigit() {
-        ThreeDigits answer = answerCreator.createAnswer();
+        ThreeDigits answer = AnswerCreator.createAnswer();
 
         if (!digitsOfAnswerShouldBeUniqueDigit(answer)) {
             fail();
@@ -36,7 +34,7 @@ public class AnswerCreatorTest {
         Set<Integer> foundDigits = new HashSet<>();
 
         for (int index = 0; index < 3; index++) {
-            Integer digit = answer.getNumberAt(index);
+            Integer digit = answer.getDigitAt(index);
 
             if (foundDigits.contains(digit)) {
                 return false;
@@ -52,7 +50,7 @@ public class AnswerCreatorTest {
         ThreeDigits lastAnswer = null;
 
         for (int trial = 1; trial <= times; trial++) {
-            ThreeDigits answer = answerCreator.createAnswer();
+            ThreeDigits answer = AnswerCreator.createAnswer();
 
             if (answer.equals(lastAnswer)) {
                 return false;
