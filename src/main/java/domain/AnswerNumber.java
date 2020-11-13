@@ -5,7 +5,7 @@ import java.util.*;
 public class AnswerNumber {
     private static final Random random = new Random();
 
-    private int number;
+    private final int number;
 
     private AnswerNumber(int number) {
         this.number = number;
@@ -14,17 +14,24 @@ public class AnswerNumber {
     public static AnswerNumber init() {
         int randomNumber;
         do {
-            randomNumber = generateRandomNumber();
-        } while (!isValidatedNumber(randomNumber));
+            randomNumber = generateThreeRandomNumber();
+        } while (!isValidNumber(randomNumber));
         return new AnswerNumber(randomNumber);
     }
 
-    private static boolean isValidatedNumber(int randomNumber) {
-        boolean duplicateNumberExist = isDuplicateNumberExist(randomNumber);
-        return !duplicateNumberExist;
+    private static boolean isValidNumber(int randomNumber) {
+        if (!isDuplicateNumberExist(randomNumber)) {
+            return false;
+        }
+        return isThreeLengthNumber(randomNumber);
     }
 
-    private static int generateRandomNumber() {
+    protected static boolean isThreeLengthNumber(int randomNumber) {
+        String numberString = String.valueOf(randomNumber);
+        return numberString.length() == 3;
+    }
+
+    private static int generateThreeRandomNumber() {
         return random.nextInt(900) + 100;
     }
 
