@@ -1,12 +1,12 @@
-package baseball;
+package baseball.domain;
 
 import java.util.*;
 
-class BaseballNumbers implements Iterable<BaseballNumber> {
+public class BaseballNumbers implements Iterable<BaseballNumber> {
 
     private List<BaseballNumber> baseballNumbers = new ArrayList<>();
 
-    BaseballNumbers(int ... numbers) {
+    private BaseballNumbers(int ... numbers) {
         if (numbers.length != 3) {
             throw new IllegalArgumentException("3개만 입력할 수 있습니다.");
         }
@@ -15,6 +15,22 @@ class BaseballNumbers implements Iterable<BaseballNumber> {
             validateDuplicatedNumber(baseballNumber);
             baseballNumbers.add(baseballNumber);
         }
+    }
+
+    public static BaseballNumbers of(int ... numbers) {
+        return new BaseballNumbers(numbers);
+    }
+
+    public static BaseballNumbers ofUserInput(String numberLine) {
+        return new BaseballNumbers(mapToNumbers(numberLine));
+    }
+
+    private static int[] mapToNumbers(String numberLine) {
+        int[] result = new int[numberLine.length()];
+        for (int i = 0; i < numberLine.length(); i++) {
+            result[i] = Character.getNumericValue(numberLine.charAt(i));
+        }
+        return result;
     }
 
     private void validateDuplicatedNumber(BaseballNumber baseballNumber) {
@@ -27,10 +43,13 @@ class BaseballNumbers implements Iterable<BaseballNumber> {
         return baseballNumbers;
     }
 
-    Map<ResultType, Integer> compareBaseballNumbers(BaseballNumbers target) {
+    public Map<ResultType, Integer> compareBaseballNumbers(BaseballNumbers target) {
         Map<ResultType, Integer> result = new HashMap<>();
         for (BaseballNumber baseballNumber : target) {
             ResultType resultType = compareBaseballNumber(baseballNumber, target.getBaseballNumberIndex(baseballNumber));
+            if (resultType == ResultType.NOTHING) {
+                continue;
+            }
             int count = result.getOrDefault(resultType, 0);
             result.put(resultType, count + 1);
         }
