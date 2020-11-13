@@ -1,7 +1,13 @@
 package baseball;
 
+import java.security.InvalidParameterException;
+
 public class BallCountChecker {
     public static BallCount check(final String input, final String answer) {
+        if(input.length() != 3 || !Validator.isNumber(input)){
+            throw new InvalidParameterException();
+        }
+
         BallCount ballCount = new BallCount();
 
         for(int i = 0; i < BallCount.BALL_COUNT_SIZE; i++) {
