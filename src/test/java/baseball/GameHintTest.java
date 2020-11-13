@@ -3,6 +3,7 @@ package baseball;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -25,13 +26,27 @@ public class GameHintTest {
 	@ParameterizedTest
 	@CsvSource(value = {"456:0", "415:1", "315:2", "231:3", "132:2"}, delimiter = ':')
 	public void countBall(String input, int count) throws Exception {
-	    // Given
+		// Given
 		String answer = "123";
-	    
-	    // When
+
+		// When
 		GameHint gameHint = new GameHint(answer, input);
-	    
-	    // Then
+
+		// Then
 		assertThat(gameHint.countBall()).isEqualTo(count);
+	}
+
+	@DisplayName("스트라이크나 볼이 없으면 나싱이다.")
+	@Test
+	public void isNothing() throws Exception {
+		// Given
+		String answer = "123";
+		String input = "456";
+
+		// When
+		GameHint gameHint = new GameHint(answer, input);
+
+		// Then
+		assertThat(gameHint.isNothing()).isTrue();
 	}
 }

@@ -50,4 +50,8 @@ public class GameHint {
 	public int countBall() {
 		return ballCount;
 	}
+
+	public boolean isNothing() {
+		return (ballCount == 0) && (strikeCount == 0);
+	}
 }
