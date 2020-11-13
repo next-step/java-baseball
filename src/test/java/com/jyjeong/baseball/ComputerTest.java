@@ -14,7 +14,7 @@ class ComputerTest {
         int[] num;
 
         //when
-        num = computer.CreateRandom();
+        num = computer.createRandom();
 
         //then
         for (int i : num) {
