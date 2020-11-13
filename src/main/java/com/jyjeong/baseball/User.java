@@ -13,25 +13,29 @@ public class User {
         Scanner scan = new Scanner(System.in);
         int[] userNumber;
 
-
-        System.out.print("숫자를 입력해주세요 : ");
-        userNumber  = validate(scan.nextLine());
-
-        return userNumber;
+        while(true) {
+            try {
+                System.out.print("숫자를 입력해주세요 : ");
+                userNumber = validate(scan.nextLine());
+                return userNumber;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
      * 입력받은 값의 정합성을 체크한후 int array로 반환
      */
     public int[] validate(String data){
-        int[] number = new int[3];
+        int[] number ;
 
         if(!numberCheck.numberCheck(data)){
             throw new RuntimeException("입력된 값이 숫자가 아닙니다");
         }
 
         if(!numberCheck.lengthCheck(data)){
-            throw new RuntimeException("입력된 값의 범위가 초과 되었습니다.");
+            throw new RuntimeException("입력된 값의 범위가 초과 되었습니다");
         }
 
         number = stringToIntArray(data);
@@ -42,7 +46,7 @@ public class User {
         return number;
     }
 
-    public int[] stringToIntArray(String data){
+    private int[] stringToIntArray(String data){
         int[] userNumber = new int[3];
         for(int i = 0 ; i < data.length() ; i++){
             userNumber[i] = Character.digit(data.charAt(i),10);
