@@ -65,11 +65,19 @@ public class BaseballGame implements Game {
         return integerSet.size() == 3;
     }
 
+    /**
+     * 숫자 유효성 검사
+     * @param number 검사할 숫자
+     */
     private void isValidNumber(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER)
             throw new GameException(ErrorCode.INVALID_BASEBALL_NUMBER);
     }
 
+    /**
+     * 서로 다른 수로 이루어진 세자리 수 생성
+     * @return 세자리 수 문자열
+     */
     public String generateNumber() {
         Set<Integer> integerSet = new LinkedHashSet<>();
         while (integerSet.size() < 3) {
@@ -84,6 +92,12 @@ public class BaseballGame implements Game {
         return stringBuilder.toString();
     }
 
+    /**
+     * 세 자리수를 맞추기 위한 플레이
+     * @param target 찾아야할 문자열
+     * @param input 입력한 문자열
+     * @return 플레이 결과
+     */
     public BaseballGameResult play(String target, String input) {
         int strike = 0;
         int ball = 0;
@@ -97,12 +111,24 @@ public class BaseballGame implements Game {
         return new BaseballGameResult(strike, ball);
     }
 
+    /**
+     * 스트라이크 수 세기
+     * @param targetIndex 찾아야할 숫자의 인덱스
+     * @param inputIndex 입력한 숫자의 인덱스
+     * @return 결과 값
+     */
     private int countStrike(int targetIndex, int inputIndex) {
         if (targetIndex == inputIndex)
             return 1;
         return 0;
     }
 
+    /**
+     * 볼 수 세기
+     * @param targetIndex 찾아야할 숫자의 인덱스
+     * @param inputIndex 입력한 숫자의 인덱스
+     * @return 결과 값
+     */
     private int countBall(int targetIndex, int inputIndex) {
         if (inputIndex == -1)
             return 0;
