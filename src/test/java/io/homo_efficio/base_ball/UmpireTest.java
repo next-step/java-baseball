@@ -20,6 +20,7 @@ class UmpireTest {
 
     private static Stream<Arguments> getGenAndInput() {
         return Stream.of(
+                Arguments.of("713", "248", "낫싱"),
                 Arguments.of("713", "123", "1 스트라이크 1 볼"),
                 Arguments.of("713", "145", "1 볼"),
                 Arguments.of("713", "671", "2 볼"),
