@@ -8,26 +8,56 @@ import java.util.Scanner;
  */
 class Game {
 	private static final String MESSAGE_ENTER_NUMBERS = "숫자를 입력해주세요 : ";
+	private static final String MESSAGE_GOT_A_RIGHT_ANSWER = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	private static final String MESSAGE_ENTER_NEXT_STEP = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 	private Printer printer;
 	private Scanner scanner;
-	private List<Integer> computerNumbers;
+	private boolean isEnd;
+	private NextStepType nextStepType;
 
 	Game() {
 		this.printer = new Printer();
 		this.scanner = new Scanner(System.in);
+		this.isEnd = false;
+		this.nextStepType = null;
 	}
 
-	void start() {
-		this.computerNumbers = RandomNumberGenerator.generate();
+	NextStepType start() {
+		List<Integer> computerNumbers = RandomNumberGenerator.generate();
 		printer.print(computerNumbers.toString()); // TODO : remove this
 
-		while (true) {
+		while (!isEnd) {
 			printer.print(MESSAGE_ENTER_NUMBERS);
-			String input = scanner.next();
-			List<Integer> myNumbers = NumberInputConverter.toNumbers(input);
+			List<Integer> myNumbers = waitAndGetNumberInput();
 			GuessResult result = Guesser.guess(computerNumbers, myNumbers);
 			printer.print(result.getMessage());
+			endGameOnGuessRight(result);
 		}
+
+		return nextStepType;
+	}
+
+	private List<Integer> waitAndGetNumberInput() {
+		String input = scanner.next();
+		return NumberInputConverter.toNumbers(input);
+	}
+
+	private void endGameOnGuessRight(GuessResult result) {
+		if (result.isRight()) {
+			end();
+		}
+	}
+
+	private void end() {
+		printer.print(MESSAGE_GOT_A_RIGHT_ANSWER);
+		printer.print(MESSAGE_ENTER_NEXT_STEP);
+		isEnd = true;
+		waitAndGetNextStepInput();
+	}
+
+	private void waitAndGetNextStepInput() {
+		String input = scanner.next();
+		nextStepType = NextStepInputConverter.convert(input);
 	}
 }

@@ -20,6 +20,12 @@ class GuessResultTest {
 	}
 
 	@Test
+	void isRight() {
+		assertThat(new GuessResult(3, 0).isRight()).isEqualTo(true);
+		assertThat(new GuessResult(2, 0).isRight()).isEqualTo(false);
+	}
+
+	@Test
 	void equals() {
 		assertThat(new GuessResult(1, 2)).isEqualTo(new GuessResult(1, 2));
 	}

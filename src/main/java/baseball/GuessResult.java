@@ -38,6 +38,10 @@ public class GuessResult {
 		}
 	}
 
+	boolean isRight() {
+		return this.strikeCount == 3;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
