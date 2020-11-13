@@ -1,7 +1,7 @@
 package generator;
 
-public interface NumberGenerator<T> {
+public interface NumberGenerator {
 
-    T generate(int size);
+    int[] generate(int size);
 
 }

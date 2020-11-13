@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class RandomNumberGenerator implements NumberGenerator<int[]> {
+public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public int[] generate(int size) {
