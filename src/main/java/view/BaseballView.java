@@ -1,10 +1,13 @@
 package view;
 
+import static utils.BusinessException.*;
+
 import java.util.Scanner;
 
 import application.BaseballService;
 import domain.BaseballNumbers;
 import domain.Score;
+import domain.enums.RetryType;
 
 /**
  * @author : byungkyu
@@ -44,7 +47,17 @@ public class BaseballView {
 	}
 
 	private static boolean isGameOver(boolean correctAnswer) {
-		return (correctAnswer && (askRetry() == 2));
+		String retryCode = "";
+		if (correctAnswer) {
+			retryCode = askRetry();
+		}
+		if (correctAnswer && (RetryType.EXIT.getCode().equals(retryCode))) {
+			return true;
+		}
+		if (correctAnswer && (RetryType.NEW_GAME.getCode().equals(retryCode))) {
+			return false;
+		}
+		throw new ChooseRetryNumberException();
 	}
 
 	private static boolean checkBaseballNumber(String playerBaseballNumber, BaseballNumbers answer) {
@@ -53,9 +66,10 @@ public class BaseballView {
 		return isCorrectNumber(score);
 	}
 
-	private static int askRetry() {
+	private static String askRetry() {
 		System.out.println(ASK_RETRY_GAME_MESSAGE);
-		return scanner.nextInt();
+		return scanner.next();
+
 	}
 
 	private static boolean isCorrectNumber(Score score) {

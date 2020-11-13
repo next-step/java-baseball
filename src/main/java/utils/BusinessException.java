@@ -1,6 +1,6 @@
 package utils;
 
-import static utils.ErrorType.*;
+import static domain.enums.ErrorType.*;
 
 /**
  * @author : byungkyu
@@ -33,4 +33,9 @@ public class BusinessException extends RuntimeException {
 		}
 	}
 
+	public static class ChooseRetryNumberException extends RuntimeException {
+		public ChooseRetryNumberException() {
+			super(CHOOSE_RETRY_NUMBER_EXCEPTION.getMessage());
+		}
+	}
 }
