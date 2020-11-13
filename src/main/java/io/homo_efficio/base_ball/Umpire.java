@@ -15,7 +15,7 @@ public class Umpire {
     }
 
     public Result judge() {
-        return new Result(0, countStrikes());
+        return new Result(countBalls(), countStrikes());
     }
 
     private int countStrikes() {
@@ -29,5 +29,18 @@ public class Umpire {
             }
         }
         return strikes;
+    }
+
+    private int countBalls() {
+        int balls = 0;
+        String[] genSplit = genNumber.split("");
+        String[] inputSplit = inputNumber.split("");
+
+        for (int i = 0; i < genSplit.length; i++) {
+            if (!genSplit[i].equals(inputSplit[i]) && genNumber.contains(inputSplit[i])) {
+                balls++;
+            }
+        }
+        return balls;
     }
 }

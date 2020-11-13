@@ -16,6 +16,7 @@ public class Result {
 
     public String getText() {
         String s = strikes > 0 ? strikes + " 스트라이크" : "";
-        return s;
+        String b = balls > 0 ? balls + " 볼" : "";
+        return (strikes == 0 && balls == 0) ? "낫싱" : (s + " " + b).trim();
     }
 }
