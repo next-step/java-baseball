@@ -11,13 +11,11 @@ class Game {
 
 	private Printer printer;
 	private Scanner scanner;
-	private Converter converter;
 	private List<Integer> computerNumbers;
 
 	Game() {
 		this.printer = new Printer();
 		this.scanner = new Scanner(System.in);
-		this.converter = new Converter();
 	}
 
 	void start() {
@@ -26,7 +24,7 @@ class Game {
 		while (true) {
 			printer.print(MESSAGE_ENTER_NUMBERS);
 			String input = scanner.next();
-			List<Integer> myNumbers = converter.toNumbers(input);
+			List<Integer> myNumbers = NumberInputConverter.toNumbers(input);
 
 			printer.print(myNumbers.toString()); // TODO : remove this
 			printer.print(computerNumbers.toString()); // TODO : remove this
