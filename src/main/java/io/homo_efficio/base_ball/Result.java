@@ -19,4 +19,8 @@ public class Result {
         String b = balls > 0 ? balls + " 볼" : "";
         return (strikes == 0 && balls == 0) ? "낫싱" : (s + " " + b).trim();
     }
+
+    public boolean is3Strikes() {
+        return strikes == 3;
+    }
 }
