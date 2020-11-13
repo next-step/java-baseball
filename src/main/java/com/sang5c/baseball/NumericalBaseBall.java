@@ -1,62 +1,29 @@
 package com.sang5c.baseball;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class NumericalBaseBall {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            // 서로 다른 1~9 랜덤 숫자 세개 출력
-            Random random = new Random();
+            // 서로 다른 1~9 랜덤 숫자 세개 출력 -> 입력받았다고 생각하기.
+            // Random random = new Random();
 
-            // 중복제거, 캐싱, 3자리
-            StringBuilder questionBuilder = new StringBuilder();
-            for (int i = 0; i < 3; i++) {
-                while (true) {
-                    String number = String.valueOf(generateRandomNumber(random));
-                    if (questionBuilder.indexOf(number) == -1) {
-                        questionBuilder.append(number);
-                        break;
-                    }
-                }
-            }
-            String question = questionBuilder.toString();
+            // String computer = scanner.nextLine();
+            String computer = "146";
+            Set<String> question = generateNumbersOfString(computer);
             System.out.println("question : " + question);
 
             while (true) {
-                String userInput = scanner.nextLine();  // 3자리 숫자, 중복
-                System.out.println("user input : " + userInput);
+                // String userInput = scanner.nextLine();
+                String userInput = "214";
+                Set<String> userNumbers = generateNumbersOfString(userInput);
+                System.out.println("숫자를 입력해주세요 : " + userNumbers);
 
-                // 카운트가 있어야 한다.
-                int ballCount = 0;
-                int strikeCount = 0;
-                String result = "";
-                // 둘다 0일 경우 낫싱을 리턴.
-
-                String[] inputs = userInput.split("");
-                for (int i = 0; i < inputs.length; i++) {
-                    if (!question.contains(inputs[i])) {
-                        continue;
-                    }
-
-                    if (question.indexOf(inputs[i]) == i) {
-                        strikeCount++;
-                        continue;
-                    }
-
-                    ballCount++;
-                }
-
-                if (ballCount != 0) {
-                    result += ballCount + "볼";
-                }
-                if (strikeCount != 0) {
-                    result += strikeCount + "스트라이크";
-                }
-                System.out.println("result : " + (result.length() != 0 ? result : "낫싱"));
-                if (strikeCount == 3) {
+                CountDto countDto = Referee.compare(question, userNumbers);
+                printCount(countDto);
+                if (countDto.isThreeStrike()) {
                     break;
                 }
             }
@@ -66,8 +33,35 @@ public class NumericalBaseBall {
                 break;
             }
         }
+    }
 
+    private static void printCount(CountDto countDto) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (countDto.getStrikeCount() != 0) {
+            stringBuilder.append(countDto.getStrikeCount());
+            stringBuilder.append(" 스트라이크 ");
+        }
 
+        if (countDto.getBallCount() != 0) {
+            stringBuilder.append(countDto.getBallCount());
+            stringBuilder.append(" 볼");
+        }
+
+        if (stringBuilder.length() == 0) {
+            System.out.println("낫싱");
+            return;
+        }
+        System.out.println(stringBuilder.toString());
+    }
+
+    // hashset이 중복확인과 사이즈 확인 가능하다.
+    private static Set<String> generateNumbersOfString(String str) {
+        String[] split = str.split("");
+        Set<String> set = new LinkedHashSet<>(Arrays.asList(split.clone()));
+        if (set.size() != 3) {
+            throw new IllegalArgumentException("check input");
+        }
+        return set;
     }
 
     private static int generateRandomNumber(Random random) {
