@@ -1,9 +1,8 @@
 package baseball;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-class BaseballNumbers {
+class BaseballNumbers implements Iterable<BaseballNumber> {
 
     private List<BaseballNumber> baseballNumbers = new ArrayList<>();
 
@@ -11,7 +10,7 @@ class BaseballNumbers {
         if (numbers.length != 3) {
             throw new IllegalArgumentException("3개만 입력할 수 있습니다.");
         }
-        for (int number: numbers) {
+        for (int number : numbers) {
             BaseballNumber baseballNumber = new BaseballNumber(number);
             validateDuplicatedNumber(baseballNumber);
             baseballNumbers.add(baseballNumber);
@@ -28,12 +27,31 @@ class BaseballNumbers {
         return baseballNumbers;
     }
 
+    Map<ResultType, Integer> compareBaseballNumbers(BaseballNumbers target) {
+        Map<ResultType, Integer> result = new HashMap<>();
+        for (BaseballNumber baseballNumber : target) {
+            ResultType resultType = compareBaseballNumber(baseballNumber, target.getBaseballNumberIndex(baseballNumber));
+            int count = result.getOrDefault(resultType, 0);
+            result.put(resultType, count + 1);
+        }
+        return result;
+    }
+
+    private int getBaseballNumberIndex(BaseballNumber baseballNumber) {
+        return baseballNumbers.indexOf(baseballNumber);
+    }
+
     ResultType compareBaseballNumber(BaseballNumber baseballNumber, int index) {
         int exist = baseballNumbers.indexOf(baseballNumber);
         if (exist == -1) {
             return ResultType.NOTHING;
         }
         return exist == index ? ResultType.STRIKE : ResultType.BALL;
+    }
+
+    @Override
+    public Iterator<BaseballNumber> iterator() {
+        return baseballNumbers.iterator();
     }
 
 }
