@@ -29,4 +29,23 @@ public class Referee {
         }
         return 0;
     }
+
+    public int getCountOfBall(UserNumber userNumber) {
+        String answerNumberString = String.valueOf(answerNumber.getNumber());
+        String userNumberString = String.valueOf(userNumber.getNumber());
+        int countOfBall = 0;
+        for (int i = 0; i < 3; i++) {
+            char userNumberChar = userNumberString.charAt(i);
+            countOfBall += plusIfExistAndNotSameIndex(answerNumberString, userNumberChar, i);
+        }
+        return countOfBall;
+    }
+
+    private int plusIfExistAndNotSameIndex(String answerNumberString, char userNumberChar, int position) {
+        int index = answerNumberString.indexOf(userNumberChar);
+        if (index != -1 && index != position) {
+            return 1;
+        }
+        return 0;
+    }
 }
