@@ -40,7 +40,7 @@ class Game {
 
 	private List<Integer> waitAndGetNumberInput() {
 		String input = scanner.next();
-		return NumberInputConverter.toNumbers(input);
+		return NumberInputConverter.convert(input);
 	}
 
 	private void endGameOnGuessRight(GuessResult result) {

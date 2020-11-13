@@ -12,7 +12,7 @@ class NumberInputConverter {
 
 	}
 
-	static List<Integer> toNumbers(String input) {
+	static List<Integer> convert(String input) {
 		if (input.length() != 3) {
 			throw new WrongNumberInputException("길이가 3이 아닙니다.");
 		}
