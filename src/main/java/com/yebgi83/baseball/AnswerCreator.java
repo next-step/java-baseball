@@ -9,7 +9,7 @@ public class AnswerCreator {
     }
 
     static public ThreeDigits createAnswer() {
-        Iterator<Integer> iterator = new UniqueRandomNumbers(1, 9)
+        Iterator<Integer> iterator = new ShuffledUniqueRandomNumbers(1, 9)
                 .iterator();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -21,12 +21,12 @@ public class AnswerCreator {
         return ThreeDigits.createFrom(stringBuilder.toString());
     }
 
-    private static class UniqueRandomNumbers implements Iterable<Integer> {
+    private static class ShuffledUniqueRandomNumbers implements Iterable<Integer> {
         private final static Random RANDOM = new Random();
 
         private final int[] numbers;
 
-        public UniqueRandomNumbers(int minNumber, int maxNumber) {
+        public ShuffledUniqueRandomNumbers(int minNumber, int maxNumber) {
             this.numbers = new int [(maxNumber - minNumber) + 1];
 
             for (int index = 0, number = minNumber; number <= maxNumber; index++, number++) {
