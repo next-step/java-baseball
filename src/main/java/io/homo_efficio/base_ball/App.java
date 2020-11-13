@@ -9,8 +9,12 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        String genNumber = NumberGenerator.generate();
         Scanner scanner = new Scanner(System.in);
+        playGame(scanner);
+    }
+
+    private static void playGame(Scanner scanner) {
+        String genNumber = NumberGenerator.generate();
         Result result;
         do {
             String inputNumber = getInputNumber(scanner);
@@ -19,6 +23,7 @@ public class App {
         } while (!result.is3Strikes());
 
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        postGame(scanner);
     }
 
     private static String getInputNumber(Scanner scanner) {
@@ -28,4 +33,16 @@ public class App {
         return input;
     }
 
+    private static void postGame(Scanner scanner) {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        switch (scanner.nextLine()) {
+            case "1":
+                playGame(scanner);
+                break;
+            case "2":
+                break;
+            default:
+                break;
+        }
+    }
 }
