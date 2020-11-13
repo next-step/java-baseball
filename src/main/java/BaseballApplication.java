@@ -6,7 +6,7 @@ import view.BaseballView;
  * @description : 프로그램 시작
  **/
 public class BaseballApplication {
-    public static void main(String[] args) {
-        BaseballView.start();
-    }
+	public static void main(String[] args) {
+		BaseballView.start();
+	}
 }
