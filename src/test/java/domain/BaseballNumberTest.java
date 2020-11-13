@@ -16,6 +16,15 @@ class BaseballNumberTest {
                 .hasMessageContaining("숫자 3개만 입력해주세요.");
     }
 
+    @DisplayName("0이 들어가 있을 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"102", "130"})
+    void checkZero(String number) {
+        assertThatThrownBy(() -> new BaseballNumber(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("0이 들어있습니다.");
+    }
+
     @DisplayName("중복된 숫자가 있을 경우")
     @ParameterizedTest
     @ValueSource(strings = {"111", "121", "889"})

@@ -26,13 +26,6 @@ class ComputerNumberTest {
         assertThat(result).isEqualTo(true);
     }
 
-    @DisplayName("0이 포함되는지 확인")
-    @Test
-    void checkZero() {
-        boolean result = computerNumber.getNumber().contains("0");
-        assertThat(result).isEqualTo(false);
-    }
-
     private boolean checkDuplicate(String number, int numberLength) {
         Set<String> numbers = new HashSet<>();
         List<String> splitList = Arrays.asList(number.split(""));

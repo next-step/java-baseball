@@ -11,6 +11,7 @@ public class BaseballNumber {
 
     public BaseballNumber(String number) {
         checkLength(number);
+        checkZero(number);
         checkDuplicate(number);
         this.number = number;
     }
@@ -18,6 +19,12 @@ public class BaseballNumber {
     private void checkLength(String number) {
         if (number.length() != NUMBER_LENGTH) {
             throw new IllegalArgumentException("숫자 " + NUMBER_LENGTH + "개만 입력해주세요.");
+        }
+    }
+
+    private void checkZero(String number) {
+        if (number.contains("0")) {
+            throw new IllegalArgumentException("0이 들어있습니다.");
         }
     }
 
