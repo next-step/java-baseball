@@ -1,4 +1,5 @@
 import ui.InputView;
+import ui.ResultView;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,7 +7,12 @@ public class Main {
 
         while (!isEnd) {
             int number = InputView.inputNumber();
-            isEnd = true;
+
+            ResultView.endMessage();
+            int button = InputView.restartOrEnd();
+            if (button == 2) {
+                isEnd = true;
+            }
         }
     }
 }

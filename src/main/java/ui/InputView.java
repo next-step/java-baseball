@@ -14,4 +14,18 @@ public class InputView {
             throw new NumberFormatException("숫자로 입력해주세요.");
         }
     }
+
+    public static int restartOrEnd() {
+        int button = 0;
+        try {
+            button = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자로 입력해주세요.");
+        }
+
+        if (button != 1 && button != 2) {
+            throw new IllegalArgumentException("새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        }
+        return button;
+    }
 }
