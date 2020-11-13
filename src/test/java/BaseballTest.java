@@ -114,9 +114,10 @@ public class BaseballTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"A", " ", ""})
 	void checkNumberFromUserInput_isNotInteger(String input) {
-		Assertions.assertThrows(NumberFormatException.class, () -> {
-			Integer.parseInt(input);
-		});
+		ArrayList<String> tempArray = new ArrayList<>();
+		Assertions.assertThrows(NumberFormatException.class, () -> tempArray.add(String.valueOf(Integer.parseInt(input))));
+
+		assertEquals(tempArray.size(), 0);
 	}
 
 	private void checkDuplicationNumberFromInput(ArrayList<String> originArray, String input) {
