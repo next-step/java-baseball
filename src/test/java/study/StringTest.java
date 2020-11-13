@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Junit, AssertJ 사용법 숙지")
 public class StringTest {
@@ -45,4 +45,15 @@ public class StringTest {
 
         assertThat(oneAndTwo).isEqualTo(ONE_AND_TWO);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = "abc")
+    @DisplayName("[요구사항 3-1] 'abc' 문자열을 charAt 메서드를 사용하여 유요한 위치값을 벗어나면 StringIndexOutOfBoundsException 예외가 발생하는지 확인")
+    void validateStringIndexOutOfBoundsExceptionWhenCharAtParam1(final String givenInput) {
+        assertThatThrownBy(
+            () -> givenInput.charAt(givenInput.length()))
+            .isInstanceOf(StringIndexOutOfBoundsException.class)
+            .hasMessageContaining("String index out of range: 3");
+    }
+
 }
