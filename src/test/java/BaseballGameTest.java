@@ -1,3 +1,4 @@
+import model.ExceptionMessageEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +15,7 @@ import java.util.LinkedHashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BaseballTest {
+public class BaseballGameTest {
 
 	static ArrayList<String> defaultNumbers = new ArrayList<>();
 	static ArrayList<String> userInputNumbers = new ArrayList<>();
@@ -56,7 +57,7 @@ public class BaseballTest {
 	@ParameterizedTest
 	@ValueSource(strings = {" "})
 	void pickNumber_isNULL_isBlank(String input) {
-		Throwable exception = assertThrows(CustomException.class,
+		Throwable exception = assertThrows(CustomExceptionTest.class,
 				() -> checkNullOrBlankStringFromInput(input));
 		assertEquals(ExceptionMessageEnum.NULL_OR_BLANK.getMessage(), exception.getMessage());
 	}
@@ -66,7 +67,7 @@ public class BaseballTest {
 	void pickNumber_isInvalidSize() {
 		ArrayList<String> tempArray = new ArrayList<>(Arrays.asList("1", "2"));
 
-		Throwable exception = assertThrows(CustomException.class,
+		Throwable exception = assertThrows(CustomExceptionTest.class,
 				() -> checkNumberListSize(tempArray));
 		assertEquals(ExceptionMessageEnum.INVALID_SIZE.getMessage(), exception.getMessage());
 	}
@@ -94,7 +95,7 @@ public class BaseballTest {
 	void checkNumberFromUserInput_isDuplicate(String input) {
 		assertEquals(input.length(), 3);
 
-		Throwable exception = assertThrows(CustomException.class,
+		Throwable exception = assertThrows(CustomExceptionTest.class,
 				() -> checkDuplicationNumberFromUserInput(input));
 
 		assertEquals(ExceptionMessageEnum.DUPLICATE.getMessage(), exception.getMessage());
@@ -104,7 +105,7 @@ public class BaseballTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"12", "13", "1"})
 	void checkNumberFromUserInput_sizeIsNotValid(String input) {
-		Throwable exception = assertThrows(CustomException.class,
+		Throwable exception = assertThrows(CustomExceptionTest.class,
 				() -> checkNumberStringSize(input));
 
 		assertEquals(ExceptionMessageEnum.INVALID_SIZE.getMessage(), exception.getMessage());
@@ -126,19 +127,19 @@ public class BaseballTest {
 		}
 	}
 
-	private void checkNullOrBlankStringFromInput(String input) throws CustomException {
+	private void checkNullOrBlankStringFromInput(String input) throws CustomExceptionTest {
 		if (StringUtils.isBlank(input)) {
-			throw new CustomException(ExceptionMessageEnum.NULL_OR_BLANK.getMessage());
+			throw new CustomExceptionTest(ExceptionMessageEnum.NULL_OR_BLANK.getMessage());
 		}
 	}
 
-	private void checkNumberListSize(ArrayList<String> input) throws CustomException {
+	private void checkNumberListSize(ArrayList<String> input) throws CustomExceptionTest {
 		if (input.size() != 3) {
-			throw new CustomException(ExceptionMessageEnum.INVALID_SIZE.getMessage());
+			throw new CustomExceptionTest(ExceptionMessageEnum.INVALID_SIZE.getMessage());
 		}
 	}
 
-	private void checkDuplicationNumberFromUserInput(String input) throws CustomException {
+	private void checkDuplicationNumberFromUserInput(String input) throws CustomExceptionTest {
 		LinkedHashSet<String> linkedHashMap = new LinkedHashSet<>();
 
 		for (char number : input.toCharArray()) {
@@ -146,13 +147,13 @@ public class BaseballTest {
 		}
 
 		if (linkedHashMap.size() < 3) {
-			throw new CustomException(ExceptionMessageEnum.DUPLICATE.getMessage());
+			throw new CustomExceptionTest(ExceptionMessageEnum.DUPLICATE.getMessage());
 		}
 	}
 
-	private void checkNumberStringSize(String input) throws CustomException {
+	private void checkNumberStringSize(String input) throws CustomExceptionTest {
 		if (input.length() != 3) {
-			throw new CustomException(ExceptionMessageEnum.INVALID_SIZE.getMessage());
+			throw new CustomExceptionTest(ExceptionMessageEnum.INVALID_SIZE.getMessage());
 		}
 	}
 
