@@ -19,14 +19,29 @@ public class Umpire {
         String[] genSplit = genNumber.split("");
         String[] inputSplit = inputNumber.split("");
 
+        return getResult(strikes, balls, genSplit, inputSplit);
+    }
+
+    private Result getResult(int strikes, int balls, String[] genSplit, String[] inputSplit) {
         for (int i = 0; i < inputSplit.length; i++) {
-            if (genSplit[i].equals(inputSplit[i])) {
-                strikes++;
-            } else if (genNumber.contains(inputSplit[i])) {
-                balls++;
-            }
+            strikes = countStrikes(strikes, genSplit, inputSplit, i);
+            balls = countBalls(balls, genSplit, inputSplit, i);
         }
 
         return new Result(balls, strikes);
+    }
+
+    private int countBalls(int balls, String[] genSplit, String[] inputSplit, int i) {
+        if (!genSplit[i].equals(inputSplit[i]) && genNumber.contains(inputSplit[i])) {
+            balls++;
+        }
+        return balls;
+    }
+
+    private int countStrikes(int strikes, String[] genSplit, String[] inputSplit, int i) {
+        if (genSplit[i].equals(inputSplit[i])) {
+            strikes++;
+        }
+        return strikes;
     }
 }
