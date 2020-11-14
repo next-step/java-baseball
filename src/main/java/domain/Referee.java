@@ -1,13 +1,13 @@
 package domain;
 
 public class Referee {
-    private final AnswerNumbers answerNumbers;
+    private final BaseballNumbers answerNumbers;
 
-    public Referee(AnswerNumbers answerNumbers) {
+    public Referee(BaseballNumbers answerNumbers) {
         this.answerNumbers = answerNumbers;
     }
 
-    public int getStrikeCount(UserNumbers userNumbers) {
+    public int getStrikeCount(BaseballNumbers userNumbers) {
         int count = 0;
         for (int i = 0; i < userNumbers.size(); i++) {
             count += answerNumbers.isStrike(userNumbers.get(i), i);
@@ -15,7 +15,7 @@ public class Referee {
         return count;
     }
 
-    public int getBallCount(UserNumbers userNumbers) {
+    public int getBallCount(BaseballNumbers userNumbers) {
         int count = 0;
         for (int i = 0; i < userNumbers.size(); i++) {
             count += answerNumbers.isBall(userNumbers.get(i), i);

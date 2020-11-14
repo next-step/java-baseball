@@ -1,23 +1,33 @@
 package domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public class UserNumbers {
+import static domain.BaseballNumberGenerator.generateThreeLengthRandomNumber;
+
+public class BaseballNumbers {
     private final List<BaseballNumber> numbers;
 
-    public UserNumbers(List<BaseballNumber> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    public BaseballNumbers(List<BaseballNumber> answerNumbers) {
+        validate(answerNumbers);
+        this.numbers = answerNumbers;
     }
 
-    public static UserNumbers of(String userNumberRaw) {
+    public static BaseballNumbers generateRandomNumber() {
+        List<BaseballNumber> numbers = generateThreeLengthRandomNumber();
+        return new BaseballNumbers(numbers);
+    }
+
+    public static BaseballNumbers of(String userNumberRaw) {
         List<BaseballNumber> baseballNumbers = new ArrayList<>();
         for (int i = 0; i < userNumberRaw.length(); i++) {
             int numericValue = Character.getNumericValue(userNumberRaw.charAt(i));
             BaseballNumber baseballNumber = BaseballNumberGenerator.getBaseballNumber(numericValue);
             baseballNumbers.add(baseballNumber);
         }
-        return new UserNumbers(baseballNumbers);
+        return new BaseballNumbers(baseballNumbers);
     }
 
     private static void validate(List<BaseballNumber> numbers) {
@@ -38,10 +48,26 @@ public class UserNumbers {
         }
     }
 
+    public int isStrike(BaseballNumber userNumber, int position) {
+        if (numbers.get(position).equals(userNumber)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public int isBall(BaseballNumber baseballNumber, int position) {
+        if (numbers.indexOf(baseballNumber) == position) {
+            return 0;
+        }
+        if (numbers.contains(baseballNumber)) {
+            return 1;
+        }
+        return 0;
+    }
+
     public int size() {
         return numbers.size();
     }
-
 
     public BaseballNumber get(int index) {
         return numbers.get(index);

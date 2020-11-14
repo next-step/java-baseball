@@ -8,12 +8,12 @@ public class BaseballGame {
     }
 
     public static BaseballGame startGame() {
-        AnswerNumbers answerNumbers = AnswerNumbers.init();
+        BaseballNumbers answerNumbers = BaseballNumbers.generateRandomNumber();
         Referee referee = new Referee(answerNumbers);
         return new BaseballGame(referee);
     }
 
-    public Result getResult(UserNumbers userNumbers) {
+    public Result getResult(BaseballNumbers userNumbers) {
         int countOfStrike = referee.getStrikeCount(userNumbers);
         int countOfBall = referee.getBallCount(userNumbers);
         if (countOfBall == 0 && countOfStrike == 0) {

@@ -22,7 +22,7 @@ public class BaseballGameMachine {
 
     public boolean guess() {
         String userNumberRaw = InputView.inputUserNumber();
-        UserNumbers userNumbers = UserNumbers.of(userNumberRaw);
+        BaseballNumbers userNumbers = BaseballNumbers.of(userNumberRaw);
         Result result = baseballGame.getResult(userNumbers);
         OutputView.printResult(result);
         return isContinueGuess(result);
