@@ -101,8 +101,6 @@ public class SimpleStringUtilsTest {
 
         assertThat(strings.charAt(2))
                 .isEqualTo('c');
-
-
     }
 
     @ParameterizedTest
