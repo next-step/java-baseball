@@ -1,26 +1,31 @@
 package baseball;
 
+import baseball.dto.BaseballGameJudgeDto;
+
 import java.util.Random;
 
 public class BaseballGameStarter {
 
-    private BaseballGameScanner baseballGameScanner = new BaseballGameScanner();
+    private BaseballGameScanner gameScanner = new BaseballGameScanner();
+    private BaseballGameJudgeService judgeService = new BaseballGameJudgeService();
 
     private String computerNumber;
 
     public void start() {
+        BaseballGameJudgeDto judge;
+
         init();
-
         do {
-            sayHello();
-            String inputData = baseballGameScanner.scan();
+            printInputComment();
+            String inputNumber = gameScanner.scan();
+            judge = judgeService.judge(computerNumber, inputNumber);
+            judgeService.printJudgeResult(judge);
 
-        } while (false); // todo 게임 종료 판단로직이 나오면 변경할 것
+        } while (!judgeService.isEnd(judge));
+
+        printBye();
     }
 
-    private void sayHello() {
-        System.out.print("숫자를 입력해주세요 : ");
-    }
 
     private void init() {
         computerNumber = makeComputerNumber();
@@ -46,5 +51,18 @@ public class BaseballGameStarter {
         }
 
         return getDistinctRandomInt(random, checked);
+    }
+
+    ////////////
+    private void printBye() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    }
+
+    private void printInputComment() {
+        System.out.print("숫자를 입력해주세요 : ");
+    }
+
+    private void printRegame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
     }
 }
