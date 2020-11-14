@@ -1,7 +1,5 @@
 package game.baseball.domain;
 
-import game.baseball.common.Action;
-
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -10,14 +8,14 @@ import static game.baseball.domain.BaseBallMessage.ALREADY_OVER_GAME;
 public class BaseBallGame {
 
     private final Consumer<String> hintConsumer;
-    private final Action endAction;
+    private final Runnable endListener;
 
     private boolean isOver;
 
     public BaseBallGame(Consumer<String> hintConsumer,
-                        Action endAction) {
+                        Runnable endListener) {
         this.hintConsumer = hintConsumer;
-        this.endAction = endAction;
+        this.endListener = endListener;
     }
 
     public void start(Supplier<String> numberSupplier) {
@@ -48,27 +46,27 @@ public class BaseBallGame {
         hintConsumer.accept(hint.getMarking());
 
         if (hint.isThreeStrike()) {
-            endAction.action();
+            endListener.run();
             isOver = true;
         }
     }
 
     public static class Builder {
         private Consumer<String> hintConsumer = hint -> {};
-        private Action endAction = () -> {};
+        private Runnable endListener = () -> {};
 
         public Builder peekHint(Consumer<String> hintConsumer) {
             this.hintConsumer = hintConsumer;
             return this;
         }
 
-        public Builder gameEnded(Action endAction) {
-            this.endAction = endAction;
+        public Builder gameEnded(Runnable endListener) {
+            this.endListener = endListener;
             return this;
         }
 
         public BaseBallGame build() {
-            return new BaseBallGame(hintConsumer, endAction);
+            return new BaseBallGame(hintConsumer, endListener);
         }
     }
 }
