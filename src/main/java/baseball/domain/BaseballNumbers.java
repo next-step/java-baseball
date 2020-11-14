@@ -1,10 +1,12 @@
 package baseball.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class BaseballNumbers implements Iterable<BaseballNumber> {
 
-    private static final int MAX_LENGTH = 3;
+    static final int MAX_LENGTH = 3;
     private static final String MAX_LENGTH_VIOLATION_MESSAGE = "3개만 입력할 수 있습니다.";
     private static final String DUPLICATED_VIOLATION_MESSAGE = "중복된 야구번호 입니다.";
     private List<BaseballNumber> baseballNumbers = new ArrayList<>();
@@ -46,15 +48,12 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
         return baseballNumbers;
     }
 
-    public Map<ResultType, Integer> compareBaseballNumbers(BaseballNumbers target) {
-        Map<ResultType, Integer> result = new HashMap<>();
+    public BaseballResult compareBaseballNumbers(BaseballNumbers target) {
+        BaseballResult result = new BaseballResult();
         for (BaseballNumber baseballNumber : target) {
-            ResultType resultType = compareBaseballNumber(baseballNumber, target.getBaseballNumberIndex(baseballNumber));
-            if (resultType == ResultType.NOTHING) {
-                continue;
-            }
-            int count = result.getOrDefault(resultType, 0);
-            result.put(resultType, count + 1);
+            int index = target.getBaseballNumberIndex(baseballNumber);
+            ResultType resultType = compareBaseballNumber(baseballNumber, index);
+            result.add(resultType);
         }
         return result;
     }

@@ -1,6 +1,5 @@
 package baseball.domain;
 
-import org.assertj.core.data.MapEntry;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,29 +47,14 @@ class BaseballNumbersTest {
         assertThat(baseballNumbers.compareBaseballNumber(new BaseballNumber(number), index)).isEqualTo(ResultType.valueOf(resultType));
     }
 
-    // TODO: 비교 테스트 합치기
-    @DisplayName("야구번호세트 비교 테스트 - 3스트라이크")
-    @Test
-    void compareBaseballNumbers_3strike() {
+    @DisplayName("야구번호세트 비교 테스트 - 1,2,3 => 3스트라이크 0볼, 1,2,4 => 2스트라이크 0볼, 1,4,2 - 1스트라이크 1볼")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3,3,0", "1,2,4,2,0", "1,4,2,1,1"})
+    void compareBaseballNumbers_3strike(int firstNumber, int secondNumber, int thirdNumber, int countOfStrike, int countOfBall) {
         BaseballNumbers compare = BaseballNumbers.of(1, 2, 3);
-        BaseballNumbers target = BaseballNumbers.of(1, 2, 3);
-        assertThat(compare.compareBaseballNumbers(target)).containsExactly(MapEntry.entry(ResultType.STRIKE, 3));
-    }
-
-    @DisplayName("야구번호세트 비교 테스트 - 2스트라이크 1낫싱")
-    @Test
-    void compareBaseballNumbers_2strike_1nothing() {
-        BaseballNumbers compare = BaseballNumbers.of(1, 2, 3);
-        BaseballNumbers target = BaseballNumbers.of(1, 2, 4);
-        assertThat(compare.compareBaseballNumbers(target)).contains(MapEntry.entry(ResultType.STRIKE, 2), MapEntry.entry(ResultType.NOTHING, 1));
-    }
-
-    @DisplayName("야구번호세트 비교 테스트 - 1스트라이크 1볼 1낫싱")
-    @Test
-    void compareBaseballNumbers_1strike_1ball_1nothing() {
-        BaseballNumbers compare = BaseballNumbers.of(1, 2, 3);
-        BaseballNumbers target = BaseballNumbers.of(1, 4, 2);
-        assertThat(compare.compareBaseballNumbers(target)).contains(MapEntry.entry(ResultType.STRIKE, 1), MapEntry.entry(ResultType.BALL, 1), MapEntry.entry(ResultType.NOTHING, 1));
+        BaseballNumbers target = BaseballNumbers.of(firstNumber, secondNumber, thirdNumber);
+        assertThat(compare.compareBaseballNumbers(target).getCountOfStrike()).isEqualTo(countOfStrike);
+        assertThat(compare.compareBaseballNumbers(target).getCountOfBall()).isEqualTo(countOfBall);
     }
 
 }

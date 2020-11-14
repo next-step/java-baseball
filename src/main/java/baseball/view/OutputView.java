@@ -1,9 +1,8 @@
 package baseball.view;
 
-import baseball.domain.ResultType;
+import baseball.domain.BaseballResult;
 
 import java.text.MessageFormat;
-import java.util.Map;
 
 public class OutputView {
 
@@ -12,7 +11,7 @@ public class OutputView {
     private static final String STRIKE_MESSAGE_FORMAT = "{0}스트라이크";
     private static final String BALL_MESSAGE_FORMAT = "{0}볼";
 
-    public static void print(Map<ResultType, Integer> result) {
+    public static void print(BaseballResult result) {
         if (result.isEmpty()) {
             System.out.println(NOTHING_MESSAGE);
             return;
@@ -20,18 +19,26 @@ public class OutputView {
         printDetail(result);
     }
 
-    private static void printDetail(Map<ResultType, Integer> result) {
+    private static void printDetail(BaseballResult result) {
         StringBuilder stringBuilder = new StringBuilder();
-        int countOfStrike = result.getOrDefault(ResultType.STRIKE, 0);
-        if (countOfStrike > 0) {
+        printDetailOfStrike(stringBuilder, result);
+        stringBuilder.append(SPACE);
+        printDetailOfBall(stringBuilder, result);
+        System.out.println(stringBuilder.toString());
+    }
+
+    private static void printDetailOfStrike(StringBuilder stringBuilder, BaseballResult result) {
+        int countOfStrike = result.getCountOfStrike();
+        if (countOfStrike > BaseballResult.DEFAULT_COUNT) {
             stringBuilder.append(MessageFormat.format(STRIKE_MESSAGE_FORMAT, countOfStrike));
         }
-        stringBuilder.append(SPACE);
-        int countOfBall = result.getOrDefault(ResultType.BALL, 0);
-        if (countOfBall > 0) {
+    }
+
+    private static void printDetailOfBall(StringBuilder stringBuilder, BaseballResult result) {
+        int countOfBall = result.getCountOfBall();
+        if (countOfBall > BaseballResult.DEFAULT_COUNT) {
             stringBuilder.append(MessageFormat.format(BALL_MESSAGE_FORMAT, countOfBall));
         }
-        System.out.println(stringBuilder.toString());
     }
 
 }
