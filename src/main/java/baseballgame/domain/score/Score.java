@@ -28,7 +28,7 @@ public class Score {
     private List<Integer> createRandomScore() {
         final Set<Integer> integerSet = new HashSet<>();
         while (integerSet.size() < SCORE_LIMIT) {
-            final int idx = ThreadLocalRandom.current().nextInt(1, 10);
+            final int idx = ThreadLocalRandom.current().nextInt(MIN, MAX + 1);
             integerSet.add(idx);
         }
 
