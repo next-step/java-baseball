@@ -10,25 +10,25 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class AnswerCreatorTest {
     @Test
     @DisplayName("정답을 구성하는 3자리 숫자는 중복이 아니어야 한다.")
-    void digitsOfAnswerShouldBeUniqueDigit() {
+    void checkIf_DigitsOfAnswerAreUniqueDigit() {
         ThreeDigits answer = AnswerCreator.createAnswer();
 
-        if (!digitsOfAnswerShouldBeUniqueDigit(answer)) {
+        if (!isDigitsOfAnswerAreUniqueDigit(answer)) {
             fail();
         }
     }
 
     @Test
     @DisplayName("정답은 생성할 때마다 다른 숫자가 나와야 한다.")
-    void answerShouldBeCreatedDifferentlyByEachTime() {
+    void checkIf_answerShouldBeCreatedDifferentlyByEachTime() {
         int times = 10;
 
-        if (!answerShouldBeCreatedDifferentlyByEachTime(times)) {
+        if (!isAnswerBeCreatedDifferentlyByEachTime(times)) {
             fail();
         }
     }
 
-    boolean digitsOfAnswerShouldBeUniqueDigit(ThreeDigits answer) {
+    boolean isDigitsOfAnswerAreUniqueDigit(ThreeDigits answer) {
         Set<Integer> foundDigits = new HashSet<>();
 
         for (int index = 0; index < 3; index++) {
@@ -44,7 +44,7 @@ public class AnswerCreatorTest {
         return true;
     }
 
-    boolean answerShouldBeCreatedDifferentlyByEachTime(int times) {
+    boolean isAnswerBeCreatedDifferentlyByEachTime(int times) {
         ThreeDigits lastAnswer = null;
 
         for (int trial = 1; trial <= times; trial++) {
