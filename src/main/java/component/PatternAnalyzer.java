@@ -26,10 +26,9 @@ public class PatternAnalyzer {
         for (int index = 0; index < 3; index++) {
             int actualDigit = actual.getDigitAt(index);
             int answerDigit = answer.getDigitAt(index);
+            boolean isSame = actualDigit == answerDigit;
 
-            if (actualDigit == answerDigit) {
-                strikeCount++;
-            }
+            strikeCount += isSame ? 1 : 0;
         }
 
         return strikeCount;
@@ -41,10 +40,9 @@ public class PatternAnalyzer {
         for (int index = 0; index < 3; index++) {
             int actualDigit = actual.getDigitAt(index);
             int answerDigit = answer.getDigitAt(index);
+            boolean isContains = (actualDigit != answerDigit && answer.contains(actualDigit));
 
-            if (actualDigit != answerDigit && answer.contains(actualDigit)) {
-                ballCount++;
-            }
+            ballCount += isContains ? 1 : 0;
         }
 
         return ballCount;

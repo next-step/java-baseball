@@ -14,7 +14,9 @@ public class Application {
     }
 
     private static void doPlay(ThreeDigits answer) {
-        while (true) {
+        boolean isOver = false;
+
+        while (!isOver) {
             System.out.print("3개의 숫자를 입력해주세요: ");
 
             ThreeDigits actual = inputThreeDigits();
@@ -22,9 +24,7 @@ public class Application {
 
             System.out.println(PatternDisplayFormatter.format(patternResult));
 
-            if (AnswerChecker.isPatternForAnswer(patternResult)) {
-                break;
-            }
+            isOver = AnswerChecker.isPatternForAnswer(patternResult);
         }
 
         System.err.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");

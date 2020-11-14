@@ -13,13 +13,14 @@ public class ThreeDigits {
     }
 
     public boolean contains(int expected) {
-        for (int digit : digits) {
-            if (digit == expected) {
-                return true;
-            }
+        boolean isContained = false;
+
+        for (int index = 0; !isContained && index < digits.length; index++) {
+            int digit = digits[index];
+            isContained = (digit == expected);
         }
 
-        return false;
+        return isContained;
     }
 
     public int getDigitAt(int index) {

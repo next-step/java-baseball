@@ -26,22 +26,25 @@ public class AnswerCheckerTest {
     @Test
     @DisplayName("볼이 있는 경우에는 정답이 아니어야 한다.")
     void checkIf_CaseOfAnyBallsIsNotBeAnswer() {
-        for (int strikeCount = 0; strikeCount < 3; strikeCount++) {
-            if (isFoundAnswerByAnyBallCounts(strikeCount)) {
-                fail();
-            }
+        boolean isFoundAnswer = false;
+
+        for (int strikeCount = 0; !isFoundAnswer && strikeCount < 3; strikeCount++) {
+            isFoundAnswer = isFoundAnswerByAnyBallCounts(strikeCount);
+        }
+
+        if (isFoundAnswer) {
+            fail();
         }
     }
 
     boolean isFoundAnswerByAnyBallCounts(int strikeCount) {
-        for (int ballCount = 1; ballCount < 3 - strikeCount; ballCount++) {
-            PatternResult patternResult = new PatternResult(strikeCount, ballCount);
+        boolean isFound = false;
 
-            if (AnswerChecker.isPatternForAnswer(patternResult)) {
-                return true;
-            }
+        for (int ballCount = 1; !isFound && ballCount < 3 - strikeCount; ballCount++) {
+            PatternResult patternResult = new PatternResult(strikeCount, ballCount);
+            isFound = AnswerChecker.isPatternForAnswer(patternResult);
         }
 
-        return false;
+        return isFound;
     }
 }

@@ -30,34 +30,32 @@ public class AnswerCreatorTest {
     }
 
     boolean isDigitsOfAnswerAreUniqueDigit(ThreeDigits answer) {
-        Set<Integer> foundDigits = new HashSet<>();
+        boolean isAllUnique = true;
 
-        for (int index = 0; index < 3; index++) {
+        Set<Integer> visitedDigits = new HashSet<>();
+
+        for (int index = 0; isAllUnique && index < 3; index++) {
             Integer digit = answer.getDigitAt(index);
 
-            if (foundDigits.contains(digit)) {
-                return false;
-            }
-
-            foundDigits.add(digit);
+            isAllUnique = !visitedDigits.contains(digit);
+            visitedDigits.add(digit);
         }
 
-        return true;
+        return isAllUnique;
     }
 
     boolean isAnswerBeCreatedDifferentlyByEachTime(int times) {
+        boolean isAllDifferent = true;
+
         ThreeDigits lastAnswer = null;
 
-        for (int trial = 1; trial <= times; trial++) {
+        for (int trial = 1; isAllDifferent && trial <= times; trial++) {
             ThreeDigits answer = AnswerCreator.createAnswer();
 
-            if (answer.equals(lastAnswer)) {
-                return false;
-            }
-
+            isAllDifferent = !answer.equals(lastAnswer);
             lastAnswer = answer;
         }
 
-        return true;
+        return isAllDifferent;
     }
 }
