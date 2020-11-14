@@ -15,17 +15,8 @@ class ScoreTest {
     @DisplayName("아무런 파라미터를 넘겨주지 않을 때 유효한 값을 가진 객체 생성 테스트")
     void createRandomScoreInstanceTest() {
         final Score score = Score.getRandomScore();
-        final int hundredsPlace = score.getHundredsPlace();
-        final int tensPlace = score.getTensPlace();
-        final int onesPlace = score.getOnesPlace();
 
-        System.out.println(hundredsPlace);
-        System.out.println(tensPlace);
-        System.out.println(onesPlace);
-
-        assertNotEquals(hundredsPlace, tensPlace);
-        assertNotEquals(tensPlace, onesPlace);
-        assertNotEquals(hundredsPlace, onesPlace);
+        assertNotNull(score);
     }
 
     @ParameterizedTest
@@ -37,6 +28,8 @@ class ScoreTest {
         final int hundredsScore = score.getHundredsPlace();
         final int tensScore = score.getTensPlace();
         final int onesScore = score.getOnesPlace();
+
+        assertNotNull(score);
 
         assertEquals(first, hundredsScore);
         assertEquals(second, tensScore);
