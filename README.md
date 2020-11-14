@@ -54,11 +54,15 @@
     * int 필드를 이용하여 equal 비교
     * int 1개를 받는 생성자
     * 1~9 범위의 숫자로 초기화 되었는지 validate
-- [ ] 위의 숫자 class 3개를 List로 가지는 class 생성 
-    * 3개의 숫자가 중복인지 validate
+- [ ] 위의 숫자 class 3개를 List로 가지는 class 생성
+    * 랜덤 숫자 생성 전략을 전달 받아 객체 생성
+    * 전략, 생성된 list의 길이 validate 
+    * 비교 로직 생성
+    * 비교후 결과 enum 반환 
 - [x] 1~9 범위의 숫자를 생성하는 strategy
 - [x] 중복 없는 숫자 3개를 생성하는 strategy
     * 숫자 3개를 생성하고 반환한다
+    * 3개의 숫자가 중복인지 validate
 - [ ] 사용자의 숫자와 컴퓨터의 숫자를 비교하는 class
     * 비교후 결과를 enum으로 반환 한다.
 - [ ] 사용자에게 숫자를 입력 받는 view
