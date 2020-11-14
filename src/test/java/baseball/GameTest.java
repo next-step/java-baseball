@@ -4,12 +4,12 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class GameTest {
 	@DisplayName("게임 초기화시 정답 생성")
@@ -28,14 +28,14 @@ class GameTest {
 
 	@DisplayName("랜덤 넘버 생성 검증")
 	@Test
-	public void generateRandomRightAnswer() throws Exception {
-	    // Given
+	void generateRandomRightAnswer() throws Exception {
+		// Given
 		Game game = new Game(new GameNumberRandomGenerator());
 
-	    // When
+		// When
 		GameNumbers rightAnswer = game.getRightAnswer();
 
-	    // Then
+		// Then
 		int count = 0;
 		List<Integer> verificationList = new ArrayList<>();
 		for (Integer integer : rightAnswer) {
@@ -45,6 +45,19 @@ class GameTest {
 			count++;
 		}
 		assertThat(count).isEqualTo(Game.MAX_GAME_NUMBER_LENGTH);
+	}
+
+	@DisplayName("유효하지 않은 값을 입력시 에러 발생")
+	@ParameterizedTest
+	@ValueSource(strings = {"abc", "1", "1111"})
+	void validateInput(String input) throws Exception {
+		// Given
+		Game game = new Game(new GameNumberTestGenerator());
+
+		// When
+		// Then
+		assertThatExceptionOfType(InvalidGameInputException.class)
+			.isThrownBy(() -> game.convertInputToGameNumbers(input));
 	}
 
 	private static class GameNumberTestGenerator implements GameNumberGenerator {
