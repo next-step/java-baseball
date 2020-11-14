@@ -29,7 +29,7 @@ public class ComputerBaseBall implements NumberBaseBall {
 
     private List<Integer> makeMixedList() {
         List<Integer> list = new ArrayList<>();
-        for (int i=DEFAULT_MINIMUM; i<=DEFAULT_MAXIMUM; i++) {
+        for (int i = DEFAULT_MINIMUM; i <= DEFAULT_MAXIMUM; i++) {
             list.add(i);
         }
         Collections.shuffle(list);
@@ -38,7 +38,7 @@ public class ComputerBaseBall implements NumberBaseBall {
 
     private int[] makeRangeArray(List<Integer> list) {
         int[] computerNumbers = new int[SIZE];
-        for (int i=0; i<SIZE; i++) {
+        for (int i = 0; i < SIZE; i++) {
             computerNumbers[i] = list.get(i);
         }
         return computerNumbers;
@@ -56,7 +56,6 @@ public class ComputerBaseBall implements NumberBaseBall {
     @Override
     public void isNotThreeDigits() {
         if (computerNumbers.length != 3) {
-            System.out.println(computerNumbers.length);
             BaseballException.throwException(ErrorMessage.DIGITS_ERROR);
         }
     }

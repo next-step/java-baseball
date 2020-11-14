@@ -4,6 +4,7 @@ import jito.baseball.message.ErrorMessage;
 import jito.baseball.util.BaseballException;
 import jito.baseball.util.UserInterfaceUtils;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BaseballStadium {
@@ -36,9 +37,9 @@ public class BaseballStadium {
     }
 
     private void playerSelectGameStatus() {
-        int input = scanner.nextInt();
-        checkValid(input);
         if (CompareBaseBall.stopGame()) {
+            int input = scanner.nextInt();
+            checkValid(input);
             if ( input == 2) {
                 GameStatus.GAME.setEnd();
                 return;
@@ -51,7 +52,7 @@ public class BaseballStadium {
         if (input < 1 || input > 9) {
             BaseballException.throwException(ErrorMessage.RESTART_ERROR);
         }
-        if (input + "".length() != 1) {
+        if (input + "".length() != 1 && input + "".length() != 2) {
             BaseballException.throwException(ErrorMessage.RESTART_ERROR);
         }
     }

@@ -33,7 +33,7 @@ public class CompareBaseBall {
     }
 
     private void countBall(int[] computerNumbers, int playerNumber, int index) {
-        for (int i=0; i < computerNumbers.length; i++) {
+        for (int i = 0; i < computerNumbers.length; i++) {
             if (i == index) continue;
             if (computerNumbers[i] == playerNumber) {
                 ball++;

@@ -10,7 +10,7 @@ public class PlayerBaseBall implements NumberBaseBall {
     public PlayerBaseBall(String input) {
         String[] playerInput = input.split("");
         playerNumbers = new int[playerInput.length];
-        for (int i=0; i<playerInput.length; i++) {
+        for (int i = 0; i < playerInput.length; i++) {
             playerNumbers[i] = Integer.parseInt(playerInput[i]);
         }
         checkValidation();
@@ -32,7 +32,6 @@ public class PlayerBaseBall implements NumberBaseBall {
     @Override
     public void isNotThreeDigits() {
         if (playerNumbers.length != 3) {
-            System.out.println(playerNumbers.length);
             BaseballException.throwException(ErrorMessage.DIGITS_ERROR);
         }
     }
