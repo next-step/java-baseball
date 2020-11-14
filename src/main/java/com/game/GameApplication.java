@@ -6,7 +6,7 @@ import com.game.common.Game;
 public class GameApplication {
 
     public static void main(String[] args) {
-        Game game = new BaseballGame();
+        Game<String> game = new BaseballGame();
         game.start();
     }
 }
