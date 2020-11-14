@@ -14,8 +14,8 @@ public class BaseballGame {
     }
 
     public Result getResult(UserNumber userNumber) {
-        int countOfStrike = referee.getCountOfStrike(userNumber);
-        int countOfBall = referee.getCountOfBall(userNumber);
+        int countOfStrike = referee.getStrikeCount(userNumber);
+        int countOfBall = referee.getBallCount(userNumber);
         if (countOfBall == 0 && countOfStrike == 0) {
             return SpecialResultType.NOTHING;
         }

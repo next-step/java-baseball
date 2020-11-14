@@ -1,7 +1,6 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -13,7 +12,7 @@ class RefereeTest {
     @DisplayName("입력받은 숫자의 스트라이크 개수를 반환한다.")
     void calculateStrikeTest(int userNumber, int answerNumber, int expectedCount) {
         Referee referee = new Referee(new AnswerNumber(answerNumber));
-        assertThat(referee.getCountOfStrike(new UserNumber(userNumber)))
+        assertThat(referee.getStrikeCount(new UserNumber(userNumber)))
                 .isEqualTo(expectedCount);
     }
 
@@ -22,7 +21,7 @@ class RefereeTest {
     @DisplayName("입력받은 숫자의 볼 개수를 반환한다.")
     void calculateBallTest(int userNumber, int answerNumber, int expectedCount) {
         Referee referee = new Referee(new AnswerNumber(answerNumber));
-        assertThat(referee.getCountOfBall(new UserNumber(userNumber)))
+        assertThat(referee.getBallCount(new UserNumber(userNumber)))
                 .isEqualTo(expectedCount);
     }
 }

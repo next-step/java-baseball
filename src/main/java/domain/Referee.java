@@ -7,7 +7,7 @@ public class Referee {
         this.answerNumber = answerNumber;
     }
 
-    public int getCountOfStrike(UserNumber userNumber) {
+    public int getStrikeCount(UserNumber userNumber) {
         String answerNumberString = String.valueOf(answerNumber.getNumber());
         String userNumberString = String.valueOf(userNumber.getNumber());
         int countOfStrike = 0;
@@ -26,7 +26,7 @@ public class Referee {
         return 0;
     }
 
-    public int getCountOfBall(UserNumber userNumber) {
+    public int getBallCount(UserNumber userNumber) {
         String answerNumberString = String.valueOf(answerNumber.getNumber());
         String userNumberString = String.valueOf(userNumber.getNumber());
         int countOfBall = 0;

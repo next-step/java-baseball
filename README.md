@@ -51,3 +51,7 @@
 - 숫자 야구 게임을 시작하면 정답 숫자를 하나 생성하고 Referee를 생성한다. 
 - (Referee)
 - [ ] UserNumber를 입력받아 결과를 반환한다.
+
+### domain.BaseballGameMachine
+
+- 숫자 야구 게임을 결과와 유저 입력에 따라 새로 시작하고 종료시키는 객체
