@@ -24,6 +24,38 @@ public class Game {
 	}
 
 	public GameScore play(Balls balls) {
-		return new GameScore();
+		GameScore score = new GameScore();
+
+		for (int i = 0; i < BALL_COUNT; i++) {
+			play(score, balls.getNumber(i), i);
+		}
+
+		return score;
+	}
+
+	private void play(GameScore score, int number, int position) {
+		if (isStrike(number, position)) {
+			score.strike();
+			return;
+		}
+		if (isBall(number, position)) {
+			score.ball();
+		}
+	}
+
+	private boolean isStrike(int number, int position) {
+		return number == this.numbers[position];
+	}
+
+	private boolean isBall(int number, int position) {
+		for (int i = 0; i < BALL_COUNT; i++) {
+			if (i == position) {
+				continue;
+			}
+			if (number == this.numbers[i]) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

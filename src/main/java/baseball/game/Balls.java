@@ -15,6 +15,17 @@ public class Balls {
 		}
 	}
 
+	public int[] getNumbers() {
+		return this.numbers;
+	}
+
+	public int getNumber(int position) {
+		if (position >= BALL_COUNT) {
+			throw new IllegalArgumentException();
+		}
+		return this.numbers[position];
+	}
+
 	private void validateLength(String numbers) {
 		if (numbers == null || numbers.length() != BALL_COUNT) {
 			throw new IllegalArgumentException();
