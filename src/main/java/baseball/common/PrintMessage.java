@@ -14,4 +14,6 @@ public class PrintMessage {
 
   public final static String INPUT_NUMBER_DUPLICATE_ERROR = "중복 된 숫자가 포함되어 있습니다.";
 
+  public final static String BASE_BALL_GAME_CLEAR_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임종료 \n게임을 새로 시작하려면 1, 종료하라면 2를 입력하세요.";
+
 }

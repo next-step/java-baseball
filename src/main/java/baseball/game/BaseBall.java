@@ -24,6 +24,8 @@ public class BaseBall {
 
   private final static int CLEAR_STRIKE_COUNT = 3;
 
+  private final static int GAME_RETRY = 1;
+
   private Scanner scanner;
 
   private Computer computer;
@@ -38,6 +40,10 @@ public class BaseBall {
 
   Result getResult() {
     return this.result;
+  }
+
+  private void createComputer() {
+    this.computer = new Computer();
   }
 
   private LinkedHashSet<Integer> getComputerBalls() {
@@ -90,7 +96,6 @@ public class BaseBall {
 
   /**
    * 사용자 입력 받은 값 타입 체크
-   * @param scanner 입력 받은 UI 객체
    * @return 사용자 입력 받은 값 return
    */
   int validateInputNumberType(final Scanner scanner) {
@@ -151,6 +156,7 @@ public class BaseBall {
    */
   void checkUserBallAndComputerBall(final LinkedHashSet<Integer> computerBalls,
                                     final LinkedHashSet<Integer> userBalls) {
+    System.out.println("computerBalls = " + computerBalls);
     List<Integer> converterUserBalls = new ArrayList<>(userBalls);
     List<Integer> converterComputerBalls = new ArrayList<>(computerBalls);
 
@@ -212,7 +218,7 @@ public class BaseBall {
     boolean isStrike = this.getResult().isStrike();
 
     if (isStrike) {
-      // TODO : 클리어 시 재시작 여부 체크
+      checkResetGame();
     }
 
     if (!isStrike) {
@@ -247,6 +253,20 @@ public class BaseBall {
    */
   private void getPrintByMessage(final String message) {
     Print.setPrintMessage(message);
+  }
+
+  /**
+   * 게임 클리어스 재시작 여부 체크
+   */
+  private void checkResetGame() {
+    getPrintByMessage(PrintMessage.BASE_BALL_GAME_CLEAR_MESSAGE);
+
+    int inputNumber = validateInputNumberType(this.scanner);
+
+    if (inputNumber == GAME_RETRY) {
+      createComputer(); // 대결을 위한 새로운 컴퓨터 생성
+      this.play();
+    }
   }
 
 }
