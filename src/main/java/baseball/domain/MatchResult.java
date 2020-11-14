@@ -2,6 +2,7 @@ package baseball.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class MatchResult {
     private final List<State> states;
@@ -16,5 +17,18 @@ public class MatchResult {
 
     public int ballCount() {
         return Collections.frequency(states, State.BALL);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MatchResult)) return false;
+        final MatchResult that = (MatchResult) o;
+        return Objects.equals(states, that.states);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(states);
     }
 }

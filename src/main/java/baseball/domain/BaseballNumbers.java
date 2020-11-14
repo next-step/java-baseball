@@ -36,6 +36,15 @@ public class BaseballNumbers {
         this.baseballNumbers = Collections.unmodifiableList(new ArrayList<>(baseballNumbers));
     }
 
+    public MatchResult match(BaseballNumbers other) {
+        List<State> states = new ArrayList<>();
+        for (final BaseballNumber baseballNumber : other.baseballNumbers) {
+            states.add(match(baseballNumber));
+        }
+        
+        return new MatchResult(states);
+    }
+
     public State match(BaseballNumber other) {
         List<State> states = new ArrayList<>();
         for (final BaseballNumber baseballNumber : baseballNumbers) {

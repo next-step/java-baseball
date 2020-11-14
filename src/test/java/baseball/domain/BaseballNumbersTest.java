@@ -41,6 +41,18 @@ class BaseballNumbersTest {
     }
 
     @ParameterizedTest
+    @CsvSource(value = {"123,STRIKE,STRIKE,STRIKE", "421,NOTING,STRIKE,BALL", "567,NOTING,NOTING,NOTING"})
+    @DisplayName("매칭 테스트")
+    void match(int number, String frist, String second, String third) {
+        BaseballNumbers target = BaseballNumbers.from(number);
+        MatchResult expected = new MatchResult(Arrays.asList(
+                State.valueOf(frist),
+                State.valueOf(second),
+                State.valueOf(third)));
+        assertThat(baseballNumbers.match(target)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
     @CsvSource(value = {"1,1", "2,2", "3,3"})
     @DisplayName("같은 BaseballNumber가 존재하면 Strike")
     void matchStrike(int index, int number) {
