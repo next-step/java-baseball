@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * 숫자야구게임을 위한 숫자 생성기. 규칙에 맞게 숫자배열을 생성하여 반환한다.
  */
-public final class NumberGenerator {
+final class NumberGenerator {
 
     private static final Random random = new Random(System.nanoTime());
 

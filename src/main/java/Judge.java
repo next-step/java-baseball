@@ -3,13 +3,15 @@
  * - 판정을 한다.
  * - 판정을 말한다.
  */
-public final class Judge {
+final class Judge {
 
     static final String STRIKE_OUT = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
     static final String NOTHING = "낫싱";
     static final String STRIKE = "스트라이크";
     static final String BALL = "볼";
     static final String EMPTY = "";
+
+    private Judge() {}
 
     /**
      * 숫자야구게임 판정 메서드. 두개의 int[3] 배열을 받아서 각 자리의 원소가 일치하는 경우 스트라이크, 자리는 다르지만 같은 수인
@@ -19,7 +21,7 @@ public final class Judge {
      * @param numbers2 int[3] 배열, 각 정수는 1~9의 수이다.
      * @return int[2]인 배열, 판정 결과를 담은 것으로 [0]은 스트라이크 수, [1]은 볼의 수이다.
      */
-    public static int[] judge(int[] numbers1, int[] numbers2) {
+    static int[] judge(int[] numbers1, int[] numbers2) {
         final int[] result = {0, 0};
         // 스트라이크 수 카운트
         result[0] += numbers1[0] == numbers2[0] ? 1 : 0;
@@ -41,7 +43,7 @@ public final class Judge {
      * @param judge 판정결과 정수 배열. [0]번째 원소는 스트라이크 수, [1]번째 원소는 볼의 수이다.
      * @return 판정결과 문자열
      */
-    public static String speak(int[] judge) {
+    static String speak(int[] judge) {
         if (judge[0] == 3) {
             return STRIKE_OUT;
         }
@@ -50,6 +52,4 @@ public final class Judge {
         }
         return (judge[0] == 0 ? EMPTY : judge[0] + STRIKE) + (judge[1] == 0 ? EMPTY : judge[1] + BALL);
     }
-
-    private Judge() {}
 }
