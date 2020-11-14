@@ -9,8 +9,7 @@ public class Main {
         Game game = new Game();
         do {
             randomNumber = game.randomNumber();     // 1~9 사이의 서로 다른 세자리 숫자를 랜덤으로 만든다.
-            System.out.println(randomNumber);
-            playGame(randomNumber);             // 게임을 플레이한다.
+            playGame(game);                         // 게임을 플레이한다.
         } while (isMoreGame());                 // 게임을 다시 시작하거나 완전히 종료한다.
     }
 
@@ -32,19 +31,48 @@ public class Main {
         return false;
     }
 
-    private static void playGame(Integer randomNumber) {
+    private static void playGame(Game game) {
         Integer inputNumber;
+        Integer strike;
+        Integer ball;
         do {
             inputNumber = inputNumber();                    // 세자리 숫자를 입력받는다.
-        } while(! hintNumber(randomNumber, inputNumber));   // 힌트를 제공하고 3 스트라이크이면 게임을 종료한다.
+            strike = game.countStrike(inputNumber);
+            ball = game.countBall(inputNumber);
+            showHintNumber(strike, ball);                   // 사용자에게 힌트를 보여준다.
+        } while(strike != 3);   // 3 스트라이크이면 게임을 종료한다.
     }
 
     private static Integer inputNumber() {
-        return 123;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("숫자를 입력해주세요: ");
+        Integer answer = sc.nextInt();
+
+        return answer;
     }
 
-    private static Boolean hintNumber(Integer randomNumber, Integer inputNumber) {
-        return true;
+    private static void showHintNumber(Integer strike, Integer ball) {
+
+        if (strike == 0 && ball == 0) {
+            System.out.println("낫싱");
+            return;
+        }
+
+        if (strike > 0 && ball > 0) {
+            System.out.println(strike.toString() + " 스트라이크 " + ball.toString() + " 볼");
+            return;
+        }
+
+        if (strike > 0) {
+            System.out.println(strike.toString() + " 스트라이크 ");
+            return;
+        }
+
+        if (ball > 0) {
+            System.out.println(ball.toString() + " 볼");
+            return;
+        }
     }
 
 }
