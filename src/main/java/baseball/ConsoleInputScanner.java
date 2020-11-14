@@ -23,9 +23,10 @@ public class ConsoleInputScanner implements InputScanner {
     @Override
     public String inputNumber1Or2(){
         String input;
-
-        System.out.println(GameResource.TEXT_GAME_RESTART);
-        input = scanner.next();
+        do {
+            System.out.println(GameResource.TEXT_GAME_RESTART);
+            input = scanner.next();
+        } while(!Validator.isNumber1Or2(input));
 
         return input;
     }
