@@ -3,13 +3,13 @@ package baseball.app;
 import java.util.EnumMap;
 
 /**
- * @author choijaeyong on 2020/11/11.
+ * @author choijaeyong on 2020/11/14.
  * @project java-baseball
  * @description
  */
-public class ScoreChecker {
+public class ScoreCalculator {
 
-  public EnumMap<Score,Integer> check(String inputString, String computerString) {
+  public EnumMap<Score,Integer> calculate(String inputString, String computerString) {
     EnumMap<Score,Integer> map = new EnumMap<Score, Integer>(Score.class);
     for (int i=0 ; i < computerString.length() ; i++) {
       if (computerString.charAt(i) == inputString.charAt(i)) {
