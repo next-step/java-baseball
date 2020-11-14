@@ -6,29 +6,40 @@ import java.util.Random;
 
 public class BaseballGameStarter {
 
-    private BaseballGameScanner gameScanner = new BaseballGameScanner();
+    private BaseballGameIO gameIO = new BaseballGameIO();
     private BaseballGameJudgeService judgeService = new BaseballGameJudgeService();
 
     private String computerNumber;
 
     public void start() {
-        BaseballGameJudgeDto judge;
+        boolean isReplay;
 
-        init();
         do {
-            printInputComment();
-            String inputNumber = gameScanner.scan();
-            judge = judgeService.judge(computerNumber, inputNumber);
-            judgeService.printJudgeResult(judge);
+            playGame();
+            gameIO.printRegame();
+            isReplay = gameIO.scanReplay();
+        } while (isReplay);
+    }
 
+    private void playGame() {
+        BaseballGameJudgeDto judge;
+        init();
+
+        do {
+            gameIO.printInputComment();
+            String inputNumber = gameIO.scanInputNumber();
+            judge = judgeService.judge(computerNumber, inputNumber);
+            gameIO.printJudgeResult(judge);
         } while (!judgeService.isEnd(judge));
 
-        printBye();
+        gameIO.printBye();
     }
 
 
     private void init() {
         computerNumber = makeComputerNumber();
+        // test
+        System.out.println("computerNumber=" + computerNumber);
     }
 
     String makeComputerNumber() {
@@ -51,18 +62,5 @@ public class BaseballGameStarter {
         }
 
         return getDistinctRandomInt(random, checked);
-    }
-
-    ////////////
-    private void printBye() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-    }
-
-    private void printInputComment() {
-        System.out.print("숫자를 입력해주세요 : ");
-    }
-
-    private void printRegame() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
     }
 }
