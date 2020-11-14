@@ -1,5 +1,7 @@
 package com.baseball;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Integer randomNumber;
@@ -14,7 +16,21 @@ public class Main {
         return 123;
     }
 
+    /**
+     * 게임을 새로 시작할지 종료할지 사용자에게 물어보는 기능
+     * @return true: 게임 새로 시작, false: 종료
+     */
     private static boolean isMoreGame() {
+        Scanner sc = new Scanner(System.in);
+
+        Integer answer;
+        do {
+            System.out.println("게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.");
+            answer = sc.nextInt();
+        } while (answer != 1 && answer != 2);
+
+        if (answer == 1)
+            return true;
         return false;
     }
 
