@@ -1,16 +1,11 @@
 package baseball;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,6 +24,15 @@ public class ConsoleInputScannerTest {
         System.setIn(new ByteArrayInputStream((input + "\r\n").getBytes()));
         ConsoleInputScanner consoleScanner = new ConsoleInputScanner();
         String inputText = consoleScanner.inputNumberLength3();
+        assertThat(inputText).isEqualTo(input);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "1", "2", "1234"})
+    public void scan1or2(final String input) {
+        System.setIn(new ByteArrayInputStream((input + "\r\n").getBytes()));
+        ConsoleInputScanner consoleScanner = new ConsoleInputScanner();
+        String inputText = consoleScanner.inputNumber1Or2();
         assertThat(inputText).isEqualTo(input);
     }
 }

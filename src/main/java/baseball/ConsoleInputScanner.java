@@ -19,4 +19,9 @@ public class ConsoleInputScanner implements InputScanner {
 
         return input;
     }
+
+    @Override
+    public String inputNumber1Or2(){
+        return null;
+    }
 }
