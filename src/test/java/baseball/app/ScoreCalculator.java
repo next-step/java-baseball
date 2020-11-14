@@ -9,31 +9,21 @@ public class ScoreCalculator {
 
   public ScoreTable calculate(String inputString, String computerString) {
     ScoreTable scoreTable = new ScoreTable();
-    scoreTable.strikeRecord(countStrike(inputString,computerString));
-    scoreTable.ballRecord(countBall(inputString,computerString));
+    for (int i=0 ; i < computerString.length() ; i++) {
+      Score strikeOrBall = isStrikeOrBall(inputString, computerString, i);
+      scoreTable.recordScore(strikeOrBall);
+    }
     return scoreTable;
   }
 
-  private int countBall(String inputString, String computerString) {
-    int ballCount = 0;
-    for (int i=0 ; i < computerString.length() ; i++) {
-      ballCount += computerString.indexOf(inputString.charAt(i)) == -1 ? 0 : 1;
+  private Score isStrikeOrBall(String inputString, String computerString, int i) {
+    if (inputString.charAt(i) == computerString.charAt(i)) {
+      return Score.STRIKE;
     }
-    return ballCount;
-  }
 
-  private Integer countStrike(String inputString, String computerString) {
-    int strikeCount = 0;
-    for (int i=0 ; i < computerString.length() ; i++) {
-      strikeCount += isStrike(inputString.charAt(i), computerString.charAt(i));
+    if (computerString.indexOf(inputString.charAt(i)) != -1) {
+      return Score.BALL;
     }
-    return strikeCount;
-  }
-
-  private int isStrike(char input, char computer) {
-    if (input == computer) {
-      return 1;
-    }
-    return 0;
+    return null;
   }
 }
