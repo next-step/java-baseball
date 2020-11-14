@@ -1,6 +1,6 @@
 package baseball.domain;
 
-public enum MatchResult {
+public enum MatchType {
 
     STRIKE("스트라이크"),
     BALL("볼"),
@@ -8,7 +8,7 @@ public enum MatchResult {
 
     private String message;
 
-    MatchResult(String message) {
+    MatchType(String message) {
         this.message = message;
     }
 
