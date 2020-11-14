@@ -18,6 +18,26 @@ public class MatchResult {
         this.match = Collections.unmodifiableMap(result);
     }
 
+    private MatchResult(Map<MatchType, Integer> match) {
+        Map<MatchType, Integer> result = new HashMap<>();
+        result.put(MatchType.STRIKE, match.get(MatchType.STRIKE));
+        result.put(MatchType.BALL, match.get(MatchType.BALL));
+        result.put(MatchType.NOTHING, match.get(MatchType.NOTHING));
+
+        this.match = Collections.unmodifiableMap(result);
+    }
+
+    public MatchResult addMatchType(final MatchType type) {
+        Map<MatchType, Integer> result = new HashMap<>(this.match);
+
+        Integer count = result.get(type);
+        count++;
+
+        result.put(type, count);
+
+        return new MatchResult(result);
+    }
+
     public Map<MatchType, Integer> getMatch() {
         return Collections.unmodifiableMap(this.match);
     }
