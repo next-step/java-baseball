@@ -121,6 +121,42 @@ public class BaseballGameTest {
 		assertEquals(tempArray.size(), 0);
 	}
 
+	@Test
+	void showGameResult_strike1_ball2() {
+		ArrayList<String> computerNumbers = new ArrayList<>(Arrays.asList("1", "3", "2"));
+		ArrayList<String> userNumbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+
+		int strike = isStrike(computerNumbers, userNumbers);
+		int ball = isBall(computerNumbers, userNumbers);
+
+		assertEquals(strike, 1);
+		assertEquals(ball, 2);
+	}
+
+	@Test
+	void showGameResult_strike2_noBall() {
+		ArrayList<String> computerNumbers = new ArrayList<>(Arrays.asList("1", "6", "3"));
+		ArrayList<String> userNumbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+
+		int strike = isStrike(computerNumbers, userNumbers);
+		int ball = isBall(computerNumbers, userNumbers);
+
+		assertEquals(strike, 2);
+		assertEquals(ball, 0);
+	}
+
+	@Test
+	void showGameResult_strike3_noBall() {
+		ArrayList<String> computerNumbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+		ArrayList<String> userNumbers = new ArrayList<>(Arrays.asList("1", "2", "3"));
+
+		int strike = isStrike(computerNumbers, userNumbers);
+		int ball = isBall(computerNumbers, userNumbers);
+
+		assertEquals(strike, 3);
+		assertEquals(ball, 0);
+	}
+
 	private void checkDuplicationNumberFromInput(ArrayList<String> originArray, String input) {
 		if (originArray.contains(input)) {
 			throw new InvalidParameterException(ExceptionMessageEnum.INVALID.getMessage());
@@ -159,5 +195,48 @@ public class BaseballGameTest {
 
 	private String convertCharToString(char input) {
 		return String.valueOf(input);
+	}
+
+	private int isStrike(ArrayList<String> defaultNumbers,
+						 ArrayList<String> userInputNumbers) {
+		int strikeCount = 0;
+
+		for (String number : defaultNumbers) {
+			strikeCount += (userInputNumbers.get(defaultNumbers.indexOf(number)).equals(number)) ?
+					1 : 0;
+		}
+
+		return strikeCount;
+	}
+
+	private int isBall(ArrayList<String> defaultNumbers,
+					   ArrayList<String> userInputNumbers) {
+		return compareCountOfBall(defaultNumbers, userInputNumbers);
+	}
+
+	private ArrayList<String> arrayDeepCopy(ArrayList<String> baseArray) {
+		String[] copyArray = new String[baseArray.size()];
+		System.arraycopy(
+				baseArray.toArray(),
+				0,
+				copyArray,
+				0,
+				baseArray.size());
+
+		return new ArrayList<>(Arrays.asList(copyArray));
+	}
+
+	private int compareCountOfBall(ArrayList<String> defaultNumbers,
+								   ArrayList<String> userInputNumbers) {
+		int userInputSize = userInputNumbers.size();
+		int ballCount = 0;
+
+		for (int i = 0; i < userInputSize; i++) {
+			ArrayList<String> compareArray = arrayDeepCopy(defaultNumbers);
+			compareArray.remove(i);
+			ballCount += (compareArray.contains(userInputNumbers.get(i))) ? 1 : 0;
+		}
+
+		return ballCount;
 	}
 }

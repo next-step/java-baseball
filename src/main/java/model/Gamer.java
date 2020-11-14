@@ -16,18 +16,6 @@ public class Gamer {
 		this.userInputNumbers = userInputNumbers;
 	}
 
-	public void inputNumberFromUser() throws
-			CustomException.InvalidNumberFormatException,
-			CustomException.InvalidNumberOfRangeException,
-			CustomException.InvalidNumberOfSizeException {
-		System.out.println("숫자를 입력해주세요 : ");
-		Scanner scanner = new Scanner(System.in);
-		String inputNumbers = scanner.nextLine();
-
-		checkInputNumber(inputNumbers);
-		setUserInputNumbers(convertStringToArray(inputNumbers));
-	}
-
 	private void checkInputNumber(String input) throws
 			CustomException.InvalidNumberFormatException,
 			CustomException.InvalidNumberOfRangeException,
@@ -78,5 +66,23 @@ public class Gamer {
 		}
 
 		return convertArray;
+	}
+
+	private String inputUserNumbers() {
+		System.out.println("숫자를 입력해주세요 : ");
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
+	}
+
+	public void playGame() {
+		String inputNumbers = inputUserNumbers();
+
+		try {
+			checkInputNumber(inputNumbers);
+			setUserInputNumbers(convertStringToArray(inputNumbers));
+		} catch (Exception e) {
+			System.out.println("잘못된 입력입니다.");
+			playGame();
+		}
 	}
 }

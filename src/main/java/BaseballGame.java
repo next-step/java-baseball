@@ -7,11 +7,13 @@ public class BaseballGame {
 	static Baseball baseball = new Baseball();
 	static Gamer gamer = new Gamer();
 
-	public static void main(String[] args) throws
-			CustomException.InvalidNumberFormatException,
-			CustomException.InvalidNumberOfSizeException,
-			CustomException.InvalidNumberOfRangeException {
+	public static void main(String[] args)  {
 		System.out.println(baseball.getDefaultNumbers().toString());
-		gamer.inputNumberFromUser();
+		gamer.playGame();
+		showGameResult();
+	}
+
+	private static void showGameResult() {
+
 	}
 }
