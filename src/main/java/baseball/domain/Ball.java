@@ -30,6 +30,10 @@ public class Ball {
         return this.order == ball.order ? Status.find(1) : Status.find(0);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
