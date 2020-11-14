@@ -41,8 +41,7 @@ public class Balls {
         int number = Integer.parseInt(numberValue);
         validateDuplicated(number);
 
-        Ball ball = new Ball(number, order);
-        balls.put(number, ball);
+        balls.put(number, new Ball(number, order));
     }
 
     private void validatePattern(String numbers) {

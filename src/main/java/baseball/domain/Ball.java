@@ -27,7 +27,7 @@ public class Ball {
             return Status.find(-1);
         }
 
-        return this.order == ball.order ? Status.find(1) : Status.find(0);
+        return equals(ball) ? Status.find(1) : Status.find(0);
     }
 
     public int getNumber() {
