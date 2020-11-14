@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class ThreeBallNumberStrategyTest {
+class ThreeBallGenerateStrategyTest {
 
     private static final int BALL_GENERATOR_RESULT_SIZE = 3;
 
@@ -14,7 +14,7 @@ class ThreeBallNumberStrategyTest {
     @Test
     public void generate() throws Exception {
         //given
-        RandomNumberStrategy generator = new ThreeBallNumberStrategy();
+        BallGenerateStrategy generator = new ThreeBallGenerateStrategy();
 
         //when
         List<Integer> result = generator.generate();

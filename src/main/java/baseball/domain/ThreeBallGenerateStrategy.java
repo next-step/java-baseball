@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ThreeBallNumberStrategy implements RandomNumberStrategy {
+public class ThreeBallGenerateStrategy implements BallGenerateStrategy {
 
     private static final int BALL_NUMBER_SIZE = 3;
     private static final int MIN_NUMBER = 1;
