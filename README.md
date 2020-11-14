@@ -54,6 +54,9 @@
     * int 필드를 이용하여 equal 비교
     * int 1개를 받는 생성자
     * 1~9 범위의 숫자로 초기화 되었는지 validate
+- [ ] 게임 숫자 비교 결과를 저장하는 class 생성
+    * 결과 출력 기능
+    * 결과 insert 기능
 - [ ] 위의 숫자 class 3개를 List로 가지는 class 생성
     * 랜덤 숫자 생성 전략을 전달 받아 객체 생성
     * 전략, 생성된 list의 길이 validate 
