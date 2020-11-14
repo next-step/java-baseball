@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.StringJoiner;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Baseball {
+public class BaseballGame {
 
 	private static final int GAME_SIZE = 3;
 	private static final int MAX_GAME_CREATE_TRY = 10;
@@ -16,12 +16,7 @@ public class Baseball {
 
 	LinkedHashSet<Integer> board;
 
-	public Baseball() {
-		// cf. draw a lottery
-		draw();
-	}
-
-	private void draw() {
+	public void create() {
 		int tryCount = 0;
 		board = new LinkedHashSet<>();
 		while(board.size() < GAME_SIZE && tryCount < MAX_GAME_CREATE_TRY) {
