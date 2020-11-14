@@ -3,10 +3,12 @@ package model;
 import java.util.Arrays;
 
 public class ThreeDigits {
+    public static final int COUNT_OF_DIGITS = 3;
+
     private final int[] digits;
 
     public ThreeDigits(char digit1, char digit2, char digit3) {
-        this.digits = new int[3];
+        this.digits = new int[COUNT_OF_DIGITS];
         this.digits[0] = Character.getNumericValue(digit1);
         this.digits[1] = Character.getNumericValue(digit2);
         this.digits[2] = Character.getNumericValue(digit3);

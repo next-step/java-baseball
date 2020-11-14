@@ -1,5 +1,6 @@
 package component;
 
+import model.ThreeDigits;
 import model.PatternResult;
 
 public class AnswerChecker {
@@ -10,6 +11,6 @@ public class AnswerChecker {
             return false;
         }
 
-        return patternResult.getStrikeCount() == 3;
+        return patternResult.getStrikeCount() == ThreeDigits.COUNT_OF_DIGITS;
     }
 }

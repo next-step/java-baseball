@@ -13,7 +13,7 @@ public class AnswerCreator {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int count = 1; count <= 3; count++) {
+        for (int count = 1; count <= ThreeDigits.COUNT_OF_DIGITS; count++) {
             stringBuilder.append(iterator.next());
         }
 

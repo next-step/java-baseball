@@ -1,4 +1,5 @@
 import component.AnswerChecker;
+import model.ThreeDigits;
 import model.PatternResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,9 @@ public class AnswerCheckerTest {
     boolean isFoundAnswerByAnyBallCounts(int strikeCount) {
         boolean isFound = false;
 
-        for (int ballCount = 1; !isFound && ballCount < 3 - strikeCount; ballCount++) {
+        int maxBallCount = ThreeDigits.COUNT_OF_DIGITS - strikeCount;
+
+        for (int ballCount = 1; !isFound && ballCount <= maxBallCount; ballCount++) {
             PatternResult patternResult = new PatternResult(strikeCount, ballCount);
             isFound = AnswerChecker.isPatternForAnswer(patternResult);
         }

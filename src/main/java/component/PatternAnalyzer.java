@@ -23,7 +23,7 @@ public class PatternAnalyzer {
     private int getStrikeCount() {
         int strikeCount = 0;
 
-        for (int index = 0; index < 3; index++) {
+        for (int index = 0; index < ThreeDigits.COUNT_OF_DIGITS; index++) {
             int actualDigit = actual.getDigitAt(index);
             int answerDigit = answer.getDigitAt(index);
             boolean isSame = actualDigit == answerDigit;
@@ -37,7 +37,7 @@ public class PatternAnalyzer {
     private int getBallCount() {
         int ballCount = 0;
 
-        for (int index = 0; index < 3; index++) {
+        for (int index = 0; index < ThreeDigits.COUNT_OF_DIGITS; index++) {
             int actualDigit = actual.getDigitAt(index);
             int answerDigit = answer.getDigitAt(index);
             boolean isContains = (actualDigit != answerDigit && answer.contains(actualDigit));
