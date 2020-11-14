@@ -6,8 +6,6 @@ import java.util.EnumMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * @author choijaeyong on 2020/11/11.
@@ -22,18 +20,22 @@ public class ScoreCalculatorTest {
     scoreCalculator = new ScoreCalculator();
   }
 
-  @DisplayName("점수를 입력하면 점수표가 출력")
+  @DisplayName("점수를 입력하면 점수표가 생성된다")
   @Test
-  public void givenStringGetResult() {
+  public void givenStringGetScoreTable() {
     String computerString = "713";
-    assertThat(scoreCalculator.calculate("713", computerString).getScoreMap()).containsEntry(Score.STRIKE,3);
-    assertThat(scoreCalculator.calculate("714", computerString).getScoreMap()).containsEntry(Score.STRIKE,2);
-    assertThat(scoreCalculator.calculate("216", computerString).getScoreMap()).containsEntry(Score.STRIKE,1);
-    assertThat(scoreCalculator.calculate("245", computerString).getScoreMap()).isEmpty();
-    assertThat(scoreCalculator.calculate("145", computerString).getScoreMap()).containsKey(Score.BALL).containsValue(1);
-    assertThat(scoreCalculator.calculate("134", computerString).getScoreMap()).containsKey(Score.BALL).containsValue(2);
-    assertThat(scoreCalculator.calculate("137", computerString).getScoreMap()).containsKey(Score.BALL).containsValue(3);
-    assertThat(scoreCalculator.calculate("734", computerString).getScoreMap()).containsEntry(Score.STRIKE,1).containsEntry(Score.BALL,1);
+    assertThat(calculateScore(computerString, "713")).containsEntry(Score.STRIKE,3);
+    assertThat(calculateScore(computerString, "714")).containsEntry(Score.STRIKE,2);
+    assertThat(calculateScore(computerString, "216")).containsEntry(Score.STRIKE,1);
+    assertThat(calculateScore(computerString, "245")).isEmpty();
+    assertThat(calculateScore(computerString, "145")).containsKey(Score.BALL).containsValue(1);
+    assertThat(calculateScore(computerString, "134")).containsKey(Score.BALL).containsValue(2);
+    assertThat(calculateScore(computerString, "137")).containsKey(Score.BALL).containsValue(3);
+    assertThat(calculateScore(computerString, "734")).containsEntry(Score.STRIKE,1).containsEntry(Score.BALL,1);
+    assertThat(calculateScore(computerString, "295")).isEmpty();
   }
 
+  private EnumMap<Score, Integer> calculateScore(String computerString, String inputString) {
+    return scoreCalculator.calculate(computerString, inputString).getScoreMap();
+  }
 }

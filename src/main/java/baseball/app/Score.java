@@ -6,5 +6,13 @@ package baseball.app;
  * @description
  */
 public enum Score {
-  STRIKE,BALL
+  STRIKE("스트라이크"),BALL("볼"),NONE("낫싱");
+
+  private String name;
+  Score(String name) {
+    this.name = name;
+  }
+  public String getName() {
+    return this.name;
+  }
 }
