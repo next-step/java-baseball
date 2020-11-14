@@ -48,7 +48,7 @@ class UniqueRandomNumbersGeneratorTest {
 		assertThat(limitCount).isEqualTo(this.max - this.min + 1);
 	}
 
-	@DisplayName("유니크한 랜덤 넘버 생성")
+	@DisplayName("유니크한 랜덤 넘버 생성 테스트")
 	@ParameterizedTest
 	@MethodSource("generate")
 	void generate(int count) {

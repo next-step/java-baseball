@@ -19,10 +19,10 @@ class BallsTest {
 		Balls balls = new Balls(numbers);
 
 		assertThat(balls).isNotNull();
-		checkNumbers(balls, numbers);
+		testNumbers(balls, numbers);
 	}
 
-	private void checkNumbers(Balls balls, String numbers) {
+	private void testNumbers(Balls balls, String numbers) {
 		int[] ballNumbers = getNumbers(balls);
 
 		assertThat(ballNumbers.length).isEqualTo(numbers.length());
