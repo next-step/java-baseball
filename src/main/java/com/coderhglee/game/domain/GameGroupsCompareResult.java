@@ -9,6 +9,14 @@ public class GameGroupsCompareResult {
         this.numberAndDigitSameScore = numberAndDigitSameCount;
     }
 
+    public int getNumberSameScore() {
+        return numberSameScore;
+    }
+
+    public int getNumberAndDigitSameScore() {
+        return numberAndDigitSameScore;
+    }
+
     @Override
     public int hashCode() {
         int result = numberSameScore;
