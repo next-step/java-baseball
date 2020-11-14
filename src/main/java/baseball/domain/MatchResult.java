@@ -15,4 +15,5 @@ public enum MatchResult {
     public String getMessage() {
         return message;
     }
+
 }

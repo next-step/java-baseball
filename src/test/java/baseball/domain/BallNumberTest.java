@@ -41,4 +41,5 @@ class BallNumberTest {
         //then
         Assertions.assertTrue(result);
     }
+
 }

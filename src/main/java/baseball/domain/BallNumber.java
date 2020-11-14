@@ -22,6 +22,7 @@ public class BallNumber {
             throw new IllegalBallNumberException(RANGE_ERROR_MESSAGE);
         }
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,4 +35,5 @@ public class BallNumber {
     public int hashCode() {
         return Objects.hash(number);
     }
+
 }
