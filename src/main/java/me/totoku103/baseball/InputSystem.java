@@ -11,7 +11,7 @@ public class InputSystem {
 
     public InputSystem(int inputMaxLength) {
         this.inputMaxLength = inputMaxLength;
-        this.inputPattern = Pattern.compile(String.format("\\d{%d}", this.inputMaxLength));
+        this.inputPattern = Pattern.compile(String.format("\\d{1,%d}", this.inputMaxLength));
         this.scanner = new Scanner(System.in);
     }
 
