@@ -18,4 +18,10 @@ public class ValidatorTest {
     public void isLength3(final String input, final boolean expected){
         assertThat(Validator.isLength3(input)).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "2:true", "3:false", ":false", "sav:false"}, delimiter = ':')
+    public void isNumber1Or2(final String input, final boolean expected) {
+        assertThat(Validator.isNumber1Or2(input)).isEqualTo(expected);
+    }
 }
