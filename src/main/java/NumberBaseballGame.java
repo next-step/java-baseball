@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
 public class NumberBaseballGame {
-	
+
 	public final static int RANDOM_DIGIT = 3;
-	
+
 	static Scanner scanner = new Scanner(System.in);
-	
+
 	public static void main(String[] args) {
-		
+
 		readyBaseball();
-		
+
 		scanner.close();
 	}
-	
+
 	/**
 	 * 
 	 * 숫자를 입력받아 게임 진행
@@ -22,19 +22,18 @@ public class NumberBaseballGame {
 	 */
 	private static void readyBaseball() {
 		boolean isKeep = true;
-		
+
 		while (isKeep) {
 			generateRandomNumDigitException(RANDOM_DIGIT);
 			int randomNum = generateRandomNumDigit(RANDOM_DIGIT);
-						
+
 			System.out.println("랜덤 생성된 정수 : " + randomNum); // TODO: 개발 후 삭제
 
 			playBaseball(randomNum);
 			isKeep = isKeepGame();
 		}
 	}
-	
-	
+
 	/**
 	 * 
 	 * 숫자를 입력받아 게임 진행
@@ -52,9 +51,8 @@ public class NumberBaseballGame {
 			int ballCount = countBall(randomNum, inputNum) - strikeCount;
 			System.out.println(printBaseball(ballCount, strikeCount));
 			isKeep = !(isWinGame(strikeCount));
-		} while(isKeep);
+		} while (isKeep);
 	}
-	
 
 	/**
 	 * 
@@ -75,8 +73,7 @@ public class NumberBaseballGame {
 
 		return Integer.parseInt(randomNum);
 	}
-	
-	
+
 	/**
 	 * 
 	 * generateRandomNumDigit 실행시 범위를 벗어날 경우 예외처리 (범위 : 1~9)
@@ -85,7 +82,7 @@ public class NumberBaseballGame {
 	 * 
 	 */
 	private static void generateRandomNumDigitException(int digit) {
-		
+
 		String message = "랜덤으로 생성되는 자릿수는 1~9까지 입니다.";
 
 		if (digit < 1 || digit > 9) {
@@ -95,8 +92,7 @@ public class NumberBaseballGame {
 		}
 
 	}
-	
-	
+
 	/**
 	 * 
 	 * ball 카운트 (같은 수가 다른 자리에 있으면 볼)
@@ -108,15 +104,14 @@ public class NumberBaseballGame {
 	private static int countBall(int randomNum, int inputNum) {
 		int ball = 0;
 		String[] randomNumArr = (randomNum + "").split("");
-		
+
 		for (String randomNumArrInex : randomNumArr) {
 			ball = ((inputNum + "").contains(randomNumArrInex)) ? ball + 1 : ball;
 		}
-		
+
 		return ball;
 	}
-	
-	
+
 	/**
 	 * 
 	 * strike 카운트 (같은 수가 같은 자리에 있으면 스트라이크)
@@ -129,15 +124,14 @@ public class NumberBaseballGame {
 		int strike = 0;
 		String[] randomNumArr = (randomNum + "").split("");
 		String[] inputNumArr = (inputNum + "").split("");
-		
+
 		for (int i = 0; i < randomNumArr.length; i++) {
 			strike = (randomNumArr[i].equals(inputNumArr[i])) ? strike + 1 : strike;
 		}
-		
+
 		return strike;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 볼 / 스트라이크 / 포볼(낫싱) 출력
@@ -159,7 +153,6 @@ public class NumberBaseballGame {
 		return strikeCount + " 스트라이크 " + ballCount + " 볼";
 	}
 
-	
 	/**
 	 * 
 	 * 게임 승리 여부 반환 (스트라이크 3)
@@ -171,12 +164,11 @@ public class NumberBaseballGame {
 	private static boolean isWinGame(int strikeCount) {
 		if (strikeCount == 3) {
 			System.out.println(RANDOM_DIGIT + "개의 숫자를 모두 맞히셨습니다! 게임종료");
-			
+
 			return true;
 		}
 		return false;
 	}
-	
 
 	/**
 	 * 
@@ -191,8 +183,7 @@ public class NumberBaseballGame {
 		String str = inputNumber(1, showMsg);
 		return (str.equals("1")) ? true : false;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 숫자 입력받는 메서드
@@ -204,17 +195,16 @@ public class NumberBaseballGame {
 	private static String inputNumber(int digit, String showMsg) {
 		boolean isCorrect = false;
 		String inputNum = "";
-		
+
 		while (!isCorrect) {
 			System.out.print(showMsg);
 			inputNum = scanner.next();
 			isCorrect = inputNumberException(inputNum, digit);
 		}
-		
+
 		return inputNum;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 입력받은 숫자 예외처리
@@ -224,14 +214,13 @@ public class NumberBaseballGame {
 	 * 
 	 */
 	private static boolean inputNumberException(String inputNum, int digit) {
-		if (!inputNumberIntegerException(inputNum) || !inputNumberZeroException(inputNum) 
-				|| !inputNumberLengthException(inputNum, digit)) {
+		if (!inputNumberIntegerException(inputNum) || !inputNumberZeroException(inputNum)
+			|| !inputNumberLengthException(inputNum, digit)) {
 			return false;
 		}
 		return true;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 입력받은 문자가 정수인지 체크
@@ -249,8 +238,7 @@ public class NumberBaseballGame {
 		}
 		return true;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 입력받은 문자에 0이 포함되어 있는지 체크
@@ -266,8 +254,7 @@ public class NumberBaseballGame {
 		}
 		return true;
 	}
-	
-	
+
 	/**
 	 * 
 	 * 입력받은 문자 자릿수가 맞는지 체크
@@ -283,6 +270,5 @@ public class NumberBaseballGame {
 		}
 		return true;
 	}
-	
-	
+
 }
