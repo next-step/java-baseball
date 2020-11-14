@@ -26,6 +26,11 @@ public class BallCountPrinter {
             sb.append(GameResource.TEXT_NOTHING);
         }
 
+        if(ballCount.isEndGame()){
+            sb.append("\r\n");
+            sb.append(GameResource.TEXT_GAME_END);
+        }
+
         System.out.println(sb.toString().trim());
     }
 }
