@@ -8,6 +8,9 @@ import baseball.exception.BallException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ThreeBallTest {
@@ -31,6 +34,19 @@ class ThreeBallTest {
                 () -> new ThreeBall(null)
         ).isInstanceOf(BallException.class)
                 .hasMessage("공 생성에 실패 하였습니다.");
+    }
+
+    @DisplayName("공의 개수가 3개인지 validate")
+    @Test
+    public void ball_size_fail() throws Exception {
+        //given
+        BallGenerateStrategy generator = () -> new ArrayList<>(Arrays.asList(1, 2));
+
+        //then
+        assertThatThrownBy(
+                () -> new ThreeBall(generator)
+        ).isInstanceOf(BallException.class)
+                .hasMessage("공의 사이즈가 3개가 되어야 합니다.");
     }
 
 }
