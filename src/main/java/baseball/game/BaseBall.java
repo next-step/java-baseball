@@ -1,14 +1,14 @@
 package baseball.game;
 
-import baseball.common.PrintMessage;
-import baseball.common.Print;
-import baseball.computer.Computer;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
+
+import baseball.common.PrintMessage;
+import baseball.common.Print;
+import baseball.computer.Computer;
 
 public class BaseBall {
 
@@ -156,7 +156,6 @@ public class BaseBall {
    */
   void checkUserBallAndComputerBall(final LinkedHashSet<Integer> computerBalls,
                                     final LinkedHashSet<Integer> userBalls) {
-    System.out.println("computerBalls = " + computerBalls);
     List<Integer> converterUserBalls = new ArrayList<>(userBalls);
     List<Integer> converterComputerBalls = new ArrayList<>(computerBalls);
 
@@ -215,7 +214,7 @@ public class BaseBall {
    * 스트라이크 & 볼 비교 후 메시지 출력
    */
   private void writeMatchMessage() {
-    boolean isStrike = this.getResult().isStrike();
+    boolean isStrike = this.getResult().isClearStrike();
 
     if (isStrike) {
       checkResetGame();
@@ -263,10 +262,12 @@ public class BaseBall {
 
     int inputNumber = validateInputNumberType(this.scanner);
 
-    if (inputNumber == GAME_RETRY) {
-      createComputer(); // 대결을 위한 새로운 컴퓨터 생성
-      this.play();
+    if (inputNumber != GAME_RETRY) {
+      System.exit(0);
     }
+
+    createComputer(); // 대결을 위한 새로운 컴퓨터 생성
+    this.play();
   }
 
 }

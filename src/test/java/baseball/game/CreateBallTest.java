@@ -1,6 +1,7 @@
-package baseball.common;
+package baseball.game;
 
-import baseball.game.CreateBall;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,8 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
+import baseball.common.PrintMessage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -45,7 +45,7 @@ class CreateBallTest {
         () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
     );
 
-    assertTrue(exception.getMessage().contains("랜덤으로 나온 숫자가 0이거나 10보다 큽니다."));
+    assertTrue(exception.getMessage().contains(PrintMessage.RANDOM_NUMBER_MIN_MAX_ERROR));
   }
 
   @DisplayName("현재 등록 된 랜덤 숫자 최대값이 10인 경우")
@@ -62,7 +62,7 @@ class CreateBallTest {
         () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
     );
 
-    assertTrue(exception.getMessage().contains("랜덤으로 나온 숫자가 0이거나 10보다 큽니다."));
+    assertTrue(exception.getMessage().contains(PrintMessage.RANDOM_NUMBER_MIN_MAX_ERROR));
   }
 
   @DisplayName("현재 등록 된 랜덤 숫자의 길이가 3이 아닌 경우 (LinkedHashSet)의 중복 여부 체크")
@@ -79,7 +79,7 @@ class CreateBallTest {
         () -> createBall.validateRandomBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
     );
 
-    assertTrue(exception.getMessage().contains("랜덤으로 추출 된 크기가 3이 아닙니다."));
+    assertTrue(exception.getMessage().contains(PrintMessage.RANDOM_NUMBER_SIZE_ERROR));
   }
 
 }

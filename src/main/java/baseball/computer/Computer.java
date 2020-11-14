@@ -1,8 +1,8 @@
 package baseball.computer;
 
-import baseball.game.CreateBall;
-
 import java.util.LinkedHashSet;
+
+import baseball.game.CreateBall;
 
 public class Computer {
 

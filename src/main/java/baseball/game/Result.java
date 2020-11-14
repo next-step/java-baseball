@@ -33,7 +33,7 @@ class Result {
     return this.strike == 0 && this.ball == 0;
   }
 
-  boolean isStrike() {
+  boolean isClearStrike() {
     return this.strike == CLEAR_STRIKE_COUNT;
   }
 

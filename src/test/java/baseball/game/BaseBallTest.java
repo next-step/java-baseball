@@ -1,15 +1,17 @@
 package baseball.game;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import baseball.common.PrintMessage;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,7 +44,7 @@ class BaseBallTest {
         () -> baseBall.validateInputNumberType(new Scanner((inputNumber)))
     );
 
-    assertTrue(exception.getMessage().contains("숫자만 입력이 가능합니다."));
+    assertTrue(exception.getMessage().contains(PrintMessage.INPUT_NUMBER_ERROR));
   }
 
   @DisplayName("3개의 숫 입력 여부 (정상)")
@@ -61,7 +63,7 @@ class BaseBallTest {
         () -> baseBall.validateInputNumberSize(inputNumber)
     );
 
-    assertTrue(exception.getMessage().contains("3개의 입력 숫자가 필요합니다."));
+    assertTrue(exception.getMessage().contains(PrintMessage.INPUT_NUMBER_SIZE_ERROR));
   }
 
   @DisplayName("중복 된 숫자가 포함되어 있는 경우 (정상)")
@@ -92,7 +94,7 @@ class BaseBallTest {
         () -> baseBall.validateInputNumberToBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
     );
 
-    assertTrue(exception.getMessage().contains("중복 된 숫자가 포함되어 있습니다."));
+    assertTrue(exception.getMessage().contains(PrintMessage.INPUT_NUMBER_DUPLICATE_ERROR));
   }
 
   @DisplayName("사용자 입력 받은 숫자 LinkedHashSet 생성")

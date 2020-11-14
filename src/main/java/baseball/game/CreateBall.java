@@ -1,10 +1,10 @@
 package baseball.game;
 
-import baseball.common.PrintMessage;
-
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Random;
+
+import baseball.common.PrintMessage;
 
 public class CreateBall {
 
@@ -27,7 +27,7 @@ public class CreateBall {
    * 생성 된 랜덤 3개의 숫자(볼) 및 숫자 가져오기
    * @return 중복 없는 랜덤 3개의 숫자 LinkedHashSet
    */
-  public LinkedHashSet<Integer> getBalls() {
+  LinkedHashSet<Integer> getBalls() {
     return this.balls;
   }
 
@@ -51,7 +51,7 @@ public class CreateBall {
    * 현재 저장 된 랜덤 3개의 숫자(볼) 최소값 및 최대값 체크
    * @param balls 등록 된 랜덤 3개의 숫자(볼) LinkedHashSet
    */
-  public void validateRandomBallMax(final LinkedHashSet<Integer> balls) {
+  void validateRandomBallMax(final LinkedHashSet<Integer> balls) {
     int minNumber = Collections.min(balls);
     int maxNumber = Collections.max(balls);
 
@@ -64,7 +64,7 @@ public class CreateBall {
    * 현재 저장 된 랜덤 크기 실제 원해는 배열의 크가가 맞는 지 체크
    * @param balls 등록 된 랜덤 3개의 숫자(볼) LinkedHashSet
    */
-  public void validateRandomBallSize(final LinkedHashSet<Integer> balls) {
+  void validateRandomBallSize(final LinkedHashSet<Integer> balls) {
     if (balls.size() != COLLECTION_NUMBER_SIZE) {
       throw new IllegalArgumentException(PrintMessage.RANDOM_NUMBER_SIZE_ERROR);
     }
