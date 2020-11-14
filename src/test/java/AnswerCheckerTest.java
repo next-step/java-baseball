@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class AnswerCheckerTest {
     @Test
     @DisplayName("3 스트라이크는 정답이어야 한다.")
-    void checkTrue_IfThreeStrikesShouldBeAnswer() {
+    void checkTrue_IfThreeStrikesAreAnswer() {
         PatternResult patternResult = new PatternResult(3, 0);
         assertTrue(AnswerChecker.isPatternForAnswer(patternResult));
     }
 
     @Test
     @DisplayName("3 스트라이크 이외에의 다른 스트라이크는 정답이 아니어야 한다.")
-    void checkTrue_IfAnyStrikesExceptForThreeStrikesShouldNotBeAnswer() {
+    void checkTrue_IfAnyStrikesExceptForThreeStrikesIsNotBeAnswer() {
         for (int strikeCount = 0; strikeCount < 3; strikeCount++) {
             PatternResult patternResult = new PatternResult(3, 0);
             assertTrue(AnswerChecker.isPatternForAnswer(patternResult));
@@ -24,7 +24,7 @@ public class AnswerCheckerTest {
 
     @Test
     @DisplayName("볼이 있는 경우에는 정답이 아니어야 한다.")
-    void checkTrue_IfAnyBallsShouldNotBeAnswer() {
+    void checkTrue_IfAnyBallsIsNotBeAnswer() {
         for (int strikeCount = 0; strikeCount < 3; strikeCount++) {
             if (isFoundAnswerByAnyBallCounts(strikeCount)) {
                 fail();
