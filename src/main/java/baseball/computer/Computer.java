@@ -6,14 +6,14 @@ import baseball.game.CreateBall;
 
 public class Computer {
 
-  private final LinkedHashSet<Integer> balls;
+    private final LinkedHashSet<Integer> balls;
 
-  public Computer() {
-    this.balls = new CreateBall().createRandomBalls();
-  }
+    public Computer() {
+        this.balls = new CreateBall().createRandomBalls();
+    }
 
-  public LinkedHashSet<Integer> getBalls() {
-    return this.balls;
-  }
+    public LinkedHashSet<Integer> getBalls() {
+        return this.balls;
+    }
 
 }
