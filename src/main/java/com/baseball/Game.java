@@ -3,11 +3,22 @@ package com.baseball;
 import java.util.Random;
 
 public class Game {
+    Integer n1;
+    Integer n2;
+    Integer n3;
+
+    public Game() {
+    }
+
+    public Game(Integer n1, Integer n2, Integer n3) {
+        this.n1 = n1;
+        this.n2 = n2;
+        this.n3 = n3;
+    }
 
     public Integer randomNumber() {
         Random random = new Random();
 
-        Integer n1, n2, n3;
         n1 = random.nextInt(8) + 1;
 
         do {
@@ -19,6 +30,23 @@ public class Game {
         } while (n3 == n1 || n3 == n2);
 
         return (n1 * 100) + (n2 * 10) + n3;
+    }
+
+    public Integer countStrike(Integer inputNumber) {
+        Integer a1 = inputNumber / 100;
+        Integer a2 = (inputNumber - a1 * 100) / 10;
+        Integer a3 = inputNumber % 10;
+
+        Integer strike = 0;
+
+        if (a1 == this.n1)
+            strike++;
+        if (a2 == this.n2)
+            strike++;
+        if (a3 == this.n3)
+            strike++;
+
+        return strike;
     }
 
 }

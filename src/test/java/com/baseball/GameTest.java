@@ -28,4 +28,18 @@ class GameTest {
         assertTrue(n2 != n3);
         assertTrue(n3 != n1);
     }
+
+    @DisplayName("스트라이크 갯수 세기")
+    @Test
+    void countStrike() {
+        Game game = new Game(1, 2, 3);  // 123
+
+        assertEquals(1, game.countStrike(145));
+        assertEquals(1, game.countStrike(724));
+        assertEquals(1, game.countStrike(753));
+        assertEquals(2, game.countStrike(125));
+        assertEquals(2, game.countStrike(523));
+        assertEquals(2, game.countStrike(163));
+        assertEquals(3, game.countStrike(123));
+    }
 }
