@@ -41,12 +41,20 @@ public class BallCount {
 		this.ball++;
 	}
 
-	public int getStrike() {
-		return strike;
+	public String getStrikeText() {
+		return new StringBuilder()
+			.append(strike)
+			.append(GameResource.TEXT_STRIKE)
+			.append(GameResource.TEXT_BLANK)
+			.toString();
 	}
 
-	public int getBall() {
-		return ball;
+	public String getBallText() {
+		return new StringBuffer()
+			.append(ball)
+			.append(GameResource.TEXT_BALL)
+			.append(GameResource.TEXT_BLANK)
+			.toString();
 	}
 
 	@Override
