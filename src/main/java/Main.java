@@ -23,7 +23,7 @@ public class Main {
         Score score = new Score();
         while (!score.isAllStrike()) {
             score = matchMachine.compare(new BaseballNumber(InputView.inputNumber()).getNumber());
-            score.printScore();
+            ResultView.printScore(score);
         }
     }
 }
