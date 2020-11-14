@@ -5,8 +5,7 @@ import model.ThreeDigits;
 import java.util.*;
 
 public class AnswerCreator {
-    private AnswerCreator() {
-    }
+    private AnswerCreator() {}
 
     public static ThreeDigits createAnswer() {
         Iterator<Integer> iterator = new ShuffledUniqueRandomNumbers(1, 9)

@@ -3,8 +3,7 @@ package component;
 import model.PatternResult;
 
 public class AnswerChecker {
-    private AnswerChecker() {
-    }
+    private AnswerChecker() {}
 
     public static boolean isPatternForAnswer(PatternResult patternResult) {
         if (patternResult.getBallCount() != 0) {

@@ -5,8 +5,7 @@ import model.PatternResult;
 import java.util.StringJoiner;
 
 public class PatternDisplayFormatter {
-    private PatternDisplayFormatter() {
-    }
+    private PatternDisplayFormatter() {}
 
     public static String format(PatternResult patternResult) {
         int strikeCount = patternResult.getStrikeCount();

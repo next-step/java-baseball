@@ -3,8 +3,7 @@ package component;
 import model.ThreeDigits;
 
 public class ThreeDigitsFactory {
-    private ThreeDigitsFactory() {
-    }
+    private ThreeDigitsFactory() {}
 
     public static ThreeDigits createFrom(String value) {
         char digit1 = value.charAt(0);
