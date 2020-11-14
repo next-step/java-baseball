@@ -1,3 +1,5 @@
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.Arrays;
 
 public class JunitString {
@@ -27,11 +29,21 @@ public class JunitString {
 
 		return str;
 	}
-	
+
 	// String 요구사항3
 	// "abc" 값이 주어졌을 때 String의 charAt() 메소드를 활용해 특정 위치의 문자를 가져오는 학습 테스트를 구현한다.
+	// String의 charAt() 메소드를 활용해 특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생하는 부분에 대한 학습 테스트를 구현한다.
 	public char charAtStrReturn(String str, int index) {
-		return str.charAt(index);
+
+		char result = 0;
+
+		try {
+			result = str.charAt(index);
+		} catch (Exception e) {
+			assertThat(e).hasMessage("Index: " + index + ", Size: " + str.length());
+		}
+
+		return result;
 	}
 
 }
