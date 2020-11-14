@@ -18,7 +18,7 @@ public class AnswerCreator {
             stringBuilder.append(iterator.next());
         }
 
-        return ThreeDigits.createFrom(stringBuilder.toString());
+        return ThreeDigitsFactory.createFrom(stringBuilder.toString());
     }
 
     private static class ShuffledUniqueRandomNumbers implements Iterable<Integer> {

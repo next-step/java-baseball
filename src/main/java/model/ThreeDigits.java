@@ -3,13 +3,6 @@ package model;
 import java.util.Arrays;
 
 public class ThreeDigits {
-    public static ThreeDigits createFrom(String value) {
-        char digit1 = value.charAt(0);
-        char digit2 = value.charAt(1);
-        char digit3 = value.charAt(2);
-        return new ThreeDigits(digit1, digit2, digit3);
-    }
-
     private final int[] digits;
 
     public ThreeDigits(char digit1, char digit2, char digit3) {
