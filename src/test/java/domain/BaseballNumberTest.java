@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class BaseballNumberTest {
     @DisplayName("숫자 길이를 만족하지 못할 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"12", "1234", "9"})
-    void checkLength(String number) {
+    @ValueSource(ints = {12, 1234, 9})
+    void validateLength(int number) {
         assertThatThrownBy(() -> new BaseballNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자 3개만 입력해주세요.");
@@ -18,8 +18,8 @@ class BaseballNumberTest {
 
     @DisplayName("0이 들어가 있을 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"102", "130"})
-    void checkZero(String number) {
+    @ValueSource(ints = {102, 130})
+    void validateZero(int number) {
         assertThatThrownBy(() -> new BaseballNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("0이 들어있습니다.");
@@ -27,8 +27,8 @@ class BaseballNumberTest {
 
     @DisplayName("중복된 숫자가 있을 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"111", "121", "889"})
-    void checkDuplicate(String number) {
+    @ValueSource(ints = {111, 121, 889})
+    void validateDuplicate(int number) {
         assertThatThrownBy(() -> new BaseballNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("중복되는 숫자가 있습니다.");
