@@ -8,4 +8,12 @@ public class BaseballGame {
 	public void setPlayer(BaseballGamer player) {
 		this.player = player;
 	}
+
+	public void resetComputer() {
+		computer = BaseballGamer.generateComputer(SELECTED_NUMBER_SIZE);
+	}
+
+	public BaseballGamer getComputer() {
+		return computer;
+	}
 }

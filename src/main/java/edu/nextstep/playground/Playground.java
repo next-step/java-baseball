@@ -12,6 +12,7 @@ public class Playground {
 
 	private void playBaseballGame() {
 		BaseballGame game = new BaseballGame();
+		game.resetComputer();
 		String inputNumber = Ui.inputThreeNumber();
 		game.setPlayer(new BaseballGamer(inputNumber));
 	}
