@@ -1,3 +1,5 @@
+package component;
+
 import model.PatternResult;
 
 import java.util.StringJoiner;

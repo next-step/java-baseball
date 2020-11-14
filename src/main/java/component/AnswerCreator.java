@@ -1,3 +1,5 @@
+package component;
+
 import model.ThreeDigits;
 
 import java.util.*;

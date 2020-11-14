@@ -1,3 +1,4 @@
+import component.PatternAnalyzer;
 import model.PatternResult;
 import model.ThreeDigits;
 import org.junit.jupiter.api.DisplayName;
