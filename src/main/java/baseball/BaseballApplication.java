@@ -22,10 +22,12 @@ public class BaseballApplication {
         BaseballConfig baseballConfig = new BaseballConfig();
         BaseballController baseballController = baseballConfig.baseballController();
 
-        Request request = InputView.input();
+        Request request = new Request(InputView.input());
         Response response = baseballController.play(request);
+        ResultView.print(response);
+
         while (!response.isFinish()) {
-            response = baseballController.play(InputView.input());
+            response = baseballController.play(new Request(InputView.input()));
             ResultView.print(response);
         }
 
