@@ -10,7 +10,11 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        playGame(scanner);
+        boolean playAgain = true;
+        while (playAgain) {
+            playGame(scanner);
+            playAgain = askPlayAgain(scanner);
+        }
     }
 
     private static void playGame(Scanner scanner) {
@@ -23,7 +27,6 @@ public class App {
         } while (!result.is3Strikes());
 
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-        postGame(scanner);
     }
 
     private static String getInputNumber(Scanner scanner) {
@@ -33,16 +36,15 @@ public class App {
         return input;
     }
 
-    private static void postGame(Scanner scanner) {
+    private static boolean askPlayAgain(Scanner scanner) {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         switch (scanner.nextLine()) {
             case "1":
-                playGame(scanner);
-                break;
+                return true;
             case "2":
-                break;
+                return false;
             default:
-                break;
+                throw new IllegalArgumentException("1 또는 2만 입력 가능합니다.");
         }
     }
 }
