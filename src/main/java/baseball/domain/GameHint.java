@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 public class GameHint {
 	private int strikeCount = 0;

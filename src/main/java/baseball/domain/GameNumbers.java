@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import java.util.Iterator;
 import java.util.List;

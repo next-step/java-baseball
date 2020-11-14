@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -10,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import baseball.domain.exception.InvalidGameInputException;
 
 class GameTest {
 	@DisplayName("게임 초기화시 정답 생성")

@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 @FunctionalInterface
 public interface GameNumberGenerator {

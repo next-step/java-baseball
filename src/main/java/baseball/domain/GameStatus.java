@@ -1,7 +1,6 @@
-package baseball;
+package baseball.domain;
 
 public enum GameStatus {
-	READY,
 	IN_PROGRESSING,
 	END
 }

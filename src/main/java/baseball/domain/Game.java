@@ -1,7 +1,9 @@
-package baseball;
+package baseball.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import baseball.domain.exception.InvalidGameInputException;
 
 public class Game {
 	public static final int MAX_GAME_NUMBER_LENGTH = 3;
