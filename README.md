@@ -56,7 +56,7 @@
     * 1~9 범위의 숫자로 초기화 되었는지 validate
 - [x] 게임 숫자 비교 결과를 저장하는 class 생성
     * 결과 insert 기능
-- [ ] 위의 숫자 class 3개를 List로 가지는 class 생성
+- [x] 위의 숫자 class 3개를 List로 가지는 class 생성
     * 랜덤 숫자 생성 전략을 전달 받아 객체 생성
     * 전략, 생성된 list의 길이 validate 
     * 비교 로직 생성
