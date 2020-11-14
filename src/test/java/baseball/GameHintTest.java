@@ -2,6 +2,8 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,10 +15,12 @@ class GameHintTest {
 	@CsvSource(value = {"456:0", "425:1", "423:2", "315:0"}, delimiter = ':')
 	void countStrike(String input, int count) throws Exception {
 		// Given
-		String answer = "123";
+		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
+		Game game = new Game(new GameNumberRandomGenerator());
+		GameNumbers userAnswer = game.convertInputToGameNumbers(input);
 
 		// When
-		GameHint gameHint = new GameHint(answer, input);
+		GameHint gameHint = new GameHint(rightAnswer, userAnswer);
 
 		// Then
 		assertThat(gameHint.countStrike()).isEqualTo(count);
@@ -27,10 +31,12 @@ class GameHintTest {
 	@CsvSource(value = {"456:0", "415:1", "315:2", "231:3", "132:2"}, delimiter = ':')
 	void countBall(String input, int count) throws Exception {
 		// Given
-		String answer = "123";
+		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
+		Game game = new Game(new GameNumberRandomGenerator());
+		GameNumbers userAnswer = game.convertInputToGameNumbers(input);
 
 		// When
-		GameHint gameHint = new GameHint(answer, input);
+		GameHint gameHint = new GameHint(rightAnswer, userAnswer);
 
 		// Then
 		assertThat(gameHint.countBall()).isEqualTo(count);
@@ -40,11 +46,11 @@ class GameHintTest {
 	@Test
 	void isNothing() throws Exception {
 		// Given
-		String answer = "123";
-		String input = "456";
+		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
+		GameNumbers userAnswer = new GameNumbers(Arrays.asList(4, 5, 6));
 
 		// When
-		GameHint gameHint = new GameHint(answer, input);
+		GameHint gameHint = new GameHint(rightAnswer, userAnswer);
 
 		// Then
 		assertThat(gameHint.isNothing()).isTrue();

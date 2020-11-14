@@ -45,11 +45,13 @@ public class Game {
 		}
 	}
 
-	public void inputUserAnswer(String input) {
+	public GameHint inputUserAnswer(String input) {
 		GameNumbers userAnswer = convertInputToGameNumbers(input);
 		if (userAnswer.equals(rightAnswer)) {
 			status = GameStatus.END;
+			return null;
 		}
+		return new GameHint(rightAnswer, userAnswer);
 	}
 
 	public boolean isFinished() {

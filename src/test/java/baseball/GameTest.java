@@ -75,7 +75,7 @@ class GameTest {
 
 	@DisplayName("입력이 정답이 아니라면 게임은 계속 진행된다.")
 	@Test
-	public void isInputWrongAnswer() throws Exception {
+	void isInputWrongAnswer() throws Exception {
 	    // Given
 		Game game = new Game(new GameNumberTestGenerator());
 
@@ -85,6 +85,22 @@ class GameTest {
 	    // Then
 		assertThat(game.isFinished()).isFalse();
 	}
+
+	@DisplayName("입력이 정답이 아니라면 게임 힌트를 받는다.")
+	@Test
+	public void checkHint() throws Exception {
+	    // Given
+		Game game = new Game(new GameNumberTestGenerator());
+
+	    // When
+		GameHint gameHint = game.inputUserAnswer("456");
+
+		// Then
+		assertThat(gameHint.countStrike()).isEqualTo(0);
+		assertThat(gameHint.countBall()).isEqualTo(0);
+		assertThat(gameHint.isNothing()).isTrue();
+	}
+
 
 	private static class GameNumberTestGenerator implements GameNumberGenerator {
 		@Override
