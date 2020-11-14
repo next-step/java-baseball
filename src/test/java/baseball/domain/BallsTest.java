@@ -66,7 +66,7 @@ class BallsTest {
         assertEquals(expected, actual);
     }
 
-    @DisplayName("숫자 비교 - ALL MISS")
+    @DisplayName("숫자 비교 - OUT")
     @Test
     void match_miss() {
         //given
@@ -77,7 +77,7 @@ class BallsTest {
 
         //then
         Map<Status, Integer> expected = new HashMap<>();
-        expected.put(Status.MISS, 3);
+        expected.put(Status.OUT, 3);
 
         assertEquals(expected, actual);
     }

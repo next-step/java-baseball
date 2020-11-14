@@ -17,6 +17,7 @@ class BaseBallGameTest {
     @BeforeEach
     void setUp() {
         ballGame = new BaseBallGame(new TestBallMaker());
+        ballGame.generateBalls();
     }
 
     @DisplayName("게임 진행")

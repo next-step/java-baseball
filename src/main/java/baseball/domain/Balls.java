@@ -76,7 +76,7 @@ public class Balls {
             return ball.compare(targetBall);
         }
 
-        return Status.MISS;
+        return Status.OUT;
     }
 
     @Override

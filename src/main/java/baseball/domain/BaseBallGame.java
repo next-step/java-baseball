@@ -8,7 +8,6 @@ public class BaseBallGame {
 
     public BaseBallGame(BallMaker ballMaker) {
         this.ballMaker = ballMaker;
-        generateBalls();
     }
 
     public void generateBalls() {
