@@ -13,9 +13,9 @@ class StringPracticeTest {
     void divideTwoMoreCommaTest(){
         //given
         StringPractice strTest = new StringPractice();
-        java.lang.String givenText ="1,2";
+        String givenText ="1,2";
         //when
-        java.lang.String[] strings = strTest.divideComma(givenText);
+        String[] strings = strTest.divideComma(givenText);
         //then
         assertThat(strings).as("문자열 \"1,2\"를 comma로 분리하기").contains("1","2");
     }
@@ -25,9 +25,9 @@ class StringPracticeTest {
     void divideOnlyOneCommaTest(){
         //given
         StringPractice strTest = new StringPractice();
-        java.lang.String givenText ="1";
+        String givenText ="1";
         //when
-        java.lang.String[] strings = strTest.divideComma(givenText);
+        String[] strings = strTest.divideComma(givenText);
         //then
         assertThat(strings).as("문자열 \"1\"를 comma로 분리하기").contains("1");
     }
@@ -38,11 +38,48 @@ class StringPracticeTest {
     void removeParenthesisTest(){
         //given
         StringPractice strTest = new StringPractice();
-        java.lang.String givenText = "(1,2)";
+        String givenText = "(1,2)";
         //when
-        java.lang.String result = strTest.removeParenthesis(givenText);
+        String result = strTest.removeParenthesis(givenText);
         //then
         assertThat(result).as("(1,2) -> 1,2로 변환").isEqualTo("1,2");
+    }
+
+
+    @Test
+    @DisplayName("abc에서 특정문자 가져오기")
+    void getFindCharTest(){
+        //given
+        StringPractice strTest = new StringPractice();
+        String givenText = "abc";
+        int index = 4;
+        //when
+        assertThatThrownBy(()->{
+            try {
+                char ch = strTest.getFindChar(index);
+            }catch(IndexOutOfBoundsException e){
+                throw new IndexOutOfBoundsException("Index: 4, Size: 3");
+            }
+        }).isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("Index: 4, Size: 3");
+        //then
+    }
+
+    @Test
+    @DisplayName("abc에서 특정문자 가져오기(에러메시지 숫자타입 체크")
+    void getFindCharExactlyTest(){
+        //given
+        StringPractice strTest = new StringPractice();
+        String givenText = "abc";
+        int index = 4;
+        //when
+        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(()-> {
+            try {
+                char ch = strTest.getFindChar(index);
+            }catch(IndexOutOfBoundsException e){
+                throw new IndexOutOfBoundsException("Index: 4, Size: 3");
+            }
+        }).withMessageMatching("Index: \\d+, Size: \\d+");
     }
 
 }
