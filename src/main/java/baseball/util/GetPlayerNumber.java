@@ -47,14 +47,24 @@ public class GetPlayerNumber {
 		Set<Integer> set = new LinkedHashSet<>();
 
 		for (int i = 0; i < input.length; i++) {
+			Integer convertedNumber = convertFromStringToInteger(input[i]);
+			inputValidationRange(convertedNumber);
 			set.add(convertFromStringToInteger(input[i]));
 		}
 
 		return set;
 	}
 
+	public static void inputValidationRange(Integer inputNumber) {
+		if (inputNumber < 1 || inputNumber > 9) {
+			throw new NumberFormatException("number must be between 1 and 9");
+		}
+	}
+
 	public static Integer convertFromStringToInteger(String input) {
-		return Integer.parseInt(input);
+		Integer convertedNumber = Integer.parseInt(input);
+
+		return convertedNumber;
 	}
 
 }

@@ -38,6 +38,20 @@ public class GetPlayerNumberTest {
 	}
 
 	@Test
+	void inputValidationRangeTest() {
+		assertThatThrownBy(() -> {
+			inputValidationRange(0);
+		}).isInstanceOf(NumberFormatException.class)
+			.hasMessageContaining("number must be between 1 and 9");
+
+		assertThatThrownBy(() -> {
+			inputValidationRange(10);
+		}).isInstanceOf(NumberFormatException.class)
+			.hasMessageContaining("number must be between 1 and 9");
+
+	}
+
+	@Test
 	void splitStringTest() {
 		assertThat(splitString("123")).containsExactly("1", "2", "3");
 		assertThat(splitString("654")).containsExactly("6", "5", "4");

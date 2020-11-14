@@ -16,7 +16,7 @@ public class GenerateComputerNumber {
 		Set<Integer> computerNumbers = new LinkedHashSet<>();
 
 		while (computerNumbers.size() < 3) {
-			computerNumbers.add(generateEachNumberBetweenMinAndMax(1, 9));
+			computerNumbers.add(generateEachNumberBetweenMinAndMax(1, 10));
 		}
 
 		return computerNumbers;
