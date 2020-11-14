@@ -7,10 +7,11 @@ import baseball.view.ResultView;
 
 public class BaseballController {
 	public static void start() {
-		int gameChoice = 1;
-		while (gameChoice != 2) {
+		GameChoice gameChoice = GameChoice.CONTINUE;
+		while (!gameChoice.isQuit()) {
 			playGame();
-			gameChoice = InputView.getGameChoice();
+			int userChoice = InputView.getGameChoice();
+			gameChoice = GameChoice.valueOf(userChoice);
 		}
 	}
 
