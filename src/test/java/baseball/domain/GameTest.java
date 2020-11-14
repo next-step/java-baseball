@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import baseball.controller.GameNumberRandomGenerator;
 import baseball.domain.exception.InvalidGameInputException;
 
 class GameTest {

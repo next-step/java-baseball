@@ -1,8 +1,11 @@
-package baseball.domain;
+package baseball.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import baseball.domain.GameNumberGenerator;
+import baseball.domain.GameNumbers;
 
 public class GameNumberRandomGenerator implements GameNumberGenerator {
 	private static final int MIN = 1;

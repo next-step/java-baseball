@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import baseball.controller.GameNumberRandomGenerator;
+
 class GameHintTest {
 	@DisplayName("스트라이크 갯수를 센다.")
 	@ParameterizedTest
