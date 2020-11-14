@@ -39,7 +39,7 @@ public class StringTest {
     @ParameterizedTest
     @CsvSource(value = {"0:a", "1:b", "2:c"}, delimiter = ':')
     @DisplayName("특정 문자위치 가져오기 테스트")
-    void charAt(int index, String expected) {
+    void charAt(int index, char expected) {
         String value = "abc";
 
         assertThat(value.charAt(index)).isEqualTo(expected);
