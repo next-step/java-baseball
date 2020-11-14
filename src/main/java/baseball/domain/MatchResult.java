@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MatchResult {
+    public static final int FINISH_STRIKE_COUNT = 3;
     private final List<State> states;
 
     public MatchResult(final List<State> states) {
@@ -17,6 +18,10 @@ public class MatchResult {
 
     public int ballCount() {
         return Collections.frequency(states, State.BALL);
+    }
+
+    public boolean isFinish() {
+        return Collections.frequency(states, State.STRIKE) == FINISH_STRIKE_COUNT;
     }
 
     @Override
