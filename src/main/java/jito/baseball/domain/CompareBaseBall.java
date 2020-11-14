@@ -18,6 +18,7 @@ public class CompareBaseBall {
         boolean flag = false;
         if (strike == 3) {
             UserInterfaceUtils.successMessage();
+            UserInterfaceUtils.restartMessage();
             flag = true;
         }
         resetBallCount();
