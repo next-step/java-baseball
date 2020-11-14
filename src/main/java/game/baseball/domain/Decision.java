@@ -2,9 +2,9 @@ package game.baseball.domain;
 
 public enum Decision {
 
-    STRIKE,
+	STRIKE,
 
-    BALL,
+	BALL,
 
-    NONE
+	NONE
 }
