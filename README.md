@@ -37,10 +37,17 @@
 - [x] 3자리를 가지지 않으면 예외를 발생시킨다.
 - [x] 각 자리 수에 같은 숫자가 있으면 예외를 발생시킨다.
 
-### domain.Referee
+### domain.Referee (심판)
 
 - UserNumber와 AnswerNumber를 비교해 스트라이크, 볼, 낫띵 을 판별하는 객체
 - (answerNumber)
 - [x] 입력받은 숫자의 스트라이크 개수를 반환한다.
 - [x] 입력받은 숫자의 볼 개수를 반환한다
 - [ ]
+
+
+### domain.BaseballGame
+
+- 숫자 야구 게임을 시작하면 정답 숫자를 하나 생성하고 Referee를 생성한다. 
+- (Referee)
+- [ ] UserNumber를 입력받아 결과를 반환한다.
