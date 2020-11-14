@@ -1,5 +1,6 @@
 package baseball.game;
 
+import baseball.common.PrintMessage;
 import baseball.common.Print;
 import baseball.computer.Computer;
 
@@ -11,31 +12,32 @@ import java.util.Scanner;
 
 public class BaseBall {
 
+  private final static String STRIKE = "스트라이크";
+
+  private final static String BALL = "볼";
+
+  private final static String NOTHING = "낫싱";
+
   private final static int BALL_SIZE = 3;
 
   private final static int INDEX_OF_RESULT = -1;
 
-  private final Computer computer;
+  private final static int CLEAR_STRIKE_COUNT = 3;
 
-  private final Scanner scanner;
+  private Scanner scanner;
 
-  private int strike;
+  private Computer computer;
 
-  private int ball;
+  private Result result;
 
   public BaseBall() {
-    this.computer = new Computer();
     this.scanner = new Scanner(System.in);
-    this.strike = 0;
-    this.ball = 0;
+    this.computer = new Computer();
+    this.result = new Result();
   }
 
-  int getStrike() {
-    return this.strike;
-  }
-
-  int getBall() {
-    return this.ball;
+  Result getResult() {
+    return this.result;
   }
 
   private LinkedHashSet<Integer> getComputerBalls() {
@@ -46,15 +48,44 @@ public class BaseBall {
    * 숫자 야구 게임 시작
    */
   public void play() {
-    Print.setPrintMessage("숫자를 입력해주세요.");
+    this.result = new Result();
 
-    int inputNumber = validateInputNumberType(scanner);
+    getPrintByMessage(PrintMessage.INPUT_NUMBER_MESSAGE);
 
-    validateInputNumberSize(inputNumber);
+    validateGameRule();
 
-    LinkedHashSet<Integer> balls = createInputNumberToBalls(inputNumber);
+    writeMatchMessage();
 
-    checkUserBallAndComputerBall(balls, getComputerBalls());
+    if(!checkBallResult()) {
+      this.play();
+    }
+  }
+
+  /**
+   * 게임 진행 시 필요한 전체적인 Rule 체크 메소드
+   */
+  private void validateGameRule() {
+    try {
+      int inputNumber = validateInputNumberType(this.scanner);
+
+      validateInputNumberSize(inputNumber);
+
+      LinkedHashSet<Integer> balls = createInputNumberToBalls(inputNumber);
+
+      checkUserBallAndComputerBall(getComputerBalls(), balls);
+    } catch (IllegalArgumentException | InputMismatchException e) {
+      validateGameRuleFail(e.getMessage());
+    }
+  }
+
+  /**
+   * 게임 진행 시 필요한 전체적인 Rule 체크 실패 시 Error Message 호출
+   * @param errorMessage Error Message
+   */
+  private void validateGameRuleFail(final String errorMessage) {
+    getPrintByMessage(errorMessage);
+    this.scanner = new Scanner(System.in);
+    this.play();
   }
 
   /**
@@ -68,7 +99,7 @@ public class BaseBall {
     try {
       inputNumber = scanner.nextInt();
     } catch (InputMismatchException e) {
-      throw new InputMismatchException("숫자만 입력이 가능합니다.");
+      throw new InputMismatchException(PrintMessage.INPUT_NUMBER_ERROR);
     }
 
     return inputNumber;
@@ -80,7 +111,7 @@ public class BaseBall {
    */
   void validateInputNumberSize(final int inputNumber) {
     if (String.valueOf(inputNumber).length() != BALL_SIZE) {
-      throw new IllegalArgumentException("3개의 입력 숫자가 필요합니다.");
+      throw new IllegalArgumentException(PrintMessage.INPUT_NUMBER_SIZE_ERROR);
     }
   }
 
@@ -109,7 +140,7 @@ public class BaseBall {
    */
   void validateInputNumberToBallSize(final LinkedHashSet<Integer> balls) {
     if (balls.size() != BALL_SIZE) {
-      throw new IllegalArgumentException("중복 된 숫자가 포함되어 있습니다.");
+      throw new IllegalArgumentException(PrintMessage.INPUT_NUMBER_DUPLICATE_ERROR);
     }
   }
 
@@ -140,14 +171,13 @@ public class BaseBall {
     boolean isStrike = false;
 
     if (userBall.equals(computerBall)) {
-      this.strike++;
+      this.result.addStrike();
       isStrike = true;
     }
 
     if (!isStrike) {
       checkBall(userBall, computerBalls);
     }
-
   }
 
   /**
@@ -157,10 +187,66 @@ public class BaseBall {
    */
   private void checkBall(final Integer userBall,
                          final List<Integer> computerBalls) {
-
     if (computerBalls.indexOf(userBall) != INDEX_OF_RESULT) {
-      this.ball++;
+      this.result.addBall();
     }
+  }
+
+  /**
+   * 사용자가 입력합 값 기반으로 결과값 체크
+   */
+  boolean checkBallResult() {
+    boolean isClear = false;
+
+    if (this.getResult().getStrike() == CLEAR_STRIKE_COUNT) {
+      isClear = true;
+    }
+
+    return isClear;
+  }
+
+  /**
+   * 스트라이크 & 볼 비교 후 메시지 출력
+   */
+  private void writeMatchMessage() {
+    boolean isStrike = this.getResult().isStrike();
+
+    if (isStrike) {
+      // TODO : 클리어 시 재시작 여부 체크
+    }
+
+    if (!isStrike) {
+      writeMatchFailMessage();
+    }
+  }
+
+  /**
+   * 게임을 클리어하지 않은 경우 메시지 출력
+   */
+  private void writeMatchFailMessage() {
+    if (this.getResult().getStrike() == 0 && this.getResult().getBall() != 0) {
+      getPrintByMessage(this.getResult().getBall() + BALL);
+    }
+
+    if (this.getResult().getStrike() != 0 && this.getResult().getBall() == 0) {
+      getPrintByMessage(this.getResult().getStrike() + STRIKE);
+    }
+
+    if (this.getResult().getStrike() != 0 && this.getResult().getBall() != 0) {
+      getPrintByMessage(this.getResult().getStrike() + STRIKE + " " + this.getResult().getBall() + BALL);
+    }
+
+    if (this.getResult().isNoting()) {
+      getPrintByMessage(NOTHING);
+    }
+  }
+
+  /**
+   * 공통 메시지 노출 또는 결과 값 바인딩 메소드
+   * @param message 메시지
+   */
+  private void getPrintByMessage(final String message) {
+    Print.setPrintMessage(message);
   }
 
 }

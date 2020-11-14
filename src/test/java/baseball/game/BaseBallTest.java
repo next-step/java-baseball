@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -80,8 +81,8 @@ class BaseBallTest {
   @DisplayName("중복 된 숫자가 포함되어 있는 경우 (실패)")
   @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}")
   @CsvSource({
-      "5, 5, 9",
-      "5, 8, 5"
+    "5, 5, 9",
+    "5, 8, 5"
   })
   void validate_input_number_to_ball_size_bad_request(final int oneNumber,
                                                       final int twoNumber,
@@ -128,7 +129,7 @@ class BaseBallTest {
       new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
     );
 
-    assertEquals(baseBall.getStrike(), 2);
+    assertEquals(baseBall.getResult().getStrike(), 2);
   }
 
   @DisplayName("사용자 입력 받은 값과 컴퓨터 입력 한 숫자와 스트라이크 비교후 아닌 경우 볼 비교")
@@ -136,8 +137,8 @@ class BaseBallTest {
     "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
   )
   @CsvSource({
-      "2, 4, 9, 1, 2, 4",
-      "5, 1, 8, 4, 5, 1",
+    "2, 4, 9, 1, 2, 4",
+    "5, 1, 8, 4, 5, 1",
   })
   void check_user_ball_and_computer_ball_no_strike_after_ball(final int oneNumber,
                                                               final int twoNumber,
@@ -150,8 +151,146 @@ class BaseBallTest {
       new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
     );
 
-    assertEquals(baseBall.getStrike(), 0);
-    assertEquals(baseBall.getBall(), 2);
+    assertEquals(baseBall.getResult().getStrike(), 0);
+    assertEquals(baseBall.getResult().getBall(), 2);
+  }
+
+  @DisplayName("사용자가 입력합 값 기반으로 3스트라이크 결과 체크 (스트라이크 3 ok)")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}, " +
+    "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
+  )
+  @CsvSource({
+    "2, 4, 9, 2, 4, 9",
+    "5, 1, 8, 5, 1, 8",
+  })
+  void check_ball_result_three_strike(final int oneNumber,
+                                      final int twoNumber,
+                                      final int threeNumber,
+                                      final int fourNumber,
+                                      final int fiveNumber,
+                                      final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+      new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    boolean isClear = baseBall.checkBallResult();
+    assertTrue(isClear);
+  }
+
+  @DisplayName("사용자가 입력합 값 기반으로 3스트라이크 결과 체크 (스트라이크 3 ok)")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}, " +
+    "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
+  )
+  @CsvSource({
+    "2, 4, 9, 4, 2, 1",
+    "5, 1, 8, 3, 2, 9",
+  })
+  void check_ball_result_three_strike_failed(final int oneNumber,
+                                             final int twoNumber,
+                                             final int threeNumber,
+                                             final int fourNumber,
+                                             final int fiveNumber,
+                                             final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+    new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    boolean isClear = baseBall.checkBallResult();
+    assertFalse(isClear);
+  }
+
+  @DisplayName("스트라이크 & 볼 비교 후 Result 결과 체크 (스크라이크만)")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}, " +
+    "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
+  )
+  @CsvSource({
+    "2, 4, 9, 2, 4, 9",
+    "5, 1, 8, 5, 1, 8",
+  })
+  void check_ball_result_message_by_three_strike(final int oneNumber,
+                                                 final int twoNumber,
+                                                 final int threeNumber,
+                                                 final int fourNumber,
+                                                 final int fiveNumber,
+                                                 final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+      new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    assertEquals(baseBall.getResult().getStrike(), 3);
+    assertEquals(baseBall.getResult().getBall(), 0);
+  }
+
+  @DisplayName("스트라이크 & 볼 비교 후 Result 결과 체크 (볼만)")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}, " +
+    "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
+  )
+  @CsvSource({
+    "2, 4, 9, 4, 9, 2",
+    "5, 1, 8, 1, 8, 5",
+  })
+  void check_ball_result_message_by_three_ball(final int oneNumber,
+                                               final int twoNumber,
+                                               final int threeNumber,
+                                               final int fourNumber,
+                                               final int fiveNumber,
+                                               final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+      new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    assertEquals(baseBall.getResult().getStrike(), 0);
+    assertEquals(baseBall.getResult().getBall(), 3);
+  }
+
+  @DisplayName("스트라이크 & 볼 비교 후 Result 결과 체크 (스트라이크 + 볼)")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}, " +
+    "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
+  )
+  @CsvSource({
+    "4, 2, 9, 4, 9, 2",
+    "1, 5, 8, 1, 8, 5",
+  })
+  void check_ball_result_message_by_strike_and_ball(final int oneNumber,
+                                                    final int twoNumber,
+                                                    final int threeNumber,
+                                                    final int fourNumber,
+                                                    final int fiveNumber,
+                                                    final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+      new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    assertEquals(baseBall.getResult().getStrike(), 1);
+    assertEquals(baseBall.getResult().getBall(), 2);
+  }
+
+  @DisplayName("스트라이크 & 볼 비교 후 Result 결과 체크 (낫싱)")
+  @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}, " +
+    "fourNumber={3}, fiveNumber={4}, sixNumber={5}"
+  )
+  @CsvSource({
+    "4, 2, 9, 5, 3, 1",
+    "1, 5, 8, 2, 4, 7",
+  })
+  void check_ball_result_message_by_noting(final int oneNumber,
+                                           final int twoNumber,
+                                           final int threeNumber,
+                                           final int fourNumber,
+                                           final int fiveNumber,
+                                           final int sixNumber) {
+    baseBall.checkUserBallAndComputerBall(
+      new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+      new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+    );
+
+    assertEquals(baseBall.getResult().getStrike(), 0);
+    assertEquals(baseBall.getResult().getBall(), 0);
   }
 
 }

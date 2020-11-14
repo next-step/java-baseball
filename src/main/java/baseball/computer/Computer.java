@@ -1,6 +1,6 @@
 package baseball.computer;
 
-import baseball.common.CreateBall;
+import baseball.game.CreateBall;
 
 import java.util.LinkedHashSet;
 
