@@ -1,0 +1,30 @@
+{
+  "name": "java-baseball",
+  "version": "1.0.0",
+  "description": "* 숫자 야구 게임 요구사항을 파악한다. * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 과제를 제출한다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ljh0326/java-baseball.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ljh0326/java-baseball/issues"
+  },
+  "homepage": "https://github.com/ljh0326/java-baseball#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "husky": "^4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+}

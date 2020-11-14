@@ -19,3 +19,8 @@ bin/
 *.iws
 *.iml
 *.ipr
+
+### npm ###
+package-lock.json
+node_modules/
+
