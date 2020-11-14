@@ -10,7 +10,7 @@ public class BaseballSystem {
         this.generatedRandomString = generatedRandomString;
     }
 
-    public boolean validate(String userInput) {
+    public boolean isGameEnd(String userInput) {
         System.out.println(this.checkCountStrike(userInput) + ":" + MessageConstants.STRIKE + " " + this.checkCountBall(userInput) + ":" + MessageConstants.BALL);
         return this.checkGameEnd(userInput);
     }
