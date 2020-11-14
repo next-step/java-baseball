@@ -7,7 +7,7 @@ import java.util.List;
 import static baseball.domain.Number.MAX_NUMBER;
 import static baseball.domain.Number.MIN_NUMBER;
 
-public class Computer {
+public class Computer implements BaseBallGenerator {
     private static final List<Number> numbers = new ArrayList<>();
 
     static {
@@ -16,7 +16,8 @@ public class Computer {
         }
     }
 
-    public static BaseballNumbers create() {
+    @Override
+    public BaseballNumbers generate() {
         Collections.shuffle(numbers);
         return BaseballNumbers.from(numbers.subList(0, BaseballNumbers.SIZE));
     }

@@ -9,6 +9,7 @@ class ComputerTest {
     @Test
     @DisplayName("1~9 사이의 중복되지 않은 숫자 생성 (캐싱)")
     void createBaseballNumbers() {
-        assertThat(Computer.create()).isNotNull();
+        Computer computer = new Computer();
+        assertThat(computer.generate()).isNotNull();
     }
 }
