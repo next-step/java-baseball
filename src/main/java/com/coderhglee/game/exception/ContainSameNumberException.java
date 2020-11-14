@@ -1,6 +1,4 @@
 package com.coderhglee.game.exception;
 
-public class ContainSameNumberException extends Exception {
-    public ContainSameNumberException() {
-    }
+public class ContainSameNumberException extends GameException {
 }

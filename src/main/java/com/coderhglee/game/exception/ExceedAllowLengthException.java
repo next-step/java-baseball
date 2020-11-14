@@ -1,4 +1,4 @@
 package com.coderhglee.game.exception;
 
-public class ExceedAllowLengthException extends Exception {
+public class ExceedAllowLengthException extends GameException {
 }
