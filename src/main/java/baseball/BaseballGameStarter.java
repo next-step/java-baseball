@@ -16,7 +16,7 @@ public class BaseballGameStarter {
 
         do {
             playGame();
-            gameIO.printRegame();
+            gameIO.printReplay();
             isReplay = gameIO.scanReplay();
         } while (isReplay);
     }
@@ -31,15 +31,12 @@ public class BaseballGameStarter {
             judge = judgeService.judge(computerNumber, inputNumber);
             gameIO.printJudgeResult(judge);
         } while (!judgeService.isEnd(judge));
-
         gameIO.printBye();
     }
 
 
     private void init() {
         computerNumber = makeComputerNumber();
-        // test
-        System.out.println("computerNumber=" + computerNumber);
     }
 
     String makeComputerNumber() {

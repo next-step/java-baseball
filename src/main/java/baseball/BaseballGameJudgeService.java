@@ -22,20 +22,20 @@ public class BaseballGameJudgeService {
     }
 
     private int checkBoll(int index, char target, String inputNumber) {
-        int checkIndex2 = (index + 1) % 3;
-        int checkIndex3 = (index + 2) % 3;
-
         int bollCount = 0;
-
-        if (target == inputNumber.charAt(checkIndex2)) {
-            bollCount++;
+        index = nextIndex(index);
+        if (target == inputNumber.charAt(index)) {
+            bollCount ++;
         }
-
-        if (target == inputNumber.charAt(checkIndex3)) {
-            bollCount++;
+        index = nextIndex(index);
+        if (target == inputNumber.charAt(index)) {
+            bollCount ++;
         }
-
         return bollCount;
+    }
+
+    private int nextIndex(int index) {
+        return (index + 1) % 3;
     }
 
     private int checkStrike(int index, char target, String inputNumber) {
