@@ -8,6 +8,7 @@ public class BallNumber {
 
     private static final int MAX_NUMBER = 9;
     private static final int MIN_NUMBER = 1;
+    private static final String RANGE_ERROR_MESSAGE = "1~9 사이의 정수만 생성 가능";
 
     private int number;
 
@@ -18,7 +19,7 @@ public class BallNumber {
 
     private void validate(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalBallNumberException();
+            throw new IllegalBallNumberException(RANGE_ERROR_MESSAGE);
         }
     }
     @Override
