@@ -14,7 +14,7 @@ class ThreeBallGenerateStrategyTest {
     @Test
     public void generate() throws Exception {
         //given
-        BallGenerateStrategy generator = new ThreeBallGenerateStrategy();
+        BallGenerateStrategy generator = new ThreeBallGenerateStrategy(new RandomNumberGenerateStrategy());
 
         //when
         List<Integer> result = generator.generate();
@@ -22,4 +22,5 @@ class ThreeBallGenerateStrategyTest {
         //then
         Assertions.assertTrue(result.size() == BALL_GENERATOR_RESULT_SIZE);
     }
+
 }
