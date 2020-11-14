@@ -46,9 +46,9 @@ class BaseballNumberTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,1", "2,9", "3,4"})
-    @DisplayName("index & number 모두 다를 경우 Noting")
+    @DisplayName("index & number 모두 다를 경우 NOTHING")
     void matchNothing(int index, int number) {
         BaseballNumber target = BaseballNumber.of(2, 5);
-        assertThat(target.match(BaseballNumber.of(index, number))).isEqualTo(State.NOTING);
+        assertThat(target.match(BaseballNumber.of(index, number))).isEqualTo(State.NOTHING);
     }
 }

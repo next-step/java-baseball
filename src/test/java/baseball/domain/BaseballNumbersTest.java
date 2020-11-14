@@ -41,7 +41,7 @@ class BaseballNumbersTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"123,STRIKE,STRIKE,STRIKE", "421,NOTING,STRIKE,BALL", "567,NOTING,NOTING,NOTING"})
+    @CsvSource(value = {"123,STRIKE,STRIKE,STRIKE", "421,NOTHING,STRIKE,BALL", "567,NOTHING,NOTHING,NOTHING"})
     @DisplayName("매칭 테스트")
     void match(int number, String frist, String second, String third) {
         BaseballNumbers target = BaseballNumbers.from(number);
@@ -73,6 +73,6 @@ class BaseballNumbersTest {
     @DisplayName("모두 같지 않으면 Nothing")
     void matchNothing(int index, int number) {
         BaseballNumber baseballNumber = BaseballNumber.of(index, number);
-        assertThat(baseballNumbers.match(baseballNumber)).isEqualTo(State.NOTING);
+        assertThat(baseballNumbers.match(baseballNumber)).isEqualTo(State.NOTHING);
     }
 }

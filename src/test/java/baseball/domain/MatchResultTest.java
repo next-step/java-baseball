@@ -15,7 +15,10 @@ class MatchResultTest {
     @Test
     @DisplayName("MatchResult 생성")
     void create() {
-        assertThat(new MatchResult(Arrays.asList(State.STRIKE, State.BALL))).isNotNull();
+        MatchResult matchResult = new MatchResult(Arrays.asList(State.STRIKE, State.BALL));
+        MatchResult newMatchResult = new MatchResult(Arrays.asList(State.STRIKE, State.BALL));
+        assertThat(matchResult).isEqualTo(newMatchResult);
+        assertThat(matchResult).isNotSameAs(newMatchResult);
     }
 
     @ParameterizedTest

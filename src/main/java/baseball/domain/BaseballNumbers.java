@@ -41,7 +41,7 @@ public class BaseballNumbers {
         for (final BaseballNumber baseballNumber : other.baseballNumbers) {
             states.add(match(baseballNumber));
         }
-        
+
         return new MatchResult(states);
     }
 
@@ -63,7 +63,7 @@ public class BaseballNumbers {
             return State.BALL;
         }
 
-        return State.NOTING;
+        return State.NOTHING;
     }
 
     @Override

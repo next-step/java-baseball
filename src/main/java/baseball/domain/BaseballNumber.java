@@ -31,7 +31,7 @@ public class BaseballNumber {
             return BALL;
         }
 
-        return NOTING;
+        return NOTHING;
     }
 
     @Override

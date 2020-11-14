@@ -12,7 +12,7 @@
 
 - BaseballNumber 생성
     - 1~3 사이의 index + Number
-    - 다른 BaseballNumber 매칭 후 결과 상태 반환 (STRIKE, BALL, NOTING) 
+    - 다른 BaseballNumber 매칭 후 결과 상태 반환 (STRIKE, BALL, NOTHING) 
 
 - BaseballNumbers 생성
     - 3자리 숫자
