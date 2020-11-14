@@ -1,6 +1,5 @@
 package baseball;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
 public class ConsoleInputScanner implements InputScanner {
@@ -14,7 +13,7 @@ public class ConsoleInputScanner implements InputScanner {
     public String inputNumberLength3() {
         String input;
         do {
-            System.out.print("숫자를 입력해주세요: ");
+            System.out.print(GameResource.TEXT_INPUT_NUMBER);
             input = scanner.next();
         } while(!Validator.isNumber(input) || !Validator.isLength3(input));
 
