@@ -1,4 +1,4 @@
-package com.yebgi83.baseball.model;
+package model;
 
 public class PatternResult {
     private final int strikeCount;

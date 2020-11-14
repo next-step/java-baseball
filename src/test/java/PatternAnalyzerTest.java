@@ -1,7 +1,5 @@
-package com.yebgi83.baseball;
-
-import com.yebgi83.baseball.model.PatternResult;
-import com.yebgi83.baseball.model.ThreeDigits;
+import model.PatternResult;
+import model.ThreeDigits;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

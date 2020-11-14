@@ -1,4 +1,4 @@
-package com.yebgi83.baseball.model;
+package model;
 
 import java.util.Arrays;
 
