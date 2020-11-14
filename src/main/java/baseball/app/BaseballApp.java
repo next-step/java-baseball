@@ -17,11 +17,11 @@ public class BaseballApp {
     }
 
     private static void start() {
-        BaseballNumbers compare = BaseballNumbers.ofRandom();
+        BaseballNumbers computer = BaseballNumbers.ofRandom();
         boolean isEnd = false;
         while (!isEnd) {
-            BaseballNumbers target = BaseballNumbers.ofUserInput(InputView.getNumbers());
-            BaseballResult result = compare.compareBaseballNumbers(target);
+            BaseballNumbers user = BaseballNumbers.ofUserInput(InputView.getNumbers());
+            BaseballResult result = computer.compareBaseballNumbers(user);
             OutputView.print(result);
             isEnd = result.isEnd();
         }
