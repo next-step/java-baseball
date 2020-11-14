@@ -41,7 +41,7 @@ class GameTest {
 	@DisplayName("게임 플레이 테스트")
 	@Test
 	void play() {
-		GameScore score = dummyGame.play(new Balls());
+		GameScore score = dummyGame.play(new Balls("123"));
 
 		assertThat(score).isNotNull();
 	}

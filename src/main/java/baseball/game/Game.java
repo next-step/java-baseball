@@ -5,11 +5,12 @@ import java.util.List;
 public class Game {
 
 	public static final int BALL_COUNT = 3;
+	public static final Integer[] ALLOWED_BALL_NUMBERS = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 	private int[] numbers = new int[BALL_COUNT];
 
 	public Game() {
-		setNumbers(new UniqueRandomNumbersGenerator().generate(BALL_COUNT));
+		setNumbers(new UniqueRandomNumbersGenerator(ALLOWED_BALL_NUMBERS).generate(BALL_COUNT));
 	}
 
 	public Game(NumbersGenerator numbersGenerator) {

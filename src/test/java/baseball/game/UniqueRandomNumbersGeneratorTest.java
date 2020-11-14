@@ -28,13 +28,14 @@ class UniqueRandomNumbersGeneratorTest {
 		for (int i = min; i <= max; i++) {
 			allowedNumbers.add(i);
 		}
+
 		this.numbersGenerator = new UniqueRandomNumbersGenerator(allowedNumbers);
 	}
 
 	@DisplayName("생성 가능한 숫자 목록 조회 테스트")
 	@Test
 	void getAllowedNumbers() {
-		List<Integer> allowedNumbers = numbersGenerator.getAllowedNumbers();
+		List<Integer> allowedNumbers = numbersGenerator.getNumberPool();
 		assertThat(allowedNumbers).isNotNull();
 		assertThat(allowedNumbers.size()).isEqualTo(this.max - this.min + 1);
 	}
@@ -60,7 +61,7 @@ class UniqueRandomNumbersGeneratorTest {
 
 	private void isAllowedNumbers(List<Integer> numbers) {
 		for (int i = 0; i < numbers.size(); i++) {
-			assertThat(numbers.get(i)).isIn(numbersGenerator.getAllowedNumbers());
+			assertThat(numbers.get(i)).isIn(numbersGenerator.getNumberPool());
 		}
 	}
 

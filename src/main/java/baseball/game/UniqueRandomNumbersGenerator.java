@@ -7,28 +7,26 @@ import java.util.List;
 
 public class UniqueRandomNumbersGenerator implements NumbersGenerator {
 
-	private static final List<Integer> DEFAULT_ALLOWED_NUMBERS = Collections.unmodifiableList(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+	private final List<Integer> numberPool;
 
-	private final List<Integer> allowedNumbers;
-
-	public UniqueRandomNumbersGenerator() {
-		this.allowedNumbers = DEFAULT_ALLOWED_NUMBERS;
+	public UniqueRandomNumbersGenerator(Integer[] numbers) {
+		this.numberPool = Collections.unmodifiableList(Arrays.asList(numbers));
 	}
 
-	public UniqueRandomNumbersGenerator(List<Integer> allowedNumbers) {
-		this.allowedNumbers = allowedNumbers;
+	public UniqueRandomNumbersGenerator(List<Integer> numbers) {
+		this.numberPool = Collections.unmodifiableList(numbers);
 	}
 
 	@Override
-	public List<Integer> getAllowedNumbers() {
-		return this.allowedNumbers;
+	public List<Integer> getNumberPool() {
+		return this.numberPool;
 	}
 
 	@Override
 	public List<Integer> generate(int count) {
 		validate(count);
 
-		List<Integer> numbersToShuffle = new ArrayList<>(this.allowedNumbers);
+		List<Integer> numbersToShuffle = new ArrayList<>(this.numberPool);
 		Collections.shuffle(numbersToShuffle);
 
 		return numbersToShuffle.subList(0, count);
@@ -36,7 +34,7 @@ public class UniqueRandomNumbersGenerator implements NumbersGenerator {
 
 	@Override
 	public int getLimitCount() {
-		return this.allowedNumbers.size();
+		return this.numberPool.size();
 	}
 
 	private void validate(int count) {

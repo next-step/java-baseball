@@ -7,7 +7,7 @@ import java.util.List;
 public class OneTwoThreeNumbersGenerator implements NumbersGenerator {
 
 	@Override
-	public List<Integer> getAllowedNumbers() {
+	public List<Integer> getNumberPool() {
 		return new ArrayList<>(Arrays.asList(1, 2, 3));
 	}
 
