@@ -16,6 +16,6 @@ public class NumberUtil {
      * @return 랜덤 숫자
      */
     public static int randomNumber(int min, int max) {
-        return random.nextInt(max) + min;
+        return random.nextInt((max - min) + 1) + min;
     }
 }
