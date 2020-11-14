@@ -42,4 +42,19 @@ class GameTest {
         assertEquals(2, game.countStrike(163));
         assertEquals(3, game.countStrike(123));
     }
+
+    @DisplayName("볼 갯수 세기")
+    @Test
+    void countBall() {
+        Game game = new Game(1, 2, 3);  // 123
+
+        assertEquals(1, game.countBall(415));
+        assertEquals(1, game.countBall(264));
+        assertEquals(1, game.countBall(735));
+        assertEquals(2, game.countBall(315));
+        assertEquals(2, game.countBall(251));
+        assertEquals(2, game.countBall(431));
+        assertEquals(3, game.countBall(231));
+        assertEquals(3, game.countBall(312));
+    }
 }

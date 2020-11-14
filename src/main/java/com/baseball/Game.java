@@ -49,4 +49,19 @@ public class Game {
         return strike;
     }
 
+    public Integer countBall(Integer inputNumber) {
+        Integer a1 = inputNumber / 100;
+        Integer a2 = (inputNumber - a1 * 100) / 10;
+        Integer a3 = inputNumber % 10;
+
+        Integer ball = 0;
+        if ((a1 == this.n2) || (a1 == this.n3))
+            ball++;
+        if ((a2 == this.n3) || (a2 == this.n1))
+            ball++;
+        if ((a3 == this.n1) || (a3 == this.n2))
+            ball++;
+
+        return ball;
+    }
 }
