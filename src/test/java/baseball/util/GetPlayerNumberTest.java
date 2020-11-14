@@ -1,17 +1,13 @@
-package baseball;
+package baseball.util;
 
+import static baseball.util.GetPlayerNumber.*;
 import static org.assertj.core.api.Assertions.*;
-import static baseball.GetPlayerNumber.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 public class GetPlayerNumberTest {
 

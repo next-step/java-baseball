@@ -1,6 +1,6 @@
-package baseball;
+package baseball.util;
 
-import static baseball.GenerateComputerNumber.*;
+import static baseball.util.GenerateComputerNumber.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.LinkedHashSet;
