@@ -104,7 +104,7 @@ class BaseballSystemTest {
     public void validate(String randomString, String userInputString, boolean expectedResult, String consoleMessage) {
         final BaseballSystem baseballSystem = new BaseballSystem(randomString);
 
-        final boolean result = baseballSystem.validate(userInputString);
+        final boolean result = baseballSystem.isGameEnd(userInputString);
         assertThat(result)
                 .isEqualTo(expectedResult);
 
