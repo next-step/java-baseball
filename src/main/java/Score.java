@@ -25,6 +25,10 @@ public class Score {
 			return FOUR_BALL;
 		}
 
-		return strikeMessage + " " + ballMessage;
+		return removeEmpty(strikeMessage + " " + ballMessage);
+	}
+
+	private String removeEmpty(String text) {
+		return text.replace("null", "").trim();
 	}
 }
