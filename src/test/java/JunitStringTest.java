@@ -38,4 +38,13 @@ public class JunitStringTest {
 		assertThat(actual).containsExactly(1);
 	}
 
+	// String 요구사항2
+	// "(1,2)" 값이 주어졌을 때 String의 substring() 메소드를 활용해 () 을 제거하고 "1,2"를 반환하도록 구현한다.
+	@Test
+	public void testSubStringParenthesis() {
+		JunitString junitStudy = new JunitString();
+		String actual = junitStudy.subStringParenthesis("(1,2)");
+		assertThat(actual).isEqualTo("1,2");
+	}
+
 }
