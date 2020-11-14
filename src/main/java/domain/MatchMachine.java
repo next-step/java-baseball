@@ -2,13 +2,13 @@ package domain;
 
 public class MatchMachine {
     private static final int NUMBER_LENGTH = 3;
-    private String computerNumber;
+    private final String computerNumber;
 
-    public MatchMachine(String computerNumber) {
+    public MatchMachine(final String computerNumber) {
         this.computerNumber = computerNumber;
     }
 
-    public Score compare(String baseballNumber) {
+    public Score compare(final String baseballNumber) {
         Score score = new Score();
         for (int i = 0; i < NUMBER_LENGTH; i++) {
             boolean isStrike = checkStrike(i, baseballNumber.charAt(i), score);

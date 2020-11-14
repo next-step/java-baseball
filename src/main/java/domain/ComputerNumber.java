@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class ComputerNumber {
     private static final int NUMBER_LENGTH = 3;
-    private String number;
+    private final String number;
 
     public ComputerNumber() {
         this.number = makeRandomNumber();
