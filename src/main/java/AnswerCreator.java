@@ -22,10 +22,10 @@ public class AnswerCreator {
     private static class ShuffledUniqueRandomNumbers implements Iterable<Integer> {
         private final static Random RANDOM = new Random();
 
-        private final int[] numbers;
+        private final Integer[] numbers;
 
         public ShuffledUniqueRandomNumbers(int minNumber, int maxNumber) {
-            this.numbers = new int [(maxNumber - minNumber) + 1];
+            this.numbers = new Integer [(maxNumber - minNumber) + 1];
 
             for (int index = 0, number = minNumber; number <= maxNumber; index++, number++) {
                 numbers[index] = number;
@@ -38,7 +38,7 @@ public class AnswerCreator {
         @Override
         public Iterator<Integer> iterator() {
             return Arrays
-                    .stream(numbers)
+                    .asList(numbers)
                     .iterator();
         }
 
