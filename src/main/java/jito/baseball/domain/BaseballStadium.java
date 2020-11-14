@@ -1,5 +1,7 @@
 package jito.baseball.domain;
 
+import jito.baseball.message.ErrorMessage;
+import jito.baseball.util.BaseballException;
 import jito.baseball.util.UserInterfaceUtils;
 
 import java.util.Scanner;
@@ -34,12 +36,23 @@ public class BaseballStadium {
     }
 
     private void playerSelectGameStatus() {
+        int input = scanner.nextInt();
+        checkValid(input);
         if (CompareBaseBall.stopGame()) {
-            if (scanner.nextInt() == 2) {
+            if ( input == 2) {
                 GameStatus.GAME.setEnd();
                 return;
             }
             init();
+        }
+    }
+
+    private void checkValid(int input) {
+        if (input < 1 || input > 9) {
+            BaseballException.throwException(ErrorMessage.RESTART_ERROR);
+        }
+        if (input + "".length() != 1) {
+            BaseballException.throwException(ErrorMessage.RESTART_ERROR);
         }
     }
 
