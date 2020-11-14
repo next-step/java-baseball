@@ -3,6 +3,8 @@ package com.game.baseball;
 import com.game.exception.GameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,19 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class BaseballGameTest {
 
     BaseballGame baseballGame;
-    String targetNumber;
+    String target;
 
     @BeforeEach
     void init() {
         this.baseballGame = new BaseballGame();
-        this.targetNumber = "713";
+        this.target = "713";
     }
 
-    @Test
-    void isValidInput_successTest() {
-        // given
-        String input = "123";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "456", "789"})
+    void isValidInput_successTest(String input) {
         // when
         boolean isValidInput = baseballGame.isValidInput(input);
 
@@ -30,17 +30,15 @@ class BaseballGameTest {
         assertThat(isValidInput).isTrue();
     }
 
-    @Test
-    void isValidInput_failureTest() {
-        // given
-        String input = "112";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"112", "1234", "abc", "abcd", "12a", "123a"})
+    void isValidInput_failureTest(String input) {
         // when & then
         assertThrows(GameException.class, () -> baseballGame.isValidInput(input));
     }
 
     @Test
-    void isValidBaseBallNumber_successTest() {
+    void isValidBaseballNumber_successTest() {
         // given
         String number = baseballGame.generateNumber();
 
@@ -54,10 +52,10 @@ class BaseballGameTest {
     @Test
     void verifyInput_1S1B_Test() {
         // given
-        String inputNumber = "123";
+        String input = "123";
 
         // when
-        BaseballGameResult baseballGameResult = baseballGame.play(targetNumber, inputNumber);
+        BaseballGameResult baseballGameResult = baseballGame.play(target, input);
         System.out.println(baseballGameResult.toString());
 
         // then
@@ -68,10 +66,10 @@ class BaseballGameTest {
     @Test
     void verifyInput_1B_Test() {
         // given
-        String inputNumber = "145";
+        String input = "145";
 
         // when
-        BaseballGameResult baseballGameResult = baseballGame.play(targetNumber, inputNumber);
+        BaseballGameResult baseballGameResult = baseballGame.play(target, input);
         System.out.println(baseballGameResult.toString());
 
         // then
@@ -82,10 +80,10 @@ class BaseballGameTest {
     @Test
     void verifyInput_2B_Test() {
         // given
-        String inputNumber = "671";
+        String input = "671";
 
         // when
-        BaseballGameResult baseballGameResult = baseballGame.play(targetNumber, inputNumber);
+        BaseballGameResult baseballGameResult = baseballGame.play(target, input);
         System.out.println(baseballGameResult.toString());
 
         // then
@@ -96,10 +94,10 @@ class BaseballGameTest {
     @Test
     void verifyInput_1S_Test() {
         // given
-        String inputNumber = "216";
+        String input = "216";
 
         // when
-        BaseballGameResult baseballGameResult = baseballGame.play(targetNumber, inputNumber);
+        BaseballGameResult baseballGameResult = baseballGame.play(target, input);
         System.out.println(baseballGameResult.toString());
 
         // then
@@ -110,10 +108,10 @@ class BaseballGameTest {
     @Test
     void verifyInput_3S_Test() {
         // given
-        String inputNumber = "713";
+        String input = "713";
 
         // when
-        BaseballGameResult baseballGameResult = baseballGame.play(targetNumber, inputNumber);
+        BaseballGameResult baseballGameResult = baseballGame.play(target, input);
         System.out.println(baseballGameResult.toString());
 
         // then
@@ -124,10 +122,10 @@ class BaseballGameTest {
     @Test
     void verifyInput_Nothing_Test() {
         // given
-        String inputNumber = "824";
+        String input = "824";
 
         // when
-        BaseballGameResult baseballGameResult = baseballGame.play(targetNumber, inputNumber);
+        BaseballGameResult baseballGameResult = baseballGame.play(target, input);
         System.out.println(baseballGameResult.toString());
 
         // then
