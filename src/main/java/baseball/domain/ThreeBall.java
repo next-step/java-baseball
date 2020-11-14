@@ -16,18 +16,30 @@ public class ThreeBall {
 
     private List<BallNumber> balls;
 
-    public ThreeBall(final BallGenerateStrategy strategy) {
-        List<BallNumber> result = new ArrayList<>();
+    public ThreeBall(final List<Integer> numbers) {
+        List<BallNumber> result = generateBalls(numbers);
+        validateSize(result);
 
+        this.balls = Collections.unmodifiableList(result);
+    }
+
+    public ThreeBall(final BallGenerateStrategy strategy) {
         validateStrategy(strategy);
         List<Integer> numbers = strategy.generate();
 
+        List<BallNumber> result = generateBalls(numbers);
+        validateSize(result);
+
+        this.balls = Collections.unmodifiableList(result);
+    }
+
+    private List<BallNumber> generateBalls(final List<Integer> numbers) {
+        List<BallNumber> result = new ArrayList<>();
         for (Integer number : numbers) {
             result.add(new BallNumber(number));
         }
 
-        validateSize(result);
-        this.balls = Collections.unmodifiableList(result);
+        return result;
     }
 
     private void validateSize(final List<BallNumber> balls) {
@@ -69,6 +81,19 @@ public class ThreeBall {
         } else {
             return MatchType.BALL;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ThreeBall threeBall = (ThreeBall) o;
+        return Objects.equals(balls, threeBall.balls);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(balls);
     }
 
 }

@@ -32,14 +32,24 @@ class ThreeBallTest {
         new ThreeBall(ballStrategy);
     }
 
+    @DisplayName("전략주입-list 전달 생성자의 결과 비교")
+    @Test
+    public void constructor_compare_success() throws Exception {
+        //when
+        ThreeBall threeBall2 = new ThreeBall(Arrays.asList(1, 2, 3));
+
+        //then
+        assertTrue(threeBall.equals(threeBall2));
+    }
+
     @DisplayName("공 생성 전략 - 주입 테스트")
     @Test
     public void strategy_fail() throws Exception {
         //then
         assertThatThrownBy(
-                () -> new ThreeBall(null)
+                () -> new ThreeBall(new ArrayList<>())
         ).isInstanceOf(BallException.class)
-                .hasMessage("공 생성에 실패 하였습니다.");
+                .hasMessage("공의 사이즈가 3개가 되어야 합니다.");
     }
 
     @DisplayName("공의 개수가 3개인지 validate")
