@@ -5,11 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BaseballNumbersTest {
     private BaseballNumbers baseballNumbers;
@@ -26,7 +28,33 @@ class BaseballNumbersTest {
     @Test
     @DisplayName("숫자 입력을 통한 생성")
     void fromInt() {
-        assertThat(BaseballNumbers.from(123)).isEqualTo(baseballNumbers);
+        BaseballNumbers target = BaseballNumbers.from(123);
+        assertThat(baseballNumbers).isEqualTo(target);
+        assertThat(baseballNumbers.hashCode()).isEqualTo(target.hashCode());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 11, 1234, 54321})
+    @DisplayName("세자리 수가 아닌 경우 예외 발생")
+    void exceptFromInt(int number) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BaseballNumbers.from(number);
+        });
+    }
+
+    @Test
+    @DisplayName("세자리 수가 아닌 경우 예외 발생")
+    void exceptNew() {
+        assertThrows(IllegalArgumentException.class, () -> new BaseballNumbers(Arrays.asList(
+                BaseballNumber.of(1, 1),
+                BaseballNumber.of(2, 2)
+        )));
+        assertThrows(IllegalArgumentException.class, () -> new BaseballNumbers(Arrays.asList(
+                BaseballNumber.of(1, 1),
+                BaseballNumber.of(2, 2),
+                BaseballNumber.of(3, 4),
+                BaseballNumber.of(4, 5)
+        )));
     }
 
     @Test

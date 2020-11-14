@@ -16,7 +16,10 @@ class BaseballNumberTest {
     @CsvSource(value = {"1,1", "2,9", "3,5"})
     @DisplayName("BaseballNumber 는 1~3 사이의 index 와 Number 로 생성")
     void create(int index, int number) {
-        assertThat(BaseballNumber.of(index, number)).isEqualTo(new BaseballNumber(index, new Number(number)));
+        BaseballNumber baseballNumber = BaseballNumber.of(index, number);
+        BaseballNumber newBaseballNumber = new BaseballNumber(index, new Number(number));
+        assertThat(baseballNumber).isEqualTo(newBaseballNumber);
+        assertThat(baseballNumber.hashCode()).isEqualTo(newBaseballNumber.hashCode());
     }
 
     @ParameterizedTest

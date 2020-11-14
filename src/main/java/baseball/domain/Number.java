@@ -9,7 +9,7 @@ public class Number {
 
     public Number(final int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(String.format("숫자는 %d와 %d 사이의 숫자여야 합니다.", MIN_NUMBER, MIN_NUMBER));
+            throw new IllegalArgumentException(String.format("숫자는 %d와 %d 사이의 숫자여야 합니다.", MIN_NUMBER, MAX_NUMBER));
         }
         this.number = number;
     }

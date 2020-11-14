@@ -18,7 +18,7 @@ class MatchResultTest {
         MatchResult matchResult = new MatchResult(Arrays.asList(State.STRIKE, State.BALL));
         MatchResult newMatchResult = new MatchResult(Arrays.asList(State.STRIKE, State.BALL));
         assertThat(matchResult).isEqualTo(newMatchResult);
-        assertThat(matchResult).isNotSameAs(newMatchResult);
+        assertThat(matchResult.hashCode()).isEqualTo(newMatchResult.hashCode());
     }
 
     @ParameterizedTest
