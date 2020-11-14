@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import java.util.Objects;
+
 public class Ball {
     private int number;
     private int order;
@@ -20,11 +22,25 @@ public class Ball {
         }
     }
 
-    public Matcher compare(Ball ball) {
+    public Status compare(Ball ball) {
         if (this.number != ball.number) {
-            return Matcher.find(-1);
+            return Status.find(-1);
         }
 
-        return this.order == ball.order ? Matcher.find(1) : Matcher.find(0);
+        return this.order == ball.order ? Status.find(1) : Status.find(0);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ball ball = (Ball) o;
+        return number == ball.number &&
+                order == ball.order;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, order);
     }
 }

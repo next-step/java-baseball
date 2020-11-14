@@ -48,9 +48,9 @@ class BallTest {
         Ball userBall = new Ball(number, order);
 
         //when
-        Matcher actual = computerBall.compare(userBall);
+        Status actual = computerBall.compare(userBall);
 
         //then
-        assertEquals(Matcher.find(expected), actual);
+        assertEquals(Status.find(expected), actual);
     }
 }
