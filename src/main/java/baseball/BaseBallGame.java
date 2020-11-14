@@ -15,6 +15,7 @@ public class BaseBallGame {
             BallCountPrinter printer = new BallCountPrinter(ballCount);
             printer.print();
         } while (!ballCount.isEndGame());
+        System.out.println(GameResource.TEXT_GAME_END);
         restart();
     }
 
