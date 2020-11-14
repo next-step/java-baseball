@@ -21,6 +21,18 @@ class StringPracticeTest {
     }
 
     @Test
+    @DisplayName("2개이상 문자열 comma(,) 분리 테스트,정확한 순서도 학인 테스트")
+    void divideTwoMoreCommaExactlyTest(){
+        //given
+        StringPractice strTest = new StringPractice();
+        String givenText ="1,2";
+        //when
+        String[] strings = strTest.divideComma(givenText);
+        //then
+        assertThat(strings).as("문자열 \"1,2\"를 comma로 분리하기").containsExactly("1","2");
+    }
+
+    @Test
     @DisplayName("1개 문자열 comma(,) 분리 테스트")
     void divideOnlyOneCommaTest(){
         //given
@@ -30,6 +42,18 @@ class StringPracticeTest {
         String[] strings = strTest.divideComma(givenText);
         //then
         assertThat(strings).as("문자열 \"1\"를 comma로 분리하기").contains("1");
+    }
+
+    @Test
+    @DisplayName("1개 문자열 comma(,) 분리 테스트,정확한 순서도 학인 테스트")
+    void divideOnlyOneCommaExactlyTest(){
+        //given
+        StringPractice strTest = new StringPractice();
+        String givenText ="1";
+        //when
+        String[] strings = strTest.divideComma(givenText);
+        //then
+        assertThat(strings).as("문자열 \"1\"를 comma로 분리하기").containsExactly("1");
     }
 
 
