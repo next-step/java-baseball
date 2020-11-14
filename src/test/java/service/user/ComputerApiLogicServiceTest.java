@@ -2,12 +2,15 @@ package service.user;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class ComputerApiLogicServiceTest {
+import model.entity.Baseball;
 
+public class ComputerApiLogicServiceTest {
+	Baseball baseball = new Baseball();
+	
 	public char[] makeRandomNumber() {
 		char[] randomNumberArr = new char[3];
 		
@@ -74,5 +77,105 @@ public class ComputerApiLogicServiceTest {
 		if(preNumberArr == postNumberArr)
 			return false;
 		return true;
+	}
+	
+	@Test
+	public void giveHint() {
+		int ball = 0;
+		char[] randomNumberArr = {'2','5','7'};
+		char[] inputNumberArr = {'7','2','5'};
+		
+		for(int i=0; i<3; i++) {
+			ball = calcBall(randomNumberArr, inputNumberArr, i);
+		}
+		
+		System.out.println(ball + "볼");
+		assertEquals(3, ball);
+	}
+	
+	public int calcBall(char[] randomNumberArr, char[] inputNumberArr, int idx) {
+		int j=0;
+		while(j<3) {
+			if(idx != j && randomNumberArr[idx] == inputNumberArr[j]) {
+				baseball.setBall(baseball.getBall()+1);
+			}
+			j++;
+		}
+		
+		System.out.println("ball:"+baseball.getBall());
+		return baseball.getBall();
+	}
+	
+	/**
+	 * 게임 참가자로부터 입력받은 문자열을 
+	 * char 배열로 변환
+	 * @return
+	 */
+	@Test
+	public void makeInputNumberArr() {
+		char[] inputNumberArr = new char[3];
+		String inputNumberStr = "265";
+		String makeNumberStr = "";
+		
+		for(int i=0; i<inputNumberStr.length(); i++) {
+			inputNumberArr[i] = inputNumberStr.charAt(i);
+		}
+		
+		for (char c : inputNumberArr) {
+			makeNumberStr += String.valueOf(c);
+			System.out.println("입력받은 숫자 : " + c);
+		}
+		
+		assertEquals("265", makeNumberStr);
+	}
+	
+	@Test
+	public void calcStrike() {
+		Baseball baseball = new Baseball();
+		char[] randomNumberArr = {'2','5','7'};
+		char[] inputNumberArr = {'2','4','7'};
+		
+		for(int i=0; i<3; i++) {
+			if(randomNumberArr[i] == inputNumberArr[i]) {
+				baseball.setStrike(baseball.getStrike()+1);
+			}
+		}
+		
+		System.out.println(baseball.getStrike() + " 스트라이크");
+		assertEquals(2, baseball.getStrike());
+	}
+	
+	@Test
+	public void calcBall() {
+		Baseball baseball = new Baseball();
+		char[] randomNumberArr = {'2','5','7'};
+		char[] inputNumberArr = {'5','7','2'};
+		
+		int i=0;
+		int j=0;
+		while(i<3) {
+			if(i != j && randomNumberArr[i] == inputNumberArr[j]) {
+				System.out.println("볼+1");
+				baseball.setBall(baseball.getBall()+1);
+			}
+			
+			j++;
+			if(j == 3) {
+				i++;
+				j=0;
+			}
+		}
+		assertEquals(3, baseball.getBall());
+	}
+	
+	@Test
+	public void checkNothing() {
+		Baseball baseball = new Baseball();
+		String result = "";
+		
+		if(baseball.getStrike() == 0 && baseball.getBall() == 0)
+			result = "낫싱";
+		
+		assertEquals("낫싱", result);
 	}
 }

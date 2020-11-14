@@ -1,8 +1,13 @@
 package service.user;
 
+import model.entity.Baseball;
+import model.entity.Player;
 
 public class ComputerApiLogicService {
 	public final static int INPUT_PERMIT_LEGNTH = 3;
+	
+	Baseball baseball = new Baseball();
+	Player player = new Player();
 	
 	public char[] makeRandomNumber() {
 		char[] randomNumberArr = new char[INPUT_PERMIT_LEGNTH];
@@ -68,5 +73,62 @@ public class ComputerApiLogicService {
 			System.out.println("중복된 숫자를 입력할 수 없습니다.");
 		
 		return inputLenghCheck(inputNumberArr) && inputNumberCheck(inputNumberArr) && inputDuplicateCheck(inputNumberArr);
+	}
+	
+	public String giveHint() {
+		int strike = 0;
+		int ball = 0;
+		
+		for(int i=0; i<INPUT_PERMIT_LEGNTH; i++) {
+			strike = calcStrike(makeRandomNumber(), makeInputNumberArr(), i);
+			ball = calcBall(makeRandomNumber(), makeInputNumberArr(), i);
+		}
+		
+		if(checkNothing())
+			return "낫싱";
+		return strike + "스트라이크, " + ball + "볼 입니다.";
+	}
+	
+	/**
+	 * 게임 참가자로부터 입력받은 문자열을 
+	 * char 배열로 변환
+	 * @return
+	 */
+	public char[] makeInputNumberArr() {
+		char[] inputNumberArr = new char[INPUT_PERMIT_LEGNTH]; 
+		String inputNumberStr = player.getInputNumber();
+		
+		for(int i=0; i<inputNumberStr.length(); i++) {
+			inputNumberArr[i] = inputNumberStr.charAt(i);
+		}
+		
+		return inputNumberArr;
+	}
+	
+	public int calcStrike(char[] randomNumberArr, char[] inputNumberArr, int idx) {
+		if(randomNumberArr[idx] == inputNumberArr[idx]) {
+			baseball.setStrike(baseball.getStrike()+1);
+		}
+		
+		return baseball.getStrike();
+	}
+	
+	public int calcBall(char[] randomNumberArr, char[] inputNumberArr, int idx) {
+		int j=0;
+		
+		while(j<3) {
+			if(idx != j && randomNumberArr[idx] == inputNumberArr[j]) {
+				baseball.setBall(baseball.getBall()+1);
+			}
+			j++;
+		}
+		
+		return baseball.getBall();
+	}
+	
+	public boolean checkNothing() {
+		if(baseball.getStrike() == 0 && baseball.getBall() == 0)
+			return true;
+		return false;
 	}
 }

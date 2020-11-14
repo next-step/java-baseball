@@ -4,7 +4,12 @@ public class Baseball {
     private int strike;
     private int ball;
 
-    public int getStrike() {
+    public Baseball() {
+		this.strike = 0;
+		this.ball = 0;
+	}
+
+	public int getStrike() {
         return strike;
     }
 
