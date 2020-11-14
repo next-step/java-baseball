@@ -44,7 +44,7 @@ public class BaseballGame {
 			System.out.println(Message.VALIDATION_ERR_MSG);
 			return getUserInput(scanner, computerNumber);
 		}
-		BaseballNumber inputNumber = BaseballNumber.getBaseballNumber(inputValue);
+		BaseballNumber inputNumber = BaseballNumber.of(inputValue);
 		return computerNumber.checkStrikeAndBall(inputNumber);
 	}
 

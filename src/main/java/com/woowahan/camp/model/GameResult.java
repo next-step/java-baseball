@@ -20,6 +20,14 @@ public class GameResult {
 		return new GameResult(strike, ball, computerInputValue, userInputValue);
 	}
 
+	public int getStrike() {
+		return strike;
+	}
+
+	public int getBall() {
+		return ball;
+	}
+
 	public boolean isWin() {
 		return this.strike == 3;
 	}

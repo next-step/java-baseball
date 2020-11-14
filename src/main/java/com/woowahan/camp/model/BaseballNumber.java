@@ -14,7 +14,7 @@ public class BaseballNumber {
 		this.numbers = numbers;
 	}
 
-	public static BaseballNumber getBaseballNumber(String numStr) {
+	public static BaseballNumber of(String numStr) {
 		List<String> list = new ArrayList<>();
 		for (int i = 0; i < 3; i++) {
 			list.add(Character.toString(numStr.charAt(i)));
@@ -23,7 +23,7 @@ public class BaseballNumber {
 	}
 
 	public static BaseballNumber getRandomBaseballNumber() {
-		return getBaseballNumber(randomGenerator());
+		return of(randomGenerator());
 	}
 
 	public GameResult checkStrikeAndBall(BaseballNumber other) {
