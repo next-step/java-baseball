@@ -12,7 +12,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
-class MessageExceptionTest {
+class BaseBallExceptionTest {
 
     private Set<Integer> numbers;
     private String input;

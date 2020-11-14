@@ -3,7 +3,7 @@ package exception;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MessageException {
+public class BaseBallException {
 
     public static void throwsCheck(String input)  {
         lengthCheck(input);
@@ -29,6 +29,7 @@ public class MessageException {
             throw new IllegalStateException();
         }
     }
+
     private static void numberCheck(String input){
         try {
             Integer.parseInt(input);
