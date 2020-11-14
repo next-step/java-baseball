@@ -18,7 +18,7 @@ public class Application {
             System.out.print("3개의 숫자를 입력해주세요: ");
 
             ThreeDigits actual = inputThreeDigits();
-            PatternResult patternResult = PatternAnalyzer.analyze(actual, answer);
+            PatternResult patternResult = new PatternAnalyzer(actual, answer).analyze();
 
             System.out.println(PatternDisplayFormatter.format(patternResult));
 

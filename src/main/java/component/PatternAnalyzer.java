@@ -4,16 +4,23 @@ import model.PatternResult;
 import model.ThreeDigits;
 
 public class PatternAnalyzer {
-    private PatternAnalyzer() {}
+    private final ThreeDigits actual;
 
-    public static PatternResult analyze(ThreeDigits actual, ThreeDigits answer) {
-        int strikeCount = getStrikeCount(actual, answer);
-        int ballCount = getBallCount(actual, answer);
+    private final ThreeDigits answer;
+
+    public PatternAnalyzer(ThreeDigits actual, ThreeDigits answer) {
+        this.actual = actual;
+        this.answer = answer;
+    }
+
+    public PatternResult analyze() {
+        int strikeCount = getStrikeCount();
+        int ballCount = getBallCount();
 
         return new PatternResult(strikeCount, ballCount);
     }
 
-    private static int getStrikeCount(ThreeDigits actual, ThreeDigits answer) {
+    private int getStrikeCount() {
         int strikeCount = 0;
 
         for (int index = 0; index < 3; index++) {
@@ -28,7 +35,7 @@ public class PatternAnalyzer {
         return strikeCount;
     }
 
-    private static int getBallCount(ThreeDigits actual, ThreeDigits answer) {
+    private int getBallCount() {
         int ballCount = 0;
 
         for (int index = 0; index < 3; index++) {

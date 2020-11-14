@@ -84,6 +84,6 @@ public class PatternAnalyzerTest {
         ThreeDigits actualThreeDigits = ThreeDigitsFactory.createFrom(actual);
         ThreeDigits expectedThreeDigits = ThreeDigitsFactory.createFrom(expected);
 
-        return PatternAnalyzer.analyze(actualThreeDigits, expectedThreeDigits);
+        return new PatternAnalyzer(actualThreeDigits, expectedThreeDigits).analyze();
     }
 }
