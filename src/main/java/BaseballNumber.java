@@ -35,6 +35,9 @@ public class BaseballNumber {
 		if (number < MIN_NUMBER || number > MAX_NUMBER)
 			throw new RuntimeException();
 
+		if (units == tens || tens == hundreds || units == hundreds)
+			throw new RuntimeException();
+
 		return number;
 	}
 
