@@ -12,4 +12,10 @@ public class ValidatorTest {
     public void isNumber(final String input, final boolean expected){
         assertThat(Validator.isNumber(input)).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"123:true", "abc:true", ":false", "1:false"}, delimiter = ':')
+    public void isLength3(final String input, final boolean expected){
+        assertThat(Validator.isLength3(input)).isEqualTo(expected);
+    }
 }
