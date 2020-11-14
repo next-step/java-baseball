@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.domain.strategy;
 
 import baseball.exception.IllegalBallNumberException;
 import org.junit.jupiter.api.Assertions;

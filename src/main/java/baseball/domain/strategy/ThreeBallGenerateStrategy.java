@@ -1,5 +1,7 @@
-package baseball.domain;
+package baseball.domain.strategy;
 
+import baseball.domain.strategy.BallGenerateStrategy;
+import baseball.domain.strategy.RandomNumberStrategy;
 import baseball.exception.IllegalBallNumberException;
 
 import java.util.*;
