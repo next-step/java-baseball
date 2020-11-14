@@ -10,6 +10,10 @@ public abstract class AbstractBaseBallNumbers implements DuplicateValidator {
 
     abstract void setBaseBallNumbers(BaseBallNumber[] numbers);
 
+    BaseBallNumber[] getBaseBallNumbers() {
+        return numbers;
+    }
+
     BaseBallNumber getBaseBallNumber(int index) {
         return numbers[index];
     }
