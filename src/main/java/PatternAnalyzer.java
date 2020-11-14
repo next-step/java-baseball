@@ -14,7 +14,10 @@ public class PatternAnalyzer {
 
             if (actualDigit == answerDigit) {
                 strikeCount++;
-            } else if (answer.contains(actualDigit)) {
+                continue;
+            }
+
+            if (answer.contains(actualDigit)) {
                 ballCount++;
             }
         }
