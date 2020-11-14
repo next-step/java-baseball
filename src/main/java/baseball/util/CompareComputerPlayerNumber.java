@@ -5,10 +5,10 @@ import java.util.Set;
 public class CompareComputerPlayerNumber {
 
 	public static Integer[] compareStrikeAndBall(Set<Integer> computerNumbers, Set<Integer> playerNumbers) {
-		Integer[] score = new Integer[]{0, 0};
+		Integer[] score = new Integer[] {0, 0};
 		Integer position = 0;
 
-		for(Integer computerNumber : computerNumbers) {
+		for (Integer computerNumber : computerNumbers) {
 			score = getScore(position, score, computerNumber, playerNumbers);
 			position++;
 		}
@@ -26,8 +26,9 @@ public class CompareComputerPlayerNumber {
 		return score;
 	}
 
-	public static Integer[] calculateScoreBasedStrikeOrBall(Integer position, Integer[] score, Integer computerNumber, Set<Integer> playerNumbers) {
-		Integer[] playerNumberArray = playerNumbers.toArray(new Integer[]{});
+	public static Integer[] calculateScoreBasedStrikeOrBall(Integer position, Integer[] score, Integer computerNumber,
+		Set<Integer> playerNumbers) {
+		Integer[] playerNumberArray = playerNumbers.toArray(new Integer[] {});
 
 		if (playerNumberArray[position] == computerNumber) {
 			score[0]++;

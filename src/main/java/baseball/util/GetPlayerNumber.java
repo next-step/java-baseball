@@ -10,7 +10,8 @@ public class GetPlayerNumber {
 
 		Set<Integer> playerNumber = convertFromStringToHashSet(splitInput);
 
-		if (playerNumber != null && (!inputValidationSize(splitInput.length) || !inputValidationSize(playerNumber.size()))) {
+		if (playerNumber != null && (!inputValidationSize(splitInput.length) || !inputValidationSize(
+			playerNumber.size()))) {
 			return null;
 		}
 
@@ -42,7 +43,7 @@ public class GetPlayerNumber {
 		return saveNumber;
 	}
 
-	public static Set<Integer> addLinkedHashSet(String[] input){
+	public static Set<Integer> addLinkedHashSet(String[] input) {
 		Set<Integer> set = new LinkedHashSet<>();
 
 		for (int i = 0; i < input.length; i++) {

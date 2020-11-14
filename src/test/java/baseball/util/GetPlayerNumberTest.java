@@ -69,10 +69,4 @@ public class GetPlayerNumberTest {
 		assertThat(convertFromStringToInteger("1")).isEqualTo(1);
 	}
 
-	// @ParameterizedTest
-	// @CsvSource(value = {"1a, false", "12b, false", "b, false", "bbb, false", "123, true"})
-	// void inputValiationHasOnlyNumber(String input, Boolean expected) {
-	// 	assertEquals(inputValidation(input), expected);
-	// }
-
 }

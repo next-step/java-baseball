@@ -28,7 +28,7 @@ public class CompareComputerPlayerNumberTest {
 		playerNumbers.add(1);
 		playerNumbers.add(2);
 		playerNumbers.add(3);
-		assertThat(compareStrikeAndBall(computerNumbers, playerNumbers)).isEqualTo(new Integer[]{3, 0});
+		assertThat(compareStrikeAndBall(computerNumbers, playerNumbers)).isEqualTo(new Integer[] {3, 0});
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class CompareComputerPlayerNumberTest {
 		playerNumbers.add(4);
 		playerNumbers.add(5);
 		playerNumbers.add(6);
-		assertThat(compareStrikeAndBall(computerNumbers, playerNumbers)).isEqualTo(new Integer[]{0, 0});
+		assertThat(compareStrikeAndBall(computerNumbers, playerNumbers)).isEqualTo(new Integer[] {0, 0});
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class CompareComputerPlayerNumberTest {
 		playerNumbers.add(1);
 		playerNumbers.add(3);
 		playerNumbers.add(5);
-		assertThat(compareStrikeAndBall(computerNumbers, playerNumbers)).isEqualTo(new Integer[]{1, 1});
+		assertThat(compareStrikeAndBall(computerNumbers, playerNumbers)).isEqualTo(new Integer[] {1, 1});
 	}
 
 	@Test
@@ -55,9 +55,9 @@ public class CompareComputerPlayerNumberTest {
 		playNumbers.add(3);
 		playNumbers.add(1);
 		playNumbers.add(5);
-		assertThat(getScore(0, new Integer[]{0,0},3, playNumbers)).isEqualTo(new Integer[]{1,0});
-		assertThat(getScore(0, new Integer[]{0,0},1, playNumbers)).isEqualTo(new Integer[]{0,1});
-		assertThat(getScore(0, new Integer[]{0,0},8, playNumbers)).isEqualTo(new Integer[]{0,0});
+		assertThat(getScore(0, new Integer[] {0, 0}, 3, playNumbers)).isEqualTo(new Integer[] {1, 0});
+		assertThat(getScore(0, new Integer[] {0, 0}, 1, playNumbers)).isEqualTo(new Integer[] {0, 1});
+		assertThat(getScore(0, new Integer[] {0, 0}, 8, playNumbers)).isEqualTo(new Integer[] {0, 0});
 	}
 
 	@Test
@@ -66,8 +66,10 @@ public class CompareComputerPlayerNumberTest {
 		playNumbers.add(3);
 		playNumbers.add(1);
 		playNumbers.add(5);
-		assertThat(calculateScoreBasedStrikeOrBall(0, new Integer[]{0,0}, 1, playNumbers)).isEqualTo(new Integer[]{0,1});
-		assertThat(calculateScoreBasedStrikeOrBall(1, new Integer[]{0,0}, 1, playNumbers)).isEqualTo(new Integer[]{1,0});
+		assertThat(calculateScoreBasedStrikeOrBall(0, new Integer[] {0, 0}, 1, playNumbers)).isEqualTo(
+			new Integer[] {0, 1});
+		assertThat(calculateScoreBasedStrikeOrBall(1, new Integer[] {0, 0}, 1, playNumbers)).isEqualTo(
+			new Integer[] {1, 0});
 	}
 
 }

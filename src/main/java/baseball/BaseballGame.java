@@ -30,7 +30,6 @@ public class BaseballGame {
 		return false;
 	}
 
-
 	private static void playingBaseball(Set<Integer> computerNumber) {
 		Boolean eachGamePlaying = true;
 
@@ -48,7 +47,7 @@ public class BaseballGame {
 		String input = sc.next();
 		return input;
 	}
-	
+
 	private static Boolean checkPlayerNumber(Set<Integer> computerNumber, Set<Integer> playerNumber) {
 		if (playerNumber == null) {
 			System.out.println("1~9 사이의 서로 다른 3자리 숫자를 입력해주세요.");
@@ -70,6 +69,7 @@ public class BaseballGame {
 	}
 
 	private static void makeResultState(Integer[] score) {
+
 		if (score[0] > 0) {
 			System.out.print(score[0] + " 스트라이크 ");
 		}

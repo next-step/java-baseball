@@ -13,10 +13,10 @@ public class GenerateComputerNumber {
 	}
 
 	public static Set<Integer> generateComputerNumber() {
-		Set<Integer> computerNumbers= new LinkedHashSet<>();
+		Set<Integer> computerNumbers = new LinkedHashSet<>();
 
-		while(computerNumbers.size()<3) {
-			computerNumbers.add(generateEachNumberBetweenMinAndMax(1,9));
+		while (computerNumbers.size() < 3) {
+			computerNumbers.add(generateEachNumberBetweenMinAndMax(1, 9));
 		}
 
 		return computerNumbers;
