@@ -25,6 +25,10 @@ public class BallCount {
         return strike == 3 ? true : false;
     }
 
+    public boolean hasStrike() { return strike > 0 ? true : false; }
+
+    public boolean hasBall() { return ball > 0 ? true : false; }
+
     public void addStrike(){
         this.strike++;
     }
@@ -32,6 +36,12 @@ public class BallCount {
     public void addBall(){
         this.ball++;
     }
+
+    public int getStrike(){
+        return strike;
+    }
+
+    public int getBall(){ return ball; }
 
     @Override
     public String toString(){

@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.Objects;
+
 public class Validator {
     public static boolean isNumber(String input) {
         try{
@@ -11,6 +13,6 @@ public class Validator {
     }
 
     public static boolean isLength3(String input) {
-        return input.length() == 3 ? true : false;
+        return Objects.nonNull(input) && input.length() == 3 ? true : false;
     }
 }
