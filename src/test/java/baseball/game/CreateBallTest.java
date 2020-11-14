@@ -34,15 +34,15 @@ class CreateBallTest {
     @DisplayName("현재 등록 된 랜덤 숫자 최소값 0인 경우")
     @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}")
     @CsvSource({
-            "0, 5, 9",
-            "5, 8, 0"
+        "0, 5, 9",
+        "5, 8, 0"
     })
     void random_base_ball_min_number(final int oneNumber,
                                      final int twoNumber,
                                      final int threeNumber) {
         IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
+            IllegalArgumentException.class,
+            () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 
         assertTrue(exception.getMessage().contains(PrintMessage.RANDOM_NUMBER_MIN_MAX_ERROR));
@@ -51,15 +51,15 @@ class CreateBallTest {
     @DisplayName("현재 등록 된 랜덤 숫자 최대값이 10인 경우")
     @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}")
     @CsvSource({
-            "10, 5, 9",
-            "5, 8, 10"
+        "10, 5, 9",
+        "5, 8, 10"
     })
     void random_base_ball_max_number(final int oneNumber,
                                      final int twoNumber,
                                      final int threeNumber) {
         IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
+            IllegalArgumentException.class,
+            () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 
         assertTrue(exception.getMessage().contains(PrintMessage.RANDOM_NUMBER_MIN_MAX_ERROR));
@@ -68,15 +68,15 @@ class CreateBallTest {
     @DisplayName("현재 등록 된 랜덤 숫자의 길이가 3이 아닌 경우 (LinkedHashSet)의 중복 여부 체크")
     @ParameterizedTest(name = "{index} => oneNumber={0}, twoNumber={1}, threeNumber={2}")
     @CsvSource({
-            "5, 5, 9",
-            "5, 8, 8"
+        "5, 5, 9",
+        "5, 8, 8"
     })
     void validate_random_base_ball_size(final int oneNumber,
                                         final int twoNumber,
                                         final int threeNumber) {
         IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> createBall.validateRandomBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
+            IllegalArgumentException.class,
+            () -> createBall.validateRandomBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 
         assertTrue(exception.getMessage().contains(PrintMessage.RANDOM_NUMBER_SIZE_ERROR));
