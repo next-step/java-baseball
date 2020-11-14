@@ -20,19 +20,23 @@
   
 ## 객체 간단 모델링
 
-### domain.AnswerNumber
+### domain.BaseballNumber
+
+- 숫자 야구에서 사용하는 하나의 숫자를 담은 객체
+
+### domain.AnswerNumbers
 
 - 사용자가 맞춰야 하는 수를 담은 객체
-- (number)
+- ([Number] numbers)
 - 3자리의 서로 다른 수를 가져야 한다.
 - [x] 3자리의 서로 다른 숫자를 생성한다.
 - [x] 숫자가 3자리를 가지면 true를 리턴한다.
 - [x] 각 자리수에 같은 숫자가 있으면 true를 리턴한다.
 
-### domain.UserNumber
+### domain.UserNumbers
 
 - 사용자가 입력한 수를 담은 객체
-- (number)
+- ([Number] numbers)
 - 3자리의 서로 다른 수를 가져야 한다.
 - [x] 3자리를 가지지 않으면 예외를 발생시킨다.
 - [x] 각 자리 수에 같은 숫자가 있으면 예외를 발생시킨다.
@@ -40,7 +44,7 @@
 ### domain.Referee (심판)
 
 - UserNumber와 AnswerNumber를 비교해 스트라이크, 볼, 낫띵 을 판별하는 객체
-- (answerNumber)
+- (answerNumbers)
 - [x] 입력받은 숫자의 스트라이크 개수를 반환한다.
 - [x] 입력받은 숫자의 볼 개수를 반환한다
 - [ ]

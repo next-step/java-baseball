@@ -21,9 +21,9 @@ public class BaseballGameMachine {
     }
 
     public boolean guess() {
-        int userNumberRaw = InputView.inputUserNumber();
-        UserNumber userNumber = new UserNumber(userNumberRaw);
-        Result result = baseballGame.getResult(userNumber);
+        String userNumberRaw = InputView.inputUserNumber();
+        UserNumbers userNumbers = UserNumbers.of(userNumberRaw);
+        Result result = baseballGame.getResult(userNumbers);
         OutputView.printResult(result);
         return isContinueGuess(result);
     }

@@ -7,20 +7,20 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class UserNumberTest {
+class UserNumbersTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 10, 1000, 10000})
     @DisplayName("3자리를 가지지 않으면 예외를 발생시킨다.")
     void hasThreeNumberTest(int number) {
-        assertThatThrownBy(() -> UserNumber.validateThreeLength(number))
+        assertThatThrownBy(() -> UserNumbers.validateThreeLength(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ValueSource(ints = {1, 10, 1000, 10000})
     @DisplayName("각 자리 수에 같은 숫자가 있으면 예외를 발생시킨다.")
     void duplicateNumberExistTest(int number) {
-        assertThatThrownBy(() -> UserNumber.validateDuplication(number))
+        assertThatThrownBy(() -> UserNumbers.validateDuplication(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

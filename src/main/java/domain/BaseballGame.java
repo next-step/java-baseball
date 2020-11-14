@@ -8,14 +8,14 @@ public class BaseballGame {
     }
 
     public static BaseballGame startGame() {
-        AnswerNumber answerNumber = AnswerNumber.init();
-        Referee referee = new Referee(answerNumber);
+        AnswerNumbers answerNumbers = AnswerNumbers.init();
+        Referee referee = new Referee(answerNumbers);
         return new BaseballGame(referee);
     }
 
-    public Result getResult(UserNumber userNumber) {
-        int countOfStrike = referee.getStrikeCount(userNumber);
-        int countOfBall = referee.getBallCount(userNumber);
+    public Result getResult(UserNumbers userNumbers) {
+        int countOfStrike = referee.getStrikeCount(userNumbers);
+        int countOfBall = referee.getBallCount(userNumbers);
         if (countOfBall == 0 && countOfStrike == 0) {
             return SpecialResultType.NOTHING;
         }

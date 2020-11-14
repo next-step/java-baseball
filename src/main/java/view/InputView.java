@@ -9,9 +9,9 @@ public class InputView {
 
     }
 
-    public static int inputUserNumber() {
+    public static String inputUserNumber() {
         System.out.print("숫자를 입력해주세요 : ");
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine();
     }
 
     public static int inputContinueNumber() {
