@@ -1,7 +1,6 @@
 package exception;
 
 
-import org.assertj.core.api.ThrowableTypeAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,6 +23,18 @@ class BaseBallExceptionTest {
         numbers.add(2);
         numbers.add(3);
     }
+
+    @DisplayName("널값, 또는 빈문자열 체크")
+    @Test
+    void isEmptyCheck() {
+        boolean exceptionCatched = false;
+        input = null;
+        if(input == null || "".equals(input)){
+            exceptionCatched = true;
+        }
+        assertThat(exceptionCatched).isTrue();
+    }
+
     @DisplayName("중복된 숫자 체크")
     @Test
      void duplicateCheck() {

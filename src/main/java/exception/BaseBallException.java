@@ -6,17 +6,26 @@ import java.util.Set;
 public class BaseBallException {
 
     public static void throwsCheck(String input)  {
+        isEmptyCheck(input);
         lengthCheck(input);
         numberCheck(input);
         duplicateCheck(input);
     }
 
+
+    private static void isEmptyCheck(String input) {
+        if(input == null || "".equals(input)){
+            System.out.println("값을 입력해주세요.");
+            throw new NullPointerException();
+        }
+    }
+
     private static void duplicateCheck(String input) {
         Set<Integer> set = new HashSet<Integer>();
         for(int i = 0; i < input.length(); i++){
-            System.out.println(input.charAt(i)-'0');
             set.add(input.charAt(i)-'1');
         }
+
         if(set.size() != 3){
             System.out.println("3개의 문자열 중 중복 되는 숫자가 존재 합니다.");
             throw new IllegalStateException();

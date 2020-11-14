@@ -8,7 +8,7 @@ public class BaseBallUtil {
     private static final int [] fixedNumber = {1,2,3,4,5,6,7,8,9};
 
     //출력하기전 맵값 세팅.
-    public  Map<String,Integer> setBaseballMap(int strikeCnt, int ballCnt) {
+    public Map<String,Integer> setBaseballMap(int strikeCnt, int ballCnt) {
         Map<String,Integer> resultMap = new HashMap<>();
         resultMap.put(BaseballType.STRIKE.name(),strikeCnt);
         resultMap.put(BaseballType.BALL.name(),ballCnt);
