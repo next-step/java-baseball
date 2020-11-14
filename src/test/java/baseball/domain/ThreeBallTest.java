@@ -74,4 +74,100 @@ class ThreeBallTest {
         assertTrue(result.getMatch().equals(target));
     }
 
+    @DisplayName("공 번호를 비교하고 결과 반환 - 2 strike, 1 nothing")
+    @Test
+    public void compareAll_2strike_success() throws Exception {
+        //given
+        BallGenerateStrategy generator1 = () -> new ArrayList<>(Arrays.asList(1, 2, 4));
+        ThreeBall balls1 = new ThreeBall(generator1);
+
+        BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(1, 9, 3));
+        ThreeBall balls2 = new ThreeBall(generator2);
+
+        Map<MatchType, Integer> target = new HashMap<>();
+        target.put(MatchType.STRIKE, 2);
+        target.put(MatchType.BALL, 0);
+        target.put(MatchType.NOTHING, 1);
+
+        //when
+        MatchResult result1 = threeBall.compareAll(balls1);
+        MatchResult result2 = threeBall.compareAll(balls2);
+
+        //then
+        assertTrue(result1.getMatch().equals(target));
+        assertTrue(result2.getMatch().equals(target));
+    }
+
+    @DisplayName("공 번호를 비교하고 결과 반환 - 1 strike, 1 ball, 1 nothing")
+    @Test
+    public void compareAll_1strike_success() throws Exception {
+        //given
+        BallGenerateStrategy generator1 = () -> new ArrayList<>(Arrays.asList(2, 4, 3));
+        ThreeBall balls1 = new ThreeBall(generator1);
+
+        BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(1, 6, 2));
+        ThreeBall balls2 = new ThreeBall(generator2);
+
+        Map<MatchType, Integer> target = new HashMap<>();
+        target.put(MatchType.STRIKE, 1);
+        target.put(MatchType.BALL, 1);
+        target.put(MatchType.NOTHING, 1);
+
+        //when
+        MatchResult result1 = threeBall.compareAll(balls1);
+        MatchResult result2 = threeBall.compareAll(balls2);
+
+        //then
+        assertTrue(result1.getMatch().equals(target));
+        assertTrue(result2.getMatch().equals(target));
+    }
+
+    @DisplayName("공 번호를 비교하고 결과 반환 - 2 ball, 1 nothing")
+    @Test
+    public void compareAll_2ball_success() throws Exception {
+        //given
+        BallGenerateStrategy generator1 = () -> new ArrayList<>(Arrays.asList(2, 1, 9));
+        ThreeBall balls1 = new ThreeBall(generator1);
+
+        BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(8, 3, 1));
+        ThreeBall balls2 = new ThreeBall(generator2);
+
+        Map<MatchType, Integer> target = new HashMap<>();
+        target.put(MatchType.STRIKE, 0);
+        target.put(MatchType.BALL, 2);
+        target.put(MatchType.NOTHING, 1);
+
+        //when
+        MatchResult result1 = threeBall.compareAll(balls1);
+        MatchResult result2 = threeBall.compareAll(balls2);
+
+        //then
+        assertTrue(result1.getMatch().equals(target));
+        assertTrue(result2.getMatch().equals(target));
+    }
+
+    @DisplayName("공 번호를 비교하고 결과 반환 - 3 nothing")
+    @Test
+    public void compareAll_3nothing_success() throws Exception {
+        //given
+        BallGenerateStrategy generator1 = () -> new ArrayList<>(Arrays.asList(4, 5, 6));
+        ThreeBall balls1 = new ThreeBall(generator1);
+
+        BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(7, 8, 9));
+        ThreeBall balls2 = new ThreeBall(generator2);
+
+        Map<MatchType, Integer> target = new HashMap<>();
+        target.put(MatchType.STRIKE, 0);
+        target.put(MatchType.BALL, 0);
+        target.put(MatchType.NOTHING, 3);
+
+        //when
+        MatchResult result1 = threeBall.compareAll(balls1);
+        MatchResult result2 = threeBall.compareAll(balls2);
+
+        //then
+        assertTrue(result1.getMatch().equals(target));
+        assertTrue(result2.getMatch().equals(target));
+    }
+
 }
