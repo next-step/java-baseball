@@ -10,10 +10,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ThreeBallTest {
+
+    private ThreeBall threeBall =
+            new ThreeBall(() -> new ArrayList<>(Arrays.asList(1, 2, 3)));
 
     @DisplayName("게임용 공 정상 생성")
     @Test
@@ -47,6 +53,25 @@ class ThreeBallTest {
                 () -> new ThreeBall(generator)
         ).isInstanceOf(BallException.class)
                 .hasMessage("공의 사이즈가 3개가 되어야 합니다.");
+    }
+
+    @DisplayName("공 번호를 비교하고 결과 반환 - 3 strike")
+    @Test
+    public void compareAll1_3strike_success() throws Exception {
+        //given
+        BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(1, 2, 3));
+        ThreeBall balls = new ThreeBall(generator2);
+
+        Map<MatchType, Integer> target = new HashMap<>();
+        target.put(MatchType.STRIKE, 3);
+        target.put(MatchType.BALL, 0);
+        target.put(MatchType.NOTHING, 0);
+
+        //when
+        MatchResult result = threeBall.compareAll(balls);
+
+        //then
+        assertTrue(result.getMatch().equals(target));
     }
 
 }
