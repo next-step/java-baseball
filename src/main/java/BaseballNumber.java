@@ -31,11 +31,12 @@ public class BaseballNumber {
 		return hundreds;
 	}
 
+	public boolean isContain(int number) {
+		return units == number || tens == number || hundreds == number;
+	}
+
 	private int checkValid(int number) {
 		if (number < MIN_NUMBER || number > MAX_NUMBER)
-			throw new RuntimeException();
-
-		if (units == tens || tens == hundreds || units == hundreds)
 			throw new RuntimeException();
 
 		return number;
