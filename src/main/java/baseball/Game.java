@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-	public static int MAX_GAME_NUMBER_LENGTH = 3;
-	private static String INPUT_DELIMITER = "";
-	private static String INVALID_INPUT_ERROR_MESSAGE = "Invalid Input";
+	public static final int MAX_GAME_NUMBER_LENGTH = 3;
+	private static final String INPUT_DELIMITER = "";
+	private static final String INVALID_INPUT_ERROR_MESSAGE = "Invalid Input";
 	private GameNumbers rightAnswer;
+	private GameStatus status;
 
 	public Game(GameNumberGenerator gameNumberGenerator) {
+		status = GameStatus.IN_PROGRESSING;
 		rightAnswer = gameNumberGenerator.generate(MAX_GAME_NUMBER_LENGTH);
 	}
 
@@ -41,5 +43,16 @@ public class Game {
 		} catch (NumberFormatException e) {
 			throw new InvalidGameInputException(INVALID_INPUT_ERROR_MESSAGE);
 		}
+	}
+
+	public void inputUserAnswer(String input) {
+		GameNumbers userAnswer = convertInputToGameNumbers(input);
+		if (userAnswer.equals(rightAnswer)) {
+			status = GameStatus.END;
+		}
+	}
+
+	public boolean isFinished() {
+		return status == GameStatus.END;
 	}
 }

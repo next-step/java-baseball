@@ -60,6 +60,19 @@ class GameTest {
 			.isThrownBy(() -> game.convertInputToGameNumbers(input));
 	}
 
+	@DisplayName("입력이 정답이면 게임은 종료된다.")
+	@Test
+	void isInputRightAnswer() throws Exception {
+	    // Given
+		Game game = new Game(new GameNumberTestGenerator());
+
+	    // When
+		game.inputUserAnswer("123");
+
+	    // Then
+		assertThat(game.isFinished()).isTrue();
+	}
+
 	private static class GameNumberTestGenerator implements GameNumberGenerator {
 		@Override
 		public GameNumbers generate(int length) {

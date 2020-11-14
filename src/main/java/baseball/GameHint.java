@@ -20,8 +20,8 @@ public class GameHint {
 	}
 
 	private void addBallCount(String[] answers, String input) {
-		for (int i = 0, size = answers.length; i < size; i++) {
-			addBallCount(answers[i], input);
+		for (String answer : answers) {
+			addBallCount(answer, input);
 		}
 	}
 
