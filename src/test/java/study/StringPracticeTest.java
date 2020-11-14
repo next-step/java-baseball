@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class StringTest {
+class StringPracticeTest {
 
 
     @Test
     @DisplayName("2개이상 문자열 comma(,) 분리 테스트")
     void divideTwoMoreCommaTest(){
         //given
-        String strTest = new String();
+        StringPractice strTest = new StringPractice();
         java.lang.String givenText ="1,2";
         //when
         java.lang.String[] strings = strTest.divideComma(givenText);
@@ -24,7 +24,7 @@ class StringTest {
     @DisplayName("1개 문자열 comma(,) 분리 테스트")
     void divideOnlyOneCommaTest(){
         //given
-        String strTest = new String();
+        StringPractice strTest = new StringPractice();
         java.lang.String givenText ="1";
         //when
         java.lang.String[] strings = strTest.divideComma(givenText);
@@ -37,7 +37,7 @@ class StringTest {
     @DisplayName("(1,2)에서 ()괄호 없애기")
     void removeParenthesisTest(){
         //given
-        String strTest = new String();
+        StringPractice strTest = new StringPractice();
         java.lang.String givenText = "(1,2)";
         //when
         java.lang.String result = strTest.removeParenthesis(givenText);

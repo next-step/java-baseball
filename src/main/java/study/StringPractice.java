@@ -1,6 +1,6 @@
 package study;
 
-public class String {
+public class StringPractice {
 
     /**
      * [요구사항 1]
