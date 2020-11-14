@@ -1,8 +1,6 @@
 package io.homo_efficio.base_ball;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * @author homo.efficio@gmail.com
@@ -11,37 +9,32 @@ import java.util.Set;
 public class NumberGenerator {
 
     public static String generate(int len) {
-        Random random = new Random();
-        String numbers = getSameNums(len);
-        while (!allUnique(numbers, len)) {
-            numbers = getMaybeUniqueNums(len, random);
-        }
-        return numbers;
+        int[] numPool = getRandomNumPool();
+        return getUniqueNumbersWithLength(len, numPool);
     }
 
-    private static String getMaybeUniqueNums(int len, Random random) {
+    private static String getUniqueNumbersWithLength(int len, int[] numPool) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < len; i++) {
-            sb.append(random.nextInt(8) + 1);
-        }
-        String nums = sb.toString();
-        return nums;
-    }
-
-    private static String getSameNums(int len) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 0; i++) {
-            sb.append("1");
+            sb.append(numPool[i]);
         }
         return sb.toString();
     }
 
-    private static boolean allUnique(String nums, int len) {
-        Set<String> numbers = new HashSet<>(len);
-        String[] split = nums.split("");
-        for (String num : split) {
-            numbers.add(num);
+    private static int[] getRandomNumPool() {
+        int[] numPool = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Random random = new Random();
+        for (int i = 0; i < numPool.length; i++) {
+            int randomIndex = random.nextInt(9);
+            swap(numPool, i, randomIndex);
         }
-        return numbers.size() == len;
+        return numPool;
+    }
+
+    private static void swap(int[] numPool, int i, int randomIndex) {
+        int tmp;
+        tmp = numPool[randomIndex];
+        numPool[randomIndex] = numPool[i];
+        numPool[i] = tmp;
     }
 }
