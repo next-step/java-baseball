@@ -1,4 +1,5 @@
 import component.PatternAnalyzer;
+import component.ThreeDigitsFactory;
 import model.PatternResult;
 import model.ThreeDigits;
 import org.junit.jupiter.api.DisplayName;
@@ -80,8 +81,8 @@ public class PatternAnalyzerTest {
     }
 
     PatternResult analyze(String actual, String expected) {
-        ThreeDigits actualThreeDigits = ThreeDigits.createFrom(actual);
-        ThreeDigits expectedThreeDigits = ThreeDigits.createFrom(expected);
+        ThreeDigits actualThreeDigits = ThreeDigitsFactory.createFrom(actual);
+        ThreeDigits expectedThreeDigits = ThreeDigitsFactory.createFrom(expected);
 
         return PatternAnalyzer.analyze(actualThreeDigits, expectedThreeDigits);
     }
