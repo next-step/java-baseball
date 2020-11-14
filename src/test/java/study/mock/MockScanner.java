@@ -1,20 +1,18 @@
 package study.mock;
 
-import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 public class MockScanner {
 
-    final Scanner sc;
+	final Scanner sc;
+	public MockScanner() {
+		sc = new Scanner(System.in);
+	}
 
-    public MockScanner() {
-        sc = new Scanner(System.in);
-    }
+	public boolean isInputYes() {
 
-    public boolean isInputYes(){
+		String input = sc.next();
 
-        String input = sc.next();
-
-        return "yes".equalsIgnoreCase(input);
-    }
+		return "yes".equalsIgnoreCase(input);
+	}
 }

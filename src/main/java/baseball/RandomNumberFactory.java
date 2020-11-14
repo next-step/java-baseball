@@ -6,31 +6,31 @@ import java.util.Set;
 
 public class RandomNumberFactory {
 
-    private final Random random;
-    private final Set<Integer> store;
+	private final Random random;
+	private final Set<Integer> store;
 
-    public RandomNumberFactory() {
-        random = new Random();
-        store = new HashSet<>();
-    }
+	public RandomNumberFactory() {
+		random = new Random();
+		store = new HashSet<>();
+	}
 
-    public String make() {
-        makeNumberWithoutDuplicate();
+	public String make() {
+		makeNumberWithoutDuplicate();
 
-        StringBuilder sb = new StringBuilder();
-        store.iterator().forEachRemaining(sb::append);
-        return sb.toString();
-    }
+		StringBuilder sb = new StringBuilder();
+		store.iterator().forEachRemaining(sb::append);
+		return sb.toString();
+	}
 
 	private void makeNumberWithoutDuplicate() {
 		store.clear();
-		while(store.size() < BallCount.BALL_COUNT_SIZE){
+		while (store.size() < BallCount.BALL_COUNT_SIZE) {
 			int number = make1to9();
 			store.add(number);
 		}
 	}
 
-    private int make1to9(){
-        return random.nextInt(8) + 1;
-    }
+	private int make1to9() {
+		return random.nextInt(8) + 1;
+	}
 }
