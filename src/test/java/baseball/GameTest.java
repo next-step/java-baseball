@@ -73,6 +73,19 @@ class GameTest {
 		assertThat(game.isFinished()).isTrue();
 	}
 
+	@DisplayName("입력이 정답이 아니라면 게임은 계속 진행된다.")
+	@Test
+	public void isInputWrongAnswer() throws Exception {
+	    // Given
+		Game game = new Game(new GameNumberTestGenerator());
+
+	    // When
+		game.inputUserAnswer("456");
+
+	    // Then
+		assertThat(game.isFinished()).isFalse();
+	}
+
 	private static class GameNumberTestGenerator implements GameNumberGenerator {
 		@Override
 		public GameNumbers generate(int length) {
