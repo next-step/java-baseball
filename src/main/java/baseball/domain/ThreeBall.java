@@ -42,4 +42,33 @@ public class ThreeBall {
         }
     }
 
+    public MatchResult compareAll(final ThreeBall target) {
+        MatchResult matchResult = new MatchResult();
+
+        for (BallNumber ball : target.balls) {
+            matchResult = matchResult
+                    .addMatchType(filterResultType(ball, target.balls.indexOf(ball)));
+        }
+
+        return matchResult;
+    }
+
+    private MatchType filterResultType(final BallNumber target,
+                                       final int index) {
+        if (this.balls.contains(target)) {
+            return compareValueAndIndex(target, index);
+        }
+
+        return MatchType.NOTHING;
+    }
+
+    private MatchType compareValueAndIndex(final BallNumber target,
+                                           final int index) {
+        if (this.balls.indexOf(target) == index) {
+            return MatchType.STRIKE;
+        } else {
+            return MatchType.BALL;
+        }
+    }
+
 }
