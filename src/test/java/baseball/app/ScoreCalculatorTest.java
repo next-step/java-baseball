@@ -26,10 +26,13 @@ public class ScoreCalculatorTest {
   @Test
   public void givenStringGetResult() {
     String computerString = "713";
-    assertThat(scoreCalculator.calculate("713", computerString).getScoreMap()).containsKey(Score.STRIKE).containsValue(3);
-    assertThat(scoreCalculator.calculate("714", computerString).getScoreMap()).containsKey(Score.STRIKE).containsValue(2);
-    assertThat(scoreCalculator.calculate("216", computerString).getScoreMap()).containsKey(Score.STRIKE).containsValue(1);
-    assertThat(scoreCalculator.calculate("245", computerString).getScoreMap()).doesNotContainKey(Score.STRIKE).isEmpty();
+    assertThat(scoreCalculator.calculate("713", computerString).getScoreMap()).containsEntry(Score.STRIKE,3);
+    assertThat(scoreCalculator.calculate("714", computerString).getScoreMap()).containsEntry(Score.STRIKE,2);
+    assertThat(scoreCalculator.calculate("216", computerString).getScoreMap()).containsEntry(Score.STRIKE,1);
+    assertThat(scoreCalculator.calculate("245", computerString).getScoreMap()).containsEntry(Score.STRIKE,0);
+    assertThat(scoreCalculator.calculate("145", computerString).getScoreMap()).containsKey(Score.BALL).containsValue(1);
+    assertThat(scoreCalculator.calculate("134", computerString).getScoreMap()).containsKey(Score.BALL).containsValue(2);
+    assertThat(scoreCalculator.calculate("137", computerString).getScoreMap()).containsKey(Score.BALL).containsValue(3);
   }
 
 }

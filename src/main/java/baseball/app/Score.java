@@ -6,5 +6,5 @@ package baseball.app;
  * @description
  */
 public enum Score {
-  STRIKE
+  STRIKE,BALL
 }
