@@ -2,8 +2,10 @@ package baseball;
 
 public class BaseBallGame {
 
+    private final RandomNumberFactory factory;
     private final InputScanner inputScanner;
     public BaseBallGame(){
+        factory = new RandomNumberFactory();
         inputScanner = new ConsoleInputScanner();
     }
 
@@ -20,7 +22,7 @@ public class BaseBallGame {
     }
 
     public void start(){
-        play("713");
+        play(factory.make());
     }
 
     public void restart(){
@@ -28,7 +30,7 @@ public class BaseBallGame {
 
         inputRestart = inputScanner.inputNumber1Or2();
         if(isRestartGame(inputRestart)){
-            play("123");
+            play(factory.make());
         }
     }
 

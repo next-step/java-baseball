@@ -23,6 +23,7 @@ public class RandomNumberFactory {
     }
 
     private void makeNumberWithoutDuplicate(){
+        store.clear();
         while(store.size() < BallCount.BALL_COUNT_SIZE){
             int number = make1to9();
             store.add(number);
