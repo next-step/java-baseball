@@ -7,7 +7,7 @@ public class PatternAnalyzer {
     private PatternAnalyzer() {
     }
 
-    static public PatternResult analyze(ThreeDigits actual, ThreeDigits answer) {
+    public static PatternResult analyze(ThreeDigits actual, ThreeDigits answer) {
         int strikeCount = 0, ballCount = 0;
 
         for (int index = 0; index < 3; index++) {

@@ -8,7 +8,7 @@ public class PatternDisplayFormatter {
     private PatternDisplayFormatter() {
     }
 
-    static public String format(PatternResult patternResult) {
+    public static String format(PatternResult patternResult) {
         int strikeCount = patternResult.getStrikeCount();
         int ballCount = patternResult.getBallCount();
 
@@ -19,7 +19,7 @@ public class PatternDisplayFormatter {
         return format(strikeCount, ballCount);
     }
 
-    static private String format(int strikeCount, int ballCount) {
+    private static String format(int strikeCount, int ballCount) {
         StringJoiner stringJoiner = new StringJoiner(", ");
 
         if (strikeCount > 0) {
@@ -33,7 +33,7 @@ public class PatternDisplayFormatter {
         return stringJoiner.toString();
     }
 
-    static private String formatForNothing() {
+    private static String formatForNothing() {
         return "낫싱";
     }
 }

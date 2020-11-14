@@ -8,7 +8,7 @@ public class AnswerCreator {
     private AnswerCreator() {
     }
 
-    static public ThreeDigits createAnswer() {
+    public static ThreeDigits createAnswer() {
         Iterator<Integer> iterator = new ShuffledUniqueRandomNumbers(1, 9)
                 .iterator();
 
