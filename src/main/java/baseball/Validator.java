@@ -9,4 +9,8 @@ public class Validator {
             return false;
         }
     }
+
+    public static boolean isLength3(String input) {
+        return input.length() == 3 ? true : false;
+    }
 }

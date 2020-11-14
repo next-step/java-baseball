@@ -25,9 +25,6 @@ public class SystemInTest {
             Scanner scanner = new Scanner(System.in);
             String result = scanner.nextLine();
 
-            ByteArrayOutputStream testOut = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(testOut));
-
             assertThat(result).isEqualTo(data);
         } finally {
             System.setIn(stdin);
