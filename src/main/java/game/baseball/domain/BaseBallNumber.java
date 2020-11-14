@@ -1,12 +1,11 @@
-package game.baseball;
+package game.baseball.domain;
 
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static game.baseball.BaseBallMessage.NOT_ALLOWED_ZERO;
+import static game.baseball.domain.BaseBallMessage.NOT_ALLOWED_ZERO;
 
 public class BaseBallNumber {
 

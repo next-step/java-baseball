@@ -1,4 +1,4 @@
-package game.baseball;
+package game.baseball.domain;
 
 import java.text.MessageFormat;
 
@@ -12,4 +12,6 @@ public final class BaseBallMessage {
     public static final String ONLY_ALLOW_NUMBER = "숫자만 허용합니다.";
 
     public static final String HAS_DUPLICATE = "숫자에 중복이 있습니다.";
+
+    public static final String ALREADY_OVER_GAME = "이미 종료된 게임입니다.";
 }
