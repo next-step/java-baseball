@@ -1,9 +1,11 @@
 package com.game.baseball;
 
+import com.game.exception.GameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BaseballGameTest {
 
@@ -33,11 +35,8 @@ class BaseballGameTest {
         // given
         String input = "112";
 
-        // when
-        boolean isValidInput = baseballGame.isValidInput(input);
-
-        // then
-        assertThat(isValidInput).isFalse();
+        // when & then
+        assertThrows(GameException.class, () -> baseballGame.isValidInput(input));
     }
 
     @Test

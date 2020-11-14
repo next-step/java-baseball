@@ -1,6 +1,6 @@
 package com.game.common;
 
-public interface Game {
+public interface Game<T> {
 
     /**
      * 게임 시작
@@ -16,6 +16,12 @@ public interface Game {
      * 게임 종료
      */
     void exit();
+
+    /**
+     * 입력 값 가져오기
+     * @return 입력 값
+     */
+    T getInput();
 
     /**
      * 입력 값 유효성 검사

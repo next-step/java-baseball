@@ -12,7 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class BaseballGame implements Game {
+public class BaseballGame implements Game<String> {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 9;
@@ -24,10 +24,8 @@ public class BaseballGame implements Game {
         BaseballGameResult result = new BaseballGameResult();
 
         while (result.getStrike() != 3) {
-            System.out.print("숫자를 입력해주세요 : ");
-            String input = scanner.next();
-            if (!isValidInput(input)) throw new GameException(ErrorCode.INVALID_INPUT);
-
+            String input = getInput();
+            isValidInput(input);
             result = play(target, input);
             System.out.println(result.toString());
         }
@@ -54,6 +52,12 @@ public class BaseballGame implements Game {
     }
 
     @Override
+    public String getInput() {
+        System.out.print("숫자를 입력해주세요 : ");
+        return scanner.next();
+    }
+
+    @Override
     public boolean isValidInput(String input) {
         Set<Integer> integerSet = new HashSet<>();
 
@@ -62,7 +66,9 @@ public class BaseballGame implements Game {
             isValidNumber(number);
             integerSet.add(number);
         }
-        return integerSet.size() == 3;
+        if (integerSet.size() == 3)
+            return true;
+        throw new GameException(ErrorCode.INVALID_INPUT);
     }
 
     /**
