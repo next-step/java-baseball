@@ -7,6 +7,14 @@ import baseball.view.ResultView;
 
 public class BaseballController {
 	public static void start() {
+		int gameChoice = 1;
+		while (gameChoice != 2) {
+			playGame();
+			gameChoice = InputView.getGameChoice();
+		}
+	}
+
+	private static void playGame() {
 		Game game = new Game(new GameNumberRandomGenerator());
 
 		while (!game.isFinished()) {
@@ -26,6 +34,7 @@ public class BaseballController {
 		printNothing(gameHint);
 		printStrikeCount(gameHint);
 		printBallCount(gameHint);
+		ResultView.printEndOfHint();
 	}
 
 	private static void printNothing(GameHint gameHint) {
