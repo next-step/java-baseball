@@ -17,8 +17,7 @@ public class BaseballApp {
     }
 
     private static void start() {
-        // TODO: 랜덤값 생성
-        BaseballNumbers compare = BaseballNumbers.of(1, 2, 3);
+        BaseballNumbers compare = BaseballNumbers.ofRandom();
         boolean isEnd = false;
         while (!isEnd) {
             BaseballNumbers target = BaseballNumbers.ofUserInput(InputView.getNumbers());

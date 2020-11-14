@@ -22,8 +22,12 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
         }
     }
 
-    public static BaseballNumbers of(int ... numbers) {
+    static BaseballNumbers of(int ... numbers) {
         return new BaseballNumbers(numbers);
+    }
+
+    public static BaseballNumbers ofRandom() {
+        return new BaseballNumbers(BaseballNumberRandomGenerator.generateRandomNumbers());
     }
 
     public static BaseballNumbers ofUserInput(String numberLine) {

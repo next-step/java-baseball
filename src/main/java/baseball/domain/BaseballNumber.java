@@ -4,9 +4,8 @@ import java.util.Objects;
 
 public class BaseballNumber {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 9;
-
+    static final int MIN_NUMBER = 1;
+    static final int MAX_NUMBER = 9;
     private final int number;
 
     BaseballNumber(int number) {
