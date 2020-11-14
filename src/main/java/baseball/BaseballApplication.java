@@ -43,6 +43,6 @@ public class BaseballApplication {
             return true;
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("잘못된 커맨드입니다.");
     }
 }
