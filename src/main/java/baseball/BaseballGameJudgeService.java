@@ -21,24 +21,6 @@ public class BaseballGameJudgeService {
         return judgeDto.getStrike() == 3;
     }
 
-    public void printJudgeResult(BaseballGameJudgeDto judgeDto) {
-        int strike = judgeDto.getStrike();
-        if (strike > 0) {
-            System.out.printf("%d 스트라이크 ", strike);
-        }
-
-        int boll = judgeDto.getBoll();
-        if (boll > 0) {
-            System.out.printf("%d 볼 ", boll);
-        }
-
-        if (strike == 0 && boll == 0) {
-            System.out.println("낫싱");
-        }
-
-        System.out.print("\n");
-    }
-
     private int checkBoll(int index, char target, String inputNumber) {
         int checkIndex2 = (index + 1) % 3;
         int checkIndex3 = (index + 2) % 3;
