@@ -36,6 +36,27 @@ public class BaseballNumbers {
         this.baseballNumbers = Collections.unmodifiableList(new ArrayList<>(baseballNumbers));
     }
 
+    public State match(BaseballNumber other) {
+        List<State> states = new ArrayList<>();
+        for (final BaseballNumber baseballNumber : baseballNumbers) {
+            states.add(baseballNumber.match(other));
+        }
+
+        return representState(states);
+    }
+
+    private State representState(final List<State> states) {
+        if (states.contains(State.STRIKE)) {
+            return State.STRIKE;
+        }
+
+        if (states.contains(State.BALL)) {
+            return State.BALL;
+        }
+
+        return State.NOTING;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
