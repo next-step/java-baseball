@@ -1,11 +1,13 @@
 package com.coderhglee.game.domain;
 
+import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +31,25 @@ public class GameNumberGroupsTest {
 
     @DisplayName("숫자 객체의 리스트끼리 모두 같은지 비교한다.")
     @Test
-    void isSameAllNumberList() throws ExceedAllowLengthException {
+    void isSameAllNumberList() throws ExceedAllowLengthException, ContainSameNumberException {
 
         List<GameNumber> gameNumberList = new ArrayList<>();
         gameNumberList.add(GameNumber.EIGHT);
         gameNumberList.add(GameNumber.FIVE);
-        gameNumberList.add(GameNumber.FIVE);
+        gameNumberList.add(GameNumber.THREE);
         GameNumberGroups groups1 = new GameNumberGroups(gameNumberList);
         GameNumberGroups groups2 = new GameNumberGroups(gameNumberList);
 
-        assertThat(groups1.isContains(groups2)).isTrue();
+
+        assertThat(groups1.getGameNumbers().containsAll(groups2.getGameNumbers())).isTrue();
+    }
+
+    private static List<GameNumber> getGameNumbers(String number) {
+        List GameNumbersList = new ArrayList();
+        for (String numberStr : number.split("")) {
+            GameNumbersList.add(GameNumber.gameNumberMap.get(Integer.parseInt(numberStr)));
+        }
+        return GameNumbersList;
     }
 
     @DisplayName("게임 숫자 그룹 두개를 해시코드를 비교한 결과가 메시지와 맞는지 판단한다.")
@@ -47,8 +58,7 @@ public class GameNumberGroupsTest {
     void expectedResultFromTwoGameNumberGroupsCompare(GameNumberGroups first, GameNumberGroups second, GameGroupsCompareResult expectedResult) {
         assertThat(GameNumberGroupsHelper.compareEachGameGroup(first, second).hashCode()).isEqualTo(expectedResult.hashCode());
     }
-
-    public static Stream<Arguments> gameNumberGroupsEqualToExactedResult() throws ExceedAllowLengthException {
+    public static Stream<Arguments> gameNumberGroupsEqualToExactedResult() throws ExceedAllowLengthException, ContainSameNumberException {
         return Stream.of(
                 Arguments.of(new GameNumberGroups(getGameNumbers("123")),
                         new GameNumberGroups(getGameNumbers("123")), new GameGroupsCompareResult(0,3)),
@@ -61,13 +71,14 @@ public class GameNumberGroupsTest {
         );
     }
 
-    private static List<GameNumber> getGameNumbers(String number) {
-        List GameNumbersList = new ArrayList();
-        for (String numberStr : number.split("")) {
-            GameNumbersList.add(GameNumber.gameNumberMap.get(Integer.parseInt(numberStr)));
-        }
-        return GameNumbersList;
-    }
 
+    @DisplayName("연속되는 숫자 객체가 있으면 에러를 발생시킨다.")
+    @ValueSource(strings = {"111", "122", "311","499"})
+    @ParameterizedTest
+    void shouldExpectedExceptionWhenIncludeContinueNumbers(String inputNumber) {
+        assertThatThrownBy(() -> {
+            new GameNumberGroups(getGameNumbers(inputNumber));
+        }).isInstanceOf(ContainSameNumberException.class);
+    }
 
 }

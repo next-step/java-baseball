@@ -1,4 +1,4 @@
 package com.coderhglee.game.exception;
 
-public class ExceedAllowLengthException extends Throwable {
+public class ExceedAllowLengthException extends Exception {
 }
