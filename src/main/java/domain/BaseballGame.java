@@ -1,27 +1,23 @@
 package domain;
 
 public class BaseballGame {
-    private final Referee referee;
+    private final GameNumber answer;
 
-    public BaseballGame(Referee referee) {
-        this.referee = referee;
+    public BaseballGame(GameNumber answer) {
+        this.answer = answer;
     }
 
     public static BaseballGame startGame() {
-        BaseballNumbers answerNumbers = BaseballNumbers.generateRandomNumber();
-        Referee referee = new Referee(answerNumbers);
-        return new BaseballGame(referee);
+        GameNumber answerNumber = GameNumber.generateRandomGameNumber();
+        return new BaseballGame(answerNumber);
     }
 
-    public Result getResult(BaseballNumbers userNumbers) {
-        int countOfStrike = referee.getStrikeCount(userNumbers);
-        int countOfBall = referee.getBallCount(userNumbers);
-        if (countOfBall == 0 && countOfStrike == 0) {
-            return SpecialResultType.NOTHING;
+    public GuessResult getGuessResult(GameNumber userNumber) {
+        GuessResult guessResult = GuessResult.init();
+        for (int i = 0; i < answer.size(); i++) {
+            MatchType matchType = answer.judgeMatchType(userNumber.get(i), i);
+            guessResult.increase(matchType);
         }
-        if (countOfStrike == 3) {
-            return SpecialResultType.THREE_STRIKE;
-        }
-        return new Hint(countOfStrike, countOfBall);
+        return guessResult;
     }
 }

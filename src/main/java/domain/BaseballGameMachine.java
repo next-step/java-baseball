@@ -16,20 +16,22 @@ public class BaseballGameMachine {
         return new BaseballGameMachine(BaseballGame.startGame(), true);
     }
 
-    public void startGuessIteration() {
+    public void guessIteration() {
         while (guess());
     }
 
     public boolean guess() {
         String userNumberRaw = InputView.inputUserNumber();
-        BaseballNumbers userNumbers = BaseballNumbers.of(userNumberRaw);
-        Result result = baseballGame.getResult(userNumbers);
-        OutputView.printResult(result);
-        return isContinueGuess(result);
+        GameNumber userNumber = GameNumber.ofByRaw(userNumberRaw);
+
+        GuessResult guessResult = baseballGame.getGuessResult(userNumber);
+
+        OutputView.printResult(guessResult);
+        return isContinueGuess(guessResult);
     }
 
-    private boolean isContinueGuess(Result result) {
-        return !result.equals(SpecialResultType.THREE_STRIKE);
+    private boolean isContinueGuess(GuessResult guessResult) {
+        return !guessResult.isThreeStrike();
     }
 
     public boolean isBaseballGameContinue() {

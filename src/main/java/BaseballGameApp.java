@@ -4,7 +4,7 @@ public class BaseballGameApp {
     public static void main(String[] args) {
         BaseballGameMachine baseballGameMachine = BaseballGameMachine.initGame();
         while (baseballGameMachine.isBaseballGameContinue()) {
-            baseballGameMachine.startGuessIteration();
+            baseballGameMachine.guessIteration();
             baseballGameMachine.continueGameByInput();
         }
     }
