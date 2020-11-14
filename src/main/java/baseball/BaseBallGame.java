@@ -12,7 +12,8 @@ public class BaseBallGame {
         do {
             String input = inputScanner.inputNumberLength3();
             ballCount = BallCountChecker.check(input, answer);
-            System.out.println(ballCount.toString());
+            BallCountPrinter printer = new BallCountPrinter(ballCount);
+            printer.print();
         } while (!ballCount.isEndGame());
 
     }
