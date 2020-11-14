@@ -10,25 +10,38 @@ import java.util.Set;
  */
 public class NumberGenerator {
 
-    public static String generate() {
-        String numbers = "111";
+    public static String generate(int len) {
         Random random = new Random();
-        while (!allUnique(numbers)) {
-            int first = random.nextInt(8) + 1;
-            int second = random.nextInt(8) + 1;
-            int third = random.nextInt(8) + 1;
-
-            numbers = String.valueOf(first) + second + third;
+        String numbers = getSameNums(len);
+        while (!allUnique(numbers, len)) {
+            numbers = getMaybeUniqueNums(len, random);
         }
         return numbers;
     }
 
-    private static boolean allUnique(String nums) {
-        Set<String> numbers = new HashSet<>(3);
+    private static String getMaybeUniqueNums(int len, Random random) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            sb.append(random.nextInt(8) + 1);
+        }
+        String nums = sb.toString();
+        return nums;
+    }
+
+    private static String getSameNums(int len) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 0; i++) {
+            sb.append("1");
+        }
+        return sb.toString();
+    }
+
+    private static boolean allUnique(String nums, int len) {
+        Set<String> numbers = new HashSet<>(len);
         String[] split = nums.split("");
         for (String num : split) {
             numbers.add(num);
         }
-        return numbers.size() == 3;
+        return numbers.size() == len;
     }
 }

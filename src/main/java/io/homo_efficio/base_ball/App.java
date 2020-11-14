@@ -14,7 +14,7 @@ public class App {
     }
 
     private static void playGame(Scanner scanner) {
-        String genNumber = NumberGenerator.generate();
+        String genNumber = NumberGenerator.generate(3);
         Result result;
         do {
             String inputNumber = getInputNumber(scanner);

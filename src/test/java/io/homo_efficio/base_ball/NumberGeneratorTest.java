@@ -17,16 +17,17 @@ class NumberGeneratorTest {
 
     @RepeatedTest(1000)
     void check_3_digit_unique() {
-        String number = NumberGenerator.generate();
+        int len = 3;
+        String number = NumberGenerator.generate(len);
 
-        Set<String> numbers = new HashSet<>(3);
+        Set<String> numbers = new HashSet<>(len);
         String[] split = number.split("");
         for (String num : split) {
             numbers.add(num);
         }
 
-        assertThat(number.length()).isEqualTo(3);
-        assertThat(numbers.size()).isEqualTo(3);
+        assertThat(number.length()).isEqualTo(len);
+        assertThat(numbers.size()).isEqualTo(len);
     }
 
     @ParameterizedTest(name = "숫자 문자열 길이: {0}")
@@ -45,7 +46,7 @@ class NumberGeneratorTest {
     }
 
     private static Stream<Arguments> len() {
-        return IntStream.range(3, 99)
+        return IntStream.range(3, 10)
                 .mapToObj(len -> Arguments.of(len));
     }
 }

@@ -9,7 +9,7 @@ class InputValidatorTest {
 
     @RepeatedTest(1000)
     void check3Digits() {
-        InputValidator.check3Digits(NumberGenerator.generate());
+        InputValidator.check3Digits(NumberGenerator.generate(3));
     }
 
     @Test
