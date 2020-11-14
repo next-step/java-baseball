@@ -1,4 +1,8 @@
-package baseball.domain;
+package baseball.infra;
+
+import baseball.domain.BaseBallGenerator;
+import baseball.domain.BaseballNumbers;
+import baseball.domain.Number;
 
 import java.util.ArrayList;
 import java.util.Collections;
