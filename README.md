@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 사용자에게 입력 받기
+* 컴퓨터의 임의의 문자열 생성
+* 게임 종료 및 완전 종료/재시작 구현
+* 게임 규칙 생성 및 적용
