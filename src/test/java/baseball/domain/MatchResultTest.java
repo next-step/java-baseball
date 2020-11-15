@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MatchResultTest {
@@ -59,6 +60,22 @@ class MatchResultTest {
 
         //then
         assertTrue(gameComplete);
+    }
+
+    @DisplayName("게임 종료 여부 판단 - 진행중")
+    @Test
+    public void isGameComplete_fail() throws Exception {
+        //given
+        MatchResult matchResult = new MatchResult();
+        matchResult = matchResult.addMatchType(MatchType.STRIKE);
+        matchResult = matchResult.addMatchType(MatchType.BALL);
+        matchResult = matchResult.addMatchType(MatchType.BALL);
+
+        //when
+        boolean gameComplete = matchResult.isGameComplete();
+
+        //then
+        assertFalse(gameComplete);
     }
 
 }
