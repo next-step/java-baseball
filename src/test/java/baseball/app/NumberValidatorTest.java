@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * @project java-baseball
  * @description
  */
-public class CoumputerNumberCreatorTest {
+public class NumberValidatorTest {
 
   private NumberValidator numberValidator;
 
@@ -30,6 +30,10 @@ public class CoumputerNumberCreatorTest {
     assertThat(numberValidator.valid(133)).isEqualTo(false);
     assertThat(numberValidator.valid(313)).isEqualTo(false);
     assertThat(numberValidator.valid(333)).isEqualTo(false);
+    assertThat(numberValidator.valid(190)).isEqualTo(false);
+    assertThat(numberValidator.valid(110)).isEqualTo(false);
+    assertThat(numberValidator.valid(610)).isEqualTo(false);
+    assertThat(numberValidator.valid(90)).isEqualTo(false);
     assertThat(numberValidator.valid(123)).isEqualTo(true);
     assertThat(numberValidator.valid(698)).isEqualTo(true);
   }

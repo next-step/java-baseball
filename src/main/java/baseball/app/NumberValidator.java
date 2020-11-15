@@ -13,9 +13,10 @@ import java.util.Set;
  */
 public class NumberValidator {
 
-  public boolean valid(int number) {
+  public static boolean valid(int number) {
     String numberString = String.valueOf(number);
     if(numberString.length() != 3) return false;
+    if(numberString.contains("0")) return false;
     Set<String> set = new HashSet<String>();
     for (char numberChar : numberString.toCharArray()) {
       set.add(String.valueOf(numberChar));
