@@ -31,4 +31,12 @@ class ComputerTest {
         assertThat(computer.getBaseNumbers().contains(number)).isFalse();
     }
 
+    @Test
+    @DisplayName("랜덤한 3자리 숫자를 생성한다.")
+    void generateRandomNumber() {
+        computer.generateNumberSet();
+        int computerNumberSize = computer.getCheckNumbers().size();
+        System.out.println(computer.getCheckNumbers().toString());
+        assertEquals(computerNumberSize, 3);
+    }
 }

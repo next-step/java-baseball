@@ -7,6 +7,12 @@ public class Computer {
     private ArrayList<Integer> checkNumbers = new ArrayList<>();
 
     public void generateNumberSet() {
+        initNumbers();
+        while (checkNumbers.size() < BaseballGame.CHECK_NUMBER_SIZE) {
+            int number = getNumberFromBase(getRandomIndex());
+            if (checkNumbers.contains(number)) continue;
+            checkNumbers.add(number);
+        }
     }
 
     public void initNumbers() {
