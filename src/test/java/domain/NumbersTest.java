@@ -60,4 +60,26 @@ class NumbersTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> Numbers.valueOf(numbers));
         assertThat(e.getMessage()).isEqualTo("숫자야구에서는 중복되는 값이 올 수 없습니다.");
     }
+
+    @DisplayName("숫자가 하나라도 포함되었는지 여부 체크")
+    @Test
+    public void test_isContain() {
+        Numbers numbers = Numbers.valueOf(1,2,3);
+        boolean expectedTrue = numbers.isContain(Numbers.valueOf(3,4,5));
+        boolean expectedFalse = numbers.isContain(Numbers.valueOf(4,5,6));
+
+        assertThat(expectedTrue).isTrue();
+        assertThat(expectedFalse).isFalse();
+    }
+
+    @DisplayName("숫자 매치하여 결과값 리턴하는 메소드 체크")
+    @Test
+    public void test_match() {
+        Numbers numbers = Numbers.valueOf(1,2,3);
+        Result resultBall = numbers.match(Numbers.valueOf(3,4,5));
+        Result resultTwoStrike = numbers.match(Numbers.valueOf(4,2,3));
+
+        assertThat(resultBall.getBallCount()).isEqualTo(1);
+        assertThat(resultTwoStrike.getStrikeCount()).isEqualTo(2);
+    }
 }
