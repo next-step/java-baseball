@@ -9,19 +9,21 @@ import baseball.domain.exception.ResultLengthException;
 public class BaseballResult {
 	private static final int OUT_COUNT = 3;
 	private static final int ZERO = 0;
-	private final List<BaseballStatus> statuses;
 	private int strikeCount;
 	private int ballCount;
 
 	private BaseballResult(List<BaseballStatus> statuses) {
-		this.statuses = statuses;
 		for (BaseballStatus status : statuses) {
-			if (status == STRIKE) {
-				strikeCount++;
-			}
-			if (status == BALL) {
-				ballCount++;
-			}
+			increaseCount(status);
+		}
+	}
+
+	private void increaseCount(BaseballStatus status) {
+		if (status == STRIKE) {
+			strikeCount++;
+		}
+		if (status == BALL) {
+			ballCount++;
 		}
 	}
 
