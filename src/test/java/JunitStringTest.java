@@ -7,13 +7,6 @@ import org.junit.jupiter.api.Test;
 @DisplayName("String Test")
 public class JunitStringTest {
 
-	@Test
-	public void testSum() {
-		JunitString junitStudy = new JunitString();
-		int result = junitStudy.sum(10, 10);
-		assertEquals(20, result);
-	}
-
 	// String 요구사항1-1
 	// "1,2"을 , 로 split 했을 때 1과 2로 잘 분리되는지 확인하는 학습 테스트를 구현한다.
 	@Test
