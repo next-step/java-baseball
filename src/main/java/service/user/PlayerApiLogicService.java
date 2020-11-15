@@ -8,8 +8,12 @@ public class PlayerApiLogicService {
 	Scanner scan = new Scanner(System.in);
     Player player = new Player();
 
+    public String getInputNumber() {
+    	return player.getInputNumber();
+    }
+    
     public void inputNumber() {
-    	System.out.print("3자리 숫자를 중복과 공백없이 입력하세요 : ");
+    	System.out.print("3자리 숫자를 중복과 공백없이 입력하세요(범위 : 1~9) : ");
     	player.setInputNumber(scan.nextLine().trim());
     }
     
