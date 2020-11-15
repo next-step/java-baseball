@@ -80,6 +80,11 @@ public class BaseballService {
 		return BaseballCount.NOTHING.getName();
 	}
 
+	public void initScoreMap() {
+		scoreMap.put(BaseballCount.STRIKE, 0);
+		scoreMap.put(BaseballCount.BALL, 0);
+	}
+
 	private boolean getGameResult() {
 		return scoreMap.getOrDefault(BaseballCount.STRIKE, 0) == SCORE_MAX_LENGTH;
 	}

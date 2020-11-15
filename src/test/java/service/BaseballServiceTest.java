@@ -59,4 +59,14 @@ class BaseballServiceTest {
 		scoreMap.put(BaseballCount.BALL, 0);
 		assertEquals("낫싱", baseballService.getScoreResultMessage());
 	}
+
+	@DisplayName("스코어초기화확인")
+	@Test
+	void initScoreMapTest() {
+		baseballService.initScoreMap();
+		Map<Enum, Integer> scoreMap = baseballService.getScoreMap();
+
+		assertEquals((int) scoreMap.get(BaseballCount.STRIKE), 0);
+		assertEquals((int) scoreMap.get(BaseballCount.BALL), 0);
+	}
 }
