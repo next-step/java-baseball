@@ -24,7 +24,7 @@ public class Computer implements Questioner {
 	}
 
 	@Override
-	public List<BaseballStatus> checkScore(BaseballNumbers baseballNumbers) {
-		return baseballNumbers.calculateScore(baseballNumbers);
+	public List<BaseballStatus> checkScore(BaseballNumbers targetNumbers) {
+		return baseballNumbers.calculateScore(targetNumbers);
 	}
 }
