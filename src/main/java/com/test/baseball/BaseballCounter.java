@@ -12,12 +12,12 @@ public class BaseballCounter {
     }
 
     public void chekAndSetCount(int idx, int number) {
-        if (NUMBERS.get(idx) == number) {
+        if(NUMBERS.get(idx) == number) {
             strikeCount++;
             return;
         }
 
-        if (NUMBERS.contains(number)) {
+        if(NUMBERS.contains(number)) {
             ballCount++;
         }
     }

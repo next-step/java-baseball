@@ -17,6 +17,7 @@ public class BaseballUser {
 
     public boolean isRestart(){
         String line;
+
         do {
             System.out.println("게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.");
             line = INPUT.nextLine();
@@ -36,7 +37,7 @@ public class BaseballUser {
     private List<Integer> enterNumbers() {
         String line = INPUT.nextLine();
 
-        if (!line.matches(BaseballConstant.INPUT_REGEX)) {
+        if(!line.matches(BaseballConstant.INPUT_REGEX)) {
             System.out.println(BaseballConstant.NUMBER_COUNT + "자리의 1-9 사이의 숫자만 입력 가능합니다");
             return null;
         }
@@ -47,7 +48,7 @@ public class BaseballUser {
         NotDuplicateList numbers = new NotDuplicateList(BaseballConstant.NUMBER_COUNT);
         String[] temp = line.split("");
 
-        for ( String number : temp ) {
+        for(String number : temp) {
             numbers.add(Integer.parseInt(number));
         }
         return isDuplicate(numbers)?null:numbers;

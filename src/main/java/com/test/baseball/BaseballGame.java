@@ -31,7 +31,7 @@ public class BaseballGame {
     }
 
     private void printMessage(BaseballCounter counter) {
-        if (counter.isNothing()) {
+        if(counter.isNothing()) {
             System.out.println("낫싱");
             return;
         }
@@ -42,7 +42,7 @@ public class BaseballGame {
     }
 
     private void count(BaseballCounter counter, List<Integer> enterNumbers){
-        for ( int ix = 0 ; ix < BaseballConstant.NUMBER_COUNT ; ix ++ ) {
+        for(int ix = 0 ; ix < BaseballConstant.NUMBER_COUNT ; ix ++) {
             counter.chekAndSetCount(ix, enterNumbers.get(ix));
         }
     }
