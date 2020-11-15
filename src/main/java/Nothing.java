@@ -1,4 +1,4 @@
-public class Ball {
+public class Nothing {
 
     private int count = 0;
 
@@ -12,8 +12,9 @@ public class Ball {
 
     public void print() {
         if (this.count != 0) {
-            String name = "볼";
-            System.out.printf("%d%s", this.count, name);
+            String name = "포볼";
+            System.out.printf("%s", name);
         }
     }
+
 }
