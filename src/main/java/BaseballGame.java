@@ -8,22 +8,18 @@ import constants.Result;
 public class BaseballGame {
 
 	private final Scanner scanner = new Scanner(System.in);
-
-	public static void main(String[] args) {
-		BaseballGame game = new BaseballGame();
-		game.start();
-	}
+	private BaseballNumber randomBaseballNumber = BaseballNumberFactory.generateRandomBaseballNumber();
 
 	public void start() {
 		boolean isGameEnd = false;
 		ResultChecker checker = new ResultChecker();
-		BaseballNumber randomBaseballNumber = BaseballNumberFactory.generateRandomBaseballNumber();
 
 		while (!isGameEnd) {
 			BaseballNumber userBaseballNumber = requestInput();
 			Result result = checker.checkResult(userBaseballNumber, randomBaseballNumber);
 			System.out.println(result.getMessage());
 			isGameEnd = isGameOver(result);
+			rePlay(result);
 		}
 	}
 
@@ -59,8 +55,9 @@ public class BaseballGame {
 		return numbers;
 	}
 
-	public BaseballNumber rePlay() {
-		return BaseballNumberFactory.generateRandomBaseballNumber();
+	public void rePlay(Result result) {
+		if (result == Result.THREE_STRIKE)
+			randomBaseballNumber = BaseballNumberFactory.generateRandomBaseballNumber();
 	}
 
 }
