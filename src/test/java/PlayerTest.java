@@ -35,4 +35,12 @@ class PlayerTest {
         assertEquals(result, 123);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("숫자의 각 자리수를 배열로 변환")
+    public void convertIntToArray(int input) {
+        ArrayList<Integer> result = player.convertNumberToList(123);
+        assertThat(result.contains(input)).isTrue();
+    }
+
 }
