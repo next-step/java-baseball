@@ -1,10 +1,11 @@
-package baseball.view;
+package baseball.presenter;
 
-import static baseball.view.GameScoreMessageGenerator.*;
+import static baseball.presenter.DefaultGameScoreMessageGenerator.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,7 +13,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import baseball.game.GameScore;
 
-class GameScoreMessageGeneratorTest {
+class DefaultGameScoreMessageGeneratorTest {
+
+	DefaultGameScoreMessageGenerator gameScoreMessageGenerator;
+
+	@BeforeEach
+	void setUp() {
+		gameScoreMessageGenerator = new DefaultGameScoreMessageGenerator();
+	}
 
 	@DisplayName("게임 스코어 출력 메시지 생성 테스트")
 	@ParameterizedTest
@@ -20,7 +28,7 @@ class GameScoreMessageGeneratorTest {
 	void getResultMessage(int strike, int ball, String expected) {
 		GameScore score = makeGameScore(strike, ball);
 
-		assertThat(GameScoreMessageGenerator.getResultMessage(score)).isEqualTo(expected);
+		assertThat(gameScoreMessageGenerator.getScoreMessage(score)).isEqualTo(expected);
 	}
 
 	private GameScore makeGameScore(int strike, int ball) {
