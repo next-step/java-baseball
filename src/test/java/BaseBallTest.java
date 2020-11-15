@@ -1,5 +1,7 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BaseBallTest {
@@ -25,5 +27,13 @@ class BaseBallTest {
                 assertTrue(baseBall.computerNumbers[row] != baseBall.computerNumbers[col]);
             }
         }
+    }
+
+    @Test
+    @DisplayName("입력 자리수는 최대 3자리다.")
+    void insertInputNumber() {
+        assertThatThrownBy(() -> baseBall.insertInputNumber(3456))
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("Index -1 out of bounds for length 3"); // jdk 버전, openjdk 마다 다름
     }
 }
