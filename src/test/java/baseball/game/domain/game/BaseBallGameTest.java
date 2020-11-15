@@ -46,7 +46,7 @@ class BaseBallGameTest {
         BaseBallGame baseBallGame = BaseBallGame.createGame(gameBalls);
         BaseBallGameResultType result = baseBallGame.getResult(inputBalls);
 
-        assertThat(result).isEqualTo(BaseBallGameResultType.NOT_THING);
+        assertThat(result).isEqualTo(BaseBallGameResultType.NOTHING);
 
     }
 }

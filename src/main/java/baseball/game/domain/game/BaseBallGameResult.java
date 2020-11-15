@@ -17,7 +17,7 @@ public class BaseBallGameResult {
     }
 
     private BallResultType getBallResultType(BallWithIndex ball, Balls inputBalls) {
-        BallResultType result = BallResultType.NOT_THING;
+        BallResultType result = BallResultType.NOTHING;
         for(int i = 0; i < inputBalls.getBallsSize(); i++) {
             BallWithIndex inputBall = inputBalls.getBall(i);
             result = ball.getBallResultType(inputBall);

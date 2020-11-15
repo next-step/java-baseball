@@ -1,7 +1,6 @@
 package baseball.game.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import baseball.game.domain.game.BallResultType;
 import org.junit.jupiter.api.DisplayName;
@@ -40,7 +39,7 @@ class BallWithIndexTest {
 
         BallResultType ballResultType = ball1.getBallResultType(ball2);
 
-        assertThat(ballResultType).isEqualTo(BallResultType.NOT_THING);
+        assertThat(ballResultType).isEqualTo(BallResultType.NOTHING);
     }
 
     @Test
@@ -50,7 +49,7 @@ class BallWithIndexTest {
 
         BallResultType ballResultType = ball1.getBallResultType(null);
 
-        assertThat(ballResultType).isEqualTo(BallResultType.NOT_THING);
+        assertThat(ballResultType).isEqualTo(BallResultType.NOTHING);
     }
 
 

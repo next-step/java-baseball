@@ -14,7 +14,7 @@ public class BallWithIndex {
 
     public BallResultType getBallResultType(BallWithIndex ballWithIndex) {
         if(ballWithIndex == null) {
-            return BallResultType.NOT_THING;
+            return BallResultType.NOTHING;
         }
 
         if(this.equals(ballWithIndex)) {
@@ -25,7 +25,7 @@ public class BallWithIndex {
             return BallResultType.BALL;
         }
 
-        return BallResultType.NOT_THING;
+        return BallResultType.NOTHING;
     }
 
     @Override

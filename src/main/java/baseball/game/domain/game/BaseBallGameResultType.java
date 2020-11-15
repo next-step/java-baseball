@@ -10,7 +10,7 @@ public enum BaseBallGameResultType {
     THREE_BALL(0, 3, "3볼"),
     TWO_BALL(0, 2, "2볼"),
     ONE_BALL(0, 1, "1볼"),
-    NOT_THING(0, 0, "낫싱");
+    NOTHING(0, 0, "낫싱");
 
     private Integer strikeCount;
     private Integer ballCount;
@@ -27,7 +27,7 @@ public enum BaseBallGameResultType {
     }
 
     public static BaseBallGameResultType find(BaseBallGameResult gameResult) {
-        BaseBallGameResultType resultType = NOT_THING;
+        BaseBallGameResultType resultType = NOTHING;
         for(BaseBallGameResultType baseBallGameResultType: BaseBallGameResultType.values()) {
             resultType = baseBallGameResultType.getBaseBallGameResultType(gameResult, resultType);
         }
