@@ -27,4 +27,8 @@ public class BaseballGame implements Game {
     private boolean gameProcess() {
         return false;
     }
+
+    private void printDemandingSentencesThatIsInputUserScore() {
+        output.demandingUserScore();
+    }
 }
