@@ -37,4 +37,9 @@ public class BaseballCounter {
     public boolean isFinished() {
         return strikeCount == NUMBERS.size();
     }
+
+    public void clear(){
+        strikeCount = 0;
+        ballCount = 0;
+    }
 }
