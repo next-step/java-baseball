@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -15,7 +16,7 @@ class BallNumberTest {
     @DisplayName("컴퓨터(딜러)가 생성하는 랜덤 3 숫자를 확인한다.")
     @Test
     void randomBallNumberCheck() {
-        BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy());
+        BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(new ArrayList<>()));
         assertThat(dealersNumber.getBallNumber().size()).isEqualTo(3);
     }
 
@@ -24,7 +25,7 @@ class BallNumberTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3", "4,5,6", "2,3,6", "9,5,6"})
     void playerInputBallNumberCheck(String inputString) {
-        Set<Integer> ballNumbers = InputView.setBallNumber(inputString);
+        List<Integer> ballNumbers = InputView.setBallNumber(inputString);
         assertThat(ballNumbers.size()).isEqualTo(3);
         assertThat(ballNumbers.size()).isEqualTo(3);
     }

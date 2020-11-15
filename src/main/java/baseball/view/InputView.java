@@ -1,8 +1,6 @@
 package baseball.view;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class InputView {
 
@@ -10,19 +8,19 @@ public class InputView {
     private static final String INPUT_NUMBERS_DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Set<Integer> setBallNumber() {
-        Set<Integer> ballNumbers = setBallNumber(inputBallNumbers());
+    public static List<Integer> setBallNumber() {
+        List<Integer> ballNumbers = setBallNumber(inputBallNumbers());
         return ballNumbers;
     }
 
     // open to Test
-    public static Set<Integer> setBallNumber(String inputBallNumbers) {
+    public static List<Integer> setBallNumber(String inputBallNumbers) {
         Set<Integer> ballNumbers = new HashSet<>();
         String[] splitedStrings = inputBallNumbers.split(INPUT_NUMBERS_DELIMITER);
         for (String numberString : splitedStrings) {
             ballNumbers.add(Integer.valueOf(numberString));
         }
-        return ballNumbers;
+        return new ArrayList<>(ballNumbers);
     }
 
     private static String inputBallNumbers() {

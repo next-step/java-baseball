@@ -1,21 +1,21 @@
 package baseball;
 
-import java.util.Set;
+import java.util.List;
 
 public class BallNumber {
 
     // to Test
-    public Set<Integer> getBallNumber() {
+    public List<Integer> getBallNumber() {
         return ballNumber;
     }
 
-    private Set<Integer> ballNumber;
+    private List<Integer> ballNumber;
 
     private BallNumber() {
     }
 
-    public BallNumber(BallNumbersStrategy numbersStrategy) {
-        this.ballNumber = numbersStrategy.getBallNumber();
+    public BallNumber(BallNumbersStrategy ballNumbersStrategy) {
+        this.ballNumber = ballNumbersStrategy.getBallNumber();
     }
 
     @Override

@@ -1,9 +1,7 @@
 package baseball;
 
-import java.util.Set;
+import java.util.List;
 
-@FunctionalInterface
 public interface BallNumbersStrategy {
-    Set<Integer> getBallNumber();
-
+    List<Integer> getBallNumber();
 }

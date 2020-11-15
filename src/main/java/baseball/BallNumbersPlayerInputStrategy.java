@@ -1,14 +1,17 @@
 package baseball;
 
-import baseball.view.InputView;
-
-import java.util.Set;
+import java.util.List;
 
 public class BallNumbersPlayerInputStrategy implements BallNumbersStrategy {
-    @Override
-    public Set<Integer> getBallNumber() {
-        Set<Integer> ballNumbers = InputView.setBallNumber();
-        return ballNumbers;
+
+    List<Integer> ballNumbers;
+
+    public BallNumbersPlayerInputStrategy(List<Integer> ballNumbers) {
+        this.ballNumbers = ballNumbers;
     }
 
+    @Override
+    public List<Integer> getBallNumber() {
+        return ballNumbers;
+    }
 }
