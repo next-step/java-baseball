@@ -11,21 +11,29 @@ public class MatchResult {
     private Map<MatchType, Integer> match;
 
     public MatchResult() {
-        Map<MatchType, Integer> result = new HashMap<>();
-        result.put(MatchType.STRIKE, START_MATCH_COUNT);
-        result.put(MatchType.BALL, START_MATCH_COUNT);
-        result.put(MatchType.NOTHING, START_MATCH_COUNT);
-
+        Map<MatchType, Integer> result =
+                initMatch(START_MATCH_COUNT,
+                        START_MATCH_COUNT,
+                        START_MATCH_COUNT);
         this.match = Collections.unmodifiableMap(result);
     }
 
     private MatchResult(Map<MatchType, Integer> match) {
-        Map<MatchType, Integer> result = new HashMap<>();
-        result.put(MatchType.STRIKE, match.get(MatchType.STRIKE));
-        result.put(MatchType.BALL, match.get(MatchType.BALL));
-        result.put(MatchType.NOTHING, match.get(MatchType.NOTHING));
-
+        Map<MatchType, Integer> result =
+                initMatch(match.get(MatchType.STRIKE),
+                        match.get(MatchType.BALL),
+                        match.get(MatchType.NOTHING));
         this.match = Collections.unmodifiableMap(result);
+    }
+
+    private Map<MatchType, Integer> initMatch(final int strike,
+                                              final int ball,
+                                              final int nothing) {
+        Map<MatchType, Integer> result = new HashMap<>();
+        result.put(MatchType.STRIKE, strike);
+        result.put(MatchType.BALL, ball);
+        result.put(MatchType.NOTHING, nothing);
+        return result;
     }
 
     public MatchResult addMatchType(final MatchType type) {
