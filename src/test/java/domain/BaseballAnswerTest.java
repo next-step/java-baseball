@@ -12,6 +12,7 @@ public class BaseballAnswerTest {
     @Nested
     @DisplayName("정답 숫자 생성 테스트")
     class MakeAnswerTest {
+
         @BeforeEach
         void setUp() {
             answer.makeAnswer();

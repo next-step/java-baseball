@@ -26,6 +26,4 @@ public class BaseballUtilsTest {
             assertThat(BaseballUtils.isValidInput(input)).isEqualTo(result);
         }
     }
-
-
 }
