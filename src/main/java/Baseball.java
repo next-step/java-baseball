@@ -1,11 +1,8 @@
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Baseball {
     Scanner scanner = new Scanner(System.in);
-    private Set<String> userNumberSet;
+    private List<String> userNumbers;
 
     public void gamePlay() {
         Computer computer = new Computer();
@@ -20,14 +17,14 @@ public class Baseball {
     public void userNumberInput() {
 
         System.out.print("숫자를 입력해주세요: ");
-        String[] inputNumbers = scanner.next().split("");
-        userNumberSet = new LinkedHashSet<>(Arrays.asList(inputNumbers));
+        Set<String> userNumberSet = new LinkedHashSet<>(Arrays.asList(scanner.next().split("")));
 
         while (userNumberSet.size() != 3) {
             System.out.print("잘못된 입력입니다. 서로 다른 1~9의 3자리 숫자를 입력해주세요: ");
-            inputNumbers = scanner.next().split("");
-            userNumberSet = new LinkedHashSet<>(Arrays.asList(inputNumbers));
+            userNumberSet = new LinkedHashSet<>(Arrays.asList(scanner.next().split("")));
         }
+
+        userNumbers = new ArrayList<>(userNumberSet);
     }
 
     public void gameEnd() {
@@ -38,8 +35,7 @@ public class Baseball {
         gamePlay();
     }
 
-    public Set<String> getUserNumberSet(){
-        return userNumberSet;
+    public List<String> getUserNumbers() {
+        return userNumbers;
     }
-
 }
