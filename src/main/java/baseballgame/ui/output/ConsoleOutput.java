@@ -22,15 +22,18 @@ public class ConsoleOutput implements Output {
     }
 
     private String convertScorePrintTemplate(final CompareResult result) {
+        final int strikeCount = result.getStrikeCount();
+        final int ballCount = result.getBallCount();
+
         StringJoiner sj = new StringJoiner(" ");
-        addStrike(result, sj);
-        addBall(result, sj);
+
+        addStrike(strikeCount, sj);
+        addBall(ballCount, sj);
 
         return sj.toString();
     }
 
-    private void addStrike(final CompareResult result, final StringJoiner sj) {
-        final int strikeCount = result.getStrikeCount();
+    private void addStrike(final int strikeCount, final StringJoiner sj) {
         if (strikeCount == 0) {
             return;
         }
@@ -39,9 +42,7 @@ public class ConsoleOutput implements Output {
         sj.add(STRIKE);
     }
 
-    private void addBall(final CompareResult result, final StringJoiner sj) {
-        final int ballCount = result.getBallCount();
-
+    private void addBall(final int ballCount, final StringJoiner sj) {
         if (ballCount == 0) {
             return;
         }
