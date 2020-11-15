@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import util.NumberExtractor;
 
 public class Computer {
+	private static final int MAX_NUMBER = 9;
 	private List<Integer> numbers = new ArrayList<>();
 
 	public Computer() {
-		initNumbers();
-	}
-
-	public void initNumbers() {
 		while (numbers.size() < 3) {
 			addNumber();
 		}
+
+		System.out.println(numbers.toString());
 	}
 
 	public void initNumbersForTest(List<Integer> list) {
@@ -20,29 +20,16 @@ public class Computer {
 	}
 
 	private void addNumber() {
-		int number = new Random().nextInt(9) + 1;
+		int number = NumberExtractor.random(MAX_NUMBER);
 		if (!numbers.contains(number)) {
 			numbers.add(number);
 		}
 	}
 
-	public Score calculateScore(String input) {
+	public Score calculateScore(List<Integer> items) {
 		Score score = new Score();
-		int length = input.length();
-		for (int i = 0 ; i < length ; i++) {
-			char c = input.charAt(i);
-			int ball = Character.digit(c, 10);
-			Integer sameIndexNumber = numbers.get(i);
-
-			if (sameIndexNumber == ball) {
-				score.addStrike();
-				continue;
-			}
-
-			if (numbers.contains(ball)) {
-				score.addBall();
-			}
-
+		for (int i = 0; i < items.size(); i++) {
+			score.setCounts(numbers, i, items.get(i));
 		}
 
 		return score;
