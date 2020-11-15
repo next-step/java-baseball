@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -18,6 +19,7 @@ public class ConsoleInputScannerTest {
 		System.setIn(stdin);
 	}
 
+	@DisplayName("Scanner 입력 테스트")
 	@ParameterizedTest
 	@ValueSource(strings = {"123", "356", "523"})
 	public void scanner(final String input) {
@@ -27,6 +29,7 @@ public class ConsoleInputScannerTest {
 		assertThat(inputText).isEqualTo(input);
 	}
 
+	@DisplayName("Scanner 입력 테스트")
 	@ParameterizedTest
 	@ValueSource(strings = {"1", "2"})
 	public void scan1or2(final String input) {

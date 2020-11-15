@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -19,6 +20,7 @@ public class BallCountPrinterTest {
 		System.setOut(new PrintStream(outputStreamCaptor));
 	}
 
+	@DisplayName("각 볼카운트마다 해당 조건에 맞게 볼카운트가 출력되는지 확인")
 	@ParameterizedTest
 	@CsvSource(value = {
 		"1:0:1스트라이크",
