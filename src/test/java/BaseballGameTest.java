@@ -15,5 +15,12 @@ class BaseballGameTest {
 
     @BeforeEach
     void setUp() {
+        game = new BaseballGame();
+
+        computer = new Computer();
+        computer.initNumbers();
+        computer.setCheckNumbers(new ArrayList<>(Arrays.asList(1,3,5)));
+
+        player = new Player();
     }
 }

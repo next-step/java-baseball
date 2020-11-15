@@ -14,6 +14,13 @@ public class BaseballGame {
     }
 
     public void playGame() {
+        // 컴퓨터, 플레이어 생성
+        Computer computer = new Computer();
+        System.out.println(START_GAME_MSG);
+        while(isGamePlaying) {
+            Player player = new Player();
+            computer.generateNumberSet();
+        }
     }
 
     public void startPlayerInput(Computer computer, Player player) {
