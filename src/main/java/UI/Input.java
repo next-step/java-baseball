@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import UI.msg.InputMessage;
+
 public class Input {
+
+	public static void printRequestInput(){
+		System.out.print(InputMessage.REQUEST_INPUT);
+	}
 
 	public static List<Integer> inputBaseballNumbers() {
 		Scanner scanner = new Scanner(System.in);
