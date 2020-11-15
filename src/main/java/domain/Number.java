@@ -1,7 +1,7 @@
 package domain;
 
 import exception.DuplicateNumberOfDigitException;
-import exception.InvalidNumberOfDigitRange;
+import exception.InvalidNumberOfDigitRangeException;
 import exception.NumberNotThreeDigitsException;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class Number {
         }
 
         if (!isNumberOfDigitBetweenOneToNine()) {
-            throw new InvalidNumberOfDigitRange();
+            throw new InvalidNumberOfDigitRangeException();
         }
 
         if (!isNumberOfDigitDifferentEachOther()) {

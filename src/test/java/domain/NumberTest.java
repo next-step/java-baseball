@@ -1,7 +1,7 @@
 package domain;
 
 import exception.DuplicateNumberOfDigitException;
-import exception.InvalidNumberOfDigitRange;
+import exception.InvalidNumberOfDigitRangeException;
 import exception.NumberNotThreeDigitsException;
 import org.junit.jupiter.api.*;
 
@@ -45,7 +45,7 @@ class NumberTest {
     @Order(5)
     @DisplayName("사용자가 입력한 숫자의 각 자릿수가 1에서 9사이의 값이 아니면 예외 발생")
     public void userNumberOfDigitShouldBeBetweenOneAndNine() {
-        assertThrows(InvalidNumberOfDigitRange.class, () -> new Number(102));
+        assertThrows(InvalidNumberOfDigitRangeException.class, () -> new Number(102));
     }
 
     @Test
