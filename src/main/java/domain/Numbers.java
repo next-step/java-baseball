@@ -3,6 +3,11 @@ package domain;
 import java.util.*;
 
 public class Numbers {
+    private static final int DEFAULT_COUNT = 0;
+    private static final int NUMBERS_SIZE = 3;
+    private static final String NULL_MESSAGE = "숫자값은 비어있으면 안됩니다.";
+    private static final String NUMBERS_SIZE_MESSAGE = "숫자값은 반드시 3개 있어야 합니다.";
+    private static final String NUMBERS_REDUPLICATION_MESSAGE = "숫자야구에서는 중복되는 값이 올 수 없습니다.";
 
     private final List<Number> numbers;
 
@@ -12,23 +17,23 @@ public class Numbers {
 
     public static Numbers valueOf(Collection<Number> numbers) {
         validateNumbers(numbers);
-        validateNumbersDuplicate(numbers);
+        validateNumbersReduplicate(numbers);
         return new Numbers(new ArrayList<>(numbers));
     }
 
     private static void validateNumbers(Collection<Number> numbers) {
         if (Objects.isNull(numbers) || numbers.isEmpty()) {
-            throw new IllegalArgumentException("숫자값은 비어있으면 안됩니다.");
+            throw new IllegalArgumentException(NULL_MESSAGE);
         }
-        if (numbers.size() != 3) {
-            throw new IllegalArgumentException("숫자값은 반드시 3개 있어야 합니다.");
+        if (numbers.size() != NUMBERS_SIZE) {
+            throw new IllegalArgumentException(NUMBERS_SIZE_MESSAGE);
         }
     }
 
-    private static void validateNumbersDuplicate(Collection<Number> numbers) {
+    private static void validateNumbersReduplicate(Collection<Number> numbers) {
         Set<Number> convertedSet = new HashSet(numbers);
         if (numbers.size() != convertedSet.size()) {
-            throw new IllegalArgumentException("숫자야구에서는 중복되는 값이 올 수 없습니다.");
+            throw new IllegalArgumentException(NUMBERS_REDUPLICATION_MESSAGE);
         }
     }
 
@@ -72,7 +77,7 @@ public class Numbers {
     public boolean isContain(Numbers users) {
         List<Number> userNumbers = new ArrayList(users.numbers);
         userNumbers.retainAll(numbers);
-        return userNumbers.size() > 0;
+        return userNumbers.size() > DEFAULT_COUNT;
     }
 
     public Result match(Numbers userNumbers) {
@@ -85,7 +90,7 @@ public class Numbers {
     }
 
     private Score checkScore(Numbers userNumbers, int i) {
-        int matchPoint = 0;
+        int matchPoint = DEFAULT_COUNT;
         if (isContains(userNumbers, i)) {
             matchPoint++;
         }
@@ -118,7 +123,7 @@ public class Numbers {
 
     @Override
     public String toString() {
-        return "domain.Numbers{" +
+        return "Numbers{" +
                 "numbers=" + numbers +
                 '}';
     }

@@ -7,6 +7,8 @@ import static java.lang.System.lineSeparator;
 
 public class OutputView {
 
+    private OutputView() {}
+
     public static void showResult(Result result) {
         int strikeCount = result.getStrikeCount();
         int ballCount = result.getBallCount();

@@ -7,6 +7,8 @@ import view.OutputView;
 
 public class GameProcessor {
 
+    private GameProcessor() {}
+
     public static void start () {
         boolean isProgress = true;
         while (isProgress) {

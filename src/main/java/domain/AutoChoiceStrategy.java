@@ -7,6 +7,8 @@ import java.util.List;
 public class AutoChoiceStrategy implements ChoiceStrategy {
     private static final int NUMBER_MIN = 1;
     private static final int NUMBER_MAX = 9;
+    private static final int NUMBERS_MIN_INDEX = 0;
+    private static final int NUMBERS_MAX_INDEX = 3;
 
     private static final List<Number> NUMBERS;
 
@@ -20,6 +22,6 @@ public class AutoChoiceStrategy implements ChoiceStrategy {
     @Override
     public Numbers generate() {
         Collections.shuffle(NUMBERS);
-        return Numbers.valueOf(NUMBERS.subList(0, 3));
+        return Numbers.valueOf(NUMBERS.subList(NUMBERS_MIN_INDEX, NUMBERS_MAX_INDEX));
     }
 }

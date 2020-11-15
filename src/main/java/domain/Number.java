@@ -3,6 +3,9 @@ package domain;
 import java.util.Objects;
 
 public class Number {
+    private static final int NUMBER_MIN = 1;
+    private static final int NUMBER_MAX = 9;
+    private static final String NUMBER_VALID_MESSAGE = "유효하지 않은 범위의 숫자입니다.";
 
     private final int number;
 
@@ -13,12 +16,12 @@ public class Number {
 
     private void numberValid(int number) {
         if (isNotRangeClosed(number)) {
-            throw new IllegalArgumentException("유효하지 않은 범위의 숫자입니다.");
+            throw new IllegalArgumentException(NUMBER_VALID_MESSAGE);
         }
     }
 
     private boolean isNotRangeClosed(int number) {
-        return number < 1 || number > 9;
+        return number < NUMBER_MIN || number > NUMBER_MAX;
     }
 
     public static Number valueOf(int number) {
@@ -44,7 +47,7 @@ public class Number {
 
     @Override
     public String toString() {
-        return "domain.Number{" +
+        return "Number{" +
                 "number=" + number +
                 '}';
     }

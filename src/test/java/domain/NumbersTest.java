@@ -1,7 +1,5 @@
 package domain;
 
-import domain.Number;
-import domain.Numbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
