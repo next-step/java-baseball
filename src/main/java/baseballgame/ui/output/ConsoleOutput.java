@@ -10,6 +10,8 @@ public class ConsoleOutput implements Output {
     private static final String SENTENCES_RESTART_GAME = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요";
     private static final String STRIKE = "스트라이크";
     private static final String BALL = "볼";
+    private static final int MISS_MATCH = 0;
+    private static final String NOTHING = "Nothing";
 
     @Override
     public void demandingUserScore() {
@@ -25,12 +27,20 @@ public class ConsoleOutput implements Output {
         final int strikeCount = result.getStrikeCount();
         final int ballCount = result.getBallCount();
 
+        if (validateMissMatching(strikeCount, ballCount)) {
+            return NOTHING;
+        }
+
         StringJoiner sj = new StringJoiner(" ");
 
         addStrike(strikeCount, sj);
         addBall(ballCount, sj);
 
         return sj.toString();
+    }
+
+    private boolean validateMissMatching(int strikeCount, int ballCount) {
+        return (strikeCount == MISS_MATCH) && (ballCount == MISS_MATCH);
     }
 
     private void addStrike(final int strikeCount, final StringJoiner sj) {
