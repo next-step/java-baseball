@@ -34,6 +34,16 @@ class BaseballResultTest {
 		assertThat(baseballResult.getResultMessage()).isEqualTo(expected);
 	}
 
+	@Test
+	@DisplayName("낫싱 결과 확인")
+	void result_nothing() {
+		final BaseballResult baseballResult =
+			BaseballResult.of(Arrays.asList(NOTHING, NOTHING, NOTHING));
+
+		String expected = NOTHING.getMessageFormat();
+		assertThat(baseballResult.getResultMessage()).isEqualTo(expected);
+	}
+
 	@ParameterizedTest
 	@CsvSource(value = {
 		"STRIKE:STRIKE:BALL",
