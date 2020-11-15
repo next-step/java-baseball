@@ -5,3 +5,13 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 환경 설정 ([스타일 적용](https://naver.github.io/hackday-conventions-java/#_intellij), 불필요 파일 삭제)
+* 상수를 정의한다.
+* 3개의 숫자를 입력 받는다.
+* 3개의 숫자를 생성 한다.
+* 3개의 숫자에 대한 판단(스트라이크, 볼, 낫싱)을 한다.
+* 게임 결과를 출력한다.
+* 게임을 종료한다 -> 다시시작 or 종료. 
+* 예외사항 처리
