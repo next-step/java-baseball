@@ -56,6 +56,26 @@ public class RefereeTest {
 		assertThat(isNothing).isTrue();
 	}
 
+	@DisplayName("판독 결과 저장")
+	@Test
+	void saveBaseballResult() {
+		final Integer computerNumber = 425;
+		final Integer userNumber = 456;
+
+		Set<BaseballNumber> computerNumbers = convertIntegerToBaseballNumberSet(computerNumber);
+		Set<BaseballNumber> userNumbers = convertIntegerToBaseballNumberSet(userNumber);
+
+		Integer strikeCount = this.getStrikeCount(computerNumbers, userNumbers);
+		Integer ballCount = this.getBallCount(computerNumbers, userNumbers);
+
+		BaseballResult baseballResult = new BaseballResult(strikeCount, ballCount);
+
+		assertThat(baseballResult.getStrikeCount()).isEqualTo(1);
+		assertThat(baseballResult.getBallCount()).isEqualTo(1);
+		assertThat(baseballResult.isNothing()).isFalse();
+
+	}
+
 	private Integer getBallCount(Set<BaseballNumber> computerNumbers, Set<BaseballNumber> userNumbers) {
 		Set<BaseballNumber> retainSet = this.getRetainSetWith(computerNumbers, userNumbers);
 		Set<BaseballNumber> remainComputerNumbers = new HashSet<>(computerNumbers);
