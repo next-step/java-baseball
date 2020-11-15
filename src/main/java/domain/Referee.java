@@ -8,16 +8,11 @@ import vo.BaseballResult;
 
 public class Referee {
 
-	public BaseballResult discriminate(Integer computerNumber, Integer userNumber) {
-
-		Set<BaseballNumber> computerNumbers = convertIntegerToBaseballNumberSet(computerNumber);
-		Set<BaseballNumber> userNumbers = convertIntegerToBaseballNumberSet(userNumber);
-
+	public BaseballResult discriminate(Set<BaseballNumber> computerNumbers, Set<BaseballNumber> userNumbers) {
 		Integer strikeCount = this.getStrikeCount(computerNumbers, userNumbers);
 		Integer ballCount = this.getBallCount(computerNumbers, userNumbers);
 
 		return new BaseballResult(strikeCount, ballCount);
-
 	}
 
 	private Integer getStrikeCount(Set<BaseballNumber> computerNumbers, Set<BaseballNumber> userNumbers) {

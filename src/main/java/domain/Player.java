@@ -1,15 +1,20 @@
 package domain;
 
+import java.util.Collections;
+import java.util.Set;
+
+import vo.BaseballNumber;
+
 public class Player {
 
-	Integer number;
+	Set<BaseballNumber> number;
 
-	public Integer getNumber() {
+	public Set<BaseballNumber> getNumber() {
 		return number;
 	}
 
-	void setNumber(Integer number) {
-		this.number = number;
+	void setNumber(Set<BaseballNumber> number) {
+		this.number = Collections.unmodifiableSet(number);
 	}
 
 }
