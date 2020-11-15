@@ -24,6 +24,24 @@ public class BaseballGame {
 		}
 	}
 
+	private void initialize() {
+		this.scanner = new Scanner(System.in);
+		this.isGameEnd = false;
+		this.referee = new Referee();
+		this.setPlayers();
+	}
+
+	private void setPlayers() {
+		this.computer = new Computer();
+		this.user = new User();
+	}
+
+	private void inputUserNumber() {
+		System.out.print("숫자를 입력해주세요 : ");
+		Integer inputNumber = scanner.nextInt();
+		user.changeNumber(inputNumber);
+	}
+
 	private void play() {
 		BaseballResult baseballResult = referee.discriminate(this.computer.getNumber(), this.user.getNumber());
 		this.printResult(baseballResult);
@@ -31,23 +49,6 @@ public class BaseballGame {
 		if (baseballResult.getStrikeCount() == 3) {
 			this.endGame();
 		}
-	}
-
-	private void endGame() {
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-
-		Integer input = scanner.nextInt();
-
-		if (input.equals(1)) {
-			this.setPlayers();
-			return;
-		}
-
-		if (input.equals(2)) {
-			this.isGameEnd = true;
-		}
-
 	}
 
 	private void printResult(BaseballResult baseballResult) {
@@ -76,21 +77,21 @@ public class BaseballGame {
 		return message;
 	}
 
-	private void inputUserNumber() {
-		System.out.print("숫자를 입력해주세요 : ");
-		Integer inputNumber = scanner.nextInt();
-		user.changeNumber(inputNumber);
+	private void endGame() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+		Integer input = scanner.nextInt();
+
+		if (input.equals(1)) {
+			this.setPlayers();
+			return;
+		}
+
+		if (input.equals(2)) {
+			this.isGameEnd = true;
+		}
+
 	}
 
-	private void initialize() {
-		this.scanner = new Scanner(System.in);
-		this.isGameEnd = false;
-		this.referee = new Referee();
-		this.setPlayers();
-	}
-
-	private void setPlayers() {
-		this.computer = new Computer();
-		this.user = new User();
-	}
 }
