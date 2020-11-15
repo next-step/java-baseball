@@ -1,7 +1,9 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -50,15 +52,27 @@ public class Game {
 		
 			scanner = new Scanner(System.in);
 			String answer = scanner.nextLine();
-			
-			validateAnswer(answer);
+			gameStatus = getGameStatus(answer);
 		}
 	}
 	
-	private void validateAnswer(String s) {
-		if (isInteger(s) && has3Numbers(s)) {
-			System.out.println("유효한 대답입니다. 조건 검사 진행 예정입니다");
+	private GameStatus getGameStatus(String answer) {
+		if (isValidAnswer(answer)) {
+			List<Integer> answerNumber = getAnswerNumber(answer);
+			Map<String, Integer> result = getScoreMap(answerNumber);
+			
+			System.out.println(result);
 		}
+		
+		return GameStatus.WAITING_ANSWER;
+	}
+	
+	private boolean isValidAnswer(String s) {
+		if (isInteger(s) && has3Numbers(s)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	private boolean isInteger(String s) {
@@ -76,6 +90,41 @@ public class Game {
 		}
 		
 		return false;
+	}
+	
+	private List<Integer> getAnswerNumber(String s) {
+		List<Integer> numbers = new ArrayList<>();
+		
+		for(int i = 0; i < 3; i++) {
+			numbers.add(Integer.parseInt(String.valueOf(s.charAt(i))));
+		}
+		
+		return numbers;
+	}
+	
+	private Map<String, Integer> getScoreMap(List<Integer> answerNumber) {
+		Map<String, Integer> result = new HashMap<>();
+		
+		for(int i = 0; i < 3; i++) {
+			int answer = answerNumber.get(i);
+			String score = getScore(answer, i);
+			result.putIfAbsent(score, 0);
+			result.put(score, result.get(score) + 1);
+		}
+		
+		return result;
+	}
+	
+	private String getScore(int answerNumber, int index) {
+		if (answerNumber == targetNumber.get(index)) {
+			return "strike"; 
+		}
+		
+		if(targetNumber.contains(answerNumber)) {
+			return "ball";
+		}
+		
+		return "";
 	}
 
 }
