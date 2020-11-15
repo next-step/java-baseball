@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+1. 기능 목록 정리
+2. 코드 컨벤션 파일 생성
+3. 임의의 3자리 수 생성
+4. 입력값 체크 로직 생성
+5. 입력 구현
