@@ -1,6 +1,28 @@
 package baseball;
 
+import java.util.Scanner;
+
 public class BaseballGame {
+
+	Scanner scanner = new Scanner(System.in);
+
+	/**
+	 * 야구게임 메세지 enum
+	 */
+	public static enum MESSAGE_CD {
+
+		INPUT_NUM("숫자를 입력해주세요 : ");
+
+		final private String message;
+
+		private MESSAGE_CD(String message) {
+			this.message = message;
+		}
+
+		public String message() {
+			return message;
+		}
+	}
 
 	/**
 	 * 야구 게임 시작
@@ -45,8 +67,13 @@ public class BaseballGame {
 	 * @return int[]
 	 */
 	public int[] getInputNum() {
+		Integer intputNum = 0;
 		int[] inputNumArray = new int[3];
-
+		intputNum = setInputNum();
+		for (int i = 0; i < 3; i++) {
+			int endIndex = i + 1;
+			inputNumArray[i] = Integer.parseInt(Integer.toString(intputNum).substring(i, endIndex));
+		}
 		return inputNumArray;
 	}
 
@@ -74,15 +101,14 @@ public class BaseballGame {
 	public int dupCheckNumArray(int[] checkArray, int checkIndex) {
 		int index = checkIndex;
 		for (int i = 0; i < checkIndex; i++) {
-			//이전 값과 비교하여 값이 중복일때 랜덤 배열 index -1
+			// 이전 값과 비교하여 값이 중복일때 랜덤 배열 index -1
 			index = index - equalToNum(checkArray[checkIndex], checkArray[i]);
 		}
 		return index;
 	}
 
 	/**
-	 * 숫자 비교
-	 * 같을 때 1 다를 때 0 return
+	 * 숫자 비교 같을 때 1 다를 때 0 return
 	 *
 	 * @param checkNum
 	 * @param inputNum
@@ -96,6 +122,16 @@ public class BaseballGame {
 			return result;
 		}
 		return result;
+	}
+
+	/**
+	 * 야구게임 사용자 번호 입력
+	 *
+	 * @return int
+	 */
+	public int setInputNum() {
+		System.out.print(MESSAGE_CD.INPUT_NUM.message);
+		return scanner.nextInt();
 	}
 
 	public static void main(String[] args) {
