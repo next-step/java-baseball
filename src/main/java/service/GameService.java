@@ -29,7 +29,7 @@ public class GameService implements GameConstant {
 		while (true) {
 			run(generate());
 			System.out.println(EXIT);
-			int input = scanner.nextInt();
+			int input = Integer.parseInt(scanner.nextLine());
 			if (!isValidExitInput(input) || input == 2) {
 				return;
 			}
@@ -46,12 +46,8 @@ public class GameService implements GameConstant {
 
 	public String getRefineInput(String input) {
 		input = input.replaceAll(" ", "");
-		if (input.length() < 3) {
-			throw new BaseballGameException(BAD_INPUT);
-		}
-
 		for (int i = 0; i < input.length(); i++) {
-			if(!balls.contains(Integer.parseInt(input.substring(i, i+1)))) {
+			if (!balls.contains(Integer.parseInt(input.substring(i, i + 1))) || input.length() < 3) {
 				throw new BaseballGameException(BAD_INPUT);
 			}
 		}
@@ -59,7 +55,60 @@ public class GameService implements GameConstant {
 	}
 
 	public void run(List<Integer> generatedBalls) {
+		while (true) {
+			String input = inputNumber();
+			checkStrike(generatedBalls, input);
+			if (getStrikeCount(generatedBalls, input) == 3) {
+				return;
+			}
+			checkBall(generatedBalls, input);
+			checkNothing(generatedBalls, input);
+			System.out.println();
+		}
+	}
+
+	public String inputNumber() {
 		System.out.print(INPUT);
-		String input = getRefineInput(scanner.nextLine());
+		return getRefineInput(scanner.nextLine());
+	}
+
+	public void checkStrike(List<Integer> balls, String input) {
+		int count = getStrikeCount(balls, input);
+		if (count != 0) {
+			System.out.print(count + STRIKE);
+		}
+	}
+
+	public int getStrikeCount(List<Integer> balls, String input) {
+		int count = 0;
+		for (int i = 0; i < balls.size(); i++) {
+			if (balls.get(i) == Integer.parseInt(input.substring(i, i + 1))) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+
+	public void checkBall(List<Integer> balls, String input) {
+		int count = getBallCount(balls, input);
+		if (count > 0) {
+			System.out.print(count + BALL);
+		}
+	}
+
+	public int getBallCount(List<Integer> balls, String input) {
+		int count = 0;
+		for (int i = 0; i < input.length(); i++) {
+			if (balls.contains(Integer.parseInt(input.substring(i, i + 1)))) {
+				count += 1;
+			}
+		}
+		return count -= getStrikeCount(balls, input);
+	}
+
+	public void checkNothing(List<Integer> balls, String input) {
+		if (getStrikeCount(balls, input) == 0 && getBallCount(balls, input) == 0) {
+			System.out.print(NOTHING);
+		}
 	}
 }
