@@ -1,3 +1,5 @@
+package domain;
+
 import constants.Result;
 
 public class ResultChecker {

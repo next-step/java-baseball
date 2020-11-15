@@ -1,3 +1,5 @@
+package domain;
+
 public class BaseballNumber {
 	public static final int MAX_SIZE = 3;
 	public static final int MAX_NUMBER = 9;
@@ -15,9 +17,9 @@ public class BaseballNumber {
 		this.hundreds = checkValid(Integer.parseInt(hundreds));
 	}
 
-	private int units;
-	private int tens;
-	private int hundreds;
+	private final int units;
+	private final int tens;
+	private final int hundreds;
 
 	public int getUnits() {
 		return units;
@@ -44,11 +46,7 @@ public class BaseballNumber {
 
 	@Override
 	public String toString() {
-		return new StringBuilder()
-			.append(hundreds)
-			.append(tens)
-			.append(units)
-			.toString();
+		return String.valueOf(hundreds) + tens + units;
 	}
 }
 
