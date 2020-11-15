@@ -47,5 +47,19 @@ class BaseballGameRuleTest {
 		System.out.println("Ball Count : " + baseballGameRule .getBallCount(computerNumbers, userNumbers));
 	}
 	
+	@Test 
+	void _isWin() throws Exception {
+		BaseballGameRule baseballGameRule = new BaseballGameRule();
+		LinkedHashSet<Integer> computerNumbers = baseballGameRule.getComputerRandomNumbers();
+		LinkedHashSet<Integer> userNumbers = baseballGameRule.getComputerRandomNumbers();
+		System.out.println("Computer Numbers " + computerNumbers);
+		System.out.println("User Numbers " + userNumbers);
+		assertNotNull(computerNumbers);
+		assertNotNull(userNumbers);
+		assertSame(3, computerNumbers.size());
+		assertSame(3, userNumbers.size());
+		baseballGameRule.isWin(computerNumbers, userNumbers);
+	}
+	
 
 }

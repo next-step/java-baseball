@@ -14,6 +14,26 @@ public class BaseballGameRule {
 		return computerRandomNumbers;
 	}
 	
+	public boolean isWin(LinkedHashSet<Integer> computerNumbers, LinkedHashSet<Integer> userNumbers) throws Exception {
+		if(getStrikeCount(computerNumbers, userNumbers) == 3) {
+			System.out.println("3개 숫자를 모두 맞추셨습니다! 게임 종료");
+			return true;
+		}
+		String hintComment = "";
+		if(getStrikeCount(computerNumbers, userNumbers) > 0)
+			hintComment += getStrikeCount(computerNumbers, userNumbers) + " 스트라이크";
+		
+		if(getBallCount(computerNumbers, userNumbers) > 0)
+			hintComment += getBallCount(computerNumbers, userNumbers) + " 볼";
+		
+		if(getBallCount(computerNumbers, userNumbers) == 0 && getStrikeCount(computerNumbers, userNumbers) == 0)
+			hintComment = "낫싱";
+		
+		System.out.println(hintComment);
+		return false;
+		
+	}
+	
 	public int getStrikeCount(LinkedHashSet<Integer> computerNumbers, LinkedHashSet<Integer> userNumbers) throws Exception {
 		int strikeCount = 0;
 		if(computerNumbers == null)
