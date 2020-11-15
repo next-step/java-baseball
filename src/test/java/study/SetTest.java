@@ -1,6 +1,5 @@
 package study;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,7 +51,7 @@ public class SetTest {
     @DisplayName("값 존재 테스트 - CSV Literals 활용")
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    void contains_useCsvLiterals(int input, boolean result) {
-        assertThat(numbers.contains(input)).isEqualTo(result);
+    void contains_useCsvLiterals(int input, boolean expected) {
+        assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }
