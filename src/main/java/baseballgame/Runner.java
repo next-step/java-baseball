@@ -33,6 +33,8 @@ public class Runner {
 
             gameExit = checkWhetherWantToRestartGame();
         } while (gameExit);
+
+        setProgramExit();
     }
 
     private boolean checkWhetherWantToRestartGame() {
@@ -43,5 +45,9 @@ public class Runner {
 
     private boolean parserWhetherWantToRestartGame(final String input) {
         return PARSER.whetherRestartGame(input);
+    }
+
+    private void setProgramExit() {
+        INPUT.destroy();
     }
 }
