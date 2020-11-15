@@ -56,4 +56,11 @@ public class Checker {
     System.out.println();
   }
 
+  public static boolean checkAnswer() {
+    if(strike == 3) {
+      System.out.println(OutputType.GAME_OVER);
+      return true;
+    }
+    return false;
+  }
 }
