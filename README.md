@@ -68,9 +68,9 @@
 - [x] 중복 없는 숫자 3개를 생성하는 strategy
     * 숫자 3개를 생성하고 반환한다
     * 3개의 숫자가 중복인지 validate
-- [ ] main
+- [x] main
     * application 시작
-- [ ] 게임 controller
+- [x] 게임 controller
     * 사용자 입력 받기
     * 사용자 입력 변환
     * service 를 이용하여 게임 진행
