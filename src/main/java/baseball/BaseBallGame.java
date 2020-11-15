@@ -47,6 +47,10 @@ public class BaseBallGame {
         return resultStrike;
     }
 
+    public boolean isFinish() {
+        return ballCount.isThreeStrike();
+    }
+
     public BallCount getBallCount() {
         return ballCount;
     }

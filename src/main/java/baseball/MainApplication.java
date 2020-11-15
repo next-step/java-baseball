@@ -17,8 +17,11 @@ public class MainApplication {
         // dealer
         BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(new ArrayList<Integer>()));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
-        baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber())));
-        ResultView.printBallCount(baseBallGame.getBallCount());
+
+        do {
+            baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber())));
+            ResultView.printBallCount(baseBallGame.getBallCount());
+        } while (!baseBallGame.isFinish());
 
     }
 
