@@ -7,41 +7,30 @@ public class BaseballHintMaker {
     private final ArrayList<Integer> correctNumbers;
     private final ArrayList<Integer> inputNumbers;
 
-    private ArrayList<Integer> strikeIndexArray = new ArrayList(NUMBER_SIZE);
-    private ArrayList<Integer> ballIndexArray = new ArrayList(NUMBER_SIZE);
+    private final ArrayList<Integer> strikeIndexArray = new ArrayList<>();
 
     BaseballHintMaker(ArrayList<Integer> correctNumbers, ArrayList<Integer> inputNumbers) {
         this.correctNumbers = correctNumbers;
         this.inputNumbers = inputNumbers;
     }
 
-    public Strike getStrikeHint(int index, Strike strike) {
+    public void getStrikeHint(int index, Strike strike) {
         int correct = correctNumbers.get(index);
         int input = inputNumbers.get(index);
         if (correct == input) {
             strike.add();
             strikeIndexArray.add(index);
         }
-        return strike;
     }
 
-    private void addBallCount(int index, Ball ball) {
+    public void getBallHint(int index, Ball ball) {
+        if (strikeIndexArray.contains(index)) {
+            return;
+        }
         int input = inputNumbers.get(index);
         if (correctNumbers.contains(input)) {
             ball.add();
-            ballIndexArray.add(index);
         }
-    }
-
-    public Ball getBallHint(int index, Ball ball) {
-        if (!strikeIndexArray.contains(index)) {
-            addBallCount(index, ball);
-        }
-        return ball;
-    }
-
-    public Nothing getNothingHint() {
-        return new Nothing();
     }
 
 }
