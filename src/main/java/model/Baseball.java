@@ -7,6 +7,14 @@ public class Baseball {
 	ArrayList<String> defaultNumbers;
 
 	public Baseball() {
+		setDefaultNumbers();
+	}
+
+	public ArrayList<String> getDefaultNumbers() {
+		return defaultNumbers;
+	}
+
+	public void setDefaultNumbers() {
 		LinkedHashSet<String> linkedHashMap = new LinkedHashSet<>();
 		defaultNumbers = new ArrayList<>();
 
@@ -15,13 +23,5 @@ public class Baseball {
 		}
 
 		linkedHashMap.iterator().forEachRemaining(defaultNumbers::add);
-	}
-
-	public ArrayList<String> getDefaultNumbers() {
-		return defaultNumbers;
-	}
-
-	public void setDefaultNumbers(ArrayList<String> defaultNumbers) {
-		this.defaultNumbers = defaultNumbers;
 	}
 }
