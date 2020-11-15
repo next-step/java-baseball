@@ -1,5 +1,9 @@
 package service;
 
+import domain.Check;
+import domain.Com;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class BaseServiceImpl implements BaseService{
@@ -52,5 +56,47 @@ public class BaseServiceImpl implements BaseService{
             break;
         }
         return me_nan;
+    }
+
+    // 컴퓨터의 서로 다른 난수 계산
+    public Com comNan() {
+        Integer integer = 0;
+        Integer integer1 = 0;
+        Integer integer2 = 0;
+        Random rn = new Random();;
+        while(!((integer2 / 100) != integer1 | (integer2 / 100) != integer | (integer1 / 10) != integer)){
+            integer = 1 * (rn.nextInt(9) + 1);
+            integer1 = 10 * (rn.nextInt(9) + 1);
+            integer2 = 100 * (rn.nextInt(9) + 1);
+        }
+        return new Com(integer, integer1,integer2);
+    }
+
+    // 컴퓨터와 사용자의 결과 도출
+    public Check resultPrint(Check check) {
+        String[] com_nan_st = check.getCom();
+        String[] me_nan_st = check.getMe();
+
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if (result(check, com_nan_st[i], me_nan_st[j], i, j).getCh()) break;
+            }
+        }
+        return check;
+    }
+
+    // 결과 계산
+    public Check result(Check check, String s, String anObject, int i, int j) {
+        if(s.equals(anObject)){
+            if(i == j){
+                check.setSt(check.getSt()+1);
+                check.setCh(true);
+                return check;
+            }else if(i != j){
+                check.setBall(check.getBall()+1);
+            }
+        }
+        check.setCh(false);
+        return check;
     }
 }

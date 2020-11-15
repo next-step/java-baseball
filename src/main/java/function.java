@@ -10,11 +10,11 @@ public class function {
     public static void main(String[] args) {
         BaseService baseService = new BaseServiceImpl();
         while(true){
-            Com com = new Com().invoke();
+            Com com = baseService.comNan();
             System.out.println("Com : " + com.output());
 
             while(true) {
-                Check check = new Check(0, 0, com.output(), baseService.getUserNum()).invoke();
+                Check check = baseService.resultPrint(new Check(0, 0, com.output(), baseService.getUserNum()));
                 int st = check.getSt();
                 int ball = check.getBall();
 
