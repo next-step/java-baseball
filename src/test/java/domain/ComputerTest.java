@@ -6,12 +6,17 @@ import domain.Result;
 import domain.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ComputerTest {
 
@@ -25,17 +30,26 @@ class ComputerTest {
         assertThat(input).isEqualTo(result);
     }
 
-    @DisplayName("사용자가 맞추려는 번호 매칭 메소드 테스트")
-    @Test
-    void matches() {
-        Numbers input = Numbers.valueOf(1,2,3);
-        Computer computer = new Computer(input);
+    @DisplayName("사용자가 맞추려는 번호 매칭 메소드 테스트 -스트라이크 숫자")
+    @ParameterizedTest
+    @CsvSource(value = {"123:123:3", "365:345:2", "968:458:1"}, delimiter = ':')
+    void matches_strike(String input, String expected, int strikeCount) {
+        Computer computer = new Computer(Numbers.valueOf(input));
+        Result result = computer.matches(Numbers.valueOf(expected));
 
-        Numbers userNumbers = Numbers.valueOf(3,4,5);
-        Result result = computer.matches(userNumbers);
+        int strike = result.getStrikeCount();
+        assertThat(strike).isEqualTo(strikeCount);
+    }
 
-        List<Score> scores = result.getScores();
-        assertThat(scores).isEqualTo(Arrays.asList(Score.BALL));
+    @DisplayName("사용자가 맞추려는 번호 매칭 메소드 테스트 -볼 숫자")
+    @ParameterizedTest
+    @CsvSource(value = {"123:341:2", "426:264:3", "967:378:1", "567:891:0"}, delimiter = ':')
+    void matches_ball(String input, String expected, int ballCount) {
+        Computer computer = new Computer(Numbers.valueOf(input));
+        Result result = computer.matches(Numbers.valueOf(expected));
+
+        int ball = result.getBallCount();
+        assertThat(ball).isEqualTo(ballCount);
     }
 
     @DisplayName("사용자가 맞추려는 번호 매칭 메소드 테스트 -아무것도 포함 안되었을 때")
@@ -47,7 +61,6 @@ class ComputerTest {
         Numbers userNumbers = Numbers.valueOf(4,5,6);
         Result result = computer.matches(userNumbers);
 
-        List<Score> scores = result.getScores();
-        assertThat(scores).isEqualTo(Arrays.asList(Score.NOTHING));
+        assertThat(result.isNothing()).isTrue();
     }
 }
