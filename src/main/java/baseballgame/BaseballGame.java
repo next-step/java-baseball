@@ -36,9 +36,9 @@ public class BaseballGame {
         System.out.println(BaseballContract.GAME_START);
         while (!gameover) {
             System.out.println(BaseballContract.WAIT_INPUT);
-            String inputString = sc.nextLine();
-            int strikeCount = getStrikeCount(baseballNumber, inputString);
-            int ballCount = getBallCount();
+            String userInput = sc.nextLine();
+            int strikeCount = getStrikeCount(baseballNumber, userInput);
+            int ballCount = getBallCount(baseballNumber, userInput);
             gameover = isStrikeOut(strikeCount);
         }
         System.out.println(BaseballContract.GAME_END);
@@ -51,14 +51,14 @@ public class BaseballGame {
         char[] baseballNumberChar = gameNumber.toCharArray();
 
         for (int i = 0; i < userInputArr.length; i++) {
-            count += getDiffWeight(userInputArr[i], baseballNumberChar[i]);
+            count += getSameWeight(userInputArr[i], baseballNumberChar[i]);
         }
         System.out.println(BaseballContract.STRIKE + ": " + count);
         return count;
     }
 
     // 같음 여부 체크 후 가중치 획득
-    public int getDiffWeight(char actual, char expect) {
+    public int getSameWeight(char actual, char expect) {
         if (actual == expect) {
             return 1;
         }
@@ -66,9 +66,24 @@ public class BaseballGame {
     }
 
     // 볼 카운트
-    public int getBallCount() {
+    public int getBallCount(String gameNumber, String userInput) {
         int count = 0;
+        char[] userInputArr = userInput.toCharArray();
+        char[] baseballNumberChar = gameNumber.toCharArray();
+
+        for (int i = 0; i < userInputArr.length; i++) {
+            count += getDiffWeight(userInputArr[i], baseballNumberChar[i]);
+        }
+        System.out.println(BaseballContract.BALL + ": " + count);
         return count;
+    }
+
+    // 다름 여부 체크 후 가중치 획득
+    public int getDiffWeight(char actual, char expect) {
+        if (actual != expect) {
+            return 1;
+        }
+        return 0;
     }
 
     // 스트라이크 아웃 판단

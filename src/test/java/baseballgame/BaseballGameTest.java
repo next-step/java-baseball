@@ -43,17 +43,31 @@ class BaseballGameTest {
         assertEquals(expect, baseballGame.isStrikeOut(strikeCount));
     }
 
-    @DisplayName("캐릭터 같음 여부 체크 여부에 따라 가중치 획득")
+    @DisplayName("Char 같음 여부 체크 여부에 따라 가중치 획득")
     @ParameterizedTest
     @CsvSource(value = {"1:1:1", "1:2:0"}, delimiter = ':')
-    void getDiffWeight(char actual, char expect, int weight) {
-        assertEquals(baseballGame.getDiffWeight(actual, expect), weight);
+    void getSameWeight(char actual, char expect, int weight) {
+        assertEquals(baseballGame.getSameWeight(actual, expect), weight);
     }
 
     @DisplayName("스트라이크 카운트 체크")
     @ParameterizedTest
     @CsvSource(value = {"111:000:0", "111:010:1", "111:011:2", "111:111:3"}, delimiter = ':')
-    void getStrikeCount(String baseballNumber, String userInput, int strikeCount) {
-        assertEquals(baseballGame.getStrikeCount(baseballNumber, userInput), strikeCount);
+    void getStrikeCount(String baseballNumber, String userInput, int count) {
+        assertEquals(baseballGame.getStrikeCount(baseballNumber, userInput), count);
+    }
+
+    @DisplayName("볼 카운트 체크")
+    @ParameterizedTest
+    @CsvSource(value = {"111:000:3", "111:010:2", "111:011:1", "111:111:0"}, delimiter = ':')
+    void getBaseballNumber(String baseballNumber, String userInput, int count) {
+        assertEquals(baseballGame.getBallCount(baseballNumber, userInput), count);
+    }
+
+    @DisplayName("Char 다름 여부 체크 여부에 따라 가중치 획득")
+    @ParameterizedTest
+    @CsvSource(value = {"1:1:0", "1:2:1"}, delimiter = ':')
+    void getDiffWeight(char actual, char expect, int weight) {
+        assertEquals(baseballGame.getDiffWeight(actual, expect), weight);
     }
 }
