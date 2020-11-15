@@ -17,9 +17,10 @@ class GameHintTest {
 	@CsvSource(value = {"456:0", "425:1", "423:2", "315:0"}, delimiter = ':')
 	void countStrike(String input, int count) throws Exception {
 		// Given
+		int fixedLength = 3;
 		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
 		Game game = new Game(new GameNumberRandomGenerator());
-		GameNumbers userAnswer = game.convertInputToGameNumbers(input);
+		GameNumbers userAnswer = GameInputConverter.convertInputToGameNumbers(input, fixedLength);
 
 		// When
 		GameHint gameHint = new GameHint(rightAnswer, userAnswer);
@@ -33,9 +34,10 @@ class GameHintTest {
 	@CsvSource(value = {"456:0", "415:1", "315:2", "231:3", "132:2"}, delimiter = ':')
 	void countBall(String input, int count) throws Exception {
 		// Given
+		int fixedLength = 3;
 		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
 		Game game = new Game(new GameNumberRandomGenerator());
-		GameNumbers userAnswer = game.convertInputToGameNumbers(input);
+		GameNumbers userAnswer = GameInputConverter.convertInputToGameNumbers(input, fixedLength);
 
 		// When
 		GameHint gameHint = new GameHint(rightAnswer, userAnswer);

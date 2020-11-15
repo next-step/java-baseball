@@ -20,7 +20,7 @@ public class BaseballController {
 
 		while (!game.isFinished()) {
 			String userAnswer = InputView.getUserAnswer();
-			GameHint gameHint = game.inputUserAnswer(userAnswer);
+			GameHint gameHint = game.play(userAnswer);
 			printHint(gameHint);
 		}
 
