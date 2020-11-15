@@ -1,11 +1,12 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public enum Score {
-    STRIKE("스트라이크", 2),
-    BALL("볼", 1),
+    STRIKE("%d 스트라이크", 2),
+    BALL("%d 볼", 1),
     NOTHING("낫싱", 0);
 
     private final String score;
@@ -21,11 +22,8 @@ public enum Score {
 
         for (Score score : values()) {
             result.add(score.find(matchPoint));
-        } //TODO sort로 할 수 없나?
-        result.removeIf(n -> n == NOTHING);
-        if (result.size() == 0) {
-            return NOTHING;
         }
+        Collections.sort(result);
         return result.get(0);
     }
 
@@ -34,5 +32,9 @@ public enum Score {
             return this;
         }
         return NOTHING;
+    }
+
+    public String getScoreMessage() {
+        return score;
     }
 }

@@ -40,6 +40,35 @@ public class Numbers {
         }
     }
 
+    public static Numbers valueOf(int... numbers) {
+        return valueOf(convertToNumberList(numbers));
+    }
+
+    public static Numbers valueOf(String numbers) {
+        return valueOf(convertToIntArray(numbers));
+    }
+
+    private static List<Number> convertToNumberList(int[] numbers) {
+        List<Number> result = new ArrayList<>();
+        for (int number : numbers) {
+            result.add(Number.valueOf(number));
+        }
+        return result;
+    }
+
+    private static int [] convertToIntArray(String numbers) {
+        String [] splitString = numbers.split("");
+        return parseInt(splitString);
+    }
+
+    private static int [] parseInt(String[] splitString) {
+        int [] array = new int [splitString.length];
+        for (int i = 0; i < splitString.length; i ++) {
+            array[i] = Integer.parseInt(splitString[i]);
+        }
+        return array;
+    }
+
     public List<Number> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
@@ -66,13 +95,7 @@ public class Numbers {
         return resultScores;
     }
 
-    private void addScores(List<Score> resultScores, Score score) {
-        if (!Objects.isNull(score)) {
-            resultScores.add(score);
-        }
-    }
-
-    private int checkNumber(Numbers userNumbers, int i) {
+    private Score checkScore(Numbers userNumbers, int i) {
         int matchPoint = 0;
         if (isContains(userNumbers, i)) {
             matchPoint++;
@@ -80,7 +103,7 @@ public class Numbers {
         if (isEqualNumber(userNumbers, i)) {
             matchPoint++;
         }
-        return matchPoint;
+        return Score.findScore(matchPoint);
     }
 
     private boolean isEqualNumber(Numbers userNumbers, int i) {
