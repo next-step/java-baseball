@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * 앞으로 게임 로직 내에 생성되는 메서드에 대한 입력 및 검증을 하기 위한 테스트 클래스
@@ -70,8 +71,9 @@ public class BaseBallGameTest {
     @Test
     @DisplayName("[USER TURN] 게임 플레이어가 입력한 값이 숫자로 변환시 예외")
     public void validUserTurnCastStringToIntegerException() {
-        Scanner sc = new Scanner("12a");
-        assertThat(baseBallGame.isInteger(sc.nextLine())).isFalse();
+        String userInput = "12a";
+        assertThatThrownBy(() -> Integer.parseInt(userInput))
+                .isInstanceOf(NumberFormatException.class);
     }
 
     @Test
