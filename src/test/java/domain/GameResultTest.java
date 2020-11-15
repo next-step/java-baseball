@@ -40,4 +40,15 @@ class GameResultTest {
         GameResult result = new GameResult(0, 0);
         assertEquals(NOTHING, result.toString());
     }
+
+    @Test
+    @Order(5)
+    @DisplayName("스트라이크 아웃")
+    public void strikeOut() {
+        GameResult result = new GameResult(3, 0);
+        assertAll(
+                () -> assertEquals(String.format(STRIKE, 3), result.toString()),
+                () -> assertTrue(result.isStrikeOut())
+        );
+    }
 }
