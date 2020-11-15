@@ -20,7 +20,7 @@ public class BaseballGameMachine {
         while (guess());
     }
 
-    public boolean guess() {
+    private boolean guess() {
         String userNumberRaw = InputView.inputUserNumber();
         GameNumber userNumber = GameNumber.ofByRaw(userNumberRaw);
 

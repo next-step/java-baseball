@@ -61,7 +61,8 @@ public class GameNumber {
         return digits.get(index);
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "GameNumber{" +
                 "digits=" + digits +
                 '}';

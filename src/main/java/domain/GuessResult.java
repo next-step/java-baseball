@@ -1,43 +1,37 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GuessResult {
-    private final CountMatchTypes countMatchTypes;
+    private final MatchTypeCounts matchTypeCounts;
 
-    private GuessResult(CountMatchTypes countMatchTypes) {
-        this.countMatchTypes = countMatchTypes;
+    private GuessResult(MatchTypeCounts matchTypeCounts) {
+        this.matchTypeCounts = matchTypeCounts;
     }
 
     public static GuessResult init() {
-        Map<MatchType, Integer> countByMatchTypes = new HashMap<>();
-        countByMatchTypes.put(MatchType.STRIKE, 0);
-        countByMatchTypes.put(MatchType.BALL, 0);
-        return new GuessResult(new CountMatchTypes(countByMatchTypes));
+        return new GuessResult(MatchTypeCounts.init());
     }
 
     public int getStrikeCount() {
-        return countMatchTypes.getCountOfType(MatchType.STRIKE);
+        return matchTypeCounts.getCountOfMatchType(MatchType.STRIKE);
     }
 
     public int getBallCount() {
-        return countMatchTypes.getCountOfType(MatchType.BALL);
+        return matchTypeCounts.getCountOfMatchType(MatchType.BALL);
     }
 
     public boolean isThreeStrike() {
-        return countMatchTypes.getCountOfType(MatchType.STRIKE) == 3;
+        return matchTypeCounts.getCountOfMatchType(MatchType.STRIKE) == 3;
     }
 
     public boolean isNothing() {
-        return countMatchTypes.getCountOfType(MatchType.STRIKE) == 0
-                && countMatchTypes.getCountOfType(MatchType.BALL) == 0;
+        return matchTypeCounts.getCountOfMatchType(MatchType.STRIKE) == 0
+                && matchTypeCounts.getCountOfMatchType(MatchType.BALL) == 0;
     }
 
-    public void increase(MatchType matchType) {
+    public void increaseMatchCount(MatchType matchType) {
         if (matchType == MatchType.NO_MATCH) {
             return;
         }
-        countMatchTypes.increase(matchType);
+        matchTypeCounts.increaseCount(matchType);
     }
 }

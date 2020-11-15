@@ -17,7 +17,7 @@ public class BaseballGame {
         GuessResult guessResult = GuessResult.init();
         for (int i = 0; i < answer.size(); i++) {
             MatchType matchType = answer.judgeMatchType(userNumber.get(i), i);
-            guessResult.increase(matchType);
+            guessResult.increaseMatchCount(matchType);
         }
         return guessResult;
     }
