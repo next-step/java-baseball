@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 public class baseballGameTest {
 
@@ -31,4 +32,12 @@ public class baseballGameTest {
 	void baseballGameOverlapTest(int first, int second){
 		assertThat(balls.charAt(first) == balls.charAt(second)).isEqualTo(false);
 	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"123:true", "2345:false", "5435:false", "333:false", "343:false", "teg:false", "zxx:false"}, delimiter = ':')
+	@DisplayName("checkRule 메소드 테스트")
+	void checkRuleTest(String input, boolean result){
+		assertThat(baseballGame.checkRule(input)).isEqualTo(result);
+	}
+
 }
