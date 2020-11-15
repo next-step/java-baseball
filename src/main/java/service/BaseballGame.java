@@ -33,6 +33,10 @@ public class BaseballGame {
 		}
 	}
 
+	private void endGame() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+	}
+
 	private void printResult(BaseballResult baseballResult) {
 		if (baseballResult.isNothing()) {
 			System.out.println("낫싱");
