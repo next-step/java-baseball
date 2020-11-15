@@ -43,6 +43,14 @@ public class MatchResult {
         return this.match.get(MatchType.STRIKE);
     }
 
+    public int getBallCount() {
+        return this.match.get(MatchType.BALL);
+    }
+
+    public int getNothingCount() {
+        return this.match.get(MatchType.NOTHING);
+    }
+
     public Map<MatchType, Integer> getMatch() {
         return Collections.unmodifiableMap(this.match);
     }

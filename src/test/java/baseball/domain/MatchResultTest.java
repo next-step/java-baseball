@@ -95,4 +95,37 @@ class MatchResultTest {
         assertTrue(matchResult2.getStrikeCount() == 2);
     }
 
+    @DisplayName("ball 개수 확인")
+    @Test
+    public void getBallCount_success() throws Exception {
+        //given
+        MatchResult matchResult1 = new MatchResult();
+        MatchResult matchResult2 = new MatchResult();
+
+        //when
+        matchResult1 = matchResult1.addMatchType(MatchType.BALL);
+        matchResult2 = matchResult2.addMatchType(MatchType.BALL);
+        matchResult2 = matchResult2.addMatchType(MatchType.BALL);
+        matchResult2 = matchResult2.addMatchType(MatchType.BALL);
+
+        //then
+        assertTrue(matchResult1.getBallCount() == 1);
+        assertTrue(matchResult2.getBallCount() == 3);
+    }
+
+    @DisplayName("nothing 개수 확인")
+    @Test
+    public void getNothingCount_success() throws Exception {
+        //given
+        MatchResult matchResult = new MatchResult();
+
+        //when
+        matchResult = matchResult.addMatchType(MatchType.NOTHING);
+        matchResult = matchResult.addMatchType(MatchType.NOTHING);
+        matchResult = matchResult.addMatchType(MatchType.NOTHING);
+
+        //then
+        assertTrue(matchResult.getNothingCount() == 3);
+    }
+
 }
