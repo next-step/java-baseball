@@ -18,6 +18,6 @@ public class Playground {
 		game.setPlayer(new BaseballGamer(inputNumber));
 		game.resetScore();
 		BaseballScore score = game.playToEnd();
-		Ui.printMessage(score.toLocaleString());
+		Ui.printMessageLine(score.toLocaleString());
 	}
 }
