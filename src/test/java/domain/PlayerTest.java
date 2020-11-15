@@ -10,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
 
+import domain.baseballRule.BaseballNumbers;
+
 @Testable
 public class PlayerTest {
 

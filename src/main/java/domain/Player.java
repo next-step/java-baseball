@@ -2,6 +2,8 @@ package domain;
 
 import java.util.List;
 
+import domain.baseballRule.BaseballNumbers;
+
 public class Player {
 	private BaseballNumbers baseballNumbers;
 
