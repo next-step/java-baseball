@@ -1,24 +1,33 @@
 package service.user;
 
 import model.entity.Baseball;
-import model.entity.Player;
 
 public class ComputerApiLogicService {
 	public final static int INPUT_PERMIT_LEGNTH = 3;
 	
 	Baseball baseball = new Baseball();
-	Player player = new Player();
+	
+	public int getStrike() {
+		return baseball.getStrike();
+	}
 	
 	public char[] makeRandomNumber() {
+		boolean duplicateCheck = false;
 		char[] randomNumberArr = new char[INPUT_PERMIT_LEGNTH];
-		for(int i=0; i<randomNumberArr.length; i++) {
-			randomNumberArr[i] = Character.forDigit((int) (Math.random() * 9 + 1), 10);
+		
+		while(!duplicateCheck) {
+			for(int i=0; i<randomNumberArr.length; i++) {
+				randomNumberArr[i] = Character.forDigit((int) (Math.random() * 9 + 1), 10);
+			}
+			
+			duplicateCheck = duplicateCheckNumber(randomNumberArr);
 		}
+		
 		return randomNumberArr;
 	}
 	
-	public boolean duplicateCheckRandomNumber(char[] randomNumberArr) {
-		if(randomNumberArr[0] == randomNumberArr[1] || randomNumberArr[0] == randomNumberArr[2] || randomNumberArr[1] == randomNumberArr[2]) {
+	public boolean duplicateCheckNumber(char[] numberArr) {
+		if(numberArr[0] == numberArr[1] || numberArr[0] == numberArr[2] || numberArr[1] == numberArr[2]) {
 			return false;
 		}
 		return true;
@@ -42,61 +51,31 @@ public class ComputerApiLogicService {
 		return flag;
 	}
 
-	public boolean inputDuplicateCheck(char[] inputNumberArr) {
-		boolean flag = true;
-		for(int i=0; i<inputNumberArr.length-1; i++) {
-			if(!duplicateCheckNumber(inputNumberArr[i], inputNumberArr[i+1])) {
-				flag = false;
-				break;
-			}
-		}
-		return flag;
-	}
-
-	public boolean duplicateCheckNumber(char preNumberArr, char postNumberArr) {
-		if(preNumberArr == postNumberArr)
-			return false;
-		return true;
-	}
-
 	/**
 	 * 게임 참가자의 입력을 검사하여 도움말 출력
-	 * @param inpuNumberArr
+	 * @param inputNumber
 	 * @return 
 	 */
-	public boolean printInputValidCheck(char[] inputNumberArr) {
+	public boolean printInputValidCheck(String inputNumber) {
+		char[] inputNumberArr = makeInputNumberArr(inputNumber);
+		
 		if(!inputLenghCheck(inputNumberArr))
 			System.out.println("3자리 숫자만 입력이 가능합니다.");
 		if(!inputNumberCheck(inputNumberArr))
 			System.out.println("숫자만 입력이 가능합니다.");
-		if(!inputDuplicateCheck(inputNumberArr))
+		if(!duplicateCheckNumber(inputNumberArr))
 			System.out.println("중복된 숫자를 입력할 수 없습니다.");
 		
-		return inputLenghCheck(inputNumberArr) && inputNumberCheck(inputNumberArr) && inputDuplicateCheck(inputNumberArr);
-	}
-	
-	public String giveHint() {
-		int strike = 0;
-		int ball = 0;
-		
-		for(int i=0; i<INPUT_PERMIT_LEGNTH; i++) {
-			strike = calcStrike(makeRandomNumber(), makeInputNumberArr(), i);
-			ball = calcBall(makeRandomNumber(), makeInputNumberArr(), i);
-		}
-		
-		if(checkNothing())
-			return "낫싱";
-		return strike + "스트라이크, " + ball + "볼 입니다.";
+		return inputLenghCheck(inputNumberArr) && inputNumberCheck(inputNumberArr) && duplicateCheckNumber(inputNumberArr);
 	}
 	
 	/**
-	 * 게임 참가자로부터 입력받은 문자열을 
+	 * 게임 참가자로부터 입력받은 문자열을
 	 * char 배열로 변환
 	 * @return
 	 */
-	public char[] makeInputNumberArr() {
-		char[] inputNumberArr = new char[INPUT_PERMIT_LEGNTH]; 
-		String inputNumberStr = player.getInputNumber();
+	public char[] makeInputNumberArr(String inputNumberStr) {
+		char[] inputNumberArr = new char[inputNumberStr.length()];
 		
 		for(int i=0; i<inputNumberStr.length(); i++) {
 			inputNumberArr[i] = inputNumberStr.charAt(i);
@@ -130,5 +109,27 @@ public class ComputerApiLogicService {
 		if(baseball.getStrike() == 0 && baseball.getBall() == 0)
 			return true;
 		return false;
+	}
+	
+	public String giveHint(char[] randomNumber, String inputNumberStr) {
+		int strike = 0;
+		int ball = 0;
+		String hint = "";
+		
+		for(int i=0; i<INPUT_PERMIT_LEGNTH; i++) {
+			strike = calcStrike(randomNumber, makeInputNumberArr(inputNumberStr), i);
+			ball = calcBall(randomNumber, makeInputNumberArr(inputNumberStr), i);
+		}
+		
+		if(ball == 0)
+			hint = strike + " 스트라이크";
+		if(strike == 0) 
+			hint = ball + " 볼";
+		if(strike > 0 && ball > 0)
+			hint = strike + " 스트라이크 " + ball + " 볼";
+		if(checkNothing())
+			hint = "낫싱";
+		
+		return hint;
 	}
 }
