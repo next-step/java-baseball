@@ -24,16 +24,29 @@ public class BaseballGame {
 	}
 
 	private void createGame() {
+		question.clear();
+		answer.clear();
+		score.initialStrikeAndBall();
 		createQuestion();
 	}
 
 	public void startGame() {
 		createGame();
-
 		do {
 			inputAnswers();
 			decideAnswers();
+			printGameResult();
 		} while (!decideAnswers());
+		restartGame();
+	}
+
+	private void restartGame() {
+		Scanner scan = new Scanner(System.in);
+		int num = scan.nextInt();
+		if (num == 2) {
+			return;
+		}
+		startGame();
 	}
 
 	public boolean decideAnswers() {
@@ -101,4 +114,35 @@ public class BaseballGame {
 		}
 	}
 
+	private void printGameResult() {
+		printStrikeAndBall();
+		printNothing();
+		printVictoryGame();
+	}
+
+	private void printStrikeAndBall() {
+
+		if (score.getStrike() > 0) {
+			System.out.print(score.getStrike() + " 스트라이크 ");
+		}
+
+		if (score.getBall() > 0) {
+			System.out.print(score.getBall() + " 볼 ");
+		}
+
+		System.out.println("");
+	}
+
+	private void printNothing() {
+		if (score.getStrike() == 0 && score.getBall() == 0) {
+			System.out.println("낫싱");
+		}
+	}
+
+	private void printVictoryGame() {
+		if (score.getStrike() == 3) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		}
+	}
 }
