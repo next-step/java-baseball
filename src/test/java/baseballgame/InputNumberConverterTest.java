@@ -31,7 +31,7 @@ class InputNumberConverterTest {
         assertThatThrownBy( () -> {
            converter.convertToInputNumber(testSring);})
                 .isInstanceOf(InputNumberValidException.class)
-                .hasMessageContaining("0을 입력 할 수 없습니다.");
+                .hasMessageContaining("0을 입력 할 수 없습니다");
     }
 
     @Test
@@ -41,7 +41,7 @@ class InputNumberConverterTest {
         assertThatThrownBy( () -> {
             converter.convertToInputNumber(testString);})
                 .isInstanceOf(InputNumberValidException.class)
-                .hasMessageContaining("세 자릿수보다 많습니다. 세 자릿수를 입력해 주세요.");
+                .hasMessageContaining("세 자릿수보다 많습니다. 세 자릿수를 입력해 주세요");
     }
 
     @Test
@@ -51,7 +51,7 @@ class InputNumberConverterTest {
         assertThatThrownBy( () -> {
             converter.convertToInputNumber(testString);})
                 .isInstanceOf(InputNumberValidException.class)
-                .hasMessageContaining("세 자릿수보다 적습니다. 세 자릿수를 입력해 주세요.");
+                .hasMessageContaining("세 자릿수보다 적습니다. 세 자릿수를 입력해 주세요");
     }
 
     @Test
@@ -60,6 +60,6 @@ class InputNumberConverterTest {
                 assertThatThrownBy( () -> {
                     converter.convertToInputNumber(testString);})
                 .isInstanceOf(InputNumberValidException.class)
-                .hasMessageContaining("숫자만 입력 가능합니다.");
+                .hasMessageContaining("숫자만 입력 가능합니다");
     }
 }

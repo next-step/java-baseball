@@ -15,7 +15,7 @@ class InputNumberValidatorTest {
     void input_contains_0_then_exception() {
         String testString = "023";
         List<String> errors = validator.validate(testString);
-        assertThat(errors.contains("0을 입력 할 수 없습니다.")).isTrue();
+        assertThat(errors.contains("0을 입력 할 수 없습니다")).isTrue();
     }
 
     @Test
@@ -23,7 +23,7 @@ class InputNumberValidatorTest {
     void input_contains_same_number_then_exception() {
         String testString = "434";
         List<String> errors = validator.validate(testString);
-        assertThat(errors.contains("서로 다른 세자리 수를 입력해 주세요.")).isTrue();
+        assertThat(errors.contains("서로 다른 세자리 수를 입력해 주세요")).isTrue();
     }
 
     @Test
@@ -31,7 +31,7 @@ class InputNumberValidatorTest {
     void inputdigit_over3_then_exception() {
         String testString = "1463";
         List<String> errors = validator.validate(testString);
-        assertThat(errors.contains("세 자릿수보다 많습니다. 세 자릿수를 입력해 주세요.")).isTrue();
+        assertThat(errors.contains("세 자릿수보다 많습니다. 세 자릿수를 입력해 주세요")).isTrue();
     }
 
     @Test
@@ -39,7 +39,7 @@ class InputNumberValidatorTest {
     void inputdigit_under3_then_exception() {
         String testString = "3";
         List<String> errors = validator.validate(testString);
-        assertThat(errors.contains("세 자릿수보다 적습니다. 세 자릿수를 입력해 주세요.")).isTrue();
+        assertThat(errors.contains("세 자릿수보다 적습니다. 세 자릿수를 입력해 주세요")).isTrue();
     }
 
     @Test
@@ -47,6 +47,6 @@ class InputNumberValidatorTest {
     void input_contains_char_then_exception() {
         String testString = "d26";
         List<String> errors = validator.validate(testString);
-        assertThat(errors.contains("숫자만 입력 가능합니다.")).isTrue();
+        assertThat(errors.contains("숫자만 입력 가능합니다")).isTrue();
     }
 }
