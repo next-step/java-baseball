@@ -39,9 +39,9 @@ public class ThreeBallGenerateStrategy implements BallGenerateStrategy {
     }
 
     private List<Integer> changeBallNumber(List<Integer> numbers) {
-        Set<Integer> target = new HashSet<>(numbers);
+        Set<Integer> target = new LinkedHashSet<>(numbers);
 
-        if (target.size() < BALL_NUMBER_SIZE){
+        if (target.size() < BALL_NUMBER_SIZE) {
             throw new IllegalBallNumberException(DUPLICATION_MESSAGE);
         }
 
