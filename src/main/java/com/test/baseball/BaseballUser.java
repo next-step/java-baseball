@@ -16,9 +16,12 @@ public class BaseballUser {
     }
 
     public boolean isRestart(){
-        System.out.println("계속 하시겠습니까?(y/n)");
-        String line = INPUT.nextLine();
-        return "y".equalsIgnoreCase(line);
+        String line;
+        do {
+            System.out.println("게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.");
+            line = INPUT.nextLine();
+        } while(!"1".equals(line) && !"2".equals(line));
+        return "1".equals(line);
     }
 
     public List<Integer> getInputNumbers() {

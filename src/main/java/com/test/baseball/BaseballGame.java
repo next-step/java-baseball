@@ -37,7 +37,8 @@ public class BaseballGame {
         }
         String strikeMessage = (counter.getStrikeCount()==0)?"":counter.getStrikeCount() + " 스트라이크 ";
         String ballMessage = (counter.getBallCount()==0)?"":counter.getBallCount() + " 볼";
-        System.out.println(strikeMessage + ballMessage);
+        String finishMessage = (!counter.isFinished())?"":"\r\n3개의 숫자를 모두 맞히셨습니다! 게임종료";
+        System.out.println(strikeMessage + ballMessage + finishMessage);
     }
 
     private void count(BaseballCounter counter, List<Integer> enterNumbers){

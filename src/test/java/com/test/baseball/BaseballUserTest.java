@@ -76,7 +76,7 @@ public class BaseballUserTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"y,true","n,false",".,false","3,false"})
+    @CsvSource({"1,true","2,false"})
     public void testIsRestart(String source, boolean expected) {
         BaseballUser user = new BaseballUser(new ByteArrayInputStream(source.getBytes()));
 
