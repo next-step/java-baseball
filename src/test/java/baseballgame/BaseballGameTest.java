@@ -42,4 +42,18 @@ class BaseballGameTest {
     void isStrikeOut(int strikeCount, boolean expect) {
         assertEquals(expect, baseballGame.isStrikeOut(strikeCount));
     }
+
+    @DisplayName("캐릭터 같음 여부 체크 여부에 따라 가중치 획득")
+    @ParameterizedTest
+    @CsvSource(value = {"1:1:1", "1:2:0"}, delimiter = ':')
+    void getDiffWeight(char actual, char expect, int weight) {
+        assertEquals(baseballGame.getDiffWeight(actual, expect), weight);
+    }
+
+    @DisplayName("스트라이크 카운트 체크")
+    @ParameterizedTest
+    @CsvSource(value = {"111:000:0", "111:010:1", "111:011:2", "111:111:3"}, delimiter = ':')
+    void getStrikeCount(String baseballNumber, String userInput, int strikeCount) {
+        assertEquals(baseballGame.getStrikeCount(baseballNumber, userInput), strikeCount);
+    }
 }
