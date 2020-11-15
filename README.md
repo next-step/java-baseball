@@ -211,7 +211,7 @@ void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String ex
 
 - `판정 보고서(Judge Report)`
     - `판정(Judge)`에 대한 통계를 나타낸다.
-    - [ ] 3 스트라이크인지 판단할 수 있다.
-    - [ ] 낫싱을 판단할 수 있다.
+    - [x] 3 스트라이크인지 판단할 수 있다.
+    - [x] 낫싱을 판단할 수 있다.
         - 낫싱은 모든 `판정(Judge)`이 `Miss`라는 의미를 나타낸다.
           
