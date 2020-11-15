@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import constants.Result;
+import exception.CustomException;
 
 public class BaseballGame {
 
@@ -47,7 +48,7 @@ public class BaseballGame {
 	public String[] checkLengthOver(String[] numbers) {
 
 		if (numbers.length > BaseballNumber.MAX_SIZE)
-			throw new RuntimeException();
+			throw new CustomException.BaseballNumberExceedSizeException();
 
 		return numbers;
 	}
@@ -56,7 +57,7 @@ public class BaseballGame {
 		Set<String> filter = new HashSet<>(Arrays.asList(numbers));
 
 		if (filter.size() < BaseballNumber.MAX_SIZE)
-			throw new RuntimeException();
+			throw new CustomException.BaseballNumberDuplicatedException();
 
 		return numbers;
 	}

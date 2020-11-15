@@ -1,5 +1,7 @@
 package domain;
 
+import exception.CustomException;
+
 public class BaseballNumber {
 	public static final int MAX_SIZE = 3;
 	public static final int MAX_NUMBER = 9;
@@ -39,7 +41,7 @@ public class BaseballNumber {
 
 	private int checkValid(int number) {
 		if (number < MIN_NUMBER || number > MAX_NUMBER)
-			throw new RuntimeException();
+			throw new CustomException.BaseballNumberNotAvailableException();
 
 		return number;
 	}
