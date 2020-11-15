@@ -20,10 +20,29 @@ public class BaseballGame {
         while(isGamePlaying) {
             Player player = new Player();
             computer.generateNumberSet();
+            startPlayerInput(computer, player);
+            System.out.println(FINISH_GAME_MSG);
+            System.out.println(REPLAY_MSG);
+            isGamePlaying = player.requestInput(false) == 1;
         }
     }
 
     public void startPlayerInput(Computer computer, Player player) {
+        while (player.getStrikeCount() < 3) {
+            player.initBallCount();
+            String resultText = getDiffResultText(computer, player, player.requestInput(true));
+            System.out.println(resultText);
+        }
+    }
+
+    public String getDiffResultText(Computer c, Player p, int number) {
+        if (number == BaseballGame.INPUT_ERROR) return INVALID_INPUT_MSG;
+        p.convertNumberToList(number);
+        String ballCountTxt = "";
+        return ballCountTxt.trim();
+    }
+
+    public CountType calcBallCount(Computer c, Player p, int playerNumberIndex) {
     }
 
     enum CountType {
