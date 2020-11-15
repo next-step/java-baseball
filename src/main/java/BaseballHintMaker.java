@@ -4,8 +4,8 @@ public class BaseballHintMaker {
 
     public final int NUMBER_SIZE = 3;
 
-    private ArrayList<Integer> correctNumbers;
-    private ArrayList<Integer> inputNumbers;
+    private final ArrayList<Integer> correctNumbers;
+    private final ArrayList<Integer> inputNumbers;
 
     private ArrayList<Integer> strikeIndexArray = new ArrayList(NUMBER_SIZE);
     private ArrayList<Integer> ballIndexArray = new ArrayList(NUMBER_SIZE);
@@ -38,6 +38,10 @@ public class BaseballHintMaker {
             addBallCount(index, ball);
         }
         return ball;
+    }
+
+    public Nothing getNothingHint() {
+        return new Nothing();
     }
 
 }
