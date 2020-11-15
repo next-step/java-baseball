@@ -1,8 +1,13 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'application'
+mainClassName = 'game.baseball.number.GameStarter'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
+
+run{
+    standardInput = System.in
+}
 
 repositories {
     mavenCentral()
