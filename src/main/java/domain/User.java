@@ -7,6 +7,10 @@ import vo.BaseballNumber;
 
 public class User extends Player {
 
+	public User() {
+		super("USER");
+	}
+
 	public void changeNumber(Integer number) {
 		this.changeNumber(number.toString());
 	}
