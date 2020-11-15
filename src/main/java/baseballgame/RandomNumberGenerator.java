@@ -10,7 +10,7 @@ public class RandomNumberGenerator {
     private List<Integer> numbers = new ArrayList<>();
 
     public RandomNumber generateRandomNumber() {
-        while(numbers.size() <= NUMBER_LENGTH) {
+        while(numbers.size() < NUMBER_LENGTH) {
             Integer number = (int)(Math.random() * MAX_NUMBER) + MIN_NUMBER;
             addNumber(number);
         }

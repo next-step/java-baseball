@@ -34,4 +34,12 @@ public class InputNumber {
         }
         this.numbers = numbers;
     }
+
+    public Integer size() {
+        return numbers.size();
+    }
+
+    public Integer getNumber(int index) {
+        return numbers.get(index);
+    }
 }
