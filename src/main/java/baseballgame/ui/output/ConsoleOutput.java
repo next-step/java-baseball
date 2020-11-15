@@ -7,6 +7,7 @@ import java.util.StringJoiner;
 public class ConsoleOutput implements Output {
     private static final String SENTENCES_INPUT_USER_SCORE = "숫자를 입력해주세요: ";
     private static final String SENTENCES_FINISH_GAME = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
+    private static final String SENTENCES_RESTART_GAME = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요";
     private static final String STRIKE = "스트라이크";
     private static final String BALL = "볼";
 
@@ -52,5 +53,10 @@ public class ConsoleOutput implements Output {
     @Override
     public void gameFinish() {
         System.out.println(SENTENCES_FINISH_GAME);
+    }
+
+    @Override
+    public void demandingWhetherWantToRestartGame() {
+        System.out.println(SENTENCES_RESTART_GAME);
     }
 }
