@@ -5,13 +5,23 @@ import java.util.Scanner;
 public class BaseballGame {
 
 	Scanner scanner = new Scanner(System.in);
+	static int ball = 0;
+	static int strike = 0;
 
 	/**
 	 * 야구게임 메세지 enum
 	 */
 	public static enum MESSAGE_CD {
 
-		INPUT_NUM("숫자를 입력해주세요 : ");
+		INPUT_NUM("숫자를 입력해주세요 : "),
+
+		SUCCESS("3개의 숫자를 모두 맞히셨습니다! 게임종료"),
+
+		NOTHING("낫싱"),
+
+		STRIKE("스트라이크"),
+
+		BALL("볼");
 
 		final private String message;
 
@@ -85,9 +95,17 @@ public class BaseballGame {
 	 * @return
 	 */
 	public boolean doCalculation(int[] resultNumArr, int[] inputNumArr) {
-
+		int resultIndex = 0;
 		boolean gameResult = true;
-
+		for (int resultNum : resultNumArr) {
+			inputNumLoop(inputNumArr, resultNum, resultIndex);
+			resultIndex++;
+		}
+		printResultMessage();
+		if (strike == 3) {
+			gameResult = restartGameMenu();
+		}
+		resetBaseballCount();
 		return gameResult;
 	}
 
@@ -101,7 +119,7 @@ public class BaseballGame {
 	public int dupCheckNumArray(int[] checkArray, int checkIndex) {
 		int index = checkIndex;
 		for (int i = 0; i < checkIndex; i++) {
-			// 이전 값과 비교하여 값이 중복일때 랜덤 배열 index -1
+			// 이전 값과 비교하여 값이 중복일때 배열 index -1
 			index = index - equalToNum(checkArray[checkIndex], checkArray[i]);
 		}
 		return index;
@@ -133,6 +151,64 @@ public class BaseballGame {
 		System.out.print(MESSAGE_CD.INPUT_NUM.message);
 		return scanner.nextInt();
 	}
+
+	public void inputNumLoop(int[] inputNumArr, int resultNum, int resultIndex) {
+		int intputIndex = 0;
+		for (int inputNum : inputNumArr) {
+			checkBaseballCount(inputNum, resultNum, intputIndex, resultIndex);
+			intputIndex++;
+		}
+	}
+
+	/**
+	 * 야구게임 ball, strike 카운트 체크
+	 *
+	 * @param inputNum
+	 * @param resultNum
+	 * @param resultIndex
+	 * @param intputIndex
+	 */
+	public void checkBaseballCount(int inputNum, int resultNum, int intputIndex, int resultIndex) {
+		if (inputNum == resultNum && intputIndex == resultIndex) {
+			strike++;
+		}
+		if (inputNum == resultNum && intputIndex != resultIndex) {
+			ball++;
+		}
+	}
+
+	/**
+	 * 야구게임 ball, stirke 초기화
+	 */
+	public void resetBaseballCount() {
+		ball = 0;
+		strike = 0;
+	}
+
+	/**
+	 * 야구게임 결과 메세지 출력
+	 */
+	public void printResultMessage() {
+		String message = strike + " "+ MESSAGE_CD.STRIKE.message + " " + ball + " " + MESSAGE_CD.BALL.message;
+		if (strike == 0 && ball == 0) {
+			message = MESSAGE_CD.NOTHING.message;
+		}
+		if(strike ==3){
+			message = MESSAGE_CD.SUCCESS.message();
+		}
+		System.out.println(message);
+	}
+
+	/**
+	 * 야구게임 재시작 여부 1일때 재시작, 2일때 게임 종료
+	 *
+	 * @return boolean
+	 */
+	public boolean restartGameMenu() {
+		return false;
+	}
+
+
 
 	public static void main(String[] args) {
 		BaseballGame baseballSet = new BaseballGame();
