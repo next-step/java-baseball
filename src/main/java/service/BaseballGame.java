@@ -43,6 +43,11 @@ public class BaseballGame {
 			this.setPlayers();
 			return;
 		}
+
+		if (input.equals(2)) {
+			this.isGameEnd = true;
+		}
+
 	}
 
 	private void printResult(BaseballResult baseballResult) {
