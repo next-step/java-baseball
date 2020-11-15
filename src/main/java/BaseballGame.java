@@ -15,7 +15,14 @@ public class BaseballGame {
 
 		while (!this.isGameEnd) {
 			this.setPlayers();
+			this.inputUserNumber();
 		}
+	}
+
+	private void inputUserNumber() {
+		System.out.print("숫자를 입력해주세요 : ");
+		Integer inputNumber = scanner.nextInt();
+		user.changeNumber(inputNumber);
 	}
 
 	private void initialize() {
