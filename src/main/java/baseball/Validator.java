@@ -24,7 +24,7 @@ public class Validator {
 
 	public static boolean isDuplicate(String input) {
 		Set<Character> numberSet = new HashSet<>();
-		for(char c : input.toCharArray()){
+		for (char c : input.toCharArray()) {
 			numberSet.add(c);
 		}
 		return numberSet.size() == 3 ? true : false;

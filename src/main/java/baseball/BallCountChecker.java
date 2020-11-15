@@ -17,13 +17,13 @@ public class BallCountChecker {
 		return ballCount;
 	}
 
-	private static void compare(final int i, final String input, final String answer,final BallCount ballCount){
-		if (isStrike(input.charAt(i), answer.charAt(i))) {
+	private static void compare(final int index, final String input, final String answer, final BallCount ballCount) {
+		if (isStrike(input.charAt(index), answer.charAt(index))) {
 			ballCount.addStrike();
 			return;
 		}
 
-		if (isBall(input.charAt(i), answer)) {
+		if (isBall(input.charAt(index), answer)) {
 			ballCount.addBall();
 		}
 	}
