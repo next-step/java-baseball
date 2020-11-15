@@ -65,17 +65,10 @@ public class JunitStringTest {
 	public void testCharAtStrReturn2() {
 		JunitString junitStudy = new JunitString();
 
-		assertThat(junitStudy.charAtStrReturn("abc", 6));
-	}
-
-	// String 요구사항3-2
-	// String의 charAt() 메소드를 활용해 특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생하는 부분에 대한 학습 테스트를 구현한다.
-	@Test
-	public void testException() {
 		assertThatThrownBy(() -> {
-			throw new StringIndexOutOfBoundsException("boom!");
+			assertThat(junitStudy.charAtStrReturn("abc", 6));
 		}).isInstanceOf(StringIndexOutOfBoundsException.class)
-			.hasMessageContaining("boom");
+			.hasMessageContaining("Index: \\d+, Size: \\d+");
 	}
 
 }
