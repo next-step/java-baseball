@@ -13,6 +13,7 @@ public class ConsoleOutput implements Output {
     private static final int MISS_MATCH = 0;
     private static final String NOTHING = "Nothing";
     private static final String INVALID_VALUE = "잘못된 입력값입니다";
+    private static final String PARSE_ERROR = "점수 변환 중 에러가 발생했습니다";
 
     @Override
     public void demandingUserScore() {
@@ -75,5 +76,10 @@ public class ConsoleOutput implements Output {
     @Override
     public void errorInvalidInputValue() {
         System.out.println(INVALID_VALUE);
+    }
+
+    @Override
+    public void errorWhenScoreParsing() {
+        System.out.println(PARSE_ERROR);
     }
 }

@@ -8,4 +8,5 @@ public interface Output {
     void gameFinish();
     void demandingWhetherWantToRestartGame();
     void errorInvalidInputValue();
+    void errorWhenScoreParsing();
 }

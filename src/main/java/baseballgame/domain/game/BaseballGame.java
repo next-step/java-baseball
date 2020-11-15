@@ -71,6 +71,6 @@ public class BaseballGame implements Game {
     }
 
     private void printExceptionWhenParsing() {
-        // TODO
+        output.errorWhenScoreParsing();
     }
 }
