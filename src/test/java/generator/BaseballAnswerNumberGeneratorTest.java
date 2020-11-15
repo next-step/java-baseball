@@ -3,6 +3,8 @@ package generator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballAnswerNumberGeneratorTest {
@@ -14,8 +16,8 @@ public class BaseballAnswerNumberGeneratorTest {
     int size = 3;
     // when
     BaseballAnswerNumberGenerator generator = new BaseballAnswerNumberGenerator();
-    int[] result = generator.generate(size);
+    List<Integer> result = generator.generate(size);
     // then
-    assertThat(result.length).isEqualTo(size);
+    assertThat(result.size()).isEqualTo(size);
   }
 }

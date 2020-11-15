@@ -1,25 +1,19 @@
 package generator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BaseballAnswerNumberGenerator {
 
-  public int[] generate(int size) {
+  public List<Integer> generate(int size) {
     Set<Integer> numbers = new HashSet<>();
     while (numbers.size() < size) {
       int number = (int) (Math.random() * 9) + 1;
       numbers.add(number);
     }
-    return setToArray(numbers);
+    return new ArrayList<>(numbers);
   }
 
-  private int[] setToArray(Set<Integer> numbers) {
-    int[] result = new int[numbers.size()];
-    int index = 0;
-    for (Integer number : numbers) {
-      result[index++] = number;
-    }
-    return result;
-  }
 }

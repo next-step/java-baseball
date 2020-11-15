@@ -1,6 +1,7 @@
 package view;
 
 import domain.BaseballInputNumber;
+import generator.BaseballAnswerNumberGenerator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +15,8 @@ public class BaseballView {
     System.out.print(INPUT_MESSAGE);
     String input = scanner.next();
     BaseballInputNumber baseballInputNumber = new BaseballInputNumber(input);
-    List<Integer> inputList = baseballInputNumber.getNumberList();
   }
+
+
 
 }
