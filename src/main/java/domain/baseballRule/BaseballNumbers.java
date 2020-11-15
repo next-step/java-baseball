@@ -1,4 +1,4 @@
-package domain;
+package domain.baseballRule;
 
 import java.util.List;
 
@@ -25,5 +25,9 @@ public class BaseballNumbers {
 
 	public Integer size() {
 		return this.baseballNumbers.size();
+	}
+
+	public List<Integer> baseballNumbers() {
+		return this.baseballNumbers;
 	}
 }
