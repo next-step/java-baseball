@@ -1,7 +1,6 @@
 package baseball.service;
 
 import baseball.domain.MatchResult;
-import baseball.domain.MatchType;
 import baseball.domain.ThreeBall;
 import baseball.domain.strategy.BallGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -42,7 +41,9 @@ class GameServiceTest {
         MatchResult matchResult = service.compareGoal(goal, userinput);
 
         //then
-        assertTrue(matchResult.getMatch().get(MatchType.STRIKE) == 3);
+        assertTrue(matchResult.getStrikeCount() == 3);
+        assertTrue(matchResult.getBallCount() == 0);
+        assertTrue(matchResult.getNothingCount() == 0);
     }
 
     @DisplayName("정답과 사용자 입력을 비교 - 1스트라이크 2볼")
@@ -57,8 +58,9 @@ class GameServiceTest {
         MatchResult matchResult = service.compareGoal(goal, userinput);
 
         //then
-        assertTrue(matchResult.getMatch().get(MatchType.STRIKE) == 1);
-        assertTrue(matchResult.getMatch().get(MatchType.BALL) == 2);
+        assertTrue(matchResult.getStrikeCount() == 1);
+        assertTrue(matchResult.getBallCount() == 2);
+        assertTrue(matchResult.getNothingCount() == 0);
     }
 
     @DisplayName("정답과 사용자 입력을 비교 - 낫싱")
@@ -73,7 +75,7 @@ class GameServiceTest {
         MatchResult matchResult = service.compareGoal(goal, userinput);
 
         //then
-        assertTrue(matchResult.getMatch().get(MatchType.NOTHING) == 3);
+        assertTrue(matchResult.getNothingCount() == 3);
     }
 
 }

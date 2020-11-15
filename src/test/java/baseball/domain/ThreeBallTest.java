@@ -72,16 +72,11 @@ class ThreeBallTest {
         BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(1, 2, 3));
         ThreeBall balls = new ThreeBall(generator2);
 
-        Map<MatchType, Integer> target = new HashMap<>();
-        target.put(MatchType.STRIKE, 3);
-        target.put(MatchType.BALL, 0);
-        target.put(MatchType.NOTHING, 0);
-
         //when
         MatchResult result = threeBall.compareAll(balls);
 
         //then
-        assertTrue(result.getMatch().equals(target));
+        assertTrue(result.getStrikeCount() == 3);
     }
 
     @DisplayName("공 번호를 비교하고 결과 반환 - 2 strike, 1 nothing")
@@ -94,18 +89,17 @@ class ThreeBallTest {
         BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(1, 9, 3));
         ThreeBall balls2 = new ThreeBall(generator2);
 
-        Map<MatchType, Integer> target = new HashMap<>();
-        target.put(MatchType.STRIKE, 2);
-        target.put(MatchType.BALL, 0);
-        target.put(MatchType.NOTHING, 1);
-
         //when
         MatchResult result1 = threeBall.compareAll(balls1);
         MatchResult result2 = threeBall.compareAll(balls2);
 
         //then
-        assertTrue(result1.getMatch().equals(target));
-        assertTrue(result2.getMatch().equals(target));
+        assertTrue(result1.getStrikeCount() == 2);
+        assertTrue(result1.getBallCount() == 0);
+        assertTrue(result1.getNothingCount() == 1);
+        assertTrue(result2.getStrikeCount() == 2);
+        assertTrue(result2.getBallCount() == 0);
+        assertTrue(result2.getNothingCount() == 1);
     }
 
     @DisplayName("공 번호를 비교하고 결과 반환 - 1 strike, 1 ball, 1 nothing")
@@ -118,18 +112,17 @@ class ThreeBallTest {
         BallGenerateStrategy generator2 = () -> new ArrayList<>(Arrays.asList(1, 6, 2));
         ThreeBall balls2 = new ThreeBall(generator2);
 
-        Map<MatchType, Integer> target = new HashMap<>();
-        target.put(MatchType.STRIKE, 1);
-        target.put(MatchType.BALL, 1);
-        target.put(MatchType.NOTHING, 1);
-
         //when
         MatchResult result1 = threeBall.compareAll(balls1);
         MatchResult result2 = threeBall.compareAll(balls2);
 
         //then
-        assertTrue(result1.getMatch().equals(target));
-        assertTrue(result2.getMatch().equals(target));
+        assertTrue(result1.getStrikeCount() == 1);
+        assertTrue(result1.getBallCount() == 1);
+        assertTrue(result1.getNothingCount() == 1);
+        assertTrue(result2.getStrikeCount() == 1);
+        assertTrue(result2.getBallCount() == 1);
+        assertTrue(result2.getNothingCount() == 1);
     }
 
     @DisplayName("공 번호를 비교하고 결과 반환 - 2 ball, 1 nothing")
@@ -152,8 +145,12 @@ class ThreeBallTest {
         MatchResult result2 = threeBall.compareAll(balls2);
 
         //then
-        assertTrue(result1.getMatch().equals(target));
-        assertTrue(result2.getMatch().equals(target));
+        assertTrue(result1.getStrikeCount() == 0);
+        assertTrue(result1.getBallCount() == 2);
+        assertTrue(result1.getNothingCount() == 1);
+        assertTrue(result2.getStrikeCount() == 0);
+        assertTrue(result2.getBallCount() == 2);
+        assertTrue(result2.getNothingCount() == 1);
     }
 
     @DisplayName("공 번호를 비교하고 결과 반환 - 3 nothing")
@@ -176,8 +173,12 @@ class ThreeBallTest {
         MatchResult result2 = threeBall.compareAll(balls2);
 
         //then
-        assertTrue(result1.getMatch().equals(target));
-        assertTrue(result2.getMatch().equals(target));
+        assertTrue(result1.getStrikeCount() == 0);
+        assertTrue(result1.getBallCount() == 0);
+        assertTrue(result1.getNothingCount() == 3);
+        assertTrue(result2.getStrikeCount() == 0);
+        assertTrue(result2.getBallCount() == 0);
+        assertTrue(result2.getNothingCount() == 3);
     }
 
 }

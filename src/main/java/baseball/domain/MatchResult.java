@@ -51,10 +51,6 @@ public class MatchResult {
         return this.match.get(MatchType.NOTHING);
     }
 
-    public Map<MatchType, Integer> getMatch() {
-        return Collections.unmodifiableMap(this.match);
-    }
-
     public boolean isGameComplete() {
         return this.match.get(MatchType.STRIKE) == GAME_COMPLETE_COUNT;
     }

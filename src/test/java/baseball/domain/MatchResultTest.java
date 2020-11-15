@@ -3,9 +3,6 @@ package baseball.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,35 +12,28 @@ class MatchResultTest {
     @Test
     public void constructor_success() throws Exception {
         //given
-        Map<MatchType, Integer> target = new HashMap<>();
-        target.put(MatchType.STRIKE, 0);
-        target.put(MatchType.BALL, 0);
-        target.put(MatchType.NOTHING, 0);
-
-        //when
         MatchResult matchResult = new MatchResult();
 
         //then
-        assertTrue(matchResult.getMatch().equals(target));
+        assertTrue(matchResult.getStrikeCount() == 0);
+        assertTrue(matchResult.getBallCount() == 0);
+        assertTrue(matchResult.getNothingCount() == 0);
     }
 
     @DisplayName("매칭 결과 더하기")
     @Test
     public void addMatchType_success() throws Exception {
         //given
-        Map<MatchType, Integer> target = new HashMap<>();
-        target.put(MatchType.STRIKE, 2);
-        target.put(MatchType.BALL, 1);
-        target.put(MatchType.NOTHING, 0);
+        MatchResult matchResult = new MatchResult();
 
         //when
-        MatchResult matchResult = new MatchResult();
         matchResult = matchResult.addMatchType(MatchType.STRIKE);
         matchResult = matchResult.addMatchType(MatchType.STRIKE);
         matchResult = matchResult.addMatchType(MatchType.BALL);
 
         //then
-        assertTrue(matchResult.getMatch().equals(target));
+        assertTrue(matchResult.getStrikeCount() == 2);
+        assertTrue(matchResult.getBallCount() == 1);
     }
 
     @DisplayName("게임 종료 여부 판단 - 종료")
