@@ -67,5 +67,5 @@ public class BaseballGameTest {
         assertThat(baseballGame.getHint().getNothing().getCount()).isEqualTo(1);
         baseballGame.printHint();
     }
-    
+
 }
