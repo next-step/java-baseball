@@ -10,7 +10,7 @@ public class Player {
     }
 
     public GameResult result(Number userNumber) {
-        return new GameResult(strike(userNumber), ball());
+        return new GameResult(strike(userNumber), ball(userNumber));
     }
 
     private int strike(Number userNumber) {
@@ -31,7 +31,24 @@ public class Player {
         return 0;
     }
 
-    private int ball() {
+    private int ball(Number userNumber) {
+        int ball = 0;
+
+        for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
+            ball += countBall(userNumber, i);
+        }
+
+        return ball;
+    }
+
+    private int countBall(Number userNumber, int index) {
+        int userDigit = userNumber.getDigit(index);
+        int playerDigit = number.getDigit(index);
+
+        if (countStrike(userDigit, playerDigit) == 0 && number.containsDigit(userDigit)) {
+            return 1;
+        }
+
         return 0;
     }
 

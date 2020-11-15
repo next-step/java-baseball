@@ -108,4 +108,8 @@ public class Number {
     public int getDigit(int index) {
         return digits.get(index);
     }
+
+    public boolean containsDigit(int digit) {
+        return digits.contains(digit);
+    }
 }
