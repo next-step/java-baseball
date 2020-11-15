@@ -5,6 +5,7 @@ import java.util.Scanner;
 import domain.Computer;
 import domain.Referee;
 import domain.User;
+import vo.BaseballResult;
 
 public class BaseballGame {
 
@@ -20,7 +21,40 @@ public class BaseballGame {
 		while (!this.isGameEnd) {
 			this.setPlayers();
 			this.inputUserNumber();
+			this.play();
 		}
+	}
+
+	private void play() {
+		BaseballResult baseballResult = referee.discriminate(this.computer.getNumber(), this.user.getNumber());
+		System.out.println(this.computer.getNumber());
+		this.printResult(baseballResult);
+	}
+
+	private void printResult(BaseballResult baseballResult) {
+		if (baseballResult.isNothing()) {
+			System.out.println("낫싱");
+			return;
+		}
+
+		System.out.println(makeStrikeBallResultOutput(baseballResult));
+	}
+
+	private StringBuilder makeStrikeBallResultOutput(BaseballResult baseballResult) {
+		StringBuilder message = new StringBuilder();
+
+		if (baseballResult.getStrikeCount() > 0) {
+			message.append(String.format("%d 스트라이크", baseballResult.getStrikeCount()));
+		}
+
+		if (message.length() > 0) {
+			message.append(" ");
+		}
+
+		if (baseballResult.getBallCount() > 0) {
+			message.append(String.format("%d볼", baseballResult.getBallCount()));
+		}
+		return message;
 	}
 
 	private void inputUserNumber() {
