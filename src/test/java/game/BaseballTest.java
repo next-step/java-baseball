@@ -1,13 +1,13 @@
 package game;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseballTest {
 
@@ -31,4 +31,19 @@ public class BaseballTest {
 
         assertEquals(computerNumbers.length, numbers.size());
     }
+
+    @Test
+    @DisplayName("게임 플레이어가 입력한 텍스트가 숫자로만 구성되어있는지와 숫자 갯수가 적합한지 테스트")
+    void checkInputNumbers_IsNumberAndSuitableCount() {
+
+        String inputNumber = "a3p";
+        assertFalse(baseball.checkInputNumbers(inputNumber));
+
+        inputNumber = "1234";
+        assertFalse(baseball.checkInputNumbers(inputNumber));
+
+        inputNumber = "123";
+        assertTrue(baseball.checkInputNumbers(inputNumber));
+    }
+
 }
