@@ -42,7 +42,7 @@ public class GameController {
         }
     }
 
-    private GameStatus playOneGame(ThreeBall goal) {
+    private GameStatus playOneGame(final ThreeBall goal) {
         boolean runFlag = true;
 
         while (runFlag) {
@@ -58,13 +58,7 @@ public class GameController {
 
     private GameStatus chooseContinue() {
         String input = InputView.inputContinue();
-        int continueInput;
-
-        try {
-            continueInput = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new UserInputException(INPUT_CONTINUE_ERROR_MESSAGE);
-        }
+        int continueInput = parseToNumber(input);
 
         if (continueInput == 1) {
             return GameStatus.CONTINUE;
@@ -77,13 +71,8 @@ public class GameController {
         if (userInput.length() != INPUT_SIZE) {
             throw new UserInputException(INPUT_ERROR_MESSAGE);
         }
-
-        try {
-            int userNumber = Integer.parseInt(userInput);
-            return splitNumberOneDigit(userNumber);
-        } catch (NumberFormatException e) {
-            throw new UserInputException(INPUT_ERROR_MESSAGE);
-        }
+        int userNumber = parseToNumber(userInput);
+        return splitNumberOneDigit(userNumber);
     }
 
     private List<Integer> splitNumberOneDigit(int userInput) {
@@ -97,6 +86,14 @@ public class GameController {
 
         Collections.reverse(result);
         return result;
+    }
+
+    private int parseToNumber(final String target) {
+        try {
+            return Integer.parseInt(target);
+        } catch (NumberFormatException e) {
+            throw new UserInputException(INPUT_CONTINUE_ERROR_MESSAGE);
+        }
     }
 
 }
