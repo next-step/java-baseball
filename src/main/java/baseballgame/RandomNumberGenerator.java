@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumberGenerator {
+    private final int MAX_NUMBER = 9;
+    private final int MIN_NUMBER = 1;
+    private final int NUMBER_LENGTH = 3;
     private List<Integer> numbers = new ArrayList<>();
 
     public RandomNumber generateRandomNumber() {
-        while(numbers.size() <= 3) {
-            Integer number = (int)(Math.random() * 9) + 1;
+        while(numbers.size() <= NUMBER_LENGTH) {
+            Integer number = (int)(Math.random() * MAX_NUMBER) + MIN_NUMBER;
             addNumber(number);
         }
         return new RandomNumber(numbers);
