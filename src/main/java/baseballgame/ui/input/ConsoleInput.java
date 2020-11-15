@@ -9,4 +9,9 @@ public class ConsoleInput implements Input {
     public String userScore() {
         return SCAN.nextLine();
     }
+
+    @Override
+    public String whetherWantToRestartGame() {
+        return SCAN.nextLine();
+    }
 }

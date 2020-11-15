@@ -2,6 +2,6 @@ package baseballgame.ui.input;
 
 public interface Input {
     String userScore();
-//    String whetherWantToRestartGame();
+    String whetherWantToRestartGame();
 //    void destroy();
 }
