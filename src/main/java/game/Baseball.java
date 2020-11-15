@@ -17,7 +17,11 @@ public class Baseball {
 
     public void start() {
         Scanner scan = new Scanner(System.in);
-        playBaseball(scan);
+        boolean loop = true;
+        while (loop) {
+            playBaseball(scan);
+            loop = !quit(scan);
+        }
     }
 
     public void playBaseball(Scanner scan) {
@@ -168,6 +172,14 @@ public class Baseball {
             return strikeCount  + " 스트라이크 " + ballCount  + " 볼";
         }
         return "";
+    }
+
+    public boolean quit(Scanner scan) {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        if (scan.nextInt() == 1) {
+            return false;
+        }
+        return true;
     }
 
 }

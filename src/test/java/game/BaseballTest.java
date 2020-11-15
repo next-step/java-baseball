@@ -69,5 +69,5 @@ public class BaseballTest {
         assertEquals(baseballJudgment.getStrikeCount(), 3);
         assertEquals(baseballJudgment.getBallCount(), 0);
     }
-    
+
 }
