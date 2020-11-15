@@ -9,6 +9,7 @@ import baseball.domain.exception.ResultLengthException;
 public class BaseballResult {
 	private static final int OUT_COUNT = 3;
 	private static final int ZERO = 0;
+	private static final int STATUS_MAX_LENGTH = 3;
 	private int strikeCount;
 	private int ballCount;
 
@@ -28,7 +29,7 @@ public class BaseballResult {
 	}
 
 	public static BaseballResult of(List<BaseballStatus> statuses) {
-		if (statuses.size() > 3) {
+		if (statuses.size() > STATUS_MAX_LENGTH) {
 			throw new ResultLengthException();
 		}
 		return new BaseballResult(statuses);
