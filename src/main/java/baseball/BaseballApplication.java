@@ -1,5 +1,6 @@
 package baseball;
 
+import java.security.SecureRandom;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -20,5 +21,14 @@ public class BaseballApplication {
 
 	public static boolean validate(String input) {
 		return Pattern.matches("^[0-9]{3}$", input);
+	}
+
+	public String generateRandomNumber() {
+		StringBuilder builder = new StringBuilder();
+		SecureRandom random = new SecureRandom();
+		for (int i = 0; i < 3; i++) {
+			builder.append(random.nextInt(10));
+		}
+		return builder.toString();
 	}
 }
