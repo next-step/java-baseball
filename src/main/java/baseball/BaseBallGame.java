@@ -1,7 +1,6 @@
 package baseball;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 숫자 야구 게임 로직 클래스
@@ -30,10 +29,20 @@ public class BaseBallGame {
      *  1. 1 ~ 9까지 범위 숫자를 생성
      *  2. 서로 다른 숫자를 생성
      *  3. 총 3개의 숫자를 저장
+     *
      * @return 생성된 숫자를 LinkedList 변환하여 반환
      */
-    private List<Integer> comTurn() {
-        return null;
+    public List<Integer> comTurn() {
+
+        Random ran = new Random();
+        ran.setSeed(System.currentTimeMillis());
+
+        Set<Integer> comNums = new LinkedHashSet<>();
+        while(comNums.size() < 3) {
+            int randomNumbers = ran.nextInt(9) + 1;
+            comNums.add(randomNumbers);
+        }
+        return new LinkedList<>(comNums);
     }
 
     /**
@@ -48,7 +57,6 @@ public class BaseBallGame {
     private void userTurn(Scanner sc, List<Integer> comBall) {
 
     }
-
 
     /**
      * [Game Logic] 한 회의 게임이 종료된 후, 재게임 또는 게임종료 여부를 입력 요청하는 메서드
