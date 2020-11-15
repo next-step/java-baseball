@@ -26,6 +26,6 @@ public class Game {
 	}
 
 	public boolean isFinished() {
-		return status == GameStatus.END;
+		return status.isFinished();
 	}
 }
