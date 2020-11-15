@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import domain.Computer;
+import domain.Referee;
 import domain.User;
 
 public class BaseballGame {
@@ -9,6 +10,7 @@ public class BaseballGame {
 	private User user;
 	private Scanner scanner;
 	private Boolean isGameEnd;
+	private Referee referee;
 
 	public void start() {
 		this.initialize();
@@ -28,6 +30,7 @@ public class BaseballGame {
 	private void initialize() {
 		scanner = new Scanner(System.in);
 		isGameEnd = false;
+		referee = new Referee();
 	}
 
 	private void setPlayers() {
