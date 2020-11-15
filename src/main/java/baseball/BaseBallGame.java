@@ -6,6 +6,11 @@ import java.util.*;
  * 숫자 야구 게임 로직 클래스
  */
 public class BaseBallGame {
+
+    private static final Integer BASE_BALL_CNT = 3;
+    private static final Integer BASE_BALL_MIN_POINT = 1;
+    private static final Integer BASE_BALL_MAX_POINT = 9;
+
     /**
      * [Game Logic] 게임 로직 startGame()
      *  1. 컴퓨터 턴: comTurn()
@@ -38,8 +43,8 @@ public class BaseBallGame {
         ran.setSeed(System.currentTimeMillis());
 
         Set<Integer> comNums = new LinkedHashSet<>();
-        while(comNums.size() < 3) {
-            int randomNumbers = ran.nextInt(9) + 1;
+        while(comNums.size() < BASE_BALL_CNT) {
+            int randomNumbers = ran.nextInt(BASE_BALL_MAX_POINT) + BASE_BALL_MIN_POINT;
             comNums.add(randomNumbers);
         }
         return new LinkedList<>(comNums);
@@ -56,6 +61,71 @@ public class BaseBallGame {
      */
     private void userTurn(Scanner sc, List<Integer> comBall) {
 
+        boolean strikeFlag = true;
+        while(strikeFlag) {
+            int[] userBall = selectBalls(sc);
+
+            strikeFlag = isMatches(userBall, comBall);
+        }
+    }
+
+    public boolean isMatches(int[] userBall, List<Integer> comBall) {
+        return false;
+    }
+
+    /* 게임 플레이어 */
+    public int[] selectBalls(Scanner sc) {
+        String userNumbers = "";
+        do {
+            System.out.print("3개의 숫자를 입력해 주세요 : ");;
+            userNumbers = sc.nextLine();
+            /* 사용자의 입력 값이 1 ~ 9까지 숫자이면서 길이가 3이 아닌경우 다시 입력 */
+        } while (!isValidLength(userNumbers) ||
+                !isInteger(userNumbers) ||
+                !isNumberOneBetweenNine(userNumbers));
+
+        /* 정상 입력 시 정수형 배열로 casting */
+        return castStringToInt(userNumbers);
+    }
+
+    /* 컴퓨터가 생성한 값의 범위가 1 ~ 9까지인지 확인 */
+    public boolean isNumberOneBetweenNine(String userInput) {
+        int[] userInputList = castStringToInt(userInput);
+        for(Integer item : userInputList) {
+            /* 1 ~ 9 범위의 값이 아닌경우 false 리턴 */
+            if(!(BASE_BALL_MIN_POINT <= item && BASE_BALL_MAX_POINT >= item)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /* 입력 길이가 3인지 확인 */
+    public boolean isValidLength(String userInput) {
+        int len = userInput.length();
+        if(len != BASE_BALL_CNT) {
+            return false;
+        }
+        return true;
+    }
+
+    /* 게임플레이어가 입력한 값이 숫자로 캐스팅이되는지 확인 */
+    public boolean isInteger(String userInput) {
+        try {
+            Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /* 숫자로 변롼이 가능한 문자열을 정수형 배열로 반환 */
+    public int[] castStringToInt(String userNumbers) {
+        int[] tmp = new int[userNumbers.length()];
+        for(int i = 0 ; i < userNumbers.length() ; i++) {
+            tmp[i] = userNumbers.charAt(i) - '0';
+        }
+        return tmp;
     }
 
     /**
@@ -65,6 +135,6 @@ public class BaseBallGame {
      * @return 게임 Rule에 따라 재게임: 1 입력 시 true, 게임 종료: 2 입력 시: false
      */
     private boolean isReGame(Scanner sc) {
-        return true;
+        return false;
     }
 }
