@@ -4,13 +4,13 @@ import java.util.*;
 
 public class GameDigitRepository {
     private static final Random random = new Random();
-    private static final List<GameDigit> cachedNumbers;
+    private static final List<GameDigit> cachedDigits;
 
 
     static {
-        cachedNumbers = new ArrayList<>();
+        cachedDigits = new ArrayList<>();
         for (int i = GameDigit.MIN_DIGIT; i <= GameDigit.MAX_DIGIT; i++) {
-            cachedNumbers.add(new GameDigit(i));
+            cachedDigits.add(new GameDigit(i));
         }
     }
 
@@ -31,18 +31,18 @@ public class GameDigitRepository {
         List<GameDigit> gameDigits = new ArrayList<>();
         for (int i = 0; i < raw.length(); i++) {
             int numericValue = Character.getNumericValue(raw.charAt(i));
-            GameDigit gameDigit = cachedNumbers.get(numericValue);
+            GameDigit gameDigit = cachedDigits.get(numericValue);
             gameDigits.add(gameDigit);
         }
         return gameDigits;
     }
 
     private static GameDigit getRandom() {
-        return cachedNumbers.get(getRandomIntSingleDigit());
+        return cachedDigits.get(getRandomIntSingleDigit());
     }
 
     private static GameDigit getRandomExceptZero() {
-        return cachedNumbers.get(getRandomIntSingleDigitExceptZero());
+        return cachedDigits.get(getRandomIntSingleDigitExceptZero());
     }
 
     private static int getRandomIntSingleDigit() {
