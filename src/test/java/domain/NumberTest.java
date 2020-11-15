@@ -23,7 +23,7 @@ class NumberTest {
     @DisplayName("상대방(컴퓨터)가 생성한 숫자의 각 자릿수가 1에서 9사이의 값인지 확인")
     public void playerNumberOfDigitShouldBeBetweenOneAndNine() {
         Number playerNumber = new Number();
-        assertTrue(playerNumber.isNumberOfDigitBetweenOneToNine());
+        assertTrue(playerNumber.isNumberOfDigitBetweenOneAndNine());
     }
 
     @Test
@@ -62,7 +62,7 @@ class NumberTest {
         Number userNumber = new Number(123);
         assertAll(
                 () -> assertTrue(userNumber.isNumberOfThreeDigits()),
-                () -> assertTrue(userNumber.isNumberOfDigitBetweenOneToNine()),
+                () -> assertTrue(userNumber.isNumberOfDigitBetweenOneAndNine()),
                 () -> assertTrue(userNumber.isNumberOfDigitDifferentEachOther()));
     }
 }

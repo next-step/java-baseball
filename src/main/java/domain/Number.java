@@ -62,14 +62,26 @@ public class Number {
     }
 
     private void validate() {
+        validateNumberOfThreeDigits();
+
+        validateNumberOfDigitBetweenOneAndNine();
+
+        validateNumberOfDigitDifferentEachOther();
+    }
+
+    private void validateNumberOfThreeDigits() {
         if (!isNumberOfThreeDigits()) {
             throw new NumberNotThreeDigitsException();
         }
+    }
 
-        if (!isNumberOfDigitBetweenOneToNine()) {
+    private void validateNumberOfDigitBetweenOneAndNine() {
+        if (!isNumberOfDigitBetweenOneAndNine()) {
             throw new InvalidNumberOfDigitRangeException();
         }
+    }
 
+    private void validateNumberOfDigitDifferentEachOther() {
         if (!isNumberOfDigitDifferentEachOther()) {
             throw new DuplicateNumberOfDigitException();
         }
@@ -79,7 +91,7 @@ public class Number {
         return digits.size() == NUMBER_OF_DIGIT;
     }
 
-    public boolean isNumberOfDigitBetweenOneToNine() {
+    public boolean isNumberOfDigitBetweenOneAndNine() {
         boolean isValid = true;
 
         for (Integer digit : digits) {
