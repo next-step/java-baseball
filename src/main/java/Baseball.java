@@ -4,6 +4,9 @@ public class Baseball {
     Scanner scanner = new Scanner(System.in);
 
     public void gamePlay() {
+        Computer computer = new Computer();
+        computer.generateNumber();
+
         gameEnd();
     }
 
