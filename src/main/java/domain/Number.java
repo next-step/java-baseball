@@ -104,4 +104,8 @@ public class Number {
     public boolean isNumberOfDigitDifferentEachOther() {
         return this.digits.size() == new HashSet<>(this.digits).size();
     }
+
+    public int getDigit(int index) {
+        return digits.get(index);
+    }
 }
