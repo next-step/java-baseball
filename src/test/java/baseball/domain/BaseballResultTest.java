@@ -71,4 +71,25 @@ class BaseballResultTest {
 			.isInstanceOf(ResultLengthException.class)
 			.hasMessage("결과의 개수가 너무 많습니다.");
 	}
+
+	@Test
+	@DisplayName("3 스트라이크이면 isEnd 가 true 를 반환한다.")
+	void result_isOut_true() {
+		assertThat(BaseballResult.of(Arrays.asList(STRIKE, STRIKE, STRIKE)).isOut()).isTrue();
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = {
+		"STRIKE:BALL:BALL",
+		"BALL:BALL:STRIKE",
+		"BALL:STRIKE:BALL",
+		"STRIKE:STRIKE:BALL",
+		"BALL:STRIKE:STRIKE",
+		"STRIKE:BALL:BALL",
+		"BALL:BALL:BALL"
+	}, delimiter = ':')
+	@DisplayName("3 스트라이크가 아니면 isEnd 가 false 를 반환한다.")
+	void result_isOut_false(BaseballStatus first, BaseballStatus second, BaseballStatus third) {
+		assertThat(BaseballResult.of(Arrays.asList(first, second, third)).isOut()).isFalse();
+	}
 }
