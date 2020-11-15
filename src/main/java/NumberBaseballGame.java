@@ -62,7 +62,7 @@ public class NumberBaseballGame {
 	 * @return randomNum 생성된 랜덤 정수
 	 * 
 	 */
-	private static int generateRandomNumDigit(int digit) {
+	public static int generateRandomNumDigit(int digit) {
 		int randomTmp;
 		String randomNum = (int)((Math.random() * 10000) % 9) + 1 + "";
 
