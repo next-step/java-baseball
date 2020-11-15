@@ -17,7 +17,7 @@ public enum BaseballRule {
       builder.append(NOTHING.ruleName);
     }
     if (strike > 0) {
-      builder.append(strike).append(" ").append(STRIKE.ruleName);
+      builder.append(strike).append(" ").append(STRIKE.ruleName).append(" ");
     }
     if (ball > 0) {
       builder.append(ball).append(" ").append(BALL.ruleName);

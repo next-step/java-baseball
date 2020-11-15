@@ -9,9 +9,16 @@ public class BaseballRuleService {
   private final List<Integer> input;
   private final List<Integer> answer;
 
-  BaseballRuleService(List<Integer> input, List<Integer> answer) {
+  public BaseballRuleService(List<Integer> input, List<Integer> answer) {
     this.input = input;
     this.answer = answer;
+  }
+
+  public boolean checkStrikeAndBall() {
+    int strikeCount = getStrikeCount();
+    int ballCount = getBallCount(strikeCount);
+    System.out.println(BaseballRule.getPrintRuleName(strikeCount, ballCount));
+    return strikeCount == 3;
   }
 
   public int getStrikeCount() {
