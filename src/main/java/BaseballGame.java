@@ -38,7 +38,13 @@ public class BaseballGame {
     public String getDiffResultText(Computer c, Player p, int number) {
         if (number == BaseballGame.INPUT_ERROR) return INVALID_INPUT_MSG;
         p.convertNumberToList(number);
+        for (int i = 0; i < p.getNumberList().size(); i++) {
+            calcBallCount(c, p, i);
+        }
         String ballCountTxt = "";
+        if (p.getStrikeCount() == 0 && p.getBallCount() == 0) ballCountTxt = "낫싱";
+        if (p.getStrikeCount() > 0) ballCountTxt += p.getStrikeCount() + " 스트라이크";
+        if (p.getBallCount() > 0) ballCountTxt += " " + p.getBallCount() + " 볼";
         return ballCountTxt.trim();
     }
 

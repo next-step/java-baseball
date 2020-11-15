@@ -38,4 +38,17 @@ class BaseballGameTest {
         assertEquals(type, BaseballGame.CountType.BALL);
     }
 
+    @Test
+    @DisplayName("Player 가 입력한 135, 123 숫자와 Computer 의 135 숫자 비교 결과 출력")
+    void printBallCount() {
+        String target = "3 스트라이크";
+        String printText = game.getDiffResultText(computer, player, 135);
+        assertEquals(printText, target);
+
+        player.initBallCount();
+
+        target = "1 스트라이크 1 볼";
+        printText = game.getDiffResultText(computer, player, 123);
+        assertEquals(printText, target);
+    }
 }
