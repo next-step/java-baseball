@@ -10,6 +10,7 @@ public class BaseBall {
     int[] playerNumbers = new int[MAX_NUMBER];
     int strike = 0;
     int ball = 0;
+    int end = 0;
 
     public int generateRandomNumber() {
         return new Random().nextInt(9) + 1;
@@ -59,10 +60,29 @@ public class BaseBall {
         for (int i = 0; i < MAX_NUMBER; i++) {
             compareNumbers(i,0);
         }
+        System.out.println(getHintMessage());
     }
 
     public void initUser() {
         strike = 0;
         ball = 0;
+    }
+
+    public String getHintMessage() {
+        String message = "";
+        if (strike == MAX_NUMBER){
+            end++;
+            return "3개의 숫자를 모두 맞히셨습니다! 게임종료";
+        }
+        if (strike == 0 && ball == 0) {
+            return "낫싱";
+        }
+        if (strike > 0) {
+            message += strike + " 스트라이크 ";
+        }
+        if (ball > 0) {
+            message += ball + " 볼";
+        }
+        return message;
     }
 }
