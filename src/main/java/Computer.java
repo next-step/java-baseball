@@ -18,6 +18,13 @@ public class Computer {
         return (int) (Math.random() * (baseNumbers.size() - 1));
     }
 
+    public int getNumberFromBase(int index) {
+        if (index >= baseNumbers.size()) return BaseballGame.INPUT_ERROR;
+        int ret = baseNumbers.get(index);
+        baseNumbers.remove(index);
+        return ret;
+    }
+
     public ArrayList<Integer> getCheckNumbers() {
         return checkNumbers;
     }
