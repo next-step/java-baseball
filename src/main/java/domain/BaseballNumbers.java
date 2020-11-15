@@ -13,6 +13,12 @@ public class BaseballNumbers {
 		return new BaseballNumbers(baseballNumbers);
 	}
 
+	public static BaseballNumbers newPlayerBaseballNumbers(List<Integer> baseballNumbers) {
+		if (baseballNumbers.size() > 3)
+			baseballNumbers = baseballNumbers.subList(0, 2);
+		return new BaseballNumbers(baseballNumbers);
+	}
+
 	public Integer getByIndex(int index) {
 		return this.baseballNumbers.get(index);
 	}
