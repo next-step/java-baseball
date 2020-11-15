@@ -12,6 +12,7 @@ public class ConsoleOutput implements Output {
     private static final String BALL = "볼";
     private static final int MISS_MATCH = 0;
     private static final String NOTHING = "Nothing";
+    private static final String INVALID_VALUE = "잘못된 입력값입니다";
 
     @Override
     public void demandingUserScore() {
@@ -69,5 +70,10 @@ public class ConsoleOutput implements Output {
     @Override
     public void demandingWhetherWantToRestartGame() {
         System.out.println(SENTENCES_RESTART_GAME);
+    }
+
+    @Override
+    public void errorInvalidInputValue() {
+        System.out.println(INVALID_VALUE);
     }
 }

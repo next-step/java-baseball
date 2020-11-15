@@ -7,4 +7,5 @@ public interface Output {
     void gameScore(CompareResult result);
     void gameFinish();
     void demandingWhetherWantToRestartGame();
+    void errorInvalidInputValue();
 }

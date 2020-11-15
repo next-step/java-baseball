@@ -67,7 +67,7 @@ public class BaseballGame implements Game {
     }
 
     private void printExceptionWhenInvalidInputValue() {
-        // TODO
+        output.errorInvalidInputValue();
     }
 
     private void printExceptionWhenParsing() {
