@@ -2,6 +2,7 @@ package baseballgame.domain.game;
 
 import baseballgame.domain.score.Score;
 import baseballgame.domain.score.ScoreParser;
+import baseballgame.dto.CompareResult;
 import baseballgame.ui.input.Input;
 import baseballgame.ui.output.Output;
 
@@ -36,5 +37,9 @@ public class BaseballGame implements Game {
 
     private Score inputUserScore() {
         return SCORE_PARSER.parseToGameScore(input.userScore());
+    }
+
+    private void printCompareResult(CompareResult result) {
+        output.gameScore(result);
     }
 }
