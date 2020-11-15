@@ -16,6 +16,23 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
+        player = new Player();
+    }
+
+    @Test
+    @DisplayName("입력된 값이 0이 포함되지 않은 3자리 숫자로만 이루어져 있는지 검증")
+    public void validInputString() {
+        int result = player.checkUserInput("abc");
+        assertEquals(result, BaseballGame.INPUT_ERROR);
+
+        result = player.checkUserInput("103");
+        assertEquals(result, BaseballGame.INPUT_ERROR);
+
+        result = player.checkUserInput("119");
+        assertEquals(result, 119);
+
+        result = player.checkUserInput("123");
+        assertEquals(result, 123);
     }
 
 }

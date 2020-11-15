@@ -13,6 +13,29 @@ public class Player {
     public Player() {}
 
     public int requestInput(boolean isPlaying) {
+        if (isPlaying) System.out.print(INPUT_MSG);
+        String input = sc.next();
+        if (!isPlaying && input.length() == 1 && checkUserInput(input) == 1) return 1;
+        if (!isPlaying) return 2;
+        if (input.length() != BaseballGame.CHECK_NUMBER_SIZE) return BaseballGame.INPUT_ERROR;
+        return checkUserInput(input);
+    }
+
+    public int checkUserInput(String txt) {
+        try {
+            return getValidInput(txt);
+        } catch (NumberFormatException e) {
+            return BaseballGame.INPUT_ERROR;
+        }
+    }
+
+    public int getValidInput(String text) throws NumberFormatException {
+        if ("".equals(text)) throw new NumberFormatException("Invalid Input");
+        if (text.contains("0")) throw new NumberFormatException("Invalid Input");
+        return Integer.parseInt(text);
+    }
+
+    public ArrayList<Integer> convertNumberToList(int number) {
     }
 
     public void initBallCount() {
