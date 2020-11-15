@@ -31,6 +31,7 @@ public class ScoreTable {
   }
 
   public boolean isGameSuccess() {
+    if (scoreMap.get(Score.STRIKE) == null) return false;
     return scoreMap.get(Score.STRIKE) == 3;
   }
 
