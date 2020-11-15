@@ -17,12 +17,16 @@ public class BaseballGame {
 		ResultChecker checker = new ResultChecker();
 
 		while (!isGameEnd) {
-			BaseballNumber userBaseballNumber = requestInput();
+			BaseballNumber userBaseballNumber = requestUserBaseballNumber();
 			Result result = checker.checkResult(userBaseballNumber, randomBaseballNumber);
-			System.out.println(result.getMessage());
+			printResultMessage(result);
 			isGameEnd = isGameOver(result);
 			rePlay(result);
 		}
+	}
+
+	private void printResultMessage(Result result) {
+		System.out.println(result.getMessage());
 	}
 
 	private boolean isGameOver(Result result) {
@@ -34,7 +38,7 @@ public class BaseballGame {
 		return scanner.nextInt();
 	}
 
-	private BaseballNumber requestInput() {
+	private BaseballNumber requestUserBaseballNumber() {
 		System.out.print("숫자를 입력해주세요: ");
 		String[] numbers = checkDuplicated(checkLengthOver(scanner.next().trim().split("")));
 		return new BaseballNumber(numbers[0], numbers[1], numbers[2]);
