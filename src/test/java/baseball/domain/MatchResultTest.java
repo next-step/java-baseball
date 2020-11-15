@@ -78,4 +78,21 @@ class MatchResultTest {
         assertFalse(gameComplete);
     }
 
+    @DisplayName("strike의 개수 확인")
+    @Test
+    public void getStrikeCount_success() throws Exception {
+        //given
+        MatchResult matchResult1 = new MatchResult();
+        MatchResult matchResult2 = new MatchResult();
+
+        //when
+        matchResult1 = matchResult1.addMatchType(MatchType.STRIKE);
+        matchResult2 = matchResult2.addMatchType(MatchType.STRIKE);
+        matchResult2 = matchResult2.addMatchType(MatchType.STRIKE);
+
+        //then
+        assertTrue(matchResult1.getStrikeCount() == 1);
+        assertTrue(matchResult2.getStrikeCount() == 2);
+    }
+
 }
