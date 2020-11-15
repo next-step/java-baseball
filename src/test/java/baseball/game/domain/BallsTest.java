@@ -3,6 +3,7 @@ package baseball.game.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
+import baseball.game.exception.BallNumberDuplicateException;
 import baseball.game.exception.BallsSizeException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +17,9 @@ class BallsTest {
     void create_balls() {
         List<Ball> ballList = new ArrayList<>();
 
-        Ball firstBall = new Ball(6);
-        Ball secondBall = new Ball(9);
-        Ball thirdBall = new Ball(1);
+        Ball firstBall = Ball.of(6);
+        Ball secondBall = Ball.of(9);
+        Ball thirdBall = Ball.of(1);
 
         ballList.add(firstBall);
         ballList.add(secondBall);
@@ -26,9 +27,9 @@ class BallsTest {
 
         Balls balls = Balls.create(ballList);
 
-        assertThat(balls.getBall(0)).isEqualTo(firstBall);
-        assertThat(balls.getBall(1)).isEqualTo(secondBall);
-        assertThat(balls.getBall(2)).isEqualTo(thirdBall);
+        assertThat(balls.getBall(0)).isEqualTo(new BallWithIndex(0, firstBall));
+        assertThat(balls.getBall(1)).isEqualTo(new BallWithIndex(1, secondBall));
+        assertThat(balls.getBall(2)).isEqualTo(new BallWithIndex(2, thirdBall));
     }
 
     @Test
@@ -36,8 +37,8 @@ class BallsTest {
     void throwException_minSizeBalls() {
         List<Ball> ballList = new ArrayList<>();
 
-        Ball firstBall = new Ball(6);
-        Ball secondBall = new Ball(9);
+        Ball firstBall = Ball.of(6);
+        Ball secondBall = Ball.of(9);
 
         ballList.add(firstBall);
         ballList.add(secondBall);
@@ -51,10 +52,10 @@ class BallsTest {
     void throwException_maxSizeBalls() {
         List<Ball> ballList = new ArrayList<>();
 
-        Ball firstBall = new Ball(6);
-        Ball secondBall = new Ball(9);
-        Ball thirdBall = new Ball(1);
-        Ball fourthBall = new Ball(1);
+        Ball firstBall = Ball.of(6);
+        Ball secondBall = Ball.of(9);
+        Ball thirdBall = Ball.of(1);
+        Ball fourthBall = Ball.of(1);
 
         ballList.add(firstBall);
         ballList.add(secondBall);
@@ -62,6 +63,22 @@ class BallsTest {
         ballList.add(fourthBall);
 
         assertThatExceptionOfType(BallsSizeException.class)
+            .isThrownBy(() -> Balls.create(ballList));
+    }
+
+    @Test
+    @DisplayName("중복된 공이 있는 경우")
+    void throwException_duplicateBalls() {
+        List<Ball> ballList = new ArrayList<>();
+
+        Ball firstBall = Ball.of(6);
+        Ball secondBall = Ball.of(9);
+
+        ballList.add(firstBall);
+        ballList.add(secondBall);
+        ballList.add(secondBall);
+
+        assertThatExceptionOfType(BallNumberDuplicateException.class)
             .isThrownBy(() -> Balls.create(ballList));
     }
 }

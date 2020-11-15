@@ -9,7 +9,7 @@ public class Ball {
 
     private final Integer number;
 
-    public Ball(Integer number) {
+    private Ball(Integer number) {
         validateNumber(number);
 
         this.number = number;
