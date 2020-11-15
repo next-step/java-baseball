@@ -11,14 +11,21 @@ public class BallCountChecker {
 		BallCount ballCount = new BallCount();
 
 		for (int i = 0; i < BallCount.BALL_COUNT_SIZE; i++) {
-			if (isStrike(input.charAt(i), answer.charAt(i))) {
-				ballCount.addStrike();
-			} else if (isBall(input.charAt(i), answer)) {
-				ballCount.addBall();
-			}
+			compare(i, input, answer, ballCount);
 		}
 
 		return ballCount;
+	}
+
+	private static void compare(final int i, final String input, final String answer,final BallCount ballCount){
+		if (isStrike(input.charAt(i), answer.charAt(i))) {
+			ballCount.addStrike();
+			return;
+		}
+
+		if (isBall(input.charAt(i), answer)) {
+			ballCount.addBall();
+		}
 	}
 
 	private static boolean isStrike(final char input, final char answer) {
