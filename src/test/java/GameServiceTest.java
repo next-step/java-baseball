@@ -1,6 +1,7 @@
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,5 +71,21 @@ public class GameServiceTest implements GameConstant {
 	@ValueSource(ints = {3, 100})
 	public void isFalse_shouldReturnFalseInValidExitInput(int input) {
 		assertFalse(gameService.isValidExitInput(input));
+	}
+
+	@ParameterizedTest
+	@DisplayName("스트라이크 개수 테스트")
+	@ValueSource(strings = {"178", "725", "123"})
+	public void isTrue_shouldReturnMoreThanOneStrike(String input) {
+		List<Integer> balls = Arrays.asList(1,2,3);
+		assertThat(gameService.getStrikeCount(balls, input) > 0).isTrue();
+	}
+
+	@ParameterizedTest
+	@DisplayName("볼 개수 테스트")
+	@ValueSource(strings = {"239", "132", "287"})
+	public void isFalse_shouldReturnFalseInValidExitInput(String input) {
+		List<Integer> balls = Arrays.asList(7,2,8);
+		assertThat(gameService.getBallCount(balls, input) > 0).isTrue();
 	}
 }
