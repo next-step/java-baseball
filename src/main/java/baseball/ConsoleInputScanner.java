@@ -10,12 +10,13 @@ public class ConsoleInputScanner implements InputScanner {
 		this.scanner = new Scanner(System.in);
 	}
 
+	@Override
 	public String inputNumberLength3() {
 		String input;
 		do {
 			System.out.print(GameResource.TEXT_INPUT_NUMBER);
 			input = scanner.next();
-		} while (!Validator.isNumber(input) || !Validator.isLength3(input));
+		} while (!Validator.isNumber(input) || !Validator.isLength3(input) || !Validator.isDuplicate(input));
 
 		return input;
 	}

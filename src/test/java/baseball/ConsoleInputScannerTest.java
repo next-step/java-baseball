@@ -19,7 +19,7 @@ public class ConsoleInputScannerTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"123", "353", "523"})
+	@ValueSource(strings = {"123", "356", "523"})
 	public void scanner(final String input) {
 		System.setIn(new ByteArrayInputStream((input + "\r\n").getBytes()));
 		ConsoleInputScanner consoleScanner = new ConsoleInputScanner();

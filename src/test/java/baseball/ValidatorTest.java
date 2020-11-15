@@ -24,4 +24,10 @@ public class ValidatorTest {
 	public void isNumber1Or2(final String input, final boolean expected) {
 		assertThat(Validator.isNumber1Or2(input)).isEqualTo(expected);
 	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"123:true", "234:true", "111:false", "112:false"}, delimiter = ':')
+	public void isDuplicate(final String input, final boolean expected){
+		assertThat(Validator.isDuplicate(input)).isEqualTo(expected);
+	}
 }
