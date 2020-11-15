@@ -30,4 +30,18 @@ public class BaseballGameTest {
 		}
 	}
 
+	@Test
+	public void addAnswersTest() {
+		BaseballGame game = new BaseballGame();
+		String[] test = {"1", "2", "3"};
+
+		game.addAnswers(test);
+
+		Iterator<Integer> iter = game.getQuestion().iterator();
+
+		while(iter.hasNext()) {
+			int i = 0;
+			assertThat(iter.next()).isEqualTo(test[i++]);
+		}
+	}
 }
