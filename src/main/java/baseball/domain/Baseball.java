@@ -17,6 +17,19 @@ public class Baseball {
         this.baseball = baseball;
     }
 
+    public static Baseball of(String numbers) {
+        List<BaseballNo> baseball = new ArrayList<>();
+        //todo string length에 대한 예외처리.
+        for(int i =0; i < BASEBALL_SIZE; i++) {
+            baseball.add(BaseballNo.of(convertInteger(numbers.charAt(i))));
+        }
+        return new Baseball(baseball);
+    }
+
+    private static Integer convertInteger(char number){
+            return Integer.parseInt(String.valueOf(number));
+    }
+
     public static Baseball of(List<Integer> numbers) {
         List<BaseballNo> baseball = new ArrayList<>();
         for (Integer number : numbers) {
