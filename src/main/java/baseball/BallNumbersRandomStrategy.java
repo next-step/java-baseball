@@ -7,7 +7,6 @@ import java.util.Set;
 public class BallNumbersRandomStrategy implements BallNumbersStrategy {
 
     private static final int MAX_LENGTH_OF_NUMBER = 3;
-    //private static final String STRING_DELIMITER = ",";
     private static final Random random = new Random();
 
     @Override

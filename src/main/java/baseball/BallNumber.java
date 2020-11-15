@@ -18,4 +18,10 @@ public class BallNumber {
         this.ballNumber = numbersStrategy.getBallNumber();
     }
 
+    @Override
+    public String toString() {
+        return "BallNumber{" +
+                "ballNumber=" + ballNumber +
+                '}';
+    }
 }
