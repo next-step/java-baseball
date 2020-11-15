@@ -40,4 +40,8 @@ public class BaseballHintMaker {
         return ball;
     }
 
+    public Nothing getNothingHint() {
+        return new Nothing();
+    }
+
 }
