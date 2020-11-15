@@ -9,6 +9,7 @@ public class NumberGenerator {
     private List<Integer> unitList = initUnitList();
 
     public int getNotDuplicatedEachHundredNumber() {
+        this.unitList = initUnitList();
         for (int i = range; i > 0; i = i / 10) {
             generatedValue += generateNumberAndSyncUnit() * i;
         }
@@ -19,6 +20,7 @@ public class NumberGenerator {
     }
 
     private List<Integer> initUnitList() {
+        generatedValue = 0;
         List<Integer> unitList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             unitList.add(i);
@@ -32,6 +34,4 @@ public class NumberGenerator {
         unitList.remove(random);
         return number;
     }
-
-
 }

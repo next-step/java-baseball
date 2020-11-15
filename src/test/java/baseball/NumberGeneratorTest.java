@@ -3,13 +3,10 @@ package baseball;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class NumberGeneratorTest {
 
@@ -30,7 +27,32 @@ class NumberGeneratorTest {
             assertThat(set.size()).isEqualTo(3);
             assertThat(notDuplicatedEachHundredNumber).isGreaterThan(0).isLessThan(999);
         }
+    }
 
+    @Test
+    @DisplayName("게임 판정 테스트")
+    void 유저승게임판정테스트() {
+        //gvien
+        Referee referee = new Referee(123);
+
+        //when
+        boolean playerWin = referee.isPlayerWin(123);
+
+        //then
+        assertThat(playerWin).isTrue();
+    }
+
+    @Test
+    @DisplayName("게임 판정 테스트")
+    void 유저패게임판정테스트() {
+        //gvien
+        Referee referee = new Referee(123);
+
+        //when
+        boolean playerWin = referee.isPlayerWin(456);
+
+        //then
+        assertThat(playerWin).isFalse();
     }
 
 }
