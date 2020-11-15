@@ -1,11 +1,12 @@
 package baseball.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MatchResultTest {
 
@@ -22,7 +23,7 @@ class MatchResultTest {
         MatchResult matchResult = new MatchResult();
 
         //then
-        Assertions.assertTrue(matchResult.getMatch().equals(target));
+        assertTrue(matchResult.getMatch().equals(target));
     }
 
     @DisplayName("매칭 결과 더하기")
@@ -41,7 +42,23 @@ class MatchResultTest {
         matchResult = matchResult.addMatchType(MatchType.BALL);
 
         //then
-        Assertions.assertTrue(matchResult.getMatch().equals(target));
+        assertTrue(matchResult.getMatch().equals(target));
+    }
+
+    @DisplayName("게임 종료 여부 판단 - 종료")
+    @Test
+    public void isGameComplete_success() throws Exception {
+        //given
+        MatchResult matchResult = new MatchResult();
+        matchResult = matchResult.addMatchType(MatchType.STRIKE);
+        matchResult = matchResult.addMatchType(MatchType.STRIKE);
+        matchResult = matchResult.addMatchType(MatchType.STRIKE);
+
+        //when
+        boolean gameComplete = matchResult.isGameComplete();
+
+        //then
+        assertTrue(gameComplete);
     }
 
 }
