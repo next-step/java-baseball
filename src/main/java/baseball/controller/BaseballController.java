@@ -57,4 +57,7 @@ public class BaseballController {
 			ResultView.printStrikeCount(strikeCount);
 		}
 	}
+
+	private BaseballController() {
+	}
 }

@@ -16,7 +16,7 @@ class GameInputConverterTest {
 	@DisplayName("유효하지 않은 값을 입력시 에러 발생")
 	@ParameterizedTest
 	@ValueSource(strings = {"111", "abc", "1ab", "1", "1234", "012"})
-	void testInvalidInput(String input) throws Exception {
+	void testInvalidInput(String input) {
 		// Given
 		int fixedLength = 3;
 		// When
@@ -27,7 +27,7 @@ class GameInputConverterTest {
 
 	@DisplayName("유효한 값을 입력하였을 경우")
 	@Test
-	void testValidInput() throws Exception {
+	void testValidInput() {
 		// Given
 		GameNumbers gameNumbers = GameInputConverter.convertInputToGameNumbers("123", 3);
 		List<Integer> compareNumbers = Arrays.asList(1, 2, 3);
@@ -36,5 +36,4 @@ class GameInputConverterTest {
 		// Then
 		assertThat(gameNumbers.equals(new GameNumbers(compareNumbers))).isTrue();
 	}
-
 }

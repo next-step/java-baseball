@@ -14,7 +14,7 @@ import baseball.domain.GameNumbers;
 class GameNumberRandomGeneratorTest {
 	@DisplayName("랜덤 넘버 생성 검증")
 	@Test
-	void generateRandomRightAnswer() throws Exception {
+	void generateRandomRightAnswer() {
 		// Given
 		GameNumberRandomGenerator gameNumberRandomGenerator = new GameNumberRandomGenerator();
 

@@ -9,17 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import baseball.controller.GameNumberRandomGenerator;
-
 class GameHintTest {
 	@DisplayName("스트라이크 갯수를 센다.")
 	@ParameterizedTest
 	@CsvSource(value = {"456:0", "425:1", "423:2", "315:0"}, delimiter = ':')
-	void countStrike(String input, int count) throws Exception {
+	void countStrike(String input, int count) {
 		// Given
 		int fixedLength = 3;
 		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
-		Game game = new Game(new GameNumberRandomGenerator());
 		GameNumbers userAnswer = GameInputConverter.convertInputToGameNumbers(input, fixedLength);
 
 		// When
@@ -32,11 +29,10 @@ class GameHintTest {
 	@DisplayName("볼 갯수를 센다.")
 	@ParameterizedTest
 	@CsvSource(value = {"456:0", "415:1", "315:2", "231:3", "132:2"}, delimiter = ':')
-	void countBall(String input, int count) throws Exception {
+	void countBall(String input, int count) {
 		// Given
 		int fixedLength = 3;
 		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
-		Game game = new Game(new GameNumberRandomGenerator());
 		GameNumbers userAnswer = GameInputConverter.convertInputToGameNumbers(input, fixedLength);
 
 		// When
@@ -48,7 +44,7 @@ class GameHintTest {
 
 	@DisplayName("스트라이크나 볼이 없으면 나싱이다.")
 	@Test
-	void isNothing() throws Exception {
+	void isNothing() {
 		// Given
 		GameNumbers rightAnswer = new GameNumbers(Arrays.asList(1, 2, 3));
 		GameNumbers userAnswer = new GameNumbers(Arrays.asList(4, 5, 6));

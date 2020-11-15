@@ -17,4 +17,7 @@ public class InputView {
 		System.out.print(GAME_CHOICE_MESSAGE);
 		return scanner.nextInt();
 	}
+
+	private InputView() {
+	}
 }

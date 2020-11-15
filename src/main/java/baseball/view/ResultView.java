@@ -25,4 +25,7 @@ public class ResultView {
 	public static void printEndOfHint() {
 		System.out.println();
 	}
+
+	private ResultView() {
+	}
 }

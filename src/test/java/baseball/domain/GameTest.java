@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class GameTest {
 	@DisplayName("게임 초기화시 정답 생성")
 	@Test
-	void generateRightAnswer() throws Exception {
+	void generateRightAnswer() {
 		// Given
 		Game game = new Game(new GameNumberTestGenerator());
 
@@ -24,37 +24,37 @@ class GameTest {
 
 	@DisplayName("입력이 정답이면 게임은 종료된다.")
 	@Test
-	void isInputRightAnswer() throws Exception {
-	    // Given
+	void isInputRightAnswer() {
+		// Given
 		Game game = new Game(new GameNumberTestGenerator());
 
-	    // When
+		// When
 		game.play("123");
 
-	    // Then
+		// Then
 		assertThat(game.isFinished()).isTrue();
 	}
 
 	@DisplayName("입력이 정답이 아니라면 게임은 계속 진행된다.")
 	@Test
-	void isInputWrongAnswer() throws Exception {
-	    // Given
+	void isInputWrongAnswer() {
+		// Given
 		Game game = new Game(new GameNumberTestGenerator());
 
-	    // When
+		// When
 		game.play("456");
 
-	    // Then
+		// Then
 		assertThat(game.isFinished()).isFalse();
 	}
 
 	@DisplayName("입력이 정답이 아니라면 게임 힌트를 받는다.")
 	@Test
-	void checkHint() throws Exception {
-	    // Given
+	void checkHint() {
+		// Given
 		Game game = new Game(new GameNumberTestGenerator());
 
-	    // When
+		// When
 		GameHint gameHint = game.play("456");
 
 		// Then
@@ -62,7 +62,6 @@ class GameTest {
 		assertThat(gameHint.countBall()).isEqualTo(0);
 		assertThat(gameHint.isNothing()).isTrue();
 	}
-
 
 	private static class GameNumberTestGenerator implements GameNumberGenerator {
 		@Override
