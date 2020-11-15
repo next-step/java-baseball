@@ -49,13 +49,4 @@ public class Referee {
 		return compareSet;
 	}
 
-	private Set<BaseballNumber> convertIntegerToBaseballNumberSet(Integer number) {
-		String[] numberArray = number.toString().split("");
-		Set<BaseballNumber> numbers = new HashSet<>(numberArray.length);
-		for (int index = 0; index < numberArray.length; index++) {
-			numbers.add(new BaseballNumber(Integer.parseInt(numberArray[index]), index));
-		}
-		return numbers;
-	}
-
 }
