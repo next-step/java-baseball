@@ -33,6 +33,7 @@ public class BaseballGame {
 
 		for (int i = 0; i < randomArray.length; i++) {
 			randomArray[i] = (int) (Math.random() * 9) + 1;
+			i = dupCheckNumArray(randomArray, i);
 		}
 
 		return randomArray;
@@ -61,6 +62,40 @@ public class BaseballGame {
 		boolean gameResult = true;
 
 		return gameResult;
+	}
+
+	/**
+	 * 랜덤 숫자 중복 체크
+	 *
+	 * @param checkArray
+	 * @param checkIndex
+	 * @return int
+	 */
+	public int dupCheckNumArray(int[] checkArray, int checkIndex) {
+		int index = checkIndex;
+		for (int i = 0; i < checkIndex; i++) {
+			//이전 값과 비교하여 값이 중복일때 랜덤 배열 index -1
+			index = index - equalToNum(checkArray[checkIndex], checkArray[i]);
+		}
+		return index;
+	}
+
+	/**
+	 * 숫자 비교
+	 * 같을 때 1 다를 때 0 return
+	 *
+	 * @param checkNum
+	 * @param inputNum
+	 * @return int
+	 */
+	public int equalToNum(int checkNum, int inputNum) {
+		int result = 0;
+
+		if (checkNum == inputNum) {
+			result = 1;
+			return result;
+		}
+		return result;
 	}
 
 	public static void main(String[] args) {
