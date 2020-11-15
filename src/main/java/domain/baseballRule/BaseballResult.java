@@ -17,8 +17,12 @@ public class BaseballResult {
 		this.ball.add(baseballResult.ball);
 	}
 
-	public Boolean is3Strike() {
+	public Boolean isThreeStrike() {
 		return this.strike.strike.equals(3);
+	}
+
+	public Boolean isNothing() {
+		return this.strike.strike.equals(0) && this.ball.ball.equals(0);
 	}
 
 	public void setMatchTrue() {
