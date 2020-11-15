@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 import model.entity.Player;
 
-/**
- * 게임 참가자
- */
 public class PlayerApiLogicService {
 	Scanner scan = new Scanner(System.in);
     Player player = new Player();
@@ -16,12 +13,15 @@ public class PlayerApiLogicService {
     	player.setInputNumber(scan.nextLine().trim());
     }
     
-    public void willPlay(String inputStopped) {
-    	inputStopped = inputStopped.substring(0).toUpperCase();
+    public boolean willPlay() {
+    	System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		System.out.print("게임을 새로 시작하려면 1, 종료하려면 2을 입력하세요 : ");
+    	String stoppedYn = scan.nextLine().substring(0).trim().toUpperCase();
     	
-    	System.out.print("게임을 시작하려면 Y, 종료하려면 N을 입력하세요 : ");
-    	if(inputStopped.equals("N")) {
+    	if(stoppedYn.equals("2")) {
     		System.out.println("종료 되었습니다.");
+    		return false;
     	}
-    }
+    	return true;
+    }    
 }
