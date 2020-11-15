@@ -21,7 +21,7 @@ public class BaseballGame {
     }
 
     private void generateMachine() {
-        this.matchMachine = new MatchMachine(new ComputerNumber().getNumber());
+        this.matchMachine = new MatchMachine(new ComputerNumber().getNumbers());
     }
 
     private void playOneGame() {
@@ -34,7 +34,7 @@ public class BaseballGame {
     }
 
     private Score compareNumber() {
-        return matchMachine.compare(new BaseballNumber(InputView.inputNumber()).getNumber());
+        return matchMachine.compare(new BaseballNumber(InputView.inputNumber()).getNumbers());
     }
 
     private void inputButton() {

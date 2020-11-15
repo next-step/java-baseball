@@ -3,7 +3,13 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,22 +18,42 @@ class MatchMachineTest {
 
     @BeforeEach
     void setup() {
-        matchMachine = new MatchMachine("123");
+        List<Integer> computerNumbers = new ArrayList<>();
+        computerNumbers.add(1);
+        computerNumbers.add(2);
+        computerNumbers.add(3);
+        matchMachine = new MatchMachine(computerNumbers);
     }
 
     @DisplayName("Strike check")
     @ParameterizedTest
-    @CsvSource(value = {"145:1", "312:0", "163:2"}, delimiter = ':')
-    void compareStrike(String number, int expected) {
-        Score score = matchMachine.compare(number);
+    @MethodSource("provideBaseballNumbers1")
+    void compareStrike(List<Integer> numbers, int expected) {
+        Score score = matchMachine.compare(numbers);
         assertThat(score.getStrike()).isEqualTo(expected);
     }
 
     @DisplayName("Ball check")
     @ParameterizedTest
-    @CsvSource(value = {"345:1", "312:3", "567:0"}, delimiter = ':')
-    void compareBall(String number, int expected) {
-        Score score = matchMachine.compare(number);
+    @MethodSource("provideBaseballNumbers2")
+    void compareBall(List<Integer> numbers, int expected) {
+        Score score = matchMachine.compare(numbers);
         assertThat(score.getBall()).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> provideBaseballNumbers1() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 4, 5), 1),
+                Arguments.of(Arrays.asList(3, 1, 2), 0),
+                Arguments.of(Arrays.asList(1, 6, 3), 2)
+        );
+    }
+
+    private static Stream<Arguments> provideBaseballNumbers2() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(3, 4, 5), 1),
+                Arguments.of(Arrays.asList(3, 1, 2), 3),
+                Arguments.of(Arrays.asList(5, 6, 7), 0)
+        );
     }
 }

@@ -31,6 +31,6 @@ class BaseballNumberTest {
     void validateDuplicate(int number) {
         assertThatThrownBy(() -> new BaseballNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복되는 숫자가 있습니다.");
+                .hasMessageContaining("중복되지 않은 숫자 3개만 입력해주세요.");
     }
 }

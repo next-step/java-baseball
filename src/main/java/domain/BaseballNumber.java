@@ -1,47 +1,43 @@
 package domain;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BaseballNumber {
     private static final int NUMBER_LENGTH = 3;
-    private final String number;
+    private final List<Integer> numbers;
 
-    public BaseballNumber(final int numberInt) {
-        this.number = String.valueOf(numberInt);
-        validate();
-    }
-
-    private void validate() {
-        validateLength();
+    public BaseballNumber(final int number) {
+        this.numbers = convertToList(number);
+        validateSize();
         validateZero();
-        validateDuplicate();
     }
 
-    private void validateLength() {
-        if (number.length() != NUMBER_LENGTH) {
-            throw new IllegalArgumentException("숫자 " + NUMBER_LENGTH + "개만 입력해주세요.");
+    private List<Integer> convertToList(final int number) {
+        return new ArrayList<>(removeDuplicate(number));
+    }
+
+    private Set<Integer> removeDuplicate(final int number) {
+        Set<Integer> numberSet = new LinkedHashSet<>();
+        String[] splitNumbers = String.valueOf(number).split("");
+        for (String splitNumber : splitNumbers) {
+            numberSet.add(Integer.parseInt(splitNumber));
+        }
+        return numberSet;
+    }
+
+    private void validateSize() {
+        if (numbers.size() != NUMBER_LENGTH) {
+            throw new IllegalArgumentException("중복되지 않은 숫자 " + NUMBER_LENGTH + "개만 입력해주세요.");
         }
     }
 
     private void validateZero() {
-        if (number.contains("0")) {
+        if (numbers.contains(0)) {
             throw new IllegalArgumentException("0이 들어있습니다.");
         }
     }
 
-    private void validateDuplicate() {
-        List<String> splitNumbers = Arrays.asList(number.split(""));
-        Set<String> numbers = new HashSet<>(splitNumbers);
-
-        if (numbers.size() != NUMBER_LENGTH) {
-            throw new IllegalArgumentException("중복되는 숫자가 있습니다.");
-        }
-    }
-
-    public String getNumber() {
-        return number;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
