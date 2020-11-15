@@ -25,10 +25,8 @@ public class ComputerApiLogicServiceTest {
 	
 	public boolean duplicateCheckNumber(char[] randomNumberArr) {
 		if(randomNumberArr[0] == randomNumberArr[1] || randomNumberArr[0] == randomNumberArr[2] || randomNumberArr[1] == randomNumberArr[2]) {
-			System.out.println("중복");
 			return false;
 		}
-		System.out.println("생성");
 		return true;
 	}
 	
@@ -49,7 +47,6 @@ public class ComputerApiLogicServiceTest {
 		for(int i=0; i<3; i++) {
 			if(!Character.isDigit(inputNumberArr[i])) {
 				flag = false;
-				System.out.println("is a Number : "+ flag);
 				break;
 			}
 		}
@@ -65,7 +62,6 @@ public class ComputerApiLogicServiceTest {
 		for(int i=0; i<inputNumberArr.length-1; i++) {
 			if(!duplicateCheckNumber(inputNumberArr[i], inputNumberArr[i+1])) {
 				flag = false;
-				System.out.println("is not a duplicate : "+ flag);
 				break;
 			}
 		}
@@ -89,7 +85,6 @@ public class ComputerApiLogicServiceTest {
 			ball = calcBall(randomNumberArr, inputNumberArr, i);
 		}
 		
-		System.out.println(ball + "볼");
 		assertEquals(3, ball);
 	}
 	
@@ -102,7 +97,6 @@ public class ComputerApiLogicServiceTest {
 			j++;
 		}
 		
-		System.out.println("ball:"+baseball.getBall());
 		return baseball.getBall();
 	}
 	
@@ -123,7 +117,6 @@ public class ComputerApiLogicServiceTest {
 		
 		for (char c : inputNumberArr) {
 			makeNumberStr += String.valueOf(c);
-			System.out.println("입력받은 숫자 : " + c);
 		}
 		
 		assertEquals("265", makeNumberStr);
@@ -141,7 +134,6 @@ public class ComputerApiLogicServiceTest {
 			}
 		}
 		
-		System.out.println(baseball.getStrike() + " 스트라이크");
 		assertEquals(2, baseball.getStrike());
 	}
 	
@@ -155,7 +147,6 @@ public class ComputerApiLogicServiceTest {
 		int j=0;
 		while(i<3) {
 			if(i != j && randomNumberArr[i] == inputNumberArr[j]) {
-				System.out.println("볼+1");
 				baseball.setBall(baseball.getBall()+1);
 			}
 			
