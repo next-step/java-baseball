@@ -13,6 +13,8 @@ import baseball.domain.exception.NumbersLengthException;
 public class BaseballNumbers {
 
 	private static final int NUMBERS_SIZE = 3;
+	private static final int START_INDEX = 0;
+	private static final int NOT_FOUND_INDEX = -1;
 	private final List<BaseballNumber> numbers = new ArrayList<>();
 
 	private BaseballNumbers(List<Integer> numbers) {
@@ -45,7 +47,8 @@ public class BaseballNumbers {
 	public List<BaseballStatus> calculateScore(BaseballNumbers targetNumbers) {
 		List<BaseballStatus> statuses = new ArrayList<>();
 		final List<BaseballNumber> targetNums = targetNumbers.numbers;
-		for (int i = 0; i < targetNums.size(); i++) {
+
+		for (int i = START_INDEX; i < targetNums.size(); i++) {
 			final int index = this.numbers.indexOf(targetNums.get(i));
 			statuses.add(findStatus(index, i));
 		}
@@ -57,7 +60,7 @@ public class BaseballNumbers {
 		if (src == target) {
 			return STRIKE;
 		}
-		if (src == -1) {
+		if (src == NOT_FOUND_INDEX) {
 			return NOTHING;
 		}
 		return BALL;

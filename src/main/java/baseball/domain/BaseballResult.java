@@ -7,6 +7,8 @@ import java.util.List;
 import baseball.domain.exception.ResultLengthException;
 
 public class BaseballResult {
+	private static final int OUT_COUNT = 3;
+	private static final int ZERO = 0;
 	private final List<BaseballStatus> statuses;
 	private int strikeCount;
 	private int ballCount;
@@ -31,19 +33,19 @@ public class BaseballResult {
 	}
 
 	public boolean isOut() {
-		return strikeCount == 3;
+		return strikeCount == OUT_COUNT;
 	}
 
 	public String getResultMessage() {
 		StringBuilder builder = new StringBuilder();
-		if (strikeCount > 0) {
+		if (strikeCount > ZERO) {
 			builder.append(String.format(STRIKE.getMessageFormat(), strikeCount));
 		}
-		if (ballCount > 0) {
+		if (ballCount > ZERO) {
 			builder.append(String.format(BALL.getMessageFormat(), ballCount));
 		}
 
-		if (strikeCount == 0 && ballCount == 0) {
+		if (strikeCount == ZERO && ballCount == ZERO) {
 			builder.append(NOTHING.getMessageFormat());
 		}
 		return builder.toString();
