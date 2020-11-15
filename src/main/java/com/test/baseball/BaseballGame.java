@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BaseballGame {
-    private final int NUMBER_COUNT = 3;
-
     public static void main(String[] args){
         new BaseballGame().run();
     }
@@ -15,9 +13,9 @@ public class BaseballGame {
     }
 
     private List<Integer> createRandomNumbers(){
-        List<Integer> numbers = new NotDuplicateList();
+        NotDuplicateList numbers = new NotDuplicateList(BaseballConstant.NUMBER_COUNT);
         Random r = new Random();
-        while(numbers.size() < NUMBER_COUNT) {
+        while(!numbers.isFull()) {
             int number = r.nextInt(9) + 1;
             numbers.add(number);
         }
