@@ -40,7 +40,6 @@ class BaseballNumberValidatorTest {
     @NullSource
     @DisplayName("야구 게임 번호 유효성 테스트 (invalid)")
     void numberRangeTestByInvalidList(String messege) {
-        System.out.println("messege = " + messege);
         // given
         List<Integer> collect = CommonValidatorHelper.convertStringToNumberList(messege);
         // when

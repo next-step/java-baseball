@@ -25,9 +25,7 @@ class BaseballNumbersTest {
         // when
         List<Integer> immutableList = baseballNumbers.getBaseballNumberList();
         // then
-        assertThrows(UnsupportedOperationException.class, () -> {
-            immutableList.add(1);
-        });
+        assertThrows(UnsupportedOperationException.class, () -> immutableList.add(1));
     }
 
 }

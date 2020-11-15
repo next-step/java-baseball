@@ -25,7 +25,6 @@ class BaseballNumbersGeneratorTest {
         assertThat(generate).isNotNull();
     }
 
-
     @Test
     @DisplayName("중복 번호 없는 Set 생성 테스트")
     void generateNotDuplicatedNumberSetTest() {

@@ -11,9 +11,7 @@ import java.util.Set;
  */
 public class ContainsOnlyOnceValidator implements Validator<List<Integer>> {
 
-    protected ContainsOnlyOnceValidator() {
-
-    }
+    protected ContainsOnlyOnceValidator() { }
 
     @Override
     public boolean validate(List<Integer> gameNumbers) {

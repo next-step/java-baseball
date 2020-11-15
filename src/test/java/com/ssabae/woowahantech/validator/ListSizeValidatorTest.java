@@ -39,7 +39,6 @@ class ListSizeValidatorTest {
     @NullSource
     @DisplayName("리스트 Size 유효성 테스트 (invalid)")
     void numberRangeTestByInvalidList(String messege) {
-        System.out.println("messege = " + messege);
         // given
         List<Integer> collect = CommonValidatorHelper.convertStringToNumberList(messege);
         // when

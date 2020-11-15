@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("사용자 입력값 파싱 테스트 클래스")
 class UserInputNumberParserTest {
 
-    private UserInputNumberParser parser = new UserInputNumberParser();
+    private final UserInputNumberParser parser = new UserInputNumberParser();
 
     @Test
     @DisplayName("사용자 입력값 파싱 테스트 (valid)")
