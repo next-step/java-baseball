@@ -30,6 +30,10 @@ public class ScoreTable {
     }
   }
 
+  public boolean isGameSuccess() {
+    return scoreMap.get(Score.STRIKE) == 3;
+  }
+
   public String printScore() {
     StringBuilder sb = new StringBuilder();
     if(scoreMap.isEmpty()) return Score.NONE.getName();

@@ -7,7 +7,7 @@ package baseball.app;
  */
 public class ScoreCalculator {
 
-  public ScoreTable calculate(String computerString, String inputString) {
+  public static ScoreTable calculate(String computerString, String inputString) {
     ScoreTable scoreTable = new ScoreTable();
     for (int i=0 ; i < inputString.length() ; i++) {
       Score score = StrikeValidator.validStrike(computerString, inputString, i);
