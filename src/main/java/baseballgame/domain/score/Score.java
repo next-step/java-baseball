@@ -1,5 +1,7 @@
 package baseballgame.domain.score;
 
+import baseballgame.dto.CompareResult;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,6 +10,7 @@ public class Score {
     private static final int MAX = 9;
 
     private static final int SCORE_LIMIT = 3;
+    private static final int MISS_MATCH = 0;
 
     private final int hundredsPlace;
     private final int tensPlace;
@@ -65,6 +68,55 @@ public class Score {
         return (MIN > hundredsPlace) || (hundredsPlace > MAX)
             || (MIN > tensPlace) || (tensPlace > MAX)
             | (MIN > onesPlace) || (onesPlace > MAX);
+    }
+
+    public CompareResult compare(final Score user) {
+        return compare(this, user);
+    }
+
+    public static CompareResult compare(final Score computer, final Score user) {
+        if ((computer == null) || (user == null)) {
+            return new CompareResult(MISS_MATCH, MISS_MATCH);
+        }
+
+        final int strikeCount = compareStrike(computer, user);
+        final int ballCount = compareBall(computer, user);
+
+        return new CompareResult(strikeCount, ballCount);
+    }
+
+    private static int compareStrike(final Score computer, final Score user) {
+        int strikeCount = MISS_MATCH;
+
+        if (computer.getHundredsPlace() == user.getHundredsPlace()) {
+            strikeCount++;
+        }
+        if (computer.getTensPlace() == user.getTensPlace()) {
+            strikeCount++;
+        }
+        if (computer.getOnesPlace() == user.getOnesPlace()) {
+            strikeCount++;
+        }
+
+        return strikeCount;
+    }
+
+    private static int compareBall(final Score computer, final Score user) {
+        int ballCount = MISS_MATCH;
+
+        if ((computer.getHundredsPlace() == user.getTensPlace()) || (computer.getHundredsPlace() == user.getOnesPlace())) {
+            ballCount++;
+        }
+
+        if ((computer.getTensPlace() == user.getHundredsPlace()) || (computer.getTensPlace() == user.getOnesPlace())) {
+            ballCount++;
+        }
+
+        if ((computer.getOnesPlace() == user.getHundredsPlace()) || (computer.getOnesPlace() == user.getTensPlace())) {
+            ballCount++;
+        }
+
+        return ballCount;
     }
 
     @Override
