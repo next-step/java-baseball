@@ -1,10 +1,12 @@
 package baseballgame.domain.game;
 
 import baseballgame.domain.score.Score;
+import baseballgame.domain.score.ScoreParser;
 import baseballgame.ui.input.Input;
 import baseballgame.ui.output.Output;
 
 public class BaseballGame implements Game {
+    private static final ScoreParser SCORE_PARSER = ScoreParser.getInstance();
     private final Score computerScore;
     private final Input input;
     private final Output output;
@@ -30,5 +32,9 @@ public class BaseballGame implements Game {
 
     private void printDemandingSentencesThatIsInputUserScore() {
         output.demandingUserScore();
+    }
+
+    private Score inputUserScore() {
+        return SCORE_PARSER.parseToGameScore(input.userScore());
     }
 }
