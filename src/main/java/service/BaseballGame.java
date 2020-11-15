@@ -26,8 +26,11 @@ public class BaseballGame {
 
 	private void play() {
 		BaseballResult baseballResult = referee.discriminate(this.computer.getNumber(), this.user.getNumber());
-		System.out.println(this.computer.getNumber());
 		this.printResult(baseballResult);
+
+		if (baseballResult.getStrikeCount() == 3) {
+			this.endGame();
+		}
 	}
 
 	private void printResult(BaseballResult baseballResult) {
