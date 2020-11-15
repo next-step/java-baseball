@@ -19,4 +19,24 @@ class BaseballGamerTest {
 		assertNotNull(gamer.getSelectedNumber());
 		assertEquals(gamer.getSelectedNumber().length(), numberSize);
 	}
+
+	@Test
+	@DisplayName("pickDigit : BaseballGamer의 selectedNumber에서 주어진 index에 위치하는 숫자 하나가 리턴되어야 함")
+	void pickDigit_ShouldReturnOneDigitAtTheGivenIndexInSelectedNumber() {
+		// given
+		int numberSize = 3;
+		BaseballGamer gamer = BaseballGamer.generateComputer(numberSize);
+		String selectedNumber = gamer.getSelectedNumber();
+
+		// when
+		int index = 1; // Zero-based
+		String digit = gamer.pickDigit(index);
+
+		// then
+		assertNotNull(digit);
+		assertAll(
+			() -> assertEquals(digit.length(), 1),
+			() -> assertEquals(digit, String.valueOf(selectedNumber.charAt(index)))
+		);
+	}
 }

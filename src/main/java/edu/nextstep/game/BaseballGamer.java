@@ -16,4 +16,11 @@ public class BaseballGamer {
 	public String getSelectedNumber() {
 		return selectedNumber;
 	}
+
+	public String pickDigit(int index) {
+		if (index < 0 || index >= selectedNumber.length()) {
+			return "";
+		}
+		return selectedNumber.substring(index, index + 1);
+	}
 }
