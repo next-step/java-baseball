@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -6,6 +7,7 @@ public class BaseballGame {
 
 	private LinkedHashSet<Integer> question;
 	private LinkedHashSet<Integer> answer;
+	private BaseballScore score;
 
 	public LinkedHashSet<Integer> getQuestion() {
 		return question;
@@ -18,10 +20,59 @@ public class BaseballGame {
 	BaseballGame() {
 		question = new LinkedHashSet<>(3);
 		answer = new LinkedHashSet<>(3);
+		score = new BaseballScore();
 	}
 
-	public void createGame() {
+	private void createGame() {
 		createQuestion();
+	}
+
+	public void startGame() {
+		createGame();
+
+		do {
+			inputAnswers();
+			decideAnswers();
+		} while (!decideAnswers());
+	}
+
+	public boolean decideAnswers() {
+		score.initialStrikeAndBall();
+		doCheckStrikeAndBall();
+		if (score.getStrike() == 3) {
+			return true;
+		}
+		return false;
+	}
+
+	private void doCheckStrikeAndBall() {
+		int index_i = 0;
+		for (Iterator<Integer> q = question.iterator(); q.hasNext();) {
+			int question = q.next();
+			decideStrikeAndBall(question, index_i++);
+		}
+	}
+
+	private void decideStrikeAndBall(int question, int index_i) {
+		int index_j = 0;
+		for (Iterator<Integer> a = answer.iterator(); a.hasNext();) {
+			int answer = a.next();
+			_decideStrikeAndBall(question, answer, index_i, index_j++);
+		}
+	}
+
+	private void _decideStrikeAndBall(int question, int answer, int index_i, int index_j) {
+		if (question == answer) {
+			addStrikeOrBall(index_i, index_j);
+		}
+	}
+
+	private void addStrikeOrBall(int i, int j) {
+		if (i == j) {
+			score.addStrike();
+			return;
+		}
+		score.addBall();
 	}
 
 	private void createQuestion() {

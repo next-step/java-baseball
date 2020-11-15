@@ -10,7 +10,7 @@ public class BaseballGameTest {
 		// Arrange
 		BaseballGame game = new BaseballGame();
 		// Act
-		game.createGame();
+		game.startGame();
 
 		// Assert
 
@@ -43,5 +43,14 @@ public class BaseballGameTest {
 			int i = 0;
 			assertThat(iter.next()).isEqualTo(test[i++]);
 		}
+	}
+
+	@Test
+	public void doCheckStrikeAndBallTest() {
+		BaseballGame game = new BaseballGame();
+
+		game.addAnswers(new String[] {"1", "2", "3"});
+
+		assertThat(game.decideAnswers()).isFalse();
 	}
 }
