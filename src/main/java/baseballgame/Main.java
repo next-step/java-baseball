@@ -13,8 +13,8 @@ public class Main {
 
         boolean retryFlag = true;
         while (retryFlag) {
-//            baseballGame.initGame();
-//            baseballGame.startGame();
+            baseballGame.initGame();
+            baseballGame.startGame();
 
             System.out.println(BaseballContract.GAME_RETRY_NOTI);
             retryFlag = checkRetry(sc.nextLine());
@@ -25,6 +25,6 @@ public class Main {
 
     // 게임 재시작 여부 체크
     public static boolean checkRetry(String value) {
-        return value.equals(BaseballContract.NEW_GAME);
+        return value.equals(BaseballContract.NEW_GAME_CHAR);
     }
 }

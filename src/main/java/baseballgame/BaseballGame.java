@@ -1,27 +1,60 @@
 package baseballgame;
 
+import baseballgame.contract.BaseballContract;
 import lombok.Getter;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class BaseballGame {
 
-    Random r = new Random();
-
+    Random r;
+    Scanner sc;
+    int strikeOutCount = 3;
     @Getter
-    private String gameNumber;
+    private String baseballNumber;
+
+    BaseballGame() {
+        r = new Random();
+        sc = new Scanner(System.in);
+    }
 
     // 게임에 필요한 3자리 숫자 초기화
     public void initGame() {
         int randomNumberSize = 3;
-        gameNumber = getRandomNumberString(randomNumberSize);
+        baseballNumber = getRandomNumberString(randomNumberSize);
     }
 
-    public boolean startGame() {
-        return false;
+    // 게임 시작
+    public void startGame() {
+        boolean outFlag = false;
+        System.out.println(BaseballContract.GAME_START);
+        while (!outFlag) {
+            System.out.println(BaseballContract.WAIT_INPUT);
+            String inputString = sc.nextLine();
+            int strikeCount = getStrikeCount(inputString);
+            int ballCount = getBallCount();
+            outFlag = isStrikeOut(strikeCount);
+        }
     }
 
-    private String getRandomNumberString(int size) {
+    // 스트라이크 카운트 
+    public int getStrikeCount(String userInput) {
+        return 0;
+    }
+
+    // 볼 카운트
+    public int getBallCount() {
+        return 0;
+    }
+
+    // 스트라이크 아웃 판단
+    public boolean isStrikeOut(int strikeCount) {
+        return strikeCount == strikeOutCount;
+    }
+
+    // 랜덤 숫자 문자열 생성
+    public String getRandomNumberString(int size) {
         String numberString = "";
 
         for (int i = 0; i < size; i++) {
