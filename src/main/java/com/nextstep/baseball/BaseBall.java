@@ -20,6 +20,7 @@ public class BaseBall {
 
 	}
 
+	//todo 테스트, 리팩토링, Junit5 테스트
 	public void playGame() {
 		//1. 1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능
 		List<Integer> answerList = selectNonoverlapThreeNumber();
@@ -31,25 +32,26 @@ public class BaseBall {
 
 		//3. Strike, Ball 체크하는 기능
 		List<Boolean> strikePosition = new ArrayList<>();
+		int strikeCnt = 0;
 		do {
 			strikePosition = detectStrike(answerList, inputNumberList);
 			removeStrike(strikePosition, answerList, inputNumberList);
 			int ballCount = detectBall(answerList, inputNumberList);
 			boolean isNothing = isNothing(answerList);
-			int strikeCnt = calcuateStrike(strikePosition);
+			strikeCnt = calcuateStrike(strikePosition);
 			printResult(strikeCnt, ballCount, isNothing); //결과 출력
-		} while (answerList.size() != 0);
+		} while (strikeCnt < 3);
 	}
 
 	private void printResult(int strikeCnt, int ballCount, boolean isNothing) {
 		StringBuffer sb = new StringBuffer();
-		if(isNothing){
+		if (isNothing) {
 			sb.append("낫싱");
 		}
-		if (strikeCnt != 0){
+		if (strikeCnt != 0) {
 			sb.append(String.format("{} 스트라이크", strikeCnt));
 		}
-		if (ballCount !=0){
+		if (ballCount != 0) {
 			sb.append(String.format("{} 볼", ballCount));
 		}
 		System.out.println(sb.toString());
@@ -64,7 +66,7 @@ public class BaseBall {
 	}
 
 	private int calcuateStrike(Boolean isStrike) {
-		if(isStrike){
+		if (isStrike) {
 			return 1;
 		}
 		return 0;
