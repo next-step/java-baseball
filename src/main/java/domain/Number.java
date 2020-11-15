@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Objects;
 
 public class Number {
@@ -42,7 +44,7 @@ public class Number {
 
     @Override
     public String toString() {
-        return "Number{" +
+        return "domain.Number{" +
                 "number=" + number +
                 '}';
     }

@@ -1,4 +1,4 @@
-import java.util.List;
+package domain;
 
 @FunctionalInterface
 public interface ChoiceStrategy {

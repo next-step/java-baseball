@@ -1,4 +1,9 @@
-import org.junit.jupiter.api.Assertions;
+package domain;
+
+import domain.Computer;
+import domain.Numbers;
+import domain.Result;
+import domain.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
