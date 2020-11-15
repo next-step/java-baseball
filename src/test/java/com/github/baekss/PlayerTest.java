@@ -27,12 +27,11 @@ public class PlayerTest {
 	}
 	
 	@Test
-	@DisplayName("플레이어 숫자 입력 테스트")
-	public void inputNumberTest() throws Exception {
-		String invalidValue = "0";
-		int length = 3;
+	@DisplayName("플레이어의 입력값 반환 테스트")
+	public void outputNumberTest() throws Exception {
+		String threeDigitNumberString = "726";
 		
-		Set<Integer> inputNumberSet = player.putThreeDigitNumber(invalidValue, length); // 콘솔에 값 입력 요망
-		assertThat(inputNumberSet.size()).isEqualTo(3);
+		Set<Integer> outputNumberSet = player.getThreeDigitNumber(threeDigitNumberString);
+		assertThat(outputNumberSet.size()).isEqualTo(3);
 	}
 }
