@@ -6,10 +6,13 @@ import service.GameService;
 
 public class GameView {
 
-	private static GameService gameService = new GameService();
+	private GameService gameService;
 
-	public static void start() {
-		// Generate numbers
-		List<Integer> balls = gameService.generate();
+	public GameView() {
+		gameService = new GameService();
+	}
+
+	public void start() {
+		gameService.start();
 	}
 }
