@@ -185,7 +185,7 @@ void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String ex
 
 - `심판(Referee)`
     - `볼들(Balls)`을 비교하는 역할을 한다.
-    - [ ] `판독기(Reader)`로 `판정(Judge)`한 결과로 `판정 보고서(Judge Report)`를 만든다.
+    - [x] `판독기(Reader)`로 `판정(Judge)`한 결과로 `판정 보고서(Judge Report)`를 만든다.
 
 - `판독기(Reader)`
     - [x] 위치와 숫자가 같다면 `Strike`로 `판정(Judge)`한다.
