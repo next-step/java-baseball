@@ -5,7 +5,7 @@ public enum BaseballRule {
   BALL("볼"),
   NOTHING("낫씽");
 
-  private String ruleName;
+  private final String ruleName;
 
   BaseballRule(String ruleName) {
     this.ruleName = ruleName;
