@@ -1,9 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Computer {
 
     private final Numbers numbers;
@@ -12,18 +8,23 @@ public class Computer {
         this.numbers = numbers;
     }
 
-//    public
-
     public Numbers getNumbers() {
         return numbers;
     }
 
     public Result matches(Numbers userNumbers) {
+        Result result = new Result();
+        if (checkNothing(userNumbers, result)) return result;
+        result = numbers.match(userNumbers);
+        return result;
+    }
+
+    private boolean checkNothing(Numbers userNumbers, Result result) {
         boolean isContain = numbers.isContain(userNumbers);
         if (!isContain) {
-            return new Result(Arrays.asList(Score.NOTHING));
+            result.put(Score.NOTHING);
+            return true;
         }
-        List<Score> scores = numbers.match(userNumbers);
-        return new Result(new ArrayList<>(scores));
+        return false;
     }
 }

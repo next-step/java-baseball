@@ -16,14 +16,6 @@ public class Numbers {
         return new Numbers(new ArrayList<>(numbers));
     }
 
-    public static Numbers valueOf(int... numbers) {
-        List<Number> result = new ArrayList<>();
-        for (int number : numbers) {
-            result.add(Number.valueOf(number));
-        }
-        return valueOf(result);
-    }
-
     private static void validateNumbers(Collection<Number> numbers) {
         if (Objects.isNull(numbers) || numbers.isEmpty()) {
             throw new IllegalArgumentException("숫자값은 비어있으면 안됩니다.");
@@ -83,16 +75,13 @@ public class Numbers {
         return userNumbers.size() > 0;
     }
 
-    public List<Score> match(Numbers userNumbers) {
-        List<Score> resultScores = new ArrayList<>();
-
+    public Result match(Numbers userNumbers) {
+        Result result = new Result();
         for (int i = 0; i < userNumbers.size(); i++) {
-            int matchPoint = checkNumber(userNumbers, i);
-            Score score = Score.findScore(matchPoint);
-            addScores(resultScores, score);
+            Score score = checkScore(userNumbers, i);
+            result.put(score);
         }
-        resultScores.removeIf(n -> n == Score.NOTHING);
-        return resultScores;
+        return result;
     }
 
     private Score checkScore(Numbers userNumbers, int i) {
