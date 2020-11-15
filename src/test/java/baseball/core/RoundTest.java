@@ -1,5 +1,6 @@
 package baseball.core;
 
+import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RoundTest {
 	private static Round round;
+	private Map<GameStatus, Integer> resultCountMap;
 
 	@BeforeAll
 	public static void beforeAll() {
@@ -139,6 +141,33 @@ public class RoundTest {
 	public void initRound() {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new Round(1);
-		}).withMessage("%s에 자릿수에 해당하는 숫자를 넘겨주시기 바랍니다.", 3);
+		}).withMessage("%s자리 자릿수에 해당하는 숫자를 넘겨주시기 바랍니다.", 3);
 	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {456, 789, 489, 459, 784, 768})
+	@DisplayName("제시한 값에 점수확인")
+	public void getGameStatusCountMap1(int num) {
+		Map<GameStatus, Integer> resultCountMap = round.getGameStatusCountMap(num);
+
+		assertEquals(resultCountMap.get(GameStatus.STRIKE), 0);
+		assertEquals(resultCountMap.get(GameStatus.BOLL), 0);
+	}
+
+	@Test
+	@DisplayName("제시한 값에 점수확인")
+	public void getGameStatusCountMap2() {
+		resultCountMap = round.getGameStatusCountMap(123);
+		assertEquals(resultCountMap.get(GameStatus.STRIKE), 3);
+		assertEquals(resultCountMap.get(GameStatus.BOLL), 0);
+
+		resultCountMap = round.getGameStatusCountMap(231);
+		assertEquals(resultCountMap.get(GameStatus.STRIKE), 0);
+		assertEquals(resultCountMap.get(GameStatus.BOLL), 3);
+
+		resultCountMap = round.getGameStatusCountMap(142);
+		assertEquals(resultCountMap.get(GameStatus.STRIKE), 1);
+		assertEquals(resultCountMap.get(GameStatus.BOLL), 1);
+	}
+
 }

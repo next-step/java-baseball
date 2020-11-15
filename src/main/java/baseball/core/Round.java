@@ -9,7 +9,7 @@ public class Round {
 
 	public Round(int value) {
 		if (numberLength(value) != MAX_DIGITS) {
-			throw new IllegalArgumentException(String.format("%d에 자릿수에 해당하는 숫자를 넘겨주시기 바랍니다.", MAX_DIGITS));
+			throw new IllegalArgumentException(String.format("%d자리 자릿수에 해당하는 숫자를 넘겨주시기 바랍니다.", MAX_DIGITS));
 		}
 
 		numberMap = new HashMap<>();
@@ -17,6 +17,20 @@ public class Round {
 		for (int i = 0; i < MAX_DIGITS; i++) {
 			numberMap.put(getPlaceValue(value, i), i);
 		}
+	}
+
+	public Map<GameStatus, Integer> getGameStatusCountMap(int num) {
+		Map<GameStatus, Integer> countMap = new HashMap<GameStatus, Integer>(){{
+			put(GameStatus.STRIKE, 0);
+			put(GameStatus.BOLL, 0);
+		}};
+
+		for (int i = 0; i < Round.MAX_DIGITS; i++) {
+			int number = getPlaceValue(num, i);
+			countMap.computeIfPresent(getGameStatus(number, i), (GameStatus gameStatus, Integer count) -> ++count);
+		}
+
+		return countMap;
 	}
 
 	protected boolean isExsit(int number) {
@@ -29,6 +43,14 @@ public class Round {
 		}
 
 		return false;
+	}
+
+	protected GameStatus getGameStatus(int number, int index) {
+		if (isPlaceExsit(number, index)) {
+			return GameStatus.STRIKE;
+		}
+
+		return isExsit(number) ? GameStatus.BOLL : GameStatus.NONE;
 	}
 
 	protected int numberLength(int number) {
