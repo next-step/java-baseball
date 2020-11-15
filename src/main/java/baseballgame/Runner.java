@@ -1,5 +1,7 @@
 package baseballgame;
 
+import baseballgame.domain.game.BaseballGame;
+import baseballgame.domain.game.Game;
 import baseballgame.domain.game.GameParser;
 import baseballgame.ui.input.ConsoleInput;
 import baseballgame.ui.input.Input;
@@ -23,7 +25,14 @@ public class Runner {
     }
 
     private void execute() {
+        boolean gameExit;
 
+        do {
+            final Game startingGame = new BaseballGame(INPUT, OUTPUT);
+            startingGame.run();
+
+            gameExit = checkWhetherWantToRestartGame();
+        } while (gameExit);
     }
 
     private boolean checkWhetherWantToRestartGame() {
