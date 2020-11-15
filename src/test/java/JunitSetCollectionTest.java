@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Set Collection Test")
@@ -44,7 +45,7 @@ public class JunitSetCollectionTest {
 	// 요구사항 2는 contains 메소드 결과 값이 true인 경우만 테스트 가능하다. 입력 값에 따라 결과값이 다른 경우에 대한 테스트도 가능하도록 구현한다.
 	// 예를 들어 1, 2, 3 값은 contains 메소드 실행결과 true, 4, 5 값을 넣으면 false 가 반환되는 테스트를 하나의 Test Case로 구현한다
 	@ParameterizedTest
-	@ValueSource(ints = {1,2,3,4,5})
+	@CsvSource(value = {"1:1", "4:4", "5:5"}, delimiter = ':')
 	void containsFalse(int index) {
 		assertThat(numbers.contains(index)).isTrue();
 	}
