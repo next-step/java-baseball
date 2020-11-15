@@ -22,20 +22,14 @@ class ComputerNumberTest {
     @DisplayName("서로 다른 3자리 수로 생성되는지 확인")
     @Test
     void makeRandomNumber() {
-        boolean result = checkDuplicate(computerNumber.getNumber(), 3);
+        boolean result = checkDuplicate(computerNumber.getNumber());
         assertThat(result).isEqualTo(true);
     }
 
-    private boolean checkDuplicate(String number, int numberLength) {
-        Set<String> numbers = new HashSet<>();
+    private boolean checkDuplicate(String number) {
         List<String> splitList = Arrays.asList(number.split(""));
-        for (String s : splitList) {
-            numbers.add(s);
-        }
+        Set<String> numbers = new HashSet<>(splitList);
 
-        if (numbers.size() != numberLength) {
-            return false;
-        }
-        return true;
+        return numbers.size() == 3;
     }
 }

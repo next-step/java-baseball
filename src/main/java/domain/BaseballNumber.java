@@ -11,24 +11,28 @@ public class BaseballNumber {
 
     public BaseballNumber(final int numberInt) {
         this.number = String.valueOf(numberInt);
-        validateLength(number);
-        validateZero(number);
-        validateDuplicate(number);
+        validate();
     }
 
-    private void validateLength(final String number) {
+    private void validate() {
+        validateLength();
+        validateZero();
+        validateDuplicate();
+    }
+
+    private void validateLength() {
         if (number.length() != NUMBER_LENGTH) {
             throw new IllegalArgumentException("숫자 " + NUMBER_LENGTH + "개만 입력해주세요.");
         }
     }
 
-    private void validateZero(final String number) {
+    private void validateZero() {
         if (number.contains("0")) {
             throw new IllegalArgumentException("0이 들어있습니다.");
         }
     }
 
-    private void validateDuplicate(final String number) {
+    private void validateDuplicate() {
         List<String> splitNumbers = Arrays.asList(number.split(""));
         Set<String> numbers = new HashSet<>(splitNumbers);
 

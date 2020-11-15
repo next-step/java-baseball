@@ -6,7 +6,7 @@ public class InputView {
     private static final String NOTICE_INPUT = "숫자를 입력해주세요 : ";
     private static final int GO_BUTTON = 1;
     private static final int STOP_BUTTON = 2;
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputNumber() {
         System.out.println(NOTICE_INPUT);

@@ -42,9 +42,6 @@ public class BaseballGame {
     }
 
     private boolean isStop() {
-        if (gameButton == GO_BUTTON) {
-            return false;
-        }
-        return true;
+        return gameButton != GO_BUTTON;
     }
 }
