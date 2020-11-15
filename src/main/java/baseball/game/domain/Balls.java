@@ -1,6 +1,5 @@
 package baseball.game.domain;
 
-import baseball.game.domain.game.BallResultType;
 import baseball.game.exception.BallNumberDuplicateException;
 import baseball.game.exception.BallsSizeException;
 import java.util.ArrayList;
