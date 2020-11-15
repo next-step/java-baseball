@@ -85,4 +85,26 @@ public class BaseBall {
         }
         return message;
     }
+
+    public void play() {
+        while (numberSet.size() < MAX_NUMBER) {
+            insertDifferentNumbers(generateRandomNumber());
+        }
+
+        while (end < 1) {
+            repeatComparing();
+        }
+
+        System.out.println("게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.");
+        int enteredNumber = inputNumber();
+        if(enteredNumber == 1) {
+            initComputer();
+            play();
+        }
+    }
+
+    public void initComputer() {
+        numberSet = new HashSet<>();
+        end = 0;
+    }
 }
