@@ -1,6 +1,5 @@
 package baseball.view;
 
-import baseball.domain.Baseball;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

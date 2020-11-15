@@ -15,7 +15,7 @@ public class BaseballTest {
     private static List<Integer> baseballUnderSize = new ArrayList<>();
 
     @Test
-    @DisplayName("over the three digit exception test")
+    @DisplayName("validation(size : over three digit) test")
     public void overTheSize3() {
         for(int i = 1; i < 5; i++) {
             baseballOverSize.add(i);
@@ -26,7 +26,7 @@ public class BaseballTest {
     }
 
     @Test
-    @DisplayName("under the three digit exception test")
+    @DisplayName("validation(size : under three digit) test")
     public void underTheSize3() {
         for(int i = 1; i < 2; i++) {
             baseballUnderSize.add(i);
@@ -42,6 +42,24 @@ public class BaseballTest {
         String abNormalInput = "2f3";
         Assertions.assertThrows(NumberFormatException.class, () -> {
             Baseball.of(abNormalInput);
+        });
+    }
+
+    @Test
+    @DisplayName("validation(duplication) test")
+    public void inputDuplicateNumber() {
+        String duplicationInput = "233";
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Baseball.of(duplicationInput);
+        });
+    }
+
+    @Test
+    @DisplayName("validation(null) test")
+    public void inputNull() {
+        String nullInput = null;
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            Baseball.of(nullInput);
         });
     }
 

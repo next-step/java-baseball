@@ -1,33 +1,49 @@
 package baseball.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Baseball {
+    private static final String SIZE_EXCEPTION = "자리수가 올바르지 않습니다. 세자리로 입력해주세요.";
+    private static final String DUPLICATE_EXCEPTION = "중복된 숫자가 있습니다. 중복을 피해주세요.";
     private static final int BASEBALL_SIZE = 3;
 
     private final List<BaseballNo> baseball;
 
 
     private Baseball(List<BaseballNo> baseball) {
-        if(baseball.size() != BASEBALL_SIZE) {
-            throw new IllegalArgumentException();
-        }
+        validation(baseball);
         this.baseball = baseball;
+    }
+
+    private void validation(List<BaseballNo> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateSize(List<BaseballNo> numbers) {
+        if(numbers.size() != BASEBALL_SIZE) {
+            throw new IllegalArgumentException(SIZE_EXCEPTION);
+        }
+    }
+
+    private void validateDuplicate(List<BaseballNo> numbers) {
+        Set<BaseballNo> baseballNumberSet = new HashSet<>(numbers);
+        if (baseballNumberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_EXCEPTION);
+        }
+    }
+
+    private static Integer convertInteger(char number) {
+        return Integer.parseInt(String.valueOf(number));
     }
 
     public static Baseball of(String numbers) {
         List<BaseballNo> baseball = new ArrayList<>();
-        //todo string length에 대한 예외처리.
-        for(int i =0; i < BASEBALL_SIZE; i++) {
+
+        for(int i =0; i < numbers.length(); i++) {
             baseball.add(BaseballNo.of(convertInteger(numbers.charAt(i))));
         }
         return new Baseball(baseball);
-    }
-
-    private static Integer convertInteger(char number){
-            return Integer.parseInt(String.valueOf(number));
     }
 
     public static Baseball of(List<Integer> numbers) {

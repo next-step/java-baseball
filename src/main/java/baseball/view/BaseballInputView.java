@@ -18,6 +18,9 @@ public class BaseballInputView {
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
             return userInputValue();
+        } catch (NullPointerException npe) {
+            System.out.println(npe.getMessage());
+            return userInputValue();
         }
     }
 
