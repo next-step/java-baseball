@@ -8,21 +8,28 @@ import vo.BaseballNumber;
 
 public class Computer extends Player {
 	public Computer() {
+		super("COMPUTER");
 		this.setNumber(this.generateRandomNumber());
 	}
 
 	private Set<BaseballNumber> generateRandomNumber() {
 		final int numberCount = 3;
 		final int maxInteger = 9;
+		final Set<Integer> numberSet = new HashSet<>(numberCount);
+		final Set<BaseballNumber> baseballNumberSet = new HashSet<>(numberCount);
+
 		int index = 0;
-		final Set<BaseballNumber> numberSet = new HashSet<>(3);
 
 		Random random = new Random();
 
 		while (numberSet.size() < numberCount) {
-			numberSet.add(new BaseballNumber(Math.abs(random.nextInt(maxInteger - 1) + 1), index++));
+			numberSet.add(Math.abs(random.nextInt(maxInteger - 1) + 1));
 		}
 
-		return numberSet;
+		for (Integer number : numberSet) {
+			baseballNumberSet.add(new BaseballNumber(number, index++));
+		}
+
+		return baseballNumberSet;
 	}
 }
