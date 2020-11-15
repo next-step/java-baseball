@@ -3,6 +3,7 @@ package NumberBaseballGame;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class NumberBaseballGame {
 
@@ -24,4 +25,34 @@ public class NumberBaseballGame {
 		}
 	}
 
+	public String writeInputDate() {
+
+		String inputData = "";
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("숫자를 입력해주세요 : ");
+
+		inputData = scanner.next();
+
+		scanner.close();
+
+		return inputData;
+	}
+
+	public static void main(String[] args) {
+
+		//while (true) {
+		String inputData = "";
+
+		NumberBaseballGame game = new NumberBaseballGame();
+
+		game.setAnswer();
+
+		inputData = game.writeInputDate();
+
+		// checkInputData();
+
+		// nextProcess();
+		//}
+	}
 }
