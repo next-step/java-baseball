@@ -15,6 +15,12 @@ public class BaseballUser {
         INPUT = new Scanner(is);
     }
 
+    public boolean isRestart(){
+        System.out.println("계속 하시겠습니까?(y/n)");
+        String line = INPUT.nextLine();
+        return "y".equalsIgnoreCase(line);
+    }
+
     public List<Integer> getInputNumbers() {
         List<Integer> numbers;
         do {
@@ -31,7 +37,6 @@ public class BaseballUser {
             System.out.println(BaseballConstant.NUMBER_COUNT + "자리의 1-9 사이의 숫자만 입력 가능합니다");
             return null;
         }
-
         return parseNumbers(line);
     }
 
@@ -42,7 +47,6 @@ public class BaseballUser {
         for ( String number : temp ) {
             numbers.add(Integer.parseInt(number));
         }
-
         return isDuplicate(numbers)?null:numbers;
     }
 

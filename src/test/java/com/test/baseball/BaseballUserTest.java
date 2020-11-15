@@ -74,4 +74,13 @@ public class BaseballUserTest {
 
         assertThat(result).isNotNull().isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource({"y,true","n,false",".,false","3,false"})
+    public void testIsRestart(String source, boolean expected) {
+        BaseballUser user = new BaseballUser(new ByteArrayInputStream(source.getBytes()));
+
+        assertThat(user.isRestart()).isEqualTo(expected);
+    }
+
 }
