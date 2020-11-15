@@ -60,7 +60,7 @@ public class GameController {
         String input = InputView.inputContinue();
         int continueInput = parseToNumber(input);
 
-        if (continueInput == 1) {
+        if (GameStatus.CONTINUE.equalsCode(continueInput)) {
             return GameStatus.CONTINUE;
         }
 
