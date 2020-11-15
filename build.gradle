@@ -2,10 +2,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 version = '1.0.0'
-sourceCompatibility = 1.8
+sourceCompatibility = 14
 
 repositories {
     mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
 }
 
 dependencies {
