@@ -1,12 +1,7 @@
 package com.github.baekss.domain;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import com.github.baekss.InputChecker;
 
 public class Player {
 	
@@ -25,34 +20,12 @@ public class Player {
 	}
 	
 	/**
-	 * 플레이어가 숫자를 입력하는 기능
-	 * @param invalidValue 유효하지 않은 값
-	 * @param length 유효한 입력값 길이
-	 * @return 플레이어의 입력값
+	 * 플레이어의 입력값을 반환한다.
+	 * @param threeDigitNumberString 플레이어의 입력값
+	 * @return 플레이어의 입력값(LinkedHashSet 형태)
 	 */
-	public Set<Integer> putThreeDigitNumber(String invalidValue, int length) throws Exception {
-		String threeDigitNumberString = "";
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-			threeDigitNumberString = reader.readLine();
-			checkInput(threeDigitNumberString, invalidValue, length);
-		} catch (IOException ioe) {
-			throw ioe;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw e;
-		}
+	public Set<Integer> getThreeDigitNumber(String threeDigitNumberString) {
 		return toIntegerSet(threeDigitNumberString);
-	}
-	
-	/**
-	 * 플레이어의 입력값 검증 기능
-	 */
-	private boolean checkInput(String input, String invalidValue, int length) {
-		boolean flag = InputChecker.checkNumberFormat(input)
-						&& InputChecker.checkInputLength(input, length)
-						&& InputChecker.checkInvalidValue(input, invalidValue)
-						&& InputChecker.isUniqueEachValue(input, length);
-		return flag;
 	}
 	
 	private LinkedHashSet<Integer> toIntegerSet(String input) {
