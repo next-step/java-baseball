@@ -188,10 +188,10 @@ void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String ex
     - [ ] `판독기(Reader)`로 `판정(Judge)`한 결과로 `판정 보고서(Judge Report)`를 만든다.
 
 - `판독기(Reader)`
-    - [ ] 위치와 숫자가 같다면 `Strike`로 `판정(Judge)`한다.
-    - [ ] 위치가 다르고 숫자만 같다면 `Ball`로 `판정(Judge)`한다.
-    - [ ] 위치와 숫자 모두 다르다면 `Miss`로 `판정(Judge)`한다.
-    - [ ] 모든 조건에 일치하지 않으면 예외처리 한다.
+    - [x] 위치와 숫자가 같다면 `Strike`로 `판정(Judge)`한다.
+    - [x] 위치가 다르고 숫자만 같다면 `Ball`로 `판정(Judge)`한다.
+    - [x] 위치와 숫자 모두 다르다면 `Miss`로 `판정(Judge)`한다.
+    - [x] 모든 조건에 일치하지 않으면 예외처리 한다.
 
 - `볼들(Balls)`
     - `투수(Pitcher)`가 던진 3개의 `볼(Ball)`들을 의미한다.
