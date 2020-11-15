@@ -1,7 +1,6 @@
-package baseballgame.domain.parser;
+package baseballgame.domain.score;
 
 import baseballgame.domain.error.ScoreParseException;
-import baseballgame.domain.score.Score;
 
 import java.util.InputMismatchException;
 
