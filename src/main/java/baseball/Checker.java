@@ -15,6 +15,7 @@ public class Checker {
   public void getScore(int[] userNumber) {
     strike = getStrikeCount(userNumber);
     ball = getBallCount(userNumber, strike);
+    printScore();
   }
 
   public int getStrikeCount(int[] userNumber) {
@@ -40,6 +41,19 @@ public class Checker {
 
   public int isBall(int user) {
     return answer.contains(user) ? 1 : 0;
+  }
+
+  public void printScore() {
+    if(strike == 0 && ball == 0) {
+      System.out.print(OutputType.NOTHING);
+    }
+    if(strike != 0) {
+      System.out.print(String.format(OutputType.STRIKE, strike));
+    }
+    if(ball != 0) {
+      System.out.print(String.format(OutputType.BALL, ball));
+    }
+    System.out.println();
   }
 
 }
