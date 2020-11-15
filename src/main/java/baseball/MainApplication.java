@@ -14,6 +14,14 @@ import java.util.ArrayList;
 public class MainApplication {
 
     public static void main(String[] args) {
+
+        do {
+            baseBallGame();
+        } while (InputView.restart());
+
+    }
+
+    private static void baseBallGame() {
         // dealer
         BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(new ArrayList<Integer>()));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
@@ -22,7 +30,6 @@ public class MainApplication {
             baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber())));
             ResultView.printBallCount(baseBallGame.getBallCount());
         } while (!baseBallGame.isFinish());
-
     }
 
 }
