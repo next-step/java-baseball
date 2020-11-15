@@ -11,9 +11,9 @@ public class GuessResult {
     }
 
     public static GuessResult init() {
-        Map<MatchType, CountByMatchType> countByMatchTypes = new HashMap<>();
-        countByMatchTypes.put(MatchType.STRIKE, CountByMatchType.init(MatchType.STRIKE));
-        countByMatchTypes.put(MatchType.BALL, CountByMatchType.init(MatchType.BALL));
+        Map<MatchType, Integer> countByMatchTypes = new HashMap<>();
+        countByMatchTypes.put(MatchType.STRIKE, 0);
+        countByMatchTypes.put(MatchType.BALL, 0);
         return new GuessResult(new CountMatchTypes(countByMatchTypes));
     }
 

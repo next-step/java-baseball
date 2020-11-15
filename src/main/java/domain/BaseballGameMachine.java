@@ -13,7 +13,7 @@ public class BaseballGameMachine {
     }
 
     public static BaseballGameMachine initGame() {
-        return new BaseballGameMachine(BaseballGame.startGame(), true);
+        return new BaseballGameMachine(BaseballGame.startNewGame(), true);
     }
 
     public void guessIteration() {
@@ -45,7 +45,7 @@ public class BaseballGameMachine {
             return;
         }
         if (continueNumber == 1) {
-            baseballGame = BaseballGame.startGame();
+            baseballGame = BaseballGame.startNewGame();
             baseballGameContinue = true;
             return;
         }

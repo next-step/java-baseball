@@ -28,4 +28,9 @@ public class GameDigit {
     public int hashCode() {
         return Objects.hash(digit);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(digit);
+    }
 }

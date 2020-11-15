@@ -7,8 +7,9 @@ public class BaseballGame {
         this.answer = answer;
     }
 
-    public static BaseballGame startGame() {
+    public static BaseballGame startNewGame() {
         GameNumber answerNumber = GameNumber.generateRandomGameNumber();
+//        System.out.println(answerNumber);
         return new BaseballGame(answerNumber);
     }
 

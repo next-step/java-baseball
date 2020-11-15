@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static domain.GameDigitRepository.getNotDuplicateThreeGameNumbers;
+import static domain.GameDigitRepository.getNotDuplicateThreeGameDigits;
 
 public class GameNumber {
     private final List<GameDigit> digits;
@@ -15,7 +15,7 @@ public class GameNumber {
     }
 
     public static GameNumber generateRandomGameNumber() {
-        List<GameDigit> numbers = getNotDuplicateThreeGameNumbers();
+        List<GameDigit> numbers = getNotDuplicateThreeGameDigits();
         return new GameNumber(numbers);
     }
 
@@ -59,5 +59,11 @@ public class GameNumber {
 
     public GameDigit get(int index) {
         return digits.get(index);
+    }
+
+    @Override public String toString() {
+        return "GameNumber{" +
+                "digits=" + digits +
+                '}';
     }
 }

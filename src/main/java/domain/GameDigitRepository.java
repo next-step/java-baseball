@@ -17,11 +17,11 @@ public class GameDigitRepository {
 
     }
 
-    public static List<GameDigit> getNotDuplicateThreeGameNumbers() {
+    public static List<GameDigit> getNotDuplicateThreeGameDigits() {
         Set<GameDigit> gameDigits = new HashSet<>();
-        gameDigits.add(getFirstRandomNumber());
+        gameDigits.add(getRandomExceptZero());
         while (gameDigits.size() != 3) {
-            gameDigits.add(GameDigitRepository.getRandomNumber());
+            gameDigits.add(GameDigitRepository.getRandom());
         }
         return new ArrayList<>(gameDigits);
     }
@@ -36,11 +36,11 @@ public class GameDigitRepository {
         return gameDigits;
     }
 
-    private static GameDigit getRandomNumber() {
+    private static GameDigit getRandom() {
         return cachedNumbers.get(getRandomIntSingleDigit());
     }
 
-    private static GameDigit getFirstRandomNumber() {
+    private static GameDigit getRandomExceptZero() {
         return cachedNumbers.get(getRandomIntSingleDigitExceptZero());
     }
 
