@@ -42,4 +42,8 @@ public class BaseballGame implements Game {
     private void printCompareResult(CompareResult result) {
         output.gameScore(result);
     }
+
+    private boolean checkScoreMatchingPass(CompareResult result) {
+        return result.isPass();
+    }
 }
