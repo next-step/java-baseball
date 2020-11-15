@@ -21,8 +21,7 @@ public class NumberBaseballGameTest {
 	// 1~9까지의 서로 다른 수로 이루어진 digit자리(3)의 수를 생성
 	// 서로 다른 수인지 체크
 	@Test
-	public void testLengthGenerateRandomNumDiff() {
-
+	public void testDiffGenerateRandomNum() {
 		@SuppressWarnings("static-access")
 		int number = numberBaseballGame.generateRandomNumDigit(numberBaseballGame.RANDOM_DIGIT);
 
@@ -31,7 +30,6 @@ public class NumberBaseballGameTest {
 		for (String string : numberArr) {
 			assertThat(getCharNumber(number + "", string.charAt(0))).isEqualTo(1);
 		}
-
 	}
 	
 	/**
