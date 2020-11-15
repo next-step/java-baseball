@@ -19,7 +19,6 @@ public class BaseballGame {
 		this.initialize();
 
 		while (!this.isGameEnd) {
-			this.setPlayers();
 			this.inputUserNumber();
 			this.play();
 		}
@@ -64,9 +63,10 @@ public class BaseballGame {
 	}
 
 	private void initialize() {
-		scanner = new Scanner(System.in);
-		isGameEnd = false;
-		referee = new Referee();
+		this.scanner = new Scanner(System.in);
+		this.isGameEnd = false;
+		this.referee = new Referee();
+		this.setPlayers();
 	}
 
 	private void setPlayers() {
