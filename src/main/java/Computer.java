@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Computer {
 
-    private List<Integer> numbers;
+    private List<String> numbers;
     private Random random;
 
     public Computer() {
@@ -14,7 +14,7 @@ public class Computer {
 
     public void generateNumber() {
         numbers = new ArrayList<>();
-        List<Integer> numberList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        List<String> numberList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
         for (int i = 0; i < 3; i++) {
             int randomIndex = random.nextInt(numberList.size());
             numbers.add(numberList.get(randomIndex));
@@ -22,7 +22,7 @@ public class Computer {
         }
     }
 
-    public List<Integer> getNumbers() {
+    public List<String> getNumbers() {
         return numbers;
     }
 
