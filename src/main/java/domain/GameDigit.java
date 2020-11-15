@@ -3,6 +3,9 @@ package domain;
 import java.util.Objects;
 
 public class GameDigit {
+    public static final int MIN_DIGIT = 0;
+    public static final int MAX_DIGIT = 9;
+
     private final int digit;
 
     public GameDigit(int digit) {
@@ -11,7 +14,7 @@ public class GameDigit {
     }
 
     private void validate(int number) {
-        if (number < 0 || number > 9) {
+        if (number < MIN_DIGIT || number > MAX_DIGIT) {
             throw new IllegalArgumentException("GameDigit은 한 자리의 숫자여야 합니다.");
         }
     }

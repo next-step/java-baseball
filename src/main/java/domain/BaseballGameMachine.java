@@ -1,6 +1,9 @@
 package domain;
 
 public class BaseballGameMachine {
+    public static final int INPUT_CONTINUE_GAME = 1;
+    public static final int INPUT_STOP_GAME = 2;
+
     private BaseballGame baseballGame;
     private boolean baseballGameContinue;
 
@@ -26,13 +29,13 @@ public class BaseballGameMachine {
     }
 
     public void continueGameByInput(int input) {
-        if (stopGameIfInputNumberTwo(input)) return;
+        if (stopGameIfInputStop(input)) return;
         if (continueGameIfInputNumberOne(input)) return;
         throw new IllegalArgumentException("1 또는 2의 값을 입력해야 합니다.");
     }
 
     private boolean continueGameIfInputNumberOne(int input) {
-        if (input == 1) {
+        if (input == INPUT_CONTINUE_GAME) {
             baseballGame = BaseballGame.startNewGame();
             baseballGameContinue = true;
             return true;
@@ -40,8 +43,8 @@ public class BaseballGameMachine {
         return false;
     }
 
-    private boolean stopGameIfInputNumberTwo(int input) {
-        if (input == 2) {
+    private boolean stopGameIfInputStop(int input) {
+        if (input == INPUT_STOP_GAME) {
             baseballGameContinue = false;
             return true;
         }

@@ -6,9 +6,10 @@ public class GameDigitRepository {
     private static final Random random = new Random();
     private static final List<GameDigit> cachedNumbers;
 
+
     static {
         cachedNumbers = new ArrayList<>();
-        for (int i = 0; i <= 9; i++) {
+        for (int i = GameDigit.MIN_DIGIT; i <= GameDigit.MAX_DIGIT; i++) {
             cachedNumbers.add(new GameDigit(i));
         }
     }
@@ -17,10 +18,10 @@ public class GameDigitRepository {
 
     }
 
-    public static List<GameDigit> getNotDuplicateThreeGameDigits() {
+    public static List<GameDigit> getNotDuplicateGameDigits(int length) {
         Set<GameDigit> gameDigits = new HashSet<>();
         gameDigits.add(getRandomExceptZero());
-        while (gameDigits.size() != 3) {
+        while (gameDigits.size() != length) {
             gameDigits.add(GameDigitRepository.getRandom());
         }
         return new ArrayList<>(gameDigits);
