@@ -78,9 +78,9 @@ public class ThreeBall {
                                            final int index) {
         if (this.balls.indexOf(target) == index) {
             return MatchType.STRIKE;
-        } else {
-            return MatchType.BALL;
         }
+
+        return MatchType.BALL;
     }
 
     @Override
