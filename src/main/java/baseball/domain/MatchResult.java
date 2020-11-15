@@ -10,20 +10,22 @@ public class MatchResult {
     private static final int GAME_COMPLETE_COUNT = 3;
     private Map<MatchType, Integer> match;
 
-    public MatchResult() {
-        Map<MatchType, Integer> result =
-                initMatch(START_MATCH_COUNT,
-                        START_MATCH_COUNT,
-                        START_MATCH_COUNT);
+
+    private MatchResult(final int strike,
+                        final int ball,
+                        final int nothing) {
+        Map<MatchType, Integer> result = initMatch(strike, ball, nothing);
         this.match = Collections.unmodifiableMap(result);
     }
 
+    public MatchResult() {
+        this(START_MATCH_COUNT, START_MATCH_COUNT, START_MATCH_COUNT);
+    }
+
     private MatchResult(Map<MatchType, Integer> match) {
-        Map<MatchType, Integer> result =
-                initMatch(match.get(MatchType.STRIKE),
-                        match.get(MatchType.BALL),
-                        match.get(MatchType.NOTHING));
-        this.match = Collections.unmodifiableMap(result);
+        this(match.get(MatchType.STRIKE),
+                match.get(MatchType.BALL),
+                match.get(MatchType.NOTHING));
     }
 
     private Map<MatchType, Integer> initMatch(final int strike,
