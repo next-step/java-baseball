@@ -1,3 +1,5 @@
+package vo;
+
 public class BaseballResult {
 
 	private final int strikeCount;

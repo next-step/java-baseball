@@ -1,5 +1,10 @@
+package domain;
+
 import java.util.HashSet;
 import java.util.Set;
+
+import vo.BaseballNumber;
+import vo.BaseballResult;
 
 public class Referee {
 

@@ -6,6 +6,9 @@ import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import vo.BaseballNumber;
+import vo.BaseballResult;
+
 public class RefereeTest {
 
 	@DisplayName("스트라이크 판단")

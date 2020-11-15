@@ -1,3 +1,5 @@
+package vo;
+
 public class BaseballNumber {
 
 	private final Integer value;
