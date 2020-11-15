@@ -24,7 +24,7 @@ public class App {
             String inputNumber = getInputNumber(scanner);
             result = new Umpire(genNumber, inputNumber).judge();
             System.out.println(result.getText());
-        } while (!result.is3Strikes());
+        } while (!result.isAllStrikes());
 
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }

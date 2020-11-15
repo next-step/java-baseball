@@ -19,13 +19,13 @@ public class Umpire {
     }
 
     public Result judge() {
-        int strikes = 0, balls = 0;
-        for (int i = 0; i < inputSplit.length; i++) {
+        int strikes = 0, balls = 0, len = inputSplit.length;
+        for (int i = 0; i < len; i++) {
             strikes = countStrikes(strikes, i);
             balls = countBalls(balls, i);
         }
 
-        return new Result(balls, strikes);
+        return new Result(balls, strikes, len);
     }
 
     private int countBalls(int balls, int i) {

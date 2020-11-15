@@ -6,12 +6,14 @@ package io.homo_efficio.base_ball;
  */
 public class Result {
 
-    private int balls;
-    private int strikes;
+    private final int balls;
+    private final int strikes;
+    private final int len;
 
-    public Result(int balls, int strikes) {
+    public Result(int balls, int strikes, int len) {
         this.balls = balls;
         this.strikes = strikes;
+        this.len = len;
     }
 
     public String getText() {
@@ -20,7 +22,7 @@ public class Result {
         return (strikes == 0 && balls == 0) ? "낫싱" : (s + " " + b).trim();
     }
 
-    public boolean is3Strikes() {
-        return strikes == 3;
+    public boolean isAllStrikes() {
+        return strikes == len;
     }
 }
