@@ -1,8 +1,6 @@
 package baseball.app;
 
 import java.util.EnumMap;
-import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * @author choijaeyong on 2020/11/14.
@@ -20,17 +18,17 @@ public class ScoreTable {
     return scoreMap;
   }
 
-  public void recordScore(Score strikeOrBall) {
-    if (Score.NONE.equals(strikeOrBall)) return;
-    if (Score.STRIKE.equals(strikeOrBall)) {
+  public void recordScore(Score score) {
+    if (Score.NONE.equals(score)) return;
+    if (Score.STRIKE.equals(score)) {
       scoreMap.put(Score.STRIKE, scoreMap.get(Score.STRIKE) == null ? 1 : scoreMap.get(Score.STRIKE) + 1);
     }
-    if (Score.BALL.equals(strikeOrBall)) {
+    if (Score.BALL.equals(score)) {
       scoreMap.put(Score.BALL, scoreMap.get(Score.BALL) == null ? 1 : scoreMap.get(Score.BALL) + 1);
     }
   }
 
-  public boolean isGameSuccess() {
+  public boolean isSuccessGame() {
     if (scoreMap.get(Score.STRIKE) == null) return false;
     return scoreMap.get(Score.STRIKE) == 3;
   }

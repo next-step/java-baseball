@@ -5,7 +5,7 @@ package baseball.ui;
  * @project java-baseball
  * @description
  */
-public class ScorePrinter {
+public class PrintHandler {
 
   public static void print(String outputString) {
     System.out.println(outputString);

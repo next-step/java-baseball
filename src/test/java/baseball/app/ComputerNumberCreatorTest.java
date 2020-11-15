@@ -2,7 +2,6 @@ package baseball.app;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import baseball.ComputerNumberCreator;
 import org.junit.jupiter.api.RepeatedTest;
 
 

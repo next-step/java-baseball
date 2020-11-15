@@ -13,12 +13,6 @@ import org.junit.jupiter.api.Test;
  * @description
  */
 public class ScoreCalculatorTest {
-  private ScoreCalculator scoreCalculator;
-
-  @BeforeEach
-  public void setUp() {
-    scoreCalculator = new ScoreCalculator();
-  }
 
   @DisplayName("점수를 입력하면 점수표가 생성된다")
   @Test
@@ -36,6 +30,6 @@ public class ScoreCalculatorTest {
   }
 
   private EnumMap<Score, Integer> calculateScore(String computerString, String inputString) {
-    return scoreCalculator.calculate(computerString, inputString).getScoreMap();
+    return ScoreCalculator.calculate(computerString, inputString).getScoreMap();
   }
 }

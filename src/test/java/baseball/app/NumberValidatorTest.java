@@ -13,29 +13,26 @@ import org.junit.jupiter.api.Test;
  */
 public class NumberValidatorTest {
 
-  private NumberValidator numberValidator;
-
-  @BeforeEach
-  public void setUp() {
-    numberValidator = new NumberValidator();
-  }
-
   @DisplayName("서로 다른 세자리 수 인지 검증")
   @Test
   public void isDifferentThreeNumber() {
-    assertThat(numberValidator.valid(1)).isEqualTo(false);
-    assertThat(numberValidator.valid(12)).isEqualTo(false);
-    assertThat(numberValidator.valid(100)).isEqualTo(false);
-    assertThat(numberValidator.valid(113)).isEqualTo(false);
-    assertThat(numberValidator.valid(133)).isEqualTo(false);
-    assertThat(numberValidator.valid(313)).isEqualTo(false);
-    assertThat(numberValidator.valid(333)).isEqualTo(false);
-    assertThat(numberValidator.valid(190)).isEqualTo(false);
-    assertThat(numberValidator.valid(110)).isEqualTo(false);
-    assertThat(numberValidator.valid(610)).isEqualTo(false);
-    assertThat(numberValidator.valid(90)).isEqualTo(false);
-    assertThat(numberValidator.valid(123)).isEqualTo(true);
-    assertThat(numberValidator.valid(698)).isEqualTo(true);
+    assertThat(isValidNumber(1)).isEqualTo(false);
+    assertThat(isValidNumber(12)).isEqualTo(false);
+    assertThat(isValidNumber(100)).isEqualTo(false);
+    assertThat(isValidNumber(113)).isEqualTo(false);
+    assertThat(isValidNumber(133)).isEqualTo(false);
+    assertThat(isValidNumber(313)).isEqualTo(false);
+    assertThat(isValidNumber(333)).isEqualTo(false);
+    assertThat(isValidNumber(190)).isEqualTo(false);
+    assertThat(isValidNumber(110)).isEqualTo(false);
+    assertThat(isValidNumber(610)).isEqualTo(false);
+    assertThat(isValidNumber(90)).isEqualTo(false);
+    assertThat(isValidNumber(123)).isEqualTo(true);
+    assertThat(isValidNumber(698)).isEqualTo(true);
+  }
+
+  private boolean isValidNumber(int number) {
+    return NumberValidator.valid(number);
   }
 
 }

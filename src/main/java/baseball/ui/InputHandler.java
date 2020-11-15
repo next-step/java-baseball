@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @project java-baseball
  * @description
  */
-public class ScoreInputer {
+public class InputHandler {
 
   private static final Scanner scanner = new Scanner(System.in);
 

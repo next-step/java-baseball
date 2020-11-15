@@ -1,4 +1,4 @@
-package baseball;
+package baseball.app;
 
 import baseball.app.NumberValidator;
 import java.util.Random;
