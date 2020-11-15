@@ -8,6 +8,7 @@ public class BaseballGame implements Game {
     private final Score computerScore;
     private final Input input;
     private final Output output;
+    private boolean gamePass;
 
     public BaseballGame(Input input, Output output) {
         this.computerScore = Score.getRandomScore();
@@ -17,5 +18,13 @@ public class BaseballGame implements Game {
 
     @Override
     public void run() {
+        do {
+            gamePass = gameProcess();
+
+        } while (!gamePass);
+    }
+
+    private boolean gameProcess() {
+        return false;
     }
 }
