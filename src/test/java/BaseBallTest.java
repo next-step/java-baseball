@@ -36,4 +36,15 @@ class BaseBallTest {
                 .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("Index -1 out of bounds for length 3"); // jdk 버전, openjdk 마다 다름
     }
+
+    @Test
+    void compareNumbers() {
+        baseBall.computerNumbers = new int[] {7, 5, 9};
+        baseBall.playerNumbers = new int[] {5, 9, 1};
+        for (int i = 0; i < 3; i++) {
+            baseBall.compareNumbers(i, 0);
+        }
+        assertTrue(baseBall.strike == 0 && baseBall.ball == 2);
+    }
+
 }
