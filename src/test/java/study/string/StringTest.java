@@ -52,13 +52,4 @@ public class StringTest {
 		}).isInstanceOf(StringIndexOutOfBoundsException.class)
 			.hasMessageContaining("string index out of range : 5");
 	}
-
-	@Test
-    public void charException(){
-        String str = "abc";
-        assertThatThrownBy(() -> {
-           str.charAt(-1);
-        }).isInstanceOf(IndexOutOfBoundsException.class)
-                .hasMessageContaining("String index out of range: -1");
-    }
 }
