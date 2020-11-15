@@ -15,7 +15,7 @@ public class Baseball {
         int[] computerNumbers = prepareComputerNumbers();
     }
 
-    private int[] prepareComputerNumbers() {
+    public int[] prepareComputerNumbers() {
         List<Integer> orderedNumbers = createOrderedNumbers();
         int[] computerNumbers = new int[NUMBER_SELECTED_SIZE];
         for (int i = 0; i < NUMBER_SELECTED_SIZE; i++) {
