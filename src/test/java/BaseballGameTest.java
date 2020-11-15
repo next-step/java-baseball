@@ -23,4 +23,19 @@ class BaseballGameTest {
 
         player = new Player();
     }
+
+    @Test
+    @DisplayName("Player 가 입력한 123 숫자의 각 index 위치에 있는 숫자 타입(스트라이크, 볼, 낫싱) 체크")
+    void checkBallCount() {
+        player.convertNumberToList(123);
+        BaseballGame.CountType type = game.calcBallCount(computer, player, 0);
+        assertEquals(type, BaseballGame.CountType.STRIKE);
+
+        type = game.calcBallCount(computer, player, 1);
+        assertEquals(type, BaseballGame.CountType.NOTHING);
+
+        type = game.calcBallCount(computer, player, 2);
+        assertEquals(type, BaseballGame.CountType.BALL);
+    }
+
 }

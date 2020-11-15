@@ -43,6 +43,16 @@ public class BaseballGame {
     }
 
     public CountType calcBallCount(Computer c, Player p, int playerNumberIndex) {
+        int computerNumberIndex = c.getCheckNumbers().indexOf(p.getNumberList().get(playerNumberIndex));
+        if (computerNumberIndex == playerNumberIndex) {
+            p.setStrikeCount(p.getStrikeCount() + 1);
+            return CountType.STRIKE;
+        }
+        if (computerNumberIndex != BaseballGame.INPUT_ERROR) {
+            p.setBallCount(p.getBallCount() + 1);
+            return CountType.BALL;
+        }
+        return CountType.NOTHING;
     }
 
     enum CountType {
