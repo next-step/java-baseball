@@ -21,14 +21,30 @@ class BaseballGameRuleTest {
 		BaseballGameRule baseballGameRule = new BaseballGameRule();
 		LinkedHashSet<Integer> computerNumbers = baseballGameRule.getComputerRandomNumbers();
 		LinkedHashSet<Integer> userNumbers = baseballGameRule.getComputerRandomNumbers();
-		System.out.println("Computer Numbers" + computerNumbers);
-		System.out.println("User Numbers" + userNumbers);
+		System.out.println("Computer Numbers " + computerNumbers);
+		System.out.println("User Numbers " + userNumbers);
 		assertNotNull(computerNumbers);
 		assertNotNull(userNumbers);
 		assertSame(3, computerNumbers.size());
 		assertSame(3, userNumbers.size());
 		assertTrue(baseballGameRule.getStrikeCount(computerNumbers, userNumbers) <= 3);
-		System.out.println(baseballGameRule.getStrikeCount(computerNumbers, userNumbers));
+		System.out.println("Strike Count : " + baseballGameRule.getStrikeCount(computerNumbers, userNumbers));
+	}
+	
+	@Test 
+	void _getBallCount() throws Exception {
+		BaseballGameRule baseballGameRule = new BaseballGameRule();
+		LinkedHashSet<Integer> computerNumbers = baseballGameRule.getComputerRandomNumbers();
+		LinkedHashSet<Integer> userNumbers = baseballGameRule.getComputerRandomNumbers();
+		System.out.println("Computer Numbers " + computerNumbers);
+		System.out.println("User Numbers " + userNumbers);
+		assertNotNull(computerNumbers);
+		assertNotNull(userNumbers);
+		assertSame(3, computerNumbers.size());
+		assertSame(3, userNumbers.size());
+		assertTrue(baseballGameRule.getBallCount(computerNumbers, userNumbers) <= 3);
+		baseballGameRule .getBallCount(computerNumbers, userNumbers);
+		System.out.println("Ball Count : " + baseballGameRule .getBallCount(computerNumbers, userNumbers));
 	}
 	
 

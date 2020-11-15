@@ -14,11 +14,6 @@ public class BaseballGameRule {
 		return computerRandomNumbers;
 	}
 	
-	private int getRandomNumber() {
-		Random random = new Random();
-		return random.nextInt(9) + 1;
-	}
-	
 	public int getStrikeCount(LinkedHashSet<Integer> computerNumbers, LinkedHashSet<Integer> userNumbers) throws Exception {
 		int strikeCount = 0;
 		if(computerNumbers == null)
@@ -33,8 +28,34 @@ public class BaseballGameRule {
 		return strikeCount;
 	}
 	
+	public int getBallCount(LinkedHashSet<Integer> computerNumbers, LinkedHashSet<Integer> userNumbers) throws Exception {
+		int ballCount = 0;
+		if(computerNumbers == null)
+			throw new Exception("Computer Numbers are null");
+		if(userNumbers == null)
+			throw new Exception("User Numbers are null");
+		
+		
+		int[] userNumberArray = toIntArrayAtIntSet(userNumbers);
+		for(int index = 0; index < 3; index++)
+			ballCount += isBall(computerNumbers, userNumberArray[index]);
+		ballCount = ballCount - getStrikeCount(computerNumbers, userNumbers);
+		return ballCount;
+	}
+	
+	private int getRandomNumber() {
+		Random random = new Random();
+		return random.nextInt(9) + 1;
+	}
+	
 	private int isStrike(int computerNumber, int userNumber) {
 		if(computerNumber == userNumber)
+			return 1;
+		return 0;
+	}
+	
+	private int isBall(LinkedHashSet<Integer> computerNumbers, int userNumber) {
+		if(computerNumbers.contains(userNumber))
 			return 1;
 		return 0;
 	}
