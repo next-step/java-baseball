@@ -12,6 +12,8 @@ import baseball.domain.Questioner;
 import baseball.util.RandomNumberGenerator;
 
 public class BaseballGameLauncher {
+	private static final int END_NUMBER = 2;
+
 	public static void main(String[] args) {
 
 		boolean isContinued = true;
@@ -19,24 +21,28 @@ public class BaseballGameLauncher {
 			Questioner questioner = Computer.of(new RandomNumberGenerator());
 			Answerer answerer = Gamer.of(questioner);
 
-			boolean isRoundContinued = true;
-			while (isRoundContinued) {
-				printInputNumber();
-				final BaseballResult baseballResult =
-					answerer.playGame(BaseballNumbers.of(inputStringToIntegerList()));
-				printMessage(baseballResult.getResultMessage());
-				if (baseballResult.isOut()) {
-					isRoundContinued = false;
-				}
-			}
+			gameRoundRunner(answerer);
 
 			printRoundEnd();
 			printContinue();
-			if (inputStringToInt() == 2) {
-				isContinued = false;
-			}
+			isContinued = isContinued();
 		}
 
 		printEndGame();
+	}
+
+	private static boolean isContinued() {
+		return inputStringToInt() != END_NUMBER;
+	}
+
+	private static void gameRoundRunner(Answerer answerer) {
+		boolean isRoundContinued;
+		do {
+			printInputNumber();
+			final BaseballResult baseballResult =
+				answerer.playGame(BaseballNumbers.of(inputStringToIntegerList()));
+			printMessage(baseballResult.getResultMessage());
+			isRoundContinued = !baseballResult.isOut();
+		} while (isRoundContinued);
 	}
 }
