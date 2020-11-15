@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import static baseball.domain.BaseballStatus.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
@@ -19,7 +20,9 @@ class GamerTest {
 		final BaseballResult baseballResult =
 			answerer.playGame(BaseballNumbers.of(Arrays.asList(1, 2, 3)));
 
+		String expected = String.format(STRIKE.getMessageFormat(), 3);
 		assertThat(baseballResult).isInstanceOf(BaseballResult.class);
+		assertThat(baseballResult.getResultMessage()).isEqualTo(expected);
 	}
 
 }

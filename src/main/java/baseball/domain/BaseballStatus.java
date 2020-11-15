@@ -1,17 +1,17 @@
 package baseball.domain;
 
 public enum BaseballStatus {
-	STRIKE("스트라이크"),
-	BALL("볼"),
+	STRIKE("%d 스트라이크 "),
+	BALL("%d 볼"),
 	NOTHING("낫싱");
 
-	private final String description;
+	private final String messageFormat;
 
-	BaseballStatus(String description) {
-		this.description = description;
+	BaseballStatus(String messageFormat) {
+		this.messageFormat = messageFormat;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getMessageFormat() {
+		return messageFormat;
 	}
 }
