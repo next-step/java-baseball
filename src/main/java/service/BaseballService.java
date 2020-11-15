@@ -1,6 +1,7 @@
 package service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class BaseballService {
@@ -9,8 +10,9 @@ public class BaseballService {
 	public static final int SCORE_MIN_NUM = 1;
 	public static final int SCORE_MAX_NUM = 9;
 
-	private int[] gameMasterScore = new int[SCORE_MAX_LENGTH];
+	private final int[] gameMasterScore = new int[SCORE_MAX_LENGTH];
 	private Map<Enum, Integer> scoreMap = new HashMap<>();
+	private HashSet<Integer> masterScoreSet = new HashSet<>();
 
 	public int[] getGameMasterScore() {
 		return gameMasterScore;
@@ -24,7 +26,6 @@ public class BaseballService {
 		if (!isValidInputScore(inputScore)) {
 			return false;
 		}
-		generateGameMasterScore();
 		setScoreResult(inputScore);
 		System.out.println(getScoreResultMessage());
 
@@ -62,12 +63,18 @@ public class BaseballService {
 
 	public void generateGameMasterScore() {
 		for (int i = 0; i < SCORE_MAX_LENGTH; i++) {
-			gameMasterScore[i] = getRandomNumberUsingInts();
+			gameMasterScore[i] = getRandomNumber();
 		}
 	}
 
-	public int getRandomNumberUsingInts() {
-		return (int)(Math.random() * SCORE_MAX_NUM + SCORE_MIN_NUM);
+	public int getRandomNumber() {
+		int randomNum;
+		do {
+			randomNum = generateRandomNumber();
+		} while (masterScoreSet.contains(randomNum));
+
+		masterScoreSet.add(randomNum);
+		return randomNum;
 	}
 
 	public String getScoreResultMessage() {
@@ -83,6 +90,10 @@ public class BaseballService {
 	public void initScoreMap() {
 		scoreMap.put(BaseballCount.STRIKE, 0);
 		scoreMap.put(BaseballCount.BALL, 0);
+	}
+
+	private int generateRandomNumber() {
+		return (int)(Math.random() * SCORE_MAX_NUM + SCORE_MIN_NUM);
 	}
 
 	private boolean getGameResult() {
