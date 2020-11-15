@@ -28,6 +28,8 @@ public class BaseballGame implements Game {
             gamePass = gameProcess();
 
         } while (!gamePass);
+
+        printFinishSentences();
     }
 
     private boolean gameProcess() {
@@ -72,5 +74,9 @@ public class BaseballGame implements Game {
 
     private void printExceptionWhenParsing() {
         output.errorWhenScoreParsing();
+    }
+
+    private void printFinishSentences() {
+        output.gameFinish();
     }
 }
