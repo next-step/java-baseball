@@ -195,10 +195,10 @@ void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String ex
 
 - `볼들(Balls)`
     - `투수(Pitcher)`가 던진 3개의 `볼(Ball)`들을 의미한다.
-    - [ ] 3개의 `볼(Ball)`을 가진다.
-    - [ ] `볼(Ball)`의 값이 중복될 수 없다.
-    - [ ] 특정 위치의 `볼(Ball)`을 비교할 수 있다. 
-    - [ ] `볼(Ball)`을 포함하는지 확인할 수 있다. 
+    - [x] 3개의 `볼(Ball)`을 가진다.
+    - [x] `볼(Ball)`의 값이 중복될 수 없다.
+    - [x] 특정 위치의 `볼(Ball)`을 비교할 수 있다. 
+    - [x] `볼(Ball)`을 포함하는지 확인할 수 있다. 
 
 - `볼(Ball)`
     - `투수(Pitcher)`가 던진 하나의 숫자를 의미한다.
