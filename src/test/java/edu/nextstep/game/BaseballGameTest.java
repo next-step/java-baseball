@@ -47,9 +47,26 @@ class BaseballGameTest {
 		);
 	}
 
+	@ParameterizedTest(name = "#{index} : 컴퓨터숫자 : [{0}], 플레이어숫자 : [{1}]")
+	@DisplayName("didWin : 플레이가 끝났을 때 승리 조건 만족 여부를 올바르게 리턴해야 함")
+	@MethodSource("getComputerNumberAndRandomPlayerNumber")
+	void didWin_ShouldReturnTrueBeforeOrAfterPlayingGame(String computerNumber, String playerNumber) {
+		// given
+		game.resetScore();
+		BaseballGamer player = new BaseballGamer(playerNumber);
+		game.setPlayer(player);
+
+		// when
+		game.playToEnd();
+
+		// then
+		assertEquals(computerNumber.equals(playerNumber), game.didWin());
+	}
+
 	public Stream<Arguments> getComputerNumberAndRandomPlayerNumber() {
 		List<Arguments> numberList = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
+		numberList.add(Arguments.of(computer.getSelectedNumber(), computer.getSelectedNumber()));
+		for (int i = 0; i < 9; i++) {
 			numberList.add(Arguments.of(computer.getSelectedNumber(), NumberUtil.generateNonDuplicatedNumber(3)));
 		}
 		return numberList.stream();

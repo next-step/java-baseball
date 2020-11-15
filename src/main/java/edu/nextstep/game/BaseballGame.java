@@ -40,4 +40,9 @@ public class BaseballGame {
 			score.addBall();
 		}
 	}
+
+	public boolean didWin() {
+		return score.isEnd();
+	}
+
 }

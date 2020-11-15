@@ -37,4 +37,8 @@ public class BaseballScore {
 		}
 		return "낫싱";
 	}
+
+	public boolean isEnd() {
+		return strike >= maxStrike;
+	}
 }

@@ -60,4 +60,23 @@ class BaseballScoreTest {
 		// then
 		assertEquals(score.toLocaleString(), message);
 	}
+
+	@ParameterizedTest
+	@DisplayName("isEnd : score의 strike가 max값에 도달하면 true를 리턴해야 함")
+	@CsvSource(value = {"3:3:0:true", "3:1:2:false", "3:0:0:false"}, delimiter = ':')
+	void isEnd_ShouldReturnTrueWhenStrikeReachesMax(int maxStrike, int strike, int ball, boolean isEnd) {
+		// given
+		BaseballScore score = new BaseballScore(maxStrike);
+
+		// when
+		for (int i = 0; i < strike; i++) {
+			score.addStrike();
+		}
+		for (int i = 0; i < ball; i++) {
+			score.addBall();
+		}
+
+		// then
+		assertEquals(score.isEnd(), isEnd);
+	}
 }
