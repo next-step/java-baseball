@@ -16,7 +16,9 @@ public class BaseBallGameTest {
 
     /* 게임 로직에 필요한 상수 정의 */
     private static final Integer BASE_BALL_CNT = 3;
-    private static final String MSG_PLZ_THREE_NUMBER = "3개의 숫자를 입력해 주세요 : ";
+
+    private static final String END_GAME = "2";
+    private static final String RE_GAME = "1";
 
     private BaseBallGame baseBallGame;
 
@@ -116,5 +118,14 @@ public class BaseBallGameTest {
         int [] userActual = baseBallGame.selectBalls(sc);
 
         assertThat(baseBallGame.isMatches(userActual, comBallList)).isFalse();
+    }
+
+    @Test
+    @DisplayName("[ReGAME] 재게임 여부 확인")
+    public void reGameValueYn() {
+        String userInput = "1";
+        assertThat(baseBallGame.reGameYn(userInput)).isTrue();
+        userInput = "2";
+        assertThat(baseBallGame.reGameYn(userInput)).isTrue();
     }
 }

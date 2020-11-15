@@ -21,9 +21,14 @@ public class BaseBallGame {
     private static final String BALL = " 볼";
     private static final String NOTHING = "낫싱";
 
+    /* 재게임 여부 값 */
+    private static final String END_GAME = "2";
+    private static final String RE_GAME = "1";
+
     /* Message */
     private static final String MSG_USER_TURN_THREE_NUMBER = "3개의 숫자를 입력해 주세요 : ";
     private static final String MSG_END_GAME = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n";
+    private static final String MSG_RE_GAME = "게임을 새로 시작하려면 " + RE_GAME + ", 종료하려면 " + END_GAME + "를 입력하세요.\n";
 
     /**
      * [Game Logic] 게임 로직 startGame()
@@ -112,12 +117,19 @@ public class BaseBallGame {
 
     /**
      * [Game Logic] 한 회의 게임이 종료된 후, 재게임 또는 게임종료 여부를 입력 요청하는 메서드
-     *  1. 사용자의
+     *  1. 사용자의 입력값이
      * @param sc 사용자의 입력을 받을 수 있는 Scanner
      * @return 게임 Rule에 따라 재게임: 1 입력 시 true, 게임 종료: 2 입력 시: false
      */
     private boolean isReGame(Scanner sc) {
-        return false;
+        String endFlag;
+        do {
+            print(MSG_RE_GAME);
+            endFlag = sc.nextLine();
+            /* 사용자가 입력한 값이 숫자가 아니거나, 1 또는 2가 아닌 경우 다시 입력 */
+        } while(!reGameYn(endFlag));
+
+        return endFlag.equals(RE_GAME);
     }
 
     /* 컴퓨터와 사용자의 값을 비교하여 스트라이크, 볼, 낫싱을 출력 */
@@ -195,6 +207,13 @@ public class BaseBallGame {
         }
         return tmp;
     }
+
+    /* 재게임 여부 1 또는 2 */
+    public boolean reGameYn(String endNum) {
+        return (endNum.equals(END_GAME) || endNum.equals(RE_GAME));
+    }
+
+    /* 메시지 출력*/
     private void print(String msg) {
         System.out.print(msg);
     }
