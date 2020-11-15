@@ -16,8 +16,8 @@ git clone https://github.com/{본인_아이디}/{저장소 아이디}.git
 git checkout -b 브랜치이름
 ```
 - [x] 통합개발도구(Eclipse 또는 IntelliJ)로 가져오기(import)
-- [ ] 기능 구현
-- [ ] 기능 구현 후 add, commit
+- [x] 기능 구현
+- [x] 기능 구현 후 add, commit
 ```
 git status // 변경된 파일 확인
 git add -A(또는 .) // 변경된 전체 파일을 한번에 반영
