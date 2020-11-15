@@ -23,5 +23,16 @@ public class Runner {
     }
 
     private void execute() {
+
+    }
+
+    private boolean checkWhetherWantToRestartGame() {
+        OUTPUT.demandingWhetherWantToRestartGame();
+
+        return parserWhetherWantToRestartGame(INPUT.whetherWantToRestartGame());
+    }
+
+    private boolean parserWhetherWantToRestartGame(final String input) {
+        return PARSER.whetherRestartGame(input);
     }
 }
