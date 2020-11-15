@@ -14,4 +14,9 @@ public class ConsoleInput implements Input {
     public String whetherWantToRestartGame() {
         return SCAN.nextLine();
     }
+
+    @Override
+    public void destroy() {
+        SCAN.close();
+    }
 }
