@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BaseballScoreTest {
 
@@ -37,5 +39,25 @@ class BaseballScoreTest {
 
 		// then
 		assertEquals(afterBall, beforeBall + 1);
+	}
+
+	@ParameterizedTest
+	@DisplayName("toLocaleString : 정해진 형식의 메시지를 리턴해야 함")
+	@CsvSource(value = {"2:0:2 스트라이크", "2:1:2 스트라이크 1볼", "0:2:2볼", "0:0:낫싱"}, delimiter = ':')
+	void toLocaleString_ShouldReturnSpecifiedFormatMessage(int strike, int ball, String message) {
+		// given
+		int maxStrike = 3;
+		BaseballScore score = new BaseballScore(maxStrike);
+
+		// when
+		for (int i = 0; i < strike; i++) {
+			score.addStrike();
+		}
+		for (int i = 0; i < ball; i++) {
+			score.addBall();
+		}
+
+		// then
+		assertEquals(score.toLocaleString(), message);
 	}
 }
