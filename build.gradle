@@ -2,13 +2,24 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 version = '1.0.0'
-sourceCompatibility = 1.8
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter:5.5.2')
-    testCompile('org.assertj:assertj-core:3.14.0')
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testCompile('org.junit.jupiter:junit-jupiter:5.7.0')
+    testCompile('org.assertj:assertj-core:3.18.1')
+
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 }
