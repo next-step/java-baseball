@@ -7,6 +7,7 @@ import java.util.Map;
 public class MatchResult {
 
     private static final int START_MATCH_COUNT = 0;
+    private static final int GAME_COMPLETE_COUNT = 3;
     private Map<MatchType, Integer> match;
 
     public MatchResult() {
@@ -40,6 +41,10 @@ public class MatchResult {
 
     public Map<MatchType, Integer> getMatch() {
         return Collections.unmodifiableMap(this.match);
+    }
+
+    public boolean isGameComplete() {
+        return this.match.get(MatchType.STRIKE) == GAME_COMPLETE_COUNT;
     }
 
 }
