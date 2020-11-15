@@ -202,8 +202,8 @@ void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(String input, String ex
 
 - `볼(Ball)`
     - `투수(Pitcher)`가 던진 하나의 숫자를 의미한다.
-    - [ ] 1 ~ 9 사이의 값만 허용한다.
-    - [ ] `볼(Ball)`이 일치하는지 비교할 수 있다.
+    - [x] 1 ~ 9 사이의 값만 허용한다.
+    - [x] `볼(Ball)`이 일치하는지 비교할 수 있다.
 
 - `판정(Judge)`
     - `투수(Pitcher)`와 `포수(Catcher)`의 `볼(Ball)`을 비교한 결과를 나타낸다.
