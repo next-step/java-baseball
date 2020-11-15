@@ -45,4 +45,35 @@ class GameServiceTest {
         assertTrue(matchResult.getMatch().get(MatchType.STRIKE) == 3);
     }
 
+    @DisplayName("정답과 사용자 입력을 비교 - 1스트라이크 2볼")
+    @Test
+    public void compareGoal_success2() throws Exception {
+        //given
+        ThreeBall goal = new ThreeBall(Arrays.asList(1, 2, 3));
+        List<Integer> userinput = Arrays.asList(1, 3, 2);
+
+        //when
+        GameService service = new GameService();
+        MatchResult matchResult = service.compareGoal(goal, userinput);
+
+        //then
+        assertTrue(matchResult.getMatch().get(MatchType.STRIKE) == 1);
+        assertTrue(matchResult.getMatch().get(MatchType.BALL) == 2);
+    }
+
+    @DisplayName("정답과 사용자 입력을 비교 - 낫싱")
+    @Test
+    public void compareGoal_success3() throws Exception {
+        //given
+        ThreeBall goal = new ThreeBall(Arrays.asList(1, 2, 3));
+        List<Integer> userinput = Arrays.asList(4, 5, 6);
+
+        //when
+        GameService service = new GameService();
+        MatchResult matchResult = service.compareGoal(goal, userinput);
+
+        //then
+        assertTrue(matchResult.getMatch().get(MatchType.NOTHING) == 3);
+    }
+
 }
