@@ -65,4 +65,32 @@ class BaseBallTest {
         assertThat(baseBall.getHintMessage()).isNotEmpty();
     }
 
+    @Test
+    void play() {
+        baseBall.computerNumbers = new int[] {7, 1, 3};
+        baseBall.insertInputNumber(123);
+        compareNumbers();
+        assertThat(baseBall.getHintMessage()).contains("스트라이크", "볼");
+
+        baseBall.initUser();
+        baseBall.insertInputNumber(145);
+        compareNumbers();
+        assertThat(baseBall.getHintMessage()).contains("볼");
+
+        baseBall.initUser();
+        baseBall.insertInputNumber(671);
+        compareNumbers();
+        assertThat(baseBall.getHintMessage()).contains("볼");
+
+        baseBall.initUser();
+        baseBall.insertInputNumber(216);
+        compareNumbers();
+        assertThat(baseBall.getHintMessage()).contains("스트라이크");
+
+        baseBall.initUser();
+        baseBall.insertInputNumber(713);
+        compareNumbers();
+        assertThat(baseBall.getHintMessage()).contains("3 스트라이크");
+    }
+
 }
