@@ -6,7 +6,7 @@ public class BaseballResult {
 	Strike strike;
 	Ball ball;
 
-	public BaseballResult(){
+	public BaseballResult() {
 		this.match = false;
 		this.strike = Strike.newZeroStrike();
 		this.ball = Ball.newZeroBall();
@@ -45,7 +45,7 @@ public class BaseballResult {
 		return this.ball.ball;
 	}
 
-	public Boolean isMatch(){
+	public Boolean isMatch() {
 		return this.match;
 	}
 }
