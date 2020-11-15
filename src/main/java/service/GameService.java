@@ -22,18 +22,20 @@ public class GameService implements GameConstant {
 
 	public List<Integer> generate() {
 		Collections.shuffle(balls);
+		System.out.println(balls.get(0) + " " + balls.get(1) + " " + balls.get(2));
 		return Arrays.asList(balls.get(0), balls.get(1), balls.get(2));
 	}
 
 	public void start() {
-		while (true) {
+		do {
 			run(generate());
-			System.out.println(EXIT);
-			int input = Integer.parseInt(scanner.nextLine());
-			if (!isValidExitInput(input) || input == 2) {
-				return;
-			}
-		}
+		} while (!exit());
+	}
+
+	public boolean exit() {
+		System.out.println(EXIT);
+		int input = Integer.parseInt(scanner.nextLine());
+		return !isValidExitInput(input) || input == 2;
 	}
 
 	public boolean isValidExitInput(int input) {
@@ -46,25 +48,31 @@ public class GameService implements GameConstant {
 
 	public String getRefineInput(String input) {
 		input = input.replaceAll(" ", "");
+		if (input.length() < 1) {
+			throw new BaseballGameException(BAD_INPUT);
+		}
+
 		for (int i = 0; i < input.length(); i++) {
-			if (!balls.contains(Integer.parseInt(input.substring(i, i + 1))) || input.length() < 3) {
-				throw new BaseballGameException(BAD_INPUT);
-			}
+			validateInputNumber(input, i);
 		}
 		return input;
 	}
 
+	private void validateInputNumber(String input, int idx) {
+		if (!balls.contains(Integer.parseInt(input.substring(idx, idx + 1))) || input.length() > 3) {
+			throw new BaseballGameException(BAD_INPUT);
+		}
+	}
+
 	public void run(List<Integer> generatedBalls) {
-		while (true) {
-			String input = inputNumber();
+		String input = "";
+		do {
+			input = inputNumber();
 			checkStrike(generatedBalls, input);
-			if (getStrikeCount(generatedBalls, input) == 3) {
-				return;
-			}
 			checkBall(generatedBalls, input);
 			checkNothing(generatedBalls, input);
 			System.out.println();
-		}
+		} while (getStrikeCount(generatedBalls, input) != 3);
 	}
 
 	public String inputNumber() {
@@ -82,11 +90,13 @@ public class GameService implements GameConstant {
 	public int getStrikeCount(List<Integer> balls, String input) {
 		int count = 0;
 		for (int i = 0; i < balls.size(); i++) {
-			if (balls.get(i) == Integer.parseInt(input.substring(i, i + 1))) {
-				count += 1;
-			}
+			count += getMatchCount(balls, input, i);
 		}
 		return count;
+	}
+
+	private int getMatchCount(List<Integer> balls, String input, int idx) {
+		return balls.get(idx) == Integer.parseInt(input.substring(idx, idx + 1)) ? 1 : 0;
 	}
 
 	public void checkBall(List<Integer> balls, String input) {
@@ -99,11 +109,13 @@ public class GameService implements GameConstant {
 	public int getBallCount(List<Integer> balls, String input) {
 		int count = 0;
 		for (int i = 0; i < input.length(); i++) {
-			if (balls.contains(Integer.parseInt(input.substring(i, i + 1)))) {
-				count += 1;
-			}
+			count += getContainsCount(balls, input, i);
 		}
 		return count -= getStrikeCount(balls, input);
+	}
+
+	private int getContainsCount(List<Integer> balls, String input, int idx) {
+		return balls.contains(Integer.parseInt(input.substring(idx, idx + 1))) ? 1 : 0;
 	}
 
 	public void checkNothing(List<Integer> balls, String input) {
