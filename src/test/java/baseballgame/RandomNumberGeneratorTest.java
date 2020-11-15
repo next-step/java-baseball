@@ -21,9 +21,9 @@ class RandomNumberGeneratorTest {
     public void generate_3digits() {
         RandomNumber randomNumber = generator.generateRandomNumber();
 
-        assertThat(randomNumber.firstNumber).isBetween(1, 9);
-        assertThat(randomNumber.secondNumber).isBetween(1, 9);
-        assertThat(randomNumber.thirdNumber).isBetween(1, 9);
+        assertThat(randomNumber.getNumber(0)).isBetween(1, 9);
+        assertThat(randomNumber.getNumber(1)).isBetween(1, 9);
+        assertThat(randomNumber.getNumber(2)).isBetween(1, 9);
     }
 
     @Test
@@ -32,8 +32,8 @@ class RandomNumberGeneratorTest {
     public void generate_distinct_3digits() {
         RandomNumber randomNumber = generator.generateRandomNumber();
 
-        assertThat(randomNumber.firstNumber).isNotEqualTo(randomNumber.secondNumber);
-        assertThat(randomNumber.firstNumber).isNotEqualTo(randomNumber.thirdNumber);
-        assertThat(randomNumber.secondNumber).isNotEqualTo(randomNumber.thirdNumber);
+        assertThat(randomNumber.getNumber(0)).isNotEqualTo(randomNumber.getNumber(1));
+        assertThat(randomNumber.getNumber(0)).isNotEqualTo(randomNumber.getNumber(2));
+        assertThat(randomNumber.getNumber(1)).isNotEqualTo(randomNumber.getNumber(2));
     }
 }

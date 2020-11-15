@@ -11,7 +11,7 @@ public class RandomNumberGenerator {
             Integer number = (int)(Math.random() * 9) + 1;
             addNumber(number);
         }
-        return new RandomNumber(numbers.get(0), numbers.get(1), numbers.get(2));
+        return new RandomNumber(numbers);
     }
 
     private void addNumber(Integer number) {

@@ -21,7 +21,7 @@ class InputNumberConverterTest {
     void inputdigit_converTo_inputNumber() {
         String testString = "397";
         InputNumber number = converter.convertToInputNumber(testString);
-        assertThat(number).isEqualTo(new InputNumber(3, 9, 7));
+        assertThat(number).isEqualTo(new InputNumber(testString));
     }
 
     @Test

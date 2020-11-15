@@ -8,11 +8,6 @@ public class InputNumberConverter {
         List<String> errors = validator.validate(input);
         if(errors.size() > 0) throw new InputNumberValidException(errors);
 
-        String[] inputArray = input.split("");
-        return new InputNumber(
-                Integer.parseInt(inputArray[0]),
-                Integer.parseInt(inputArray[1]),
-                Integer.parseInt(inputArray[2])
-        );
+        return new InputNumber(input);
     }
 }

@@ -1,13 +1,15 @@
 package baseballgame;
 
-public class RandomNumber {
-    Integer firstNumber;
-    Integer secondNumber;
-    Integer thirdNumber;
+import java.util.List;
 
-    public RandomNumber(Integer firstNumber, Integer secondNumber, Integer thirdNumber) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-        this.thirdNumber = thirdNumber;
+public class RandomNumber {
+    private List<Integer> numbers;
+
+    public RandomNumber(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
+
+    public int getNumber(int i) {
+        return numbers.get(i);
     }
 }

@@ -1,16 +1,17 @@
 package baseballgame;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class InputNumber {
-    Integer firstNumber;
-    Integer secondNumber;
-    Integer thirdNumber;
+    List<Integer> numbers;
 
-    public InputNumber(Integer firstNumber, Integer secondNumber, Integer thirdNumber) {
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-        this.thirdNumber = thirdNumber;
+    public InputNumber() {
+    }
+
+    public InputNumber(List<Integer> numbers) {
+        this.numbers = numbers;
     }
 
     @Override
@@ -18,13 +19,19 @@ public class InputNumber {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InputNumber number = (InputNumber) o;
-        return Objects.equals(firstNumber, number.firstNumber) &&
-                Objects.equals(secondNumber, number.secondNumber) &&
-                Objects.equals(thirdNumber, number.thirdNumber);
+        return Objects.equals(numbers, number.numbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstNumber, secondNumber, thirdNumber);
+        return Objects.hash(numbers);
+    }
+
+    public InputNumber(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for(String number : input.split("")) {
+            numbers.add(Integer.parseInt(number));
+        }
+        this.numbers = numbers;
     }
 }
