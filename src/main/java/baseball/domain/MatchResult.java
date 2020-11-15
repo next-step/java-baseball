@@ -10,7 +10,6 @@ public class MatchResult {
     private static final int GAME_COMPLETE_COUNT = 3;
     private Map<MatchType, Integer> match;
 
-
     private MatchResult(final int strike,
                         final int ball,
                         final int nothing) {
