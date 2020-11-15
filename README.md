@@ -5,3 +5,12 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+
+- [ ] 컴퓨터 3자리 난수 생성
+- [ ] 사용자 입력 UI
+- [ ] 사용자 숫자 입력
+- [ ] 사용자 입력 결과 판별
+- [ ] 결과 출력
+- [ ] 게임 시작 혹은 종료 선택
