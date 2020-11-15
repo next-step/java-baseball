@@ -39,6 +39,23 @@ public class RefereeTest {
 		assertThat(ballCount).isEqualTo(1);
 	}
 
+	@DisplayName("낫싱 판단")
+	@Test
+	void checkNothing() {
+		final Integer computerNumber = 425;
+		final Integer userNumber = 789;
+
+		Set<BaseballNumber> computerNumbers = convertIntegerToBaseballNumberSet(computerNumber);
+		Set<BaseballNumber> userNumbers = convertIntegerToBaseballNumberSet(userNumber);
+
+		Integer strikeCount = this.getStrikeCount(computerNumbers, userNumbers);
+		Integer ballCount = this.getBallCount(computerNumbers, userNumbers);
+
+		boolean isNothing = strikeCount == 0 && ballCount == 0;
+
+		assertThat(isNothing).isTrue();
+	}
+
 	private Integer getBallCount(Set<BaseballNumber> computerNumbers, Set<BaseballNumber> userNumbers) {
 		Set<BaseballNumber> retainSet = this.getRetainSetWith(computerNumbers, userNumbers);
 		Set<BaseballNumber> remainComputerNumbers = new HashSet<>(computerNumbers);
