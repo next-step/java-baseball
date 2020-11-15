@@ -81,4 +81,40 @@ public class BaseBallGameTest {
         assertThat(userInputNums).containsExactly(expected);
     }
 
+    @Test
+    @DisplayName("[COMPARE] 3 스트라이크 테스트")
+    public void returnStrikeComBallToUserBall() {
+        int strikeCnt = 3;
+        int ballCnt = 0;
+        assertThat(baseBallGame.printMatches(strikeCnt, ballCnt)).isFalse();
+    }
+
+    @Test
+    @DisplayName("[COMPARE] 볼 테스트")
+    public void printBallAndNothingComBallToUserBall() {
+        int strikeCnt = 0;
+        int ballCnt = 3;
+        assertThat(baseBallGame.printMatches(strikeCnt, ballCnt)).isTrue();
+    }
+    @Test
+    @DisplayName("[COMPARE] 낫싱 테스트")
+    public void printNothingAndNothingComBallToUserBall() {
+        int strikeCnt = 0;
+        int ballCnt = 0;
+        assertThat(baseBallGame.printMatches(strikeCnt, ballCnt)).isTrue();
+    }
+
+    @Test
+    @DisplayName("[COMPARE] 컴퓨터와 게임플레이어가 입력한 값을 비교하여 3스트라이크 테스트")
+    public void compareComBallToUserBall() {
+        List<Integer> comBallList = baseBallGame.comTurn();
+        StringBuilder comBall = new StringBuilder();
+        for(Integer item : comBallList) {
+            comBall.append(item);
+        }
+        Scanner sc = new Scanner(comBall.toString());
+        int [] userActual = baseBallGame.selectBalls(sc);
+
+        assertThat(baseBallGame.isMatches(userActual, comBallList)).isFalse();
+    }
 }

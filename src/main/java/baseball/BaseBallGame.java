@@ -4,12 +4,26 @@ import java.util.*;
 
 /**
  * 숫자 야구 게임 로직 클래스
+ *  - 메서드 레벨로 분리
  */
 public class BaseBallGame {
 
+    /* 게임 Rule */
     private static final Integer BASE_BALL_CNT = 3;
     private static final Integer BASE_BALL_MIN_POINT = 1;
     private static final Integer BASE_BALL_MAX_POINT = 9;
+    private static final Integer THREE_STRIKE_CNT = 3;
+
+    private static final Integer ZERO = 0;
+
+    /* 비교 값 출력 */
+    private static final String STRIKE = " 스트라이크 ";
+    private static final String BALL = " 볼";
+    private static final String NOTHING = "낫싱";
+
+    /* Message */
+    private static final String MSG_USER_TURN_THREE_NUMBER = "3개의 숫자를 입력해 주세요 : ";
+    private static final String MSG_END_GAME = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n";
 
     /**
      * [Game Logic] 게임 로직 startGame()
@@ -46,6 +60,7 @@ public class BaseBallGame {
         while(comNums.size() < BASE_BALL_CNT) {
             int randomNumbers = ran.nextInt(BASE_BALL_MAX_POINT) + BASE_BALL_MIN_POINT;
             comNums.add(randomNumbers);
+            System.out.println(randomNumbers);
         }
         return new LinkedList<>(comNums);
     }
@@ -60,24 +75,77 @@ public class BaseBallGame {
      * @param comBall 컴퓨터가 생성한 1 ~ 9까지 서로 다른 3개의 숫자
      */
     private void userTurn(Scanner sc, List<Integer> comBall) {
-
         boolean strikeFlag = true;
         while(strikeFlag) {
             int[] userBall = selectBalls(sc);
-
             strikeFlag = isMatches(userBall, comBall);
         }
+        /* 3스트라이크 인 경우 게임 종료 메시지 전송 */
+        print(MSG_END_GAME);
     }
 
+    /**
+     * [GAME LOGIC] 컴퓨터와 게임 플레이어의 값을 비교
+     *  1. 컴퓨터가 입력한 값과 사용자가 입력한 값들의 순서와 값이 모두 같은 경우 Strike Count 증가
+     *  2. 순서는 같지 않으나 값을 포함하고 있는 경우 Ball Count 증가
+     *
+     * @param userBall 사용자가 입력한 1 ~ 9까지 3개의 숫자
+     * @param comBall 컴퓨터가 생성한 1 ~ 9까지 서로 다른 3개의 숫자
+     * @return 3스트라이크인 경우 false, 그 외에는 true 를 반환
+     */
     public boolean isMatches(int[] userBall, List<Integer> comBall) {
+        int ballCnt = ZERO;
+        int strikeCnt = ZERO;
+        for(int i = 0 ; i < userBall.length ; i++) {
+            /* 스트라이크 체크 */
+            if(comBall.get(i) == userBall[i]) {
+                strikeCnt++;
+                continue;
+            }
+            /* 볼 체크 */
+            if(comBall.contains(userBall[i])) {
+                ballCnt++;
+            }
+        }
+        return printMatches(strikeCnt, ballCnt);
+    }
+
+    /**
+     * [Game Logic] 한 회의 게임이 종료된 후, 재게임 또는 게임종료 여부를 입력 요청하는 메서드
+     *  1. 사용자의
+     * @param sc 사용자의 입력을 받을 수 있는 Scanner
+     * @return 게임 Rule에 따라 재게임: 1 입력 시 true, 게임 종료: 2 입력 시: false
+     */
+    private boolean isReGame(Scanner sc) {
         return false;
+    }
+
+    /* 컴퓨터와 사용자의 값을 비교하여 스트라이크, 볼, 낫싱을 출력 */
+    public boolean printMatches(int strikeCnt, int ballCnt) {
+        StringBuilder sb = new StringBuilder();
+        if(strikeCnt == THREE_STRIKE_CNT) {
+            sb.append(strikeCnt).append(STRIKE);
+            System.out.println(sb.toString());
+            return false;
+        }
+        if (strikeCnt > ZERO) {
+            sb.append(strikeCnt).append(STRIKE);
+        }
+        if (ballCnt > ZERO) {
+            sb.append(ballCnt).append(BALL);
+        }
+        if (strikeCnt == ZERO && ballCnt == ZERO) {
+            sb.append(NOTHING);
+        }
+        print(sb.toString() + "\n");
+        return true;
     }
 
     /* 게임 플레이어 */
     public int[] selectBalls(Scanner sc) {
         String userNumbers = "";
         do {
-            System.out.print("3개의 숫자를 입력해 주세요 : ");;
+            print(MSG_USER_TURN_THREE_NUMBER);
             userNumbers = sc.nextLine();
             /* 사용자의 입력 값이 1 ~ 9까지 숫자이면서 길이가 3이 아닌경우 다시 입력 */
         } while (!isValidLength(userNumbers) ||
@@ -127,14 +195,7 @@ public class BaseBallGame {
         }
         return tmp;
     }
-
-    /**
-     * [Game Logic] 한 회의 게임이 종료된 후, 재게임 또는 게임종료 여부를 입력 요청하는 메서드
-     *  1. 사용자의
-     * @param sc 사용자의 입력을 받을 수 있는 Scanner
-     * @return 게임 Rule에 따라 재게임: 1 입력 시 true, 게임 종료: 2 입력 시: false
-     */
-    private boolean isReGame(Scanner sc) {
-        return false;
+    private void print(String msg) {
+        System.out.print(msg);
     }
 }
