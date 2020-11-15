@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TargetNumberGeneratorTest {
+public class BaseballAnswerNumberGeneratorTest {
 
   @Test
   @DisplayName("랜덤으로 생성된 숫자 배열을 반환한다.")
@@ -13,7 +13,7 @@ public class TargetNumberGeneratorTest {
     // given
     int size = 3;
     // when
-    TargetNumberGenerator generator = new TargetNumberGenerator();
+    BaseballAnswerNumberGenerator generator = new BaseballAnswerNumberGenerator();
     int[] result = generator.generate(size);
     // then
     assertThat(result.length).isEqualTo(size);

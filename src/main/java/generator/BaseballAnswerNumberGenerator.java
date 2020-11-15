@@ -3,7 +3,7 @@ package generator;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TargetNumberGenerator {
+public class BaseballAnswerNumberGenerator {
 
   public int[] generate(int size) {
     Set<Integer> numbers = new HashSet<>();
