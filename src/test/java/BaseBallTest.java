@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,6 +46,23 @@ class BaseBallTest {
             baseBall.compareNumbers(i, 0);
         }
         assertTrue(baseBall.strike == 0 && baseBall.ball == 2);
+    }
+
+    @Test
+    void getHintMessage_isNothing() {
+        assertThat(baseBall.getHintMessage()).contains("낫싱");
+    }
+
+    @Test
+    void getHintMessage_isStrikeAndBall() {
+        baseBall.strike = 1;
+        baseBall.ball = 2;
+        assertThat(baseBall.getHintMessage()).contains("볼", "스트라이크");
+    }
+
+    @Test
+    void getHintMessage_isNotEmpty() {
+        assertThat(baseBall.getHintMessage()).isNotEmpty();
     }
 
 }
