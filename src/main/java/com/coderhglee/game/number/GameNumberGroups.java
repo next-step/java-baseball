@@ -1,4 +1,4 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game.number;
 
 import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameNumberGroups {
-    public static final int MESSAGE_ALLOW_LENGTH_MAX = 3;
     private List<GameNumber> gameNumbers;
 
     public GameNumberGroups(List<GameNumber> inputGameNumbers) throws ExceedAllowLengthException, ContainSameNumberException {
@@ -17,7 +16,7 @@ public class GameNumberGroups {
     }
 
     private void isExceedAllowMaxLength(List<GameNumber> inputGameNumbers) throws ExceedAllowLengthException {
-        if (inputGameNumbers.size() != MESSAGE_ALLOW_LENGTH_MAX) {
+        if (inputGameNumbers.size() != GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value) {
             throw new ExceedAllowLengthException();
         }
     }

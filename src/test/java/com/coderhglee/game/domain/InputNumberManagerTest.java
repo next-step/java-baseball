@@ -4,6 +4,9 @@ import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
 import com.coderhglee.game.exception.GameException;
 import com.coderhglee.game.exception.NotAllowValueException;
+import com.coderhglee.game.number.GameSettingNumbers;
+import com.coderhglee.game.number.RandomInputNumber;
+import com.coderhglee.game.number.UserInputNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,8 +14,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.Random;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -24,7 +25,7 @@ public class InputNumberManagerTest {
     @Test
     public void checkRandomInputNumberSize() throws GameException {
         RandomInputNumber randomInputNumber = new RandomInputNumber();
-        assertThat(randomInputNumber.getInputNumber().getGameNumbers().size()).isEqualTo(GameNumberGroups.MESSAGE_ALLOW_LENGTH_MAX);
+        assertThat(randomInputNumber.getInputNumber().getGameNumbers().size()).isEqualTo(GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value);
     }
 
     @DisplayName("사용자 입력 숫자가 게임 숫자 그룹 함수로 만들어지는지 확인 한다.")
@@ -52,10 +53,5 @@ public class InputNumberManagerTest {
                 Arguments.of(" ", NotAllowValueException.class),
                 Arguments.of("1121", ExceedAllowLengthException.class)
         );
-    }
-
-    public int getRandomNumberUsingNextInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
     }
 }

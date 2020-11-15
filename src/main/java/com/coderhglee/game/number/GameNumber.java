@@ -1,10 +1,10 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game.number;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-enum GameNumber {
+public enum GameNumber {
     ONE(1),
     TWO(2),
     THREE(3),
@@ -23,7 +23,7 @@ enum GameNumber {
         this.number = value;
     }
 
-    int getNumberValue() {
+    public int getNumberValue() {
         return number;
     }
 

@@ -1,4 +1,9 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game.number;
+
+import com.coderhglee.game.domain.GameGroupsCompareResult;
+import com.coderhglee.game.number.GameNumber;
+import com.coderhglee.game.number.GameNumberGroups;
+import com.coderhglee.game.number.GameSettingNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +12,7 @@ public class GameNumberGroupsHelper {
     public static GameGroupsCompareResult compareEachGameGroup(GameNumberGroups criteriaGameNumberGroups, GameNumberGroups targetGameNumberGroups) {
         int numberSameScore = getRetainGameNumbersSize(criteriaGameNumberGroups, targetGameNumberGroups);
         int numberAndDigitSameScore = 0;
-        for (int compareIndexNumber = 0; compareIndexNumber < GameNumberGroups.MESSAGE_ALLOW_LENGTH_MAX; compareIndexNumber++) {
+        for (int compareIndexNumber = 0; compareIndexNumber < GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value; compareIndexNumber++) {
             numberAndDigitSameScore += calculationDigitSameScore(criteriaGameNumberGroups.getGameNumberByIndex(compareIndexNumber),
                     targetGameNumberGroups.getGameNumberByIndex(compareIndexNumber));
         }
@@ -23,8 +28,8 @@ public class GameNumberGroupsHelper {
 
     private static int calculationDigitSameScore(GameNumber criteriaGameNumber, GameNumber targetGameNumber) {
         if (criteriaGameNumber.equals(targetGameNumber)) {
-            return 1;
+            return GameSettingNumbers.ADD_ONE_SCORE.value;
         }
-        return 0;
+        return GameSettingNumbers.ADD_ZERO_SCORE.value;
     }
 }

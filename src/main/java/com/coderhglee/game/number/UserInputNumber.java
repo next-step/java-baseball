@@ -1,4 +1,4 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game.number;
 
 import com.coderhglee.game.exception.GameException;
 import com.coderhglee.game.exception.NotAllowValueException;

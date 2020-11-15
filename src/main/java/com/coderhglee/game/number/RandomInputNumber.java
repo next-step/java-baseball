@@ -1,4 +1,4 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game.number;
 
 import com.coderhglee.game.exception.GameException;
 
@@ -11,7 +11,7 @@ public class RandomInputNumber implements InputNumber {
     GameNumberGroups gameNumberGroups;
 
     public RandomInputNumber() throws GameException {
-        List<GameNumber> inputNumber = makeRandomNumber(new ArrayList<>(), GameNumberGroups.MESSAGE_ALLOW_LENGTH_MAX);
+        List<GameNumber> inputNumber = makeRandomNumber(new ArrayList<>());
         setInputNumber(inputNumber);
     }
 
@@ -25,20 +25,21 @@ public class RandomInputNumber implements InputNumber {
         return gameNumberGroups;
     }
 
-    private List<GameNumber> makeRandomNumber(List<GameNumber> targetNumbers, int length) {
-        while (targetNumbers.size() < length) {
-            addRandomNumber(targetNumbers, length);
+    private List<GameNumber> makeRandomNumber(List<GameNumber> targetNumbers) {
+        while (targetNumbers.size() < GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value) {
+            addRandomNumber(targetNumbers);
         }
         return targetNumbers;
     }
 
-    private void addRandomNumber(List<GameNumber> targetNumbers, int length) {
-        GameNumber randomGameNumber = GameNumber.gameNumberMap.get(getRandomNumberFromAllowRange(1, 10));
+    private void addRandomNumber(List<GameNumber> targetNumbers) {
+        int randomNumber = getRandomNumberFromAllowRange(GameSettingNumbers.GAME_NUMBER_MIN_RANGE.value, GameSettingNumbers.GAME_NUMBER_MAX_RANGE.value);
+        GameNumber randomGameNumber = GameNumber.gameNumberMap.get(randomNumber);
         if (!targetNumbers.contains(randomGameNumber)) {
             targetNumbers.add(randomGameNumber);
             return;
         }
-        makeRandomNumber(targetNumbers, length);
+        makeRandomNumber(targetNumbers);
     }
 
     private int getRandomNumberFromAllowRange(int min, int max) {

@@ -17,15 +17,14 @@ public class GameGroupsCompareResult {
         return numberAndDigitSameScore;
     }
 
+    public int getAllCompareScore() {
+        return numberSameScore + numberAndDigitSameScore;
+    }
+
     @Override
     public int hashCode() {
         int result = numberSameScore;
         result = 31 * result + numberAndDigitSameScore;
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

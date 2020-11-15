@@ -2,6 +2,9 @@ package com.coderhglee.game.domain;
 
 import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
+import com.coderhglee.game.number.GameNumberGroupsHelper;
+import com.coderhglee.game.number.GameNumber;
+import com.coderhglee.game.number.GameNumberGroups;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
