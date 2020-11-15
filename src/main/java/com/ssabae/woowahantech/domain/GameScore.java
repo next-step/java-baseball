@@ -1,6 +1,7 @@
 package com.ssabae.woowahantech.domain;
 
 import com.ssabae.woowahantech.Constant;
+import com.ssabae.woowahantech.presentation.Print;
 
 /**
  * @author : leesangbae
@@ -31,12 +32,12 @@ public class GameScore {
 
     public void print() {
         if (this.strike == 0 && this.ball == 0) {
-            System.out.println("낫싱");
+            Print.print("낫싱");
             return;
         }
         StringBuilder sb = new StringBuilder();
         printStrikeAndBall(sb);
-        System.out.println(sb.toString());
+        Print.print(sb.toString());
     }
 
     private void printStrikeAndBall(StringBuilder sb) {

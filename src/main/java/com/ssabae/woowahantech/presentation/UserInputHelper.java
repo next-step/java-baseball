@@ -64,7 +64,7 @@ public class UserInputHelper {
         if (newLine) {
             message = message + "\n";
         }
-        System.out.print(message);
+        Print.print(message);
     }
 
 }
