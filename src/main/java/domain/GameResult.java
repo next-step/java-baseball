@@ -43,4 +43,7 @@ public class GameResult {
         return "";
     }
 
+    public boolean isStrikeOut() {
+        return strike == 3 && ball == 0;
+    }
 }
