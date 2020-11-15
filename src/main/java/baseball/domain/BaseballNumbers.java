@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import static baseball.domain.BaseballStatus.*;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,5 +40,26 @@ public class BaseballNumbers {
 
 	public int size() {
 		return this.numbers.size();
+	}
+
+	public List<BaseballStatus> calculateScore(BaseballNumbers targetNumbers) {
+		List<BaseballStatus> statuses = new ArrayList<>();
+		final List<BaseballNumber> targetNums = targetNumbers.numbers;
+		for (int i = 0; i < targetNums.size(); i++) {
+			final int index = this.numbers.indexOf(targetNums.get(i));
+			statuses.add(findStatus(index, i));
+		}
+
+		return statuses;
+	}
+
+	private BaseballStatus findStatus(int src, int target) {
+		if (src == target) {
+			return STRIKE;
+		}
+		if (src == -1) {
+			return NOTHING;
+		}
+		return BALL;
 	}
 }

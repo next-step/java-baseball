@@ -1,9 +1,9 @@
 package baseball.domain;
 
-import baseball.util.NumberGenerator;
+import java.util.List;
 
 public interface Questioner {
-	void generateNumbers(NumberGenerator generator);
-
 	int numberSize();
+
+	List<BaseballStatus> checkScore(BaseballNumbers baseballNumbers);
 }
