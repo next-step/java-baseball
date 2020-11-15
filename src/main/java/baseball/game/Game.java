@@ -17,6 +17,7 @@ public class Game {
 	private GameStatus status = GameStatus.OFF;
 	private User user;
 	private Computer computer;
+	private GameRule gameRule;
 
 	private Game() {
 		initialize();
@@ -39,8 +40,9 @@ public class Game {
 
 	private void initialize() {
 		status = GameStatus.PAUSE;
-		this.computer = new Computer(generateRandomNumber());
-		this.user = new User();
+		computer = new Computer(generateRandomNumber());
+		user = new User();
+		gameRule = new GameRule(this);
 	}
 
 	private String generateRandomNumber() {
@@ -59,8 +61,8 @@ public class Game {
 		}
 		status = GameStatus.ON;
 		do {
-			user.setNumber(input("숫자를 입력해주세요: ", Pattern::matches, REGEX_ALLOW_PLAYER_INPUT));
-		} while (!isPassed());
+			user.setNumber(input(MESSAGE_INPUT_USER_NUMBER, Pattern::matches, REGEX_ALLOW_PLAYER_INPUT));
+		} while (!isPassedGame());
 		selectReplayOrNot();
 	}
 
@@ -80,18 +82,15 @@ public class Game {
 		return scanner.next();
 	}
 
-	private boolean isPassed() {
-		if (!computer.getNumber().equals(user.getNumber())) {
-			System.out.println("틀렸습니다.");
-			return false;
-		}
-		return true;
+	private boolean isPassedGame() {
+		GameCount gameCount = gameRule.judgeGameCount();
+		gameCount.displayGameCount();
+		return gameCount.isPassed();
 	}
 
 	private void selectReplayOrNot() {
 		status = GameStatus.PAUSE;
-		String replaySign = input(
-			String.format("게임을 새로 시작하려면 %d, 종료하려면 %d를 입력하세요.%n", GAME_STATUS_REPLAY, GAME_STATUS_STOP),
+		String replaySign = input(String.format(MESSAGE_INPUT_USER_GAME_STATUS, GAME_STATUS_REPLAY, GAME_STATUS_STOP),
 			Pattern::matches, REGEX_GAME_STATUS_INPUT);
 		if (Integer.parseInt(replaySign) != GAME_STATUS_REPLAY) {
 			status = GameStatus.OFF;
