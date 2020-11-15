@@ -1,8 +1,5 @@
 package domain;
 
-import view.InputView;
-import view.OutputView;
-
 public class BaseballGameMachine {
     private BaseballGame baseballGame;
     private boolean baseballGameContinue;
@@ -16,21 +13,11 @@ public class BaseballGameMachine {
         return new BaseballGameMachine(BaseballGame.startNewGame(), true);
     }
 
-    public void guessIteration() {
-        while (guess());
+    public GuessResult getGuessResult(GameNumber userNumber) {
+        return baseballGame.getGuessResult(userNumber);
     }
 
-    private boolean guess() {
-        String userNumberRaw = InputView.inputUserNumber();
-        GameNumber userNumber = GameNumber.ofByRaw(userNumberRaw);
-
-        GuessResult guessResult = baseballGame.getGuessResult(userNumber);
-
-        OutputView.printResult(guessResult);
-        return isContinueGuess(guessResult);
-    }
-
-    private boolean isContinueGuess(GuessResult guessResult) {
+    public boolean isContinueGuess(GuessResult guessResult) {
         return !guessResult.isThreeStrike();
     }
 
@@ -38,17 +25,27 @@ public class BaseballGameMachine {
         return baseballGameContinue;
     }
 
-    public void continueGameByInput() {
-        int continueNumber = InputView.inputContinueNumber();
-        if (continueNumber == 2) {
-            baseballGameContinue = false;
-            return;
-        }
-        if (continueNumber == 1) {
+    public void continueGameByInput(int input) {
+        if (stopGameIfInputNumberTwo(input)) return;
+        if (continueGameIfInputNumberOne(input)) return;
+        throw new IllegalArgumentException("1 또는 2의 값을 입력해야 합니다.");
+    }
+
+    private boolean continueGameIfInputNumberOne(int input) {
+        if (input == 1) {
             baseballGame = BaseballGame.startNewGame();
             baseballGameContinue = true;
-            return;
+            return true;
         }
-        throw new IllegalArgumentException("1 또는 2의 값을 입력해야합니다.");
+        return false;
     }
+
+    private boolean stopGameIfInputNumberTwo(int input) {
+        if (input == 2) {
+            baseballGameContinue = false;
+            return true;
+        }
+        return false;
+    }
+
 }
