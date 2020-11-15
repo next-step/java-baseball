@@ -15,7 +15,6 @@ import baseball.view.OutputView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class GameController {
 
@@ -23,6 +22,7 @@ public class GameController {
     private static final int INPUT_SIZE = 3;
     private static final int DIVIDE_VALUE = 10;
     private static final String INPUT_ERROR_MESSAGE = "3자리 숫자를 입력해 주세요";
+    private static final String INPUT_CONTINUE_ERROR_MESSAGE = "1 또는 2를 입력해 주세요";
 
     private final GameService gameService;
 
@@ -53,17 +53,25 @@ public class GameController {
             runFlag = !(matchResult.isGameComplete());
         }
 
-        OutputView.showCompletionMessage();
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-
-        if (Integer.parseInt(input) == 1) {
-            return GameStatus.END;
-        }
-
-        return GameStatus.CONTINUE;
+        return chooseContinue();
     }
 
+    private GameStatus chooseContinue() {
+        String input = InputView.inputContinue();
+        int continueInput;
+
+        try {
+            continueInput = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new UserInputException(INPUT_CONTINUE_ERROR_MESSAGE);
+        }
+
+        if (continueInput == 1) {
+            return GameStatus.CONTINUE;
+        }
+
+        return GameStatus.END;
+    }
 
     private List<Integer> parseUserInput(final String userInput) {
         if (userInput.length() != INPUT_SIZE) {
