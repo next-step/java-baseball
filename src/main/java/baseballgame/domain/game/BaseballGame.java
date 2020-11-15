@@ -1,10 +1,13 @@
 package baseballgame.domain.game;
 
+import baseballgame.domain.error.ScoreParseException;
 import baseballgame.domain.score.Score;
 import baseballgame.domain.score.ScoreParser;
 import baseballgame.dto.CompareResult;
 import baseballgame.ui.input.Input;
 import baseballgame.ui.output.Output;
+
+import java.util.InputMismatchException;
 
 public class BaseballGame implements Game {
     private static final ScoreParser SCORE_PARSER = ScoreParser.getInstance();
@@ -28,7 +31,23 @@ public class BaseballGame implements Game {
     }
 
     private boolean gameProcess() {
-        return false;
+        try {
+            printDemandingSentencesThatIsInputUserScore();
+
+            final CompareResult result = computerScore.compare(inputUserScore());
+
+            printCompareResult(result);
+
+            return checkScoreMatchingPass(result);
+        } catch (InputMismatchException ime) {
+            printExceptionWhenInvalidInputValue();
+            return false;
+        } catch (ScoreParseException spe) {
+            printExceptionWhenParsing();
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void printDemandingSentencesThatIsInputUserScore() {
@@ -45,5 +64,13 @@ public class BaseballGame implements Game {
 
     private boolean checkScoreMatchingPass(CompareResult result) {
         return result.isPass();
+    }
+
+    private void printExceptionWhenInvalidInputValue() {
+        // TODO
+    }
+
+    private void printExceptionWhenParsing() {
+        // TODO
     }
 }
