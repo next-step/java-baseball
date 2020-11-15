@@ -66,6 +66,14 @@ class NumberBaseBallTest {
 		assertEquals(result, "1스트라이크 2볼");
 	}
 
+	@Test
+	@DisplayName("하나도 안맞은 경우 결과 메시지")
+	public void makeResultTest_When_Nothing() {
+		NumberBaseBall numberBaseBall = new NumberBaseBall();
+		String result = numberBaseBall.calculate("352", "987");
+		assertEquals(result, "낫싱");
+	}
+
 	private boolean isEachNumberUniqueAndThreeDigitNumber(String numberString) {
 		String[] numbers = numberString.split("");
 		Set<String> numberSet = new HashSet<>(Arrays.asList(numbers));

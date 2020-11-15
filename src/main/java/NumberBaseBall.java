@@ -54,11 +54,16 @@ public class NumberBaseBall {
 	}
 
 	private String makeResult(int strikeCnt, int ballCnt) {
-		StringBuilder sb = new StringBuilder();
-		String space = " ";
+		if(strikeCnt + ballCnt == 0) {
+			return "낫싱";
+		}
+		return makeResultWithStrikeAndBallCnt(strikeCnt, ballCnt);
+	}
 
+	private String makeResultWithStrikeAndBallCnt(int strikeCnt, int ballCnt) {
+		StringBuilder sb = new StringBuilder();
 		if (strikeCnt > 0) {
-			sb.append(strikeCnt).append("스트라이크").append(space);
+			sb.append(strikeCnt).append("스트라이크").append(" ");
 		}
 		if (ballCnt > 0) {
 			sb.append(ballCnt).append("볼");
