@@ -39,24 +39,6 @@ public class BaseballService {
 		}
 	}
 
-	public void setScoreResult(int inputScoreIndex, int inputScoreAt) {
-		for (int i = 0; i < SCORE_MAX_LENGTH; i++) {
-			setScoreResultToMap(i, inputScoreIndex, inputScoreAt);
-		}
-	}
-
-	/**
-	 * 입력된 숫자의 자리와 값이 마스터 스코어와 동일한지 여부에 따라 스크라이크 또는 볼을 결정한다.
-	 */
-	public void setScoreResultToMap(int masterScoreIndex, int inputScoreIndex, int inputScoreAt) {
-		if (gameMasterScore[masterScoreIndex] == inputScoreAt && masterScoreIndex == inputScoreIndex) {
-			scoreMap.put(BaseballCount.STRIKE, scoreMap.getOrDefault(BaseballCount.STRIKE, 0) + 1);
-		}
-		if (gameMasterScore[masterScoreIndex] == inputScoreAt && masterScoreIndex != inputScoreIndex) {
-			scoreMap.put(BaseballCount.BALL, scoreMap.getOrDefault(BaseballCount.BALL, 0) + 1);
-		}
-	}
-
 	public boolean isValidInputScore(String inputScore) {
 		return inputScore.trim().length() == 3;
 	}
@@ -65,16 +47,6 @@ public class BaseballService {
 		for (int i = 0; i < SCORE_MAX_LENGTH; i++) {
 			gameMasterScore[i] = getRandomNumber();
 		}
-	}
-
-	public int getRandomNumber() {
-		int randomNum;
-		do {
-			randomNum = generateRandomNumber();
-		} while (masterScoreSet.contains(randomNum));
-
-		masterScoreSet.add(randomNum);
-		return randomNum;
 	}
 
 	public String getScoreResultMessage() {
@@ -90,6 +62,34 @@ public class BaseballService {
 	public void initScoreMap() {
 		scoreMap.put(BaseballCount.STRIKE, 0);
 		scoreMap.put(BaseballCount.BALL, 0);
+	}
+
+	private void setScoreResult(int inputScoreIndex, int inputScoreAt) {
+		for (int i = 0; i < SCORE_MAX_LENGTH; i++) {
+			setScoreResultToMap(i, inputScoreIndex, inputScoreAt);
+		}
+	}
+
+	/**
+	 * 입력된 숫자의 자리와 값이 마스터 스코어와 동일한지 여부에 따라 스크라이크 또는 볼을 결정한다.
+	 */
+	private void setScoreResultToMap(int masterScoreIndex, int inputScoreIndex, int inputScoreAt) {
+		if (gameMasterScore[masterScoreIndex] == inputScoreAt && masterScoreIndex == inputScoreIndex) {
+			scoreMap.put(BaseballCount.STRIKE, scoreMap.getOrDefault(BaseballCount.STRIKE, 0) + 1);
+		}
+		if (gameMasterScore[masterScoreIndex] == inputScoreAt && masterScoreIndex != inputScoreIndex) {
+			scoreMap.put(BaseballCount.BALL, scoreMap.getOrDefault(BaseballCount.BALL, 0) + 1);
+		}
+	}
+
+	private int getRandomNumber() {
+		int randomNum;
+		do {
+			randomNum = generateRandomNumber();
+		} while (masterScoreSet.contains(randomNum));
+
+		masterScoreSet.add(randomNum);
+		return randomNum;
 	}
 
 	private int generateRandomNumber() {

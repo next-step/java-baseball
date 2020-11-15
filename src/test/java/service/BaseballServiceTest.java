@@ -2,6 +2,7 @@ package service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +28,7 @@ class BaseballServiceTest {
 		assertFalse(baseballService.isValidInputScore(invalidInputScore));
 	}
 
-	@DisplayName("스코어전체랜덤숫자발급확인")
+	@DisplayName("스코어랜덤숫자정상발급확인")
 	@Test
 	void generateGameMasterScoreTest() {
 		baseballService.generateGameMasterScore();
@@ -36,6 +37,12 @@ class BaseballServiceTest {
 		assertTrue(masterScore[0] >= BaseballService.SCORE_MIN_NUM && masterScore[0] <= BaseballService.SCORE_MAX_NUM);
 		assertTrue(masterScore[1] >= BaseballService.SCORE_MIN_NUM && masterScore[1] <= BaseballService.SCORE_MAX_NUM);
 		assertTrue(masterScore[2] >= BaseballService.SCORE_MIN_NUM && masterScore[2] <= BaseballService.SCORE_MAX_NUM);
+
+		HashSet<Integer> masterScoreSet = new HashSet<>();
+		for (int i = 0; i < masterScore.length; i++) {
+			masterScoreSet.add(masterScore[i]);
+		}
+		assertTrue(masterScoreSet.size() == 3);
 	}
 
 	@DisplayName("스코어결과확인")
