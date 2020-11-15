@@ -14,13 +14,13 @@ public class GameRoom {
 	
 	public void playGame() {
 		while (gameRoomStatus.equals(GameRoomStatus.GO)) {
-			// TODO : 게임실행
+			Game game = new Game();
+			game.playRound();
 
 			inputAnswer();
 		}
 
 		System.out.println(STOP_MESSAGE);
-
 	}
 	
 	private void inputAnswer() {
