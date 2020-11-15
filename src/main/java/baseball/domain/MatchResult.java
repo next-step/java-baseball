@@ -39,6 +39,10 @@ public class MatchResult {
         return new MatchResult(result);
     }
 
+    public int getStrikeCount() {
+        return this.match.get(MatchType.STRIKE);
+    }
+
     public Map<MatchType, Integer> getMatch() {
         return Collections.unmodifiableMap(this.match);
     }
