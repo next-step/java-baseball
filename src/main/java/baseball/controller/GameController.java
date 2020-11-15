@@ -70,8 +70,12 @@ public class GameController {
             throw new UserInputException(INPUT_ERROR_MESSAGE);
         }
 
-        int userNumber = Integer.parseInt(userInput);
-        return splitNumberOneDigit(userNumber);
+        try {
+            int userNumber = Integer.parseInt(userInput);
+            return splitNumberOneDigit(userNumber);
+        } catch (NumberFormatException e) {
+            throw new UserInputException(INPUT_ERROR_MESSAGE);
+        }
     }
 
     private List<Integer> splitNumberOneDigit(int userInput) {
