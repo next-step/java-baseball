@@ -17,8 +17,8 @@ public class GameNumber {
     }
 
     public static GameNumber generateRandomGameNumber() {
-        List<GameDigit> numbers = getNotDuplicateGameDigits(GAME_NUMBER_LENGTH);
-        return new GameNumber(numbers);
+        List<GameDigit> digits = getNotDuplicateGameDigits(GAME_NUMBER_LENGTH);
+        return new GameNumber(digits);
     }
 
     public static GameNumber ofByRaw(String userNumberRaw) {
