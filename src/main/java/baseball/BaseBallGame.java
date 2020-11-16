@@ -30,21 +30,28 @@ public class BaseBallGame {
         List<Integer> dealerNumbers = dealerNumber.getBallNumber();
         List<Integer> playerInputNumbers = playerInputNumber.getBallNumber();
         getBallCount(dealerNumbers, playerInputNumbers);
+        // test log
+        System.out.println(dealerNumbers);
     }
 
     private void getBallCount(List<Integer> dealerNumbers, List<Integer> playerInputNumbers) {
-        for (int i = 0; i < dealerNumbers.size(); i++) {
-            //todo:: indent 줄이기
-            if (dealerNumbers.contains(playerInputNumbers.get(i)) && !isStrike(dealerNumbers.get(i), playerInputNumbers.get(i))) {
-                ballCount.addBallCount();
-            }
+        for (int index = 0; index < dealerNumbers.size(); index++) {
+            checkStrike(dealerNumbers, playerInputNumbers, index);
+            checkBall(dealerNumbers, playerInputNumbers, index);
         }
     }
 
-    private boolean isStrike(Integer dealerNumber, Integer playerInputNumber) {
-        boolean resultStrike = dealerNumber == playerInputNumber;
-        if (resultStrike) ballCount.addStrikeCount();
-        return resultStrike;
+    private void checkBall(List<Integer> dealerNumbers, List<Integer> playerInputNumbers, int index) {
+        if (dealerNumbers.contains(playerInputNumbers.get(index)) && !ballCount.isStrikeLocation(index)) {
+            ballCount.addBallCount();
+        }
+    }
+
+    private void checkStrike(List<Integer> dealerNumbers, List<Integer> playerInputNumbers, int strikeIndex) {
+        if (dealerNumbers.get(strikeIndex).equals(playerInputNumbers.get(strikeIndex))) {
+            ballCount.addStrikeCount();
+            ballCount.addStrikeIndex(strikeIndex);
+        }
     }
 
     public boolean isFinish() {

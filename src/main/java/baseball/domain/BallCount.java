@@ -1,5 +1,8 @@
 package baseball.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class BallCount {
 
     private static final int THREE_STRIKE_COUNT = 3;
@@ -7,9 +10,18 @@ public class BallCount {
 
     private int strikeCount = 0;
     private int ballCount = 0;
+    private Set<Integer> strikeIndex = new HashSet<>();
 
     public void addStrikeCount() {
         this.strikeCount++;
+    }
+
+    public void addStrikeIndex(Integer strikeIndexInput) {
+        strikeIndex.add(strikeIndexInput);
+    }
+
+    public boolean isStrikeLocation(Integer strikeIndexInput) {
+        return strikeIndex.contains(strikeIndexInput);
     }
 
     public void addBallCount() {
@@ -31,4 +43,6 @@ public class BallCount {
     public boolean isThreeStrike() {
         return strikeCount == THREE_STRIKE_COUNT;
     }
+
+
 }
