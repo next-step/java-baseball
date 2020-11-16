@@ -2,12 +2,10 @@ package domain.baseballRule;
 
 public class BaseballResult {
 
-	Boolean match;
 	Strike strike;
 	Ball ball;
 
 	public BaseballResult() {
-		this.match = false;
 		this.strike = Strike.newZeroStrike();
 		this.ball = Ball.newZeroBall();
 	}
@@ -23,10 +21,6 @@ public class BaseballResult {
 
 	public Boolean isNothing() {
 		return this.strike.strike.equals(0) && this.ball.ball.equals(0);
-	}
-
-	public void setMatchTrue() {
-		this.match = true;
 	}
 
 	public void addStrike(Strike strike) {
@@ -45,7 +39,4 @@ public class BaseballResult {
 		return this.ball.ball;
 	}
 
-	public Boolean isMatch() {
-		return this.match;
-	}
 }

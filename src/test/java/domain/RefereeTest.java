@@ -26,7 +26,7 @@ public class RefereeTest {
 
 		assertEquals(strike, baseballResult.getStrikeCount());
 		assertEquals(ball, baseballResult.getBallCount());
-		assertEquals(match, baseballResult.isMatch());
+		assertEquals(match, baseballResult.isThreeStrike());
 	}
 
 }
