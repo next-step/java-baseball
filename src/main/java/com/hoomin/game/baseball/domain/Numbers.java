@@ -34,7 +34,7 @@ public class Numbers {
 		}
 	}
 
-	Hints compareNumbers(Numbers inputNumbers) {
+	protected Hints compareNumbers(Numbers inputNumbers) {
 		Hints hints = new Hints();
 		for (int i = 0; i < this.numberList.size(); i++) {
 			hints.add(compareElement(i, inputNumbers.numberList));

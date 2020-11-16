@@ -26,7 +26,7 @@ public class BaseBallGame {
 		OutputView.solveQuiz();
 	}
 
-	protected boolean isOnGoing(final int input) {
+	public boolean isOnGoing(final int input) {
 		if (input == RESTART) {
 			return true;
 		}

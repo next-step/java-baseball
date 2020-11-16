@@ -1,7 +1,7 @@
 package com.hoomin.game.baseball.domain;
 
 public class Quiz {
-	public static final int THREE_COUNT = 3;
+	private static final int THREE_COUNT = 3;
 	private final Numbers rightNumbers;
 	private QuizState quizState;
 

@@ -6,13 +6,13 @@ import java.util.List;
 import com.hoomin.game.baseball.enums.HintState;
 
 public class Hints {
-	List<HintState> hintStateList;
+	private final List<HintState> hintStateList;
 
 	Hints() {
 		this.hintStateList = new ArrayList<>();
 	}
 
-	void add(HintState hintState) {
+	public void add(HintState hintState) {
 		hintStateList.add(hintState);
 	}
 
