@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class GuessResult {
     private final MatchTypeCounts matchTypeCounts;
 
@@ -33,5 +35,25 @@ public class GuessResult {
             return;
         }
         matchTypeCounts.increaseCount(matchType);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GuessResult that = (GuessResult) o;
+        return matchTypeCounts.equals(that.matchTypeCounts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(matchTypeCounts);
+    }
+
+    @Override
+    public String toString() {
+        return "GuessResult{" +
+                "matchTypeCounts=" + matchTypeCounts +
+                '}';
     }
 }
