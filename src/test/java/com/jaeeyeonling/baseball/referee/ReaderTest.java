@@ -1,10 +1,6 @@
 package com.jaeeyeonling.baseball.referee;
 
 import com.jaeeyeonling.baseball.ball.Balls;
-import com.jaeeyeonling.baseball.referee.Judge;
-import com.jaeeyeonling.baseball.referee.JudgeRule;
-import com.jaeeyeonling.baseball.referee.Reader;
-import com.jaeeyeonling.baseball.referee.UnsupportedJudgeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

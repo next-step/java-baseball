@@ -4,6 +4,5 @@ public enum Judge {
 
     STRIKE,
     BALL,
-    MISS
-    ;
+    MISS;
 }

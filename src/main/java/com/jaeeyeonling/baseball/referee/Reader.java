@@ -4,7 +4,7 @@ import com.jaeeyeonling.baseball.ball.Balls;
 
 import static java.util.Objects.isNull;
 
-public class Reader {
+public final class Reader {
 
     private final JudgeRule strikeRule;
 

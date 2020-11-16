@@ -6,9 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public enum RandomBaseBallsGenerator implements BallsGenerator {
 
-    INSTANCE
-
-    ;
+    INSTANCE;
 
     private final Random random = ThreadLocalRandom.current();
 

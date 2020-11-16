@@ -1,7 +1,5 @@
 package com.jaeeyeonling.baseball.referee;
 
-import com.jaeeyeonling.baseball.referee.Judge;
-import com.jaeeyeonling.baseball.referee.JudgeReport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -55,7 +53,7 @@ class JudgeReportTest {
         report.increment(judge, judge, judge);
 
         // when
-        final var complete= report.isComplete();
+        final var complete = report.isComplete();
 
         // then
         assertThat(complete).isTrue();
@@ -69,7 +67,7 @@ class JudgeReportTest {
         report.increment(judge, judge, judge);
 
         // when
-        final var complete= report.isComplete();
+        final var complete = report.isComplete();
 
         // then
         assertThat(complete).isFalse();
@@ -84,7 +82,7 @@ class JudgeReportTest {
         report.increment(judge, judge, judge);
 
         // when
-        final var nothing= report.isNothing();
+        final var nothing = report.isNothing();
 
         // then
         assertThat(nothing).isTrue();
@@ -98,7 +96,7 @@ class JudgeReportTest {
         report.increment(judge, judge, judge);
 
         // when
-        final var nothing= report.isNothing();
+        final var nothing = report.isNothing();
 
         // then
         assertThat(nothing).isFalse();

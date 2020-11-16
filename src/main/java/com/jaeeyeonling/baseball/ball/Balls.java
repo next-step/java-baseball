@@ -101,8 +101,6 @@ public final class Balls {
 
     @Override
     public String toString() {
-        return "PositiveDigits{" +
-                "value=" + value +
-                '}';
+        return value.toString();
     }
 }
