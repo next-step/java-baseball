@@ -10,9 +10,13 @@ public class GameRule {
     private List<String> reservedNumberSet;
     private String gameAnswer;
 
+    private AnswerRule answerRule;
+
     public void initAnswer() {
         setReservedNumberSet();
         setAnswer();
+
+        answerRule = new AnswerRule();
     }
 
     private void setAnswer() {
@@ -33,17 +37,24 @@ public class GameRule {
     }
 
     public boolean isAnswer(String userAnswer) {
+        if(!answerRule.isValidate(userAnswer)) {
+            return false;
+        }
+
+        return checkStrikeAndBall(userAnswer);
+    }
+
+    private boolean checkStrikeAndBall(String userAnswer) {
         GameRuleStrike gameRuleStrike = new GameRuleStrike(gameAnswer, userAnswer);
         if(gameRuleStrike.isThreeStrike()) {
             return true;
         }
-
         GameRuleBall gameRuleBall = new GameRuleBall(gameAnswer, userAnswer);
         displayHint(gameRuleStrike, gameRuleBall);
         return false;
     }
 
-    private void displayHint(GameRuleStrike gameRuleStrike, GameRuleBall gameRuleBall) {
+    public void displayHint(GameRuleStrike gameRuleStrike, GameRuleBall gameRuleBall) {
         String hint = "";
         if(!gameRuleStrike.isThreeStrike() && gameRuleStrike.getStrike() > 0) {
             hint += String.format("%s ", gameRuleStrike.getHint());
