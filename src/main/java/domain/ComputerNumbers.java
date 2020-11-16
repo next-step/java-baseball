@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class ComputerNumber {
     private static final int NUMBER_LENGTH = 3;
-    private final List<Integer> numbers;
+    private final Set<BaseballNumbers> baseballNumbers;
 
     public ComputerNumber() {
         this.numbers = makeRandomNumbers();
