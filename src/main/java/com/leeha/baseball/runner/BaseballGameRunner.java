@@ -1,18 +1,21 @@
 package com.leeha.baseball.runner;
 
+import java.util.Scanner;
+
 import com.leeha.baseball.controller.BaseballGameController;
+import com.leeha.baseball.controller.BaseballGameOption;
 
 public class BaseballGameRunner {
-
-    public static final int BALL_COUNT = 3;
 
     private BaseballGameController controller;
 
     public BaseballGameRunner() {
-        this.controller = new BaseballGameController(BALL_COUNT);
+        this.controller = new BaseballGameController(new BaseballGameOption(3, 1, 9));
     }
 
     public void run() {
-        controller.start();
+        try (Scanner scanner = new Scanner(System.in)) {
+            controller.start(scanner);
+        }
     }
 }
