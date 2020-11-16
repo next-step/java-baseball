@@ -15,6 +15,10 @@ public class Ui {
 		return input;
 	}
 
+	public static void printBaseballGameVictory(int numberSize) {
+		printMessageLine(numberSize + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+	}
+
 	public static void printMessage(String message) {
 		System.out.print(message);
 	}

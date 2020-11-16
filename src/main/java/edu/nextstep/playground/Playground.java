@@ -21,5 +21,6 @@ public class Playground {
 			BaseballScore score = game.playToEnd();
 			Ui.printMessageLine(score.toLocaleString());
 		} while (!game.didWin());
+		Ui.printBaseballGameVictory(game.getSelectedNumberSize());
 	}
 }

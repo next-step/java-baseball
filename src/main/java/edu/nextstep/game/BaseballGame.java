@@ -45,4 +45,8 @@ public class BaseballGame {
 		return score.isEnd();
 	}
 
+	public int getSelectedNumberSize() {
+		return SELECTED_NUMBER_SIZE;
+	}
+
 }
