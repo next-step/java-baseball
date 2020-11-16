@@ -1,4 +1,6 @@
 import baseballgame.BaseballGame;
+import baseballgame.GameNumber;
+import baseballgame.GameNumbers;
 import baseballgame.Result;
 import baseballgame.exceptions.ViolationException;
 import ui.InputInterface;
@@ -50,11 +52,12 @@ public class GameController {
   public static void runGame() {
     baseballGame.init();
     boolean win = false;
+    Result result = null;
     while (!win) {
       out.print(inputMessage);
       int[] userInput = strToIntArray(in.getInput());
       try {
-        baseballGame.validateInput(userInput);
+        result = baseballGame.judge(new GameNumbers(GameNumber.createArray(userInput)));
       } catch (ViolationException e) {
         out.println(e.getMessage());
         continue;
@@ -62,8 +65,6 @@ public class GameController {
         e.printStackTrace();
         System.exit(-1);
       }
-
-      Result result = baseballGame.matchWithAnswer(userInput);
       out.println(result.getMessage());
       win = result.hasWin();
     }
