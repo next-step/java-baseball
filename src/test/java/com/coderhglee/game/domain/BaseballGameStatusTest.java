@@ -20,7 +20,7 @@ public class BaseballGameStatusTest {
 
     @BeforeEach
     void setUp() throws GameException {
-        baseballGame = new BaseballGame(new UserInputNumber("321").getInputNumber());
+//        baseballGame = new BaseballGame(new UserInputNumber("321").getInputNumber());
     }
 
     @DisplayName("사용자 예측한 야구게임 결과의 상태 메세지가 일치 하는가")

@@ -1,9 +1,7 @@
 package com.coderhglee.game.number;
 
 import com.coderhglee.game.domain.GameGroupsCompareResult;
-import com.coderhglee.game.number.GameNumber;
-import com.coderhglee.game.number.GameNumberGroups;
-import com.coderhglee.game.number.GameSettingNumbers;
+import com.coderhglee.game.domain.GameSettingNumbers;
 
 import java.util.ArrayList;
 import java.util.List;

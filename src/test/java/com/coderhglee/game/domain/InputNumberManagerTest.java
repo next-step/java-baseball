@@ -4,7 +4,6 @@ import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
 import com.coderhglee.game.exception.GameException;
 import com.coderhglee.game.exception.NotAllowValueException;
-import com.coderhglee.game.number.GameSettingNumbers;
 import com.coderhglee.game.number.RandomInputNumber;
 import com.coderhglee.game.number.UserInputNumber;
 import org.junit.jupiter.api.DisplayName;

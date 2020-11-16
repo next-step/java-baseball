@@ -21,7 +21,7 @@ public class BaseballGameTest {
 
     @BeforeEach
     void setUp() throws GameException {
-        baseballGame = new BaseballGame(new UserInputNumber("321").getInputNumber());
+//        baseballGame = new BaseballGame(new UserInputNumber("321").getInputNumber());
     }
 
     @DisplayName("사용자가 야구게임을 진행하는데 답변에 따른 상태 클래스가 정상적으로 리턴되는가")

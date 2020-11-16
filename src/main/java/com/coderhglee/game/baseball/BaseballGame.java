@@ -8,46 +8,28 @@ import com.coderhglee.game.number.InputNumber;
 import com.coderhglee.game.number.RandomInputNumber;
 import com.coderhglee.game.exception.GameException;
 
-public class BaseballGame implements Game {
+public class BaseballGame implements Game<BaseballGameStatus> {
     BaseballGameStatus gameStatus;
     GameNumberGroups correctAnswer;
     String baseballGameMessageForUser;
 
-    public BaseballGame(GameNumberGroups correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
-
-    @Override
-    public void setGameUI() {
-
-    }
-
-    @Override
-    public void sendMessageToUserInterface(String userMessage) {
-    }
-
-    @Override
-    public void gameStart() throws GameException {
-        InputNumber inputNumber = new RandomInputNumber();
-        correctAnswer = inputNumber.getInputNumber();
+    public BaseballGame() throws GameException {
+        RandomInputNumber randomInputNumber = new RandomInputNumber();
+        this.correctAnswer = randomInputNumber.getInputNumber();
+        this.gameStatus = BaseballGameStatus.NOTING;
     }
 
     @Override
     public void gameProcess(InputNumber inputNumber) throws GameException {
         GameGroupsCompareResult gameGroupsCompareResult = GameNumberGroupsHelper.compareEachGameGroup(correctAnswer, inputNumber.getInputNumber());
-        if (isScoreSameGameStatus(gameGroupsCompareResult.getNumberAndDigitSameScore(),BaseballGameStatus.WIN)) return;
-        if (isScoreSameGameStatus(gameGroupsCompareResult.getAllCompareScore(),BaseballGameStatus.NOTING)) return;
+        if (isScoreSameGameStatus(gameGroupsCompareResult.getNumberAndDigitSameScore(), BaseballGameStatus.WIN)) return;
+        if (isScoreSameGameStatus(gameGroupsCompareResult.getAllCompareScore(), BaseballGameStatus.NOTING)) return;
         setGameStatusAndMessage(BaseballGameStatus.HINT, gameGroupsCompareResult);
     }
 
     @Override
     public String getGameResultMessage() {
         return this.baseballGameMessageForUser;
-    }
-
-    @Override
-    public void endGame() {
-
     }
 
     private boolean isScoreSameGameStatus(int gameScore, BaseballGameStatus gameStatus) {
