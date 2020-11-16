@@ -5,36 +5,24 @@ import util.CustomException;
 import java.util.*;
 
 public class Gamer {
-	ArrayList<String> userInputNumbers = new ArrayList<>();
-	Baseball baseball;
-	int strike = 0;
-	int ball = 0;
+	private ArrayList<String> userInputNumbers = new ArrayList<>();
+	private Baseball baseball;
+	private int strike = 0;
+	private int ball = 0;
 
 	public Gamer(Baseball baseball) {
 		this.baseball = baseball;
-	}
-
-	public ArrayList<String> getUserInputNumbers() {
-		return userInputNumbers;
 	}
 
 	private void setUserInputNumbers(ArrayList<String> userInputNumbers) {
 		this.userInputNumbers = userInputNumbers;
 	}
 
-	public int getStrike() {
-		return strike;
-	}
-
-	public void setStrike(int strike) {
+	private void setStrike(int strike) {
 		this.strike = strike;
 	}
 
-	public int getBall() {
-		return ball;
-	}
-
-	public void setBall(int ball) {
+	private void setBall(int ball) {
 		this.ball = ball;
 	}
 
@@ -108,7 +96,7 @@ public class Gamer {
 		}
 	}
 
-	public void showGameResult() throws
+	private void showGameResult() throws
 			CustomException.InvalidNumberFormatException,
 			CustomException.InvalidNumberOfSizeException,
 			CustomException.InvalidNumberOfRangeException {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 public class Baseball {
-	ArrayList<String> defaultNumbers;
+	private ArrayList<String> defaultNumbers;
 
 	public Baseball() {
 		setDefaultNumbers();
