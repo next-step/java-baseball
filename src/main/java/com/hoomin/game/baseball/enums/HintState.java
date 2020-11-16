@@ -1,4 +1,5 @@
 package com.hoomin.game.baseball.enums;
 
-public class HintState {
+public enum HintState {
+	STRIKE, BALL, NOTHING;
 }

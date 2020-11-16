@@ -12,7 +12,14 @@ public class BaseBallGame {
 		do {
 			Computer computer = new Computer();
 			Quiz quiz = new Quiz(computer.makeRightAnswer());
+			solveQuiz(quiz);
 		} while (isOnGoing());
+	}
+
+	private void solveQuiz(Quiz quiz) {
+		do {
+			quiz.checkNumbers(InputView.getNumbers());
+		} while (quiz.isUnSolved());
 	}
 
 	private boolean isOnGoing() {
