@@ -25,13 +25,21 @@ public class BaseballGame {
     }
 
     public boolean isWin(BaseballResult baseballResult) {
+        if (baseballResult == null) {
+            return false;
+        }
         BaseballView.showResult(baseballResult);
-        return baseballResult.isExactSame();
+
+        boolean isWin = baseballResult.isExactSame();
+        if (isWin) {
+            BaseballView.showWinMessage();
+        }
+        return isWin;
     }
 
     public BaseballResult checkNumbers(BaseballNumbers answerNumbers, BaseballNumbers playerNumbers) {
         if (playerNumbers.isEmpty()) {
-            return new BaseballResult();
+            return null;
         }
         return new BaseballResult(answerNumbers, playerNumbers);
     }
