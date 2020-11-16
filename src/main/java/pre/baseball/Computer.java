@@ -1,5 +1,7 @@
 package pre.baseball;
 
+import java.util.Arrays;
+
 public class Computer {
 
     private static final int DEFAULT_DIGIT = 3;
@@ -31,6 +33,26 @@ public class Computer {
 	this.strike = 0;
 	this.ball = 0;
     }
+    
+    /**
+     * 플레이어가 입력한 숫자에 대한 검사를 한다.
+     * 
+     * @param userNumbers
+     * @return
+     */
+    public boolean check(int[] userNumbers) {
+	int[] answer = getAnswer();
+	if (Arrays.equals(getAnswer(), userNumbers)) {
+	    System.out.println("3개의 숫자를 모두 맞히셨습니다. 게임 종료");
+	    return true;
+	}
+
+	for (int i = 0; i < getAnswer().length; i++) {
+	    match(i, answer, userNumbers);
+	}
+
+	return false;
+    }
 
     /**
      * 자릿수에 맞는 랜덤 숫자를 생성한다.
@@ -44,6 +66,20 @@ public class Computer {
 	    array[i] = (int) (Math.random() * 9) + 1;
 	}
 	return array;
+    }
+    
+    /**
+     * 스트라이크인지, 볼인지 매칭시킨다.
+     * 
+     * @param i
+     * @param answer
+     * @param userNumbers
+     */
+    private void match(int i, int[] answer, int[] userNumbers) {
+	for (int j = 0; j < userNumbers.length; j++) {
+	    // 스트라이크
+	    // 볼
+	}
     }
 
 }
