@@ -1,12 +1,9 @@
 package baseball.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import java.util.Arrays;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import baseball.BaseballGame;
 
 class BaseballGoalNumberTest {
 
@@ -17,8 +14,8 @@ class BaseballGoalNumberTest {
 		// 랜덤 난수 생성
 		BaseballGoalNumber baseballGoal = new BaseballGoalNumber();
 
-		assertThat(baseballGoal.goalNumberArray).isNotNull();
-		assertThat(baseballGoal.goalNumberArray.size()).isEqualTo(BaseballGame.BASEBALL_GAME_COUNT);
-		System.out.println(baseballGoal.goalNumberArray.toString());
+		assertThat(baseballGoal.baseballGoalNumber).isNotNull();
+		assertThat(baseballGoal.baseballGoalNumber.size()).isEqualTo(BaseballGoalNumber.BASEBALL_GAME_COUNT);
+		System.out.println(baseballGoal.baseballGoalNumber.toString());
 	}
 }
