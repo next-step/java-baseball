@@ -61,6 +61,19 @@ public class NumberBaseballGameTest {
 		assertThat(actual).isTrue();
 	}
 	
+	// 볼, 스트라이크 카운트가 제대로 되는지 테스트
+	// 볼카운트와 스트라이크 카운트가 더해서 자릿수(3)이 초과되는지 테스트
+	@Test
+	public void testSumCountBallCountStrike() {
+		
+		int ball = numberBaseballGame.countBall(123, 234);
+		int strike = numberBaseballGame.countStrike(123, 234);
+		int sumNum = ball + strike; 
+		boolean actual = (0 <= sumNum) && (sumNum <= numberBaseballGame.RANDOM_DIGIT);
+	
+		assertThat(actual).isTrue();
+	}
+	
 	/**
 	 * 
 	 * 문자열내에 같은 문자가 몇개있는지 체크
