@@ -33,27 +33,28 @@ public class Balls {
 	}
 
 	private void setNumbers(String numbers) {
-		boolean[] canUse = new boolean[10];
-		setCanUse(canUse);
+		boolean[] availableNumbers = setAvailableNumbers();
 		for (int i = 0; i < BALL_COUNT; i++) {
 			this.numbers[i] = parseToNumericValue(numbers.charAt(i));
-			if (!canUse[this.numbers[i]]) {
+			if (!availableNumbers[this.numbers[i]]) {
 				throw new IllegalArgumentException();
 			}
-			canUse[this.numbers[i]] = false;
+			availableNumbers[this.numbers[i]] = false;
 		}
 	}
 
-	private void setCanUse(boolean[] canUse) {
+	private boolean[] setAvailableNumbers() {
+		boolean[] availableNumbers = new boolean[10];
 		for (int i : ALLOWED_BALL_NUMBERS) {
-			canUse[i] = true;
+			availableNumbers[i] = true;
 		}
+		return availableNumbers;
 	}
 
-	private int parseToNumericValue(char c) {
-		if (c < '0' || c > '9') {
+	private int parseToNumericValue(char character) {
+		if (character < '0' || character > '9') {
 			throw new IllegalArgumentException();
 		}
-		return c - '0';
+		return character - '0';
 	}
 }

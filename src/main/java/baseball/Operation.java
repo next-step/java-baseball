@@ -5,8 +5,7 @@ import java.util.Map;
 
 public enum Operation {
 	START(1),
-	EXIT(2),
-	;
+	EXIT(2);
 
 	private static final Map<Integer, Operation> BY_VALUE = new HashMap<>();
 

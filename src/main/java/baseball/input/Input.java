@@ -6,6 +6,7 @@ import baseball.game.Balls;
 public interface Input {
 
 	Operation getOperation();
+
 	Balls getBalls();
 
 	default <T> T get(InputCallback<T> callback, InputFailureCallback failureCallback) {

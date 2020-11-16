@@ -7,7 +7,8 @@ public class GameScore {
 	private int strike = 0;
 	private int ball = 0;
 
-	public GameScore() {}
+	public GameScore() {
+	}
 
 	public void strike() {
 		validate();

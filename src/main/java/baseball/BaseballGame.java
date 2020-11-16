@@ -6,13 +6,13 @@ import baseball.game.GameScore;
 import baseball.input.Input;
 import baseball.presenter.Presenter;
 
-public class BaseBallGame {
+public class BaseballGame {
 
 	private final Input input;
 	private final Presenter presenter;
 	private boolean isRunning = true;
 
-	public BaseBallGame(Input input, Presenter presenter) {
+	public BaseballGame(Input input, Presenter presenter) {
 		this.input = input;
 		this.presenter = presenter;
 	}
@@ -37,11 +37,10 @@ public class BaseBallGame {
 
 	private Operation getOperation() {
 		return input.get(
-				() -> {
-					this.presenter.operate();
-					return this.input.getOperation();
-				},
-				e -> presenter.inputFailed(e.getMessage())
+			() -> {
+				this.presenter.operate();
+				return this.input.getOperation();
+			}, e -> presenter.inputFailed(e.getMessage())
 		);
 	}
 
@@ -64,11 +63,10 @@ public class BaseBallGame {
 
 	private Balls getBalls() {
 		return input.get(
-				() -> {
-					this.presenter.playBall();
-					return input.getBalls();
-				},
-				e -> presenter.inputFailed(e.getMessage())
+			() -> {
+				this.presenter.playBall();
+				return input.getBalls();
+			}, e -> presenter.inputFailed(e.getMessage())
 		);
 	}
 
