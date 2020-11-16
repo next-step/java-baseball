@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import game.baseball.domain.shared.NumberUtils;
+
 public class BaseBallNumber {
 	public static final int NUMBERS_SIZE = 3;
 	private static final int MIN_NUMBER = 1;
@@ -51,16 +53,10 @@ public class BaseBallNumber {
 	}
 
 	public int get(int index) {
-		return numbers.get(index);
+		return this.numbers.get(index);
 	}
 
 	public int getNumber() {
-		int totalNumber = 0;
-
-		for (Integer number : numbers) {
-			totalNumber = totalNumber * 10 + number;
-		}
-
-		return totalNumber;
+		return NumberUtils.combine(this.numbers);
 	}
 }
