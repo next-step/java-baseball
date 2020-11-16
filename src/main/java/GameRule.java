@@ -33,6 +33,8 @@ public class GameRule {
     }
 
     public boolean isAnswer(String userAnswer) {
+        GameRuleStrike gameRuleStrike = new GameRuleStrike(gameAnswer, userAnswer);
+
         return true;
     }
 
