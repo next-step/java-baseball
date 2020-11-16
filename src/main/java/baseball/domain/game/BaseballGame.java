@@ -11,6 +11,7 @@ public class BaseballGame {
 	private static final String BALL = "볼";
 	private static final String NOTHING = "낫싱";
 
+	private boolean isPlaying = true;
 	private Scanner sc = new Scanner(System.in);
 
 	public void play(Computer computer, Player player) {
@@ -20,6 +21,13 @@ public class BaseballGame {
 			System.out.println(scoreBaseball(player));
 		}
 
+	}
+
+	public void restart() {
+		int input = Integer.parseInt(sc.next());
+		if(input == 2) {
+			isPlaying = false;
+		}
 	}
 
 	public void calcBaseball(Computer computer, Player player) {
