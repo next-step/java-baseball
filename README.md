@@ -5,3 +5,12 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능 목록
+1. Java Project -> Kotlin으로 변경한다.
+2. 랜덤숫자를 생성하는 함수의 Skeleton을 작성한다.
+3. 랜덤숫자를 생성하는 테스트 코드를 작성한다.
+4. 랜덤 숫자를 생성하는 함수를 구현한다.
+5. 스트라이크, 볼, 낫싱을 평가하는 함수의 Skeleton을 작성한다.
+6. 스트라이크, 볼, 낫싱을 평가하는 테스트 코드를 작성한다.
+7. 코드를 정리한다.
