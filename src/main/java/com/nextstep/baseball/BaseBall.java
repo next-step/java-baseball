@@ -43,7 +43,7 @@ public class BaseBall {
 		} while (strikeCnt < 3);
 	}
 
-	private void printResult(int strikeCnt, int ballCount, boolean isNothing) {
+	public void printResult(int strikeCnt, int ballCount, boolean isNothing) {
 		StringBuffer sb = new StringBuffer();
 		if (isNothing) {
 			sb.append("낫싱");
@@ -113,7 +113,7 @@ public class BaseBall {
 		}
 	}
 
-	private void collectDigits(int input, List<Integer> digits) {
+	void collectDigits(int input, List<Integer> digits) {
 		if (input / 10 > 0) {
 			collectDigits(input / 10, digits);
 		}
@@ -131,7 +131,7 @@ public class BaseBall {
 		System.out.println(message);
 	}
 
-	private List<Integer> selectNonoverlapThreeNumber() {
+	List<Integer> selectNonoverlapThreeNumber() {
 		List<Integer> answerList = new ArrayList<>();
 		HashSet<Integer> answerSet = new HashSet<>();
 		do {
