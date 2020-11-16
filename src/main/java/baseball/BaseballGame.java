@@ -6,7 +6,7 @@ public class BaseballGame {
 
   public void run() {
     boolean isPlay = true;
-    while(isPlay) {
+    while (isPlay) {
       game();
       isPlay = isReplay();
     }
@@ -15,7 +15,7 @@ public class BaseballGame {
   public void game() {
     boolean isAnswer = false;
     Checker checker = new Checker(Computer.generateAnswer());
-    while(!isAnswer) {
+    while (!isAnswer) {
       int[] guessNumber = User.guess();
       Result result = checker.getScore(guessNumber);
       result.printResult();
@@ -24,9 +24,22 @@ public class BaseballGame {
   }
 
   public boolean isReplay() {
-    System.out.println(InputType.REPLAY_GAME);
     Scanner scan = new Scanner(System.in);
-    int replay = scan.nextInt();
-    return replay == 1 ? true : false;
+    boolean isValid = false;
+    String replay = "";
+    while (!isValid) {
+      System.out.println(InputType.REPLAY_GAME);
+      replay = scan.nextLine();
+      isValid = validateUserInput(replay);
+    }
+    return replay.equals("1");
+  }
+
+  public boolean validateUserInput(String input) {
+    if (input.equals("1") || input.equals("2")) {
+      return true;
+    }
+    System.out.println("1이나 2를 입력하세요!");
+    return false;
   }
 }
