@@ -16,8 +16,8 @@ public class Game {
     }
 
     private void init() {
-       this.player = new Player(new Number());
-       this.status = START;
+        this.player = new Player(new Number());
+        this.status = START;
     }
 
     public boolean isOver() {
