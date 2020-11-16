@@ -1,51 +1,58 @@
 package app;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * 숫자야구 메인 클래스
  */
 public class BaseballGame {
 
-    private final int MIN_NUMBER = 1;
-    private final int MAX_NUMBER = 9;
-    private final Set<Integer> generateNumbers = new HashSet<>();
-    private final String[] generateNumberArray = new String[InputValidator.MAX_LENGTH];
+    private final Score score = new Score();
+    private final String generateNumber;
+    private final String[] generateNumberArray;
 
-    public BaseballGame() {
-        setGenerateNumber();
+    public BaseballGame(String generateNumber) {
+        this.generateNumber = generateNumber;
+        this.generateNumberArray = generateNumber.split("");
     }
 
     /**
-     * 임의로 생성한 숫자 set 리턴
+     * 사용자가 입력한 값과 임의로 생성된 값을 비교하여 판별한 결과 리턴
      *
-     * @return Set
+     * @param input 사용자 입력값
+     * @return
      */
-    public Set<Integer> getGenerateNumber() {
-        return generateNumbers;
+    public Score guess(String input) {
+        score.clearCount();
+        int length = generateNumber.length();
+        for (int i = 0; i < length; i++) {
+            String number = String.valueOf(input.charAt(i));
+            checkStrikeCount(number, i);
+            checkBallCount(number, i);
+        }
+
+        return score;
     }
 
     /**
-     * 임의로 생성한 숫자 배열 리턴
-     * @return String[]
+     * 스트라이크 카운트 체크
+     *
+     * @param number 판별대상 숫자
+     * @param i      generateNumberArray 인덱스
      */
-    public String[] getGenerateNumberArray() {
-        return generateNumberArray;
+    private void checkStrikeCount(String number, int i) {
+        if (generateNumberArray[i].equals(number)) {
+            score.setStrike();
+        }
     }
 
     /**
-     * 임의의 중북되지 않는 3자리 숫자 생성
+     * 볼카운트 체크
+     *
+     * @param number 판별대상 숫자
+     * @param i      generateNumberArray 인덱스
      */
-    private void setGenerateNumber() {
-        int i = 0;
-        while (generateNumbers.size() < InputValidator.MAX_LENGTH) {
-            int random = (int) ((Math.random() * (MAX_NUMBER - MIN_NUMBER)) + MIN_NUMBER);
-            if (!generateNumbers.contains(random)) {
-                generateNumberArray[i] = Integer.toString(random);
-                i++;
-            }
-            generateNumbers.add(random);
+    private void checkBallCount(String number, int i) {
+        if (!generateNumberArray[i].equals(number) && generateNumber.contains(number)) {
+            score.setBall();
         }
     }
 }

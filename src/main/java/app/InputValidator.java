@@ -9,6 +9,7 @@ public class InputValidator {
 
     /**
      * 입력한 숫자가 3자리인지 길이 체크와 정규식으로 숫자인지 체크
+     *
      * @param input 사용자 입력값
      * @return
      */
