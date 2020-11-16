@@ -5,6 +5,7 @@ import baseball.domain.Result;
 public class BaseballResultView {
     private static final String STRIKE = " 스트라이크 ";
     private static final String BALL = " 볼 ";
+    private static final String NOTHING = "낫싱";
 
     public static Boolean showResult(Result result) {
         String stringResult = "";
@@ -13,6 +14,9 @@ public class BaseballResultView {
         }
         if(!result.getBall().toString().equals("0")) {
             stringResult += result.getBall().toString().concat(BALL);
+        }
+        if(stringResult.equals("")) {
+            stringResult += NOTHING;
         }
         System.out.println(stringResult);
         if(result.getStrike().toString().equals("3")) {
