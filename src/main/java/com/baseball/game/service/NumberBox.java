@@ -1,5 +1,7 @@
 package com.baseball.game.service;
 
+import com.baseball.game.exception.BaseBallException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,17 +18,16 @@ public class NumberBox {
         createPitcherBox();
     }
 
-    public NumberBox(String swingNumbers){
-        numberBox = new ArrayList<>();
-        validate();
+    public NumberBox(int swingNumbers){
+        createBatterBox(swingNumbers);
     }
 
     public static NumberBox generate(){
         return new NumberBox();
     }
 
-    public static NumberBox generate(String swingNumbers){
-        return new NumberBox();
+    public static NumberBox generate(int swingNumbers){
+        return new NumberBox(swingNumbers);
     }
 
     private void createPitcherBox() {
@@ -44,9 +45,35 @@ public class NumberBox {
         return input;
     }
 
-    // TODO: BaseBallException 구현하기
-    private void validate(){
+    private void createBatterBox(int swingNumbers) {
+        numberBox = new ArrayList<>();
+        isNumberRange(swingNumbers);
 
+        for (String number : splitSwingNumber(swingNumbers)){
+            int inputNum = parsingNumber(number);
+            isDuplicated(inputNum);
+            numberBox.add(inputNum);
+        }
+    }
+
+    private String[] splitSwingNumber(int swingNumbers){
+        return String.valueOf(swingNumbers).split("");
+    }
+
+    private int parsingNumber(String number){
+        return Integer.parseInt(number);
+    }
+
+    private void isNumberRange(int num){
+        if(num < 1 || num > 1_000){
+            throw new BaseBallException("0 ~ 1,000 사이의 숫자만 입력해 주세요");
+        }
+    }
+
+    private void isDuplicated(int num) {
+        if (numberBox.contains(num)) {
+            throw new BaseBallException("1~9까지 서로 다른 3자리 숫자로 입력해 주세요");
+        }
     }
 
     public List<Integer> getNumberBox() {
@@ -55,5 +82,16 @@ public class NumberBox {
 
     void setNumberBox(List<Integer> numberBox) {
         this.numberBox = numberBox;
+    }
+
+    @Override
+    public String toString(){
+        String result = "";
+
+        for (Integer num : this.numberBox){
+            result += num;
+        }
+
+        return result;
     }
 }
