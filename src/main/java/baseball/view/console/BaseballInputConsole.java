@@ -4,6 +4,8 @@ import baseball.controller.dto.EndGameRequest;
 import baseball.controller.dto.GuessNumberRequest;
 import baseball.view.BaseballInput;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BaseballInputConsole implements BaseballInput {
@@ -49,9 +51,9 @@ public class BaseballInputConsole implements BaseballInput {
 	}
 
 	private GuessNumberRequest convertToGuessNumberRequest(String rawInput) {
-		int[] guessNumber = new int[NUMBER_OF_GUESS_NUMBER];
+		List<Integer> guessNumber = new ArrayList<>();
 		for (int i = 0; i < NUMBER_OF_GUESS_NUMBER; i++) {
-			guessNumber[i] = rawInput.charAt(i) - '0';
+			guessNumber.add(rawInput.charAt(i) - '0');
 		}
 		return new GuessNumberRequest(guessNumber);
 	}

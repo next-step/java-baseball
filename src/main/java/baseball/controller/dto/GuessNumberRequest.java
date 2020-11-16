@@ -1,13 +1,15 @@
 package baseball.controller.dto;
 
-public class GuessNumberRequest {
-	private int[] guessNumbers;
+import java.util.List;
 
-	public GuessNumberRequest(int[] guessNumbers) {
+public class GuessNumberRequest {
+	private List<Integer> guessNumbers;
+
+	public GuessNumberRequest(List<Integer> guessNumbers) {
 		this.guessNumbers = guessNumbers;
 	}
 
-	public int[] getGuessNumbers() {
+	public List<Integer> getGuessNumbers() {
 		return guessNumbers;
 	}
 }

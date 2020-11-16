@@ -5,6 +5,8 @@ import baseball.controller.dto.GuessNumberRequest;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 import static baseball.controller.dto.EndGameRequest.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,11 +72,11 @@ class BaseballInputConsoleTest {
 		Method method = getConvertToGuessNumberRequestMethod(testClass);
 
 		String testInput = "123";
-		int[] expectedResult = {1, 2, 3};
+		List<Integer> expectedResult = Arrays.asList(1, 2, 3);
 
 		try {
 			GuessNumberRequest actualResult = ((GuessNumberRequest) method.invoke(testClass, testInput));
-			assertArrayEquals(expectedResult, actualResult.getGuessNumbers());
+			assertEquals(expectedResult, actualResult.getGuessNumbers());
 		} catch (Exception e) {
 			assert(false);
 		}
