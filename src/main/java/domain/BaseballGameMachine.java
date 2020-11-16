@@ -30,11 +30,11 @@ public class BaseballGameMachine {
 
     public void continueGameByInput(int input) {
         if (stopGameIfInputStop(input)) return;
-        if (continueGameIfInputNumberOne(input)) return;
+        if (continueGameIfInputContinue(input)) return;
         throw new IllegalArgumentException("1 또는 2의 값을 입력해야 합니다.");
     }
 
-    private boolean continueGameIfInputNumberOne(int input) {
+    private boolean continueGameIfInputContinue(int input) {
         if (input == INPUT_CONTINUE_GAME) {
             baseballGame = BaseballGame.startNewGame();
             baseballGameContinue = true;
