@@ -19,7 +19,7 @@ public class BaseBallTest {
 	@BeforeEach
 	void setUp() {
 		numbersRange = new HashSet<>();
-		for(int i = 1 ; i < 10 ; i++ ){
+		for (int i = 1; i < 10; i++) {
 			numbersRange.add(i);
 		}
 	}
@@ -34,8 +34,8 @@ public class BaseBallTest {
 	 */
 
 	@Test
-	@DisplayName("1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능")
-	void isNotDuplicatedThreeNumber_Between1To9(){
+	@DisplayName("1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 함수 테스트")
+	void isNotDuplicatedThreeNumber_Between1To9() {
 		List<Integer> selectedThreeNumber = baseBall.selectNonoverlapThreeNumber();
 
 		assertThat(selectedThreeNumber)
@@ -44,8 +44,24 @@ public class BaseBallTest {
 				.doesNotContainNull()
 				.doesNotHaveDuplicates()
 				.hasSize(3)
-				;
-		for(Integer input : selectedThreeNumber){
+		;
+		for (Integer input : selectedThreeNumber) {
+			assertThat(numbersRange.contains(input)).isTrue();
+		}
+	}
+
+	@Test
+	@DisplayName("사용자로부터 1~9까지 서로 다른 임의의 수 3개를 입력 받는 함수 테스트")
+	void readDigitList() {
+		List<Integer> result = baseBall.readNonoverThreeNumber(123);
+		assertThat(result)
+				.isNotNull()
+				.isNotEmpty()
+				.doesNotContainNull()
+				.doesNotHaveDuplicates()
+				.hasSize(3)
+		;
+		for (Integer input : result) {
 			assertThat(numbersRange.contains(input)).isTrue();
 		}
 	}
