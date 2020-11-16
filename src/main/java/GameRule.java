@@ -38,6 +38,7 @@ public class GameRule {
             return true;
         }
 
+        GameRuleBall gameRuleBall = new GameRuleBall(gameAnswer, userAnswer);
         displayHint(gameRuleStrike);
         return false;
     }
