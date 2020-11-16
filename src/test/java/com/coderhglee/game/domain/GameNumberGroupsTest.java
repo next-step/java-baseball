@@ -2,6 +2,7 @@ package com.coderhglee.game.domain;
 
 import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
+import com.coderhglee.game.number.GameNumberCompareResult;
 import com.coderhglee.game.number.GameNumberGroupsHelper;
 import com.coderhglee.game.number.GameNumber;
 import com.coderhglee.game.number.GameNumberGroups;
@@ -58,19 +59,19 @@ public class GameNumberGroupsTest {
     @DisplayName("게임 숫자 그룹 두개를 해시코드를 비교한 결과가 메시지와 맞는지 판단한다.")
     @ParameterizedTest
     @MethodSource("gameNumberGroupsEqualToExactedResult")
-    void expectedResultFromTwoGameNumberGroupsCompare(GameNumberGroups first, GameNumberGroups second, GameGroupsCompareResult expectedResult) {
+    void expectedResultFromTwoGameNumberGroupsCompare(GameNumberGroups first, GameNumberGroups second, GameNumberCompareResult expectedResult) {
         assertThat(GameNumberGroupsHelper.compareEachGameGroup(first, second).hashCode()).isEqualTo(expectedResult.hashCode());
     }
     public static Stream<Arguments> gameNumberGroupsEqualToExactedResult() throws ExceedAllowLengthException, ContainSameNumberException {
         return Stream.of(
                 Arguments.of(new GameNumberGroups(getGameNumbers("123")),
-                        new GameNumberGroups(getGameNumbers("123")), new GameGroupsCompareResult(0,3)),
+                        new GameNumberGroups(getGameNumbers("123")), new GameNumberCompareResult(0,3)),
                 Arguments.of(new GameNumberGroups(getGameNumbers("456")),
-                        new GameNumberGroups(getGameNumbers("123")), new GameGroupsCompareResult(0,0)),
+                        new GameNumberGroups(getGameNumbers("123")), new GameNumberCompareResult(0,0)),
                 Arguments.of(new GameNumberGroups(getGameNumbers("175")),
-                        new GameNumberGroups(getGameNumbers("875")), new GameGroupsCompareResult(0,2)),
+                        new GameNumberGroups(getGameNumbers("875")), new GameNumberCompareResult(0,2)),
                 Arguments.of(new GameNumberGroups(getGameNumbers("156")),
-                        new GameNumberGroups(getGameNumbers("652")), new GameGroupsCompareResult(1,1))
+                        new GameNumberGroups(getGameNumbers("652")), new GameNumberCompareResult(1,1))
         );
     }
 

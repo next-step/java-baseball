@@ -1,7 +1,7 @@
 package com.coderhglee.game.baseball;
 
-import com.coderhglee.game.domain.Game;
-import com.coderhglee.game.domain.GameGroupsCompareResult;
+import com.coderhglee.game.Game;
+import com.coderhglee.game.number.GameNumberCompareResult;
 import com.coderhglee.game.number.GameNumberGroups;
 import com.coderhglee.game.number.GameNumberGroupsHelper;
 import com.coderhglee.game.number.InputNumber;
@@ -21,10 +21,10 @@ public class BaseballGame implements Game<BaseballGameStatus> {
 
     @Override
     public void gameProcess(InputNumber inputNumber) throws GameException {
-        GameGroupsCompareResult gameGroupsCompareResult = GameNumberGroupsHelper.compareEachGameGroup(correctAnswer, inputNumber.getInputNumber());
-        if (isScoreSameGameStatus(gameGroupsCompareResult.getNumberAndDigitSameScore(), BaseballGameStatus.WIN)) return;
-        if (isScoreSameGameStatus(gameGroupsCompareResult.getAllCompareScore(), BaseballGameStatus.NOTING)) return;
-        setGameStatusAndMessage(BaseballGameStatus.HINT, gameGroupsCompareResult);
+        GameNumberCompareResult gameNumberCompareResult = GameNumberGroupsHelper.compareEachGameGroup(correctAnswer, inputNumber.getInputNumber());
+        if (isScoreSameGameStatus(gameNumberCompareResult.getNumberAndDigitSameScore(), BaseballGameStatus.WIN)) return;
+        if (isScoreSameGameStatus(gameNumberCompareResult.getAllCompareScore(), BaseballGameStatus.NOTING)) return;
+        setGameStatusAndMessage(BaseballGameStatus.HINT, gameNumberCompareResult);
     }
 
     @Override
@@ -45,9 +45,9 @@ public class BaseballGame implements Game<BaseballGameStatus> {
         baseballGameMessageForUser = messageForUser.getMessageForUser();
     }
 
-    private void setGameStatusAndMessage(BaseballGameStatus messageForUser, GameGroupsCompareResult gameGroupsCompareResult) {
+    private void setGameStatusAndMessage(BaseballGameStatus messageForUser, GameNumberCompareResult gameNumberCompareResult) {
         gameStatus = messageForUser;
-        baseballGameMessageForUser = messageForUser.getMessageForUser(gameGroupsCompareResult);
+        baseballGameMessageForUser = messageForUser.getMessageForUser(gameNumberCompareResult);
     }
 
     public BaseballGameStatus getGameStatus() {

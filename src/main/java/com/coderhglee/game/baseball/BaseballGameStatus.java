@@ -1,6 +1,6 @@
 package com.coderhglee.game.baseball;
 
-import com.coderhglee.game.domain.GameGroupsCompareResult;
+import com.coderhglee.game.number.GameNumberCompareResult;
 
 import java.util.ArrayList;
 import java.util.function.Function;
@@ -24,7 +24,7 @@ public enum BaseballGameStatus {
     }
 
     private final String messageForUser;
-    private Function<GameGroupsCompareResult, String> expression;
+    private Function<GameNumberCompareResult, String> expression;
 
     BaseballGameStatus(String messageForUser, int statusScore) {
         this.messageForUser = messageForUser;
@@ -32,7 +32,7 @@ public enum BaseballGameStatus {
     }
 
 
-    BaseballGameStatus(String messageForUser, Function<GameGroupsCompareResult, String> expression) {
+    BaseballGameStatus(String messageForUser, Function<GameNumberCompareResult, String> expression) {
         this.messageForUser = messageForUser;
         this.expression = expression;
     }
@@ -41,8 +41,8 @@ public enum BaseballGameStatus {
         return messageForUser;
     }
 
-    public String getMessageForUser(GameGroupsCompareResult gameGroupsCompareResult) {
-        return expression.apply(gameGroupsCompareResult);
+    public String getMessageForUser(GameNumberCompareResult gameNumberCompareResult) {
+        return expression.apply(gameNumberCompareResult);
     }
 
     public int getStatusScore() {

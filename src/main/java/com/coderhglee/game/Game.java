@@ -1,4 +1,4 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game;
 
 import com.coderhglee.game.exception.GameException;
 import com.coderhglee.game.number.InputNumber;

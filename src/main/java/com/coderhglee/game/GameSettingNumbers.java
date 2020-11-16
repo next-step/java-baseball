@@ -1,4 +1,4 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game;
 
 public enum GameSettingNumbers {
     INPUT_MESSAGE_MAX_LENGTH(3),

@@ -1,5 +1,6 @@
 package com.coderhglee.game.domain;
 
+import com.coderhglee.game.GameSettingNumbers;
 import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
 import com.coderhglee.game.exception.GameException;

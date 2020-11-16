@@ -1,10 +1,10 @@
-package com.coderhglee.game.domain;
+package com.coderhglee.game.number;
 
-public class GameGroupsCompareResult {
+public class GameNumberCompareResult {
     private int numberSameScore;
     private int numberAndDigitSameScore;
 
-    public GameGroupsCompareResult(int numberSameCount, int numberAndDigitSameCount) {
+    public GameNumberCompareResult(int numberSameCount, int numberAndDigitSameCount) {
         this.numberSameScore = numberSameCount;
         this.numberAndDigitSameScore = numberAndDigitSameCount;
     }

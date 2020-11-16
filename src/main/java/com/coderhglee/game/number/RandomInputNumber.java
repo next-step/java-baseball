@@ -1,6 +1,6 @@
 package com.coderhglee.game.number;
 
-import com.coderhglee.game.domain.GameSettingNumbers;
+import com.coderhglee.game.GameSettingNumbers;
 import com.coderhglee.game.exception.GameException;
 
 import java.security.SecureRandom;

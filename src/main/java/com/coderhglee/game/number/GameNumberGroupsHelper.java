@@ -1,13 +1,12 @@
 package com.coderhglee.game.number;
 
-import com.coderhglee.game.domain.GameGroupsCompareResult;
-import com.coderhglee.game.domain.GameSettingNumbers;
+import com.coderhglee.game.GameSettingNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameNumberGroupsHelper {
-    public static GameGroupsCompareResult compareEachGameGroup(GameNumberGroups criteriaGameNumberGroups, GameNumberGroups targetGameNumberGroups) {
+    public static GameNumberCompareResult compareEachGameGroup(GameNumberGroups criteriaGameNumberGroups, GameNumberGroups targetGameNumberGroups) {
         int numberSameScore = getRetainGameNumbersSize(criteriaGameNumberGroups, targetGameNumberGroups);
         int numberAndDigitSameScore = 0;
         for (int compareIndexNumber = 0; compareIndexNumber < GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value; compareIndexNumber++) {
@@ -15,7 +14,7 @@ public class GameNumberGroupsHelper {
                     targetGameNumberGroups.getGameNumberByIndex(compareIndexNumber));
         }
         numberSameScore -= numberAndDigitSameScore;
-        return new GameGroupsCompareResult(numberSameScore, numberAndDigitSameScore);
+        return new GameNumberCompareResult(numberSameScore, numberAndDigitSameScore);
     }
 
     private static int getRetainGameNumbersSize(GameNumberGroups criteriaGameNumberGroups, GameNumberGroups targetGameNumberGroups) {
