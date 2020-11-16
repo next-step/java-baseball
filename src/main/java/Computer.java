@@ -30,7 +30,7 @@ public class Computer {
             checkBoll(userNumbers.get(i));
             checkStrike(i, userNumbers.get(i));
         }
-        resultMessage();
+        System.out.println(resultMessage());
     }
 
     public void checkBoll(String userNumber) {
@@ -46,19 +46,30 @@ public class Computer {
         }
     }
 
-    public void resultMessage() {
-        String message = "";
+    public String resultMessage() {
+        if (strike == 0 && boll == 0) {
+            return "낫싱";
+        }
+        return strikeMessage() + bollMessage();
+    }
+
+    public String strikeMessage() {
         if (strike > 0) {
-            message += strike + " 스트라이크 ";
+            return strike + "스트라이크";
+        }
+        return "";
+    }
+
+    public String bollMessage() {
+        if (strike > 0 && boll > 0) {
+            return " " + boll + "볼";
         }
         if (boll > 0) {
-            message += boll + "볼";
+            return boll + "볼";
         }
-        if (strike == 0 && boll == 0) {
-            message = "낫싱";
-        }
-        System.out.println(message);
+        return "";
     }
+
 
     public List<String> getNumbers() {
         return numbers;
