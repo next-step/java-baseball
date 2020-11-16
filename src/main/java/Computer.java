@@ -1,38 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-
-import util.NumberExtractor;
-
 public class Computer {
-	private static final int MAX_NUMBER = 9;
-	private List<Integer> numbers = new ArrayList<>();
+	private final Balls computerBalls;
 
 	public Computer() {
-		while (numbers.size() < 3) {
-			addNumber();
-		}
-
-		System.out.println(numbers.toString());
+		computerBalls = new Balls();
 	}
 
-	public void initNumbersForTest(List<Integer> list) {
-		this.numbers = list;
+	public Score requestUserBalls(Balls userBalls) {
+		return computerBalls.compare(userBalls);
 	}
-
-	private void addNumber() {
-		int number = NumberExtractor.random(MAX_NUMBER);
-		if (!numbers.contains(number)) {
-			numbers.add(number);
-		}
-	}
-
-	public Score calculateScore(List<Integer> items) {
-		Score score = new Score();
-		for (int i = 0; i < items.size(); i++) {
-			score.setCounts(numbers, i, items.get(i));
-		}
-
-		return score;
-	}
-
 }

@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Score {
 	private static final String BALL_TEXT = " 볼";
 	private static final String STRIKE_TEXT = " 스트라이크 ";
@@ -9,7 +7,7 @@ public class Score {
 	private int strikeCount;
 	private String scoreText = "";
 
-	public boolean isAllStrike() {
+	public boolean isStrikeout() {
 		return strikeCount == 3;
 	}
 
@@ -18,19 +16,13 @@ public class Score {
 			return FOUR_BALL;
 		}
 
-		calculateStrikeCount();
-		calculateBallCount();
+		setStrikeCountText();
+		setBallCountText();
 
 		return scoreText;
 	}
 
-	public void setCounts(List<Integer> computerBalls, int ballIndex, Integer ball) {
-		Integer computerBall = computerBalls.get(ballIndex);
-		addStrikeCount(computerBall, ball);
-		addBallCount(computerBalls, ball);
-	}
-
-	private void calculateStrikeCount() {
+	private void setStrikeCountText() {
 		if (strikeCount == 0) {
 			return;
 		}
@@ -38,7 +30,7 @@ public class Score {
 		scoreText += strikeCount + STRIKE_TEXT;
 	}
 
-	private void calculateBallCount() {
+	private void setBallCountText() {
 		if (ballCount == 0) {
 			return;
 		}
@@ -46,16 +38,12 @@ public class Score {
 		scoreText += ballCount + BALL_TEXT;
 	}
 
-	private void addStrikeCount(int a, int b) {
-		if (a == b) {
-			strikeCount++;
-		}
+	public void addStrike() {
+		strikeCount++;
 	}
 
-	private void addBallCount(List<Integer> items, int b) {
-		if (items.contains(b)) {
+	public void addBall() {
 			ballCount++;
-		}
 	}
 
 
