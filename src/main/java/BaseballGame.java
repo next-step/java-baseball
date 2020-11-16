@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class BaseballGame {
     int strike = 0;
     int ball = 0;
+    static char menu = ' ';
     public String num(){
         Random r = new Random();
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -47,6 +48,16 @@ public class BaseballGame {
 
     public static void main(String[] args) {
         BaseballGame bg = new BaseballGame();
-        bg.play();
+        do {
+            bg.play();
+            System.out.print("메뉴를 선택하세요 : 다시시작(1) 완전히 종료(2)");
+            try {
+                menu = (char)System.in.read();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            if (menu=='1') continue;
+            if (menu=='2') break;
+        }while(true);
     }
 }
