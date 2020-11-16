@@ -5,59 +5,67 @@ public class BaseballGame {
     int strike = 0;
     int ball = 0;
     static char menu = ' ';
-    public String num(){
-        Random r = new Random();
+
+    public String getNum() {
+        Random random = new Random();
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int tmp = 0;
-        for(int i=0;i<100;i++){
-            int j = r.nextInt(9);
+        for (int i = 0; i < 100; i++) {
+            int j = random.nextInt(9);
             tmp = arr[0];
             arr[0] = arr[j];
             arr[j] = tmp;
         }
-        String num = ""+arr[0]+arr[1]+arr[2];
-        return num;
+        return "" + arr[0] + arr[1] + arr[2];
     }
 
-    public void play(){
-        String com = num();
+    public void playGame() {
+        String com = getNum();
         System.out.println("computer number : " + com);
         String user = "";
-        do{
-            Scanner sc = new Scanner(System.in);
-            user = sc.nextLine();
-            System.out.println("input user number : " + user);
-            for(int i=0; i<com.length(); i++) {
-                for(int j=0; j<user.length(); j++) {
-                    if (com.charAt(i) == user.charAt(j)) {
-                        if(i==j) {
-                            ++strike;
-                        }else {
-                            ++ball;
-                        }
-                    }
+        do {
+            Scanner in = new Scanner(System.in);
+            System.out.print("input user number : ");
+            user = in.next();
+            scoreValue(com, user);
+            inspectResult(strike, ball);
+        } while (!com.equals(user));
+    }
+
+    private void scoreValue(String com, String user) {
+        for (int i = 0; i < com.length(); i++) {
+            for (int j = 0; j < user.length(); j++) {
+                if (com.charAt(i) == user.charAt(j)) {
+                    if (i == j) ++strike;
+                    if (i != j) ++ball;
                 }
             }
-            if (strike != 0) System.out.println(strike + " strike ");
-            if (ball != 0) System.out.println(ball + " ball ");
-            if (strike == 0 && ball == 0) System.out.println("Nothing!");
-            strike = 0;
-            ball = 0;
-        }while(!com.equals(user));
+        }
+    }
+
+    private void inspectResult(int strike, int ball) {
+        if (strike != 0) System.out.println(strike + " strike ");
+        if (ball != 0) System.out.println(ball + " ball ");
+        if (strike == 0 && ball == 0) System.out.println("Nothing!");
+        this.strike = 0;
+        this.ball = 0;
+    }
+
+    private static void selectMenu() {
+        try {
+            menu = (char)System.in.read();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
         BaseballGame bg = new BaseballGame();
         do {
-            bg.play();
-            System.out.print("메뉴를 선택하세요 : 다시시작(1) 완전히 종료(2)");
-            try {
-                menu = (char)System.in.read();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            if (menu=='1') continue;
-            if (menu=='2') break;
-        }while(true);
+            bg.playGame();
+            System.out.print("메뉴<다시시작(1) | 완전히 종료(2)>를 선택하세요 : ");
+            selectMenu();
+            if (menu == '2') break;
+        } while (menu == '1');
     }
 }
