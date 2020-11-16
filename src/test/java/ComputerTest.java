@@ -19,7 +19,7 @@ class ComputerTest {
         computer.generateNumber();
 
         //when
-        List<Integer> numbers = computer.getNumbers();
+        List<String> numbers = computer.getNumbers();
 
         //then
         assertThat(numbers)
@@ -35,7 +35,7 @@ class ComputerTest {
         computer.generateNumber();
 
         //when
-        List<Integer> numbers = computer.getNumbers();
+        List<String> numbers = computer.getNumbers();
         computer.generateNumber();
 
         //then
