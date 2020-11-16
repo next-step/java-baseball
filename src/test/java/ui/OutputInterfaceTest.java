@@ -15,7 +15,11 @@ public class OutputInterfaceTest {
     ByteArrayOutputStream captor = new ByteArrayOutputStream();
     OutputInterface out = new OutputInterface(new PrintStream(captor));
 
-    out.printString("lorem ipsum...");
-    assertThat(captor.toString().trim()).isEqualTo("lorem ipsum...");
+    out.print("lorem ipsum...");
+    assertThat(captor.toString()).isEqualTo("lorem ipsum...");
+
+    captor.reset();
+    out.println("lorem ipsum...");
+    assertThat(captor.toString()).isEqualTo("lorem ipsum...\r\n");
   }
 }

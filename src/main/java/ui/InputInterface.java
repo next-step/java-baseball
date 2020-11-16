@@ -17,7 +17,7 @@ public class InputInterface {
   }
 
   public String getInput() {
-    return scanner.nextLine();
+    return scanner.nextLine().trim();
   }
 
   public void close() {

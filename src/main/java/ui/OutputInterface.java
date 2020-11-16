@@ -13,7 +13,11 @@ public class OutputInterface {
     this.out = out;
   }
 
-  public void printString(String msg) {
+  public void print(String msg) {
+    out.print(msg);
+  }
+
+  public void println(String msg) {
     out.println(msg);
   }
 }
