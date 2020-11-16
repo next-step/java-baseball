@@ -1,6 +1,6 @@
 import baseballgame.BaseballGame;
 import baseballgame.Result;
-import baseballgame.exceptions.InputException;
+import baseballgame.exceptions.ViolationException;
 import ui.InputInterface;
 import ui.OutputInterface;
 
@@ -55,7 +55,7 @@ public class GameController {
       int[] userInput = strToIntArray(in.getInput());
       try {
         baseballGame.validateInput(userInput);
-      } catch (InputException e) {
+      } catch (ViolationException e) {
         out.println(e.getMessage());
         continue;
       } catch (Exception e) {

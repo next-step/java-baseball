@@ -1,16 +1,16 @@
 package baseballgame.exceptions;
 
-public class InputException extends RuntimeException {
+public class ViolationException extends RuntimeException {
   /**
    *
    */
   private static final long serialVersionUID = -2750909374547056731L;
 
-  public InputException() {
+  public ViolationException() {
     super();
   }
 
-  public InputException(String message) {
+  public ViolationException(String message) {
     super(message);
   }
 }

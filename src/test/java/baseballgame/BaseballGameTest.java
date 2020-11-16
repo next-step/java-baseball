@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseballgame.exceptions.InputException;
+import baseballgame.exceptions.ViolationException;
 
 public class BaseballGameTest {
   @Test
@@ -23,11 +23,11 @@ public class BaseballGameTest {
     BaseballGame game = new BaseballGame();
     String expectedMessage = "Input must have length with " + BaseballGame.DIGITS + ".";
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 1, 2, 3, 4 });
     }).withMessage(expectedMessage);
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] {});
     }).withMessage(expectedMessage);
   }
@@ -37,11 +37,11 @@ public class BaseballGameTest {
   void validateOutOfRangeInputTest() {
     BaseballGame game = new BaseballGame();
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 0, 1, 4 });
     }).withMessage("Number 0 is out of range.");
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 1, 10, 4 });
     }).withMessage("Number 10 is out of range.");
   }
@@ -51,15 +51,15 @@ public class BaseballGameTest {
   void validateDuplicateInputTest() {
     BaseballGame game = new BaseballGame();
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 1, 1, 1 });
     }).withMessage("No duplication allowed for input.");
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 1, 4, 4 });
     }).withMessage("No duplication allowed for input.");
 
-    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+    assertThatExceptionOfType(ViolationException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 6, 6, 3 });
     }).withMessage("No duplication allowed for input.");
   }

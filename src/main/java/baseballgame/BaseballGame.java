@@ -34,7 +34,7 @@ public class BaseballGame {
     return generator.generate();
   }
 
-  public void validateInput(int[] input) throws InputException {
+  public void validateInput(int[] input) throws ViolationException {
     checkLength(input);
     for (int i : input) {
       checkOutOfRange(i);
@@ -42,25 +42,25 @@ public class BaseballGame {
     checkDuplication(input);
   }
 
-  private void checkLength(int[] input) throws InputException {
+  private void checkLength(int[] input) throws ViolationException {
     if (input.length != DIGITS) {
-      throw new InputException("Input must have length with " + DIGITS + ".");
+      throw new ViolationException("Input must have length with " + DIGITS + ".");
     }
   }
 
-  private void checkOutOfRange(int i) throws InputException {
+  private void checkOutOfRange(int i) throws ViolationException {
     if (i > 9 || i < 1) {
-      throw new InputException("Number " + i + " is out of range.");
+      throw new ViolationException("Number " + i + " is out of range.");
     }
   }
 
-  private void checkDuplication(int[] input) throws InputException {
+  private void checkDuplication(int[] input) throws ViolationException {
     Set<Integer> tempSet = new HashSet<>();
     for (int i : input) {
       tempSet.add(i);
     }
     if (tempSet.size() != DIGITS) {
-      throw new InputException("No duplication allowed for input.");
+      throw new ViolationException("No duplication allowed for input.");
     }
   }
 
