@@ -20,4 +20,21 @@ public class BaseballNumber {
                 ", offset=" + offset +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BaseballNumber)) {
+            return false;
+        }
+        BaseballNumber baseballNumber = (BaseballNumber) obj;
+        return baseballNumber.number == number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
 }

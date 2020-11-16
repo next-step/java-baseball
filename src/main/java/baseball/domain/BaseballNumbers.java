@@ -26,6 +26,10 @@ public class BaseballNumbers {
         }
     }
 
+    public boolean contains(BaseballNumber baseballNumber) {
+        return numbers.contains(baseballNumber);
+    }
+
     @Override
     public String toString() {
         return "BaseballNumbers{" +
@@ -59,5 +63,13 @@ public class BaseballNumbers {
         if (number < 100 || number > 999) {
             throw new InvalidNumbersException(MessageType.INVALID_RANGE_NUMBER);
         }
+    }
+
+    public int size() {
+        return numbers.size();
+    }
+
+    public List<BaseballNumber> getNumbers() {
+        return numbers;
     }
 }

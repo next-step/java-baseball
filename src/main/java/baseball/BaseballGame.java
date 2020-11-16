@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.domain.BaseballNumbers;
+import baseball.domain.BaseballResult;
 import baseball.exception.InvalidNumbersException;
 import baseball.util.RandomNumberGenerate;
 import baseball.view.BaseballView;
@@ -17,16 +18,23 @@ public class BaseballGame {
                 RandomNumberGenerate.generate(3));
 
         BaseballNumbers playerNumbers;
+        BaseballResult baseballResult;
         do {
             playerNumbers = confirmNumber(BaseballView.askNumber());
-        } while (!checkNumbers(answerNumbers, playerNumbers));
+            baseballResult = checkNumbers(answerNumbers, playerNumbers);
+        } while (!isWin(baseballResult));
     }
 
-    public boolean checkNumbers(BaseballNumbers answerNumbers, BaseballNumbers playerNumbers) {
-        if (answerNumbers.isEmpty() || playerNumbers.isEmpty()) {
-            return false;
+    public boolean isWin(BaseballResult baseballResult) {
+        BaseballView.showResult(baseballResult);
+        return baseballResult.isExactSame();
+    }
+
+    public BaseballResult checkNumbers(BaseballNumbers answerNumbers, BaseballNumbers playerNumbers) {
+        if (playerNumbers.isEmpty()) {
+            return new BaseballResult();
         }
-        return true;
+        return new BaseballResult(answerNumbers, playerNumbers);
     }
 
     public BaseballNumbers confirmNumber(int number) {
