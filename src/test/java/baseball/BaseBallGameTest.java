@@ -31,7 +31,7 @@ public class BaseBallGameTest {
     @Test
     @DisplayName("[COMPUTER TURN] 생성된 숫자의 개수가 3인지 확인")
     public void validComTurnIsNumberLength() {
-        List<Integer> actual = baseBallGame.comTurn();
+        List<Integer> actual = baseBallGame.getComBalls();
         assertThat(actual.size()).isEqualTo(BASE_BALL_CNT);
     }
 
@@ -39,14 +39,14 @@ public class BaseBallGameTest {
     @DisplayName("[USER TURN] 게임 플레이어가 입력한 값의 길이가 3인지 확인")
     public void validUserTurnIsValidLength(){
         Scanner sc = new Scanner("123");
-        assertThat(baseBallGame.isValidLength(sc.nextLine())).isTrue();
+        assertThat(baseBallGame.isUserInputValidLength(sc.nextLine())).isTrue();
     }
 
     @Test
     @DisplayName("[USER TURN] 게임 플레이어가 입력한 값의 길이가 3이아닌 예외 발생")
     public void validUserTurnIsValidLengthException(){
         Scanner sc = new Scanner("13");
-        assertThat(baseBallGame.isValidLength(sc.nextLine())).isFalse();
+        assertThat(baseBallGame.isUserInputValidLength(sc.nextLine())).isFalse();
     }
 
     @Test
@@ -111,7 +111,7 @@ public class BaseBallGameTest {
     @Test
     @DisplayName("[COMPARE] 컴퓨터와 게임플레이어가 입력한 값을 비교하여 3스트라이크 테스트")
     public void compareComBallToUserBall() {
-        List<Integer> comBallList = baseBallGame.comTurn();
+        List<Integer> comBallList = baseBallGame.getComBalls();
         StringBuilder comBall = new StringBuilder();
         for(Integer item : comBallList) {
             comBall.append(item);
@@ -126,8 +126,8 @@ public class BaseBallGameTest {
     @DisplayName("[ReGAME] 재게임 여부 확인")
     public void reGameValueYn() {
         String userInput = "1";
-        assertThat(baseBallGame.reGameYn(userInput)).isTrue();
+        assertThat(baseBallGame.isReGame(userInput)).isTrue();
         userInput = "2";
-        assertThat(baseBallGame.reGameYn(userInput)).isTrue();
+        assertThat(baseBallGame.isReGame(userInput)).isTrue();
     }
 }

@@ -16,11 +16,6 @@ public class BaseBallGame {
 
     private static final Integer ZERO = 0;
 
-    /* 비교 값 출력 */
-    private static final String STRIKE = " 스트라이크 ";
-    private static final String BALL = " 볼";
-    private static final String NOTHING = "낫싱";
-
     /* 재게임 여부 값 */
     private static final String END_GAME = "2";
     private static final String RE_GAME = "1";
@@ -29,20 +24,24 @@ public class BaseBallGame {
     private static final String MSG_USER_TURN_THREE_NUMBER = "3개의 숫자를 입력해 주세요 : ";
     private static final String MSG_END_GAME = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n";
     private static final String MSG_RE_GAME = "게임을 새로 시작하려면 " + RE_GAME + ", 종료하려면 " + END_GAME + "를 입력하세요.\n";
+    /* 비교 값 출력 */
+    private static final String MSG_STRIKE = " 스트라이크 ";
+    private static final String MSG_BALL = " 볼";
+    private static final String MSG_NOTHING = "낫싱";
 
     /**
      * [Game Logic] 게임 로직 startGame()
-     *  1. 컴퓨터 턴: comTurn()
-     *  2. 사용자 턴: userTurn()
-     *  3. 재게임 선택 여부: questionGame()
+     *  1. 컴퓨터 턴: getComBalls()
+     *  2. 사용자 턴: getUserBall()
+     *  3. 재게임 선택 여부: isReGame()
      */
     public void startGame(Scanner sc) {
         do {
             /* 컴퓨터 턴 */
-            List<Integer> comBall = comTurn();
+            List<Integer> comBall = getComBalls();
 
             /* 사용자 턴 */
-            userTurn(sc, comBall);
+            getUserBall(sc, comBall);
 
             /* 게임 재시작 여부 확인 */
         } while(isReGame(sc));
@@ -56,7 +55,7 @@ public class BaseBallGame {
      *
      * @return 생성된 숫자를 LinkedList 변환하여 반환
      */
-    public List<Integer> comTurn() {
+    public List<Integer> getComBalls() {
 
         Random ran = new Random();
         ran.setSeed(System.currentTimeMillis());
@@ -65,7 +64,6 @@ public class BaseBallGame {
         while(comNums.size() < BASE_BALL_CNT) {
             int randomNumbers = ran.nextInt(BASE_BALL_MAX_POINT) + BASE_BALL_MIN_POINT;
             comNums.add(randomNumbers);
-            System.out.println(randomNumbers);
         }
         return new LinkedList<>(comNums);
     }
@@ -79,7 +77,7 @@ public class BaseBallGame {
      * @param sc 사용자의 입력을 받을 수 있는 Scanner
      * @param comBall 컴퓨터가 생성한 1 ~ 9까지 서로 다른 3개의 숫자
      */
-    private void userTurn(Scanner sc, List<Integer> comBall) {
+    private void getUserBall(Scanner sc, List<Integer> comBall) {
         boolean strikeFlag = true;
         while(strikeFlag) {
             int[] userBall = selectBalls(sc);
@@ -112,7 +110,6 @@ public class BaseBallGame {
                 ballCnt++;
             }
         }
-        if(strikeCnt == BASE_BALL_CNT) return false;
         return printMatches(strikeCnt, ballCnt);
     }
 
@@ -125,32 +122,32 @@ public class BaseBallGame {
      * @return 게임 Rule에 따라 재게임: 1 입력 시 true, 게임 종료: 2 입력 시: false
      */
     private boolean isReGame(Scanner sc) {
-        String endFlag;
+        String reGameFlag;
         do {
             print(MSG_RE_GAME);
-            endFlag = sc.nextLine();
+            reGameFlag = sc.nextLine();
             /* 사용자가 입력한 값이 숫자가 아니거나, 1 또는 2가 아닌 경우 다시 입력 */
-        } while(!reGameYn(endFlag));
+        } while(!isReGame(reGameFlag));
 
-        return endFlag.equals(RE_GAME);
+        return reGameFlag.equals(RE_GAME);
     }
 
     /* 컴퓨터와 사용자의 값을 비교하여 스트라이크, 볼, 낫싱을 출력 */
     public boolean printMatches(int strikeCnt, int ballCnt) {
         StringBuilder sb = new StringBuilder();
         if(strikeCnt == THREE_STRIKE_CNT) {
-            sb.append(strikeCnt).append(STRIKE);
-            System.out.println(sb.toString());
+            sb.append(strikeCnt).append(MSG_STRIKE);
+            print(sb.toString() + "\n");
             return false;
         }
         if (strikeCnt > ZERO) {
-            sb.append(strikeCnt).append(STRIKE);
+            sb.append(strikeCnt).append(MSG_STRIKE);
         }
         if (ballCnt > ZERO) {
-            sb.append(ballCnt).append(BALL);
+            sb.append(ballCnt).append(MSG_BALL);
         }
         if (strikeCnt == ZERO && ballCnt == ZERO) {
-            sb.append(NOTHING);
+            sb.append(MSG_NOTHING);
         }
         print(sb.toString() + "\n");
         return true;
@@ -158,12 +155,12 @@ public class BaseBallGame {
 
     /* 게임 플레이어 */
     public int[] selectBalls(Scanner sc) {
-        String userNumbers = "";
+        String userNumbers;
         do {
             print(MSG_USER_TURN_THREE_NUMBER);
             userNumbers = sc.nextLine();
             /* 사용자의 입력 값이 1 ~ 9까지 숫자이면서 길이가 3이 아닌경우 다시 입력 */
-        } while (!isValidLength(userNumbers) ||
+        } while (!isUserInputValidLength(userNumbers) ||
                 !isInteger(userNumbers) ||
                 !isNumberOneBetweenNine(userNumbers));
 
@@ -172,8 +169,8 @@ public class BaseBallGame {
     }
 
     /* 컴퓨터가 생성한 값의 범위가 1 ~ 9까지인지 확인 */
-    public boolean isNumberOneBetweenNine(String userInput) {
-        int[] userInputList = castStringToInt(userInput);
+    public boolean isNumberOneBetweenNine(String userNumbers) {
+        int[] userInputList = castStringToInt(userNumbers);
         for(Integer item : userInputList) {
             /* 1 ~ 9 범위의 값이 아닌경우 false 리턴 */
             if(!(BASE_BALL_MIN_POINT <= item && BASE_BALL_MAX_POINT >= item)) {
@@ -184,18 +181,15 @@ public class BaseBallGame {
     }
 
     /* 입력 길이가 3인지 확인 */
-    public boolean isValidLength(String userInput) {
-        int len = userInput.length();
-        if(len != BASE_BALL_CNT) {
-            return false;
-        }
-        return true;
+    public boolean isUserInputValidLength(String userNumbers) {
+        int userInputValueLength = userNumbers.length();
+        return userInputValueLength == BASE_BALL_CNT;
     }
 
     /* 게임플레이어가 입력한 값이 숫자로 캐스팅이되는지 확인 */
-    public boolean isInteger(String userInput) {
+    public boolean isInteger(String userNumbers) {
         try {
-            Integer.parseInt(userInput);
+            Integer.parseInt(userNumbers);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -212,8 +206,8 @@ public class BaseBallGame {
     }
 
     /* 재게임 여부 1 또는 2 */
-    public boolean reGameYn(String endNum) {
-        return (endNum.equals(END_GAME) || endNum.equals(RE_GAME));
+    public boolean isReGame(String reGameFlag) {
+        return (reGameFlag.equals(END_GAME) || reGameFlag.equals(RE_GAME));
     }
 
     /* 메시지 출력*/
