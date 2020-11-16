@@ -13,7 +13,7 @@ public class BaseBallGame {
 			Computer computer = new Computer();
 			Quiz quiz = new Quiz(computer.makeRightAnswer());
 			solveQuiz(quiz);
-		} while (isOnGoing());
+		} while (isOnGoing(InputView.getGameOption()));
 	}
 
 	private void solveQuiz(Quiz quiz) {
@@ -22,8 +22,7 @@ public class BaseBallGame {
 		} while (quiz.isUnSolved());
 	}
 
-	private boolean isOnGoing() {
-		final int input = InputView.getGameOption();
+	protected boolean isOnGoing(final int input) {
 		if (input == RESTART) {
 			return true;
 		}
