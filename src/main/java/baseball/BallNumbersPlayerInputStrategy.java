@@ -14,4 +14,5 @@ public class BallNumbersPlayerInputStrategy implements BallNumbersStrategy {
     public List<Integer> getBallNumber() {
         return ballNumbers;
     }
+
 }
