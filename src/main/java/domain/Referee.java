@@ -15,7 +15,7 @@ public class Referee {
 		for (int idx = 0; idx < players.size(); idx++) {
 			baseballResult.add(countStrikeAndBall(players.getByIndex(idx), idx, opponents));
 		}
-		if (baseballResult.is3Strike())
+		if (baseballResult.isThreeStrike())
 			baseballResult.setMatchTrue();
 		return baseballResult;
 	}

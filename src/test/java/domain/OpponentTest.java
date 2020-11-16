@@ -7,6 +7,8 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
 
+import domain.baseballRule.BaseballNumbers;
+
 @Testable
 public class OpponentTest {
 

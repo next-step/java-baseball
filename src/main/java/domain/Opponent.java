@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import domain.baseballRule.BaseballNumbers;
+
 public class Opponent {
 	private BaseballNumbers baseballNumbers;
 
