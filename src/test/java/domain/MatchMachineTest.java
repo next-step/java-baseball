@@ -2,14 +2,9 @@ package domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,42 +13,26 @@ class MatchMachineTest {
 
     @BeforeEach
     void setup() {
-        List<Integer> computerNumbers = new ArrayList<>();
-        computerNumbers.add(1);
-        computerNumbers.add(2);
-        computerNumbers.add(3);
+        Set<BaseballNumber> computerNumbers = new LinkedHashSet<>();
+        computerNumbers.add(new BaseballNumber(new Order(0), 4));
+        computerNumbers.add(new BaseballNumber(new Order(1), 9));
+        computerNumbers.add(new BaseballNumber(new Order(2), 1));
         matchMachine = new MatchMachine(computerNumbers);
     }
 
-    @DisplayName("Strike check")
-    @ParameterizedTest
-    @MethodSource("provideBaseballNumbers1")
-    void compareStrike(List<Integer> numbers, int expected) {
-        Score score = matchMachine.compare(numbers);
-        assertThat(score.getStrike()).isEqualTo(expected);
-    }
+    @DisplayName("서로 다른 3자리 수를 비교하여 예상한 결과값이 나오는지 확인.")
+    @Test
+    void compare() {
+        Map<Integer, Integer> numbers = new HashMap<>();
+        numbers.put(4, 0);
+        numbers.put(3, 1);
+        numbers.put(9, 2);
+        BaseballNumbers baseballNumbers = new BaseballNumbers(numbers);
 
-    @DisplayName("Ball check")
-    @ParameterizedTest
-    @MethodSource("provideBaseballNumbers2")
-    void compareBall(List<Integer> numbers, int expected) {
-        Score score = matchMachine.compare(numbers);
-        assertThat(score.getBall()).isEqualTo(expected);
-    }
+        ResultGame resultGame = matchMachine.compare(baseballNumbers);
 
-    private static Stream<Arguments> provideBaseballNumbers1() {
-        return Stream.of(
-                Arguments.of(Arrays.asList(1, 4, 5), 1),
-                Arguments.of(Arrays.asList(3, 1, 2), 0),
-                Arguments.of(Arrays.asList(1, 6, 3), 2)
-        );
-    }
-
-    private static Stream<Arguments> provideBaseballNumbers2() {
-        return Stream.of(
-                Arguments.of(Arrays.asList(3, 4, 5), 1),
-                Arguments.of(Arrays.asList(3, 1, 2), 3),
-                Arguments.of(Arrays.asList(5, 6, 7), 0)
-        );
+        assertThat(resultGame.count(Score.STRIKE)).isEqualTo(1);
+        assertThat(resultGame.count(Score.BALL)).isEqualTo(1);
+        assertThat(resultGame.count(Score.NOTHING)).isEqualTo(1);
     }
 }
