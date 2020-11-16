@@ -43,14 +43,12 @@ public class Program {
             System.out.println(String.format("%d개의 숫자를 모두 맞히셨습니다! 게임 종료", Round.MAX_DIGITS));
             return;
         }
-
         play(round);
     }
 
     private int receiveNum() {
         System.out.print(String.format("%d자리 숫자를 입력해주세요 : ", Round.MAX_DIGITS));
         String line = sc.nextLine();
-
         if (line.length() != Round.MAX_DIGITS) {
             return receiveNum();
         }
@@ -65,11 +63,9 @@ public class Program {
         if (countMap.get(GameStatus.STRIKE) > 0) {
             System.out.println(countMap.get(GameStatus.STRIKE) + GameStatus.STRIKE.toString());
         }
-
         if (countMap.get(GameStatus.BOLL) > 0) {
             System.out.println(countMap.get(GameStatus.BOLL) + GameStatus.BOLL.toString());
         }
-
         if (countMap.get(GameStatus.STRIKE) == 0 && countMap.get(GameStatus.BOLL) == 0) {
             System.out.println(GameStatus.NONE);
         }

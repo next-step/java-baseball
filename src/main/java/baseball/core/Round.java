@@ -13,7 +13,6 @@ public class Round {
 		}
 
 		numberMap = new HashMap<>();
-
 		for (int i = 0; i < MAX_DIGITS; i++) {
 			numberMap.put(getPlaceValue(value, i), i);
 		}
@@ -29,7 +28,6 @@ public class Round {
 			int number = getPlaceValue(num, i);
 			countMap.computeIfPresent(getGameStatus(number, i), (GameStatus gameStatus, Integer count) -> ++count);
 		}
-
 		return countMap;
 	}
 

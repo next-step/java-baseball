@@ -33,7 +33,6 @@ class GameNumberTest {
 	public void initRandomDigits() {
 		for (int i = 0; i < 1000; i++) {
 			int randamValue = gameNumber.getRandom(3);
-
 			int num1 = round.getPlaceValue(randamValue, 0);
 			int num2 =round.getPlaceValue(randamValue, 1);
 			int num3 =round.getPlaceValue(randamValue, 2);

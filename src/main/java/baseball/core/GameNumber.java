@@ -22,7 +22,6 @@ public class GameNumber {
 		for (int i = 0; i < digits; i++) {
 			result += getRandom() * Math.pow(10, i);
 		}
-
 		return result;
 	}
 

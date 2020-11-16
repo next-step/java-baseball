@@ -73,7 +73,6 @@ public class RoundTest {
 	@DisplayName("특정한 값이 랜덤값 3자리에 포함하는지 여부")
 	public void isExsit() {
 		Round round = new Round(123);
-
 		assertTrue(round.isExsit(1));
 		assertTrue(round.isExsit(2));
 		assertTrue(round.isExsit(3));
@@ -90,7 +89,6 @@ public class RoundTest {
 	@DisplayName("첫번째 자릿값이 특정한 값과 같은지 여부")
 	public void isPlaceExsit1(int index) {
 		Round round = new Round(123);
-
 		assertTrue(round.isPlaceExsit(1, index));
 		assertFalse(round.isPlaceExsit(2, index));
 		assertFalse(round.isPlaceExsit(3, index));
@@ -107,7 +105,6 @@ public class RoundTest {
 	@DisplayName("두번째 자릿값이 특정한 값과 같은지 여부")
 	public void isPlaceExsit2(int index) {
 		Round round = new Round(123);
-
 		assertFalse(round.isPlaceExsit(1, index));
 		assertTrue(round.isPlaceExsit(2, index));
 		assertFalse(round.isPlaceExsit(3, index));
@@ -124,7 +121,6 @@ public class RoundTest {
 	@DisplayName("세번째 자릿값이 특정한 값과 같은지 여부")
 	public void isPlaceExsit3(int index) {
 		Round round = new Round(123);
-
 		assertFalse(round.isPlaceExsit(1, index));
 		assertFalse(round.isPlaceExsit(2, index));
 		assertTrue(round.isPlaceExsit(3, index));
@@ -157,13 +153,24 @@ public class RoundTest {
 	@Test
 	@DisplayName("제시한 값에 점수확인")
 	public void getGameStatusCountMap2() {
+
 		resultCountMap = round.getGameStatusCountMap(123);
 		assertEquals(resultCountMap.get(GameStatus.STRIKE), 3);
 		assertEquals(resultCountMap.get(GameStatus.BOLL), 0);
+	}
+
+	@Test
+	@DisplayName("제시한 값에 점수확인")
+	public void getGameStatusCountMap3() {
 
 		resultCountMap = round.getGameStatusCountMap(231);
 		assertEquals(resultCountMap.get(GameStatus.STRIKE), 0);
 		assertEquals(resultCountMap.get(GameStatus.BOLL), 3);
+	}
+
+	@Test
+	@DisplayName("제시한 값에 점수확인")
+	public void getGameStatusCountMap4() {
 
 		resultCountMap = round.getGameStatusCountMap(142);
 		assertEquals(resultCountMap.get(GameStatus.STRIKE), 1);
