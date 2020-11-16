@@ -46,4 +46,8 @@ public class GameRuleStrike {
 
         return String.format("%d 스트라이크", strike);
     }
+
+    public int getStrike() {
+        return strike;
+    }
 }

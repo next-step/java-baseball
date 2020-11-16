@@ -39,12 +39,21 @@ public class GameRule {
         }
 
         GameRuleBall gameRuleBall = new GameRuleBall(gameAnswer, userAnswer);
-        displayHint(gameRuleStrike);
+        displayHint(gameRuleStrike, gameRuleBall);
         return false;
     }
 
-    private void displayHint(GameRuleStrike gameRuleStrike) {
-        System.out.println(String.format("%d", gameRuleStrike.getHint()));
+    private void displayHint(GameRuleStrike gameRuleStrike, GameRuleBall gameRuleBall) {
+        String hint = "";
+        if(!gameRuleStrike.isThreeStrike() && gameRuleStrike.getStrike() > 0) {
+            hint += String.format("%s", gameRuleStrike.getHint());
+        }
+
+        if(gameRuleBall.getBall() > 0 ) {
+            hint += String.format(gameRuleBall.getHint());
+        }
+
+        System.out.println(hint);
     }
 
     public List<String> getReservedNumberSet() {

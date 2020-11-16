@@ -32,4 +32,8 @@ public class GameRuleBall {
         }
         return String.format("%d 볼", ball);
     }
+
+    public int getBall() {
+        return ball;
+    }
 }

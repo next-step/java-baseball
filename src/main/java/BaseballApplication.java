@@ -6,7 +6,7 @@ public class BaseballApplication {
 
     public static void run() {
         GameMaster master = new GameMaster();
-        while(!master.isWantToPlay()) {
+        while(master.isWantToPlay()) {
             master.readyForPlay();
             master.play();
         }
