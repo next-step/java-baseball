@@ -1,43 +1,80 @@
+import util.BaseBallGameUtil;
+import util.GeneratorRandomNumbers;
+import util.Validator;
+
 import java.util.*;
+
+import static common.Constant.TEXT_INPUT;
 
 
 public class BaseBallGame {
 
-    public static final int LIMIT_NUM_CNT = 3;
-
-
 
     public static void main(String args[]) {
 
-        BaseBallGame baseball = new BaseBallGame();
-
-        List<Integer> rtn_result = baseball.createRandomValue();
-
-        System.out.println(rtn_result);
+            run();
 
     }
 
-    // 1. 서로 다른 숫자로 이루어진 3자리 난수를 반환한다.
-    public List<Integer> createRandomValue() {
 
-        // 1~9까지의 숫자로 한정한다
-        int nums[] = {1,2,3,4,5,6,7,8,9};
+    private static void run(){
 
-        List<Integer> ballNumbers = new ArrayList<Integer>();
+        boolean isContinue = true;
 
-        for(int i = 0; i<nums.length; i++){
-            ballNumbers.add(nums[i]);
+        BaseBallGameUtil baseBallGameUtil = new BaseBallGameUtil();
+
+        // 컴퓨터 랜덤값
+        int[] computerNumbers = GeneratorRandomNumbers.generatorNumbers();
+
+        System.out.println(Arrays.toString(computerNumbers));
+
+        while(isContinue){
+
+            int[] userNumbers = userInput();
+
+            isContinue = baseBallGameUtil.baseBallGameUtil(computerNumbers, userNumbers);
+
         }
 
-        // 1-2. 서로다른 숫자로 이루어져 있다
-        Collections.shuffle(ballNumbers);
-
-        List<Integer> result = ballNumbers.subList(0,LIMIT_NUM_CNT);
-
-        return result;
-
 
     }
+
+
+
+
+    private static int[] userInput(){
+        Scanner scanner = new Scanner(System.in);
+
+
+        String userInput;
+
+        do {
+
+            userInput = scanner.nextLine();
+
+        }while(!validatorCheckNumber(userInput));
+
+
+        int[] inputNumbers = new int[3];
+        System.out.println(TEXT_INPUT);
+        String[] input = scanner.nextLine().split("");
+
+
+        for (int i = 0; i < input.length; i++){
+
+            inputNumbers[i] = Integer.parseInt(userInput);
+        }
+
+
+        return inputNumbers;
+
+    }
+
+
+    private
+
+
+
 
 
 }
