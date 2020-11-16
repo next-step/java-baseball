@@ -45,6 +45,4 @@ class GameDigitRepositoryTest {
 
         assertThat(set).hasSize(length);
     }
-
-
 }
