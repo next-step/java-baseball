@@ -63,5 +63,25 @@ public class BaseballGameTest {
       game.validateInput(new int[] { 6, 6, 3 });
     }).withMessage("No duplication allowed for input.");
   }
+
+  @Test
+  @DisplayName("Match with answer")
+  void matchWithAnswerTest() {
+    BaseballGame game = new BaseballGame();
+    game.init(() -> {
+      return new int[] { 7, 2, 3 };
+    });
+
+    Result result = game.matchWithAnswer(new int[] { 2, 1, 4 });
+    assertThat(result).isEqualToComparingFieldByField(new Result(0, 1));
+
+    result = game.matchWithAnswer(new int[] { 2, 7, 3 });
+    assertThat(result).isEqualToComparingFieldByField(new Result(1, 2));
+
+    result = game.matchWithAnswer(new int[] { 4, 5, 9 });
+    assertThat(result).isEqualToComparingFieldByField(new Result(0, 0));
+
+    result = game.matchWithAnswer(new int[] { 7, 2, 3 });
+    assertThat(result).isEqualToComparingFieldByField(new Result(3, 0));
   }
 }
