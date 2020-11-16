@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BaseballGame {
@@ -7,6 +8,10 @@ public class BaseballGame {
 	Scanner scanner = new Scanner(System.in);
 	static int ball = 0;
 	static int strike = 0;
+
+	public final int RESTART_GAME = 1;
+	public final int EXIT_GAME = 2;
+
 
 	/**
 	 * 야구게임 메세지 enum
@@ -23,7 +28,11 @@ public class BaseballGame {
 
 		BALL("볼"),
 
-		MENU("게임을새로시작하려면1,종료하려면2를입력하세요.");
+		MENU("게임을새로시작하려면1,종료하려면2를입력하세요."),
+
+		INPUT_NUM_ERROR("1~9인 숫자3개만 입력 가능합니다."),
+
+		RESTART_MENU_NUM_ERROR("1~2인 숫자만 입력 가능합니다.");
 
 		final private String message;
 
@@ -148,13 +157,24 @@ public class BaseballGame {
 	 * @return int
 	 */
 	public int setInputNum() {
-		System.out.print(MESSAGE_CD.INPUT_NUM.message);
-		return scanner.nextInt();
+		int inputNum = 0;
+		while (true) {
+			try {
+				System.out.print(MESSAGE_CD.INPUT_NUM.message);
+				inputNum = scanner.nextInt();
+				validCheckBaseballInputNum(inputNum);
+				break;
+			} catch (InputMismatchException e) {
+				scanner = new Scanner(System.in);
+			} catch (IllegalArgumentException e) {
+				System.out.println(MESSAGE_CD.INPUT_NUM_ERROR.message);
+			}
+		}
+		return inputNum;
 	}
 
 	/**
 	 * 사용자 입력값과 랜덤 값 비교 loop
-	 *
 	 * @param inputNumArr
 	 * @param resultNum
 	 * @param resultIndex
@@ -219,11 +239,58 @@ public class BaseballGame {
 		int gameMenuNum = 0;
 		resetBaseballCount();
 		printStrikeMessage();
-		gameMenuNum = scanner.nextInt();
-		if (gameMenuNum == 1) {
-			startBaseballGame();
+		while (true) {
+			try {
+				gameMenuNum = scanner.nextInt();
+				validCheckRestartMenuNum(gameMenuNum);
+				break;
+			} catch (InputMismatchException e) {
+				System.out.println(MESSAGE_CD.RESTART_MENU_NUM_ERROR.message);
+				scanner = new Scanner(System.in);
+			} catch (IllegalArgumentException e) {
+				System.out.println(MESSAGE_CD.RESTART_MENU_NUM_ERROR.message);
+			}
 		}
 		return false;
+	}
+
+	/**
+	 * 야구번호 사용자 입력 값 유효성 검사
+	 * @param num
+	 */
+	public void validCheckBaseballInputNum(int inputNum) {
+		int lengthCheck = 3;
+		int zeroCheck = inputNum;
+		lengthCheck = (int) (Math.log10(inputNum) + 1);
+		checkInputExecption(zeroCheck, lengthCheck);
+		while (zeroCheck > 0) {
+			checkInputExecption(zeroCheck, lengthCheck);
+			zeroCheck /= 10;
+		}
+	}
+
+	/**
+	 * 3자리의 숫자가 아니면서 안에 0의 값이 있을시 IllegalArgumentException 발생
+	 *
+	 * @param zeroCheck
+	 * @param lengthCheck
+	 */
+	public void checkInputExecption(int zeroCheck, int lengthCheck) {
+		if (zeroCheck % 10 == 0 || lengthCheck != 3) {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	/**
+	 * 재시작 게임메뉴 입력값 유효성 검사
+	 */
+	public void validCheckRestartMenuNum(int restartMenuNum){
+		if (restartMenuNum != RESTART_GAME && restartMenuNum != EXIT_GAME) {
+			throw new IllegalArgumentException();
+		}
+		if(restartMenuNum == RESTART_GAME){
+			startBaseballGame();
+		}
 	}
 
 	public static void main(String[] args) {
