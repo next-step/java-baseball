@@ -169,7 +169,7 @@ public class Gamer {
 				GameResultEnum.STRIKE.getMessage(strike) +
 				" " +
 				GameResultEnum.BALL.getMessage(ball);
-		if (result.equals("")) {
+		if (result.equals(" ")) {
 			result = GameResultEnum.NOTHING.getValue();
 		}
 
