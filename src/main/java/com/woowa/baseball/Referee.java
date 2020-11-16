@@ -47,4 +47,11 @@ public class Referee {
         return 0;
     }
 
+    public boolean checkGameOut(int strike) {
+        if (strike == 3) {
+            return true;
+        }
+        return false;
+    }
+
 }
