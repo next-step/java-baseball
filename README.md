@@ -8,9 +8,9 @@
 
 ## 학습 테스트
 - String Class 
-- [ ] split() 메소드 테스트
-- [ ] substring() 메소드 테스트
-- [ ] charAt() 메소드 테스트
+- [x] split() 메소드 테스트
+- [x] substring() 메소드 테스트
+- [x] charAt() 메소드 테스트
 
 - Set Collection
 - [ ] size() 메소드 테스트
