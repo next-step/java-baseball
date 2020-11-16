@@ -23,6 +23,7 @@ public class BaseBallGame {
 			final Hints hints = quiz.checkNumbers(InputView.getNumbers());
 			OutputView.printHints(hints);
 		} while (quiz.isUnSolved());
+		OutputView.solveQuiz();
 	}
 
 	protected boolean isOnGoing(final int input) {
