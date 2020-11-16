@@ -19,7 +19,6 @@ public class Opponent {
     }
 
     private String generateStrikeNumber() {
-
         Set<Integer> numberSet = new LinkedHashSet<>();
         Random random = new Random();
         
@@ -37,7 +36,6 @@ public class Opponent {
     }
 
     public void calculateStrike(String inputNumber) {
-
         strike = 0;
         ball = 0;
 
@@ -47,7 +45,6 @@ public class Opponent {
     }
 
     private void increaseBall(String strikeNumber, String inputNumber, int idx) {
-
         if (strikeNumber.charAt(idx)==inputNumber.charAt(idx)) {
             strike++;
         }
