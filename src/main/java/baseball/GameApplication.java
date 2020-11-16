@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.exceptions.QuitException;
+import baseball.rule.GameManager;
 import baseball.ui.GameUI;
 
 public class GameApplication {

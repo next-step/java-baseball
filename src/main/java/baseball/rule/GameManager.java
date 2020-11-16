@@ -1,10 +1,11 @@
-package baseball;
+package baseball.rule;
 
 import java.util.Random;
 
 public class GameManager {
-    private final int [] answers = new int[3];
-    Random random = new Random();
+    private final int ANSWER_LENGTH = 3;
+    private final int [] answers = new int[ANSWER_LENGTH];
+    private final Random random = new Random();
 
     public GameManager() {
         generateAnswers();
