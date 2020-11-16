@@ -101,7 +101,7 @@ public class NumberBaseballGame {
 	 * @return ball ball 카운트
 	 * 
 	 */
-	private static int countBall(int randomNum, int inputNum) {
+	public static int countBall(int randomNum, int inputNum) {
 		int ball = 0;
 		String[] randomNumArr = (randomNum + "").split("");
 
