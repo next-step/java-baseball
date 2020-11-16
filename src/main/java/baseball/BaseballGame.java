@@ -1,6 +1,6 @@
 package baseball;
 
-import baseball.constant.GameType;
+import baseball.constant.GameCommandType;
 import baseball.domain.BaseballNumbers;
 import baseball.domain.GameScore;
 import baseball.exception.BizException;
@@ -46,11 +46,11 @@ public class BaseballGame {
 
     public void askExit(){
         String command = scanner.nextLine();
-        if(!GameType.isExistType(command)){
+        if(!GameCommandType.isExistType(command)){
             throw new BizException(BizExceptionType.INVALID_COMMAND);
         }
 
-        if(command.equals(GameType.EXIT.getCommand())){
+        if(command.equals(GameCommandType.EXIT.getCommand())){
             isExit = true;
         }
     }

@@ -1,13 +1,13 @@
 package baseball.constant;
 
-public enum GameType {
+public enum GameCommandType {
 
     RETRY("1"),
     EXIT("2");
 
     private final String command;
 
-    GameType(String command){
+    GameCommandType(String command){
         this.command = command;
     }
 
@@ -16,9 +16,9 @@ public enum GameType {
     }
 
     public static boolean isExistType(String command){
-        GameType[] gameTypes = GameType.values();
-        for(GameType gameType : gameTypes){
-            if(command.equals(gameType.getCommand())){
+        GameCommandType[] gameCommandTypes = GameCommandType.values();
+        for(GameCommandType gameCommandType : gameCommandTypes){
+            if(command.equals(gameCommandType.getCommand())){
                 return true;
             }
         }
