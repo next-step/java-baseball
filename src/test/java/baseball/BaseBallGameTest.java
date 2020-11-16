@@ -4,6 +4,7 @@ import baseball.view.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
@@ -25,28 +26,27 @@ class BaseBallGameTest {
         computedBallNumber.add(8);
     }
 
-    @DisplayName(value = "같은 수 같은 자리 = STRIKE, 다른 자리 BALL, 없으면 4BALL/NOTHING 힌트 출력")
+    @DisplayName(value = "같은 수 같은 자리 = STRIKE n개 , 다른 자리 BALL n개")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3"})
-    void play1(String input) {
+    @CsvSource(value = {"'1,2,3',0,1,false,false", "'4,7,9',0,1,false,false", "'2,4,5',2,0,false,false", "'2,4,8',3,0,false,true"}, delimiter = ',')
+    void play(String input, int strikeCount, int ballCount, boolean isNothing, boolean isThreeStrike) {
         BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(computedBallNumber));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
         baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber(input))));
 
-        assertThat(baseBallGame.getBallCount().getStrikeCount()).isEqualTo(0);
-        assertThat(baseBallGame.getBallCount().getBallCount()).isEqualTo(1);
-        assertThat(baseBallGame.getBallCount().isNothing()).isFalse();
-        assertThat(baseBallGame.getBallCount().isThreeStrike()).isFalse();
+        assertThat(baseBallGame.getBallCount().getStrikeCount()).isEqualTo(strikeCount);
+        assertThat(baseBallGame.getBallCount().getBallCount()).isEqualTo(ballCount);
+        assertThat(baseBallGame.getBallCount().isNothing()).isEqualTo(isNothing);
+        assertThat(baseBallGame.getBallCount().isThreeStrike()).isEqualTo(isThreeStrike);
     }
 
     @DisplayName(value = "4BALL, Nothing")
     @ParameterizedTest
-    @ValueSource(strings = {"3,5,7"})
+    @ValueSource(strings = {"3,5,7", "1,3,5", "6,7,9", "3,7,9"})
     void playNothing(String input) {
         BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(computedBallNumber));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
         baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber(input))));
-
         assertThat(baseBallGame.getBallCount().getStrikeCount()).isEqualTo(0);
         assertThat(baseBallGame.getBallCount().getBallCount()).isEqualTo(0);
         assertThat(baseBallGame.getBallCount().isNothing()).isTrue();
@@ -57,11 +57,9 @@ class BaseBallGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"2,4,8"})
     void playAllStrike(String input) {
-
         BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(computedBallNumber));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
         baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber(input))));
-
         assertThat(baseBallGame.getBallCount().getStrikeCount()).isEqualTo(3);
         assertThat(baseBallGame.getBallCount().getBallCount()).isEqualTo(0);
         assertThat(baseBallGame.getBallCount().isNothing()).isFalse();

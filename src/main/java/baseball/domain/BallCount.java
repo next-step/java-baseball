@@ -44,5 +44,4 @@ public class BallCount {
         return strikeCount == THREE_STRIKE_COUNT;
     }
 
-
 }

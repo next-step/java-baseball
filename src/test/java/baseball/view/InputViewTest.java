@@ -33,13 +33,25 @@ class InputViewTest {
 
     @DisplayName(value = "1,a,3 처럼 , 로 split 하는 경우 문자 오기 입력시 제대로 예외 처리 되는가.")
     @ParameterizedTest
-    @ValueSource(strings = {"3,5,a"})
+    @ValueSource(strings = {"3,5,a", "56e", "!32", "4#8"})
     void splitByCommaWithCharater(String input) {
         assertThatThrownBy(() -> {
             InputView.setBallNumber(input);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자만 입력 가능");
     }
 
+    /*
+
+    @DisplayName(value = "1, 또는 2,3,4,5 처럼 과부족 입력상태에서 제대로 예외 처리 되는가.")
+    @ParameterizedTest
+    @ValueSource(strings = {"3,", "53", "!32345", "456788"})
+    void splitError(String input) {
+        assertThatThrownBy(() -> {
+            InputView.setBallNumber(input);
+        }).isInstanceOf(ArrayIndexOutOfBoundsException.class).hasMessageContaining("숫자만 입력 가능");
+    }
+
+    */
 
     @DisplayName(value = "123 처럼 문자(숫자)단위로 split  하는 경우 제대로 분기되어 List 생성 되는가.")
     @ParameterizedTest
@@ -51,7 +63,5 @@ class InputViewTest {
             assertThat(String.valueOf(chars[i])).isEqualTo(String.valueOf(splitedList.get(i)));
         }
     }
-
-
 
 }

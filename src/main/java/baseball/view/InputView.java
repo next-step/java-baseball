@@ -9,7 +9,6 @@ public class InputView {
     private static final String QUESTION_PLAY_AGAIN = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 :  ";
     private static final String INPUT_NUMBERS_DELIMITER = ",";
     private static final String INPUT_NUMBERS_BRACES = "{}()[]<>";
-    private static final Pattern patternNumbersOnly = Pattern.compile("(^[0-9]*$)\"");
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<Integer> setBallNumber() {
@@ -18,16 +17,17 @@ public class InputView {
     }
 
     // open to Test
-    public static List<Integer> setBallNumber(String inputBallNumbers) {
+    public static List<Integer> setBallNumber(String inputBallNumbers) throws IllegalArgumentException {
         Set<Integer> ballNumbers = new HashSet<>();
-        List<String> splitedStrings = splitInput(inputBallNumbers);
+        List<String> splitedStrings;
+        splitedStrings = splitInput(inputBallNumbers);
         for (String numberString : splitedStrings) {
             ballNumbers.add(Integer.valueOf(numberString));
         }
         return new ArrayList<>(ballNumbers);
     }
 
-    private static List<String> splitInput(String inputBallNumbers) {
+    private static List<String> splitInput(String inputBallNumbers) throws IllegalArgumentException {
         List<String> splitedStrings = new ArrayList<>();
         char[] splitedChars = inputBallNumbers.toCharArray();
         for (char splitedChar : splitedChars) {
@@ -40,7 +40,7 @@ public class InputView {
         return splitedStrings;
     }
 
-    private static boolean checkExtraInput(char splitedChar, boolean isNumber) {
+    private static boolean checkExtraInput(char splitedChar, boolean isNumber) throws IllegalArgumentException {
         String inputString = String.valueOf(splitedChar);
         if (!isNumber && !INPUT_NUMBERS_BRACES.contains(inputString) && !INPUT_NUMBERS_DELIMITER.contains(inputString)) {
             throw new IllegalArgumentException("숫자만 입력 가능");
