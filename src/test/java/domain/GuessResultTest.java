@@ -34,5 +34,12 @@ class GuessResultTest {
         assertThat(twoStrikeOneBallGuessResult.getStrikeCount()).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("볼 개수를 제공한다.")
+    void ballTest() {
+        assertThat(threeStrikeGuessResult.getBallCount()).isEqualTo(0);
+        assertThat(twoStrikeOneBallGuessResult.getBallCount()).isEqualTo(2);
+    }
+
 
 }
