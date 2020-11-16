@@ -32,8 +32,8 @@ public class Player {
      *  - 숫자 입력여부
      *  - 숫자 0 입력여부
      *  - 중복문자 입력여부
-     * @param strikeNumber
-     * @return
+     * @param strikeNumber 플레이어가 입력한 입력숫자 데이터
+     * @return 데이터 정합성 만족여부
      */
     private boolean isValid(String strikeNumber) {
 
