@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class PlayerInput {
-    public String getInput() {
+public class GamePlayer {
+    public String getAnswer() {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }

@@ -2,11 +2,13 @@ public class GameMaster {
 
     private boolean wantToPlay;
 
-    private GameRule rule;
+    private GameRule gameRule;
+    private GamePlayer gamePlayer;
 
     public void readyForPlay() {
         wantToPlay = true;
-        rule = new GameRule();
+        gameRule = new GameRule();
+        gamePlayer = new GamePlayer();
     }
 
     public boolean isWantToPlay() {
@@ -14,6 +16,11 @@ public class GameMaster {
     }
 
     public void play() {
+        String userAnswer = "";
+        do {
+            System.out.println("숫자를 입력하세요 : ");
+            userAnswer = gamePlayer.getAnswer();
 
+        } while(!gameRule.isAnswer(userAnswer));
     }
 }

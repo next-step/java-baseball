@@ -10,6 +10,6 @@
 
 * 숫자 야구 게임 State Class 구현 (Game Master)
 
-* 플레이어 Input을 받는 Class 구현 (PlayerInput)
+* 플레이어 Input을 받는 Class 구현 (GamePlayer)
 
 * 플레이어 Input을 비교하여 정답/오답판단하는 Rule 구현 (GameRule)
