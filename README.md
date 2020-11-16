@@ -27,3 +27,32 @@ refactor
 test (when adding missing tests)
 chore (maintain)
 ```  
+
+## 프로그래밍 요구사항 - 메소드 분리
+- 자바코드컨벤션을지키면서프로그래밍한다.
+    - https://naver.github.io/hackday-conventions-java/
+    
+- indent(인덴트,들여쓰기) depth를 2가 넘지 않도록 구현한다. 1까지만허용한다.  
+    - 예를들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+    - 힌트: indent(인덴트,들여쓰기)  depth를 줄이는 좋은 방법은 함수(또는메소드)를 분리하면 된다.
+
+- 자바8에 추가된 streamapi를 사용하지 않고 구현해야 한다. 단,람다는 사용 가능 하다.
+
+- else 예약어를 쓰지 않는다.
+    - 힌트 : if조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다. 
+    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+    
+- 함수(또는메소드)의 길이가 10라인을 넘어가지 않도록 구현한다.
+
+- 함수(또는메소드)가 한가지 일만 잘하도록 구현한다
+
+
+
+## 프로그래밍 요구사항 - 단위 테스트
+
+- 로직에 단위테스트를 구현한다. 단, UI(System.out,System.in,Scanner) 로직은제외
+- 핵심로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
+- JUnit5 기반 단위 테스트를 구현한다.
+
+
+
