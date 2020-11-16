@@ -2,7 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.*;
 
-import static domain.BaseballCodeDefinition.*;
+import static domain.BaseballMessage.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("상대방(컴퓨터) 값 : [1, 2, 3]")

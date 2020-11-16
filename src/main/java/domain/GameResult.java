@@ -1,6 +1,6 @@
 package domain;
 
-import static domain.BaseballCodeDefinition.*;
+import static domain.BaseballMessage.*;
 
 public class GameResult {
     private int strike;

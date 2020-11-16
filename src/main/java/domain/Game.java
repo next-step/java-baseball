@@ -5,6 +5,7 @@ import exception.InvalidGameStatusException;
 import java.util.Scanner;
 
 import static domain.BaseballCodeDefinition.*;
+import static domain.BaseballMessage.*;
 
 public class Game {
     private Player player;

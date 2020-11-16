@@ -2,7 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.*;
 
-import static domain.BaseballCodeDefinition.*;
+import static domain.BaseballMessage.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
