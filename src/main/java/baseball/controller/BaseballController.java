@@ -1,5 +1,8 @@
 package baseball.controller;
 
+import baseball.controller.dto.EndGameRequest;
+import baseball.controller.dto.GuessFeedbackResponse;
+import baseball.controller.dto.GuessNumberRequest;
 import baseball.model.BaseballGameService;
 import baseball.view.BaseballInput;
 import baseball.view.BaseballOutput;
@@ -12,7 +15,6 @@ public class BaseballController {
 	private BaseballController(BaseballInput input, BaseballOutput output) {
 		this.input = input;
 		this.output = output;
-		baseballGameService = new BaseballGameService();
 	}
 
 	public static BaseballController of(BaseballInput input, BaseballOutput output) {
@@ -20,6 +22,17 @@ public class BaseballController {
 	}
 
 	public void run() {
-		// TODO: implement activity flow of the baseball game
+		do {
+			baseballGameService = BaseballGameService.ofRandom();
+			playBaseballGame();
+		} while (input.getEndGameRequest().getAction() == EndGameRequest.Action.RESTART);
+	}
+
+	private void playBaseballGame() {
+		do {
+			GuessNumberRequest request = input.getGuessNumberRequest();
+			GuessFeedbackResponse response = baseballGameService.guessNumber(request);
+			output.returnGuessFeedbackResponse(response);
+		} while (!baseballGameService.hasCorrectGuess());
 	}
 }
