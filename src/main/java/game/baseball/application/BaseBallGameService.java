@@ -1,5 +1,6 @@
 package game.baseball.application;
 
+import game.baseball.domain.model.InputNumber;
 import game.baseball.domain.repository.AnswerNumberRepository;
 
 public class BaseBallGameService {
@@ -11,5 +12,9 @@ public class BaseBallGameService {
 
 	public void start() {
 		answerNumberRepository.generate();
+	}
+
+	public void runRound(int input) {
+		InputNumber inputNumber = InputNumber.generate(input);
 	}
 }
