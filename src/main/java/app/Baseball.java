@@ -10,8 +10,8 @@ public class Baseball {
 		GameNumber randomGameNumber = new GameNumber();
 		Random random = new Random();
 		Set<Integer> numberSet = new HashSet<>();
-		while (numberSet.size() < Constants.GAME_NUMBER_LENGTH) {
-			numberSet.add(random.nextInt(Constants.MAX_NUMBER) + 1);
+		while (numberSet.size() < GameNumberRule.LENGTH.getValue()) {
+			numberSet.add(random.nextInt(GameNumberRule.MAX.getValue()) + 1);
 		}
 		randomGameNumber.setGameNumberList(new ArrayList<>(numberSet));
 		return randomGameNumber;
