@@ -10,6 +10,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.not;
 
+@DisplayName("추측 결과 테스트")
 class GuessResultTest {
     GuessResult threeStrikeGuessResult;
     GuessResult twoStrikeOneBallGuessResult;

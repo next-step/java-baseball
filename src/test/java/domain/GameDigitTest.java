@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("한 자리 게임 숫자 테스트")
 class GameDigitTest {
 
     @ParameterizedTest

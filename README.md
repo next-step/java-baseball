@@ -92,7 +92,7 @@
 - [x] 매치 타입(MatchType) 별로 `매치 카운트`를 제공한다.
 - [x] 입럭받은 매치 타입(MatchType) 의 `매치 카운트` 를 증가시킨다.
 
-### BaseballGameMachine
+### BaseballGameMachine (숫자야구게임기)
 
 - 숫자 야구 게임을 _추측 결과_ 와 유저 입력에 따라 새로 시작하고 종료시키는 객체
 - 숫자 야구 게임 지속 여부(baseballGameContinue)를 가지고 있다.

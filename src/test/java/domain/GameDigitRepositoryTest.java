@@ -11,6 +11,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("게임 숫자 저장소 테스트")
 class GameDigitRepositoryTest {
 
     @ParameterizedTest

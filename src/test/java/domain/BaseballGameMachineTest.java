@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Nested
+@DisplayName("숫자 야구 게임기 테스트")
 class BaseballGameMachineTest {
     @Test
     @DisplayName("게임 지속 여부가 참이고, `정답`을 가지고 있는 숫자 야구 게임을 시작한다.")

@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("숫자 야구 게임 테스트")
 class BaseballGameTest {
 
     @Test

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("매치 타입 카운트 테스트")
 class MatchTypeCountsTest {
     private MatchTypeCounts oneStrikeOneBallMatchCounts;
 
