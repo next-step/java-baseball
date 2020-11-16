@@ -29,6 +29,6 @@ public class BaseBallGame {
 		if (input == QUIT) {
 			return false;
 		}
-		throw new IllegalArgumentException("잘못 입력하였습니다.");
+		throw new IllegalArgumentException("1또는 2를 입력해야 합니다.");
 	}
 }

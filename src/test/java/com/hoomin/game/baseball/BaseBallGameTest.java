@@ -1,5 +1,6 @@
 package com.hoomin.game.baseball;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -26,5 +27,13 @@ public class BaseBallGameTest {
 	@ValueSource(ints = {2})
 	public void isOnGoing_InputGameOption_RetunFalse(int input) {
 		assertFalse(baseBallGame.isOnGoing(input));
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {3, -1})
+	public void isOnGoing_InputGameOption_IllegalArgumentExceptionThrown(int input) {
+		assertThatThrownBy(() -> baseBallGame.isOnGoing(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("1또는 2를 입력해야 합니다.");
 	}
 }
