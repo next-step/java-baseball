@@ -1,4 +1,5 @@
 package pre.baseball;
+
 import java.util.Scanner;
 
 /**
@@ -27,9 +28,35 @@ public class Baseball {
 	    System.out.printf("숫자를 입력해주세요 : ");
 	    boolean result = computer.check(toIntArray(user.input()));
 
-	    if (result)
+	    if (result && !isRestart())
 		break;
 	}
+    }
+
+    /**
+     * 게임 재시작여부를 체크한다.
+     * 
+     * @return
+     */
+    private boolean isRestart() {
+	System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+	int input = user.input();
+	if (input == EXIST)
+	    return false;
+
+	if (input != START)
+	    invalidRestartFlag();
+
+	computer.init();
+	return true;
+    }
+
+    /**
+     * 유효하지 않은 플래그를 입력할 경우 다시 재시작여부를 체크한다.
+     */
+    private void invalidRestartFlag() {
+	System.out.println("1 또는 2만 가능합니다.");
+	isRestart();
     }
 
     /**
