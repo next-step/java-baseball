@@ -1,18 +1,20 @@
 package ui;
 
+import domain.ResultGame;
 import domain.Score;
 
 public class ResultView {
     private static final int GO_BUTTON = 1;
     private static final int STOP_BUTTON = 2;
 
-    public static void printScore(final Score score) {
+    public static void printScore(final ResultGame resultGame) {
         StringBuilder stringBuilder = new StringBuilder();
-        if (score.isNothing()) {
+        if (resultGame.isNothing()) {
             stringBuilder.append("낫싱");
         }
-        appendScore(score.getStrike(), " 스트라이크 ", stringBuilder);
-        appendScore(score.getBall(), " 볼 ", stringBuilder);
+
+        appendScore(resultGame.count(Score.STRIKE), " 스트라이크 ", stringBuilder);
+        appendScore(resultGame.count(Score.BALL), " 볼 ", stringBuilder);
         System.out.println(stringBuilder.toString());
     }
 

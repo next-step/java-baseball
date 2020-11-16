@@ -1,33 +1,41 @@
 package ui;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class InputView {
-    private static final String NOTICE_INPUT = "숫자를 입력해주세요 : ";
-    private static final int GO_BUTTON = 1;
-    private static final int STOP_BUTTON = 2;
+    private static final String NOTICE_INPUT_NUMBER = "숫자를 입력해주세요 : ";
+    private static final String EXCEPTION_INTEGER_PARSE = "숫자로 입력해주세요.";
+    private static final String NUMBER_SPLIT_TEXT = "";
+
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputNumber() {
-        System.out.println(NOTICE_INPUT);
+    public static Map<Integer, Integer> inputNumber() {
+        System.out.println(NOTICE_INPUT_NUMBER);
+
         try {
-            return Integer.parseInt(scanner.nextLine());
+            int number = Integer.parseInt(scanner.nextLine());
+            return convertToNumbers(number);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("숫자로 입력해주세요.");
+            throw new NumberFormatException(EXCEPTION_INTEGER_PARSE);
         }
     }
 
     public static int restartOrEnd() {
-        int button;
         try {
-            button = Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("숫자로 입력해주세요.");
+            throw new NumberFormatException(EXCEPTION_INTEGER_PARSE);
+        }
+    }
+
+    private static Map<Integer, Integer> convertToNumbers(final int number) {
+        Map<Integer, Integer> numbers = new LinkedHashMap<>();
+
+        String[] splitNumbers = String.valueOf(number).split(NUMBER_SPLIT_TEXT);
+        for (int index = 0; index < splitNumbers.length; index++) {
+            numbers.put(Integer.parseInt(splitNumbers[index]), index);
         }
 
-        if (button != GO_BUTTON && button != STOP_BUTTON) {
-            throw new IllegalArgumentException("새로 시작하려면 " + GO_BUTTON + ", 종료하려면 " + STOP_BUTTON + "를 입력하세요.");
-        }
-        return button;
+        return numbers;
     }
 }
