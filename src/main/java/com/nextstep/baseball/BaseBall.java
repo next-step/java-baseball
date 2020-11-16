@@ -28,7 +28,7 @@ public class BaseBall {
 		//2. 사용자로부터 1~9까지 서로 다른 임의의 수 3개를 입력 받는 기능
 		printMessage("숫자를 입력해주세요 : ");
 		//todo 입력에 대한 예외처리해야함.
-		List<Integer> inputNumberList = readNonoverThreeNumber();
+		List<Integer> inputNumberList = readNonoverThreeNumber(sc.nextInt());
 
 		//3. Strike, Ball 체크하는 기능
 		List<Boolean> strikePosition = new ArrayList<>();
@@ -120,9 +120,8 @@ public class BaseBall {
 		digits.add(input % 10);
 	}
 
-	private List<Integer> readNonoverThreeNumber() {
+	List<Integer> readNonoverThreeNumber(int input) {
 		List<Integer> inputList = new ArrayList<Integer>();
-		Integer input = sc.nextInt();
 		collectDigits(input, inputList);
 		return inputList;
 	}
