@@ -14,16 +14,16 @@ public class ComputerTest {
     @Test
     void chooseNumbersTest() {
         Computer computer = new Computer();
-        Numbers numbers = computer.chooseNumbers();
+        Number numbers = computer.chooseNumber();
         assertThat(numbers).isNotNull();
 
-        List<Integer> choiceNumbers = numbers.getChoiceNumbers();
-        assertThat(choiceNumbers)
+        List<Integer> choiceNumber = numbers.getDigits();
+        assertThat(choiceNumber)
                 .isNotEmpty()
                 .allMatch(number -> number > 0 && number < 10)
-                .hasSize(Game.BASEBALL_NUMBERS_SIZE);
+                .hasSize(Game.BASEBALL_NUMBER_SIZE);
 
-        assertThat(new HashSet<>(choiceNumbers))
-                .hasSize(Game.BASEBALL_NUMBERS_SIZE);
+        assertThat(new HashSet<>(choiceNumber))
+                .hasSize(Game.BASEBALL_NUMBER_SIZE);
     }
 }

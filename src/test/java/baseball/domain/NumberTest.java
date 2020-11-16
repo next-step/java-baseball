@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class NumbersTest {
+public class NumberTest {
 
     static Stream<Arguments> emptyArrayProvider() {
         return Stream.of(
@@ -20,7 +20,7 @@ public class NumbersTest {
     @ParameterizedTest
     @MethodSource("emptyArrayProvider")
     void isEmpty_validateNumbersTest(Integer[] inputNumbers) {
-        assertThatThrownBy(() -> new Numbers(Arrays.asList(inputNumbers)))
+        assertThatThrownBy(() -> new Number(Arrays.asList(inputNumbers)))
                 .isInstanceOf(IncorrectNumbersException.class)
                 .hasMessageContaining("비었습니다.");
     }
@@ -34,7 +34,7 @@ public class NumbersTest {
     @ParameterizedTest
     @MethodSource("notAllowedArrayProvider")
     void isAllowed_validateNumbersTest(Integer[] inputNumbers) {
-        assertThatThrownBy(() -> new Numbers(Arrays.asList(inputNumbers)))
+        assertThatThrownBy(() -> new Number(Arrays.asList(inputNumbers)))
                 .isInstanceOf(IncorrectNumbersException.class)
                 .hasMessageContaining("허용되지 않은 숫자");
     }
@@ -48,7 +48,7 @@ public class NumbersTest {
     @ParameterizedTest
     @MethodSource("duplicatedArrayProvider")
     void isDuplicated_validateNumbersTest(Integer[] inputNumbers) {
-        assertThatThrownBy(() -> new Numbers(Arrays.asList(inputNumbers)))
+        assertThatThrownBy(() -> new Number(Arrays.asList(inputNumbers)))
                 .isInstanceOf(IncorrectNumbersException.class)
                 .hasMessageContaining("중복");
     }

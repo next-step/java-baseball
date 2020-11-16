@@ -1,5 +1,5 @@
 package baseball.domain;
 
 public class Game {
-    public static final Integer BASEBALL_NUMBERS_SIZE = 3;
+    public static final Integer BASEBALL_NUMBER_SIZE = 3;
 }
