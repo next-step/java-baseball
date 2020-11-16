@@ -1,12 +1,13 @@
 package leejunhan;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * 숫자 야구 게임
  *
  * @author 이준한
- * @version 1.0
+ * @version 0.5
  * <pre>
  * 2020.11.14 : 최초 작성
  * </pre>
@@ -15,20 +16,27 @@ import java.util.Random;
 public class BaseballGame {
 
 	/**
-	 * 숫자 야구 게임.
+	 * The entry point of application.
 	 *
 	 * @param args the input arguments
 	 */
 	public static void main(String[] args) {
-		System.out.println("숫자를 입력해주세요 : 123");
-		String inputNumber = "123"; // TODO: 입력 구현
+		gameStart();
+	}
 
+	/**
+	 * 숫자 야구 게임 시작.
+	 */
+	public static void gameStart() {
 		String baseballNumber = getBaseballNumber();
-		System.out.println(baseballNumber);
-
-		// TODO: 입력값 체크 로직 생성
-
+		System.out.println("baseballNumber = " + baseballNumber);
+		challenge(baseballNumber);
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+		String inputExitFlagNumber = getInputString("");
+		if ("1".equals(inputExitFlagNumber)) {
+			gameStart();
+		}
 	}
 
 	/**
@@ -95,6 +103,30 @@ public class BaseballGame {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 숫자를 입력받아 결과 출력.
+	 *
+	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
+	 */
+	public static void challenge(String baseballNumber) {
+		String inputNumber = getInputString("숫자를 입력해주세요 : ");
+		//TODO 입력값 체크 구현
+		System.out.println("3 스트라이크");
+	}
+
+	/**
+	 * 문자입력.
+	 *
+	 * @param prefix 문자 입력 전 출력할 문구
+	 * @return the input string
+	 */
+	public static String getInputString(String prefix) {
+		System.out.print(prefix);
+		Scanner in = new Scanner(System.in);
+		String inputString = in.nextLine().trim();
+		return inputString;
 	}
 
 }
