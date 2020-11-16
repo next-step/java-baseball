@@ -1,32 +1,49 @@
 package baseball.domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import baseball.BaseballGame;
-import baseball.util.Validation;
-
 public class BaseballGoalNumber {
 
-	private static final Random random = new Random();
+	public static final int BASEBALL_GAME_COUNT = 3;
+	public static final int BASEBALL_GAME_RANGE = 8;
 
-	public Set<Integer> goalNumberArray;
+	private static final Random random = new Random();
+	private Set<Integer> goalSet;
+
+	public List<Integer> baseballGoalNumber;
 
 	public BaseballGoalNumber() {
-		this.goalNumberArray = getBaseballGoal();
+
+		init();
+		getBaseballGoal();
 	}
 
-	private Set<Integer> getBaseballGoal() {
+	private void init() {
+		this.goalSet = new HashSet<>();
+		this.baseballGoalNumber = new ArrayList<>();
+	}
 
-		Set<Integer> baseballGoal = new HashSet<>();
+	private void getBaseballGoal() {
 
-		while (baseballGoal.size() < BaseballGame.BASEBALL_GAME_COUNT) {
-			baseballGoal.add(random.nextInt(BaseballGame.BASEBALL_GAME_RANGE) + 1);
+		while (this.goalSet.size() < BASEBALL_GAME_COUNT) {
+
+			Integer randomNumber = random.nextInt(BASEBALL_GAME_RANGE) + 1;
+
+			validateBaseball(randomNumber);
 		}
 
-		return baseballGoal;
+	}
+
+	private void validateBaseball(Integer randomNumber) {
+
+		if (this.goalSet.add(randomNumber)) {
+
+			this.baseballGoalNumber.add(randomNumber);
+		}
 	}
 }
 
