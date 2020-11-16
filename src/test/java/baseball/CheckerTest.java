@@ -16,7 +16,7 @@ public class CheckerTest {
 
   @BeforeEach
   void init() {
-    List<Integer> answer = Arrays.asList(new Integer[]{4, 2, 9});
+    List<Integer> answer = Arrays.asList(new Integer[] {4, 2, 9});
     checker = new Checker(answer);
   }
 

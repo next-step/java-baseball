@@ -10,7 +10,7 @@ public class Result {
   }
 
   public boolean isAnswer() {
-    if(strike == 3) {
+    if (strike == 3) {
       System.out.println(ResultType.GAME_OVER);
       return true;
     }
@@ -18,13 +18,13 @@ public class Result {
   }
 
   public void printResult() {
-    if(strike == 0 && ball == 0) {
+    if (strike == 0 && ball == 0) {
       System.out.print(ResultType.NOTHING);
     }
-    if(strike != 0) {
+    if (strike != 0) {
       System.out.print(String.format(ResultType.STRIKE, strike));
     }
-    if(ball != 0) {
+    if (ball != 0) {
       System.out.print(String.format(ResultType.BALL, ball));
     }
     System.out.println();

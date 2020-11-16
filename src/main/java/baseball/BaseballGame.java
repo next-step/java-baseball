@@ -28,7 +28,7 @@ public class BaseballGame {
     boolean isValid = false;
     String replay = "";
     while (!isValid) {
-      System.out.println(InputType.REPLAY_GAME);
+      System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
       replay = scan.nextLine();
       isValid = validateUserInput(replay);
     }

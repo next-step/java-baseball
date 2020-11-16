@@ -17,7 +17,7 @@ public class Checker {
 
   public int getStrikeCount(int[] userNumber) {
     int strike = 0;
-    for(int i = 0; i < userNumber.length; i++) {
+    for (int i = 0; i < userNumber.length; i++) {
       strike += isStrike(userNumber[i], answer.get(i));
     }
     return strike;
@@ -29,7 +29,7 @@ public class Checker {
 
   public int getBallCount(int userNumber[], int strike) {
     int ball = 0;
-    for(int i = 0; i < userNumber.length; i++) {
+    for (int i = 0; i < userNumber.length; i++) {
       ball += isBall(userNumber[i]);
     }
     ball = ball - strike;
@@ -39,5 +39,4 @@ public class Checker {
   public int isBall(int user) {
     return answer.contains(user) ? 1 : 0;
   }
-
 }
