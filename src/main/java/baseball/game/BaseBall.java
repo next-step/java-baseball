@@ -1,5 +1,7 @@
 package baseball.game;
 
+import baseball.output.BaseBallOutputer;
+
 public class BaseBall {
 
     private final String result;
@@ -8,7 +10,7 @@ public class BaseBall {
         this.result = result;
     }
     
-    public boolean play(String inputValue) {
+    public BaseBallResult play(String inputValue) {
         int strike = 0;
         int ball = 0;
 
@@ -20,6 +22,6 @@ public class BaseBall {
             }
         }
 
-        return strike >= 3;
+        return BaseBallOutputer.output(strike, ball);
     }
 }
