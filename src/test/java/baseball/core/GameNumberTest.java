@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameNumberTest {
@@ -41,6 +43,14 @@ class GameNumberTest {
 			assertNotEquals(num1, num3);
 			assertNotEquals(num2, num3);
 		}
+	}
+
+
+	@ParameterizedTest
+	@ValueSource(ints = {-1, 0, 10, 100})
+	@DisplayName("의도하지 않은 파라미터")
+	public void getRandomIllegalArgument(int digits) {
+		assertThatIllegalArgumentException().isThrownBy(()->gameNumber.getRandom(digits));
 	}
 
 }
