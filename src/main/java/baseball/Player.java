@@ -1,11 +1,19 @@
 package baseball;
 
+import java.util.Scanner;
+
 public class Player {
 
-    private int inputValue;
+    private String value;
 
     public Player() {
-        inputValue = 0;
+        value = "";
+    }
+
+    public void inputValue() {
+        System.out.print("숫자를 입력해주세요 : ");
+        Scanner scanner = new Scanner(System.in);
+        value = Integer.toString(scanner.nextInt());
     }
 
 }
