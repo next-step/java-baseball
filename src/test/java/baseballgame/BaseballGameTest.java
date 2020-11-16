@@ -1,6 +1,7 @@
 package baseballgame;
 
 import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,29 +21,47 @@ public class BaseballGameTest {
   @DisplayName("input validation - input length")
   void validateInputLengthTest() {
     BaseballGame game = new BaseballGame();
+    String expectedMessage = "Input must have length with " + BaseballGame.DIGITS + ".";
+
     assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 1, 2, 3, 4 });
-    }).withMessage("Input must have length with " + BaseballGame.DIGITS + ".");
+    }).withMessage(expectedMessage);
+
     assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
       game.validateInput(new int[] {});
-    }).withMessage("Input must have length with " + BaseballGame.DIGITS + ".");
+    }).withMessage(expectedMessage);
   }
 
   @Test
   @DisplayName("input validation - out of range")
   void validateOutOfRangeInputTest() {
     BaseballGame game = new BaseballGame();
+
     assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 0, 1, 4 });
     }).withMessage("Number 0 is out of range.");
+
+    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+      game.validateInput(new int[] { 1, 10, 4 });
+    }).withMessage("Number 10 is out of range.");
   }
 
   @Test
   @DisplayName("input validation - duplication")
   void validateDuplicateInputTest() {
     BaseballGame game = new BaseballGame();
+
     assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
       game.validateInput(new int[] { 1, 1, 1 });
     }).withMessage("No duplication allowed for input.");
+
+    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+      game.validateInput(new int[] { 1, 4, 4 });
+    }).withMessage("No duplication allowed for input.");
+
+    assertThatExceptionOfType(InputException.class).isThrownBy(() -> {
+      game.validateInput(new int[] { 6, 6, 3 });
+    }).withMessage("No duplication allowed for input.");
+  }
   }
 }
