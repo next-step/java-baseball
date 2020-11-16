@@ -7,24 +7,24 @@ public enum ScoreType {
 	
 	private final String description;
 	
-	private final boolean needPrint;
+	private final boolean printable;
 	
-	ScoreType(String description, boolean needPrint) {
+	ScoreType(String description, boolean printable) {
 		this.description = description;
-		this.needPrint = needPrint;
+		this.printable = printable;
 	}
 	
 	public String getDescription() {
 		return description;
 	}
 	
-	public boolean needPrint() {
-		return needPrint;
+	public boolean isPrintable() {
+		return printable;
 	}
 	
-	public String print(int count) {
-		if (this.needPrint) {
-			return count + this.description;
+	public String printWithScore(int score) {
+		if (this.printable) {
+			return score + this.description;
 		}
 		
 		return "";

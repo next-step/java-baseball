@@ -3,48 +3,62 @@ import java.util.Scanner;
 import type.GameRoomStatus;
 
 public class GameRoom {
-	private static String QUESTION_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-	private static String GO_ANSWER = "1";
-	private static String STOP_ANSWER = "2";
-	private static String STOP_MESSAGE = "게임을 종료합니다.";
+	private static String ANSWER_OPEN = "1";
+	private static String ANSWER_CLOSED = "2";
+	private static String QUESTION = "게임을 새로 시작하려면 " + ANSWER_OPEN + ", 종료하려면 " + ANSWER_CLOSED + "를 입력하세요.";
+	
+	private static String GOODBYE_MESSAGE = "게임을 종료합니다.";
 	
 	private Scanner scanner;
 
-	private GameRoomStatus gameRoomStatus = GameRoomStatus.GO;
+	private GameRoomStatus gameRoomStatus = GameRoomStatus.OPEN;
 	
-	public void playGame() {
-		while (gameRoomStatus.equals(GameRoomStatus.GO)) {
+	public void visit() {
+		while (gameRoomStatus.equals(GameRoomStatus.OPEN)) {
 			Game game = new Game();
-			game.playRound();
+			game.play();
 
-			inputAnswer();
+			askIfExit();
 		}
 
-		System.out.println(STOP_MESSAGE);
+		sayGoodBye();
 	}
 	
-	private void inputAnswer() {
+	private void askIfExit() {
 		gameRoomStatus = GameRoomStatus.WAITING_ANSWER;
 		
 		while (gameRoomStatus.equals(GameRoomStatus.WAITING_ANSWER)) {
-			System.out.print(QUESTION_MESSAGE);
+			setQuestion();
 		
-			scanner = new Scanner(System.in);
-			String answer = scanner.nextLine();
-			gameRoomStatus = getGameStatus(answer);
+			String answer = getAnswer();
+			
+			setGameRoomStatus(answer);
 		}
 	}
 	
-	private GameRoomStatus getGameStatus(String answer) {
-		if (answer.equals(GO_ANSWER)) {
-			return GameRoomStatus.GO;
+	private void setQuestion() {
+		System.out.print(QUESTION);
+	}
+	
+	private String getAnswer() {
+		scanner = new Scanner(System.in);
+		return scanner.nextLine();
+	}
+	
+	private void setGameRoomStatus(String answer) {
+		if (answer.equals(ANSWER_OPEN)) {
+			gameRoomStatus = GameRoomStatus.OPEN;
 		}
 		
-		if (answer.equals(STOP_ANSWER)) {
-			return GameRoomStatus.STOP;
+		if (answer.equals(ANSWER_CLOSED)) {
+			gameRoomStatus = GameRoomStatus.CLOSED;
 		}
 		
-		return GameRoomStatus.WAITING_ANSWER;
+		gameRoomStatus = GameRoomStatus.WAITING_ANSWER;
+	}
+	
+	private void sayGoodBye() {
+		System.out.println(GOODBYE_MESSAGE);
 	}
 
 }

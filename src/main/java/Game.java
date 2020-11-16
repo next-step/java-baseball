@@ -13,28 +13,38 @@ import type.ScoreType;
 public class Game {
 	private static int NUMBER_LENGTH = 3;
 	private static String START_MESSAGE = "게임을 시작합니다.";
-	private static String QUESTION_MESSAGE = "숫자를 입력해주세요 : ";
-	private static String COMPLETE_ANSWER = NUMBER_LENGTH + ScoreType.STRIKE.getDescription();
-	private static String COMPLETE_MESSAGE = NUMBER_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	private static String END_MESSAGE = NUMBER_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	
+	private static String ANSWER_CLEAR = NUMBER_LENGTH + ScoreType.STRIKE.getDescription();
+	private static String QUESTION = "숫자를 입력해주세요 : ";
+	private static String RESULT_NOTHING = "낫싱";
 	
 	private Scanner scanner;
 
-	private GameStatus gameStatus = GameStatus.IN_PROGRESS;
+	private GameStatus gameStatus = GameStatus.RUNNING;
 
 	private List<Integer> targetNumber;
 	
-	public void playRound() {
+	public void play() {
 		System.out.println(START_MESSAGE);
 
-		generateTargetNumber();
+		init();
 		
-		inputAnswer();
+		run();
 		
-		System.out.println(COMPLETE_MESSAGE);
+		System.out.println(END_MESSAGE);
 	}
 	
-	private void generateTargetNumber() {
-		Set<Integer> numbers = getTargetNumberSet();
+	private void init() {
+		setTargetNumber();
+	}
+	
+	private void setTargetNumber() {
+		Set<Integer> numbers = new LinkedHashSet<>();
+		
+		while (numbers.size() < NUMBER_LENGTH) {
+			numbers.add((int)(Math.random() * 9) + 1);
+		}
 		
 		targetNumber = new ArrayList<Integer>();
 		for (int number : numbers) {
@@ -42,42 +52,37 @@ public class Game {
 		}
 	}
 	
-	public Set<Integer> getTargetNumberSet() {
-		Set<Integer> numbers = new LinkedHashSet<>();
+	private void run() {
+		while (gameStatus.equals(GameStatus.RUNNING)) {
+			setQuestion();
 		
-		while (numbers.size() < NUMBER_LENGTH) {
-			numbers.add((int)(Math.random() * 9) + 1);
-		}
-		
-		return numbers;	
-	}
-	
-	private void inputAnswer() {
-		while (gameStatus.equals(GameStatus.IN_PROGRESS)) {
-			System.out.print(QUESTION_MESSAGE);
-		
-			scanner = new Scanner(System.in);
-			String answer = scanner.nextLine();
-			gameStatus = getGameStatus(answer);
+			String answer = getAnswer();
+			
+			setGameStatus(answer);
 		}
 	}
 	
-	private GameStatus getGameStatus(String answer) {
-		String printMessage = "";
+	private void setQuestion() {
+		System.out.print(QUESTION);
+	}
+	
+	private String getAnswer() {
+		scanner = new Scanner(System.in);
+		return scanner.nextLine();
+	}
+	
+	private void setGameStatus(String answer) {
+		String result = "";
 		
 		if (isValidAnswer(answer)) {
-			List<Integer> answerNumber = getAnswerNumber(answer);
-			Map<ScoreType, Integer> result = getScoreMap(answerNumber);
-			
-			printMessage = getScorePrintMessage(result);
-			System.out.println(printMessage);
+			printResult(answer);
 		}
 		
-		if (printMessage.equals(COMPLETE_ANSWER)) {
-			return GameStatus.COMPLETED;
+		if (result.equals(ANSWER_CLEAR)) {
+			gameStatus = GameStatus.CLEAR;
 		}
 		
-		return GameStatus.IN_PROGRESS;
+		gameStatus = GameStatus.RUNNING;
 	}
 	
 	private boolean isValidAnswer(String s) {
@@ -105,7 +110,14 @@ public class Game {
 		return false;
 	}
 	
-	private List<Integer> getAnswerNumber(String s) {
+	private void printResult(String answer) {
+		List<Integer> answerNumber = convert(answer);
+		Map<ScoreType, Integer> result = getResultMap(answerNumber);
+		String printMessage = getPrintMessage(result);
+		System.out.println(printMessage);
+	}
+	
+	private List<Integer> convert(String s) {
 		List<Integer> numbers = new ArrayList<>();
 		
 		for(int i = 0; i < NUMBER_LENGTH; i++) {
@@ -115,7 +127,7 @@ public class Game {
 		return numbers;
 	}
 	
-	private Map<ScoreType, Integer> getScoreMap(List<Integer> answerNumber) {
+	private Map<ScoreType, Integer> getResultMap(List<Integer> answerNumber) {
 		Map<ScoreType, Integer> result = new HashMap<>();
 		
 		for(int i = 0; i < NUMBER_LENGTH; i++) {
@@ -140,24 +152,24 @@ public class Game {
 		return ScoreType.NONE;
 	}
 	
-	private String getScorePrintMessage(Map<ScoreType, Integer> result) {
+	private String getPrintMessage(Map<ScoreType, Integer> result) {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		for (ScoreType scoreType : ScoreType.values()) {
-			stringBuilder.append(getScorePrintString(scoreType, result));
+			stringBuilder.append(getPrintMessage(scoreType, result));
 		}
 		
 		if (stringBuilder.toString().isEmpty()) {
-			return "낫싱";
+			return RESULT_NOTHING;
 		}
 		
 		return stringBuilder.toString();
 	}
 	
-	private String getScorePrintString(ScoreType scoreType, Map<ScoreType, Integer> result) {
+	private String getPrintMessage(ScoreType scoreType, Map<ScoreType, Integer> result) {
 		if (result.containsKey(scoreType)) {
 			int count = result.get(scoreType);
-			return scoreType.print(count);
+			return scoreType.printWithScore(count);
 		}
 		
 		return "";

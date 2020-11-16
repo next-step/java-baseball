@@ -1,7 +1,7 @@
 package type;
 
 public enum GameRoomStatus {
-	GO,
-	STOP,
+	OPEN,
+	CLOSED,
 	WAITING_ANSWER;
 }
