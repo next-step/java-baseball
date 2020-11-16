@@ -31,5 +31,4 @@ MVC Pattern
 * Console로 user I/O를 처리할 수 있도록 Console I/O 구현 및 테스트
 * BaseballGameService
   * 임의의 3자리 수 만들기 구현 및 테스트
-  * User input의 validation 구현 및 테스트
   * User input에 대해 스트라이크 수 와 볼 수를 계산하는 로직 구현 및 테스트
