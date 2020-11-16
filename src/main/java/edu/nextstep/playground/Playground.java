@@ -8,7 +8,9 @@ import edu.nextstep.ui.Ui;
 
 public class Playground {
 	public void play() {
-		playBaseballGame();
+		do {
+			playBaseballGame();
+		} while (isContinue(Ui.inputForContinue()));
 	}
 
 	private void playBaseballGame() {
