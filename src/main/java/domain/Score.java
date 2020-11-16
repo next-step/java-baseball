@@ -1,2 +1,8 @@
-package domain;public class Score {
+package domain;
+
+public enum Score {
+    STRIKE, BALL, NOTHING;
+
+    Score() {
+    }
 }

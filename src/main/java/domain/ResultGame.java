@@ -1,33 +1,30 @@
 package domain;
 
-public class Score {
-    private int strike;
-    private int ball;
+import java.util.HashMap;
+import java.util.Map;
 
-    public Score() {
+public class ResultGame {
+    private static final int ALL_STRIKE_COUNT = 3;
+
+    private final Map<Score, Integer> scores;
+
+    public ResultGame() {
+        scores = new HashMap<>();
     }
 
-    public void addStrike() {
-        strike += 1;
-    }
-
-    public void addBall() {
-        ball += 1;
-    }
-
-    public boolean isNothing() {
-        return strike == 0 && ball == 0;
+    public void add(final Score score) {
+        scores.put(score, count(score) + 1);
     }
 
     public boolean isAllStrike() {
-        return strike == 3;
+        return count(Score.STRIKE) == ALL_STRIKE_COUNT;
     }
 
-    public int getStrike() {
-        return strike;
+    public boolean isNothing() {
+        return count(Score.STRIKE) == 0 && count(Score.BALL) == 0;
     }
 
-    public int getBall() {
-        return ball;
+    public int count(final Score score) {
+        return scores.getOrDefault(score, 0);
     }
 }
