@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@SuppressWarnings("static-access")
 public class NumberBaseballGameTest {
 
 	NumberBaseballGame numberBaseballGame = new NumberBaseballGame();
@@ -13,7 +14,6 @@ public class NumberBaseballGameTest {
 	@ParameterizedTest
 	@ValueSource(ints = {NumberBaseballGame.RANDOM_DIGIT})
 	public void testLengthGenerateRandomNumDigit(int index) {
-		@SuppressWarnings("static-access") 
 		int actual = (numberBaseballGame.generateRandomNumDigit(numberBaseballGame.RANDOM_DIGIT) + "").length();
 		assertThat(actual).isEqualTo(index);
 	}
@@ -22,7 +22,6 @@ public class NumberBaseballGameTest {
 	// 서로 다른 수인지 체크
 	@Test
 	public void testDiffGenerateRandomNum() {
-		@SuppressWarnings("static-access")
 		int number = numberBaseballGame.generateRandomNumDigit(numberBaseballGame.RANDOM_DIGIT);
 
 		String[] numberArr = (number + "").split("");
@@ -36,7 +35,6 @@ public class NumberBaseballGameTest {
 	// 최대 9자리인지 체크
 	@Test
 	public void testMaxLengthGenerateRandomNum() {
-		@SuppressWarnings("static-access")
 		int number = numberBaseballGame.generateRandomNumDigit(numberBaseballGame.RANDOM_DIGIT);
 		boolean actual = (0 < (number + "").length()) && ((number + "").length() < 10);
 
@@ -45,7 +43,6 @@ public class NumberBaseballGameTest {
 	
 	// 볼카운트 체크가 제대로 되는지 테스트
 	// 카운트 범위가 0 ~ 자릿수(3)인지 체크
-	@SuppressWarnings("static-access")
 	@Test
 	public void testLengthCountBall() {
 		int number = numberBaseballGame.countBall(123, 234);
@@ -56,7 +53,6 @@ public class NumberBaseballGameTest {
 	
 	// 스트라이크 카운트가 제대로 되는지 테스트
 	// 카운트 범위가 0 ~ 자릿수(3)인지 체크
-	@SuppressWarnings("static-access")
 	@Test
 	public void testLengthCountStrike() {
 		int number = numberBaseballGame.countStrike(123, 234);
