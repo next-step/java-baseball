@@ -39,6 +39,17 @@ class BaseballGameMachineTest {
         assertThat(guessResult).isEqualTo(expectedResult);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"3:0:false", "1:2:true", "0:3:true", "0:0:true"}, delimiter = ':')
+    @DisplayName("추측 결과(GuessResult) 에 따라 `추측` 을 계속할지 말지 여부를 제공한다.")
+    void guessContinueTest(int strikeCount, int ballCount, boolean expectedContinueGuess) {
+        BaseballGameMachine baseballGameMachine = BaseballGameMachine.initGame();
+        GuessResult guessResult = makeGuessResult(strikeCount, ballCount);
+        boolean continueGuess = baseballGameMachine.isContinueGuess(guessResult);
+
+        assertThat(continueGuess).isEqualTo(expectedContinueGuess);
+    }
+
     private BaseballGameMachine makeBaseballGameMachine() {
         List<GameDigit> gameDigits = new ArrayList<>();
         gameDigits.add(new GameDigit(0));
