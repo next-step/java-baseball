@@ -3,7 +3,8 @@ package com.leeha.baseball.exception;
 public enum BaseballGameExceptionCode {
 
     INVALID_CAPACITY_EXCEPTION("Invalid capacity exception"),
-    INVALID_MINIMUM_OR_MAXIMUM_EXCEPTION("Invalid minimum or maximum exception");
+    INVALID_MINIMUM_OR_MAXIMUM_EXCEPTION("Invalid minimum or maximum exception"),
+    INVALID_ANSWER_EXCEPTION("Invalid answer exception");
 
     private final String message;
 
