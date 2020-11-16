@@ -8,6 +8,7 @@ public class BaseballGame extends BaseballValidationChecker{
 	private BaseballScore baseballScore;
 
 	public BaseballGame(){
+
 		Set<Integer> tmp = new HashSet();
 		Random random = new Random();
 		for(; tmp.size() < 3 ;){
@@ -44,14 +45,19 @@ public class BaseballGame extends BaseballValidationChecker{
 		return randomBall;
 	}
 
-	public String checkResult(String input){
+	public BaseballScore checkResult(String input){
 		baseballScore = new BaseballScore();
+		if (!checkRule(input)){
+			baseballScore.onError();
+			return baseballScore;
+		}
 
 		for ( int i = 0 ; i < input.length() ; i++){
 			checkStrike(input.charAt(i)+"",i);
 			checkBall(input.charAt(i)+"",i);
 		}
-		return baseballScore.getResult();
+		baseballScore.getResult();
+		return baseballScore;
 
 	}
 	private void checkStrike(String ball , int position){
@@ -62,7 +68,7 @@ public class BaseballGame extends BaseballValidationChecker{
 
 	}
 	private void checkBall(String ball , int position){
-		//System.out.println(randomBall.charAt(position) + " " + ball);
+		//xwSystem.out.println(randomBall.charAt(position) + " " + ball);
 		if(randomBall.contains(ball) && !ball.equals(randomBall.charAt(position)+"")){
 			baseballScore.countUpBall();
 		}

@@ -2,6 +2,7 @@ package baseball;
 
 public class BaseballValidationChecker {
 	public boolean checkRule(String input){
+		System.out.println(input);
 		if(!checkNum(input))
 			return false;
 		if(!checkLength(input))

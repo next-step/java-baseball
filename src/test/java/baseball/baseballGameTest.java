@@ -42,7 +42,8 @@ public class baseballGameTest {
 	@Test
 	@DisplayName("checkResult 메소드 3strike Test")
 	void checkResultStrikeTest(){
-		assertThat(baseballGame.checkResult(baseballGame.getRandomBall())).contains("3스트라이크");
+		BaseballScore baseballScore = baseballGame.checkResult(baseballGame.getRandomBall());
+		assertThat(baseballScore.getMessage()).contains("3스트라이크");
 	}
 
 	@Test
@@ -50,16 +51,25 @@ public class baseballGameTest {
 	void checkResultBallTest(){
 
 		String testVal = "" + baseballGame.getRandomBall().charAt(1) + baseballGame.getRandomBall().charAt(2) + baseballGame.getRandomBall().charAt(0);
-		assertThat(baseballGame.checkResult(testVal)).contains("3볼");
+		BaseballScore baseballScore = baseballGame.checkResult(testVal);
+		assertThat(baseballScore.getMessage()).contains("3볼");
 	}
 
 
 	@Test
-	@DisplayName("checkResult 메소드 3Ball Test")
+	@DisplayName("checkResult 메소드 Strike, Ball Test")
 	void checkResultStrikeAndBallTest(){
 
 		String testVal = "" + baseballGame.getRandomBall().charAt(0) + baseballGame.getRandomBall().charAt(2) + baseballGame.getRandomBall().charAt(1);
-		assertThat(baseballGame.checkResult(testVal)).contains("1스트라이크2볼");
+		BaseballScore baseballScore = baseballGame.checkResult(testVal);
+		assertThat(baseballScore.getMessage()).contains("1스트라이크2볼");
+	}
+
+	@Test
+	@DisplayName("BaseBallGame 전체 테스트 ")
+	void checkGameTest(){
+		GamePlayer gamePlayer = new GamePlayer();
+		gamePlayer.playGame();
 	}
 
 }
