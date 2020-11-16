@@ -18,7 +18,7 @@ public class BaseBall {
         for (int i = 0; i < result.length(); i++) {
             if (result.charAt(i) == inputValue.charAt(i)){
                 strike++;
-            } else if (result.equals(inputValue.charAt(i)+"")) {
+            } else if (result.contains(inputValue.charAt(i)+"")) {
                 ball++;
             }
         }
