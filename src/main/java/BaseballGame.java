@@ -1,6 +1,6 @@
-import UI.Input;
-import UI.Output;
-import UI.command.GameCommand;
+import ui.Input;
+import ui.Output;
+import ui.command.GameCommand;
 import domain.Opponent;
 import domain.Player;
 import domain.Referee;

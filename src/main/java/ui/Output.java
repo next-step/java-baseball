@@ -1,6 +1,6 @@
-package UI;
+package ui;
 
-import UI.msg.OutputMessage;
+import ui.msg.OutputMessage;
 import domain.baseballRule.BaseballResult;
 
 public class Output {

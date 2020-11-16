@@ -1,4 +1,4 @@
-package UI.command;
+package ui.command;
 
 public class GameCommand {
 	public static final String RESTART = "1";

@@ -1,11 +1,11 @@
-package UI;
+package ui;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import UI.command.GameCommand;
-import UI.msg.InputMessage;
+import ui.command.GameCommand;
+import ui.msg.InputMessage;
 
 public class Input {
 
