@@ -7,7 +7,7 @@ public class BaseballGameMachine {
     private BaseballGame baseballGame;
     private boolean baseballGameContinue;
 
-    public BaseballGameMachine(BaseballGame baseballGame, boolean baseballGameContinue) {
+    protected BaseballGameMachine(BaseballGame baseballGame, boolean baseballGameContinue) {
         this.baseballGame = baseballGame;
         this.baseballGameContinue = baseballGameContinue;
     }
