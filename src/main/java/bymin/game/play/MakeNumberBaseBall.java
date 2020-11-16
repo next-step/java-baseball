@@ -17,7 +17,6 @@ public class MakeNumberBaseBall {
     public boolean numListCheck(int cnt) {
         if (!numList.contains(cnt)) {
             numList.add(cnt);
-            System.out.println(cnt);
         }
         return numList.size() != 3;
     }
