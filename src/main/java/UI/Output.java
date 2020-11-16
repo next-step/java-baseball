@@ -8,20 +8,28 @@ public class Output {
 	public static void printBaseballResult(BaseballResult baseballResult) {
 
 		if (baseballResult.isNothing()) {
-			System.out.print(OutputMessage.NOTHING);
+			System.out.println(OutputMessage.NOTHING);
 			return;
 		}
 
-		if (baseballResult.getStrikeCount() > 0) {
-			System.out.print(OutputMessage.STRIKE);
+		if (baseballResult.isStrikeAndBall()) {
+			System.out.println(baseballResult.getStrikeCount() + OutputMessage.STRIKE +" " +baseballResult.getBallCount() + OutputMessage.BALL);
+			return;
 		}
 
-		if (baseballResult.getBallCount() > 0) {
-			System.out.print(OutputMessage.BALL);
+		if (baseballResult.isOnlyStrike()) {
+			System.out.println(baseballResult.getStrikeCount() + OutputMessage.STRIKE);
+			return;
+		}
+
+		if (baseballResult.isOnlyBall()) {
+			System.out.println(baseballResult.getBallCount() + OutputMessage.BALL);
+			return;
 		}
 
 		if (baseballResult.isThreeStrike()) {
-			System.out.print(OutputMessage.THREE_STRIKE);
+			System.out.println(OutputMessage.THREE_STRIKE);
+			return;
 		}
 	}
 }

@@ -23,6 +23,18 @@ public class BaseballResult {
 		return this.strike.strike.equals(0) && this.ball.ball.equals(0);
 	}
 
+	public Boolean isStrikeAndBall() {
+		return this.getStrikeCount() > 0 && this.getBallCount() > 0;
+	}
+
+	public Boolean isOnlyStrike() {
+		return this.getStrikeCount() > 0 && this.getBallCount() == 0;
+	}
+
+	public Boolean isOnlyBall() {
+		return this.getStrikeCount() == 0 && this.getBallCount() > 0;
+	}
+
 	public void addStrike(Strike strike) {
 		this.strike.add(strike);
 	}
