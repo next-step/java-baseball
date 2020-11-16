@@ -20,7 +20,6 @@ public class BaseBall {
 
 	}
 
-	//todo 테스트, 리팩토링, Junit5 테스트
 	public void playGame() {
 		int strikeCnt = 0;
 		do {
@@ -72,7 +71,7 @@ public class BaseBall {
 		return 0;
 	}
 
-	private boolean isNothing(List<Integer> answerList, int ballCount) {
+	boolean isNothing(List<Integer> answerList, int ballCount) {
 		if (answerList.size() == 0 && ballCount != 3) {
 			return true;
 		}
