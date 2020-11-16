@@ -1,7 +1,6 @@
 package baseball.game;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -80,7 +79,7 @@ public class BaseBall {
     private LinkedHashSet<Integer> validateGameRule() {
         LinkedHashSet<Integer> playBalls = new LinkedHashSet<>();
         try {
-            int inputNumber = validateInputNumberType(this.scanner);
+            String inputNumber = this.scanner.nextLine();
 
             validateInputNumberSize(inputNumber);
 
@@ -106,27 +105,11 @@ public class BaseBall {
     }
 
     /**
-     * 사용자 입력 받은 값 타입 체크
-     * @return 사용자 입력 받은 값 return
-     */
-    int validateInputNumberType(final Scanner scanner) {
-        int inputNumber;
-
-        try {
-            inputNumber = Integer.parseInt(scanner.nextLine());
-        } catch (InputMismatchException | NumberFormatException e) {
-            throw new InvalidateNumberTypeError(PrintMessage.INPUT_NUMBER_ERROR);
-        }
-
-        return inputNumber;
-    }
-
-    /**
      * 사용자 입력 받은 숫자 3개 여부 체크
      * @param inputNumber 사용자 입력 숫자
      */
-    void validateInputNumberSize(final int inputNumber) {
-        if (String.valueOf(inputNumber).length() != BALL_SIZE) {
+    void validateInputNumberSize(final String inputNumber) {
+        if (inputNumber.length() != BALL_SIZE) {
             throw new InvalidateNumberSizeError(PrintMessage.INPUT_NUMBER_SIZE_ERROR);
         }
     }
@@ -136,8 +119,8 @@ public class BaseBall {
      * @param inputNumber 사용자 입력 숫자
      * @return 사용자 입력 받은 숫자 LinkedHashSet 생성 return
      */
-    LinkedHashSet<Integer> createInputNumberToBalls(final int inputNumber) {
-        String[] splitNumber = String.valueOf(inputNumber).split("");
+    LinkedHashSet<Integer> createInputNumberToBalls(final String inputNumber) {
+        String[] splitNumber = inputNumber.split("");
 
         LinkedHashSet<Integer> balls = new LinkedHashSet<>();
 
@@ -156,7 +139,13 @@ public class BaseBall {
      * @param number 사용자 입력 숫자
      */
     void validateAddPlayBalls(final String number) {
-        int convertNumber = Integer.parseInt(number);
+        int convertNumber;
+
+        try {
+            convertNumber = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new InvalidateNumberTypeError(PrintMessage.INPUT_NUMBER_ERROR);
+        }
 
         if (convertNumber <= MIN_NUMBER || convertNumber >= MAX_NUMBER) {
             throw new CustomException.InvalidateNumberConditionError(PrintMessage.INPUT_NUMBER_CONDITION_ERROR);
@@ -277,9 +266,9 @@ public class BaseBall {
     private void checkResetGame() {
         getPrintByMessage(PrintMessage.BASE_BALL_GAME_CLEAR_MESSAGE);
 
-        int inputNumber = validateInputNumberType(this.scanner);
+        String inputNumber = this.scanner.nextLine();
 
-        if (inputNumber != GAME_RETRY) {
+        if (Integer.parseInt(inputNumber) != GAME_RETRY) {
             System.exit(0);
         }
 

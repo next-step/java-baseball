@@ -2,7 +2,6 @@ package baseball.game;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,36 +27,17 @@ class BaseBallTest {
         baseBall = new BaseBall();
     }
 
-    @DisplayName("숫자만 입력 가능 (정상)")
-    @ParameterizedTest
-    @ValueSource(strings = { "234", "654", "236"})
-    void validate_input_number_type(final String inputNumber) {
-        assertDoesNotThrow(() -> baseBall.validateInputNumberType(new Scanner(inputNumber)));
-    }
-
-    @DisplayName("숫자만 입력 가능 (실패)")
-    @ParameterizedTest
-    @ValueSource(strings = {"3f2", "2d3", "9fd"})
-    void validate_input_number_type_bad_request(final String inputNumber) {
-        CustomException.InvalidateNumberTypeError exception = assertThrows(
-            CustomException.InvalidateNumberTypeError.class,
-            () -> baseBall.validateInputNumberType(new Scanner((inputNumber)))
-        );
-
-        assertTrue(exception.getMessage().contains(PrintMessage.INPUT_NUMBER_ERROR));
-    }
-
     @DisplayName("3개의 숫 입력 여부 (정상)")
     @ParameterizedTest
-    @ValueSource(ints = {235, 532, 194})
-    void validate_input_number_size(final int inputNumber) {
+    @ValueSource(strings = {"235", "532", "194"})
+    void validate_input_number_size(final String inputNumber) {
         assertDoesNotThrow(() -> baseBall.validateInputNumberSize(inputNumber));
     }
 
     @DisplayName("3개의 숫 입력 여부 (실패)")
     @ParameterizedTest
-    @ValueSource(ints = {2354, 5321, 1943})
-    void validate_input_number_size_bad_request(final int inputNumber) {
+    @ValueSource(strings = {"2354", "5321", "1943"})
+    void validate_input_number_size_bad_request(final String inputNumber) {
         CustomException.InvalidateNumberSizeError exception = assertThrows(
             CustomException.InvalidateNumberSizeError.class,
             () -> baseBall.validateInputNumberSize(inputNumber)
@@ -99,8 +79,8 @@ class BaseBallTest {
 
     @DisplayName("사용자 입력 받은 숫자 LinkedHashSet 생성")
     @ParameterizedTest
-    @ValueSource(ints = {235, 532, 194})
-    void create_input_number_to_balls(final int inputNumber) {
+    @ValueSource(strings = {"235", "532", "194"})
+    void create_input_number_to_balls(final String inputNumber) {
         String[] splitNumber = String.valueOf(inputNumber).split("");
         LinkedHashSet<Integer> balls = baseBall.createInputNumberToBalls(inputNumber);
 
