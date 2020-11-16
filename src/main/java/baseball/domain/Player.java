@@ -11,6 +11,8 @@ public class Player {
 	private static final String ERROR_BALL_RANGE = "1~9 까지의 숫자만 허용하고 있습니다.";
 
 	private List<Integer> baseball;
+	private int strikeCount = 0;
+	private int ballCount = 0;
 
 	public Player() {
 	}
@@ -24,6 +26,7 @@ public class Player {
 		}
 
 		checkBallSize();
+		resetCount();
 
 		return baseball;
 	}
@@ -49,5 +52,24 @@ public class Player {
 		return baseball;
 	}
 
+	public int getStrikeCount() {
+		return strikeCount;
+	}
 
+	public int getBallCount() {
+		return ballCount;
+	}
+
+	public void setStrikeCount(int count) {
+		strikeCount += count;
+	}
+
+	public void setBallCount(int count) {
+		ballCount += count;
+	}
+
+	public void resetCount() {
+		strikeCount = 0;
+		ballCount = 0;
+	}
 }
