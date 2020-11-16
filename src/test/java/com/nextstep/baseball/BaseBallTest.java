@@ -126,9 +126,51 @@ public class BaseBallTest {
 		strikeList.add(false);
 		strikeList.add(false);
 
-
 		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
 		assertThat(ballCount).isEqualTo(1);
 	}
 
+	@Test
+	@DisplayName("2 Ball 테스트")
+	void test_TwoBall() {
+		List<Integer> answerList = new ArrayList<>();
+		answerList.add(1);
+		answerList.add(2);
+		answerList.add(3);
+
+		List<Integer> inputNumberList = new ArrayList<>();
+		inputNumberList.add(3);
+		inputNumberList.add(1);
+		inputNumberList.add(5);
+
+		List<Boolean> strikeList = new ArrayList<>();
+		strikeList.add(false);
+		strikeList.add(false);
+		strikeList.add(false);
+
+		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
+		assertThat(ballCount).isEqualTo(2);
+	}
+
+	@Test
+	@DisplayName("3 Ball 테스트")
+	void test_ThreeBall() {
+		List<Integer> answerList = new ArrayList<>();
+		answerList.add(1);
+		answerList.add(2);
+		answerList.add(3);
+
+		List<Integer> inputNumberList = new ArrayList<>();
+		inputNumberList.add(3);
+		inputNumberList.add(1);
+		inputNumberList.add(2);
+
+		List<Boolean> strikeList = new ArrayList<>();
+		strikeList.add(false);
+		strikeList.add(false);
+		strikeList.add(false);
+
+		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
+		assertThat(ballCount).isEqualTo(3);
+	}
 }
