@@ -2,28 +2,31 @@ package domain;
 
 import utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class ComputerNumber {
+public class ComputerNumbers {
     private static final int NUMBER_LENGTH = 3;
-    private final Set<BaseballNumbers> baseballNumbers;
+    private final Set<BaseballNumber> computerNumbers;
 
-    public ComputerNumber() {
-        this.numbers = makeRandomNumbers();
+    public ComputerNumbers() {
+        this.computerNumbers = new LinkedHashSet<>();
+        makeRandomNumbers();
     }
 
-    private List<Integer> makeRandomNumbers() {
-        Set<Integer> numberSet = new LinkedHashSet<>();
-        while (numberSet.size() < NUMBER_LENGTH) {
-            numberSet.add(RandomUtils.random());
+    private void makeRandomNumbers() {
+        Set<Integer> numbers = new LinkedHashSet<>();
+        while (numbers.size() < NUMBER_LENGTH) {
+            numbers.add(RandomUtils.random());
         }
-        return new ArrayList<>(numberSet);
+
+        int position = 0;
+        for (int number : numbers) {
+            computerNumbers.add(new BaseballNumber(new Order(position), number));
+            position += 1;
+        }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public Set<BaseballNumber> getComputerNumbers() {
+        return computerNumbers;
     }
 }
