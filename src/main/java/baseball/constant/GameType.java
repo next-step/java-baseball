@@ -10,8 +10,20 @@ public enum GameType {
     GameType(String command){
         this.command = command;
     }
+
     public String getCommand(){
         return command;
     }
+
+    public static boolean isExistType(String command){
+        GameType[] gameTypes = GameType.values();
+        for(GameType gameType : gameTypes){
+            if(command.equals(gameType.getCommand())){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

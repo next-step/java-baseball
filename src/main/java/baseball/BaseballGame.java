@@ -1,21 +1,24 @@
 package baseball;
 
+import baseball.constant.GameType;
 import baseball.domain.BaseballNumbers;
 import baseball.domain.GameScore;
+import baseball.exception.BizException;
+import baseball.exception.BizExceptionType;
 import baseball.util.BaseballUtil;
 import baseball.util.MessageUtil;
 import java.util.Scanner;
 
 public class BaseballGame {
 
-    public boolean isGame = true;
+    boolean isExit = false;
     private Scanner scanner = new Scanner(System.in);
 
 
     public void play(){
-        //완전 종료가 될때까지
-        doGame();
-
+        while(!isExit){
+            doGame();
+        }
     }
     public void doGame(){
 
@@ -26,7 +29,6 @@ public class BaseballGame {
         while (!isGameClear) {
 
             MessageUtil.printStartMessage();
-
             String inputText = scanner.nextLine();
 
             BaseballNumbers baseballNumbers = new BaseballNumbers(inputText);
@@ -36,10 +38,21 @@ public class BaseballGame {
             gameScore.checkGameScore(randomNumbers, baseballNumbers.getNumbers());
 
             MessageUtil.printGameResult(gameScore);
-
             isGameClear = gameScore.isGameClear();
         }
+        MessageUtil.printRetryAskMessage();
+        askExit();
+    }
 
+    public void askExit(){
+        String command = scanner.nextLine();
+        if(!GameType.isExistType(command)){
+            throw new BizException(BizExceptionType.INVALID_COMMAND);
+        }
+
+        if(command.equals(GameType.EXIT.getCommand())){
+            isExit = true;
+        }
     }
 
 }
