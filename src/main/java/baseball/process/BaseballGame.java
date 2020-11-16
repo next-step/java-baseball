@@ -7,42 +7,58 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
-    private final String GAME_RESTART = "1";
-    private final String GAME_END = "2";
+    Opponent opponent;
+    Player player;
+
+    private final String COMMAND_RESTART = "1";
+    private final String COMMAND_END = "2";
+
+    private void initPlayer() {
+        opponent = new Opponent();
+        player = new Player();
+    }
 
     public void executeGame() {
 
-        Opponent opponent = new Opponent();
-        Player player = new Player();
+        initPlayer();
 
         do {
-
             player.inputStrikeNumber();
             opponent.calculateStrike(player.getStrikeNumber());
             System.out.println(opponent.getMessage());
-
-        } while (this.isGameEnd(opponent));
+        } while (!isGameEnd());
     }
 
-    private boolean isGameEnd(Opponent opponent) {
-        return opponent.isLose() && exitGame(opponent);
+    private boolean isGameEnd() {
+        return opponent.isLose() && exitGame();
     }
 
-    private boolean exitGame(Opponent opponent) {
+    private boolean exitGame() {
 
         System.out.println("게임을 새로 시작하려면 1 종료하려면 2 를 입력하세요.");
         Scanner scan = new Scanner(System.in);
+        String inputData;
 
-        while (true) {
-            String inputData = scan.nextLine();
-            if(GAME_END.equals(inputData)) {
-                return true;
-            }
-            if(GAME_RESTART.equals(inputData)) {
-                opponent.resetStrikeNumber();
-                return false;
-            }
+        do {
+            inputData = scan.nextLine();
+        } while (!isCorrectCommand(inputData));
+
+        executeCommand(inputData);
+
+        return COMMAND_END.equals(inputData);
+    }
+
+    private boolean isCorrectCommand(String inputData) {
+        if(!COMMAND_END.equals(inputData) && !COMMAND_RESTART.equals(inputData)) {
             System.out.println("1 또는 2 를 입력해 주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    private void executeCommand(String inputData) {
+        if(COMMAND_RESTART.equals(inputData)) {
+            initPlayer();
         }
     }
 }
