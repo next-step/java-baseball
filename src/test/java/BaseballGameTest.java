@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BaseballGameTest {
 
     @Test
+    @DisplayName("정답값 셋팅")
     public void setCorrectNumbers() {
         BaseballGame baseballGame = new BaseballGame();
         baseballGame.setCorrectNumbers();
@@ -15,6 +17,7 @@ public class BaseballGameTest {
     }
 
     @Test
+    @DisplayName("입력값 셋팅")
     public void setInputNumbers() {
         BaseballGame baseballGame = new BaseballGame();
         String inputNumberString = "123";
@@ -24,46 +27,50 @@ public class BaseballGameTest {
     }
 
     @Test
+    @DisplayName("3스트라이크 테스트")
     public void strike_Hint() {
         BaseballGame baseballGame = new BaseballGame();
         baseballGame.setCorrectNumbers(new ArrayList<>(Arrays.asList(4, 5, 6)));
         String inputNumberString = "456";
         baseballGame.setInputNumbers(inputNumberString);
-        baseballGame.setHint();
+        baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getStrike().getCount()).isEqualTo(3);
         baseballGame.printHint();
     }
 
     @Test
+    @DisplayName("3볼 테스트")
     public void ball_Hint() {
         BaseballGame baseballGame = new BaseballGame();
         baseballGame.setCorrectNumbers(new ArrayList<>(Arrays.asList(4, 5, 6)));
         String inputNumberString = "645";
         baseballGame.setInputNumbers(inputNumberString);
-        baseballGame.setHint();
+        baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getBall().getCount()).isEqualTo(3);
         baseballGame.printHint();
     }
 
     @Test
+    @DisplayName("1스트라이크 2볼 테스트")
     public void strike_And_Ball_Hint() {
         BaseballGame baseballGame = new BaseballGame();
         baseballGame.setCorrectNumbers(new ArrayList<>(Arrays.asList(4, 5, 6)));
         String inputNumberString = "465";
         baseballGame.setInputNumbers(inputNumberString);
-        baseballGame.setHint();
+        baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getStrike().getCount()).isEqualTo(1);
         assertThat(baseballGame.getHint().getBall().getCount()).isEqualTo(2);
         baseballGame.printHint();
     }
 
     @Test
+    @DisplayName("포볼 테스트")
     public void nothing_Hint() {
         BaseballGame baseballGame = new BaseballGame();
         baseballGame.setCorrectNumbers(new ArrayList<>(Arrays.asList(4, 5, 6)));
         String inputNumberString = "123";
         baseballGame.setInputNumbers(inputNumberString);
-        baseballGame.setHint();
+        baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getNothing().getCount()).isEqualTo(1);
         baseballGame.printHint();
     }

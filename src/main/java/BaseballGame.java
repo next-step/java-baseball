@@ -5,16 +5,20 @@ public class BaseballGame {
 
     public final int NUMBER_SIZE = 3;
 
-    private Hint hint = new Hint();
+    private BaseballGameHint hint;
     private ArrayList<Integer> correctNumbers;
     private ArrayList<Integer> inputNumbers;
 
-    public Hint getHint() {
+    public BaseballGameHint getHint() {
         return hint;
     }
 
     public ArrayList<Integer> getCorrectNumbers() {
         return correctNumbers;
+    }
+
+    public void setCorrectNumbers(ArrayList<Integer> correctNumbers) {
+        this.correctNumbers = correctNumbers;
     }
 
     public ArrayList<Integer> getInputNumbers() {
@@ -31,30 +35,12 @@ public class BaseballGame {
         this.inputNumbers = inputNumbers;
     }
 
-    private void setStrikeHint(BaseballHintMaker hintMaker) {
+    public void calculateHint() {
+        this.hint = new BaseballGameHint(this.correctNumbers, this.inputNumbers);
         Strike strike = new Strike();
-        for (int index = 0; index < NUMBER_SIZE; index++) {
-            hintMaker.getStrikeHint(index, strike);
-        }
-        this.hint.setStrike(strike);
-    }
-
-    private void setBallHint(BaseballHintMaker hintMaker) {
         Ball ball = new Ball();
-        for (int index = 0; index < NUMBER_SIZE; index++) {
-            hintMaker.getBallHint(index, ball);
-        }
-        this.hint.setBall(ball);
-    }
-
-    private void setNothingHint() {
-        Strike strike = this.hint.getStrike();
-        Ball ball = this.hint.getBall();
         Nothing nothing = new Nothing();
-        if (strike.getCount() == 0 && ball.getCount() == 0) {
-            nothing.add();
-        }
-        this.hint.setNothing(nothing);
+        this.hint.create(strike, ball, nothing);
     }
 
     public void printHint() {
@@ -67,12 +53,8 @@ public class BaseballGame {
         System.out.println();
     }
 
-    private void checkCorrect() {
-        if (this.hint.getStrike().getCount() == NUMBER_SIZE) {
-            gameOver();
-            return;
-        }
-        start();
+    private boolean isCorrect() {
+        return this.hint.getStrike().getCount() == NUMBER_SIZE;
     }
 
     private void gameOver() {
@@ -87,30 +69,22 @@ public class BaseballGame {
         start();
     }
 
-    public void setHint() {
-        this.hint = new Hint();
-        BaseballHintMaker hintMaker = new BaseballHintMaker(this.correctNumbers, this.inputNumbers);
-        setStrikeHint(hintMaker);
-        setBallHint(hintMaker);
-        setNothingHint();
-    }
-
     public void setCorrectNumbers() {
         BaseballNumberMaker numberMaker = new BaseballNumberMaker();
         this.correctNumbers = numberMaker.makeNonDuplicateRandomNumber();
-    }
-
-    public void setCorrectNumbers(ArrayList<Integer> correctNumbers) {
-        this.correctNumbers = correctNumbers;
     }
 
     public void start() {
         System.out.print("숫자를 입력하세요 : ");
         Scanner scanner = new Scanner(System.in);
         setInputNumbers(scanner.next());
-        setHint();
+        calculateHint();
         printHint();
-        checkCorrect();
+        if (isCorrect()) {
+            gameOver();
+            return;
+        }
+        start();
     }
 
 }

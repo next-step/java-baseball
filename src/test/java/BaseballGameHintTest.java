@@ -6,18 +6,18 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BaseballHintMakerTest {
+public class BaseballGameHintTest {
 
     @Test
     @DisplayName("정답과 입력받은 숫자의 자리 수와 값이 일치할 경우 스트라이크 힌트 출력하기")
     public void getStrikeHint() {
         ArrayList<Integer> correctNumbers = new ArrayList<>(Arrays.asList(1, 2, 3));
         ArrayList<Integer> inputNumbers = new ArrayList<>(Arrays.asList(1, 2, 5));
-        BaseballHintMaker hintMaker = new BaseballHintMaker(correctNumbers, inputNumbers);
+        BaseballGameHint hint = new BaseballGameHint(correctNumbers, inputNumbers);
 
         Strike strike = new Strike();
-        for (int index = 0; index < hintMaker.NUMBER_SIZE; index++) {
-            hintMaker.getStrikeHint(index, strike);
+        for (int index = 0; index < hint.NUMBER_SIZE; index++) {
+            hint.setStrike(index, strike);
         }
         assertThat(strike.getCount()).isEqualTo(2);
     }
@@ -27,17 +27,17 @@ public class BaseballHintMakerTest {
     public void getBallHint() {
         ArrayList<Integer> correctNumbers = new ArrayList<>(Arrays.asList(4, 2, 5));
         ArrayList<Integer> inputNumbers = new ArrayList<>(Arrays.asList(4, 5, 2));
-        BaseballHintMaker hintMaker = new BaseballHintMaker(correctNumbers, inputNumbers);
+        BaseballGameHint hint = new BaseballGameHint(correctNumbers, inputNumbers);
 
         Strike strike = new Strike();
-        for (int index = 0; index < hintMaker.NUMBER_SIZE; index++) {
-            hintMaker.getStrikeHint(index, strike);
+        for (int index = 0; index < hint.NUMBER_SIZE; index++) {
+            hint.setStrike(index, strike);
         }
         assertThat(strike.getCount()).isEqualTo(1);
 
         Ball ball = new Ball();
-        for (int index = 0; index < hintMaker.NUMBER_SIZE; index++) {
-            hintMaker.getBallHint(index, ball);
+        for (int index = 0; index < hint.NUMBER_SIZE; index++) {
+            hint.setBall(index, ball);
         }
         assertThat(ball.getCount()).isEqualTo(2);
     }
@@ -47,19 +47,18 @@ public class BaseballHintMakerTest {
     public void getNothingHint() {
         ArrayList<Integer> correctNumbers = new ArrayList<>(Arrays.asList(1, 2, 3));
         ArrayList<Integer> inputNumbers = new ArrayList<>(Arrays.asList(4, 5, 6));
-        BaseballHintMaker hintMaker = new BaseballHintMaker(correctNumbers, inputNumbers);
+        BaseballGameHint hint = new BaseballGameHint(correctNumbers, inputNumbers);
 
-        Hint hint = new Hint();
         Strike strike = new Strike();
-        for (int index = 0; index < hintMaker.NUMBER_SIZE; index++) {
-            hintMaker.getStrikeHint(index, strike);
+        for (int index = 0; index < hint.NUMBER_SIZE; index++) {
+            hint.setStrike(index, strike);
         }
         hint.setStrike(strike);
         assertThat(strike.getCount()).isEqualTo(0);
 
         Ball ball = new Ball();
-        for (int index = 0; index < hintMaker.NUMBER_SIZE; index++) {
-            hintMaker.getBallHint(index, ball);
+        for (int index = 0; index < hint.NUMBER_SIZE; index++) {
+            hint.setBall(index, ball);
         }
         hint.setBall(ball);
         assertThat(ball.getCount()).isEqualTo(0);
