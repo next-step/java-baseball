@@ -17,14 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DisplayName("숫자 생성 테스트")
 class NumberBoxTest {
 
-    private NumberBox numberBox;
-
     @RepeatedTest(value=1_000, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
     @DisplayName("투수 - NumberBox에 존재하지 않는 수를 생성한다")
     void createDistinctNumber(){
         // given
         List<Integer> list = Arrays.asList(1,2);
-        numberBox = new NumberBox();
+        NumberBox numberBox = new NumberBox();
         numberBox.setNumberBox(list);
 
         //when
