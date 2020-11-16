@@ -52,10 +52,22 @@ public class BaseServiceImpl implements BaseService{
             }else if(me_nan_st.length != 3){
                 System.out.println("다시 입력하세요.");
                 continue;
+            }else if(!isNumber(me_nan)){
+                System.out.println("숫자열을 입력해주세요.");
+                continue;
             }
             break;
         }
         return me_nan;
+    }
+
+    public Boolean isNumber(String num){
+        try{
+            Integer.parseInt(num);
+        }catch (NumberFormatException e){
+            return false;
+        }
+        return true;
     }
 
     // 컴퓨터의 서로 다른 난수 계산
