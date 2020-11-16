@@ -1,6 +1,5 @@
 package com.nextstep.baseball;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseBallTest {
 	private Set<Integer> numbersRange;
@@ -23,15 +20,6 @@ public class BaseBallTest {
 			numbersRange.add(i);
 		}
 	}
-
-	/*
-	1. 1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능
-	2. 사용자로부터 1~9까지 서로 다른 임의의 수 3개를 입력 받는 기능
-	3. Strike, Ball, Nothing 체크하는 기능
-        - 3 Strike가 나올때까지 반복해야함.
-	4. 결과 출력
-	5. 게임 재시작 또는 종료 기능
-	 */
 
 	@Test
 	@DisplayName("1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 함수 테스트")
@@ -172,5 +160,28 @@ public class BaseBallTest {
 
 		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
 		assertThat(ballCount).isEqualTo(3);
+	}
+
+	@Test
+	@DisplayName("Nothing 테스트")
+	void test_Nothing() {
+		List<Integer> answerList = new ArrayList<>();
+		answerList.add(1);
+		answerList.add(2);
+		answerList.add(3);
+
+		List<Integer> inputNumberList = new ArrayList<>();
+		inputNumberList.add(5);
+		inputNumberList.add(6);
+		inputNumberList.add(7);
+
+		List<Boolean> strikeList = new ArrayList<>();
+		strikeList.add(false);
+		strikeList.add(false);
+		strikeList.add(false);
+
+		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
+		boolean isNothing = baseBall.isNothing(answerList, ballCount);
+		assertThat(isNothing).isEqualTo(true);
 	}
 }
