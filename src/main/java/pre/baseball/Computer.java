@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Computer {
 
-    private static final int DEFAULT_DIGIT = 3;
+    public static final int DEFAULT_DIGIT = 3;
     private int[] answer;
     private int strike;
     private int ball;

@@ -1,4 +1,5 @@
 package pre.baseball;
+
 import java.util.Scanner;
 
 public class Player {
@@ -10,16 +11,30 @@ public class Player {
     }
 
     public int input() {
-	int input = scanner.nextInt();
-	System.out.println("input : " + input);
-	if (!validateInput(input))
-	    throw new IllegalArgumentException("유효하지 않은 입력입니다.");
+	return validateInput(scanner.nextInt());
+    }
+
+    /**
+     * 입력값의 유효성을 검사한다.
+     * 
+     * @param input
+     * @return
+     */
+    private int validateInput(int input) {
+	if (hasZero(input))
+	    throw new IllegalArgumentException("0은 포함할 수 없습니다.");
 
 	return input;
     }
 
-    private boolean validateInput(int input) {
-	return true;
+    /**
+     * 0을 가지고 있는지 확인한다.
+     * 
+     * @param input
+     * @return
+     */
+    private boolean hasZero(int input) {
+	return Integer.toString(input).contains("0");
     }
 
 }
