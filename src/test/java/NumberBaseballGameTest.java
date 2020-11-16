@@ -46,7 +46,7 @@ public class NumberBaseballGameTest {
 	// 볼카운트 체크가 제대로 되는지 테스트
 	// 카운트 범위가 0 ~ 자릿수(3)인지 체크
 	@Test
-	public void testLengthcountBall() {
+	public void testLengthCountBall() {
 		@SuppressWarnings("static-access")
 		int number = numberBaseballGame.countBall(123, 234);
 		@SuppressWarnings("static-access")
@@ -56,6 +56,16 @@ public class NumberBaseballGameTest {
 	}
 	
 	// 스트라이크 카운트가 제대로 되는지 테스트
+	// 카운트 범위가 0 ~ 자릿수(3)인지 체크
+	@Test
+	public void testLengthCountStrike() {
+		@SuppressWarnings("static-access")
+		int number = numberBaseballGame.countStrike(123, 234);
+		@SuppressWarnings("static-access")
+		boolean actual = (0 <= (number + "").length()) && ((number + "").length() <= numberBaseballGame.RANDOM_DIGIT);
+	
+		assertThat(actual).isTrue();
+	}
 	
 	// 볼카운트와 스트라이크 카운트가 더해서 3이 초과되는지 테스트
 	

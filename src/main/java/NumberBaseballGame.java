@@ -120,7 +120,7 @@ public class NumberBaseballGame {
 	 * @return strike strike 카운트
 	 * 
 	 */
-	private static int countStrike(int randomNum, int inputNum) {
+	public static int countStrike(int randomNum, int inputNum) {
 		int strike = 0;
 		String[] randomNumArr = (randomNum + "").split("");
 		String[] inputNumArr = (inputNum + "").split("");
