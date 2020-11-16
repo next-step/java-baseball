@@ -37,9 +37,11 @@ public class BaseballGame {
                     }
                 }
             }
-            if (strike != 0) System.out.print(strike + " strike ");
-            if (ball != 0) System.out.print(ball + " ball ");
+            if (strike != 0) System.out.println(strike + " strike ");
+            if (ball != 0) System.out.println(ball + " ball ");
             if (strike == 0 && ball == 0) System.out.println("Nothing!");
+            strike = 0;
+            ball = 0;
         }while(!com.equals(user));
     }
 
