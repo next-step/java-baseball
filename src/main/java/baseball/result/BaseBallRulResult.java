@@ -1,9 +1,7 @@
-package baseball.output;
+package baseball.result;
 
-import baseball.game.BaseBallResult;
-
-public class BaseBallOutputer {
-    public static BaseBallResult output(int strike, int ball) {
+public class BaseBallRulResult {
+    public static BaseBallResult rulResult(int strike, int ball) {
         String result = "";
 
         if (strike > 0) {
@@ -16,6 +14,6 @@ public class BaseBallOutputer {
             result = "낫싱";
         }
 
-        return new BaseBallResult(strike == 3, result);
+        return new BaseBallResult(!(strike == 3), result);
     }
 }

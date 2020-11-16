@@ -1,6 +1,7 @@
 package baseball.game;
 
-import baseball.output.BaseBallOutputer;
+import baseball.result.BaseBallResult;
+import baseball.result.BaseBallRulResult;
 
 public class BaseBall {
 
@@ -22,6 +23,6 @@ public class BaseBall {
             }
         }
 
-        return BaseBallOutputer.output(strike, ball);
+        return BaseBallRulResult.rulResult(strike, ball);
     }
 }
