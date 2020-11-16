@@ -17,6 +17,7 @@ public class PlayGame {
 		if(!baseballGame.checkRule(input)){
 			return;
 		}
+		System.out.println(baseballGame.checkResult(input));
 
 	}
 }

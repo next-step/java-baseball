@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 public class baseballGameTest {
 
@@ -38,6 +37,29 @@ public class baseballGameTest {
 	@DisplayName("checkRule 메소드 테스트")
 	void checkRuleTest(String input, boolean result){
 		assertThat(baseballGame.checkRule(input)).isEqualTo(result);
+	}
+
+	@Test
+	@DisplayName("checkResult 메소드 3strike Test")
+	void checkResultStrikeTest(){
+		assertThat(baseballGame.checkResult(baseballGame.getRandomBall())).contains("3스트라이크");
+	}
+
+	@Test
+	@DisplayName("checkResult 메소드 3Ball Test")
+	void checkResultBallTest(){
+
+		String testVal = "" + baseballGame.getRandomBall().charAt(1) + baseballGame.getRandomBall().charAt(2) + baseballGame.getRandomBall().charAt(0);
+		assertThat(baseballGame.checkResult(testVal)).contains("3볼");
+	}
+
+
+	@Test
+	@DisplayName("checkResult 메소드 3Ball Test")
+	void checkResultStrikeAndBallTest(){
+
+		String testVal = "" + baseballGame.getRandomBall().charAt(0) + baseballGame.getRandomBall().charAt(2) + baseballGame.getRandomBall().charAt(1);
+		assertThat(baseballGame.checkResult(testVal)).contains("1스트라이크2볼");
 	}
 
 }

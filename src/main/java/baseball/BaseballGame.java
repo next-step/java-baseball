@@ -2,9 +2,10 @@ package baseball;
 
 import java.util.*;
 
-public class BaseballGame {
+public class BaseballGame extends BaseballValidationChecker{
 
 	private String randomBall;
+	private BaseballScore baseballScore;
 
 	public BaseballGame(){
 		Set<Integer> tmp = new HashSet();
@@ -43,38 +44,29 @@ public class BaseballGame {
 		return randomBall;
 	}
 
-	public boolean checkRule(String input){
-		if(!checkNum(input))
-			return false;
-		if(!checkLength(input))
-			return false;
-		if (!checkOverlap(input))
-			return false;
-		return true;
-	}
-	private boolean checkNum(String input){
-		try {
-			Integer.parseInt(input);
-		}catch (NumberFormatException e){
-			return false;
-		}
-		return true;
-	}
-	private boolean checkLength(String input){
-		if (input.length() == 3){
-			return true;
-		}
-		return false;
-	}
-	private boolean checkOverlap(String input){
-		char first = input.charAt(0);
-		char second =input.charAt(1);
-		char third =input.charAt(2);
+	public String checkResult(String input){
+		baseballScore = new BaseballScore();
 
-		if(first != second && second != third && first != third ) {
-			return true;
+		for ( int i = 0 ; i < input.length() ; i++){
+			checkStrike(input.charAt(i)+"",i);
+			checkBall(input.charAt(i)+"",i);
 		}
-		return false;
+		return baseballScore.getResult();
+
+	}
+	private void checkStrike(String ball , int position){
+		//System.out.println(randomBall.charAt(position) + " " + ball);
+		if(randomBall.contains(ball) && ball.equals(randomBall.charAt(position)+"")){
+			baseballScore.countUpStrike();
+		}
+
+	}
+	private void checkBall(String ball , int position){
+		//System.out.println(randomBall.charAt(position) + " " + ball);
+		if(randomBall.contains(ball) && !ball.equals(randomBall.charAt(position)+"")){
+			baseballScore.countUpBall();
+		}
+
 	}
 
 }
