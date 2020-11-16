@@ -50,7 +50,7 @@ public class Opponent {
         }
 
         int indexOf = strikeNumber.indexOf(inputNumber.charAt(idx));
-        if(indexOf != -1 && indexOf != idx) {
+        if (indexOf != -1 && indexOf != idx) {
             ball++;
         }
     }

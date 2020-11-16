@@ -17,7 +17,7 @@ public class Player {
         do {
             System.out.println("숫자를 입력해 주세요.");
             strikeNumber = scan.nextLine();
-        } while(!isValid(strikeNumber));
+        } while (!isValid(strikeNumber));
     }
 
     /**
@@ -34,7 +34,7 @@ public class Player {
     }
 
     private boolean isLengthCorrect(String strikeNumber) {
-        if(strikeNumber==null || strikeNumber.length()!=3) {
+        if (strikeNumber==null || strikeNumber.length()!=3) {
             System.out.println("3자리의 숫자를 입력해 주세요.");
             return false;
         }
@@ -52,7 +52,7 @@ public class Player {
     }
 
     private boolean isContainsZero(String strikeNumber) {
-        if(strikeNumber.contains("0")) {
+        if (strikeNumber.contains("0")) {
             System.out.println("각 자리의 숫자는 1~9 까지의 값을 입력할 수 있습니다.");
             return true;
         }
@@ -64,7 +64,7 @@ public class Player {
         for (char c : strikeNumber.toCharArray()) {
             stringSet.add(String.valueOf(c));
         }
-        if(stringSet.size()<3) {
+        if (stringSet.size()<3) {
             System.out.println("중복된 숫자를 입력하였습니다. 다시 입력해 주세요");
             return true;
         }
