@@ -22,22 +22,22 @@ public class BaseBall {
 
 	//todo 테스트, 리팩토링, Junit5 테스트
 	public void playGame() {
-		//1. 1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능
-		List<Integer> answerList = selectNonoverlapThreeNumber();
-		System.out.println("Answer!");
-		System.out.println(answerList);
-		//2. 사용자로부터 1~9까지 서로 다른 임의의 수 3개를 입력 받는 기능
-		printMessage("숫자를 입력해주세요 : ");
-		//todo 입력에 대한 예외처리해야함.
-		List<Integer> inputNumberList = readNonoverThreeNumber(sc.nextInt());
-
-		//3. Strike, Ball 체크하는 기능
-		List<Boolean> strikePosition = new ArrayList<>();
 		int strikeCnt = 0;
 		do {
+			//1. 1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능
+			List<Integer> answerList = selectNonoverlapThreeNumber();
+			System.out.println("Answer!");
+			System.out.println(answerList);
+			//2. 사용자로부터 1~9까지 서로 다른 임의의 수 3개를 입력 받는 기능
+			printMessage("숫자를 입력해주세요 : ");
+			//todo 입력에 대한 예외처리해야함.
+			List<Integer> inputNumberList = readNonoverThreeNumber(sc.nextInt());
+
+			//3. Strike, Ball 체크하는 기능
+			List<Boolean> strikePosition = new ArrayList<>();
+
 			strikePosition = detectStrike(answerList, inputNumberList);
-			removeStrike(strikePosition, answerList, inputNumberList);
-			int ballCount = detectBall(answerList, inputNumberList);
+			int ballCount = detectBall(strikePosition, answerList, inputNumberList);
 			boolean isNothing = isNothing(answerList);
 			strikeCnt = calcuateStrike(strikePosition);
 			printResult(strikeCnt, ballCount, isNothing); //결과 출력
@@ -50,10 +50,10 @@ public class BaseBall {
 			sb.append("낫싱");
 		}
 		if (strikeCnt != 0) {
-			sb.append(String.format("{} 스트라이크", strikeCnt));
+			sb.append(String.format("%s 스트라이크", strikeCnt));
 		}
 		if (ballCount != 0) {
-			sb.append(String.format("{} 볼", ballCount));
+			sb.append(String.format("%s 볼", ballCount));
 		}
 		System.out.println(sb.toString());
 	}
@@ -80,7 +80,8 @@ public class BaseBall {
 		return false;
 	}
 
-	private int detectBall(List<Integer> answerList, List<Integer> inputNumberList) {
+	int detectBall(List<Boolean> strikePosition, List<Integer> answerList, List<Integer> inputNumberList) {
+		removeStrike(strikePosition, answerList, inputNumberList);
 		answerList.retainAll(inputNumberList);
 		return answerList.size();
 	}
