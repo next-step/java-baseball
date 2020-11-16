@@ -7,7 +7,7 @@ public class GameScore {
     private int strike;
     private int ball;
 
-    public GameScore(){
+    public GameScore() {
         this.strike = 0;
         this.ball = 0;
     }
@@ -20,23 +20,23 @@ public class GameScore {
         return ball;
     }
 
-    public boolean isGameClear(){
+    public boolean isGameClear() {
         if (this.strike == BaseballConfiguration.REQUIRED_COUNT) {
             return true;
         }
         return false;
     }
 
-    public void checkGameScore(String[] randomNumbers, String inputNumber){
+    public void checkGameScore(String[] randomNumbers, String inputNumber) {
 
         this.strike = 0;
         this.ball = 0;
 
         String[] inputNumbers = inputNumber.split("");
 
-        for (int i = 0; i < randomNumbers.length ; i++){
+        for (int i = 0; i < randomNumbers.length; i++) {
             String num = randomNumbers[i];
-            for (int j = 0; j < inputNumbers.length; j++){
+            for (int j = 0; j < inputNumbers.length; j++) {
                 if (num.equals(inputNumbers[j]) && i == j) {
                     this.strike++;
                     break;
@@ -49,20 +49,19 @@ public class GameScore {
         }
     }
 
-    public boolean isExistStrikeCount(){
-        if(this.strike != 0){
+    public boolean isExistStrikeCount() {
+        if (this.strike != 0) {
             return true;
         }
         return false;
     }
 
-    public boolean isExistBallCount(){
-        if(this.ball != 0){
+    public boolean isExistBallCount() {
+        if (this.ball != 0) {
             return true;
         }
         return false;
     }
-
 
 
 }

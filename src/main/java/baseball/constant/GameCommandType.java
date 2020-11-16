@@ -7,18 +7,18 @@ public enum GameCommandType {
 
     private final String command;
 
-    GameCommandType(String command){
+    GameCommandType(String command) {
         this.command = command;
     }
 
-    public String getCommand(){
+    public String getCommand() {
         return command;
     }
 
-    public static boolean isExistType(String command){
+    public static boolean isExistType(String command) {
         GameCommandType[] gameCommandTypes = GameCommandType.values();
-        for(GameCommandType gameCommandType : gameCommandTypes){
-            if(command.equals(gameCommandType.getCommand())){
+        for (GameCommandType gameCommandType : gameCommandTypes) {
+            if (command.equals(gameCommandType.getCommand())) {
                 return true;
             }
         }

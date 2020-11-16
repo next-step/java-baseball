@@ -12,7 +12,7 @@ public class MessageUtil {
 
     private static String REQUIRED_NUMBER = "숫자를 입력해주세요 : ";
     private static String GAME_CLEAR = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
-    private static String SELECT_GAME = "게임을 새로 시작하려면 " + GameCommandType.RETRY.getCommand() + ", 종료하려면 " + GameCommandType.EXIT.getCommand() +"를 입력하세요.";
+    private static String SELECT_GAME = "게임을 새로 시작하려면 " + GameCommandType.RETRY.getCommand() + ", 종료하려면 " + GameCommandType.EXIT.getCommand() + "를 입력하세요.";
 
     public static void printStartMessage() {
         System.out.println(REQUIRED_NUMBER);
@@ -25,7 +25,7 @@ public class MessageUtil {
 
         if (gameScore.isExistStrikeCount()) {
             messageBuilder
-                .append(gameScore.getStrike() + " " + GameResultType.STRIKE.getValue() + " ");
+                    .append(gameScore.getStrike() + " " + GameResultType.STRIKE.getValue() + " ");
         }
         if (gameScore.isExistBallCount()) {
             messageBuilder.append(gameScore.getBall() + " " + GameResultType.BALL.getValue());

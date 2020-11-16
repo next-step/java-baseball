@@ -1,6 +1,7 @@
 package baseball.util;
 
 import baseball.configuration.BaseballConfiguration;
+
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class BaseballUtil {
 
         while (randomSet.size() != BaseballConfiguration.REQUIRED_COUNT) {
             int randomNum = new Random().nextInt(BaseballConfiguration.MAX_NUMBER)
-                + BaseballConfiguration.MIN_NUMBER;
+                    + BaseballConfiguration.MIN_NUMBER;
             randomSet.add(randomNum);
         }
         int index = 0;

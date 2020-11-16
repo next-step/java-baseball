@@ -13,14 +13,14 @@ public class GameScoreTest {
     private String[] randomNumbers;
 
     @BeforeEach
-    public void setUp(){
-        randomNumbers = new String[] {"3","1","4"};
+    public void setUp() {
+        randomNumbers = new String[]{"3", "1", "4"};
         gameScore = new GameScore();
     }
 
     @DisplayName("게임 성적 계산 > 성공")
     @Test
-    public void checkGameScoreSuccess(){
+    public void checkGameScoreSuccess() {
 
         gameScore.checkGameScore(randomNumbers, "314");
         assertEquals(3, gameScore.getStrike());
@@ -37,21 +37,21 @@ public class GameScoreTest {
 
     @DisplayName("게임 클리어 여부 체크 > 성공")
     @Test
-    public void isGameClearSuccess(){
+    public void isGameClearSuccess() {
         gameScore.checkGameScore(randomNumbers, "314");
         assertEquals(true, gameScore.isGameClear());
     }
 
     @DisplayName("게임 스트라이크 카운트 존재여부 체크 > 성공")
     @Test
-    public void isExistStrikeCountSuccess(){
+    public void isExistStrikeCountSuccess() {
         gameScore.checkGameScore(randomNumbers, "314");
         assertEquals(true, gameScore.isExistStrikeCount());
     }
 
     @DisplayName("게임 볼 카운트 존재여부 체크 > 성공")
     @Test
-    public void isExistBallCountSuccess(){
+    public void isExistBallCountSuccess() {
         gameScore.checkGameScore(randomNumbers, "134");
         assertEquals(true, gameScore.isExistBallCount());
     }
