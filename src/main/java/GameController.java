@@ -1,15 +1,15 @@
-import baseballgame.BaseballGame;
 import baseballgame.GameNumber;
 import baseballgame.GameNumbers;
+import baseballgame.AnswerGenerator;
 import baseballgame.Result;
 import baseballgame.exceptions.ViolationException;
 import ui.InputInterface;
 import ui.OutputInterface;
 
 public class GameController {
-  static BaseballGame baseballGame = new BaseballGame();
   static InputInterface in = new InputInterface(System.in);
   static OutputInterface out = new OutputInterface(System.out);
+  static AnswerGenerator generator = new AnswerGenerator();
   private static final String startingMessage = "게임을 시작합니다.";
   private static final String inputMessage = "숫자를 입력해주세요 : ";
   private static final String winningMessage = GameNumbers.DIGITS + "개의 숫자를 모두 맞히셨습니다! 게임 종료.";
@@ -50,14 +50,14 @@ public class GameController {
   }
 
   public static void runGame() {
-    baseballGame.init();
     boolean win = false;
     Result result = null;
+    GameNumbers answer = new GameNumbers(GameNumber.createArray(generator.generate()));
     while (!win) {
       out.print(inputMessage);
       int[] userInput = strToIntArray(in.getInput());
       try {
-        result = baseballGame.judge(new GameNumbers(GameNumber.createArray(userInput)));
+        result = answer.compareWith(new GameNumbers(GameNumber.createArray(userInput)));
       } catch (ViolationException e) {
         out.println(e.getMessage());
         continue;

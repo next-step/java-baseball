@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class DefaultGeneratorTest {
-  AnswerGenerator generator = new DefaultGenerator();
+public class AnswerGeneratorTest {
+  AnswerGenerator generator = new AnswerGenerator();
 
   @Test
   @DisplayName("all numbers must be in the range \'1~9\'")
