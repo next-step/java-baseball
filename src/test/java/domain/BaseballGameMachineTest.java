@@ -103,4 +103,14 @@ class BaseballGameMachineTest {
             assertThat(baseballGameMachine.getBaseballGame()).isEqualTo(beforeBaseballGame);
         }
     }
+
+    @Test
+    @DisplayName("숫자 야구 게임 지속 여부를 제공한다.")
+    void isContinueTest() {
+        BaseballGameMachine baseballGameMachineContinue = new BaseballGameMachine(null, true);
+        BaseballGameMachine baseballGameMachineNotContinue = new BaseballGameMachine(null, false);
+
+        assertThat(baseballGameMachineContinue.isBaseballGameContinue()).isTrue();
+        assertThat(baseballGameMachineNotContinue.isBaseballGameContinue()).isFalse();
+    }
 }
