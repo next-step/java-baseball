@@ -5,3 +5,11 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 1~9까지 다른 수 3자리 입력 구현
+* 스트라이크 구현
+* 볼 구현
+* 포볼 구현
+* 결과 출력 구현
+* 다시 시작, 종료 기능 구현
