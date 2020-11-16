@@ -34,8 +34,16 @@ public class GameRule {
 
     public boolean isAnswer(String userAnswer) {
         GameRuleStrike gameRuleStrike = new GameRuleStrike(gameAnswer, userAnswer);
+        if(gameRuleStrike.isThreeStrike()) {
+            return true;
+        }
 
-        return true;
+        displayHint(gameRuleStrike);
+        return false;
+    }
+
+    private void displayHint(GameRuleStrike gameRuleStrike) {
+        System.out.println(String.format("%d", gameRuleStrike.getHint()));
     }
 
     public List<String> getReservedNumberSet() {
