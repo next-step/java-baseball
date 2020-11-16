@@ -30,15 +30,6 @@ public class CheckerTest {
     assertThat(ball).isEqualTo(ballExp);
   }
 
-  @ParameterizedTest
-  @MethodSource("generateStrikeJudgeData")
-  @DisplayName("[Checker] 스트라이크 판정 기능 테스트")
-  public void isStrike(int[] input, boolean expected) {
-    checker.getScore(input);
-    assertThat(checker.checkAnswer()).isEqualTo(expected);
-  }
-
-
   static Stream<Arguments> generateUserInputData() {
     return Stream.of(
         Arguments.of(new int[]{4, 5, 8}, 1, 0),
@@ -48,14 +39,6 @@ public class CheckerTest {
         Arguments.of(new int[]{2, 9, 8}, 0, 2),
         Arguments.of(new int[]{2, 9, 4}, 0, 3),
         Arguments.of(new int[]{3, 5, 8}, 0, 0)
-    );
-  }
-
-  static Stream<Arguments> generateStrikeJudgeData() {
-    return Stream.of(
-        Arguments.of(new int[]{4, 5, 8}, false),
-        Arguments.of(new int[]{4, 2, 1}, false),
-        Arguments.of(new int[]{4, 2, 9}, true)
     );
   }
 }

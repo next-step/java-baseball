@@ -17,16 +17,16 @@ public class BaseballGame {
     Checker checker = new Checker(Computer.generateAnswer());
     while(!isAnswer) {
       int[] guessNumber = User.guess();
-      checker.getScore(guessNumber);
-      isAnswer = checker.checkAnswer();
+      Result result = checker.getScore(guessNumber);
+      result.printResult();
+      isAnswer = result.isAnswer();
     }
   }
 
   public boolean isReplay() {
-    System.out.println(OutputType.REPLAY_GAME);
+    System.out.println(InputType.REPLAY_GAME);
     Scanner scan = new Scanner(System.in);
     int replay = scan.nextInt();
     return replay == 1 ? true : false;
   }
-
 }

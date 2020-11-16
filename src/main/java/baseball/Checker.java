@@ -3,19 +3,16 @@ package baseball;
 import java.util.List;
 
 public class Checker {
-  private static int strike = 0;
-  private static int ball = 0;
-
   private List<Integer> answer;
 
   public Checker(List<Integer> answer) {
     this.answer = answer;
   }
 
-  public void getScore(int[] userNumber) {
-    strike = getStrikeCount(userNumber);
-    ball = getBallCount(userNumber, strike);
-    printScore();
+  public Result getScore(int[] userNumber) {
+    int strike = getStrikeCount(userNumber);
+    int ball = getBallCount(userNumber, strike);
+    return new Result(strike, ball);
   }
 
   public int getStrikeCount(int[] userNumber) {
@@ -43,24 +40,4 @@ public class Checker {
     return answer.contains(user) ? 1 : 0;
   }
 
-  public void printScore() {
-    if(strike == 0 && ball == 0) {
-      System.out.print(OutputType.NOTHING);
-    }
-    if(strike != 0) {
-      System.out.print(String.format(OutputType.STRIKE, strike));
-    }
-    if(ball != 0) {
-      System.out.print(String.format(OutputType.BALL, ball));
-    }
-    System.out.println();
-  }
-
-  public static boolean checkAnswer() {
-    if(strike == 3) {
-      System.out.println(OutputType.GAME_OVER);
-      return true;
-    }
-    return false;
-  }
 }

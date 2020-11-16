@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Computer {
-  private static final int MAX_ANSWER_SIZE = 3;
-
   public static List<Integer> generateAnswer() {
     List<Integer> answer = new ArrayList<>();
-    while(answer.size() < MAX_ANSWER_SIZE) {
+    while(answer.size() < InputType.MAX_ANSWER_SIZE) {
       generateRandomNumber(answer);
     }
     return answer;
