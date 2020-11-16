@@ -15,19 +15,19 @@ public class Record {
         this.ballCount = ballCount;
     }
 
-    public boolean isWin() {
-        return this.strikeCount == WIN_COUNT;
-    }
-
-    public boolean isNotThing() {
-        return this.strikeCount == ZERO && this.ballCount == ZERO;
-    }
-
     public static Record createWin() {
         return new Record(WIN_COUNT, ZERO);
     }
 
     public static Record of(int strikeCount, int ballCount) {
         return new Record(strikeCount, ballCount);
+    }
+
+    public boolean isWin() {
+        return this.strikeCount == WIN_COUNT;
+    }
+
+    public boolean isNotThing() {
+        return this.strikeCount == ZERO && this.ballCount == ZERO;
     }
 }
