@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameRule {
+
+    private final int ANSWER_LENGTH = 3;
 
     // 1 - 9 Answer Keyword
     private List<String> reservedNumberSet;
@@ -9,6 +12,17 @@ public class GameRule {
 
     public void initAnswer() {
         setReservedNumberSet();
+        setAnswer();
+    }
+
+    private void setAnswer() {
+        gameAnswer = "";
+        final List<String> answerKeyword = new ArrayList<>(reservedNumberSet);
+        for(int i = 0; i < ANSWER_LENGTH; i++) {
+            int index = new Random().nextInt(answerKeyword.size());
+            gameAnswer += answerKeyword.get(index);
+            answerKeyword.remove(index);
+        }
     }
 
     private void setReservedNumberSet() {
@@ -18,7 +32,15 @@ public class GameRule {
         }
     }
 
+    public boolean isAnswer(String userAnswer) {
+        return true;
+    }
+
     public List<String> getReservedNumberSet() {
         return reservedNumberSet;
+    }
+
+    public String getGameAnswer() {
+        return gameAnswer;
     }
 }
