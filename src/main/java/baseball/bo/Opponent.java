@@ -63,7 +63,7 @@ public class Opponent {
 
     public String getMessage() {
         if(strike==3) {
-            return "3개의 숫자를 모두 맞히셨습니다! 게임 종료.";
+            return "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
         }
         if(strike==0 && ball==0) {
             return "낫싱";

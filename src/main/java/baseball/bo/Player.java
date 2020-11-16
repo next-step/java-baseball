@@ -20,7 +20,7 @@ public class Player {
             String inputData = scan.nextLine();
 
             if(isValid(inputData)) {
-                strikeNumber = inputData;
+                this.strikeNumber = inputData;
                 return;
             }
         }
