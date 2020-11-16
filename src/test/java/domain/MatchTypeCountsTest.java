@@ -28,4 +28,13 @@ class MatchTypeCountsTest {
         assertThat(oneStrikeOneBallMatchCounts.getCountOfMatchType(MatchType.BALL)).isEqualTo(1);
         assertThat(oneStrikeOneBallMatchCounts.getCountOfMatchType(MatchType.NO_MATCH)).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("입럭받은 매치 타입(MatchType) 의 `매치 카운트` 를 증가시킨다.")
+    void increaseTest() {
+        oneStrikeOneBallMatchCounts.increaseCount(MatchType.BALL);
+        assertThat(oneStrikeOneBallMatchCounts.getCountOfMatchType(MatchType.STRIKE)).isEqualTo(1);
+        assertThat(oneStrikeOneBallMatchCounts.getCountOfMatchType(MatchType.BALL)).isEqualTo(2);
+        assertThat(oneStrikeOneBallMatchCounts.getCountOfMatchType(MatchType.NO_MATCH)).isEqualTo(0);
+    }
 }
