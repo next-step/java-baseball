@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.not;
 
 class GuessResultTest {
     GuessResult threeStrikeGuessResult;
@@ -48,5 +49,12 @@ class GuessResultTest {
         assertThat(twoStrikeOneBallGuessResult.isThreeStrike()).isFalse();
     }
 
-
+    @Test
+    @DisplayName("낫띵 여부를 제공한다.")
+    void testNothing() {
+        GuessResult nothingGuessResult = makeGuessResult(0, 0);
+        assertThat(threeStrikeGuessResult.isNothing()).isFalse();
+        assertThat(twoStrikeOneBallGuessResult.isNothing()).isFalse();
+        assertThat(nothingGuessResult.isNothing()).isTrue();
+    }
 }
