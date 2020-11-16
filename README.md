@@ -23,13 +23,13 @@ git status // 변경된 파일 확인
 git add -A(또는 .) // 변경된 전체 파일을 한번에 반영
 git commit -m "메시지" // 작업한 내용을 메시지에 기록
 ```
-- [ ] 본인 원격 저장소에 올리기
+- [x] 본인 원격 저장소에 올리기
 ```
 git push origin 브랜치이름
 ```
-- [ ] github 서비스에서 pull request를 보낸다.
+- [x] github 서비스에서 pull request를 보낸다.
 
-- [ ] 메일 보내기
+- [x] 메일 보내기
 ```
 To. edu.nextstep@gmail.com
 
