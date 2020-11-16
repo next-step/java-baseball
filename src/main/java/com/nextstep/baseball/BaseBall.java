@@ -35,10 +35,9 @@ public class BaseBall {
 
 			//3. Strike, Ball 체크하는 기능
 			List<Boolean> strikePosition = new ArrayList<>();
-
 			strikePosition = detectStrike(answerList, inputNumberList);
 			int ballCount = detectBall(strikePosition, answerList, inputNumberList);
-			boolean isNothing = isNothing(answerList);
+			boolean isNothing = isNothing(answerList, ballCount);
 			strikeCnt = calcuateStrike(strikePosition);
 			printResult(strikeCnt, ballCount, isNothing); //결과 출력
 		} while (strikeCnt < 3);
@@ -73,8 +72,8 @@ public class BaseBall {
 		return 0;
 	}
 
-	private boolean isNothing(List<Integer> answerList) {
-		if (answerList.size() == 3) {
+	private boolean isNothing(List<Integer> answerList, int ballCount) {
+		if (answerList.size() == 0 && ballCount != 3) {
 			return true;
 		}
 		return false;
