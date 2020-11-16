@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class BaseballGame {
     private final GameNumber answer;
 
@@ -20,5 +22,18 @@ public class BaseballGame {
             guessResult.increaseMatchCount(matchType);
         }
         return guessResult;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseballGame that = (BaseballGame) o;
+        return answer.equals(that.answer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(answer);
     }
 }
