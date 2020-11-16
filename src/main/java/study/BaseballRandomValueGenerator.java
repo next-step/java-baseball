@@ -10,23 +10,30 @@ public class BaseballRandomValueGenerator {
   private List<Integer> numbers;
 
   public BaseballRandomValueGenerator() {
-    Set<Integer> uniqueNumbers = new HashSet<>();
-    while (uniqueNumbers.size() < this.SIZE) {
-      uniqueNumbers.add(this.peekNumber());
-    }
-    numbers = new ArrayList<>(uniqueNumbers);
+    this.generate();
   }
 
-  private int peekNumber() {
+  private int peek() {
     Random random = new Random();
     return random.nextInt(MAX_VALUE) + 1;
   }
 
-  public int getValue() {
-    return toInt();
+  private void generate() {
+    Set<Integer> uniqueNumbers = new HashSet<>();
+    while (uniqueNumbers.size() < this.SIZE) {
+      uniqueNumbers.add(this.peek());
+    }
+    numbers = new ArrayList<>(uniqueNumbers);
   }
 
-  private int toInt() {
+  public void shuffle() {
+    List<Integer> copyNumbers = new ArrayList<>(this.numbers);
+    do {
+      Collections.shuffle(this.numbers);
+    } while(copyNumbers.equals(this.numbers));
+  }
+
+  public int toInt() {
     int exponent = this.SIZE - 1;
     int sum = 0;
     for (final Integer number : this.numbers) {
@@ -36,19 +43,7 @@ public class BaseballRandomValueGenerator {
     return sum;
   }
 
-  public long containsSize(final int value) {
-    return this.numbers.stream().filter(number -> number == value).count();
-  }
-
-  public int firstValue() {
-    return this.numbers.get(0);
-  }
-
-  public int secondValue() {
-    return this.numbers.get(1);
-  }
-
-  public int thirdValue() {
-    return this.numbers.get(2);
+  public List<Integer> getValue() {
+    return this.numbers;
   }
 }
