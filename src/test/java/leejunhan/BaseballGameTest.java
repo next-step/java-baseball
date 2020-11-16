@@ -27,6 +27,38 @@ class BaseballGameTest {
 	}
 
 	@Test
+	void gameStart() {
+	}
+
+	@Test
+	void challenge() {
+	}
+
+	@Test
+	void getStrike() {
+	}
+
+	@Test
+	void strikeCount() {
+	}
+
+	@Test
+	void getBall() {
+	}
+
+	@Test
+	void ballCount() {
+	}
+
+	@Test
+	void getChallengeResult() {
+	}
+
+	@Test
+	void gameExitDecision() {
+	}
+
+	@Test
 	@DisplayName("야구게임 숫자 생성 - 중복된 숫자 없는지 체크")
 	void getBaseballNumber() {
 		BaseballGame.getBaseballNumber();
