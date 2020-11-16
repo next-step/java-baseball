@@ -41,5 +41,12 @@ class GuessResultTest {
         assertThat(twoStrikeOneBallGuessResult.getBallCount()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("3 스트라이크 여부를 제공한다.")
+    void threeStrikeTest() {
+        assertThat(threeStrikeGuessResult.isThreeStrike()).isTrue();
+        assertThat(twoStrikeOneBallGuessResult.isThreeStrike()).isFalse();
+    }
+
 
 }
