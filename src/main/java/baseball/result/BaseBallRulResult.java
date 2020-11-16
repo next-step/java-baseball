@@ -10,7 +10,7 @@ public class BaseBallRulResult {
         if (ball > 0) {
             result += ball + "볼";
         }
-        if (ball >= 3) {
+        if (ball == 0 && strike == 0) {
             result = "낫싱";
         }
 
