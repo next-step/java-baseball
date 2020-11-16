@@ -33,7 +33,7 @@ public class Computer {
 	this.strike = 0;
 	this.ball = 0;
     }
-    
+
     /**
      * 플레이어가 입력한 숫자에 대한 검사를 한다.
      * 
@@ -51,6 +51,8 @@ public class Computer {
 	    match(i, answer, userNumbers);
 	}
 
+	System.out.println(toStringResult());
+	resetCount();
 	return false;
     }
 
@@ -67,7 +69,7 @@ public class Computer {
 	}
 	return array;
     }
-    
+
     /**
      * 스트라이크인지, 볼인지 매칭시킨다.
      * 
@@ -77,9 +79,81 @@ public class Computer {
      */
     private void match(int i, int[] answer, int[] userNumbers) {
 	for (int j = 0; j < userNumbers.length; j++) {
-	    // 스트라이크
-	    // 볼
+	    if (isStrike(i, j, answer[i], userNumbers[j]))
+		continue;
+	    if (isBall(i, j, answer[i], userNumbers[j]))
+		continue;
 	}
+    }
+
+    /**
+     * 스트라이크인지를 검사한다.
+     * 
+     * @param i
+     * @param j
+     * @param answerNumber
+     * @param userNumber
+     * @return
+     */
+    private boolean isStrike(int i, int j, int answerNumber, int userNumber) {
+	if (i == j && answerNumber == userNumber) {
+	    strike++;
+	    return true;
+	}
+	return false;
+    }
+
+    /**
+     * 볼인지 검사한다.
+     * 
+     * @param i
+     * @param j
+     * @param answerNumber
+     * @param userNumber
+     * @return
+     */
+    private boolean isBall(int i, int j, int answerNumber, int userNumber) {
+	if (i != j && answerNumber == userNumber) {
+	    ball++;
+	    return true;
+	}
+	return false;
+    }
+
+    /**
+     * 스트라이크와 볼 카운트를 초기화한다.
+     */
+    private void resetCount() {
+	strike = 0;
+	ball = 0;
+    }
+
+    /**
+     * 결과 메세지를 String으로 반환한다.
+     * 
+     * @return
+     */
+    private String toStringResult() {
+	if (strike == 0 && ball == 0) {
+	    return "낫싱";
+	}
+	return getResult();
+    }
+
+    /**
+     * 스트라이크, 볼 결과 메세지를 가져온다.
+     * 
+     * @return
+     */
+    private String getResult() {
+	StringBuffer str = new StringBuffer();
+	if (strike != 0)
+	    str.append(strike + " 스트라이크 ");
+
+	if (ball != 0)
+	    str.append(ball + "볼");
+
+	return str.toString();
     }
 
 }
