@@ -1,5 +1,8 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'checkstyle'
+}
 
 version = '1.0.0'
 sourceCompatibility = 1.8
@@ -11,4 +14,18 @@ repositories {
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.5.2')
     testCompile('org.assertj:assertj-core:3.14.0')
+}
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/naver-checkstyle-rules.xml")
+    configProperties = ["suppressionFile" : "${rootDir}/naver-checkstyle-suppressions.xml"]
+    toolVersion = '8.37'
+}
+
+jar {
+    baseName('baseball')
+    manifest {
+        attributes 'Title': 'BaseballGame', 'Main-Class': 'baseball.command.CommandLineBaseballGame'
+    }
 }
