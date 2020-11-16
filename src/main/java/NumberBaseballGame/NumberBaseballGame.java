@@ -24,7 +24,13 @@ public class NumberBaseballGame {
 			numList.remove(randomIndex);
 		}
 
-		//System.out.println(answer[0] + ":" + answer[1] + ":" + answer[2]);
+		System.out.println(answer[0] + ":" + answer[1] + ":" + answer[2]);
+	}
+
+	public void setAnswer(int firstValue, int secondValue, int thirdValue) {
+		answer[0] = firstValue;
+		answer[1] = secondValue;
+		answer[2] = thirdValue;
 	}
 
 	public int[] writeInputDate() {
@@ -83,17 +89,16 @@ public class NumberBaseballGame {
 		System.out.print("\n");
 	}
 
-	public void checkEndGame(BallCount ballCount) {
+	public boolean isEndGame(BallCount ballCount) {
 		if (ballCount.getStrike() != 3) {
-			return;
+			return true;
 		}
 
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-
-		progressGame();
+		return false;
 	}
 
-	public void progressGame() {
+	public boolean isRestartGame() {
 		String progressFlg = "";
 		Scanner scanner = new Scanner(System.in);
 
@@ -102,24 +107,13 @@ public class NumberBaseballGame {
 			progressFlg = scanner.next();
 		}
 
+		if (progressFlg.equals("1")) {
+			return true;
+		}
 		if (progressFlg.equals("2")) {
 			System.exit(0);
 		}
+
+		return false;
 	}
-
-	public static void main(String[] args) {
-
-		while (true) {
-			int[] inputData = new int[3];
-			BallCount ballCount = new BallCount();
-			NumberBaseballGame game = new NumberBaseballGame();
-
-			game.setAnswer();
-			inputData = game.writeInputDate();
-			ballCount = game.judgeBallCount(inputData);
-			game.printBallCount(ballCount);
-			game.checkEndGame(ballCount);
-		}
-	}
-
 }
