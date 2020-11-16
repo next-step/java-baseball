@@ -1,46 +1,65 @@
 package com.coderhglee.game.baseball;
 
-import com.coderhglee.game.Game;
+import com.coderhglee.game.GameCommand;
+import com.coderhglee.game.GameSettingProperties;
 import com.coderhglee.game.exception.GameException;
+import com.coderhglee.game.exception.NotAllowValueException;
 import com.coderhglee.game.number.UserInputNumber;
 
 import java.util.Scanner;
 
 public class BaseballGameUI {
 
-    private static boolean gameEndFlag = true;
+    private static GameCommand statusCommand = GameCommand.RESTART_GAME_VALUE;
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void executeGame() {
-        while (gameEndFlag) {
-            executeBaseballGame();
-        }
+    private BaseballGameUI() {
+
     }
 
-    private static void executeBaseballGame() {
-        try {
+    public static void executeGame() throws GameException {
+        if (!statusCommand.equals(GameCommand.END_GAME_VALUE)) {
             BaseballGame baseballGame = new BaseballGame();
-            executeGameRound(baseballGame);
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            endGame(scanner.nextLine());
-        } catch (GameException e) {
-            System.out.println(e.getClass().toString());
+            executeBaseballGame(baseballGame);
+        }
+        System.exit(statusCommand.value);
+    }
+
+    private static void executeBaseballGame(BaseballGame game) {
+        try {
+            executeGameRound(game);
+        } catch (GameException gameException) {
+            System.out.println(gameException.getMessage());
+            executeBaseballGame(game);
         }
     }
 
-    private static void executeGameRound(Game game) throws GameException {
+    private static void executeGameRound(BaseballGame game) throws GameException {
         while (!game.getGameStatus().equals(BaseballGameStatus.WIN)) {
-            System.out.print("숫자를 입력해주세요: ");
+            System.out.print(GameSettingProperties.ROUND_START_MESSAGE.message);
             game.gameProcess(new UserInputNumber(scanner.nextLine()));
             System.out.println(game.getGameResultMessage());
         }
+        endAllGameRound();
     }
 
-    private static void endGame(String message) {
-        if (message.equals("2")) {
-            gameEndFlag = false;
-            return;
+    private static void endAllGameRound() throws GameException {
+        System.out.println(GameSettingProperties.GAME_START_MESSAGE.message);
+        findGameCommandFromMessage(scanner.nextLine());
+    }
+
+    private static GameCommand findGameCommandFromMessage(String inputMessage) throws GameException {
+        for (GameCommand command : GameCommand.values()) {
+            setCommandFromInputMessage(command, inputMessage);
         }
-        executeGame();
+        throw new NotAllowValueException();
+    }
+
+    private static void setCommandFromInputMessage(GameCommand command, String inputMessage) throws GameException {
+        String commandValue = String.valueOf(command.value);
+        if (inputMessage.equals(commandValue)) {
+            statusCommand = command;
+            executeGame();
+        }
     }
 }

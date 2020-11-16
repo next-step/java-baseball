@@ -1,6 +1,6 @@
 package com.coderhglee.game.number;
 
-import com.coderhglee.game.GameSettingNumbers;
+import com.coderhglee.game.GameSettingProperties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ public class GameNumberGroupsHelper {
     public static GameNumberCompareResult compareEachGameGroup(GameNumberGroups criteriaGameNumberGroups, GameNumberGroups targetGameNumberGroups) {
         int numberSameScore = getRetainGameNumbersSize(criteriaGameNumberGroups, targetGameNumberGroups);
         int numberAndDigitSameScore = 0;
-        for (int compareIndexNumber = 0; compareIndexNumber < GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value; compareIndexNumber++) {
+        for (int compareIndexNumber = 0; compareIndexNumber < GameSettingProperties.INPUT_MESSAGE_MAX_LENGTH.value; compareIndexNumber++) {
             numberAndDigitSameScore += calculationDigitSameScore(criteriaGameNumberGroups.getGameNumberByIndex(compareIndexNumber),
                     targetGameNumberGroups.getGameNumberByIndex(compareIndexNumber));
         }
@@ -25,8 +25,8 @@ public class GameNumberGroupsHelper {
 
     private static int calculationDigitSameScore(GameNumber criteriaGameNumber, GameNumber targetGameNumber) {
         if (criteriaGameNumber.equals(targetGameNumber)) {
-            return GameSettingNumbers.ADD_ONE_SCORE.value;
+            return GameSettingProperties.ADD_ONE_SCORE.value;
         }
-        return GameSettingNumbers.ADD_ZERO_SCORE.value;
+        return GameSettingProperties.ADD_ZERO_SCORE.value;
     }
 }

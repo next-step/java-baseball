@@ -19,12 +19,17 @@ public class BaseballGame implements Game<BaseballGameStatus> {
         this.gameStatus = BaseballGameStatus.NOTING;
     }
 
+    public BaseballGame(InputNumber inputNumber) {
+        this.correctAnswer = inputNumber.getInputNumber();
+        this.gameStatus = BaseballGameStatus.NOTING;
+    }
+
     @Override
-    public void gameProcess(InputNumber inputNumber) throws GameException {
+    public void gameProcess(InputNumber inputNumber) {
         GameNumberCompareResult gameNumberCompareResult = GameNumberGroupsHelper.compareEachGameGroup(correctAnswer, inputNumber.getInputNumber());
         if (isScoreSameGameStatus(gameNumberCompareResult.getNumberAndDigitSameScore(), BaseballGameStatus.WIN)) return;
         if (isScoreSameGameStatus(gameNumberCompareResult.getAllCompareScore(), BaseballGameStatus.NOTING)) return;
-        setGameStatusAndMessage(BaseballGameStatus.HINT, gameNumberCompareResult);
+        setGameStatusAndMessageForHint(gameNumberCompareResult);
     }
 
     @Override
@@ -45,9 +50,9 @@ public class BaseballGame implements Game<BaseballGameStatus> {
         baseballGameMessageForUser = messageForUser.getMessageForUser();
     }
 
-    private void setGameStatusAndMessage(BaseballGameStatus messageForUser, GameNumberCompareResult gameNumberCompareResult) {
-        gameStatus = messageForUser;
-        baseballGameMessageForUser = messageForUser.getMessageForUser(gameNumberCompareResult);
+    private void setGameStatusAndMessageForHint(GameNumberCompareResult gameNumberCompareResult) {
+        gameStatus = BaseballGameStatus.HINT;
+        baseballGameMessageForUser = BaseballGameStatus.HINT.getMessageForUser(gameNumberCompareResult);
     }
 
     public BaseballGameStatus getGameStatus() {

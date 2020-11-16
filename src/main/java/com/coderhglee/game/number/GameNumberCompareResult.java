@@ -1,8 +1,8 @@
 package com.coderhglee.game.number;
 
 public class GameNumberCompareResult {
-    private int numberSameScore;
-    private int numberAndDigitSameScore;
+    private final int numberSameScore;
+    private final int numberAndDigitSameScore;
 
     public GameNumberCompareResult(int numberSameCount, int numberAndDigitSameCount) {
         this.numberSameScore = numberSameCount;

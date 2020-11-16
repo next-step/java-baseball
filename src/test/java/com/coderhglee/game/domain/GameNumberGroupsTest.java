@@ -49,7 +49,7 @@ public class GameNumberGroupsTest {
     }
 
     private static List<GameNumber> getGameNumbers(String number) {
-        List GameNumbersList = new ArrayList();
+        List<GameNumber> GameNumbersList = new ArrayList<>();
         for (String numberStr : number.split("")) {
             GameNumbersList.add(GameNumber.gameNumberMap.get(Integer.parseInt(numberStr)));
         }
@@ -80,9 +80,7 @@ public class GameNumberGroupsTest {
     @ValueSource(strings = {"111", "122", "311","499"})
     @ParameterizedTest
     void shouldExpectedExceptionWhenIncludeContinueNumbers(String inputNumber) {
-        assertThatThrownBy(() -> {
-            new GameNumberGroups(getGameNumbers(inputNumber));
-        }).isInstanceOf(ContainSameNumberException.class);
+        assertThatThrownBy(() -> new GameNumberGroups(getGameNumbers(inputNumber))).isInstanceOf(ContainSameNumberException.class);
     }
 
 }

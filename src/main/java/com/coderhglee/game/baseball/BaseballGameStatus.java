@@ -8,7 +8,7 @@ import java.util.function.Function;
 public enum BaseballGameStatus {
     WIN("3개의 숫자를 모두 맞히셨습니다!", 3),
     NOTING("낫싱", 0),
-    HINT("", result -> {
+    HINT(result -> {
         ArrayList<String> scoreMessage = new ArrayList<>();
         setScoreMessage(result.getNumberAndDigitSameScore(), scoreMessage, " 스트라이크");
         setScoreMessage(result.getNumberSameScore(), scoreMessage, "볼");
@@ -32,8 +32,8 @@ public enum BaseballGameStatus {
     }
 
 
-    BaseballGameStatus(String messageForUser, Function<GameNumberCompareResult, String> expression) {
-        this.messageForUser = messageForUser;
+    BaseballGameStatus(Function<GameNumberCompareResult, String> expression) {
+        this.messageForUser = "";
         this.expression = expression;
     }
 

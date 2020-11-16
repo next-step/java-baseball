@@ -1,6 +1,6 @@
 package com.coderhglee.game.domain;
 
-import com.coderhglee.game.GameSettingNumbers;
+import com.coderhglee.game.GameSettingProperties;
 import com.coderhglee.game.exception.ContainSameNumberException;
 import com.coderhglee.game.exception.ExceedAllowLengthException;
 import com.coderhglee.game.exception.GameException;
@@ -25,7 +25,7 @@ public class InputNumberManagerTest {
     @Test
     public void checkRandomInputNumberSize() throws GameException {
         RandomInputNumber randomInputNumber = new RandomInputNumber();
-        assertThat(randomInputNumber.getInputNumber().getGameNumbers().size()).isEqualTo(GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value);
+        assertThat(randomInputNumber.getInputNumber().getGameNumbers().size()).isEqualTo(GameSettingProperties.INPUT_MESSAGE_MAX_LENGTH.value);
     }
 
     @DisplayName("사용자 입력 숫자가 게임 숫자 그룹 함수로 만들어지는지 확인 한다.")

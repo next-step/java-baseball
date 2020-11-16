@@ -1,6 +1,6 @@
 package com.coderhglee.game.number;
 
-import com.coderhglee.game.GameSettingNumbers;
+import com.coderhglee.game.GameSettingProperties;
 import com.coderhglee.game.exception.GameException;
 
 import java.security.SecureRandom;
@@ -27,14 +27,14 @@ public class RandomInputNumber implements InputNumber {
     }
 
     private List<GameNumber> makeRandomNumber(List<GameNumber> targetNumbers) {
-        while (targetNumbers.size() < GameSettingNumbers.INPUT_MESSAGE_MAX_LENGTH.value) {
+        while (targetNumbers.size() < GameSettingProperties.INPUT_MESSAGE_MAX_LENGTH.value) {
             addRandomNumber(targetNumbers);
         }
         return targetNumbers;
     }
 
     private void addRandomNumber(List<GameNumber> targetNumbers) {
-        int randomNumber = getRandomNumberFromAllowRange(GameSettingNumbers.GAME_NUMBER_MIN_RANGE.value, GameSettingNumbers.GAME_NUMBER_MAX_RANGE.value);
+        int randomNumber = getRandomNumberFromAllowRange(GameSettingProperties.GAME_NUMBER_MIN_RANGE.value, GameSettingProperties.GAME_NUMBER_MAX_RANGE.value);
         GameNumber randomGameNumber = GameNumber.gameNumberMap.get(randomNumber);
         if (!targetNumbers.contains(randomGameNumber)) {
             targetNumbers.add(randomGameNumber);
