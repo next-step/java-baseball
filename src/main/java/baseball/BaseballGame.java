@@ -10,13 +10,12 @@ public class BaseballGame {
     public void run() {
         do {
             start();
-        } while (isExit());
+        } while (isExit(BaseballView.askRetryOrExit()));
     }
 
     private void start() {
         BaseballNumbers answerNumbers = new BaseballNumbers(
                 RandomNumberGenerate.generate(3));
-
         BaseballNumbers playerNumbers;
         BaseballResult baseballResult;
         do {
@@ -46,7 +45,7 @@ public class BaseballGame {
         return new BaseballNumbers();
     }
 
-    public boolean isExit() {
-        return true;
+    public boolean isExit(int confirm) {
+        return confirm == 1;
     }
 }
