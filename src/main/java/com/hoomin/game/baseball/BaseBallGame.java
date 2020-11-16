@@ -1,8 +1,10 @@
 package com.hoomin.game.baseball;
 
 import com.hoomin.game.baseball.domain.Computer;
+import com.hoomin.game.baseball.domain.Hints;
 import com.hoomin.game.baseball.domain.Quiz;
 import com.hoomin.game.baseball.view.InputView;
+import com.hoomin.game.baseball.view.OutputView;
 
 public class BaseBallGame {
 	public static final Integer RESTART = 1;
@@ -18,7 +20,8 @@ public class BaseBallGame {
 
 	private void solveQuiz(Quiz quiz) {
 		do {
-			quiz.checkNumbers(InputView.getNumbers());
+			final Hints hints = quiz.checkNumbers(InputView.getNumbers());
+			OutputView.printHints(hints);
 		} while (quiz.isUnSolved());
 	}
 

@@ -33,4 +33,18 @@ public class Hints {
 		}
 		return count;
 	}
+
+	@Override
+	public String toString() {
+		if (getStrikeCount() > 0 && getBallCount() > 0) {
+			return getStrikeCount() + " 스트라이크 " + getBallCount() + " 볼";
+		}
+		if (getStrikeCount() > 0) {
+			return getStrikeCount() + " 스트라이크";
+		}
+		if (getBallCount() > 0) {
+			return getBallCount() + " 볼";
+		}
+		return "낫싱";
+	}
 }
