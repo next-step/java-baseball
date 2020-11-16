@@ -13,9 +13,9 @@
 - [x] charAt() 메소드 테스트
 
 - Set Collection
-- [ ] size() 메소드 테스트
-- [ ] contains() 메소드 테스트 (@ParameterizedTest 사용 - 중복코드 제거)
-- [ ] contains() 메소드 테스트 (@CsvSource 사용 - 입력값에 따라 결과값이 다른 경에 대한 테스트도 가능하도록)
+- [x] size() 메소드 테스트
+- [x] contains() 메소드 테스트 (@ParameterizedTest 사용 - 중복코드 제거)
+- [x] contains() 메소드 테스트 (@CsvSource 사용 - 입력값에 따라 결과값이 다른 경에 대한 테스트도 가능하도록)
 
 ## 기능 구현 목록
 - [ ] 컴퓨터는 임의의 3자리 숫자를 생성한다.
