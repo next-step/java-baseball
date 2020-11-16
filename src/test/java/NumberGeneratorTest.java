@@ -14,7 +14,7 @@ class NumberGeneratorTest {
 
     @Test
     public void 같은수가나올확율10퍼센트미만이여야함() {
-        // 확율상 9 * 9 * 9 = 729 의 경우의 수가 있음
+        // 확율상 9 * 8 * 7 = 504 의 경우의 수가 있으므로 중복이 발생할 확율은 0.2% 미만이지만 상식선에서 10%를 오차범위로 둔다.
         final int[] firstNumbers = NumberGenerator.generate();
         int collisionCount = 0;
         final int tryCount = 1000;
