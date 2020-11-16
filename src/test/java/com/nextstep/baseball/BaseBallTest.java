@@ -16,7 +16,7 @@ public class BaseBallTest {
         BaseBall baseBall = new BaseBall();
         baseBall.generateAnswer();
 
-        Map<Integer, Integer> answer = baseBall.getAnswer();
+        Map<Integer, Integer> answer = baseBall.getAnswerMap();
 
         Assertions.assertEquals(answer.keySet().size(), 3);
     }
@@ -24,15 +24,17 @@ public class BaseBallTest {
     @Test
     void inputAnswer() {
         BaseBall baseBall = new BaseBall();
-        baseBall.inputAnswer(123);
+        baseBall.inputAnswer("123");
 
         Assertions.assertEquals(baseBall.getInputList().size(), 1);
 
-        BusinessException exceptionLength = Assertions.assertThrows(BusinessException.class, () -> baseBall.inputAnswer(1234));
-        BusinessException exceptionValue = Assertions.assertThrows(BusinessException.class, () -> baseBall.inputAnswer(333));
+        BusinessException exceptionLength = Assertions.assertThrows(BusinessException.class, () -> baseBall.inputAnswer("1234"));
+        BusinessException exceptionValue = Assertions.assertThrows(BusinessException.class, () -> baseBall.inputAnswer("333"));
+        BusinessException exceptionType = Assertions.assertThrows(BusinessException.class, () -> baseBall.inputAnswer("AAA"));
 
         Assertions.assertEquals(exceptionLength.getCode(), BusinessError.INVALID_VALUE_LENGTH.name());
         Assertions.assertEquals(exceptionValue.getCode(), BusinessError.INVALID_VALUE.name());
+        Assertions.assertEquals(exceptionType.getCode(), BusinessError.INVALID_VALUE.name());
     }
 
     @Test
@@ -43,7 +45,7 @@ public class BaseBallTest {
 
         Assertions.assertEquals(exceptionNotInput.getCode(), BusinessError.INVALID_VALUE_LENGTH.name());
 
-        baseBall.inputAnswer(123);
+        baseBall.inputAnswer("123");
         Result result = baseBall.check();
 
         Assertions.assertNotNull(result);

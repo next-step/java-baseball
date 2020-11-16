@@ -11,8 +11,18 @@ public class BaseBall {
     private Map<Integer, Integer> answerMap = new LinkedHashMap<>();
     private List<Map<Integer, Integer>> inputList = new ArrayList<>();
 
-    public Map<Integer, Integer> getAnswer() {
+    public Map<Integer, Integer> getAnswerMap() {
         return this.answerMap;
+    }
+
+    public String getAnswer() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Integer value : this.answerMap.keySet()) {
+            sb.append(value);
+        }
+
+        return sb.toString();
     }
 
     public List<Map<Integer, Integer>> getInputList() {
@@ -38,15 +48,21 @@ public class BaseBall {
         }
     }
 
-    public void inputAnswer(Integer input) {
-        if (String.valueOf(input).length() != 3) {
+    public void inputAnswer(String input) {
+        if (input.length() != 3) {
             throw new BusinessException(BusinessError.INVALID_VALUE_LENGTH);
+        }
+
+        try {
+            Integer.parseInt(input);
+        } catch (Exception e) {
+            throw new BusinessException(BusinessError.INVALID_VALUE);
         }
 
         Map<Integer, Integer> inputMap = new LinkedHashMap<>();
 
         for (int pos = 0; pos < 3; pos++) {
-            inputMap.put(input.toString().charAt(pos) - '0', pos);
+            inputMap.put(input.charAt(pos) - '0', pos);
         }
 
         if (inputMap.keySet().size() != 3) {
