@@ -14,6 +14,15 @@ public class BaseballNumbers {
         convertToBaseballNumbers(numbers);
     }
 
+    public Score compareNumbers(final BaseballNumber otherBaseballNumber) {
+        Score score = Score.NOTHING;
+        for(BaseballNumber baseballNumber : baseballNumbers) {
+            Score newScore = baseballNumber.compareNumber(otherBaseballNumber);
+            score = judgeScore(score, newScore);
+        }
+        return score;
+    }
+
     private void validate(final Map<Integer, Integer> numbers) {
         if (numbers.size() != NUMBER_LENGTH) {
             throw new IllegalArgumentException("중복되지 않은 숫자로 " + NUMBER_LENGTH + "개 입력해주세요.");
@@ -24,7 +33,10 @@ public class BaseballNumbers {
         numbers.forEach((number, index) -> baseballNumbers.add(new BaseballNumber(new Order(index), number)));
     }
 
-    public Set<BaseballNumber> getBaseballNumbers() {
-        return baseballNumbers;
+    private Score judgeScore(final Score score, final Score newScore) {
+        if (newScore != Score.NOTHING) {
+            return newScore;
+        }
+        return score;
     }
 }
