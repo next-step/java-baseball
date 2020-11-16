@@ -27,15 +27,19 @@ public class Computer {
         strike = 0;
         boll = 0;
         for (int i = 0; i < 3; i++) {
-            checkStrikeAndBoll(i, userNumbers.get(i));
+            checkBoll(userNumbers.get(i));
+            checkStrike(i, userNumbers.get(i));
         }
         resultMessage();
     }
 
-    public void checkStrikeAndBoll(int index, String userNumber) {
+    public void checkBoll(String userNumber) {
         if (numbers.contains(userNumber)) {
             boll++;
         }
+    }
+
+    public void checkStrike(int index, String userNumber) {
         if (userNumber.equals(numbers.get(index))) {
             strike++;
             boll--;
