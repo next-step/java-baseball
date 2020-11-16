@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Computer {
 
+    private final Random random;
     private List<String> numbers;
-    private Random random;
     private int strike;
     private int boll;
 
@@ -69,7 +69,6 @@ public class Computer {
         }
         return "";
     }
-
 
     public List<String> getNumbers() {
         return numbers;

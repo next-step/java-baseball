@@ -35,8 +35,4 @@ public class Baseball {
         }
         gamePlay();
     }
-
-    public List<String> getUserNumbers() {
-        return userNumbers;
-    }
 }
