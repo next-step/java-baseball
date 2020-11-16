@@ -6,6 +6,8 @@ public class PrintMessage {
 
     public final static String RANDOM_NUMBER_SIZE_ERROR = "랜덤으로 추출 된 크기가 3이 아닙니다.";
 
+    public final static String INPUT_NUMBER_CONDITION_ERROR = "1~9 사이의 숫자를 입력해주세요";
+
     public final static String INPUT_NUMBER_MESSAGE = "숫자를 입력해주세요";
 
     public final static String INPUT_NUMBER_ERROR = "숫자만 입력이 가능합니다.";

@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import baseball.common.PrintMessage;
-import baseball.common.CustomException;
+import baseball.exception.CustomException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,8 +39,8 @@ class BaseBallTest {
     @ParameterizedTest
     @ValueSource(strings = {"3f2", "2d3", "9fd"})
     void validate_input_number_type_bad_request(final String inputNumber) {
-        CustomException.NumberTypeError exception = assertThrows(
-            CustomException.NumberTypeError.class,
+        CustomException.InvalidateNumberTypeError exception = assertThrows(
+            CustomException.InvalidateNumberTypeError.class,
             () -> baseBall.validateInputNumberType(new Scanner((inputNumber)))
         );
 
@@ -58,8 +58,8 @@ class BaseBallTest {
     @ParameterizedTest
     @ValueSource(ints = {2354, 5321, 1943})
     void validate_input_number_size_bad_request(final int inputNumber) {
-        CustomException.NumberSizeError exception = assertThrows(
-            CustomException.NumberSizeError.class,
+        CustomException.InvalidateNumberSizeError exception = assertThrows(
+            CustomException.InvalidateNumberSizeError.class,
             () -> baseBall.validateInputNumberSize(inputNumber)
         );
 
@@ -89,8 +89,8 @@ class BaseBallTest {
     void validate_input_number_to_ball_size_bad_request(final int oneNumber,
                                                         final int twoNumber,
                                                         final int threeNumber) {
-        CustomException.NumberDuplicateError exception = assertThrows(
-            CustomException.NumberDuplicateError.class,
+        CustomException.InvalidateNumberDuplicateError exception = assertThrows(
+            CustomException.InvalidateNumberDuplicateError.class,
             () -> baseBall.validateInputNumberToBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 
@@ -127,8 +127,8 @@ class BaseBallTest {
                                            final int fiveNumber,
                                            final int sixNumber) {
         baseBall.checkUserBallAndComputerBall(
-                new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
-                new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
+            new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)),
+            new LinkedHashSet<>(Arrays.asList(fourNumber, fiveNumber, sixNumber))
         );
 
         assertEquals(baseBall.getResult().getStrike(), 2);
@@ -293,6 +293,18 @@ class BaseBallTest {
 
         assertEquals(baseBall.getResult().getStrike(), 0);
         assertEquals(baseBall.getResult().getBall(), 0);
+    }
+
+    @DisplayName("사용자가 입력한 값 조건에 맞는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = { "0", "-1", "-2"})
+    void check_input_number_ball_condition(final String number) {
+        CustomException.InvalidateNumberConditionError exception = assertThrows(
+            CustomException.InvalidateNumberConditionError.class,
+            () -> baseBall.validateAddPlayBalls(number)
+        );
+
+        assertEquals(exception.getMessage(), PrintMessage.INPUT_NUMBER_CONDITION_ERROR);
     }
 
 }

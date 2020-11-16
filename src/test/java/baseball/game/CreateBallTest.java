@@ -9,7 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import baseball.common.CustomException;
+import baseball.exception.CustomException;
 import baseball.common.PrintMessage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,8 +41,8 @@ class CreateBallTest {
     void random_base_ball_min_number(final int oneNumber,
                                      final int twoNumber,
                                      final int threeNumber) {
-        CustomException.RandomNumberMinMaxError exception = assertThrows(
-            CustomException.RandomNumberMinMaxError.class,
+        CustomException.InvalidateRandomNumberMinMaxError exception = assertThrows(
+            CustomException.InvalidateRandomNumberMinMaxError.class,
             () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 
@@ -58,8 +58,8 @@ class CreateBallTest {
     void random_base_ball_max_number(final int oneNumber,
                                      final int twoNumber,
                                      final int threeNumber) {
-        CustomException.RandomNumberMinMaxError exception = assertThrows(
-            CustomException.RandomNumberMinMaxError.class,
+        CustomException.InvalidateRandomNumberMinMaxError exception = assertThrows(
+            CustomException.InvalidateRandomNumberMinMaxError.class,
             () -> createBall.validateRandomBallMax(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 
@@ -75,8 +75,8 @@ class CreateBallTest {
     void validate_random_base_ball_size(final int oneNumber,
                                         final int twoNumber,
                                         final int threeNumber) {
-        CustomException.NumberSizeError exception = assertThrows(
-            CustomException.NumberSizeError.class,
+        CustomException.InvalidateNumberSizeError exception = assertThrows(
+            CustomException.InvalidateNumberSizeError.class,
             () -> createBall.validateRandomBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 

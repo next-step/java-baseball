@@ -8,19 +8,20 @@ import java.util.Scanner;
 
 import baseball.common.Print;
 import baseball.common.PrintMessage;
+import baseball.common.ResultEnum;
 import baseball.computer.Computer;
+import baseball.exception.CustomException;
 
-import static baseball.common.CustomException.NumberDuplicateError;
-import static baseball.common.CustomException.NumberSizeError;
-import static baseball.common.CustomException.NumberTypeError;
+import static baseball.exception.CustomException.InvalidateNumberDuplicateError;
+import static baseball.exception.CustomException.InvalidateNumberSizeError;
+import static baseball.exception.CustomException.InvalidateNumberTypeError;
+import static baseball.exception.CustomException.InvalidateNumberConditionError;
+
 
 public class BaseBall {
+    private final static int MIN_NUMBER = 0;
 
-    private final static String STRIKE = "스트라이크";
-
-    private final static String BALL = "볼";
-
-    private final static String NOTHING = "낫싱";
+    private final static int MAX_NUMBER = 10;
 
     private final static int BALL_SIZE = 3;
 
@@ -62,7 +63,9 @@ public class BaseBall {
 
         getPrintByMessage(PrintMessage.INPUT_NUMBER_MESSAGE);
 
-        validateGameRule();
+        LinkedHashSet<Integer> playBalls = validateGameRule();
+
+        checkUserBallAndComputerBall(getComputerBalls(), playBalls);
 
         writeMatchMessage();
 
@@ -72,20 +75,24 @@ public class BaseBall {
     }
 
     /**
-     * 게임 진행 시 필요한 전체적인 Rule 체크 메소드
+     * 게임 진행 시 필요한 전체적인 Rule 체크 후 사용자 볼 리턴
      */
-    private void validateGameRule() {
+    private LinkedHashSet<Integer> validateGameRule() {
+        LinkedHashSet<Integer> playBalls = new LinkedHashSet<>();
         try {
             int inputNumber = validateInputNumberType(this.scanner);
 
             validateInputNumberSize(inputNumber);
 
-            LinkedHashSet<Integer> balls = createInputNumberToBalls(inputNumber);
+            playBalls = createInputNumberToBalls(inputNumber);
 
-            checkUserBallAndComputerBall(getComputerBalls(), balls);
-        } catch (NumberTypeError | NumberDuplicateError | NumberSizeError e) {
+            return playBalls;
+        } catch (InvalidateNumberTypeError | InvalidateNumberDuplicateError |
+            InvalidateNumberSizeError | InvalidateNumberConditionError e) {
             validateGameRuleFail(e.getMessage());
         }
+
+        return playBalls;
     }
 
     /**
@@ -106,9 +113,9 @@ public class BaseBall {
         int inputNumber;
 
         try {
-            inputNumber = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            throw new NumberTypeError(PrintMessage.INPUT_NUMBER_ERROR);
+            inputNumber = Integer.parseInt(scanner.nextLine());
+        } catch (InputMismatchException | NumberFormatException e) {
+            throw new InvalidateNumberTypeError(PrintMessage.INPUT_NUMBER_ERROR);
         }
 
         return inputNumber;
@@ -120,7 +127,7 @@ public class BaseBall {
      */
     void validateInputNumberSize(final int inputNumber) {
         if (String.valueOf(inputNumber).length() != BALL_SIZE) {
-            throw new NumberSizeError(PrintMessage.INPUT_NUMBER_SIZE_ERROR);
+            throw new InvalidateNumberSizeError(PrintMessage.INPUT_NUMBER_SIZE_ERROR);
         }
     }
 
@@ -135,6 +142,7 @@ public class BaseBall {
         LinkedHashSet<Integer> balls = new LinkedHashSet<>();
 
         for (String ball : splitNumber) {
+            validateAddPlayBalls(ball);
             balls.add(Integer.parseInt(ball));
         }
 
@@ -144,12 +152,24 @@ public class BaseBall {
     }
 
     /**
+     * 사용자 입력 받은 숫자 LinkedHashSet Add validate
+     * @param number 사용자 입력 숫자
+     */
+    void validateAddPlayBalls(final String number) {
+        int convertNumber = Integer.parseInt(number);
+
+        if (convertNumber <= MIN_NUMBER || convertNumber >= MAX_NUMBER) {
+            throw new CustomException.InvalidateNumberConditionError(PrintMessage.INPUT_NUMBER_CONDITION_ERROR);
+        }
+    }
+
+    /**
      * 사용자 입력 중복 여부 체크
      * @param balls 사용자 입력 받은 숫자 LinkedHashSet
      */
     void validateInputNumberToBallSize(final LinkedHashSet<Integer> balls) {
         if (balls.size() != BALL_SIZE) {
-            throw new NumberDuplicateError(PrintMessage.INPUT_NUMBER_DUPLICATE_ERROR);
+            throw new CustomException.InvalidateNumberDuplicateError(PrintMessage.INPUT_NUMBER_DUPLICATE_ERROR);
         }
     }
 
@@ -233,21 +253,14 @@ public class BaseBall {
      * 게임을 클리어하지 않은 경우 메시지 출력
      */
     private void writeMatchFailMessage() {
-        if (this.getResult().getStrike() == 0 && this.getResult().getBall() != 0) {
-            getPrintByMessage(this.getResult().getBall() + BALL);
+        String result = ResultEnum.STRIKE.getMessage(this.result.getStrike())
+            + " " + ResultEnum.BALL.getMessage(this.result.getBall());
+
+        if (result.equals(" ")) {
+            result = ResultEnum.NOTHING.getMessage();
         }
 
-        if (this.getResult().getStrike() != 0 && this.getResult().getBall() == 0) {
-            getPrintByMessage(this.getResult().getStrike() + STRIKE);
-        }
-
-        if (this.getResult().getStrike() != 0 && this.getResult().getBall() != 0) {
-            getPrintByMessage(this.getResult().getStrike() + STRIKE + " " + this.getResult().getBall() + BALL);
-        }
-
-        if (this.getResult().isNoting()) {
-            getPrintByMessage(NOTHING);
-        }
+        getPrintByMessage(result);
     }
 
     /**
