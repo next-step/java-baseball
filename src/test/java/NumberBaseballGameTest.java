@@ -32,6 +32,23 @@ public class NumberBaseballGameTest {
 		}
 	}
 	
+	// 1~9까지의 서로 다른 수로 이루어진 digit자리(3)의 수를 생성
+	// 최대 9자리인지 체크
+	@Test
+	public void testMaxLengthGenerateRandomNum() {
+		@SuppressWarnings("static-access")
+		int number = numberBaseballGame.generateRandomNumDigit(numberBaseballGame.RANDOM_DIGIT);
+		boolean actual = (0 < (number + "").length()) && ((number + "").length() < 10);
+
+		assertThat(actual).isTrue();
+	}
+	
+	// 볼카운트 체크가 제대로 되는지 테스트
+	
+	// 스트라이크 카운트가 제대로 되는지 테스트
+	
+	// 볼카운트와 스트라이크 카운트가 더해서 3이 초과되는지 테스트
+	
 	/**
 	 * 
 	 * 문자열내에 같은 문자가 몇개있는지 체크
