@@ -36,4 +36,11 @@ public class BaseballGame {
     public int hashCode() {
         return Objects.hash(answer);
     }
+
+    @Override
+    public String toString() {
+        return "BaseballGame{" +
+                "answer=" + answer +
+                '}';
+    }
 }
