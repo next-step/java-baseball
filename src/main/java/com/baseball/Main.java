@@ -10,6 +10,13 @@ public class Main {
         } while (isMoreGame());        // 게임을 다시 시작하거나 완전히 종료한다.
     }
 
+    private static void playGame(Game game) {
+        do {
+            game.inputNumber(inputNumber());                    // 세자리 숫자를 입력받는다.
+            showHintNumber(game.getStrike(), game.getBall());   // 사용자에게 힌트를 보여준다.
+        } while(game.getStrike() != 3);                         // 3 스트라이크이면 게임을 종료한다.
+    }
+
     /**
      * 게임을 새로 시작할지 종료할지 사용자에게 물어보는 기능
      * @return true: 게임 새로 시작, false: 종료
@@ -26,18 +33,6 @@ public class Main {
         if (answer == 1)
             return true;
         return false;
-    }
-
-    private static void playGame(Game game) {
-        Integer inputNumber;
-        Integer strike;
-        Integer ball;
-        do {
-            inputNumber = inputNumber();                    // 세자리 숫자를 입력받는다.
-            strike = game.countStrike(inputNumber);
-            ball = game.countBall(inputNumber);
-            showHintNumber(strike, ball);                   // 사용자에게 힌트를 보여준다.
-        } while(strike != 3);   // 3 스트라이크이면 게임을 종료한다.
     }
 
     private static Integer inputNumber() {

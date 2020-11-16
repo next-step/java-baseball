@@ -19,6 +19,17 @@ public class Game {
 
     Integer randomNumber;
 
+    public Integer getStrike() {
+        return strike;
+    }
+
+    public Integer getBall() {
+        return ball;
+    }
+
+    Integer strike;
+    Integer ball;
+
     public Game() {
         Random random = new Random();
 
@@ -45,33 +56,30 @@ public class Game {
         this.i1 = inputNumber / 100;
         this.i2 = (inputNumber - this.i1 * 100) / 10;
         this.i3 = inputNumber % 10;
+
+        countStrike();
+        countBall();
     }
 
-    public Integer countStrike(Integer inputNumber) {
-        Integer strike = 0;
-        inputNumber(inputNumber);
+    private void countStrike() {
+        this.strike = 0;
 
         if (this.i1 == this.n1)
-            strike++;
+            this.strike++;
         if (this.i2 == this.n2)
-            strike++;
+            this.strike++;
         if (this.i3 == this.n3)
-            strike++;
-
-        return strike;
+            this.strike++;
     }
 
-    public Integer countBall(Integer inputNumber) {
-        Integer ball = 0;
-        inputNumber(inputNumber);
+    private void countBall() {
+        this.ball = 0;
 
         if ((this.i1 == this.n2) || (this.i1 == this.n3))
-            ball++;
+            this.ball++;
         if ((this.i2 == this.n3) || (this.i2 == this.n1))
-            ball++;
+            this.ball++;
         if ((this.i3 == this.n1) || (this.i3 == this.n2))
-            ball++;
-
-        return ball;
+            this.ball++;
     }
 }

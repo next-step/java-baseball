@@ -34,13 +34,20 @@ class GameTest {
     void countStrike() {
         Game game = new Game(1, 2, 3);  // 123
 
-        assertEquals(1, game.countStrike(145));
-        assertEquals(1, game.countStrike(724));
-        assertEquals(1, game.countStrike(753));
-        assertEquals(2, game.countStrike(125));
-        assertEquals(2, game.countStrike(523));
-        assertEquals(2, game.countStrike(163));
-        assertEquals(3, game.countStrike(123));
+        game.inputNumber(145);
+        assertEquals(1, game.getStrike());
+        game.inputNumber(724);
+        assertEquals(1, game.getStrike());
+        game.inputNumber(753);
+        assertEquals(1, game.getStrike());
+        game.inputNumber(125);
+        assertEquals(2, game.getStrike());
+        game.inputNumber(523);
+        assertEquals(2, game.getStrike());
+        game.inputNumber(163);
+        assertEquals(2, game.getStrike());
+        game.inputNumber(123);
+        assertEquals(3, game.getStrike());
     }
 
     @DisplayName("볼 갯수 세기")
@@ -48,13 +55,21 @@ class GameTest {
     void countBall() {
         Game game = new Game(1, 2, 3);  // 123
 
-        assertEquals(1, game.countBall(415));
-        assertEquals(1, game.countBall(264));
-        assertEquals(1, game.countBall(735));
-        assertEquals(2, game.countBall(315));
-        assertEquals(2, game.countBall(251));
-        assertEquals(2, game.countBall(431));
-        assertEquals(3, game.countBall(231));
-        assertEquals(3, game.countBall(312));
+        game.inputNumber(415);
+        assertEquals(1, game.getBall());
+        game.inputNumber(264);
+        assertEquals(1, game.getBall());
+        game.inputNumber(735);
+        assertEquals(1, game.getBall());
+        game.inputNumber(315);
+        assertEquals(2, game.getBall());
+        game.inputNumber(251);
+        assertEquals(2, game.getBall());
+        game.inputNumber(431);
+        assertEquals(2, game.getBall());
+        game.inputNumber(231);
+        assertEquals(3, game.getBall());
+        game.inputNumber(312);
+        assertEquals(3, game.getBall());
     }
 }
