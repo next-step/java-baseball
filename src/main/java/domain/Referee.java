@@ -10,7 +10,7 @@ import domain.baseballRule.Strike;
 
 public class Referee {
 
-	public BaseballResult checkBaseballResult(BaseballNumbers players, BaseballNumbers opponents) {
+	public BaseballResult createBaseballResult(BaseballNumbers players, BaseballNumbers opponents) {
 		BaseballResult baseballResult = new BaseballResult();
 		for (int idx = 0; idx < players.size(); idx++) {
 			baseballResult.add(countStrikeAndBall(players.getByIndex(idx), idx, opponents));

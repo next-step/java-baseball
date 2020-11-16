@@ -22,7 +22,7 @@ public class RefereeTest {
 		BaseballNumbers opponents = BaseballNumbers.newOpponentBaseballNumbers(Arrays.asList(1, 2, 3));
 		BaseballNumbers players = BaseballNumbers.newPlayerBaseballNumbers(Arrays.asList(firstNumber, secondNumber, thirdNumber));
 
-		BaseballResult baseballResult = referee.checkBaseballResult(players, opponents);
+		BaseballResult baseballResult = referee.createBaseballResult(players, opponents);
 
 		assertEquals(strike, baseballResult.getStrikeCount());
 		assertEquals(ball, baseballResult.getBallCount());
