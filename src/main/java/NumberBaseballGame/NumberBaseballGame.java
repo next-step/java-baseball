@@ -25,34 +25,30 @@ public class NumberBaseballGame {
 		}
 	}
 
-	public String writeInputDate() {
-
-		String inputData = "";
+	public int[] writeInputDate() {
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.print("숫자를 입력해주세요 : ");
+		System.out.print("숫자를 입력하세요 : ");
+		String scData = scanner.next();
 
-		inputData = scanner.next();
+		String[] scDataToken = scData.split("(?!^)");
+		int[] inputData = new int[3];
 
-		scanner.close();
+		for (int i = 0; i < 3; i++) {
+			inputData[i] = Integer.parseInt(scDataToken[i]);
+		}
 
 		return inputData;
 	}
 
 	public static void main(String[] args) {
 
-		//while (true) {
-		String inputData = "";
-
+		int[] inputData = new int[3];
 		NumberBaseballGame game = new NumberBaseballGame();
 
 		game.setAnswer();
-
 		inputData = game.writeInputDate();
 
-		// checkInputData();
-
-		// nextProcess();
-		//}
 	}
+
 }
