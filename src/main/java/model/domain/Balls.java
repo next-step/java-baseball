@@ -25,13 +25,11 @@ public class Balls {
     public static Balls of(String stringNumbers) {
         String[] splitNumbers = stringNumbers.split(REGEX);
 
-        List<Integer> numbers = new ArrayList<>();
-        for (String splitNumber : splitNumbers) {
-            numbers.add(Integer.parseInt(splitNumber));
-        }
-
         List<Ball> balls = new ArrayList<>();
-        numbers.forEach(number -> balls.add(Ball.of(number)));
+        for (String splitNumber : splitNumbers) {
+            int ballNumber = Integer.parseInt(splitNumber);
+            balls.add(Ball.of(ballNumber));
+        }
 
         if (balls.size() != BALLS_COUNT) {
             throw new BaseballException(ExceptionStatus.EXCEEDED_NUMBER_OF_BALL);
@@ -48,13 +46,13 @@ public class Balls {
         int count = 0;
 
         for (int i = 0; i < this.balls.size(); i++) {
-            count += addEqualsCount(this.balls.get(i), balls.get(i));
+            count += calculateEqualsCount(this.balls.get(i), balls.get(i));
         }
 
         return count;
     }
 
-    private int addEqualsCount(Ball ball, Ball targetBall) {
+    private int calculateEqualsCount(Ball ball, Ball targetBall) {
         if (ball.equals(targetBall)) {
             return ADD_COUNT;
         }
@@ -65,13 +63,13 @@ public class Balls {
         int count = 0;
 
         for (int i = 0; i < this.balls.size(); i++) {
-            count += addContainCount(balls.get(i));
+            count += calculateContainCount(balls.get(i));
         }
 
         return count;
     }
 
-    private int addContainCount(Ball ball) {
+    private int calculateContainCount(Ball ball) {
         if (this.balls.contains(ball)) {
             return ADD_COUNT;
         }
