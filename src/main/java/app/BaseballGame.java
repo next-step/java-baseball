@@ -18,7 +18,7 @@ public class BaseballGame {
      * 사용자가 입력한 값과 임의로 생성된 값을 비교하여 판별한 결과 리턴
      *
      * @param input 사용자 입력값
-     * @return
+     * @return Score
      */
     public Score guess(String input) {
         score.clearCount();
