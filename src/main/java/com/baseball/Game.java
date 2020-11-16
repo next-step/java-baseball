@@ -3,9 +3,15 @@ package com.baseball;
 import java.util.Random;
 
 public class Game {
+    // 컴퓨터가 랜덤으로 생성한 숫자를 3자리로 분리
     Integer n1;
     Integer n2;
     Integer n3;
+
+    // 사용자가 입력한 숫자를 3자리로 분리
+    Integer i1;
+    Integer i2;
+    Integer i3;
 
     public Game() {
     }
@@ -32,34 +38,35 @@ public class Game {
         return (n1 * 100) + (n2 * 10) + n3;
     }
 
+    public void inputNumber(Integer inputNumber) {
+        this.i1 = inputNumber / 100;
+        this.i2 = (inputNumber - this.i1 * 100) / 10;
+        this.i3 = inputNumber % 10;
+    }
+
     public Integer countStrike(Integer inputNumber) {
-        Integer a1 = inputNumber / 100;
-        Integer a2 = (inputNumber - a1 * 100) / 10;
-        Integer a3 = inputNumber % 10;
-
         Integer strike = 0;
+        inputNumber(inputNumber);
 
-        if (a1 == this.n1)
+        if (this.i1 == this.n1)
             strike++;
-        if (a2 == this.n2)
+        if (this.i2 == this.n2)
             strike++;
-        if (a3 == this.n3)
+        if (this.i3 == this.n3)
             strike++;
 
         return strike;
     }
 
     public Integer countBall(Integer inputNumber) {
-        Integer a1 = inputNumber / 100;
-        Integer a2 = (inputNumber - a1 * 100) / 10;
-        Integer a3 = inputNumber % 10;
-
         Integer ball = 0;
-        if ((a1 == this.n2) || (a1 == this.n3))
+        inputNumber(inputNumber);
+
+        if ((this.i1 == this.n2) || (this.i1 == this.n3))
             ball++;
-        if ((a2 == this.n3) || (a2 == this.n1))
+        if ((this.i2 == this.n3) || (this.i2 == this.n1))
             ball++;
-        if ((a3 == this.n1) || (a3 == this.n2))
+        if ((this.i3 == this.n1) || (this.i3 == this.n2))
             ball++;
 
         return ball;
