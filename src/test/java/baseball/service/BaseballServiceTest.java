@@ -31,8 +31,8 @@ public class BaseballServiceTest {
     }
 
     @Test
-    @DisplayName("중복 없는 3개 숫자 생성")
-    void setComputerNums() {
+    @DisplayName("중복 없는 숫자 생성")
+    void getUniqueNum() {
         //given
         Set<Integer> set;
 
@@ -40,10 +40,8 @@ public class BaseballServiceTest {
         //then
         for (int i = 0; i < 100; i++) {
             set = new HashSet<>();
-            int[] inputNums = baseballService.setComputerNums();
-
-            for (int num : inputNums) {
-                set.add(num);
+            for (int j = 0; j < 3; j++) {
+                baseballService.getUniqueNum(set);
             }
             assertEquals(set.size(), 3);
         }

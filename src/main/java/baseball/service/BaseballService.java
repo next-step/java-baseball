@@ -21,21 +21,24 @@ public class BaseballService {
         divideInputNum(getInputNum());
     }
 
-    public int[] setComputerNums() {
+    private void setComputerNums() {
         initComputerNums();
         Set<Integer> set = new HashSet<>();
 
         for (int i = 0; i < BALL_COUNT; i++) {
-            while (true) {
-                int num = makeNum();
-                if (!set.contains(num)) {
-                    set.add(num);
-                    computerNums[i] = num;
-                    break;
-                }
+            computerNums[i] = getUniqueNum(set);
+        }
+    }
+
+    public int getUniqueNum(Set<Integer> set) {
+        while (true) {
+            int num = makeNum();
+
+            if (!set.contains(num)) {
+                set.add(num);
+                return num;
             }
         }
-        return computerNums;
     }
 
     private void initComputerNums() {
