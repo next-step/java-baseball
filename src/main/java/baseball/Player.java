@@ -10,10 +10,17 @@ public class Player {
         value = "";
     }
 
+    public Player(String value) {
+        this.value = value;
+    }
+
     public void inputValue() {
         System.out.print("숫자를 입력해주세요 : ");
         Scanner scanner = new Scanner(System.in);
         value = Integer.toString(scanner.nextInt());
     }
 
+    public String getValue() {
+        return value;
+    }
 }

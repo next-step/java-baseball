@@ -13,6 +13,7 @@ public class Baseball {
     public void start() {
         opponent.selectValue();
         player.inputValue();
+        opponent.judgeGame(player.getValue());
 
     }
 }

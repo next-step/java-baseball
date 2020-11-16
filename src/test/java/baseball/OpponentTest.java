@@ -18,8 +18,6 @@ class OpponentTest {
             //Then
             Assertions.assertEquals(value.length(), 3);
         }
-
-
     }
 
     @Test
@@ -38,5 +36,53 @@ class OpponentTest {
         }
     }
 
+    @Test
+    void judge_strike_value_three_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("123");
+
+        //Then
+        Assertions.assertEquals(opponent.getStrikeCnt(), 3);
+
+    }
+
+    @Test
+    void judge_strike_value_two_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("124");
+
+        //Then
+        Assertions.assertEquals(opponent.getStrikeCnt(), 2);
+    }
+
+    @Test
+    void judge_strike_value_one_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("154");
+
+        //Then
+        Assertions.assertEquals(opponent.getStrikeCnt(), 1);
+    }
+
+    @Test
+    void judge_strike_value_zero_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("254");
+
+        //Then
+        Assertions.assertEquals(opponent.getStrikeCnt(), 0);
+    }
 
 }
