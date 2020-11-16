@@ -23,4 +23,14 @@ public class Playground {
 		} while (!game.didWin());
 		Ui.printBaseballGameVictory(game.getSelectedNumberSize());
 	}
+
+	public boolean isContinue(String choice) {
+		if ("1".equals(choice)) {
+			return true;
+		}
+		if ("2".equals(choice)) {
+			return false;
+		}
+		return false;
+	}
 }
