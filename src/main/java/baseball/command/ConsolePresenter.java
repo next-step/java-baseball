@@ -11,12 +11,12 @@ import baseball.presenter.Presenter;
 public class ConsolePresenter implements Presenter {
 
 	public static final String OPERATE =
-		"게임을 시작하려면 " + Operation.START.getValue() + ", 종료하려면 " + Operation.EXIT.getValue() + "를 입력하세요.";
+		"게임을 시작하려면 " + Operation.START.getValue() + ", 종료하려면 " + Operation.EXIT.getValue() + "를 입력하세요 : ";
 	public static final String EXIT = "종료합니다.";
-	public static final String START_GAME = "게임 시작";
-	public static final String PLAY_BALL = "숫자를 입력해주세요.";
+	public static final String START_GAME = "게임 시작!";
+	public static final String PLAY_BALL = "숫자를 입력하세요 : ";
 	public static final String INPUT_FAILED = "잘못된 입력값입니다.";
-	public static final String GAME_CLEAR = BALL_COUNT + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	public static final String GAME_CLEAR = BALL_COUNT + "개의 숫자를 모두 맞히셨습니다!\n게임 종료.";
 
 	private final GameScoreMessageGenerator gameScoreMessageGenerator;
 
@@ -26,7 +26,7 @@ public class ConsolePresenter implements Presenter {
 
 	@Override
 	public void operate() {
-		System.out.println(OPERATE);
+		System.out.print(OPERATE);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class ConsolePresenter implements Presenter {
 
 	@Override
 	public void playBall() {
-		System.out.println(PLAY_BALL);
+		System.out.print(PLAY_BALL);
 	}
 
 	@Override
