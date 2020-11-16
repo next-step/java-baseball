@@ -13,7 +13,7 @@ import woo.baseball.service.InputService;
  * @Date : 2020. 11. 11.
  * @Description : woo.baseball.utils 패키지에 대한 테스트.
  */
-public class InputTest {
+public class InputServiceTest {
 
 	/**
 	 * @author : chano

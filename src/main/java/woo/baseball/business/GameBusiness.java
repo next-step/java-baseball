@@ -58,7 +58,7 @@ public class GameBusiness {
    * @Method Name : strikeBallCount
    * @return : void
    */
-  private static void strikeBallCount(List<String> listHuman,List<String> listComputer, int i) {
+  public static void strikeBallCount(List<String> listHuman,List<String> listComputer, int i) {
     if (listHuman.contains(listComputer.get(i))&&!listHuman.get(i).equals(listComputer.get(i))) {
       GameStatus.ball++;
     }
