@@ -35,11 +35,13 @@ public class Input {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
 
-		if (input.length() > 1)
+		if (input.length() > 1) {
 			input = input.substring(0, 1);
+		}
 
-		if (input.equals(GameCommand.RESTART))
+		if (input.equals(GameCommand.RESTART)) {
 			return GameCommand.RESTART;
+		}
 
 		return GameCommand.EXIT;
 	}

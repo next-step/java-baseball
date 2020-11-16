@@ -17,10 +17,13 @@ public class RefereeTest {
 
 	@DisplayName("Check baseball result is correct")
 	@ParameterizedTest
-	@CsvSource(value = {"1,2,3,3,0,true", "1,2,4,2,0,false", "3,1,2,0,3,false", "4,5,6,0,0,false", "1,1,1,1,0,false", "3,3,3,0,1,false"})
-	public void checkBaseballResult(Integer firstNumber, Integer secondNumber, Integer thirdNumber, Integer strike, Integer ball, Boolean match) {
+	@CsvSource(value = {"1,2,3,3,0,true", "1,2,4,2,0,false", "3,1,2,0,3,false", "4,5,6,0,0,false", "1,1,1,1,0,false",
+		"3,3,3,0,1,false"})
+	public void checkBaseballResult(Integer firstNumber, Integer secondNumber, Integer thirdNumber, Integer strike,
+		Integer ball, Boolean match) {
 		BaseballNumbers opponents = BaseballNumbers.newOpponentBaseballNumbers(Arrays.asList(1, 2, 3));
-		BaseballNumbers players = BaseballNumbers.newPlayerBaseballNumbers(Arrays.asList(firstNumber, secondNumber, thirdNumber));
+		BaseballNumbers players = BaseballNumbers.newPlayerBaseballNumbers(
+			Arrays.asList(firstNumber, secondNumber, thirdNumber));
 
 		BaseballResult baseballResult = referee.createBaseballResult(players, opponents);
 

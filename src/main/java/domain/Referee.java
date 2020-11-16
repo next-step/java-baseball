@@ -34,16 +34,18 @@ public class Referee {
 	}
 
 	private Strike countStrike(Integer number, int idx, BaseballNumbers opponents) {
-		if (opponents.getByIndex(idx).equals(number))
+		if (opponents.getByIndex(idx).equals(number)) {
 			return Strike.newOneStrike();
+		}
 		return Strike.newZeroStrike();
 	}
 
 	private Ball countBall(Integer number, int idx, BaseballNumbers opponents) {
 		List<Integer> opponentsCopy = new ArrayList<>(opponents.baseballNumbers());
 		opponentsCopy.remove(idx);
-		if (opponentsCopy.contains(number))
+		if (opponentsCopy.contains(number)) {
 			return Ball.newOneBall();
+		}
 		return Ball.newZeroBall();
 	}
 }

@@ -15,8 +15,9 @@ public class BaseballNumbers {
 	}
 
 	public static BaseballNumbers newPlayerBaseballNumbers(List<Integer> baseballNumbers) {
-		if (baseballNumbers.size() > 3)
+		if (baseballNumbers.size() > 3) {
 			baseballNumbers = baseballNumbers.subList(0, 3);
+		}
 		return new BaseballNumbers(baseballNumbers.stream().distinct().collect(Collectors.toList()));
 	}
 
