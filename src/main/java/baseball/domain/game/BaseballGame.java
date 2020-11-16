@@ -11,6 +11,16 @@ public class BaseballGame {
 	private static final String BALL = "볼";
 	private static final String NOTHING = "낫싱";
 
+	private Scanner sc = new Scanner(System.in);
+
+	public void play(Computer computer, Player player) {
+		while(player.getStrikeCount() < 3) {
+			player.inputBaseBall(sc.next());
+			calcBaseball(computer, player);
+			System.out.println(scoreBaseball(player));
+		}
+
+	}
 
 	public void calcBaseball(Computer computer, Player player) {
 		List<Integer> computerBaseball = computer.getBaseball();
@@ -59,4 +69,6 @@ public class BaseballGame {
 
 		return computer.contains(player);
 	}
+
+
 }
