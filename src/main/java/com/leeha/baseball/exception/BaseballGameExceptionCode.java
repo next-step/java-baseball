@@ -2,7 +2,8 @@ package com.leeha.baseball.exception;
 
 public enum BaseballGameExceptionCode {
 
-    CAPACITY_OUT_OF_RANGE_EXCEPTION("ball generate failed because capacity is out of range");
+    INVALID_CAPACITY_EXCEPTION("Invalid capacity exception"),
+    INVALID_MINIMUM_OR_MAXIMUM_EXCEPTION("Invalid minimum or maximum exception");
 
     private final String message;
 
