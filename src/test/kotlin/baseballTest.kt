@@ -30,9 +30,11 @@ class BaseballTest {
         // given
         val userInput = "123"
         val generatedValue = "456"
+        val transformedUserList = transformStringNumToIntArray(userInput)
+        val transformedGeneratedList = transformStringNumToIntArray(generatedValue)
 
         // when
-        val evalulatedResult = evaluateRule(userInput, generatedValue)
+        val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
         assertEquals(EvalulatedRule.NOTHING.value, evalulatedResult)
@@ -43,9 +45,11 @@ class BaseballTest {
         // given
         val userInput = "123"
         val generatedValue = "356"
+        val transformedUserList = transformStringNumToIntArray(userInput)
+        val transformedGeneratedList = transformStringNumToIntArray(generatedValue)
 
         // when
-        val evalulatedResult = evaluateRule(userInput, generatedValue)
+        val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
         assertEquals("1 ${EvalulatedRule.BALL.value}", evalulatedResult)
@@ -56,9 +60,11 @@ class BaseballTest {
         // given
         val userInput = "123"
         val generatedValue = "126"
+        val transformedUserList = transformStringNumToIntArray(userInput)
+        val transformedGeneratedList = transformStringNumToIntArray(generatedValue)
 
         // when
-        val evalulatedResult = evaluateRule(userInput, generatedValue)
+        val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
         assertEquals("2 ${EvalulatedRule.STRIKE.value}", evalulatedResult)
@@ -69,9 +75,11 @@ class BaseballTest {
         // given
         val userInput = "123"
         val generatedValue = "123"
+        val transformedUserList = transformStringNumToIntArray(userInput)
+        val transformedGeneratedList = transformStringNumToIntArray(generatedValue)
 
         // when
-        val evalulatedResult = evaluateRule(userInput, generatedValue)
+        val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
         assertEquals("3 ${EvalulatedRule.STRIKE.value}", evalulatedResult)
@@ -82,9 +90,11 @@ class BaseballTest {
         // given
         val userInput = "123"
         val generatedValue = "138"
+        val transformedUserList = transformStringNumToIntArray(userInput)
+        val transformedGeneratedList = transformStringNumToIntArray(generatedValue)
 
         // when
-        val evalulatedResult = evaluateRule(userInput, generatedValue)
+        val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
         assertEquals("1 ${EvalulatedRule.STRIKE.value} 1 ${EvalulatedRule.BALL.value}", evalulatedResult)
