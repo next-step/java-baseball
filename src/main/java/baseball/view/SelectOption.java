@@ -7,7 +7,7 @@ public enum SelectOption {
     private final String number;
     private final boolean restart;
 
-    private SelectOption(String number, boolean restart) {
+    SelectOption(String number, boolean restart) {
         this.number = number;
         this.restart = restart;
     }

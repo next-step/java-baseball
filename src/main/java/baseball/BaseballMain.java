@@ -8,22 +8,21 @@ import baseball.view.BaseballResultView;
 
 public class BaseballMain {
     public static void main(String[] args) {
-        boolean continuePlay = true;
-        while (continuePlay) {
+        do {
             Baseball answerBaseball = BaseballGenerator.generateRandomNo();
-            continuePlay = play(answerBaseball);
-        }
+            play(answerBaseball);
+        } while(BaseballInputView.playAgain());
 
     }
 
-    public static boolean play(Baseball answer) {
-        boolean isAnswer = false;
-        while (!isAnswer) {
+    public static void play(Baseball answer) {
+        boolean isAnswer;
+        do {
             Baseball userBaseball = BaseballInputView.userInputValue();
             Result result = answer.match(userBaseball);
             isAnswer = BaseballResultView.showResult(result);
-        }
-        return BaseballInputView.playAgain();
+        } while (!isAnswer);
+
 
 
     }

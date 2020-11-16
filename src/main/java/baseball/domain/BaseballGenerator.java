@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class BaseballGenerator {
-
-
     private static final int BASEBALL_SIZE = 3;
     private static final int BASEBALL_MAX_NUM = 9;
 
