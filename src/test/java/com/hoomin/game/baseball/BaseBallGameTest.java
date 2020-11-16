@@ -19,13 +19,13 @@ public class BaseBallGameTest {
 
 	@ParameterizedTest
 	@ValueSource(ints = {1})
-	public void isOnGoing_InputGameOption_RetunTrue(int input) {
+	public void isOnGoing_InputGameOption_ReturnTrue(int input) {
 		assertTrue(baseBallGame.isOnGoing(input));
 	}
 
 	@ParameterizedTest
 	@ValueSource(ints = {2})
-	public void isOnGoing_InputGameOption_RetunFalse(int input) {
+	public void isOnGoing_InputGameOption_ReturnFalse(int input) {
 		assertFalse(baseBallGame.isOnGoing(input));
 	}
 
