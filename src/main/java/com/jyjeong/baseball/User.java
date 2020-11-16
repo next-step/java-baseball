@@ -46,6 +46,9 @@ public class User {
         return number;
     }
 
+    /**
+     * String type 데이터를 int 로 변환하여 배열에 담아 return
+     */
     private int[] stringToIntArray(String data){
         int[] userNumber = new int[3];
         for(int i = 0 ; i < data.length() ; i++){

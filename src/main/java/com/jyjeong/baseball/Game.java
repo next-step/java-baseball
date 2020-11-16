@@ -7,6 +7,10 @@ public class Game {
     User user = new User();
     Hint hint = new Hint();
 
+    /**
+     * baseball 게임을 실행시키는 메소드
+     * @return 재시작여부를 판단하는 메소드 호출
+     */
     public boolean run(){
         int[] comNum = computer.computerNumber();
         int[] userNum;
@@ -21,6 +25,10 @@ public class Game {
         return isContinue();
     }
 
+    /**
+     * 게임의 재시작여부를 판단하는 메소드
+     * @return true / false
+     */
     public boolean isContinue(){
         Scanner scan = new Scanner(System.in);
         boolean check;
