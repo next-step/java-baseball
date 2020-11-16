@@ -57,4 +57,20 @@ class GuessResultTest {
         assertThat(twoStrikeOneBallGuessResult.isNothing()).isFalse();
         assertThat(nothingGuessResult.isNothing()).isTrue();
     }
+
+    @Test
+    @DisplayName("입력 받은 매치 타입(MatchType) 의 `매치 카운트`를 증가시킨다.")
+    void increaseTest() {
+        GuessResult init = GuessResult.init();
+        init.increaseMatchCount(MatchType.STRIKE);
+
+        assertThat(init.getStrikeCount()).isEqualTo(1);
+
+        init.increaseMatchCount(MatchType.STRIKE);
+        assertThat(init.getStrikeCount()).isEqualTo(2);
+
+        init.increaseMatchCount(MatchType.BALL);
+        assertThat(init.getStrikeCount()).isEqualTo(2);
+        assertThat(init.getBallCount()).isEqualTo(1);
+    }
 }
