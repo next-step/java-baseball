@@ -9,9 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("test")
 public class StringTest {
-
 
 	@Test
 	@DisplayName("요구사항 1-1. 문자열을 스플릿 한 후 배열에 해당 값들이 잘 들어있는지(contains) 테스트")
