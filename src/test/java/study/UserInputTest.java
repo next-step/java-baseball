@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class UserInputTest {
@@ -17,6 +18,15 @@ class UserInputTest {
   void setUp() {
     generator = new BaseballRandomValueGenerator();
     userInputValue = generator.toInt();
+  }
+
+  @Test
+  @DisplayName("사용자 중복으로 입력되면 Exception")
+  void testNumberDuplicate() throws Exception {
+    final int input = 112;
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+      List<Integer> integers = BaseballUtil.splitNumber(input);
+    }).withMessageMatching("duplicate number not allowed.");
   }
 
   @Test
