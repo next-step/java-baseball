@@ -14,7 +14,8 @@ public class ConsolePresenter implements Presenter {
 		"게임을 시작하려면 " + Operation.START.getValue() + ", 종료하려면 " + Operation.EXIT.getValue() + "를 입력하세요.";
 	public static final String EXIT = "종료합니다.";
 	public static final String START_GAME = "게임 시작";
-	public static final String INPUT_FAILED = "다시 입력해주세요.";
+	public static final String PLAY_BALL = "숫자를 입력해주세요.";
+	public static final String INPUT_FAILED = "잘못된 입력값입니다.";
 	public static final String GAME_CLEAR = BALL_COUNT + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
 
 	private final GameScoreMessageGenerator gameScoreMessageGenerator;
@@ -39,12 +40,17 @@ public class ConsolePresenter implements Presenter {
 	}
 
 	@Override
+	public void playBall() {
+		System.out.println(PLAY_BALL);
+	}
+
+	@Override
 	public void inputFailed(String cause) {
-		String suffix = "";
+		String message = INPUT_FAILED;
 		if (cause != null && !cause.isEmpty()) {
-			suffix = "(" + cause + ")";
+			message += "(" + cause + ")";
 		}
-		System.out.println(INPUT_FAILED + suffix);
+		System.out.println(message);
 	}
 
 	@Override

@@ -64,7 +64,10 @@ public class BaseBallGame {
 
 	private Balls getBalls() {
 		return input.get(
-				() -> input.getBalls(),
+				() -> {
+					this.presenter.playBall();
+					return input.getBalls();
+				},
 				e -> presenter.inputFailed(e.getMessage())
 		);
 	}
