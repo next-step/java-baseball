@@ -17,7 +17,7 @@ git checkout -b 브랜치이름
 ```
 - [x] 통합개발도구(Eclipse 또는 IntelliJ)로 가져오기(import)
 - [x] 기능 구현
-- [x] 기능 구현 후 add, commit
+- [x] 기능 구현 후 add, commit ([Commit Message](https://gist.github.com/stephenparish/9941e89d80e2bc58a153))
 ```
 git status // 변경된 파일 확인
 git add -A(또는 .) // 변경된 전체 파일을 한번에 반영
@@ -107,10 +107,10 @@ To. edu.nextstep@gmail.com
 ## 리펙토링
 - 메인 로직을 실행하는 클래스, 게임 로직 클래스 생성
 - TDD로 진행하기 위해 Scanner를 메서드 안에서 생성 및 입력 받지 않고 파라미터로 전달받아 처리할 수 있도록 수정
+- 게임 로직, 컴퓨터, 플레이어, 유틸(입력 값에 대한 처리)로 분리하여 메서드 별로 구현 
 
 ## ISSUE
 ```
 No tests found for given includes
 ```
 [solve](https://stackoverflow.com/questions/55405441/intelij-2019-1-update-breaks-junit-tests)
-

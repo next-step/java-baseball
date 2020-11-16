@@ -49,7 +49,7 @@ public class BaseBallGame {
     }
 
     /**
-     * [COMPUTER] 1 ~ 9까지 서로 다른 3개의 숫자를 생성하는 메서드
+     * [Computer] 1 ~ 9까지 서로 다른 3개의 숫자를 생성하는 메서드
      *  1. 1 ~ 9까지 범위 숫자를 생성
      *  2. 서로 다른 숫자를 생성
      *  3. 총 3개의 숫자를 저장
@@ -71,7 +71,7 @@ public class BaseBallGame {
     }
 
     /**
-     * [PLAYER] 게임 플레이어
+     * [Player] 게임 플레이어
      *  1. 게임 플레이어는 컴퓨터가 생각하는 1 ~ 9까지 3개의 숫자를 입력
      *  2. 컴퓨터가 생성한 3개의 숫자와 게임 플레이어가 만든 3개의 숫자를 비교
      *  3. 게임 플레이어가 입력한 값이 컴퓨터가 입력한 값과 순서와 3개의 숫자가 모두 같은 경우 3 Strike 로 반복 종료
@@ -90,7 +90,7 @@ public class BaseBallGame {
     }
 
     /**
-     * [GAME LOGIC] 컴퓨터와 게임 플레이어의 값을 비교
+     * [Game Logic] 컴퓨터와 게임 플레이어의 값을 비교
      *  1. 컴퓨터가 입력한 값과 사용자가 입력한 값들의 순서와 값이 모두 같은 경우 Strike Count 증가
      *  2. 순서는 같지 않으나 값을 포함하고 있는 경우 Ball Count 증가
      *
@@ -112,12 +112,15 @@ public class BaseBallGame {
                 ballCnt++;
             }
         }
+        if(strikeCnt == BASE_BALL_CNT) return false;
         return printMatches(strikeCnt, ballCnt);
     }
 
     /**
      * [Game Logic] 한 회의 게임이 종료된 후, 재게임 또는 게임종료 여부를 입력 요청하는 메서드
-     *  1. 사용자의 입력값이
+     *  1. 한 회 게임이 끝난 뒤 재게임 여부를 요청
+     *  2. 사용자는 1 또는 2의 값으로 재게임 또는 종료를 선택할 수 있다.
+     *
      * @param sc 사용자의 입력을 받을 수 있는 Scanner
      * @return 게임 Rule에 따라 재게임: 1 입력 시 true, 게임 종료: 2 입력 시: false
      */
