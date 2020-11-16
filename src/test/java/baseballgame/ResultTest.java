@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class ResultTest {
   @Test
   @DisplayName("Message test")
-  void messageTest() {
+  void resultTest() {
     Result result = new Result(1, 1);
     assertThat(result.getMessage()).isEqualTo("1스트라이크 1볼");
     assertThat(result.hasWin()).isEqualTo(false);
