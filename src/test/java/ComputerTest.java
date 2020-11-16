@@ -1,12 +1,12 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ComputerTest {
 
@@ -42,4 +42,20 @@ class ComputerTest {
         assertThat(computer.getNumbers()).isNotEqualTo(numbers);
     }
 
+    @Test
+    public void check_result_test() {
+        //given
+        Computer computer = new Computer();
+        computer.generateNumber();
+        List<String> userNumbers = new ArrayList<>(computer.getNumbers());
+        //when
+        Collections.reverse(userNumbers);
+        computer.checkResult(userNumbers);
+        String result = computer.resultMessage();
+
+        //then
+        assertThat(result)
+                .contains("1스트라이크")
+                .contains("2볼");
+    }
 }
