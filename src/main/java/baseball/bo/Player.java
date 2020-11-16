@@ -14,16 +14,10 @@ public class Player {
 
     public void inputStrikeNumber() {
         Scanner scan = new Scanner(System.in);
-
-        while (true) {
+        do {
             System.out.println("숫자를 입력해 주세요.");
-            String inputData = scan.nextLine();
-
-            if(isValid(inputData)) {
-                this.strikeNumber = inputData;
-                return;
-            }
-        }
+            this.strikeNumber = scan.nextLine();
+        } while(!isValid(this.strikeNumber));
     }
 
     /**
