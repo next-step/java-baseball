@@ -22,6 +22,6 @@ public class BallFactory {
     public static List<Ball> createBalls() {
         Collections.shuffle(BALLS);
 
-        return BALLS.subList(0, 3);
+        return BALLS.subList(Balls.ZERO, Balls.BALLS_COUNT);
     }
 }

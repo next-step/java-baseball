@@ -10,9 +10,10 @@ import java.util.Objects;
 
 @Getter
 public class Balls {
-    private static final int ADD_COUNT = 1;
-    private static final int ZERO = 0;
+    public static final int ZERO = 0;
     public static final int BALLS_COUNT = 3;
+
+    private static final int ADD_COUNT = 1;
     private static final String REGEX = "";
 
     private List<Ball> balls;
