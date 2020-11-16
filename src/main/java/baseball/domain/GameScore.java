@@ -36,15 +36,11 @@ public class GameScore {
 
         for (int i = 0; i < randomNumbers.length; i++) {
             String num = randomNumbers[i];
-            for (int j = 0; j < inputNumbers.length; j++) {
-                if (num.equals(inputNumbers[j]) && i == j) {
-                    this.strike++;
-                    break;
-                }
-                if (num.equals(inputNumbers[j]) && i != j) {
-                    this.ball++;
-                    break;
-                }
+            if (!num.equals(inputNumbers[i]) && inputNumber.contains(num)) {
+                this.ball++;
+            }
+            if (num.equals(inputNumbers[i])) {
+                this.strike++;
             }
         }
     }

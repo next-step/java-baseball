@@ -12,9 +12,8 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
-    boolean isExit = false;
+    private boolean isExit = false;
     private Scanner scanner = new Scanner(System.in);
-
 
     public void play() {
         while (!isExit) {
@@ -24,29 +23,43 @@ public class BaseballGame {
 
     public void doGame() {
 
-        //3개 맞출 때까지
         boolean isGameClear = false;
         String[] randomNumbers = BaseballUtil.getRandomNumbers();
 
         while (!isGameClear) {
-            MessageUtil.printStartMessage();
-            String inputText = scanner.nextLine();
-
-            BaseballNumbers baseballNumbers = new BaseballNumbers(inputText);
-            baseballNumbers.checkValidation();
-
-            GameScore gameScore = new GameScore();
-            gameScore.checkGameScore(randomNumbers, baseballNumbers.getNumbers());
-
-            MessageUtil.printGameResult(gameScore);
+            //유저 입력 텍스트를 받아 validation check 후 리턴
+            BaseballNumbers baseballNumbers = receiveUserInputAndCheckValid();
+            //게임 스코어 체크 및 프린트
+            GameScore gameScore = checkGameScore(randomNumbers, baseballNumbers);
+            //게임 클리어 여부 확인
             isGameClear = gameScore.isGameClear();
         }
-        MessageUtil.printRetryAskMessage();
         askExit();
     }
 
+    public BaseballNumbers receiveUserInputAndCheckValid(){
+        MessageUtil.printStartMessage();
+        String inputText = scanner.nextLine();
+
+        BaseballNumbers baseballNumbers = new BaseballNumbers(inputText);
+        baseballNumbers.checkValidation();
+
+        return baseballNumbers;
+    }
+
+    public GameScore checkGameScore(String[] randomNumbers, BaseballNumbers baseballNumbers){
+        GameScore gameScore = new GameScore();
+        gameScore.checkGameScore(randomNumbers, baseballNumbers.getNumbers());
+
+        MessageUtil.printGameResult(gameScore);
+        return gameScore;
+    }
+
     public void askExit() {
+        MessageUtil.printRetryAskMessage();
         String command = scanner.nextLine();
+
+        //정해진 명령어 이외의 입력은 오류를 리턴한다.
         if (!GameCommandType.isExistType(command)) {
             throw new BizException(BizExceptionType.INVALID_COMMAND);
         }
