@@ -21,7 +21,9 @@ public class BaseballGame {
 
 		STRIKE("스트라이크"),
 
-		BALL("볼");
+		BALL("볼"),
+
+		MENU("게임을새로시작하려면1,종료하려면2를입력하세요.");
 
 		final private String message;
 
@@ -65,7 +67,7 @@ public class BaseballGame {
 
 		for (int i = 0; i < randomArray.length; i++) {
 			randomArray[i] = (int) (Math.random() * 9) + 1;
-			i = dupCheckNumArray(randomArray, i);
+			i = checkDupNumArray(randomArray, i);
 		}
 
 		return randomArray;
@@ -95,11 +97,9 @@ public class BaseballGame {
 	 * @return
 	 */
 	public boolean doCalculation(int[] resultNumArr, int[] inputNumArr) {
-		int resultIndex = 0;
 		boolean gameResult = true;
-		for (int resultNum : resultNumArr) {
-			inputNumLoop(inputNumArr, resultNum, resultIndex);
-			resultIndex++;
+		for (int i = 0; i < resultNumArr.length; i++) {
+			loopToInputArrRsltArr(inputNumArr, resultNumArr[i], i);
 		}
 		printResultMessage();
 		if (strike == 3) {
@@ -116,7 +116,7 @@ public class BaseballGame {
 	 * @param checkIndex
 	 * @return int
 	 */
-	public int dupCheckNumArray(int[] checkArray, int checkIndex) {
+	public int checkDupNumArray(int[] checkArray, int checkIndex) {
 		int index = checkIndex;
 		for (int i = 0; i < checkIndex; i++) {
 			// 이전 값과 비교하여 값이 중복일때 배열 index -1
@@ -152,7 +152,14 @@ public class BaseballGame {
 		return scanner.nextInt();
 	}
 
-	public void inputNumLoop(int[] inputNumArr, int resultNum, int resultIndex) {
+	/**
+	 * 사용자 입력값과 랜덤 값 비교 loop
+	 *
+	 * @param inputNumArr
+	 * @param resultNum
+	 * @param resultIndex
+	 */
+	public void loopToInputArrRsltArr(int[] inputNumArr, int resultNum, int resultIndex) {
 		int intputIndex = 0;
 		for (int inputNum : inputNumArr) {
 			checkBaseballCount(inputNum, resultNum, intputIndex, resultIndex);
@@ -161,7 +168,7 @@ public class BaseballGame {
 	}
 
 	/**
-	 * 야구게임 ball, strike 카운트 체크
+	 * 1 야구게임 ball, strike 카운트 체크
 	 *
 	 * @param inputNum
 	 * @param resultNum
@@ -189,14 +196,18 @@ public class BaseballGame {
 	 * 야구게임 결과 메세지 출력
 	 */
 	public void printResultMessage() {
-		String message = strike + " "+ MESSAGE_CD.STRIKE.message + " " + ball + " " + MESSAGE_CD.BALL.message;
+		String message = strike + " " + MESSAGE_CD.STRIKE.message + " " + ball + " " + MESSAGE_CD.BALL.message;
 		if (strike == 0 && ball == 0) {
 			message = MESSAGE_CD.NOTHING.message;
 		}
-		if(strike ==3){
-			message = MESSAGE_CD.SUCCESS.message();
-		}
 		System.out.println(message);
+	}
+
+	/**
+	 * 스트라이크 메세지 출력
+	 */
+	public void printStrikeMessage() {
+		System.out.println(MESSAGE_CD.SUCCESS.message() + "\n" + MESSAGE_CD.MENU.message);
 	}
 
 	/**
@@ -205,10 +216,15 @@ public class BaseballGame {
 	 * @return boolean
 	 */
 	public boolean restartGameMenu() {
+		int gameMenuNum = 0;
+		resetBaseballCount();
+		printStrikeMessage();
+		gameMenuNum = scanner.nextInt();
+		if (gameMenuNum == 1) {
+			startBaseballGame();
+		}
 		return false;
 	}
-
-
 
 	public static void main(String[] args) {
 		BaseballGame baseballSet = new BaseballGame();
