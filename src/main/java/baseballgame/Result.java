@@ -19,7 +19,7 @@ public class Result {
   }
 
   public boolean hasWin() {
-    return strikes == BaseballGame.DIGITS;
+    return strikes == GameNumbers.DIGITS;
   }
 
   public String getMessage() {

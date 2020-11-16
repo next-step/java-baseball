@@ -24,8 +24,8 @@ class DefaultGenerator implements AnswerGenerator {
   }
 
   private int[] pickRandomNumbers(List<Integer> list) {
-    int[] randomArray = new int[BaseballGame.DIGITS];
-    for (int i = 0; i < BaseballGame.DIGITS; i++) {
+    int[] randomArray = new int[GameNumbers.DIGITS];
+    for (int i = 0; i < GameNumbers.DIGITS; i++) {
       randomArray[i] = list.remove(getRandomIndex(list));
     }
     return randomArray;

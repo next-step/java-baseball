@@ -12,7 +12,7 @@ public class GameController {
   static OutputInterface out = new OutputInterface(System.out);
   private static final String startingMessage = "게임을 시작합니다.";
   private static final String inputMessage = "숫자를 입력해주세요 : ";
-  private static final String winningMessage = BaseballGame.DIGITS + "개의 숫자를 모두 맞히셨습니다! 게임 종료.";
+  private static final String winningMessage = GameNumbers.DIGITS + "개의 숫자를 모두 맞히셨습니다! 게임 종료.";
   private static final String continueMessage = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
   private static final String invalidChoiceMessage = "잘못 입력하셨습니다. 1, 2 중 하나를 입력하세요.";
 

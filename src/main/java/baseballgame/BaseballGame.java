@@ -1,8 +1,6 @@
 package baseballgame;
 
 public class BaseballGame {
-  public static final int DIGITS = 3;
-
   private GameNumbers answer;
 
   public void init() {
