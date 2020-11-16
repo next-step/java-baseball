@@ -44,6 +44,7 @@ public class BaseballGameManager {
 	
 	private void GameExit() {
 		System.out.println("BaseBall 게임 종료");
+		System.exit(0);
 	}
 
 }
