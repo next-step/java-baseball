@@ -127,7 +127,7 @@ public class BaseBallGame {
             print(MSG_RE_GAME);
             reGameFlag = sc.nextLine();
             /* 사용자가 입력한 값이 숫자가 아니거나, 1 또는 2가 아닌 경우 다시 입력 */
-        } while(!isReGame(reGameFlag));
+        } while(!isReGameRangeInValue(reGameFlag));
 
         return reGameFlag.equals(RE_GAME);
     }
@@ -206,7 +206,7 @@ public class BaseBallGame {
     }
 
     /* 재게임 여부 1 또는 2 */
-    public boolean isReGame(String reGameFlag) {
+    public boolean isReGameRangeInValue(String reGameFlag) {
         return (reGameFlag.equals(END_GAME) || reGameFlag.equals(RE_GAME));
     }
 

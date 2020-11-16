@@ -126,8 +126,8 @@ public class BaseBallGameTest {
     @DisplayName("[ReGAME] 재게임 여부 확인")
     public void reGameValueYn() {
         String userInput = "1";
-        assertThat(baseBallGame.isReGame(userInput)).isTrue();
+        assertThat(baseBallGame.isReGameRangeInValue(userInput)).isTrue();
         userInput = "2";
-        assertThat(baseBallGame.isReGame(userInput)).isTrue();
+        assertThat(baseBallGame.isReGameRangeInValue(userInput)).isTrue();
     }
 }
