@@ -41,17 +41,20 @@ public class Opponent {
         strike = 0;
         ball = 0;
 
-        String[] inputNumbers = inputNumber.split("");
-        String[] strikeNumbers = strikeNumber.split("");
+        for (int i = 0; i < inputNumber.length(); i++) {
+            increaseBall(strikeNumber, inputNumber, i);
+        }
+    }
 
-        for (int i = 0; i < inputNumbers.length; i++) {
-            if (inputNumbers[i].equals(strikeNumbers[i])) {
-                strike++;
-                continue;
-            }
-            if (strikeNumber.contains(inputNumbers[i])) {
-                ball++;
-            }
+    private void increaseBall(String strikeNumber, String inputNumber, int idx) {
+
+        if (strikeNumber.charAt(idx)==inputNumber.charAt(idx)) {
+            strike++;
+        }
+
+        int indexOf = strikeNumber.indexOf(inputNumber.charAt(idx));
+        if(indexOf != -1 && indexOf != idx) {
+            ball++;
         }
     }
 
