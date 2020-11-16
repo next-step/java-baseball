@@ -3,19 +3,12 @@ package baseball.domain;
 import baseball.exception.IncorrectInputException;
 import baseball.view.GameView;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Player {
 
     public Number inputNumber(GameView gameView) {
         String inputValue = gameView.inputNumber();
         validateInput(inputValue);
-        List<Integer> digits = Arrays.asList(
-                Character.getNumericValue(inputValue.charAt(0)),
-                Character.getNumericValue(inputValue.charAt(1)),
-                Character.getNumericValue(inputValue.charAt(2)));
-        return new Number(digits);
+        return new Number(inputValue);
     }
 
     private void validateInput(String inputValue) {
