@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
+import baseball.common.CustomException;
 import baseball.common.PrintMessage;
 
 public class CreateBall {
@@ -56,7 +57,7 @@ public class CreateBall {
         int maxNumber = Collections.max(balls);
 
         if (minNumber == 0 || maxNumber >= MAX_NUMBER + ZERO_NUMBER_EXCEPT) {
-            throw new IllegalArgumentException(PrintMessage.RANDOM_NUMBER_MIN_MAX_ERROR);
+            throw new CustomException.RandomNumberMinMaxError(PrintMessage.RANDOM_NUMBER_MIN_MAX_ERROR);
         }
     }
 
@@ -66,7 +67,7 @@ public class CreateBall {
      */
     void validateRandomBallSize(final LinkedHashSet<Integer> balls) {
         if (balls.size() != COLLECTION_NUMBER_SIZE) {
-            throw new IllegalArgumentException(PrintMessage.RANDOM_NUMBER_SIZE_ERROR);
+            throw new CustomException.NumberSizeError(PrintMessage.RANDOM_NUMBER_SIZE_ERROR);
         }
     }
 

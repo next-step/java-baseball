@@ -2,7 +2,6 @@ package baseball.game;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import baseball.common.PrintMessage;
+import baseball.common.CustomException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,8 +39,8 @@ class BaseBallTest {
     @ParameterizedTest
     @ValueSource(strings = {"3f2", "2d3", "9fd"})
     void validate_input_number_type_bad_request(final String inputNumber) {
-        InputMismatchException exception = assertThrows(
-            InputMismatchException.class,
+        CustomException.NumberTypeError exception = assertThrows(
+            CustomException.NumberTypeError.class,
             () -> baseBall.validateInputNumberType(new Scanner((inputNumber)))
         );
 
@@ -58,8 +58,8 @@ class BaseBallTest {
     @ParameterizedTest
     @ValueSource(ints = {2354, 5321, 1943})
     void validate_input_number_size_bad_request(final int inputNumber) {
-        IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,
+        CustomException.NumberSizeError exception = assertThrows(
+            CustomException.NumberSizeError.class,
             () -> baseBall.validateInputNumberSize(inputNumber)
         );
 
@@ -89,8 +89,8 @@ class BaseBallTest {
     void validate_input_number_to_ball_size_bad_request(final int oneNumber,
                                                         final int twoNumber,
                                                         final int threeNumber) {
-        IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,
+        CustomException.NumberDuplicateError exception = assertThrows(
+            CustomException.NumberDuplicateError.class,
             () -> baseBall.validateInputNumberToBallSize(new LinkedHashSet<>(Arrays.asList(oneNumber, twoNumber, threeNumber)))
         );
 

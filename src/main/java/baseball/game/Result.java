@@ -1,6 +1,6 @@
 package baseball.game;
 
-public class Result {
+class Result {
 
     private final static int CLEAR_STRIKE_COUNT = 3;
 

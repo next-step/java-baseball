@@ -10,6 +10,10 @@ import baseball.common.Print;
 import baseball.common.PrintMessage;
 import baseball.computer.Computer;
 
+import static baseball.common.CustomException.NumberDuplicateError;
+import static baseball.common.CustomException.NumberSizeError;
+import static baseball.common.CustomException.NumberTypeError;
+
 public class BaseBall {
 
     private final static String STRIKE = "스트라이크";
@@ -79,7 +83,7 @@ public class BaseBall {
             LinkedHashSet<Integer> balls = createInputNumberToBalls(inputNumber);
 
             checkUserBallAndComputerBall(getComputerBalls(), balls);
-        } catch (IllegalArgumentException | InputMismatchException e) {
+        } catch (NumberTypeError | NumberDuplicateError | NumberSizeError e) {
             validateGameRuleFail(e.getMessage());
         }
     }
@@ -104,7 +108,7 @@ public class BaseBall {
         try {
             inputNumber = scanner.nextInt();
         } catch (InputMismatchException e) {
-            throw new InputMismatchException(PrintMessage.INPUT_NUMBER_ERROR);
+            throw new NumberTypeError(PrintMessage.INPUT_NUMBER_ERROR);
         }
 
         return inputNumber;
@@ -116,7 +120,7 @@ public class BaseBall {
      */
     void validateInputNumberSize(final int inputNumber) {
         if (String.valueOf(inputNumber).length() != BALL_SIZE) {
-            throw new IllegalArgumentException(PrintMessage.INPUT_NUMBER_SIZE_ERROR);
+            throw new NumberSizeError(PrintMessage.INPUT_NUMBER_SIZE_ERROR);
         }
     }
 
@@ -145,7 +149,7 @@ public class BaseBall {
      */
     void validateInputNumberToBallSize(final LinkedHashSet<Integer> balls) {
         if (balls.size() != BALL_SIZE) {
-            throw new IllegalArgumentException(PrintMessage.INPUT_NUMBER_DUPLICATE_ERROR);
+            throw new NumberDuplicateError(PrintMessage.INPUT_NUMBER_DUPLICATE_ERROR);
         }
     }
 
