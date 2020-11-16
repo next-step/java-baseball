@@ -19,7 +19,6 @@ public class BaseballGame {
     }
 
     public void executeGame() {
-
         initPlayer();
 
         do {
@@ -34,7 +33,6 @@ public class BaseballGame {
     }
 
     private boolean exitGame() {
-
         System.out.println("게임을 새로 시작하려면 1 종료하려면 2 를 입력하세요.");
         Scanner scan = new Scanner(System.in);
         String inputData;
