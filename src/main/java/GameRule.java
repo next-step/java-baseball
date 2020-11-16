@@ -46,7 +46,7 @@ public class GameRule {
     private void displayHint(GameRuleStrike gameRuleStrike, GameRuleBall gameRuleBall) {
         String hint = "";
         if(!gameRuleStrike.isThreeStrike() && gameRuleStrike.getStrike() > 0) {
-            hint += String.format("%s", gameRuleStrike.getHint());
+            hint += String.format("%s ", gameRuleStrike.getHint());
         }
 
         if(gameRuleBall.getBall() > 0 ) {
