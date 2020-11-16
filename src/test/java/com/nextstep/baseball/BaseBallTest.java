@@ -2,6 +2,7 @@ package com.nextstep.baseball;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -9,6 +10,7 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseBallTest {
+
 	private Set<Integer> numbersRange;
 
 	BaseBall baseBall = new BaseBall();
@@ -22,39 +24,8 @@ public class BaseBallTest {
 	}
 
 	@Test
-	@DisplayName("1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 함수 테스트")
-	void isNotDuplicatedThreeNumber_Between1To9() {
-		List<Integer> selectedThreeNumber = baseBall.selectNonoverlapThreeNumber();
-
-		assertThat(selectedThreeNumber)
-				.isNotNull()
-				.isNotEmpty()
-				.doesNotContainNull()
-				.doesNotHaveDuplicates()
-				.hasSize(3);
-
-		for (Integer input : selectedThreeNumber) {
-			assertThat(numbersRange.contains(input)).isTrue();
-		}
-	}
-
-	@Test
-	@DisplayName("사용자로부터 1~9까지 서로 다른 임의의 수 3개를 입력 받는 함수 테스트")
-	void readDigitList() {
-		List<Integer> result = baseBall.readNonoverThreeNumber(123);
-		assertThat(result)
-				.isNotNull()
-				.isNotEmpty()
-				.doesNotContainNull()
-				.doesNotHaveDuplicates()
-				.hasSize(3);
-		for (Integer input : result) {
-			assertThat(numbersRange.contains(input)).isTrue();
-		}
-	}
-
-	@Test
 	@DisplayName("3 Strike 테스트")
+	@Order(1)
 	void test_ThreeStrike() {
 		List<Integer> answerList = Arrays.asList(1, 2, 3);
 		assertThat(answerList)
@@ -84,6 +55,7 @@ public class BaseBallTest {
 
 	@Test
 	@DisplayName("2 Strike 테스트")
+	@Order(2)
 	void test_TwoStrike() {
 		List<Boolean> result = baseBall.detectStrike(Arrays.asList(1, 2, 3), Arrays.asList(1, 4, 3));
 		assertThat(result).isNotNull().isNotEmpty().containsExactly(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE).hasSize(3);
@@ -91,6 +63,7 @@ public class BaseBallTest {
 
 	@Test
 	@DisplayName("1 Strike 테스트")
+	@Order(3)
 	void test_OneStrike() {
 		List<Boolean> result = baseBall.detectStrike(Arrays.asList(1, 2, 3), Arrays.asList(1, 4, 5));
 		assertThat(result).isNotNull().isNotEmpty().containsExactly(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE).hasSize(3);
@@ -184,4 +157,51 @@ public class BaseBallTest {
 		boolean isNothing = baseBall.isNothing(answerList, ballCount);
 		assertThat(isNothing).isEqualTo(true);
 	}
+
+	@Test
+	@DisplayName("1Ball, 1Strike 테스트")
+	void test_1Ball_1Strike() {
+		List<Integer> answerList = new ArrayList<>();
+		answerList.add(1);
+		answerList.add(2);
+		answerList.add(3);
+
+		List<Integer> inputNumberList = new ArrayList<>();
+		inputNumberList.add(1);
+		inputNumberList.add(5);
+		inputNumberList.add(2);
+
+		List<Boolean> strikeList = new ArrayList<>();
+		strikeList.add(true);
+		strikeList.add(false);
+		strikeList.add(false);
+
+		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
+		assertThat(ballCount).isEqualTo(1);
+		assertThat(strikeList).isNotNull().isNotEmpty().containsExactly(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE).hasSize(3);
+	}
+
+	@Test
+	@DisplayName("2Ball, 1Strike 테스트")
+	void test() {
+		List<Integer> answerList = new ArrayList<>();
+		answerList.add(1);
+		answerList.add(2);
+		answerList.add(3);
+
+		List<Integer> inputNumberList = new ArrayList<>();
+		inputNumberList.add(1);
+		inputNumberList.add(3);
+		inputNumberList.add(2);
+
+		List<Boolean> strikeList = new ArrayList<>();
+		strikeList.add(true);
+		strikeList.add(false);
+		strikeList.add(false);
+
+		int ballCount = baseBall.detectBall(strikeList, answerList, inputNumberList);
+		assertThat(ballCount).isEqualTo(2);
+		assertThat(strikeList).isNotNull().isNotEmpty().containsExactly(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE).hasSize(3);
+	}
+
 }
