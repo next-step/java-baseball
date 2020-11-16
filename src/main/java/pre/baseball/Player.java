@@ -24,6 +24,9 @@ public class Player {
 	if (hasZero(input))
 	    throw new IllegalArgumentException("0은 포함할 수 없습니다.");
 
+	if (hasNotMatchDigit(input))
+	    throw new IllegalArgumentException(Computer.DEFAULT_DIGIT + "자리의 숫자만 입력할 수 있습니다.");
+
 	return input;
     }
 
@@ -35,6 +38,17 @@ public class Player {
      */
     private boolean hasZero(int input) {
 	return Integer.toString(input).contains("0");
+    }
+
+    /**
+     * 자릿수가 일치하는지 확인한다.
+     * 
+     * @param input
+     * @return
+     */
+    private boolean hasNotMatchDigit(int input) {
+	int length = (int) (Math.log10(input) + 1);
+	return (Computer.DEFAULT_DIGIT != length);
     }
 
 }
