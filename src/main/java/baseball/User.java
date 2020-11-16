@@ -17,17 +17,21 @@ public class User {
   }
 
   public static int[] stringToArr(String input) {
-    int number = Integer.parseInt(input);
-    int[] arr = new int[3];
-    arr[0] = number / 100;
-    arr[1] = number % 100 / 10;
-    arr[2] = number % 10;
-    return arr;
+    String[] inputArr = input.split("");
+    int[] number = new int[InputType.MAX_ANSWER_SIZE];
+    for(int i = 0; i < InputType.MAX_ANSWER_SIZE; i++) {
+      number[i] = Integer.parseInt(inputArr[i]);
+    }
+    return number;
   }
 
   public static boolean validateUserInput(String input) {
-    if (input.length() != 3 || !input.matches("^[0-9]*$")) {
+    if (input.length() != InputType.MAX_ANSWER_SIZE || !input.matches("^[0-9]*$")) {
       System.out.println("숫자를 바르게 입력하세요!");
+      return false;
+    }
+    if (input.contains("0")) {
+      System.out.println("1부터 9까지의 수만 입력하세요!");
       return false;
     }
     return true;

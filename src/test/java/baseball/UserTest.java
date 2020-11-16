@@ -31,7 +31,8 @@ public class UserTest {
         Arguments.of("1234", false),
         Arguments.of("12b", false),
         Arguments.of("1a3", false),
-        Arguments.of("abc", false)
+        Arguments.of("abc", false),
+        Arguments.of("120", false)
     );
   }
 }
