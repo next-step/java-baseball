@@ -1,6 +1,7 @@
 package domain.baseballRule;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BaseballNumbers {
 	private final List<Integer> baseballNumbers;
@@ -15,8 +16,8 @@ public class BaseballNumbers {
 
 	public static BaseballNumbers newPlayerBaseballNumbers(List<Integer> baseballNumbers) {
 		if (baseballNumbers.size() > 3)
-			baseballNumbers = baseballNumbers.subList(0, 2);
-		return new BaseballNumbers(baseballNumbers);
+			baseballNumbers = baseballNumbers.subList(0, 3);
+		return new BaseballNumbers(baseballNumbers.stream().distinct().collect(Collectors.toList()));
 	}
 
 	public Integer getByIndex(int index) {

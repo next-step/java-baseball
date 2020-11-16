@@ -17,12 +17,11 @@ public class PlayerTest {
 
 	Player player = new Player();
 
-	@DisplayName("Check input of player baseball numbers size between 0 to 2")
+	@DisplayName("Check input of player baseball numbers size between 1 to 3")
 	@Test
-	public void isExist() {
+	public void checkPlayerBaseballNumberCreated() {
 		List<Integer> inputs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 		BaseballNumbers playerBaseballNumbers = player.inputBaseballNumbers(inputs);
-		assertTrue(playerBaseballNumbers.size() >= 0 && playerBaseballNumbers.size() <= 2);
+		assertTrue(playerBaseballNumbers.size() >= 1 && playerBaseballNumbers.size() <= 3);
 	}
-
 }
