@@ -16,8 +16,8 @@ public class Player {
         Scanner scan = new Scanner(System.in);
         do {
             System.out.println("숫자를 입력해 주세요.");
-            this.strikeNumber = scan.nextLine();
-        } while(!isValid(this.strikeNumber));
+            strikeNumber = scan.nextLine();
+        } while(!isValid(strikeNumber));
     }
 
     /**
@@ -66,8 +66,8 @@ public class Player {
         }
         if(stringSet.size()<3) {
             System.out.println("중복된 숫자를 입력하였습니다. 다시 입력해 주세요");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }
