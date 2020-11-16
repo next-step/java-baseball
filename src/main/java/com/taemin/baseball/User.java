@@ -43,11 +43,11 @@ public class User {
 	private boolean isVaildation(LinkedHashSet<Integer> userNumbers) {
 		if(userNumbers == null)
 			return false;
+		if(!isThreeDigits(userNumbers))
+			return false;
 		if(!isZero(userNumbers))
 			return false;
 		if(!isDuplication(userNumbers))
-			return false;
-		if(!isThreeDigits(userNumbers))
 			return false;
 		return true;
 	}
@@ -71,6 +71,10 @@ public class User {
 	private boolean isThreeDigits (LinkedHashSet<Integer> userNumbers) {
 		if(userNumbers.iterator().next() > 9) {
 			System.out.println("입력한 숫자가 4자리 이상입니다.");
+			return false;
+		}
+		if(userNumbers.iterator().next() == 0) {
+			System.out.println("입력한 숫자가 2자리 이하입니다.");
 			return false;
 		}
 		return true;
