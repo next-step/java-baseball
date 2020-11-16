@@ -89,8 +89,8 @@
 ### MatchTypeCounts (매치 타입 카운트)
 
 - (Map<MatchType, Integer> countByMatchTypes) 를 갖고 있는 일급 컬렉션
-- [ ] _매치 타입_ 별로 `매치 카운트`를 제공한다.
-- [ ] 입럭받은 _매치 타입_ 의 `매치 카운트` 를 증가시킨다.
+- [x] 매치 타입(MatchType) 별로 `매치 카운트`를 제공한다.
+- [x] 입럭받은 매치 타입(MatchType) 의 `매치 카운트` 를 증가시킨다.
 
 ### BaseballGameMachine
 

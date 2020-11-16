@@ -15,6 +15,7 @@ public class MatchTypeCounts {
         Map<MatchType, Integer> countByMatchType = new HashMap<>();
         countByMatchType.put(MatchType.STRIKE, 0);
         countByMatchType.put(MatchType.BALL, 0);
+        countByMatchType.put(MatchType.NO_MATCH, 0);
         return new MatchTypeCounts(countByMatchType);
     }
 
