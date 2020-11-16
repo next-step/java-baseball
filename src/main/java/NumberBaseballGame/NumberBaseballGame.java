@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class NumberBaseballGame {
 
 	private Integer[] answer;
+	Scanner scanner;
 
 	public NumberBaseballGame() {
 		answer = new Integer[3];
+		scanner = new Scanner(System.in);
 	}
 
 	public void setAnswer() {
@@ -34,11 +36,30 @@ public class NumberBaseballGame {
 	}
 
 	public int[] writeInputDate() {
-		Scanner scanner = new Scanner(System.in);
+		String scData = "";
 
-		System.out.print("숫자를 입력하세요 : ");
-		String scData = scanner.next();
+		do {
+			System.out.print("숫자를 입력하세요 : ");
+			scData = scanner.next();
+		} while (!isValidInputData(scData));
 
+		return splitInputData(scData);
+	}
+
+	public boolean isValidInputData(String scData) {
+		if (scData.length() != 3) {
+			System.out.println("세자리 숫자를 입력해야합니다");
+			return false;
+		}
+		if (!scData.matches("^[1-9]+$")) {
+			System.out.println("1~9 숫자만 입력해야합니다");
+			return false;
+		}
+
+		return true;
+	}
+
+	public int[] splitInputData(String scData) {
 		String[] scDataToken = scData.split("(?!^)");
 		int[] inputData = new int[3];
 
@@ -100,7 +121,6 @@ public class NumberBaseballGame {
 
 	public boolean isRestartGame() {
 		String progressFlg = "";
-		Scanner scanner = new Scanner(System.in);
 
 		while (!progressFlg.equals("1") && !progressFlg.equals("2")) {
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
