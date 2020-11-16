@@ -7,9 +7,10 @@ public class Baseball {
     public void gamePlay() {
         Computer computer = new Computer();
         computer.generateNumber();
-
-        userNumberInput();
-
+        do {
+            userNumberInput();
+            computer.checkResult(userNumbers);
+        } while (computer.getStrike() != 3);
         gameEnd();
     }
 
