@@ -18,9 +18,6 @@ public class BaseBallGameTest {
     /* 게임 로직에 필요한 상수 정의 */
     private static final Integer BASE_BALL_CNT = 3;
 
-    private static final String END_GAME = "2";
-    private static final String RE_GAME = "1";
-
     private BaseBallGame baseBallGame;
 
     @BeforeEach
@@ -43,7 +40,7 @@ public class BaseBallGameTest {
     }
 
     @Test
-    @DisplayName("[USER TURN] 게임 플레이어가 입력한 값의 길이가 3이아닌 예외 발생")
+    @DisplayName("[USER TURN] 게임 플레이어가 입력한 값의 길이가 3이아닌 값에 대한 처리")
     public void validUserTurnIsValidLengthException(){
         Scanner sc = new Scanner("13");
         assertThat(baseBallGame.isUserInputValidLength(sc.nextLine())).isFalse();
