@@ -13,8 +13,8 @@ public class Game {
 		setNumbers(new UniqueRandomNumbersGenerator(ALLOWED_BALL_NUMBERS).generate(BALL_COUNT));
 	}
 
-	public Game(NumbersGenerator numbersGenerator) {
-		setNumbers(numbersGenerator.generate(BALL_COUNT));
+	public Game(BallGenerator ballGenerator) {
+		setNumbers(ballGenerator.generate(BALL_COUNT));
 	}
 
 	private void setNumbers(List<Integer> numbers) {

@@ -2,7 +2,7 @@ package baseball.game;
 
 import java.util.List;
 
-public interface NumbersGenerator {
+public interface BallGenerator {
 
 	List<Integer> getNumberPool();
 

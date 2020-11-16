@@ -6,12 +6,12 @@ public class Balls {
 
 	private int[] numbers = new int[BALL_COUNT];
 
-	public Balls(String numbers) {
+	public Balls(String ballNumbers) {
 		try {
-			validateLength(numbers);
-			setNumbers(numbers);
+			validateLength(ballNumbers);
+			setNumbers(ballNumbers);
 		} catch (IllegalArgumentException e) {
-			throw new InvalidBallNumbersException(numbers);
+			throw new InvalidBallNumbersException(ballNumbers);
 		}
 	}
 
@@ -26,24 +26,24 @@ public class Balls {
 		return this.numbers[position];
 	}
 
-	private void validateLength(String numbers) {
-		if (numbers == null || numbers.length() != BALL_COUNT) {
+	private void validateLength(String ballNumbers) {
+		if (ballNumbers == null || ballNumbers.length() != BALL_COUNT) {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	private void setNumbers(String numbers) {
-		boolean[] availableNumbers = setAvailableNumbers();
+	private void setNumbers(String ballNumbers) {
+		boolean[] availableBallNumbers = setAvailableBallNumbers();
 		for (int i = 0; i < BALL_COUNT; i++) {
-			this.numbers[i] = parseToNumericValue(numbers.charAt(i));
-			if (!availableNumbers[this.numbers[i]]) {
+			this.numbers[i] = parseToNumericValue(ballNumbers.charAt(i));
+			if (!availableBallNumbers[this.numbers[i]]) {
 				throw new IllegalArgumentException();
 			}
-			availableNumbers[this.numbers[i]] = false;
+			availableBallNumbers[this.numbers[i]] = false;
 		}
 	}
 
-	private boolean[] setAvailableNumbers() {
+	private boolean[] setAvailableBallNumbers() {
 		boolean[] availableNumbers = new boolean[10];
 		for (int i : ALLOWED_BALL_NUMBERS) {
 			availableNumbers[i] = true;
@@ -51,10 +51,10 @@ public class Balls {
 		return availableNumbers;
 	}
 
-	private int parseToNumericValue(char character) {
-		if (character < '0' || character > '9') {
+	private int parseToNumericValue(char ballNumber) {
+		if (ballNumber < '0' || ballNumber > '9') {
 			throw new IllegalArgumentException();
 		}
-		return character - '0';
+		return ballNumber - '0';
 	}
 }

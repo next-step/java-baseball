@@ -20,7 +20,7 @@ class UniqueRandomNumbersGeneratorTest {
 	static int min = 1;
 	static int max = 9;
 
-	NumbersGenerator numbersGenerator;
+	BallGenerator numbersGenerator;
 
 	@BeforeEach
 	void setUp() {

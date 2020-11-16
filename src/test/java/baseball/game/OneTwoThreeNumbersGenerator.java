@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OneTwoThreeNumbersGenerator implements NumbersGenerator {
+public class OneTwoThreeNumbersGenerator implements BallGenerator {
 
 	@Override
 	public List<Integer> getNumberPool() {

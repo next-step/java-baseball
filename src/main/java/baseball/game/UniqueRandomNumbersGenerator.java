@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class UniqueRandomNumbersGenerator implements NumbersGenerator {
+public class UniqueRandomNumbersGenerator implements BallGenerator {
 
 	private final List<Integer> numberPool;
 
