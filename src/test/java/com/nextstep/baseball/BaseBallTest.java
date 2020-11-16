@@ -67,8 +67,30 @@ public class BaseBallTest {
 
 	@Test
 	@DisplayName("3 Strike 테스트")
-	void testDetectStrike(){
-		List<Boolean> result = baseBall.detectStrike(Arrays.asList(1,2,3), Arrays.asList(1,2,3));
+	void test_ThreeStrike(){
+		List<Integer> answerList = Arrays.asList(1,2,3);
+		assertThat(answerList)
+				.isNotNull()
+				.isNotEmpty()
+				.doesNotContainNull()
+				.doesNotHaveDuplicates()
+				.hasSize(3).withFailMessage("컴퓨터의 입력값에 오류가 있습니다.");
+		for (Integer input : answerList) {
+			assertThat(numbersRange.contains(input)).isTrue().withFailMessage("입력 범위에 오류가 있습니다.");
+		}
+
+		List<Integer> inputList = Arrays.asList(1,2,3);
+		assertThat(inputList)
+				.isNotNull()
+				.isNotEmpty()
+				.doesNotContainNull()
+				.doesNotHaveDuplicates()
+				.hasSize(3).withFailMessage("사용자의 입력값에 오류가 있습니다.");
+		for (Integer input : inputList) {
+			assertThat(numbersRange.contains(input)).isTrue().withFailMessage("입력 범위에 오류가 있습니다.");
+		}
+
+		List<Boolean> result = baseBall.detectStrike(answerList, inputList);
 		assertThat(result).isNotNull().isNotEmpty().containsExactly(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE).hasSize(3);
 	}
 
