@@ -35,7 +35,7 @@ public class BaseBallTest {
 
 	@Test
 	@DisplayName("1~9까지 서로 다른 임의의 수 3개를 선택하여 리턴하는 기능")
-	void test(){
+	void isNotDuplicatedThreeNumber_Between1To9(){
 		List<Integer> selectedThreeNumber = baseBall.selectNonoverlapThreeNumber();
 
 		assertThat(selectedThreeNumber)
