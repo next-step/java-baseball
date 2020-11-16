@@ -14,7 +14,7 @@ public class UserTest {
   @Test
   @DisplayName("[User] 사용자가 입력한 수를 배열로 바꾸는 기능 테스트")
   void makeArrTest() {
-    assertThat(User.makeInputToArr(123).length).isEqualTo(3);
+    assertThat(User.stringToArr("123").length).isEqualTo(3);
   }
 
   @ParameterizedTest

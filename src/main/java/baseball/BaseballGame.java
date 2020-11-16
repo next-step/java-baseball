@@ -16,8 +16,8 @@ public class BaseballGame {
     boolean isAnswer = false;
     Checker checker = new Checker(Computer.generateAnswer());
     while(!isAnswer) {
-      int guessNumber = User.guess();
-      checker.getScore(User.makeInputToArr(guessNumber));
+      int[] guessNumber = User.guess();
+      checker.getScore(guessNumber);
       isAnswer = checker.checkAnswer();
     }
   }

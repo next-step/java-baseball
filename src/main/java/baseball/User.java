@@ -4,23 +4,24 @@ import java.util.Scanner;
 
 public class User {
 
-  public static int guess() {
+  public static int[] guess() {
     Scanner scan = new Scanner(System.in);
-    boolean isOnlyNumber = false;
+    boolean isValid = false;
     String input = "";
-    while(!isOnlyNumber) {
+    while(!isValid) {
       System.out.print("숫자를 입력해주세요 : ");
       input = scan.nextLine();
-      isOnlyNumber = validateUserInput(input);
+      isValid = validateUserInput(input);
     }
-    return Integer.parseInt(input);
+    return stringToArr(input);
   }
 
-  public static int[] makeInputToArr(int input) {
+  public static int[] stringToArr(String input) {
+    int number = Integer.parseInt(input);
     int[] arr = new int[3];
-    arr[0] = input / 100;
-    arr[1] = input % 100 / 10;
-    arr[2] = input % 10;
+    arr[0] = number / 100;
+    arr[1] = number % 100 / 10;
+    arr[2] = number % 10;
     return arr;
   }
 
