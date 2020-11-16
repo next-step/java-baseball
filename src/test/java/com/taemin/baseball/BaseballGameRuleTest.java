@@ -1,6 +1,10 @@
 package com.taemin.baseball;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.LinkedHashSet;
+
 import org.junit.jupiter.api.Test;
 
 class BaseballGameRuleTest {
