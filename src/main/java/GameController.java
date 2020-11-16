@@ -49,7 +49,8 @@ public class GameController {
 
   public static void runGame() {
     baseballGame.init();
-    while (true) {
+    boolean win = false;
+    while (!win) {
       out.print(inputMessage);
       int[] userInput = strToIntArray(in.getInput());
       try {
@@ -64,10 +65,8 @@ public class GameController {
 
       Result result = baseballGame.matchWithAnswer(userInput);
       out.println(result.getMessage());
-      if (result.hasWin()) {
-        out.println(winningMessage);
-        break;
-      }
+      win = result.hasWin();
     }
+    out.println(winningMessage);
   }
 }
