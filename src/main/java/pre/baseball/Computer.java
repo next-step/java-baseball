@@ -41,19 +41,26 @@ public class Computer {
      * @return
      */
     public boolean check(int[] userNumbers) {
-	int[] answer = getAnswer();
-	if (Arrays.equals(getAnswer(), userNumbers)) {
-	    System.out.println("3개의 숫자를 모두 맞히셨습니다. 게임 종료");
-	    return true;
+	if (!isRightAnswer(userNumbers)) {
+	    for (int i = 0; i < getAnswer().length; i++) {
+		match(i, getAnswer(), userNumbers);
+	    }
+	    System.out.println(toStringResult());
+	    resetCount();
+	    return false;
 	}
+	System.out.println("3개의 숫자를 모두 맞히셨습니다. 게임 종료");
+	return true;
+    }
 
-	for (int i = 0; i < getAnswer().length; i++) {
-	    match(i, answer, userNumbers);
-	}
-
-	System.out.println(toStringResult());
-	resetCount();
-	return false;
+    /**
+     * 정답인지를 검사한다.
+     * 
+     * @param userNumbers
+     * @return
+     */
+    private boolean isRightAnswer(int[] userNumbers) {
+	return Arrays.equals(getAnswer(), userNumbers);
     }
 
     /**
