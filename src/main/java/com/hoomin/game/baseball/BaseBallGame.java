@@ -13,7 +13,7 @@ public class BaseBallGame {
 	public void start() {
 		do {
 			Computer computer = new Computer();
-			Quiz quiz = new Quiz(computer.makeRightAnswer());
+			Quiz quiz = new Quiz(computer.makeRightNumbers());
 			solveQuiz(quiz);
 		} while (isOnGoing(InputView.getGameOption()));
 	}

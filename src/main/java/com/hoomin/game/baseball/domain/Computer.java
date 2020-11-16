@@ -5,9 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer {
-	public Numbers makeRightAnswer() {
+	public Numbers makeRightNumbers() {
+		final List<Integer> subNumberCandidateList = generateNumberList();
+		return new Numbers(subNumberCandidateList);
+	}
+
+	protected List<Integer> generateNumberList() {
 		final List<Integer> numberCandidateList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
 		Collections.shuffle(numberCandidateList);
-		return new Numbers(numberCandidateList.subList(0, 3));
+		return numberCandidateList.subList(0, 3);
 	}
 }
