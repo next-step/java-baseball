@@ -3,5 +3,6 @@ fun main() {
 }
 
 fun generateRand3digit(): String {
-    return ""
+    val sampleList = (1..9)
+    return sampleList.shuffled().take(3).joinToString("")
 }
