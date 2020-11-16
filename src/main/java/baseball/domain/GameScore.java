@@ -49,4 +49,20 @@ public class GameScore {
         }
     }
 
+    public boolean isExistStrikeCount(){
+        if(this.strike != 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isExistBallCount(){
+        if(this.ball != 0){
+            return true;
+        }
+        return false;
+    }
+
+
+
 }

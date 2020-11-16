@@ -1,15 +1,16 @@
 package baseball;
 
-import baseball.configuration.BaseballConfiguration;
 import baseball.domain.BaseballNumbers;
 import baseball.domain.GameScore;
 import baseball.util.BaseballUtil;
+import baseball.util.MessageUtil;
 import java.util.Scanner;
 
 public class BaseballGame {
 
     public boolean isGame = true;
     private Scanner scanner = new Scanner(System.in);
+
 
     public void play(){
         //완전 종료가 될때까지
@@ -23,7 +24,8 @@ public class BaseballGame {
         String[] randomNumbers = BaseballUtil.getRandomNumbers();
 
         while (!isGameClear) {
-            System.out.println(BaseballConfiguration.MESSAGE_REQUIRED_NUMBER);
+
+            MessageUtil.printStartMessage();
 
             String inputText = scanner.nextLine();
 
@@ -32,6 +34,8 @@ public class BaseballGame {
 
             GameScore gameScore = new GameScore();
             gameScore.checkGameScore(randomNumbers, baseballNumbers.getNumbers());
+
+            MessageUtil.printGameResult(gameScore);
 
             isGameClear = gameScore.isGameClear();
         }
