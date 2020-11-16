@@ -2,9 +2,10 @@ package model;
 
 public enum ExceptionMessageEnum {
 
-	INVALID("this number is invalid"),
-	NULL_OR_BLANK("this number is NULL OR Blank"),
-	DUPLICATE("find duplicates in numbers"),
+	INVALID("잘못된 형식입니다. 숫자만 입력해주세요."),
+	INVALID_NUMBER_RANGE("숫자는 1 ~ 9사이로 입력해주세요"),
+	DUPLICATE("중복되지 않은 숫자로 SIZE 개를 입력해주세요."),
+	NULL_OR_BLANK("잘못된 입력입니다. 숫자만 입력해주세요."),
 	INVALID_SIZE("size is not valid");
 
 	private String message;
@@ -15,5 +16,9 @@ public enum ExceptionMessageEnum {
 
 	public String getMessage() {
 		return message;
+	}
+
+	public String getMessage(int size) {
+		return message.replaceAll("SIZE", "" + size);
 	}
 }

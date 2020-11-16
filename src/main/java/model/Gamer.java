@@ -5,6 +5,18 @@ import util.CustomException;
 import java.util.*;
 
 public class Gamer {
+
+	private final int BASEBALL_START_RANGE = 0;
+	private final int BASEBALL_END_RANGE = 9;
+	private final int BASEBALL_MAX_SIZE = 3;
+	private final int BASEBALL_COLLECT_NUMBER = 3;
+	private final int RETRY_START_RANGE = 1;
+	private final int RETRY_END_RANGE = 2;
+	private final int RETRY_MAX_SIZE = 1;
+	private final int GAME_END_INPUT_NUMBER = 2;
+	private final String BASEBALL_START_MESSAGE = "숫자를 입력해주세요 : ";
+	private final String BASEBALL_WRONG_MESSAGE = "잘못된 입력입니다.";
+
 	private ArrayList<String> userInputNumbers = new ArrayList<>();
 	private Baseball baseball;
 	private int strike = 0;
@@ -41,7 +53,7 @@ public class Gamer {
 		LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
 		for (char number : input.toCharArray()) {
 			int convertNumberFromChar = parseIntOrThrow(number);
-			linkedHashSet.add(String.valueOf(validNumberRange(convertNumberFromChar, 1, 9)));
+			linkedHashSet.add(String.valueOf(validNumberRange(convertNumberFromChar, BASEBALL_START_RANGE, BASEBALL_END_RANGE)));
 		}
 
 		return linkedHashSet;
@@ -51,13 +63,13 @@ public class Gamer {
 			CustomException.InvalidNumberFormatException {
 		OptionalInt optional = OptionalInt.of(Integer.parseInt(String.valueOf(number)));
 		return optional.orElseThrow(() ->
-				new CustomException.InvalidNumberFormatException("잘못된 형식입니다. 숫자만 입력해주세요."));
+				new CustomException.InvalidNumberFormatException(ExceptionMessageEnum.INVALID.getMessage()));
 	}
 
 	private int validNumberRange(int number, int start, int end) throws
 			CustomException.InvalidNumberOfRangeException {
 		if (number < start || number > end) {
-			throw new CustomException.InvalidNumberOfRangeException("숫자는 1 ~ 9사이로 입력해주세요");
+			throw new CustomException.InvalidNumberOfRangeException(ExceptionMessageEnum.INVALID_NUMBER_RANGE.getMessage());
 		}
 
 		return number;
@@ -66,7 +78,7 @@ public class Gamer {
 	private void validNumberSize(LinkedHashSet<String> linkedHashSet, int size) throws
 			CustomException.InvalidNumberOfSizeException {
 		if (linkedHashSet.size() != size) {
-			throw new CustomException.InvalidNumberOfSizeException("중복되지 않은 숫자로 " + size + "개를 입력해주세요.");
+			throw new CustomException.InvalidNumberOfSizeException(ExceptionMessageEnum.DUPLICATE.getMessage(size));
 		}
 	}
 
@@ -80,7 +92,7 @@ public class Gamer {
 	}
 
 	private String inputUserNumbers() {
-		System.out.println("숫자를 입력해주세요 : ");
+		System.out.println(BASEBALL_START_MESSAGE);
 		return getInputNumber();
 	}
 
@@ -88,10 +100,10 @@ public class Gamer {
 		String inputNumbers = inputUserNumbers();
 
 		try {
-			checkInputNumber(inputNumbers, 3);
+			checkInputNumber(inputNumbers, BASEBALL_MAX_SIZE);
 			showGameResult();
 		} catch (Exception e) {
-			System.out.println("잘못된 입력입니다.");
+			System.out.println(BASEBALL_WRONG_MESSAGE);
 			playGame();
 		}
 	}
@@ -125,10 +137,10 @@ public class Gamer {
 			CustomException.InvalidNumberFormatException,
 			CustomException.InvalidNumberOfSizeException,
 			CustomException.InvalidNumberOfRangeException {
-		checkInputNumber(input, 1);
-		int inputNumber = validNumberRange(parseIntOrThrow(input.charAt(0)), 1, 2);
+		checkInputNumber(input, RETRY_MAX_SIZE);
+		int inputNumber = validNumberRange(parseIntOrThrow(input.charAt(0)), RETRY_START_RANGE, RETRY_END_RANGE);
 
-		if (inputNumber == 2) {
+		if (inputNumber == GAME_END_INPUT_NUMBER) {
 			return;
 		}
 
@@ -144,7 +156,7 @@ public class Gamer {
 			CustomException.InvalidNumberFormatException,
 			CustomException.InvalidNumberOfSizeException,
 			CustomException.InvalidNumberOfRangeException {
-		if (strike == 3) {
+		if (strike == BASEBALL_COLLECT_NUMBER) {
 			doneGame();
 			return;
 		}
@@ -158,7 +170,7 @@ public class Gamer {
 				" " +
 				GameResultEnum.BALL.getMessage(ball);
 		if (result.equals("")) {
-			result = GameResultEnum.NOTHING.name();
+			result = GameResultEnum.NOTHING.getValue();
 		}
 
 		System.out.println(result);
