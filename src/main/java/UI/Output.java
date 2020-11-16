@@ -13,7 +13,9 @@ public class Output {
 		}
 
 		if (baseballResult.isStrikeAndBall()) {
-			System.out.println(baseballResult.getStrikeCount() + OutputMessage.STRIKE +" " +baseballResult.getBallCount() + OutputMessage.BALL);
+			System.out.println(
+				baseballResult.getStrikeCount() + OutputMessage.STRIKE + " " + baseballResult.getBallCount()
+					+ OutputMessage.BALL);
 			return;
 		}
 
