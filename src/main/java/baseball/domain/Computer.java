@@ -9,4 +9,9 @@ public class Computer implements Adversary {
         answer = Number.generateRandomNumber(Game.BASEBALL_NUMBER_SIZE);
         return answer;
     }
+
+    @Override
+    public Hint getHint(Number number) {
+        return new Hint(answer, number);
+    }
 }

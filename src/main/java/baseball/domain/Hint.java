@@ -37,4 +37,16 @@ public class Hint {
             ballCount ++;
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (strikeCount > 0) {
+            stringBuilder.append(strikeCount).append(" 스트라이크 ");
+        }
+        if (ballCount > 0) {
+            stringBuilder.append(ballCount).append(" 볼 ");
+        }
+        return stringBuilder.length() == 0 ? "낫싱" : stringBuilder.toString();
+    }
 }
