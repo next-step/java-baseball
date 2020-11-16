@@ -10,6 +10,7 @@ public class Main {
         } while (isMoreGame());        // 게임을 다시 시작하거나 완전히 종료한다.
     }
 
+
     private static void playGame(Game game) {
         do {
             game.inputNumber(inputNumber());                    // 세자리 숫자를 입력받는다.
@@ -17,8 +18,9 @@ public class Main {
         } while(game.getStrike() != 3);                         // 3 스트라이크이면 게임을 종료한다.
     }
 
+
     /**
-     * 게임을 새로 시작할지 종료할지 사용자에게 물어보는 기능
+     * 게임을 새로 시작할지 종료할지 사용자에게 물어본다
      * @return true: 게임 새로 시작, false: 종료
      */
     private static boolean isMoreGame() {
@@ -35,6 +37,11 @@ public class Main {
         return false;
     }
 
+
+    /**
+     * 사용자가 추측하는 세자리 숫자를 입력받는다.
+     * @return
+     */
     private static Integer inputNumber() {
         Scanner sc = new Scanner(System.in);
 
@@ -44,6 +51,11 @@ public class Main {
         return answer;
     }
 
+    /**
+     * 사용자에게 힌트를 보여준다.
+     * @param strike    스트라이크 갯수
+     * @param ball      볼 갯수
+     */
     private static void showHintNumber(Integer strike, Integer ball) {
 
         if (strike == 0 && ball == 0) {

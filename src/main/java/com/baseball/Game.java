@@ -30,6 +30,9 @@ public class Game {
     Integer strike;
     Integer ball;
 
+    /**
+     * 1~9까지 세자리 숫자를 랜덤으로 생성
+     */
     public Game() {
         Random random = new Random();
 
@@ -46,12 +49,24 @@ public class Game {
         this.randomNumber = (this.n3 * 100) + (this.n2 * 10) + this.n1;
     }
 
+
+    /**
+     * 테스트를 위하여 세자리 숫자를 랜덤으로 생성하지 않고 바로 지정할 수 있도롬 함
+     * @param n1    1~9까지의 숫자 첫번째
+     * @param n2    1~9까지의 숫자 두번째
+     * @param n3    1~9까지의 숫자 세번째
+     */
     public Game(Integer n1, Integer n2, Integer n3) {
         this.n1 = n1;
         this.n2 = n2;
         this.n3 = n3;
     }
 
+
+    /**
+     * 사용자가 입력한 세자리 숫자로 스트라이크와 볼의 갯수를 구함.
+     * @param inputNumber   사용자가 추측한 세자리 숫자
+     */
     public void inputNumber(Integer inputNumber) {
         this.i1 = inputNumber / 100;
         this.i2 = (inputNumber - this.i1 * 100) / 10;
@@ -61,6 +76,10 @@ public class Game {
         countBall();
     }
 
+
+    /**
+     * 스트라이크의 갯수를 계산한다.
+     */
     private void countStrike() {
         this.strike = 0;
 
@@ -72,6 +91,9 @@ public class Game {
             this.strike++;
     }
 
+    /**
+     * 볼의 갯수를 계산한다.
+     */
     private void countBall() {
         this.ball = 0;
 
