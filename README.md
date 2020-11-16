@@ -29,8 +29,9 @@
     - Opponent 클래스의 getMessage method 호출해 메시지 출력
 5. 게임종료여부 판별
     - Opponent 클래스의 isLose method 호출
-    - return 값 true 인 경우 게임종료 메시지 출력 -> loop End
 7. 게임진행여부 입력
     - 게임시작 여부 질문
     - 2 입력 시 break
     - 1 입력 시 Opponent strikeNumber reset
+8. 게임종료
+    - Player가 승리하고 게임종료를 입력한 경우 loop End

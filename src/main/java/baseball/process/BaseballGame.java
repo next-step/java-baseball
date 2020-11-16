@@ -7,36 +7,39 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
+    private final String GAME_RESTART = "1";
+    private final String GAME_END = "2";
+
     public void executeGame() {
 
         Opponent opponent = new Opponent();
         Player player = new Player();
 
-        while (true) {
+        do {
 
             player.inputStrikeNumber();
             opponent.calculateStrike(player.getStrikeNumber());
             System.out.println(opponent.getMessage());
 
-            if(opponent.isLose()) {
-                System.out.println("게임을 새로 시작하려면 1 종료하려면 2 를 입력하세요.");
-                if(isGameEnd()) {
-                    break;
-                }
-                opponent.resetStrikeNumber();
-            }
-        }
+        } while (this.isGameEnd(opponent));
     }
 
-    private boolean isGameEnd() {
+    private boolean isGameEnd(Opponent opponent) {
+        return opponent.isLose() && exitGame(opponent);
+    }
+
+    private boolean exitGame(Opponent opponent) {
+
+        System.out.println("게임을 새로 시작하려면 1 종료하려면 2 를 입력하세요.");
         Scanner scan = new Scanner(System.in);
 
         while (true) {
             String inputData = scan.nextLine();
-            if("2".equals(inputData)) {
+            if(GAME_END.equals(inputData)) {
                 return true;
             }
-            if("1".equals(inputData)) {
+            if(GAME_RESTART.equals(inputData)) {
+                opponent.resetStrikeNumber();
                 return false;
             }
             System.out.println("1 또는 2 를 입력해 주세요.");
