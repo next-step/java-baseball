@@ -37,7 +37,7 @@ class BaseballTest {
         val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
-        assertEquals(EvalulatedRule.NOTHING.value, evalulatedResult)
+        assertEquals(EvaluatedRule.NOTHING.value, evalulatedResult)
     }
 
     @Test
@@ -52,7 +52,7 @@ class BaseballTest {
         val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
-        assertEquals("1 ${EvalulatedRule.BALL.value}", evalulatedResult)
+        assertEquals("1 ${EvaluatedRule.BALL.value}", evalulatedResult)
     }
 
     @Test
@@ -67,7 +67,7 @@ class BaseballTest {
         val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
-        assertEquals("2 ${EvalulatedRule.STRIKE.value}", evalulatedResult)
+        assertEquals("2 ${EvaluatedRule.STRIKE.value}", evalulatedResult)
     }
 
     @Test
@@ -82,7 +82,7 @@ class BaseballTest {
         val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
-        assertEquals("3 ${EvalulatedRule.STRIKE.value}", evalulatedResult)
+        assertEquals("3 ${EvaluatedRule.STRIKE.value}", evalulatedResult)
     }
 
     @Test
@@ -97,6 +97,6 @@ class BaseballTest {
         val evalulatedResult = evaluateRule(transformedUserList, transformedGeneratedList)
 
         // then
-        assertEquals("1 ${EvalulatedRule.STRIKE.value} 1 ${EvalulatedRule.BALL.value}", evalulatedResult)
+        assertEquals("1 ${EvaluatedRule.STRIKE.value} 1 ${EvaluatedRule.BALL.value}", evalulatedResult)
     }
 }
