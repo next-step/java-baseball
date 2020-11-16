@@ -43,8 +43,8 @@ public class BaseBallTest {
 				.isNotEmpty()
 				.doesNotContainNull()
 				.doesNotHaveDuplicates()
-				.hasSize(3)
-		;
+				.hasSize(3);
+
 		for (Integer input : selectedThreeNumber) {
 			assertThat(numbersRange.contains(input)).isTrue();
 		}
@@ -59,11 +59,17 @@ public class BaseBallTest {
 				.isNotEmpty()
 				.doesNotContainNull()
 				.doesNotHaveDuplicates()
-				.hasSize(3)
-		;
+				.hasSize(3);
 		for (Integer input : result) {
 			assertThat(numbersRange.contains(input)).isTrue();
 		}
+	}
+
+	@Test
+	@DisplayName("3 Strike 테스트")
+	void testDetectStrike(){
+		List<Boolean> result = baseBall.detectStrike(Arrays.asList(1,2,3), Arrays.asList(1,2,3));
+		assertThat(result).isNotNull().isNotEmpty().containsExactly(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE).hasSize(3);
 	}
 
 }
