@@ -16,7 +16,7 @@ MVC Pattern
 * Model
   * BaseballGameService
     * 게임 시작 시, 1부터 9까지 서로 다른 수 3자리 수를 임의로 생성한다.
-    * 1부터 9까지의 숫자 3개를 array로 받고, 스트라이크 수와 볼 수를 array of size 2로 리턴한다.
+    * 1부터 9까지의 숫자 3개를 받고, 스트라이크 수와 볼 수를 리턴한다.
 * Controller
   * User input을 받아 게임을 진행하고, 게임 종료 시 재시작 여부를 확인한다.
   * Controller Activity Diagram 
@@ -24,10 +24,11 @@ MVC Pattern
 
 ## 구현할 기능 목록
 * MVC-model Skeleton code build-up
+  * MVC 구조 생성
   * Model의 BaseballGameService skeleton 구현
   * View의 Interface 구현
-  * Console로 user I/O를 처리할 수 있도록 Console I/O 구현
-  * Controller의 activity logic 구현
+* Controller의 activity logic 구현
+* Console로 user I/O를 처리할 수 있도록 Console I/O 구현 및 테스트
 * BaseballGameService
   * 임의의 3자리 수 만들기 구현 및 테스트
   * User input의 validation 구현 및 테스트
