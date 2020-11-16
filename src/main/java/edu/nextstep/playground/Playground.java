@@ -14,10 +14,12 @@ public class Playground {
 	private void playBaseballGame() {
 		BaseballGame game = new BaseballGame();
 		game.resetComputer();
-		String inputNumber = Ui.inputThreeNumber();
-		game.setPlayer(new BaseballGamer(inputNumber));
-		game.resetScore();
-		BaseballScore score = game.playToEnd();
-		Ui.printMessageLine(score.toLocaleString());
+		do {
+			String inputNumber = Ui.inputThreeNumber();
+			game.setPlayer(new BaseballGamer(inputNumber));
+			game.resetScore();
+			BaseballScore score = game.playToEnd();
+			Ui.printMessageLine(score.toLocaleString());
+		} while (!game.didWin());
 	}
 }
