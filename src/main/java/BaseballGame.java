@@ -8,6 +8,10 @@ import domain.baseballRule.BaseballNumbers;
 import domain.baseballRule.BaseballResult;
 
 public class BaseballGame {
+	Player player = new Player();
+	Opponent opponent = new Opponent();
+	Referee referee = new Referee();
+
 	public void start() {
 		String command = GameCommand.RESTART;
 		while (command.equals(GameCommand.RESTART)) {
@@ -18,17 +22,14 @@ public class BaseballGame {
 	}
 
 	private void newGame() {
-		Opponent opponent = new Opponent();
 		BaseballNumbers opponents = opponent.generateBaseballNumbers();
-		Player player = new Player();
-		Referee referee = new Referee();
-		while (true) {
+		Boolean keepGoing = true;
+		while (keepGoing) {
 			Input.printRequestInput();
 			BaseballNumbers players = player.inputBaseballNumbers(Input.inputBaseballNumbers());
-			BaseballResult baseballResult = referee.checkBaseballResult(players, opponents);
+			BaseballResult baseballResult = referee.createBaseballResult(players, opponents);
 			Output.printBaseballResult(baseballResult);
-			if (baseballResult.isThreeStrike())
-				break;
+			keepGoing = baseballResult.isKeepGoing();
 		}
 	}
 }

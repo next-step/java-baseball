@@ -50,4 +50,8 @@ public class BaseballResult {
 	public Integer getBallCount() {
 		return this.ball.ball;
 	}
+
+	public Boolean isKeepGoing() {
+		return !this.isThreeStrike();
+	}
 }
