@@ -33,15 +33,10 @@ public class Baseball {
         }
     }
 
-    private static Integer convertInteger(char number) {
-        return Integer.parseInt(String.valueOf(number));
-    }
-
     public static Baseball of(String numbers) {
         List<BaseballNo> baseball = new ArrayList<>();
-
         for(int i =0; i < numbers.length(); i++) {
-            baseball.add(BaseballNo.of(convertInteger(numbers.charAt(i))));
+            baseball.add(BaseballNo.of(numbers.charAt(i)));
         }
         return new Baseball(baseball);
     }

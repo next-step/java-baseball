@@ -11,29 +11,26 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballTest {
-    private static List<Integer> baseballOverSize = new ArrayList<>();
-    private static List<Integer> baseballUnderSize = new ArrayList<>();
+
 
     @Test
     @DisplayName("validation(size : over three digit) test")
     public void overTheSize3() {
+        List<Integer> integerListBaseball = new ArrayList<>();
         for(int i = 1; i < 5; i++) {
-            baseballOverSize.add(i);
+            integerListBaseball.add(i);
         }
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Baseball.of(baseballOverSize);
-        });
+        expectIllegalArgumentException(integerListBaseball);
     }
 
     @Test
     @DisplayName("validation(size : under three digit) test")
     public void underTheSize3() {
+        List<Integer> integerListBaseball = new ArrayList<>();
         for(int i = 1; i < 2; i++) {
-            baseballUnderSize.add(i);
+            integerListBaseball.add(i);
         }
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Baseball.of(baseballUnderSize);
-        });
+        expectIllegalArgumentException(integerListBaseball);
     }
 
     @Test
@@ -49,9 +46,21 @@ public class BaseballTest {
     @DisplayName("validation(duplication) test")
     public void inputDuplicateNumber() {
         String duplicationInput = "233";
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Baseball.of(duplicationInput);
-        });
+        expectIllegalArgumentException(duplicationInput);
+    }
+
+    @Test
+    @DisplayName("validation(zero) test")
+    public void inputZero() {
+        String zeroInput = "230";
+        expectIllegalArgumentException(zeroInput);
+    }
+
+    @Test
+    @DisplayName("validation(zero) test")
+    public void oversizeInputString() {
+        String oversizeInput = "2312";
+        expectIllegalArgumentException(oversizeInput);
     }
 
     @Test
@@ -60,6 +69,18 @@ public class BaseballTest {
         String nullInput = null;
         Assertions.assertThrows(NullPointerException.class, () -> {
             Baseball.of(nullInput);
+        });
+    }
+
+    private void expectIllegalArgumentException(String input) {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Baseball.of(input);
+        });
+    }
+
+    private void expectIllegalArgumentException(List<Integer> input) {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Baseball.of(input);
         });
     }
 

@@ -3,25 +3,42 @@ package baseball.domain;
 import java.util.*;
 
 public class BaseballNo {
+    private static final int BASEBALL_MIN_NUM = 1;
+    private static final int BASEBALL_MAX_NUM = 9;
+
     private static final Map<Integer, BaseballNo> baseballNos = new HashMap<>();
-    private final int no;
 
     static {
-        for (int i = 1; i < 10; i++) {
+        for (int i = BASEBALL_MIN_NUM; i <= BASEBALL_MAX_NUM; i++) {
             baseballNos.put(i, new BaseballNo(i));
         }
     }
 
+    private final int no;
+
     private BaseballNo(int no) {
-        if(no < 1 || no > 10) {
-            throw new IllegalArgumentException();
-        }
+        validation(no);
         this.no = no;
     }
 
+    public static BaseballNo of(char number) {
+        if (Objects.isNull(number)) {
+            throw new IllegalArgumentException();
+        }
+
+        return of(Integer.parseInt(String.valueOf(number)));
+    }
+
     public static BaseballNo of(int number) {
+        validation(number);
         return Optional.ofNullable(baseballNos.get(number))
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    private static void validation(int number) {
+        if(number < BASEBALL_MIN_NUM || number > BASEBALL_MAX_NUM) {
+            throw new IllegalArgumentException("1~9 사이의 숫자를 입력해주세요. ERROR: " + number);
+        }
     }
 
     @Override
