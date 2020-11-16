@@ -1,44 +1,45 @@
 package com.coderhglee.game.number;
 
-import com.coderhglee.game.exception.GameException;
-import com.coderhglee.game.exception.NotAllowValueException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.coderhglee.game.exception.GameException;
+import com.coderhglee.game.exception.NotAllowValueException;
+
+
 public class UserInputNumber implements InputNumber {
-    GameNumberGroups gameNumberGroups;
+	NumberGroups numberGroups;
 
-    public UserInputNumber(String value) throws GameException {
-        setInputNumber(makeInputNumber(value));
+	public UserInputNumber(String value) throws GameException {
+		setInputNumber(makeInputNumber(value));
 
-    }
+	}
 
-    @Override
-    public void setInputNumber(List<GameNumber> gameNumbers) throws GameException {
-        gameNumberGroups = new GameNumberGroups(gameNumbers);
-    }
+	@Override
+	public void setInputNumber(List<Number> numbers) throws GameException {
+		numberGroups = new NumberGroups(numbers);
+	}
 
-    @Override
-    public GameNumberGroups getInputNumber() {
-        return gameNumberGroups;
-    }
+	@Override
+	public NumberGroups getInputNumber() {
+		return numberGroups;
+	}
 
-    public List<GameNumber> makeInputNumber(String value) throws NotAllowValueException {
-        List<GameNumber> gameNumbers = new ArrayList<>();
-        for (String str : value.split("")) {
-            GameNumber randomGameNumber = GameNumber.gameNumberMap.get(parseInteger(str));
-            gameNumbers.add(randomGameNumber);
-        }
-        return gameNumbers;
-    }
+	public List<Number> makeInputNumber(String value) throws NotAllowValueException {
+		List<Number> numbers = new ArrayList<>();
+		for (String str : value.split("")) {
+			Number randomNumber = Number.gameNumberMap.get(parseInteger(str));
+			numbers.add(randomNumber);
+		}
+		return numbers;
+	}
 
-    private Integer parseInteger(String str) throws NotAllowValueException {
-        try {
-            return Integer.parseInt(str);
-        } catch (NumberFormatException numberFormatException) {
-            throw new NotAllowValueException();
-        }
-    }
+	private Integer parseInteger(String str) throws NotAllowValueException {
+		try {
+			return Integer.parseInt(str);
+		} catch (NumberFormatException numberFormatException) {
+			throw new NotAllowValueException();
+		}
+	}
 
 }

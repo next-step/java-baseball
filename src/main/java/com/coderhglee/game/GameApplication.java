@@ -5,7 +5,7 @@ import com.coderhglee.game.exception.GameException;
 
 public class GameApplication {
 
-    public static void main(String[] args) throws GameException {
-        BaseballGameUI.executeGame();
-    }
+	public static void main(String[] args) throws GameException {
+		BaseballGameUI.executeGame();
+	}
 }

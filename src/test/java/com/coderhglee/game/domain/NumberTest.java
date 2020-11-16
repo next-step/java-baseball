@@ -1,6 +1,6 @@
 package com.coderhglee.game.domain;
 
-import com.coderhglee.game.number.GameNumber;
+import com.coderhglee.game.number.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,13 +9,13 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameNumberTest {
+public class NumberTest {
 
     @DisplayName("게임 숫자 정의가 제대로 됐는지 체크 한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
     void getNumber_ShouldReturnTrueForInts(int value) {
-        assertTrue(Arrays.stream(GameNumber.values()).anyMatch(a -> a.getNumberValue() == value));
+        assertTrue(Arrays.stream(Number.values()).anyMatch(a -> a.getNumberValue() == value));
     }
 
 
@@ -23,7 +23,7 @@ public class GameNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
     void Should_baseball_number(int value) {
-        assertTrue(Arrays.asList(GameNumber.values()).contains(GameNumber.gameNumberMap.get(value)));
+        assertTrue(Arrays.asList(Number.values()).contains(Number.gameNumberMap.get(value)));
     }
 
 }
