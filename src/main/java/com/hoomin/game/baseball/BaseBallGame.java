@@ -1,6 +1,7 @@
 package com.hoomin.game.baseball;
 
 import com.hoomin.game.baseball.domain.Computer;
+import com.hoomin.game.baseball.domain.Quiz;
 import com.hoomin.game.baseball.view.InputView;
 
 public class BaseBallGame {
@@ -10,6 +11,7 @@ public class BaseBallGame {
 	public void start() {
 		do {
 			Computer computer = new Computer();
+			Quiz quiz = new Quiz(computer.makeRightAnswer());
 		} while (isOnGoing());
 	}
 
