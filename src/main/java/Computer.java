@@ -17,8 +17,7 @@ public class Computer {
         List<String> numberList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
         for (int i = 0; i < 3; i++) {
             int randomIndex = random.nextInt(numberList.size());
-            numbers.add(numberList.get(randomIndex));
-            numberList.remove(randomIndex);
+            numbers.add(numberList.remove(randomIndex));
         }
     }
 
