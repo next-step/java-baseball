@@ -5,12 +5,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Integer randomNumber;
-        Game game = new Game();
         do {
-            randomNumber = game.randomNumber();     // 1~9 사이의 서로 다른 세자리 숫자를 랜덤으로 만든다.
-            playGame(game);                         // 게임을 플레이한다.
-        } while (isMoreGame());                 // 게임을 다시 시작하거나 완전히 종료한다.
+            playGame(new Game());      // 1~9 사이의 서로 다른 세자리 숫자를 랜덤으로 만들고 게임을 플레이한다.
+        } while (isMoreGame());        // 게임을 다시 시작하거나 완전히 종료한다.
     }
 
     /**

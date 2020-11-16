@@ -13,29 +13,32 @@ public class Game {
     Integer i2;
     Integer i3;
 
+    public Integer getRandomNumber() {
+        return randomNumber;
+    }
+
+    Integer randomNumber;
+
     public Game() {
+        Random random = new Random();
+
+        this.n1 = random.nextInt(8) + 1;
+
+        do {
+            this.n2 = random.nextInt(8) + 1;
+        } while (this.n1 == this.n2);
+
+        do {
+            this.n3 = random.nextInt(8) + 1;
+        } while (this.n3 == this.n1 || this.n3 == this.n2);
+
+        this.randomNumber = (this.n3 * 100) + (this.n2 * 10) + this.n1;
     }
 
     public Game(Integer n1, Integer n2, Integer n3) {
         this.n1 = n1;
         this.n2 = n2;
         this.n3 = n3;
-    }
-
-    public Integer randomNumber() {
-        Random random = new Random();
-
-        n1 = random.nextInt(8) + 1;
-
-        do {
-            n2 = random.nextInt(8) + 1;
-        } while (n1 == n2);
-
-        do {
-            n3 = random.nextInt(8) + 1;
-        } while (n3 == n1 || n3 == n2);
-
-        return (n1 * 100) + (n2 * 10) + n3;
     }
 
     public void inputNumber(Integer inputNumber) {

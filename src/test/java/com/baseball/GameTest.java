@@ -12,7 +12,7 @@ class GameTest {
     @RepeatedTest(value = 10)
     void randomNumber() {
         Game game = new Game();
-        Integer randomNumber = game.randomNumber();
+        Integer randomNumber = game.getRandomNumber();
 
         Integer n1 = randomNumber / 100;
         Integer n2 = randomNumber - (n1 * 100) / 10;
