@@ -37,4 +37,13 @@
         - [x] 게임 시작
         - [x] 게임 완전 종료
     - [x] 전달 받은 메시지를 사용자에게 보여준다.
-    
+
+## Build
+```
+./gradlew build
+```
+
+## Run
+```
+java -jar build/libs/java-baseball.jar
+```
