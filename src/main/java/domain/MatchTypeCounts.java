@@ -7,7 +7,7 @@ import java.util.Objects;
 public class MatchTypeCounts {
     private final Map<MatchType, Integer> countByMatchTypes;
 
-    private MatchTypeCounts(Map<MatchType, Integer> countMapByMatchTypes) {
+    protected MatchTypeCounts(Map<MatchType, Integer> countMapByMatchTypes) {
         this.countByMatchTypes = countMapByMatchTypes;
     }
 

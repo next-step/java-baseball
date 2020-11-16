@@ -5,7 +5,7 @@ import java.util.Objects;
 public class GuessResult {
     private final MatchTypeCounts matchTypeCounts;
 
-    private GuessResult(MatchTypeCounts matchTypeCounts) {
+    protected GuessResult(MatchTypeCounts matchTypeCounts) {
         this.matchTypeCounts = matchTypeCounts;
     }
 
