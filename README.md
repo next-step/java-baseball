@@ -10,7 +10,7 @@
 > type(scope): comment 
 - Type
     - feat : 기능 구현
-    - fix : 버그 수정트
+    - fix : 버그 수정
     - docs : 문서 작성 및 수정
     - style : 스타일 수정
     - refactor : 코드 리팩토링
