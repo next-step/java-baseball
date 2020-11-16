@@ -51,4 +51,8 @@ public class BaseballGameMachine {
         return false;
     }
 
+
+    protected BaseballGame getBaseballGame() {
+        return baseballGame;
+    }
 }

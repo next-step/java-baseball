@@ -2,6 +2,7 @@ package domain;
 
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Nested
 class BaseballGameMachineTest {
     @Test
     @DisplayName("게임 지속 여부가 참이고, `정답`을 가지고 있는 숫자 야구 게임을 시작한다.")
@@ -69,5 +71,36 @@ class BaseballGameMachineTest {
             expectedResult.increaseMatchCount(MatchType.BALL);
         }
         return expectedResult;
+    }
+
+    @DisplayName("유저의 입력에 따라 숫자 야구 게임 지속 여부의 값을 결정한다.")
+    @Nested
+    class GameContinueTest {
+
+        @Test
+        @DisplayName("유저가 1을 입력하면 숫자 야구 지속 여부를 true로 하고 새로운 숫자 야구 게임을 실행한다.")
+        void continueTest() {
+            BaseballGameMachine baseballGameMachine = BaseballGameMachine.initGame();
+            BaseballGame beforeBaseballGame = baseballGameMachine.getBaseballGame();
+
+            int userInput = 1;
+            baseballGameMachine.continueGameByInput(userInput);
+
+            assertThat(baseballGameMachine.isBaseballGameContinue()).isTrue();
+            assertThat(baseballGameMachine.getBaseballGame()).isNotEqualTo(beforeBaseballGame);
+        }
+
+        @Test
+        @DisplayName("유저가 2를 입력하면 숫자 야구 지속 여부를 false로 한다.")
+        void stopTest() {
+            BaseballGameMachine baseballGameMachine = BaseballGameMachine.initGame();
+            BaseballGame beforeBaseballGame = baseballGameMachine.getBaseballGame();
+
+            int userInput = 2;
+            baseballGameMachine.continueGameByInput(userInput);
+
+            assertThat(baseballGameMachine.isBaseballGameContinue()).isFalse();
+            assertThat(baseballGameMachine.getBaseballGame()).isEqualTo(beforeBaseballGame);
+        }
     }
 }
