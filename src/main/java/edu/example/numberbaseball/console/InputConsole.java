@@ -14,6 +14,8 @@ import static java.lang.System.out;
  */
 public class InputConsole {
     private static final String INPUT_MESSAGE = "숫자를 입력해주세요:";
+    private static final String NEW_OR_QUIT_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+    private static final int NEW_GAME = 1;
 
     private InputConsole() {
     }
@@ -21,6 +23,15 @@ public class InputConsole {
     public static Inning readInputString() {
         out.println(INPUT_MESSAGE);
         return toPitchedInning(readString());
+    }
+
+    public static GameStatus readNewOrQuitGameNumber() {
+        out.println(NEW_OR_QUIT_MESSAGE);
+        int input = readInt();
+        if (input == NEW_GAME) {
+            return GameStatus.NEW;
+        }
+        return GameStatus.QUIT;
     }
 
     private static Inning toPitchedInning(String inputString) {
@@ -38,5 +49,10 @@ public class InputConsole {
     private static String readString() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
+    }
+
+    private static int readInt() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }
