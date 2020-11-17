@@ -1,33 +1,44 @@
 package game.baseball.number.status;
 
-import game.baseball.number.exceptions.InvalidUserInputTypingException;
+import game.baseball.number.exceptions.InvalidRestartOrExitInputException;
+import game.baseball.number.utils.ConsoleOutputUtil;
+import game.baseball.number.utils.HelperTexts;
+import game.baseball.number.utils.ConsoleInputUtil;
 
 public enum GameProgressStatus {
 
-    RESTART(true),
-    EXIT(false);
+    RESTART(true, 1),
+    EXIT(false, 2);
 
     private final boolean status;
+    private final int code;
 
-    GameProgressStatus(boolean status) {
+    GameProgressStatus(boolean status, int code) {
         this.status = status;
+        this.code = code;
     }
 
-    private static GameProgressStatus valueOf(byte progressCodeByUserInput) {
-        if (progressCodeByUserInput == 1) {
+    private static GameProgressStatus valueOf(int parsedInput) {
+        if (parsedInput == RESTART.code) {
             return GameProgressStatus.RESTART;
-        } else if (progressCodeByUserInput == 2) {
+        }
+        if (parsedInput == EXIT.code) {
             return GameProgressStatus.EXIT;
         }
-        throw new InvalidUserInputTypingException(progressCodeByUserInput);
+        throw new InvalidRestartOrExitInputException(parsedInput);
     }
 
-    public static boolean checkProgressStatus(String input) {
+    public static String inputRestartOrExit() {
+        ConsoleOutputUtil.printNextLine();
+        return ConsoleInputUtil.input(HelperTexts.RESTART_OR_EXIT);
+    }
+
+    public static boolean checkRestartOrExit(String input) {
         try {
-            byte progressCodeByUserInput = Byte.parseByte(input);
-            return GameProgressStatus.valueOf(progressCodeByUserInput).status;
+            int parsedInput = Integer.parseInt(input);
+            return GameProgressStatus.valueOf(parsedInput).status;
         } catch (RuntimeException e) {
-            throw new InvalidUserInputTypingException(input, e);
+            throw new InvalidRestartOrExitInputException(input, e);
         }
     }
 }
