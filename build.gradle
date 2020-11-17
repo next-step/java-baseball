@@ -1,8 +1,14 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'java'
+    id 'org.ec4j.editorconfig' version '0.0.3'
+    id 'checkstyle'
+}
 
 version = '1.0.0'
 sourceCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
@@ -12,3 +18,15 @@ dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.5.2')
     testCompile('org.assertj:assertj-core:3.14.0')
 }
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/naver-chestyle-rules.xml")
+    toolVersion = "8.24"
+}
+
+editorconfig {
+    excludes = ['build']
+}
+
+check.dependsOn editorconfigCheck
