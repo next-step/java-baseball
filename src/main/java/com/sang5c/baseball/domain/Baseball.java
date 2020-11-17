@@ -55,28 +55,28 @@ public class Baseball {
     public BaseballCount compare(Baseball userBaseball) {
         BaseballCount baseballCount = new BaseballCount();
         for (int i = 0; i < numbers.size(); i++) {
-            baseballCount = countBall(userBaseball, baseballCount, i);
-            baseballCount = countStrike(userBaseball, baseballCount, i);
+            baseballCount = countBall(userBaseball.numbers, baseballCount, i);
+            baseballCount = countStrike(userBaseball.numbers, baseballCount, i);
         }
         return baseballCount;
     }
 
-    private BaseballCount countStrike(Baseball userBaseball, BaseballCount baseballCount, int i) {
-        if (numbers.get(i).equals(userBaseball.numbers.get(i))) {
+    private BaseballCount countStrike(List<Number> userNumbers, BaseballCount baseballCount, int i) {
+        if (numbers.get(i).equals(userNumbers.get(i))) {
             return baseballCount.increaseStrikeCount();
         }
         return baseballCount;
     }
 
-    private BaseballCount countBall(Baseball userBaseball, BaseballCount baseballCount, int i) {
-        if (contains(userBaseball, i) && !numbers.get(i).equals(userBaseball.numbers.get(i))) {
+    private BaseballCount countBall(List<Number> userNumbers, BaseballCount baseballCount, int i) {
+        if (contains(userNumbers.get(i)) && !numbers.get(i).equals(userNumbers.get(i))) {
             return baseballCount.increaseBallCount();
         }
         return baseballCount;
     }
 
-    private boolean contains(Baseball userBaseball, int i) {
-        return this.numbers.contains(userBaseball.numbers.get(i));
+    private boolean contains(Number number) {
+        return numbers.contains(number);
     }
 
     @Override
