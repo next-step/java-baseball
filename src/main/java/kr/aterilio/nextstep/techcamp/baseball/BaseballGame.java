@@ -42,6 +42,10 @@ public class BaseballGame {
 	}
 
 	private Set<Integer> safeSet(final Set<Integer> board) {
-		return board == null ? Collections.<Integer>emptySet() : board;
+		return board == null ? Collections.emptySet() : board;
+	}
+
+	public int getGameSize() {
+		return GAME_SIZE;
 	}
 }
