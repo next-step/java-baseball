@@ -3,6 +3,7 @@ package com.sang5c.baseball.domain;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class Baseball {
 
@@ -69,14 +70,23 @@ public class Baseball {
     }
 
     private BaseballCount countBall(List<Number> userNumbers, BaseballCount baseballCount, int i) {
-        if (contains(userNumbers.get(i)) && !numbers.get(i).equals(userNumbers.get(i))) {
+        if (numbers.contains(userNumbers.get(i)) && !numbers.get(i).equals(userNumbers.get(i))) {
             return baseballCount.increaseBallCount();
         }
         return baseballCount;
     }
 
-    private boolean contains(Number number) {
-        return numbers.contains(number);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Baseball baseball = (Baseball) o;
+        return Objects.equals(numbers, baseball.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 
     @Override

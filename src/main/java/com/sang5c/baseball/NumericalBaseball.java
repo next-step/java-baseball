@@ -12,7 +12,7 @@ public class NumericalBaseball {
     public static void main(String[] args) {
         String userContinueInput;
         do {
-            Baseball baseBall = Computer.randomNumbers();
+            Baseball baseBall = Computer.randomBaseball();
             System.out.println("question : " + baseBall);
 
             startUserInteraction(baseBall);

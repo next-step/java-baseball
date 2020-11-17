@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Computer {
 
-    public static Baseball randomNumbers() {
+    public static Baseball randomBaseball() {
         List<Integer> numbers = new ArrayList<>();
         for (int i = Number.MIN_NUMBER; i <= Number.MAX_NUMBER; i++) {
             numbers.add(i);
