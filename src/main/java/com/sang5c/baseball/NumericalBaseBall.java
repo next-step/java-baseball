@@ -11,8 +11,6 @@ public class NumericalBaseBall {
     public static void main(String[] args) {
         String userContinueInput;
         do {
-            // 서로 다른 1~9 랜덤 숫자 세개 출력 -> 입력받았다고 생각하기.
-            // String computer = "146"; // TODO: random
             Numbers question = Computer.randomNumbers();
             System.out.println("question : " + question);
 
