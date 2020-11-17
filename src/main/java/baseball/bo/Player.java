@@ -12,6 +12,10 @@ public class Player {
         return strikeNumber;
     }
 
+    /**
+     * User 숫자 입력 메소드
+     *  - 검증규칙에 맞는 숫자를 입력할 때까지 루프실행
+     */
     public void inputStrikeNumber() {
         Scanner scan = new Scanner(System.in);
         do {
