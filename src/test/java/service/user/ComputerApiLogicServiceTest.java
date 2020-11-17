@@ -3,15 +3,13 @@ package service.user;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import model.entity.Baseball;
 
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class ComputerApiLogicServiceTest {
-	private final Set<Integer> numberSet = new HashSet<>();
-	Baseball baseball;
+	Set<Integer> numberSet = new HashSet<>();
 
 	@Test
 	@DisplayName("셋을 리스트로 변경")
@@ -26,6 +24,19 @@ public class ComputerApiLogicServiceTest {
 		for (Integer num : list) {
 			assertThat(num).isGreaterThanOrEqualTo(1).isLessThanOrEqualTo(3);
 		}
+	}
+
+	@Test
+	@DisplayName("문자열을 리스트로 변경")
+	public void stringToList() {
+		String inputNumber = "123";
+		List<Integer> inputNumberList = new ArrayList<>();
+
+		for(int i=0; i<inputNumber.length(); i++) {
+			inputNumberList.add(Integer.parseInt(inputNumber.substring(i,i+1)));
+		}
+
+		assertThat(inputNumberList).contains(1,2,3);
 	}
 
 	@DisplayName("중복 되지 않는 랜덤 숫자 생성")
@@ -44,144 +55,105 @@ public class ComputerApiLogicServiceTest {
 	@Test
 	@DisplayName("같은 자리의 같은 숫자 있는지 확인 : 스트라이크")
 	public void calcStrikeTest() {
-		List<Integer> inputNumber = new ArrayList<>();
-		List<Integer> randomNumber = new ArrayList<>();
+		List<Integer> inputNumberList = new ArrayList<>();
+		List<Integer> randomNumberList = new ArrayList<>();
+		int strike = 0;
 
-		inputNumber.add(1);
-		inputNumber.add(5);
-		inputNumber.add(7);
+		inputNumberList.add(1);
+		inputNumberList.add(5);
+		inputNumberList.add(7);
 
-		randomNumber.add(1);
-		randomNumber.add(5);
-		randomNumber.add(6);
+		randomNumberList.add(1);
+		randomNumberList.add(5);
+		randomNumberList.add(6);
 
-		for(int i=0; i<inputNumber.size(); i++) {
-			baseball.setStrike(baseball.getStrike() + calcStrikeCount(inputNumber, randomNumber, i));
+		for(int i = 0; i < 3; i++) {
+			if(inputNumberList.get(i).intValue() == randomNumberList.get(i).intValue())
+				strike++;
 		}
 
-		assertThat(baseball.getStrike()).isEqualTo(2);
-	}
-
-	public int calcStrikeCount(List<Integer> inputNumber, List<Integer> randomNumber, int idx) {
-		int cnt = 0;
-		if(inputNumber.get(idx).equals(randomNumber.get(idx))) {
-			cnt = 1;
-		}
-
-		return cnt;
+		assertThat(strike).isEqualTo(2);
 	}
 
 	@Test
 	@DisplayName("다른 자리의 같은 숫자가 있는지 확인 : 볼")
 	public void calcBallTest() {
-		baseball = new Baseball();
 		List<Integer> inputNumber = new ArrayList<>();
 		List<Integer> randomNumber = new ArrayList<>();
+		int ball = 0;
 
 		inputNumber.add(1);
 		inputNumber.add(5);
 		inputNumber.add(7);
 
+		randomNumber.add(7);
 		randomNumber.add(1);
 		randomNumber.add(5);
-		randomNumber.add(7);
 
-		for(int i=0; i<inputNumber.size(); i++) {
-			baseball.setBall(baseball.getBall()+calcStrikeCount(inputNumber, randomNumber, i));
-		}
-
-		assertThat(baseball.getBall()).isEqualTo(3);
-	}
-
-	public int calcBallCount(List<Integer> inputNumber, List<Integer> randomNumber, int idx) {
-		int ball = 0;
-		for(int i=0; i<3; i++) {
-			if(idx != i && inputNumber.get(idx).equals(randomNumber.get(i))) {
-				ball=+1;
+		int i = 0;
+		int j = 0;
+		
+		while(i < 3) {
+			if(i != j && inputNumber.get(i).intValue() == randomNumber.get(j).intValue())
+				ball++;
+			
+			j++;
+			if(j==3) {
+				i++;
+				j=0;
 			}
 		}
 
-		return ball;
+		assertThat(ball).isEqualTo(3);
 	}
 
 	@Test
-	@DisplayName("낫싱 확인")
-	public void checkNothingTest() {
-		baseball.setStrike(0);
-		baseball.setBall(0);
-		if(baseball.getStrike() == 0 && baseball.getBall() == 0) {
-			assertThat(true).isTrue();
-		}
-	}
+	@DisplayName("결과 계산")
+	public void resultBaseball() {
+		List<Integer> inputNumberList = new ArrayList<>();
+		List<Integer> randomNumberList = new ArrayList<>();
 
-	@Test
-	@DisplayName("힌트 출력")
-	public void giveHint() {
-		List<Integer> inputNumber = new ArrayList<>();
-		List<Integer> randomNumber = new ArrayList<>();
+		inputNumberList.add(1);
+		inputNumberList.add(5);
+		inputNumberList.add(7);
 
-		inputNumber.add(1);
-		inputNumber.add(5);
-		inputNumber.add(7);
+		randomNumberList.add(1);
+		randomNumberList.add(7);
+		randomNumberList.add(5);
 
-		randomNumber.add(1);
-		randomNumber.add(7);
-		randomNumber.add(5);
+		int strike = calcStrike(inputNumberList, randomNumberList);
+		int ball = calcBall(inputNumberList, randomNumberList);
 
-		int strike = 0;
-		int ball = 0;
-		for(int i=0; i<3; i++) {
-			strike += calcStrike(inputNumber, randomNumber, i);
-			ball += calcBall(inputNumber, randomNumber, i);
-		}
-
-		System.out.println(printHintMessage(strike, ball));
 		assertThat(strike).isEqualTo(1);
 		assertThat(ball).isEqualTo(2);
 	}
 
-	public int calcStrike(List<Integer> inputNumber, List<Integer> randomNumber, int i) {
-		baseball = new Baseball();
-		if(inputNumber.get(i).equals(randomNumber.get(i))) {
-			baseball.setStrike(baseball.getStrike() + 1);
+	public int calcStrike(List<Integer> inputNumberList, List<Integer> randomNumberList) {
+		int strike = 0;
+		for(int i = 0; i < 3; i++) {
+			if(inputNumberList.get(i).intValue() == randomNumberList.get(i).intValue())
+				strike++;
 		}
-
-		System.out.print(baseball.getStrike());
-		return baseball.getStrike();
+		
+		return strike;
 	}
 
-	public int calcBall(List<Integer> inputNumber, List<Integer> randomNumber, int i) {
-		baseball = new Baseball();
-		for(int j = 0; j<inputNumber.size(); j++) {
-			if(i != j && inputNumber.get(i).equals(randomNumber.get(j))) {
-				baseball.setBall(baseball.getBall() + 1);
+	public int calcBall(List<Integer> inputNumber, List<Integer> randomNumber) {
+		int ball = 0;
+		int i = 0;
+		int j = 0;
+
+		while(i < 3) {
+			if(i != j && inputNumber.get(i).intValue() == randomNumber.get(j).intValue())
+				ball++;
+
+			j++;
+			if(j==3) {
+				i++;
+				j=0;
 			}
 		}
-
-		return baseball.getBall();
-	}
-
-	public String printHintMessage(int strike, int ball) {
-		String hint = "";
-
-		if(ball == 0)
-			hint = strike + " 스트라이크";
-		if(strike == 0)
-			hint = ball + " 볼";
-		if(strike > 0 && ball > 0)
-			hint = strike + " 스트라이크 " + ball + " 볼";
-		if(checkNothing())
-			hint = "낫싱";
-
-		return hint;
-	}
-
-	public boolean checkNothing() {
-		baseball = new Baseball();
-
-		if(baseball.getStrike() == 0 && baseball.getBall() == 0) {
-			return true;
-		}
-		return false;
+		
+		return ball;
 	}
 }
