@@ -7,24 +7,25 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse) 
 
 ## 구현할 기능 목록
-1. [ ] 1~9까지 서로 다른 3자리 수 생성 : NumberBox
+1. [x] 1~9까지 서로 다른 3자리 수 생성 : NumberBox
     - [x] 투수 : 서로 다른 3자리 난수 박스 생성
-    - [ ] 타자 : 입력 받은 숫자로 박스 생성    
-2. [ ] 배팅 결과(strike-ball-nothing) 판별 : Batting
-    - [ ] STRIKE  : 같은 위치, 같은 값
-    - [ ] BALL    : 다른 위치, 같은 값
-    - [ ] NOTHING : 같은 위치, 같은 값
-3. [ ] 플레이어(투수, 타자)객체 생성 : Pitcher & Batter
-4. [ ] 게임 실행 클래스 구현
+    - [x] 타자 : 입력 받은 숫자로 박스 생성    
+2. [x] 배팅 결과(strike-ball-nothing) 판별 : Swing
+    - [x] STRIKE  : 같은 위치, 같은 값
+    - [x] BALL    : 다른 위치, 같은 값
+    - [x] NOTHING : 같은 위치, 같은 값
+3. [ ] 스윙 결과 객체 생성 : ResultBoard
+4. [ ] 플레이어(투수, 타자)객체 생성 : Pitcher & Batter
+5. [ ] 게임 실행 클래스 구현
     - [ ] 실행 목록 정의
         1. [ ] 게임 시작
             - [ ] 투수 생성 - 컴퓨터
             - [ ] 타자 생성 - 유저
         2. [ ] 타자 숫자 입력
-        3. [ ] 숫자 검증(배팅 결과)
+        3. [ ] 숫자 검증(스윙 결과)
         4. [ ] 아웃 판별  
         5. [ ] 종료(exit)/재시작(2~4 반복) => state 패턴 적용 
-5. [ ] 리팩토링
+6. [ ] 리팩토링
 
 ---
 

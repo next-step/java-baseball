@@ -1,24 +1,25 @@
 package com.baseball.game.type;
 
-import com.baseball.game.service.NumberBox;
+import com.baseball.game.domain.Batter;
+import com.baseball.game.domain.Pitcher;
 import com.baseball.game.service.SwingOperator;
 
 import java.util.Arrays;
 
 public enum Swing implements SwingOperator {
     NOTHING("NOTHING!"){
-        public boolean isSwing(NumberBox pitcherBox, NumberBox batterBox, int idx){
-            return !isContains(pitcherBox, batterBox, idx);
+        public boolean isSwing(Pitcher pitcher, Batter batter, int idx){
+            return !pitcher.isPresent(batter.getNumberFromIndex(idx));
         }
     },
     BALL("BALL!"){
-        public boolean isSwing(NumberBox pitcherBox, NumberBox batterBox, int idx){
-            return isContains(pitcherBox, batterBox, idx) && !isEqualsValueAndIndex(pitcherBox, batterBox, idx);
+        public boolean isSwing(Pitcher pitcher, Batter batter, int idx){
+            return pitcher.isPresent(batter.getNumberFromIndex(idx)) && !isEqualsValueAndIndex(pitcher, batter, idx);
         }
     },
     STRIKE("STRIKE!"){
-        public boolean isSwing(NumberBox pitcherBox, NumberBox batterBox, int idx){
-            return isEqualsValueAndIndex(pitcherBox, batterBox, idx);
+        public boolean isSwing(Pitcher pitcher, Batter batter, int idx){
+            return isEqualsValueAndIndex(pitcher, batter, idx);
         }
     };
 
@@ -28,18 +29,15 @@ public enum Swing implements SwingOperator {
         this.text = text;
     }
 
-    private static boolean isEqualsValueAndIndex(NumberBox pitcherBox, NumberBox batterBox, int idx) {
-        return pitcherBox.getNumberBox().get(idx).equals(batterBox.getNumberBox().get(idx));
-    }
-    private static boolean isContains(NumberBox pitcherBox, NumberBox batterBox, int idx) {
-        return pitcherBox.getNumberBox().contains(batterBox.getNumberBox().get(idx));
-    }
-
-    public static Swing swingResult(NumberBox pitcherBox, NumberBox batterBox, int idx) {
+    public static Swing swingResult(Pitcher pitcher, Batter batter, int idx) {
         return Arrays.stream(Swing.values())
-                .filter(s -> s.isSwing(pitcherBox, batterBox, idx))
+                .filter(s -> s.isSwing(pitcher, batter, idx))
                 .findFirst()
                 .get();
+    }
+
+    public boolean isEqualsValueAndIndex(Pitcher pitcher, Batter batter, int idx) {
+        return pitcher.getNumberBox().get(idx).equalsNumber(batter.getNumberBox().get(idx).getNumber());
     }
 
     public String getText(){

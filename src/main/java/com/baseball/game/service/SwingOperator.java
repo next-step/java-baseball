@@ -1,5 +1,8 @@
 package com.baseball.game.service;
 
+import com.baseball.game.domain.Batter;
+import com.baseball.game.domain.Pitcher;
+
 public interface SwingOperator {
-    boolean isSwing(NumberBox pitcherBox, NumberBox batterBox, int index);
+    boolean isSwing(Pitcher pitcher, Batter batter, int idx);
 }
