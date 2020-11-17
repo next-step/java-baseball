@@ -1,5 +1,7 @@
 package com.sang5c.baseball;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Number {
@@ -9,13 +11,21 @@ public class Number {
 
     private final int number;
 
+    private static final Map<Integer, Number> cache = new HashMap<>();
+
+    static {
+        for (int i = MIN_NUMBER; i <= MAX_NUMBER; i++) {
+            cache.put(i, new Number(i));
+        }
+    }
+
     private Number(int number) {
         validate(number);
         this.number = number;
     }
 
     public static Number of(int number) {
-        return new Number(number);
+        return cache.get(number);
     }
 
     private void validate(int number) {
