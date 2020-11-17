@@ -11,7 +11,7 @@ public class NumericalBaseBall {
 
             // String computer = scanner.nextLine();
             String computer = "146";
-            Set<String> question = generateNumbersOfString(computer);
+            Numbers question = Numbers.of(computer);
             System.out.println("question : " + question);
 
             startUserInteraction(question);
@@ -28,13 +28,13 @@ public class NumericalBaseBall {
         return scanner.nextLine();
     }
 
-    private static void startUserInteraction(Set<String> question) {
+    private static void startUserInteraction(Numbers question) {
         Count count;
         do {
             String userInput = getUserNumbersInput();
-            Set<String> userNumbers = generateNumbersOfString(userInput);
+            Numbers userNumbers = Numbers.of(userInput);
 
-            count = Referee.compare(question, userNumbers);
+            count = question.compare(userNumbers);
             printCount(count);
         } while (!count.isThreeStrike());
     }
