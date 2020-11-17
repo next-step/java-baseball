@@ -1,12 +1,12 @@
 package game.system;
 
+import game.ui.UserInterface;
 import game.ui.UtilUserInterface;
 
 import java.util.Arrays;
 
 public class Referee {
 
-    private boolean lastGame;
     private int key;
     private int strikeCount;
     private int ballCount;
@@ -22,17 +22,15 @@ public class Referee {
         return false;
     }
 
-    public void askContinue(){
+    public boolean askFinish(){
+        boolean isLastGame = false;
         String message = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-        int finishIntention= UtilUserInterface.viewUI(message);
+        int userIntention = UtilUserInterface.viewUI(UserInterface.ASK_FINISH, message);
 
-        if(finishIntention == 1) this.lastGame = false;
-        if(finishIntention == 2) this.lastGame = true;
-        if(finishIntention != 1 && finishIntention != 2) this.lastGame = true;
-    }
+        if(userIntention == 1) isLastGame = false;
+        if(userIntention == 2) isLastGame = true;
 
-    public boolean isLastGame(){
-        return lastGame;
+        return isLastGame;
     }
 
     public boolean isStrikeOut(int battingDigit){

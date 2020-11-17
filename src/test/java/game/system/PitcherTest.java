@@ -13,12 +13,11 @@ class PitcherTest {
     public void allDifferentDigits_Then_ValidDigits(){
         Pitcher pitcher = new Pitcher();
         int[] digits = pitcher.generateDigits();
-        assertEquals(true, findRepeatDigit(digits));
+        assertEquals(true, findDuplicatedDigit(digits));
     }
 
-    private boolean findRepeatDigit(int[] digits) {
+    private boolean findDuplicatedDigit(int[] digits) {
         Set<Integer> digitSet = new HashSet<>();
-
         for (int i : digits) {
             if (digitSet.contains(i)) {
                 return false;

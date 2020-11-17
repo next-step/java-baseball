@@ -25,7 +25,6 @@ public class GameApplication {
             strikeOut = referee.judgeBatting(battingDigit);
         }while (!strikeOut);
 
-        referee.askContinue();
-        return referee.isLastGame();
+        return referee.askFinish();
     }
 }

@@ -1,5 +1,6 @@
 package game.system;
 
+import game.ui.UserInterface;
 import game.ui.UtilUserInterface;
 
 public class Pitcher {
@@ -22,6 +23,6 @@ public class Pitcher {
 
     public int pitch(){
         String message = "숫자를 입력해주세요 : ";
-        return UtilUserInterface.viewUI(message);
+        return UtilUserInterface.viewUI(UserInterface.PITCH, message);
     }
 }

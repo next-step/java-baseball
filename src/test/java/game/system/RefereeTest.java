@@ -29,9 +29,9 @@ class RefereeTest {
         String userInput = "1";
 
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
-        referee.askContinue();
+        boolean result = referee.askFinish();
 
-        assertEquals(false, referee.isLastGame());
+        assertEquals(false, result);
     }
 
     @Test
@@ -40,9 +40,9 @@ class RefereeTest {
         String userInput = "2";
 
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
-        referee.askContinue();
+        boolean result = referee.askFinish();
 
-        assertEquals(true, referee.isLastGame());
+        assertEquals(true, result);
     }
 
 
