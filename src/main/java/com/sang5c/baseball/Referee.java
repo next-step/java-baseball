@@ -6,21 +6,22 @@ import java.util.Set;
 
 public class Referee {
 
-    public static CountDto compare(Set<String> question, Set<String> userNumbers) {
-        CountDto countDto = new CountDto();
+    public static Count compare(Set<String> question, Set<String> userNumbers) {
+        int ballCount = 0;
+        int strikeCount = 0;
 
         List<String> questionStrings = new ArrayList<>(question);
         List<String> userStrings = new ArrayList<>(userNumbers);
         for (int i = 0; i < userStrings.size(); i++) {
             if (questionStrings.contains(userStrings.get(i))) {
                 if (questionStrings.get(i).equals(userStrings.get(i))) {
-                    countDto.increaseStrikeCount();
+                    strikeCount++;
                     continue;
                 }
-                countDto.increaseBallCount();
+                ballCount++;
             }
         }
 
-        return countDto;
+        return new Count(strikeCount, ballCount);
     }
 }

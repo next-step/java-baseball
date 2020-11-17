@@ -15,18 +15,7 @@ public class NumericalBaseBall {
             Set<String> question = generateNumbersOfString(computer);
             System.out.println("question : " + question);
 
-            while (true) {
-                // String userInput = scanner.nextLine();
-                String userInput = "214";
-                Set<String> userNumbers = generateNumbersOfString(userInput);
-                System.out.println("숫자를 입력해주세요 : " + userNumbers);
-
-                CountDto countDto = Referee.compare(question, userNumbers);
-                printCount(countDto);
-                if (countDto.isThreeStrike()) {
-                    break;
-                }
-            }
+            startUserInteraction(question);
             System.out.println("계속하려면 엔터, 그만하려면 exit 입력");
             String userContinueInput = scanner.nextLine();
             if ("exit".equalsIgnoreCase(userContinueInput)) {
@@ -35,23 +24,47 @@ public class NumericalBaseBall {
         }
     }
 
-    private static void printCount(CountDto countDto) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (countDto.getStrikeCount() != 0) {
-            stringBuilder.append(countDto.getStrikeCount());
-            stringBuilder.append(" 스트라이크 ");
-        }
+    private static void startUserInteraction(Set<String> question) {
+        while (true) {
+            printInputGuide();
+            // String userInput = scanner.nextLine();
+            String userInput = "214";
+            System.out.println(userInput);
 
-        if (countDto.getBallCount() != 0) {
-            stringBuilder.append(countDto.getBallCount());
-            stringBuilder.append(" 볼");
-        }
+            Set<String> userNumbers = generateNumbersOfString(userInput);
 
-        if (stringBuilder.length() == 0) {
+            Count count = Referee.compare(question, userNumbers);
+            printCount(count);
+            if (count.isThreeStrike()) {
+                break;
+            }
+        }
+    }
+
+    private static void printInputGuide() {
+        System.out.print("숫자를 입력해주세요 : ");
+    }
+
+    private static void printCount(Count count) {
+        if (count.isNothing()) {
             System.out.println("낫싱");
             return;
         }
-        System.out.println(stringBuilder.toString());
+        printStrikeCount(count);
+        printBallCount(count);
+        System.out.println();
+    }
+
+    private static void printBallCount(Count count) {
+        if (count.getBallCount() != 0) {
+            System.out.print(count.getBallCount() + "볼");
+        }
+    }
+
+    private static void printStrikeCount(Count count) {
+        if (count.getStrikeCount() != 0) {
+            System.out.print(count.getStrikeCount() + " 스트라이크 ");
+        }
     }
 
     // hashset이 중복확인과 사이즈 확인 가능하다.
