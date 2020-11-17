@@ -25,20 +25,29 @@ public class BaseballGame {
 	}
 	
 	public void playGame() {
-		//정답 셋팅
+		//게임 셋팅
+		boolean isGameOver = false;
 		int[] answer = makeAnswerNumber();
 		
 		//정답 맞출때까지 반복
-		//1. 사용자에게 입력받기
-		int[] user = userNumber();
-		
-		int strikeCount = 0;
-		int ballCount = 0;
-		//2. 판단
-		strikeCount = checkStrikeCount(answer, user);
-		ballCount = checkBallCount(answer, user);
-		
-		//3. 판단 결과 출력
+		do {
+			//1. 사용자에게 입력받기
+			int[] user = userNumber();
+			
+			int strikeCount = 0;
+			int ballCount = 0;
+			//2. 판단
+			strikeCount = checkStrikeCount(answer, user);
+			ballCount = checkBallCount(answer, user);
+			
+			//3. 판단 결과 출력
+			printResult(strikeCount, ballCount);
+			
+			//4. 게임 종료 여부 확인
+			if (strikeCount == 3) {
+				isGameOver = true;
+			}
+		} while (isGameOver == false);
 	}
 	
 	
