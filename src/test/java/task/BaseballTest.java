@@ -56,6 +56,17 @@ class BaseballTest {
         baseball.compare();
         assertEquals(0,baseball.ball);
         assertEquals(0,baseball.strike);
-
     }
+
+    @Test
+    @DisplayName("스트라이크 볼 초기화 테스트")
+    void numberInitialize() {
+        baseball.strike = 3;
+        baseball.ball = 3;
+        baseball.numberInitialize();
+        assertEquals(0,baseball.strike);
+        assertEquals(0,baseball.ball);
+    }
+
+
 }

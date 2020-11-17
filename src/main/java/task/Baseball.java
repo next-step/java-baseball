@@ -17,6 +17,7 @@ public class Baseball {
         computer = new HashSet<>();
         random = new Random();
         user = new ArrayList<>();
+        scanner = new Scanner(System.in);
     }
 
     void computerNumberInput() {
@@ -61,6 +62,70 @@ public class Baseball {
             System.out.println(strike+" 스트라이크 " + ball+" 볼");
         if(strike == 0 && ball == 0)
             System.out.println("낫싱");
+    }
+
+    void answer() {
+        if(strike == 3) {
+            resultOutput();
+            restartOrExit();
+            return;
+        }
+        resultOutput();
+        userCollectionClear();
+    }
+
+    void restartOrExit() {
+        System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요");
+        int answer = scannerIntInput();
+        if(answer == 1) {
+            gameRestart();
+            return;
+        }
+        if(answer == 2) {
+            scannerClose();
+        }
+    }
+
+    void gameRestart() {
+        numberInitialize();
+        computerCollectionClear();
+        userCollectionClear();
+        computerNumberInput();
+        computerArrayOutput();
+    }
+
+    public void gameStart() {
+        computerNumberInput();
+        computerArrayOutput();
+
+        while(strike != 3) {
+            numberInitialize();
+            userGameNumberInput();
+            System.out.println("사용자 입력 값 : " + Arrays.toString(user.toArray()));
+            compare();
+            answer();
+        }
+    }
+
+    void computerArrayOutput() {
+        System.out.println("컴퓨터 값 : " + Arrays.toString(computer.toArray()));
+    }
+
+    void numberInitialize() {
+        strike = 0;
+        ball = 0;
+    }
+
+    void userCollectionClear() {
+        user.clear();
+    }
+
+    void computerCollectionClear() {
+        computer.clear();
+    }
+
+    void scannerClose() {
+        scanner.close();
     }
 
 }
