@@ -32,7 +32,7 @@ class AnswerNumberTest {
 
 	@ParameterizedTest
 	@ValueSource(ints = 234)
-	@DisplayName("getIndex()로 가져온 인덱스와 실제 인젝스가 같은지 확인한다.")
+	@DisplayName("getIndex()로 가져온 인덱스와 실제 인덱스가 같은지 확인한다.")
 	void getIndexTest(int number) {
 		List<Integer> numbers = NumberUtils.split(number);
 		AnswerNumber answerNumber = AnswerNumberTestHelper.generateAnswerNumber(numbers,
@@ -41,6 +41,7 @@ class AnswerNumberTest {
 		assertThat(answerNumber)
 			.isNotNull()
 			.isInstanceOf(AnswerNumber.class);
+
 		for (int i = 0; i < BaseBallNumber.NUMBERS_SIZE; i++) {
 			assertThat(answerNumber.getIndex(answerNumber.get(i)))
 				.isEqualTo(i);
