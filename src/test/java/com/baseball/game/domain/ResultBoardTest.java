@@ -26,7 +26,7 @@ class ResultBoardTest {
 
     @ParameterizedTest
     @ValueSource(ints = {413})
-    @DisplayName("볼->스트라이크 순서이지만, sorting되어 스트라이크부터 출력된다 - 1볼 1스트라이크")
+    @DisplayName("볼->스트라이크 순서이지만, sorting되어 스트라이크부터 출력된다 - 1스트라이크 1볼")
     public void swingResultEmptyNothing(int numbers){
         //given
         batter = Batter.create(numbers);
@@ -53,9 +53,9 @@ class ResultBoardTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {389})
-    @DisplayName("3낫씽은 공백으로 표기된다")
-    public void swingResultAllNothingIsEmpty(int numbers){
+    @ValueSource(ints = {243})
+    @DisplayName("볼 또는 스트라이크가 존재할때에는 낫씽을 출력하지 않는다")
+    public void swingResultWithNothing(int numbers){
         //given
         batter = Batter.create(numbers);
 
@@ -63,7 +63,21 @@ class ResultBoardTest {
         ResultBoard resultBoard = ResultBoard.of(pitcher, batter);
 
         //then
-        assertTrue(resultBoard.toString().isEmpty());
+        assertTrue(resultBoard.toString().contains("1스트라이크 1볼"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {389})
+    @DisplayName("3낫씽은 낫씽 으로 출력한다")
+    public void swingResultAllNothing(int numbers){
+        //given
+        batter = Batter.create(numbers);
+
+        //when
+        ResultBoard resultBoard = ResultBoard.of(pitcher, batter);
+
+        //then
+        assertTrue(resultBoard.toString().contains("낫씽"));
     }
 
     @ParameterizedTest
@@ -79,11 +93,5 @@ class ResultBoardTest {
         //then
         assertTrue(resultBoard.toString().contains("3스트라이크"));
         assertTrue(resultBoard.isOut());
-    }
-
-    @Test
-    public void fasdfdsf(){
-        List<Integer> aa = Lists.list(1,2,3);
-        System.out.println(aa.toString());
     }
 }

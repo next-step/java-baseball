@@ -53,13 +53,17 @@ public class ResultBoard {
 
     @Override
     public String toString() {
-        String result = "스윙 결과 : ";
+        String result = "";
         for(Swing swing : swingBoard.keySet()){
             if(swing != Swing.NOTHING){
                 result += String.format("%d%s ", swingBoard.get(swing), swing.getText());
             }
         }
 
-        return result;
+        return isAllNothing(result);
+    }
+
+    private String isAllNothing(String result){
+        return result.isEmpty() ? Swing.NOTHING.getText() : result;
     }
 }
