@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 class PlayBaseBallTest {
@@ -132,6 +134,104 @@ class PlayBaseBallTest {
 			isZero = false;
 		}
 		assertThat(isZero).isTrue();
+	}
+
+	@DisplayName("입력받은 수를 정수형 으로 변경한다.")
+	@Test
+	void compareNumber() {
+		String value = "123";
+		int sum = 0;
+		for (int i = 0; i < 3; i++) {
+			sum += Character.getNumericValue(value.charAt(i));
+		}
+		assertThat(sum).isEqualTo(6);
+	}
+
+	@DisplayName("입력받은 수 정수형 Array로 변경한다.")
+	@Test
+	void changeNumberArray() {
+		String value = "123";
+		ArrayList<Integer> arrayList = new ArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			arrayList.add(Character.getNumericValue(value.charAt(i)));
+		}
+		assertThat(arrayList.size()).isEqualTo(3);
+	}
+
+	@DisplayName("값을 비교해서 같은 위치에 있으면 스트라이크")
+	@Test
+	void countStrike() {
+		ArrayList<Integer> computer = new ArrayList<>();
+		computer.add(1);
+		computer.add(2);
+		computer.add(3);
+		ArrayList<Integer> user = new ArrayList<>();
+		user.add(1);
+		user.add(2);
+		user.add(3);
+		Iterator<Integer> computerIterator = computer.iterator();
+		Iterator<Integer> userIterator  = user.iterator();
+		int strike = 0;
+		while (computerIterator.hasNext()) {
+			int computerNum = computerIterator.next();
+			int userNum = userIterator.next();
+			if (computerNum == userNum) {
+				strike++;
+			}
+		}
+		assertThat(strike).isEqualTo(3);
+	}
+
+	@DisplayName("값이 다른 위치에 있으면 Ball")
+	@Test
+	void countBall() {
+		ArrayList<Integer> computer = new ArrayList<>();
+		computer.add(1);
+		computer.add(2);
+		computer.add(3);
+		ArrayList<Integer> user = new ArrayList<>();
+		user.add(3);
+		user.add(5);
+		user.add(6);
+		Iterator<Integer> computerIterator = computer.iterator();
+		Iterator<Integer> userIterator  = user.iterator();
+		int ball = 0;
+		while (computerIterator.hasNext()) {
+			int computerNum = computerIterator.next();
+			int userNum = userIterator.next();
+			if (computerNum != userNum) {
+				if (user.contains(computerNum)) {
+					ball++;
+				}
+			}
+		}
+		assertThat(ball).isEqualTo(1);
+	}
+
+	@DisplayName("같은 수가 없으면 Nothing")
+	@Test
+	void countNothing() {
+		ArrayList<Integer> computer = new ArrayList<>();
+		computer.add(1);
+		computer.add(2);
+		computer.add(3);
+		ArrayList<Integer> user = new ArrayList<>();
+		user.add(7);
+		user.add(5);
+		user.add(6);
+		Iterator<Integer> computerIterator = computer.iterator();
+		Iterator<Integer> userIterator  = user.iterator();
+		int nothing = 0;
+		while (computerIterator.hasNext()) {
+			int computerNum = computerIterator.next();
+			int userNum = userIterator.next();
+			if (computerNum != userNum) {
+				if (!user.contains(computerNum)) {
+					nothing++;
+				}
+			}
+		}
+		assertThat(nothing).isEqualTo(3);
 	}
 
 }
