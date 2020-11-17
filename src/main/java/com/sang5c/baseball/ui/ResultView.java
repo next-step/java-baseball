@@ -4,9 +4,13 @@ import com.sang5c.baseball.domain.Count;
 
 public class ResultView {
 
+    private static final String BALL = " 볼 ";
+    private static final String STRIKE = " 스트라이크 ";
+    private static final String NOTHING = "낫싱";
+
     public static void printCount(Count count) {
         if (count.isNothing()) {
-            System.out.println("낫싱");
+            System.out.println(NOTHING);
             return;
         }
         printStrikeCount(count);
@@ -16,13 +20,13 @@ public class ResultView {
 
     private static void printBallCount(Count count) {
         if (count.getBallCount() != 0) {
-            System.out.print(count.getBallCount() + "볼");
+            System.out.print(count.getBallCount() + BALL);
         }
     }
 
     private static void printStrikeCount(Count count) {
         if (count.getStrikeCount() != 0) {
-            System.out.print(count.getStrikeCount() + " 스트라이크 ");
+            System.out.print(count.getStrikeCount() + STRIKE);
         }
     }
 

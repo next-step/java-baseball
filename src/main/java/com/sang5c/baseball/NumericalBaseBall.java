@@ -2,30 +2,35 @@ package com.sang5c.baseball;
 
 import com.sang5c.baseball.domain.Computer;
 import com.sang5c.baseball.domain.Count;
-import com.sang5c.baseball.domain.Numbers;
+import com.sang5c.baseball.domain.BaseBall;
 import com.sang5c.baseball.ui.InputView;
 import com.sang5c.baseball.ui.ResultView;
 
 public class NumericalBaseBall {
+    private static final String EXIT = "exit";
 
     public static void main(String[] args) {
         String userContinueInput;
         do {
-            Numbers question = Computer.randomNumbers();
-            System.out.println("question : " + question);
+            BaseBall baseBall = Computer.randomNumbers();
+            System.out.println("question : " + baseBall);
 
-            startUserInteraction(question);
+            startUserInteraction(baseBall);
             userContinueInput = InputView.getInputToContinue();
-        } while (!"exit".equalsIgnoreCase(userContinueInput));
+        } while (isNotExit(userContinueInput));
     }
 
-    private static void startUserInteraction(Numbers question) {
+    private static boolean isNotExit(String userContinueInput) {
+        return !EXIT.equalsIgnoreCase(userContinueInput);
+    }
+
+    private static void startUserInteraction(BaseBall baseBall) {
         Count count;
         do {
             String userInput = InputView.getUserNumbersInput();
-            Numbers userNumbers = Numbers.of(userInput);
+            BaseBall userBaseBall = BaseBall.of(userInput);
 
-            count = question.compare(userNumbers);
+            count = baseBall.compare(userBaseBall);
             ResultView.printCount(count);
         } while (!count.isThreeStrike());
     }

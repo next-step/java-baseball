@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Computer {
 
-    public static Numbers randomNumbers() {
+    public static BaseBall randomNumbers() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i <= 9; i++) {
+        for (int i = Number.MIN_NUMBER; i <= Number.MAX_NUMBER; i++) {
             numbers.add(i);
         }
         Collections.shuffle(numbers);
-        return Numbers.of(numbers.subList(0, 3));
+        return BaseBall.of(numbers.subList(0, BaseBall.BASEBALL_NUMBERS_LENGTH));
     }
 }
