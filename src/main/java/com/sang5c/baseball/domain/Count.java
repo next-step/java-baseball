@@ -34,4 +34,12 @@ public class Count {
         return ballCount == 0 && strikeCount == 0;
     }
 
+    @Override
+    public String toString() {
+        return "Count{" +
+                "strikeCount=" + strikeCount +
+                ", ballCount=" + ballCount +
+                '}';
+    }
+
 }
