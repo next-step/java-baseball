@@ -8,18 +8,21 @@ import view.OutputView;
 public class BaseballApplication {
 
     public static void main(String[] args) {
+        start();
+    }
 
+    private static void start() {
         BaseballGame game = new BaseballGame(BallFactory.createBalls());
 
-        do {
-            if (game.isEnd()) {
-                game = new BaseballGame(BallFactory.createBalls());
-            }
-
+        while (!game.isEnd()) {
             String inputNumbers = InputView.inputNumber();
 
             Record record = game.play(Balls.of(inputNumbers));
             OutputView.printRecord(record);
-        } while (!game.isEnd() || (game.isEnd() && InputView.restart()));
+        }
+
+        if (InputView.restart()) {
+            start();
+        }
     }
 }
