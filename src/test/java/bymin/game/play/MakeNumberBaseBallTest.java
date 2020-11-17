@@ -24,7 +24,7 @@ public class MakeNumberBaseBallTest {
         assertEquals(makeNumberBaseBall.getNumList().size(), 3);
     }
 
-	@DisplayName("사이즈 체크")
+	@DisplayName("숫자 3개 체크")
 	@Test
 	void isValidNumListCheck() {
 //        assertEquals(makeNumberBaseBall.getNumList().size(), 2);

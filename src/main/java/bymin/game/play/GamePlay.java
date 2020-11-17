@@ -1,6 +1,7 @@
 package bymin.game.play;
 
 import bymin.game.constans.GameResult;
+import bymin.game.constans.Rule;
 
 import java.util.*;
 
@@ -17,7 +18,7 @@ public class GamePlay {
 		char[] userBall = setString.toCharArray();
 		if (userBall.length > 3) {
 			System.out.println("3 자리 숫자를 입력해주세요");
-			return "0";
+			return Rule.RELOAD.getPlayType();
 		}
 		gameCheckRuleFirstNumber(numList, setString.toCharArray(), mapResult);
 		resultMessage(mapResult);
@@ -52,14 +53,12 @@ public class GamePlay {
 		for (String result : resultSet) {
 			System.out.print(subMessage(mapResult.get(result), result));
 		}
-		System.out.println(" ");
 	}
 
 	public String subMessage(int a, String b) {
 		if (a > 0) {
 			return a + " " + b;
 		}
-
 		return " ";
 	}
 
