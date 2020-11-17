@@ -27,8 +27,23 @@ public class Balls {
         return listSize;
     }
 
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public void setInput() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < balls.size(); i++) {
+            sb.append(balls.get(i));
+        }
+        this.input = sb.toString();
+    }
+
     public String getInput() {
-        return input;
+        if(this.input == null || this.input.isEmpty()) {
+            this.setInput();
+        }
+        return this.input;
     }
 
     public List<Integer> getBalls() {
