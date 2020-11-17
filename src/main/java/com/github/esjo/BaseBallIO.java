@@ -1,6 +1,7 @@
 package com.github.esjo;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
@@ -17,9 +18,9 @@ public class BaseBallIO {
     /**BaseBallIO객체 초기화 정적 메서드 - 사용자 입력 값을 받기 위한 변수 세팅
      * @return baseBallIO 객체 생성
      * */
-    public static BaseBallIO createBaseBallIO() {
+    public static BaseBallIO createBaseBallIO(InputStream inputStream) {
         baseBallIO = new BaseBallIO();
-        bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         return baseBallIO;
     }
 
