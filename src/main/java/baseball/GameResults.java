@@ -4,10 +4,12 @@ public class GameResults {
 
     private int strike;
     private int ball;
+    private int nothing;
 
     public GameResults() {
         this.strike = 0;
         this.ball = 0;
+        this.nothing = 0;
     }
 
     public void increaseStrike() {
@@ -39,5 +41,13 @@ public class GameResults {
 
     public int getBall() {
         return ball;
+    }
+
+    public void finish() {
+        nothing = 3 - strike - ball;
+    }
+
+    public int getNothing() {
+        return nothing;
     }
 }

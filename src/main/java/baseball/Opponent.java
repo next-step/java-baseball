@@ -22,7 +22,6 @@ public class Opponent {
             Integer randomNumber = numberGenerator.getRandomNumber();
             this.value = this.value.concat(randomNumber.toString());
         }
-
     }
 
     public String getValue() {
@@ -32,7 +31,11 @@ public class Opponent {
     public void judgeGame(String playerValue) {
         judgeStrike(playerValue);
         judgeBall(playerValue);
+        finishGame();
+    }
 
+    private void finishGame() {
+        gameResults.finish();
     }
 
     private void judgeStrike(String playerValue) {
@@ -53,11 +56,11 @@ public class Opponent {
 
     private void judgeBall(String playerValue) {
         for (int i = 0; i < playerValue.length(); i++) {
-            hasBall(i, playerValue.charAt(i));
+            checkBall(i, playerValue.charAt(i));
         }
     }
 
-    private void hasBall(int i, char charAt) {
+    private void checkBall(int i, char charAt) {
         for (int j = 0; j < 3; j++) {
             if (j == i) {
                 continue;
@@ -71,5 +74,9 @@ public class Opponent {
 
     public int getBallCnt() {
         return gameResults.getBall();
+    }
+
+    public int getNothingCnt() {
+        return gameResults.getNothing();
     }
 }
