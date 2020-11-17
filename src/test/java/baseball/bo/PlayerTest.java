@@ -21,19 +21,19 @@ class PlayerTest {
         /// when
         isValid.setAccessible(true);
 
-        boolean isLengthTrue = (boolean)isValid.invoke(player, "12");
-        boolean isLengthTrue2 = (boolean)isValid.invoke(player, "");
-        boolean isLengthTrue3 = (boolean)isValid.invoke(player, "1324789");
-        boolean isNumber = (boolean)isValid.invoke(player, "1b4");
-        boolean isContainZero = (boolean)isValid.invoke(player, "014");
-        boolean isHasDupNumber = (boolean)isValid.invoke(player, "0");
+        boolean isLengthTrueValid = (boolean)isValid.invoke(player, "12");
+        boolean isLengthTrueValid2 = (boolean)isValid.invoke(player, "");
+        boolean isLengthTrueValid3 = (boolean)isValid.invoke(player, "1324789");
+        boolean isNumberValid = (boolean)isValid.invoke(player, "1b4");
+        boolean isContainZeroValid = (boolean)isValid.invoke(player, "014");
+        boolean isHasDupNumberValid = (boolean)isValid.invoke(player, "112");
 
         // then
-        assertThat(isLengthTrue).isFalse();
-        assertThat(isLengthTrue2).isFalse();
-        assertThat(isLengthTrue3).isFalse();
-        assertThat(isNumber).isFalse();
-        assertThat(isContainZero).isFalse();
-        assertThat(isHasDupNumber).isFalse();
+        assertThat(isLengthTrueValid).isFalse();
+        assertThat(isLengthTrueValid2).isFalse();
+        assertThat(isLengthTrueValid3).isFalse();
+        assertThat(isNumberValid).isFalse();
+        assertThat(isContainZeroValid).isFalse();
+        assertThat(isHasDupNumberValid).isFalse();
     }
 }

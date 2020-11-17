@@ -68,7 +68,7 @@ public class Player {
         for (char c : strikeNumber.toCharArray()) {
             stringSet.add(String.valueOf(c));
         }
-        if (stringSet.size()<3) {
+        if (stringSet.size()<strikeNumber.length()) {
             System.out.println("중복된 숫자를 입력하였습니다. 다시 입력해 주세요");
             return true;
         }
