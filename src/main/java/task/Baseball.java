@@ -27,7 +27,15 @@ public class Baseball {
 
     void userGameNumberInput() {
         while(user.size() < COLLECTION_MAXIMUM_LENGTH)
-            user.add(scannerIntInput());
+            rangeCheck();
+    }
+
+    void rangeCheck() {
+        int inputValue = scanner.nextInt();
+        if(inputValue > 0 && inputValue <= 10) {
+            user.add(inputValue);
+        }
+        System.out.println("1~10 범위의 숫자만 입력 가능합니다.");
     }
 
     int scannerIntInput() {
