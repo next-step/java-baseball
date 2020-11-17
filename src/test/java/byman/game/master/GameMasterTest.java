@@ -1,6 +1,8 @@
-package bymin.game.play;
+package byman.game.master;
 
 import bymin.game.constans.GameResult;
+import bymin.game.play.GamePlay;
+import bymin.game.play.MakeNumberBaseBall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GamePlayTest {
-
+public class GameMasterTest {
 	GamePlay gamePlay;
 	MakeNumberBaseBall makeNumberBaseBall;
 
@@ -20,14 +21,14 @@ public class GamePlayTest {
 		makeNumberBaseBall.make();
 	}
 
-
-	@DisplayName("사이즈 체크!")
+	@DisplayName("gamePlayCall")
 	@Test
-	void gemeCheckStrike() {
+	void gamePlayCall() {
+		char[] userBall = {'3', '4', '5'};
 		Map<String, Integer> mapResult = new HashMap<>();
 		mapResult.put(GameResult.STRIKE, 0);
 		mapResult.put(GameResult.BALL, 0);
-		gamePlay.resultMessage(mapResult);
+		gamePlay.gameCheckRuleFirstNumber(makeNumberBaseBall.getNumList(), userBall, mapResult);
+		System.out.println(mapResult.toString());
 	}
-
 }
