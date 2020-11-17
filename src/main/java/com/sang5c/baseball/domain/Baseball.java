@@ -35,4 +35,34 @@ public class Baseball {
         }
     }
 
+    public BaseballCount compare(Baseball target) {
+        BaseballCount baseballCount = BaseballCount.of(0, 0);
+        for (int i = 0; i < 3; i++) {
+            baseballCount = checkBallCount(baseballCount, target.numbers, i);
+            baseballCount = checkStrikeCount(baseballCount, target.numbers, i);
+        }
+        return baseballCount;
+    }
+
+    private BaseballCount checkStrikeCount(BaseballCount baseballCount, List<String> userNumbers, int index) {
+        if (numbers.get(index).equals(userNumbers.get(index))) {
+            return baseballCount.increaseStrikeCount();
+        }
+        return baseballCount;
+    }
+
+    private BaseballCount checkBallCount(BaseballCount baseballCount, List<String> userNumbers, int index) {
+        if (numbers.contains(userNumbers.get(index)) && !numbers.get(index).equals(userNumbers.get(index))) {
+            return baseballCount.increaseBallCount();
+        }
+        return baseballCount;
+    }
+
+    @Override
+    public String toString() {
+        return "Baseball{" +
+                "numbers=" + numbers +
+                '}';
+    }
+
 }

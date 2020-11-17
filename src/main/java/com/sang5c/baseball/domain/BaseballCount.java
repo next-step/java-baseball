@@ -3,6 +3,7 @@ package com.sang5c.baseball.domain;
 public class BaseballCount {
     private static final int MIN_COUNT = 0;
     private static final int MAX_COUNT = 3;
+    private static final int THREE_STRIKE = 3;
 
     private final int ballCount;
     private final int strikeCount;
@@ -45,6 +46,18 @@ public class BaseballCount {
 
     public int getStrikeCount() {
         return strikeCount;
+    }
+
+    public boolean isThreeStrike() {
+        return strikeCount == THREE_STRIKE;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseballCount{" +
+                "ballCount=" + ballCount +
+                ", strikeCount=" + strikeCount +
+                '}';
     }
 
 }

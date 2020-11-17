@@ -32,5 +32,7 @@ class BaseballTest {
         Baseball baseball = Baseball.of("123");
         BaseballCount baseballCount = baseball.compare(Baseball.of("123"));
         assertThat(baseballCount.isThreeStrike()).isTrue();
+        assertThat(baseballCount.getBallCount()).isEqualTo(0);
     }
+
 }
