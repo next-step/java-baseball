@@ -17,27 +17,25 @@ public class GameUI {
     }
 
     public void start() {
-        Integer[] inputNums;
-
         while(true) {
-            String inputStr = scanInput();
-
-            try {
-                inputNums = InputParser.parse(inputStr);
-
-                GameResult result = gm.judge(inputNums);
-                printResult(result);
-
-                checkExit(result);
-            } catch (IllegalArgumentException ex) {
-                printInvalidateInput();
-            } catch (RestartGameException ex) {
-                restartGame();
-            } catch (QuitException ex) {
-                printExitGame();
+            if (eventLoop())
                 break;
-            }
         }
+    }
+
+    private boolean eventLoop() {
+        try {
+            Integer[] inputNums = InputParser.parse(scanInput());
+            printResult(gm.judge(inputNums));
+        } catch (IllegalArgumentException ex) {
+            printInvalidateInput();
+        } catch (RestartGameException ex) {
+            restartGame();
+        } catch (QuitException ex) {
+            printExitGame();
+            return true;
+        }
+        return false;
     }
 
     private String scanInput() {
@@ -51,24 +49,32 @@ public class GameUI {
 
     private void printResult(GameResult result) {
         System.out.println("결과 : " + result);
+        checkExit(result);
     }
 
     private void checkExit(GameResult result) {
-        if(!result.isEndOfGame()) {
+        if(!result.isEndOfGame())
             return;
-        }
 
         while(true) {
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            String input = scanner.nextLine();
-            if (input.equals("1")) {
-                throw new RestartGameException();
-            } else if(input.equals("2")) {
-                throw new QuitException();
-            } else {
-                System.out.println("잘못 입력하셨습니다.");
-            }
+            String input = scanExitInput();
+            proceedExit(input);
         }
+    }
+
+    private void proceedExit(String input) {
+        if (input.equals("1")) {
+            throw new RestartGameException();
+        }
+        else if(input.equals("2")) {
+            throw new QuitException();
+        }
+        System.out.println("잘못 입력하셨습니다.");
+    }
+
+    private String scanExitInput() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return scanner.nextLine();
     }
 
     private void restartGame() {

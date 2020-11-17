@@ -16,14 +16,14 @@ public class GameManager {
     }
 
     public void generateAnswers() {
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> generateSet = new HashSet<>();
 
-        while(set.size() < ANSWER_LENGTH) {
+        while(generateSet.size() < ANSWER_LENGTH) {
             int randomNum = random.nextInt(10);
-            set.add(randomNum);
+            generateSet.add(randomNum);
         }
 
-        answers = set.toArray(new Integer[0]);
+        answers = generateSet.toArray(new Integer[0]);
     }
 
     public Integer[] getAnswers() {
@@ -31,26 +31,26 @@ public class GameManager {
     }
 
     public GameResult judge(Integer[] inputNums) {
-        int strike = 0;
-        int ball = 0;
+        int strike = getStrike(inputNums);
+        int ball = getBall(inputNums, strike);
+        return new GameResult(strike, ball);
+    }
 
-        Set<Integer> inputSet = new HashSet<>(Arrays.asList(inputNums));
+    private int getBall(Integer[] inputNums, int strike) {
+        Set<Integer> intersectionSet = new HashSet<>(Arrays.asList(inputNums));
         Set<Integer> answerSet = new HashSet<>(Arrays.asList(answers));
+        intersectionSet.retainAll(answerSet);
+        return intersectionSet.size() - strike;
+    }
 
+    private int getStrike(Integer[] inputNums) {
+        int strike = 0;
         for (int i = 0; i < ANSWER_LENGTH; i++) {
-            Integer inputNum = inputNums[i];
-            Integer answer = answers[i];
-            if(inputNum.equals(answer)) {
+            if(inputNums[i].equals(answers[i])) {
                 strike++;
-                inputSet.remove(inputNum);
-                answerSet.remove(answer);
             }
         }
-
-        inputSet.retainAll(answerSet);
-        ball = inputSet.size();
-
-        return new GameResult(strike, ball);
+        return strike;
     }
 
 }
