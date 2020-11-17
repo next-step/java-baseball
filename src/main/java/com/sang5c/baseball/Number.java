@@ -2,8 +2,10 @@ package com.sang5c.baseball;
 
 public class Number {
 
-    public Number(int i) {
+    private final int number;
 
+    public Number(int number) {
+        this.number = number;
     }
 
 }
