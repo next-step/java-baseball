@@ -1,3 +1,5 @@
+package baseball;
+
 public class Computer {
 	private final Balls computerBalls;
 

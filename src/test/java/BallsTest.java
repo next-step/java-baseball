@@ -1,10 +1,11 @@
+import baseball.Balls;
+import baseball.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("컴퓨터 및 사용자 공 클래스 테스트")
 class BallsTest {

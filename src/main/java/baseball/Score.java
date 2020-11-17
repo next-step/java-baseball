@@ -1,3 +1,5 @@
+package baseball;
+
 public class Score {
 	private static final String BALL_TEXT = " 볼";
 	private static final String STRIKE_TEXT = " 스트라이크 ";
