@@ -26,7 +26,7 @@ public class BaseballGame {
 	 */
 	public static void gameStart() {
 		String baseballNumber = getBaseballNumber();
-		System.out.println("baseballNumber = " + baseballNumber);
+//		System.out.println("baseballNumber = " + baseballNumber);
 		challenge(baseballNumber);
 		gameExitDecision();
 	}
@@ -103,7 +103,7 @@ public class BaseballGame {
 	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
 	 */
 	public static void challenge(String baseballNumber) {
-		String inputNumber = getInputString("숫자를 입력해주세요 : ");
+		String inputNumber = getInputString("숫자를 입력해주세요 : ", 3);
 		int strikeCount = getStrike(baseballNumber, inputNumber);;
 		int ballCount = getBall(baseballNumber, inputNumber) - strikeCount;
 		String challengeResult = getChallengeResult(strikeCount, ballCount);
@@ -117,13 +117,17 @@ public class BaseballGame {
 	 * 사용자 문자입력.
 	 *
 	 * @param prefix 문자 입력 전 출력할 문구
+	 * @param inputLength 입력받아야 할 글자 사이즈
 	 * @return the input string
 	 */
-	public static String getInputString(String prefix) {
+	public static String getInputString(String prefix, int inputLength) {
 		System.out.print(prefix);
 		Scanner in = new Scanner(System.in);
 		String inputString = in.nextLine().trim();
-		return inputString;
+		if (inputString.length() == inputLength && inputString.replaceAll("[1-9]", "").equals("")) {
+			return inputString;
+		}
+		return getInputString(prefix, inputLength);
 	}
 
 	/**
@@ -209,9 +213,8 @@ public class BaseballGame {
 	 */
 	public static void gameExitDecision() {
 		String inputExitFlagNumber = getInputString("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n"
-			+ "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요\n");
+			+ "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요\n", 1);
 		if (!"1".equals(inputExitFlagNumber) && !"2".equals(inputExitFlagNumber)) {
-			System.out.println("1 또는 2 만 입력 가능합니다.");
 			gameExitDecision();
 		}
 		if ("1".equals(inputExitFlagNumber)) {
