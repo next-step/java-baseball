@@ -24,4 +24,18 @@ public class MakeNumberBaseBallTest {
         assertEquals(makeNumberBaseBall.getNumList().size(), 3);
     }
 
+	@DisplayName("사이즈 체크")
+	@Test
+	void isValidNumListCheck() {
+//        assertEquals(makeNumberBaseBall.getNumList().size(), 2);
+		assertEquals(makeNumberBaseBall.numListCheck(1), false);
+		assertEquals(makeNumberBaseBall.numListCheck(2), false);
+		assertEquals(makeNumberBaseBall.numListCheck(3), false);
+		assertEquals(makeNumberBaseBall.numListCheck(4), false);
+		assertEquals(makeNumberBaseBall.numListCheck(5), false);
+		assertEquals(makeNumberBaseBall.numListCheck(6), false);
+	}
+
+
+
 }

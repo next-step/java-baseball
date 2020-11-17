@@ -18,10 +18,19 @@ public class MakeNumberBaseBall {
         if (!numList.contains(cnt)) {
             numList.add(cnt);
         }
+
+        if (numList.size() > 3) {
+        	numList.remove(3);
+		}
+
         return numList.size() != 3;
     }
 
-    public ArrayList<Integer> getNumList() {
+	public void setNumList(ArrayList<Integer> numList) {
+		this.numList = numList;
+	}
+
+	public ArrayList<Integer> getNumList() {
         return numList;
     }
 }
