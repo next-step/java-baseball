@@ -1,5 +1,7 @@
 package baseball.players.player;
 
+import static baseball.players.player.Player.RestartCommand.*;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +24,6 @@ public class ScannerPlayer implements Player {
 	@Override
 	public boolean isContinue() {
 		String command = scanner.nextLine();
-		return "1".equals(command);
+		return CONTINUE.getCode().equals(command);
 	}
 }

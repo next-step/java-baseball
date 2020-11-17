@@ -1,5 +1,6 @@
 package baseball.players.player;
 
+import static baseball.players.player.Player.RestartCommand.*;
 import static baseball.utils.DataConvertUtils.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class TestPlayer implements Player {
 	}
 
 	public boolean isContinue() {
-		return "1".equals(requestNumber);
+		return CONTINUE.getCode().equals(requestNumber);
 	}
 
 	public void setContinue(String requestNumber) {
