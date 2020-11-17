@@ -15,7 +15,7 @@ public class GameStarter {
         } while (gameStarter.askPlayNewGame());
     }
 
-    boolean askPlayNewGame() {
+    private boolean askPlayNewGame() {
         String guideMessage = String.format("게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요.", COMMAND_START, COMMAND_END);
         System.out.println(guideMessage);
         String command = inputCommand();
@@ -26,7 +26,7 @@ public class GameStarter {
         return false;
     }
 
-    String inputCommand() {
+    private String inputCommand() {
         Scanner scanner = new Scanner(System.in);
         String input;
         do {
