@@ -18,7 +18,7 @@ public class NumericalBaseBall {
 
             startUserInteraction(question);
             userContinueInput = InputView.getInputToContinue();
-        } while ("exit".equalsIgnoreCase(userContinueInput)); // TODO: 반대로
+        } while (!"exit".equalsIgnoreCase(userContinueInput));
     }
 
     private static void startUserInteraction(Numbers question) {
