@@ -1,8 +1,12 @@
 package me.rn00n.baseball;
 
+import me.rn00n.baseball.pitcher.Pitcher;
+
 import java.util.Scanner;
 
 public class Baseball {
+
+    private Pitcher pitcher = null;
 
     public int NUMBER_LENGTH = 3;
 
@@ -52,5 +56,42 @@ public class Baseball {
             return 1; // 중복
         }
         return 0;
+    }
+
+    /**
+     * 결과 확인, 힌트 출력
+     * @param number
+     * @return ResultStatus
+     */
+    public ResultStatus getResult(int number) {
+        if (pitcher.getStrike(number) >= String.valueOf(number).length()) { // 모두 예측성공
+            System.out.println("숫자를 모두 맞히셨습니다! 게임종료");
+            return ResultStatus.WIN;
+        }
+        if (pitcher.isNothing(number)) { // 포볼(낫싱)
+            System.out.println("낫싱");
+            return ResultStatus.NOTHING;
+        }
+        hintForStrikeAndBall(pitcher.getStrike(number), pitcher.getBall(number)); // 힌트 출력
+        return ResultStatus.STRIKE_BALL;
+    }
+    /** 스트라이크와 볼에 대한 힌트 출력 **/
+    private void hintForStrikeAndBall(int strike, int ball) {
+        if (strike > 0) {
+            System.out.print(strike + " 스트라이크 ");
+        }
+        if (ball > 0) {
+            System.out.print(ball + " 볼 ");
+        }
+        System.out.println();
+    }
+
+    /* Getter, Setter (테스트 코드에서 사용) */
+    public Pitcher getPitcher() {
+        return pitcher;
+    }
+
+    public void setPitcher(Pitcher pitcher) {
+        this.pitcher = pitcher;
     }
 }
