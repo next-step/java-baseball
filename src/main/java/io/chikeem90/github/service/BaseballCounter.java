@@ -24,7 +24,7 @@ public class BaseballCounter {
 		}
 	}
 
-	private BaseballCount countBaseball(List<Character> generatedNumber, List<Character> inputNumber) {
+	public BaseballCount countBaseball(List<Character> generatedNumber, List<Character> inputNumber) {
 		int strike = 0;
 		int ball = 0;
 		for (int i = 0; i < generatedNumber.size(); i++) {
@@ -36,14 +36,14 @@ public class BaseballCounter {
 		return new BaseballCount(strike, ball);
 	}
 
-	private int countStrike(List<Character> generatedNumber, List<Character> inputNumber, int index) {
+	public int countStrike(List<Character> generatedNumber, List<Character> inputNumber, int index) {
 		if (generatedNumber.get(index) == inputNumber.get(index)) {
 			return 1;
 		}
 		return 0;
 	}
 
-	private int countBall(List<Character> generatedNumber, List<Character> inputNumber, int index) {
+	public int countBall(List<Character> generatedNumber, List<Character> inputNumber, int index) {
 		if (inputNumber.indexOf(generatedNumber.get(index)) != index && inputNumber.contains(generatedNumber.get(index))) {
 			return 1;
 		}
