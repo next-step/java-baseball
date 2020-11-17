@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class NumberTest {
 
@@ -15,6 +16,15 @@ class NumberTest {
     })
     public void validRange(int number) {
         assertThatCode(() -> new Number(number)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("경계값 밖은 exception이 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            0, 10
+    })
+    public void invalidRange(int number) {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Number(number));
     }
 
 }
