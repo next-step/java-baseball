@@ -1,5 +1,8 @@
 package com.hoomin.game.baseball.domain;
 
+/**
+ * 숫자 야구에 한 문제 단위
+ */
 public class Quiz {
 	private static final int THREE_COUNT = 3;
 	private final Numbers rightNumbers;

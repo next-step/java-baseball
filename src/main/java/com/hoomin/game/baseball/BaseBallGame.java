@@ -6,6 +6,10 @@ import com.hoomin.game.baseball.domain.Quiz;
 import com.hoomin.game.baseball.view.InputView;
 import com.hoomin.game.baseball.view.OutputView;
 
+/**
+ * 퀴즈와 컴퓨터를 생성하는 주체
+ * InputView 와 OutputView 호출
+ */
 public class BaseBallGame {
 	public static final Integer RESTART = 1;
 	public static final Integer QUIT = 2;

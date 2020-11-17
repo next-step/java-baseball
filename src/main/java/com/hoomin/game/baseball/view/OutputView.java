@@ -2,6 +2,9 @@ package com.hoomin.game.baseball.view;
 
 import com.hoomin.game.baseball.domain.Hints;
 
+/**
+ * 비즈니스 로직 없이 출력을 담당한다.
+ */
 public class OutputView {
 	public static void printHints(Hints hints) {
 		System.out.println(hints);

@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 import com.hoomin.game.baseball.domain.Numbers;
 
+/**
+ * 비즈니스 로직 없이 입력을 담당한다.
+ */
 public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
 

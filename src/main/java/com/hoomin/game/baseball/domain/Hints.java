@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.hoomin.game.baseball.enums.HintState;
 
+/**
+ * 힌트 자료구조
+ * hintStateList는 불변
+ */
 public class Hints {
 	private final List<HintState> hintStateList;
 

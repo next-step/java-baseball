@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 정답을 만드는 주체
+ */
 public class Computer {
 	public Numbers makeRightNumbers() {
 		final List<Integer> subNumberCandidateList = generateNumberList();

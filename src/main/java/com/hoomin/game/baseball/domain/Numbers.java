@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.hoomin.game.baseball.enums.HintState;
 
+/**
+ * 숫자와 관련된 비즈니스로직, 생성시 유효성 체크
+ * numberList는 불변
+ */
 public class Numbers {
 	private static final int NUMBER_SIZE = 3;
 	private final List<Integer> numberList;
