@@ -40,12 +40,6 @@ public class Batter {
         return Integer.parseInt(number);
     }
 
-//    private void isNumberRange(int num){
-//        if(num < 1 || num > 1_000){
-//            throw new BaseBallException("0 ~ 1,000 사이의 숫자만 입력해 주세요");
-//        }
-//    }
-
     private void isDuplicated(int num) {
         numberBox.listIterator().forEachRemaining(box -> {
             if(box.equalsNumber(num)){
