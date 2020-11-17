@@ -8,8 +8,7 @@ public class InputParser {
     public static Integer[] parse(String inputStr) {
 
         if(inputStr.equals("q")) {
-            String quitMessage = "야구 게임을 종료합니다.";
-            throw new QuitException(quitMessage);
+            throw new QuitException();
         }
 
         if(inputStr.length() != ANSWER_LENGTH)
