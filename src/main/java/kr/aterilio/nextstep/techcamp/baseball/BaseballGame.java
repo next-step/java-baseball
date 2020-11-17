@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BaseballGame {
 
 	private static final int GAME_SIZE = 3;
-	private static final int MAX_GAME_CREATE_TRY = 10;
+	private static final int MAX_GAME_CREATE_TRY = 30;
 
 	private static final int MIN_NUMBER = 1;
 	private static final int MAX_NUMBER = 9;
