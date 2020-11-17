@@ -17,11 +17,39 @@ public class BaseballGame {
 	 *   (게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.)
 	 *
 	 */
+	
+	
 	public static void main(String[] args) {
 		BaseballGame game = new BaseballGame();
+		boolean replay = false;
 		
-		game.playGame();
+		do {
+			game.playGame();
+			
+			replay = isReplayGame();
+		} while (replay == true);
 		
+	}
+	
+	private static boolean isReplayGame() {
+		Scanner sc = new Scanner(System.in);
+		boolean check;
+		String inputValue;
+		
+		do{
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			inputValue = sc.nextLine();
+			check = verifyReplayGameNumber(inputValue);
+		} while (!check);
+		
+		if ("1".equals(inputValue)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private static boolean verifyReplayGameNumber(String input) {
+		return ("1".equals(input) || "2".equals(input));
 	}
 	
 	public void playGame() {
@@ -114,7 +142,7 @@ public class BaseballGame {
 		} catch (NumberFormatException e){
 			return false;
 		}
-	
+		
 	}
 	
 	private boolean checkInputLength(String data) {
