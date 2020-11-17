@@ -8,14 +8,14 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.display.DefaultDisplay;
-import baseball.display.Display;
-import baseball.opponent.Computer;
-import baseball.opponent.Opponent;
-import baseball.player.Player;
-import baseball.player.TestPlayer;
-import baseball.referee.DefaultReferee;
-import baseball.report.Report;
+import baseball.stadium.display.DefaultDisplay;
+import baseball.stadium.display.Display;
+import baseball.players.opponent.Computer;
+import baseball.players.opponent.Opponent;
+import baseball.players.player.Player;
+import baseball.players.player.TestPlayer;
+import baseball.players.referee.DefaultReferee;
+import baseball.stadium.report.Report;
 
 class StadiumTest {
 

@@ -1,4 +1,4 @@
-package baseball.report;
+package baseball.stadium.report;
 
 import static org.assertj.core.api.Assertions.*;
 

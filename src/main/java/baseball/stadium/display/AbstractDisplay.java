@@ -1,8 +1,8 @@
-package baseball.display;
+package baseball.stadium.display;
 
 import java.io.PrintStream;
 
-import baseball.report.Report;
+import baseball.stadium.report.Report;
 
 public abstract class AbstractDisplay implements Display {
 	private String askMessage;

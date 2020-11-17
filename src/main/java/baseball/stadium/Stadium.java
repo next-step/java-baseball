@@ -1,9 +1,9 @@
 package baseball.stadium;
 
-import baseball.display.Display;
-import baseball.player.Player;
-import baseball.referee.Referee;
-import baseball.report.Report;
+import baseball.stadium.display.Display;
+import baseball.players.player.Player;
+import baseball.players.referee.Referee;
+import baseball.stadium.report.Report;
 
 public class Stadium {
 	private Referee referee;

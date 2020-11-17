@@ -1,6 +1,6 @@
-package baseball.display;
+package baseball.stadium.display;
 
-import baseball.report.Report;
+import baseball.stadium.report.Report;
 
 public interface Display {
 	void askMessage();

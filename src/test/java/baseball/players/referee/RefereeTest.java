@@ -1,4 +1,4 @@
-package baseball.referee;
+package baseball.players.referee;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,10 +7,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.opponent.Computer;
-import baseball.opponent.Opponent;
-import baseball.player.TestPlayer;
-import baseball.report.Report;
+import baseball.players.opponent.Computer;
+import baseball.players.opponent.Opponent;
+import baseball.players.player.TestPlayer;
+import baseball.stadium.report.Report;
 
 class RefereeTest {
 

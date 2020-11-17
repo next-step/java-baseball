@@ -1,4 +1,4 @@
-package baseball.report;
+package baseball.stadium.report;
 
 public class Report {
 	public static final Report EMPTY = new Report(0, 0);

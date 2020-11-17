@@ -1,4 +1,4 @@
-package baseball.opponent;
+package baseball.players.opponent;
 
 import java.util.List;
 

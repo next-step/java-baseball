@@ -1,11 +1,11 @@
-package baseball.referee;
+package baseball.players.referee;
 
 import java.util.List;
 import java.util.function.BiFunction;
 
-import baseball.opponent.Opponent;
-import baseball.player.Player;
-import baseball.report.Report;
+import baseball.players.opponent.Opponent;
+import baseball.players.player.Player;
+import baseball.stadium.report.Report;
 
 public class DefaultReferee implements Referee {
 	private final BiFunction compareStrikeFunction = (numberIndex, hiddenNumberIndex) -> numberIndex

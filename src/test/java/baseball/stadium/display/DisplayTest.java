@@ -1,4 +1,4 @@
-package baseball.display;
+package baseball.stadium.display;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.report.Report;
+import baseball.stadium.report.Report;
 
 class DisplayTest {
 
