@@ -9,6 +9,10 @@ public class DefaultDisplay extends AbstractDisplay {
 		super(printStream);
 	}
 
+	public DefaultDisplay() {
+		super();
+	}
+
 	@Override
 	public void askMessage() {
 		print(this.getAskMessage());
