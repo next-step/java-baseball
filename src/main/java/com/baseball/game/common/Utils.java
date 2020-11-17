@@ -14,4 +14,10 @@ public class Utils {
             throw new BaseBallException("숫자를 입력해 주세요");
         }
     }
+
+    public static void isNumberRange(int offset, int limit, int input){
+        if(input < offset || input > limit){
+            throw new BaseBallException(String.format("%d ~ %d 사이의 숫자만 입력해 주세요", offset, limit));
+        }
+    }
 }

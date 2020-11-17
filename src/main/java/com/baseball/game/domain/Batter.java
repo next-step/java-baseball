@@ -5,8 +5,11 @@ import com.baseball.game.exception.BaseBallException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Batter {
+import static com.baseball.game.common.Utils.isNumberRange;
 
+public class Batter {
+    private final static int BOX_OFFSET = 1;
+    private final static int BOX_LIMIT = 1_000;
     private List<NumberBox> numberBox;
 
     public Batter(int swingNumbers){
@@ -19,7 +22,7 @@ public class Batter {
 
     private void createBatterBox(int swingNumbers) {
         numberBox = new ArrayList<>();
-        isNumberRange(swingNumbers);
+        isNumberRange(BOX_OFFSET, BOX_LIMIT, swingNumbers);
 
         int idx = 0;
         for (String number : splitSwingNumber(swingNumbers)){
@@ -37,11 +40,11 @@ public class Batter {
         return Integer.parseInt(number);
     }
 
-    private void isNumberRange(int num){
-        if(num < 1 || num > 1_000){
-            throw new BaseBallException("0 ~ 1,000 사이의 숫자만 입력해 주세요");
-        }
-    }
+//    private void isNumberRange(int num){
+//        if(num < 1 || num > 1_000){
+//            throw new BaseBallException("0 ~ 1,000 사이의 숫자만 입력해 주세요");
+//        }
+//    }
 
     private void isDuplicated(int num) {
         numberBox.listIterator().forEachRemaining(box -> {

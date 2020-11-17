@@ -8,6 +8,7 @@ import com.baseball.game.service.GameOperator;
 import java.util.Arrays;
 
 import static com.baseball.game.common.Utils.inputNumber;
+import static com.baseball.game.common.Utils.isNumberRange;
 
 public enum GameState implements GameOperator {
     START(1){
@@ -18,6 +19,7 @@ public enum GameState implements GameOperator {
 
             while (!getResultBoard(pitcher)){}
 
+            System.out.println("타자 아웃!");
             return false;
         }
     },
@@ -46,6 +48,7 @@ public enum GameState implements GameOperator {
     }
 
     public static GameState findByGameState(int state){
+        isNumberRange(START.getState(), END.getState(), state);
         return Arrays.stream(GameState.values()).filter(gameState -> gameState.getState() == state).findFirst().get();
     }
 
