@@ -16,8 +16,7 @@ class ComputerTest {
     @Test
     void createValidComputer() {
         Computer computer = new Computer();
-        Inning computerInning = computer.getInning();
-        List<Integer> computerBallNumberList = computerInning.getBallNumberList();
+        List<Integer> computerBallNumberList = computer.getBallNumberList();
         int computerBallNumberListSize = computerBallNumberList.size();
 
         assertEquals(VALID_BALL_SIZE_FOR_INNING, computerBallNumberListSize);
@@ -27,14 +26,12 @@ class ComputerTest {
     @Test
     void reset() {
         Computer computer = new Computer();
-        Inning firstComputerInning = computer.getInning();
-        List<Integer> firstComputerBallNumberList = firstComputerInning.getBallNumberList();
+        List<Integer> firstComputerBallNumberList = computer.getBallNumberList();
         int firstComputerBallNumberListSize = firstComputerBallNumberList.size();
 
         computer.reset();
 
-        Inning secondComputerInning = computer.getInning();
-        List<Integer> secondComputerBallNumberList = secondComputerInning.getBallNumberList();
+        List<Integer> secondComputerBallNumberList = computer.getBallNumberList();
         int secondComputerBallNumberListSize = secondComputerBallNumberList.size();
 
         assertEquals(secondComputerBallNumberListSize, firstComputerBallNumberListSize);

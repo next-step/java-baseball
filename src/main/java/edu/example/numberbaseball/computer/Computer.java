@@ -14,10 +14,6 @@ public class Computer {
         this.inning = new Inning();
     }
 
-    public Inning getInning() {
-        return inning;
-    }
-
     public List<Integer> getBallNumberList() {
         return inning.getBallNumberList();
     }
