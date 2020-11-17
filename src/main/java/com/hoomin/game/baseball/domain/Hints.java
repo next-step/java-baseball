@@ -43,23 +43,6 @@ public class Hints {
 		return count;
 	}
 
-	/**
-	 * 10줄 넘어가는데 단일책임원칙은 만족하는거 같은데..
-	 * final Integer strikeCount = getStrikeCount();
-	 * final Integer ballCount = getBallCount();
-	 * if (strikeCount > 0 && ballCount > 0) {
-	 * 	return strikeCount + " 스트라이크 " + ballCount + " 볼";
-	 *           }
-	 * if (strikeCount > 0) {
-	 * 	return strikeCount + " 스트라이크";
-	 *   }
-	 * if (ballCount > 0) {
-	 * 	return ballCount + " 볼";
-	 *   }
-	 * return "낫싱";
-	 *
-	 *
-	 */
 	@Override
 	public String toString() {
 		final Integer strikeCount = getStrikeCount();
