@@ -14,7 +14,6 @@ public class NumberComparator {
     private Set<Integer> computerNumberSet;
     private Set<Integer> playerNumberSet;
     private Iterator<Integer> computerIterator;
-    private Iterator<Integer> playerIterator;
     private HashMap<String, Integer> resultMap;
     private static final String STRIKE = "strike";
     private static final String BALL = "ball";
@@ -28,6 +27,9 @@ public class NumberComparator {
      * @return Status 플레이어의 상태
      * */
     public Status compareAwithB(Set<Integer> computerNumberSet, Set<Integer> playerNumberSet) {
+        print(computerNumberSet);
+        print(playerNumberSet);
+
         preCompare(computerNumberSet, playerNumberSet); // 변수초기화
         resultMap = compareElement(); // 각 자리수 비교
         if (resultMap.get(STRIKE) == 3) { // 3스트라이크 = 숫자를 모두 맞힘
@@ -44,7 +46,6 @@ public class NumberComparator {
         this.computerNumberSet = computerNumberSet;
         this.playerNumberSet = playerNumberSet;
         this.computerIterator = computerNumberSet.iterator();
-        this.playerIterator = playerNumberSet.iterator();
         this.resultMap = new HashMap<>();
         this.resultMap.put(STRIKE, 0);
         this.resultMap.put(BALL, 0);
@@ -58,11 +59,12 @@ public class NumberComparator {
         int computerIndex = 0;
         while (computerIterator.hasNext()) { // 컴퓨터(상대방)의 값을 기준으로 비교
             int computerValue = computerIterator.next();
-            if (countStrike(computerIndex++, computerValue) > 0) { // 스트라이크 - 위치+숫자 모두 같은 경우 확인
+            if (countStrike(computerIndex, computerValue) > 0) { // 스트라이크 - 위치+숫자 모두 같은 경우 확인
                 resultMap.put(STRIKE, resultMap.get(STRIKE) + 1);
             } else if (countBall(computerValue) > 0) { // 볼 - 스트라이크 처리후, 숫자 포함여부만 확인
                 resultMap.put(BALL, resultMap.get(BALL) + 1);
             }
+            computerIndex++;
         }
         return resultMap;
     }
@@ -72,10 +74,13 @@ public class NumberComparator {
      * */
     private int countStrike(int index, int value) {
         int playerIndex = 0;
-        while (playerIterator.hasNext()) {
-            if (++playerIndex == index && playerIterator.next() == value) {
+        Iterator<Integer> iterator = playerNumberSet.iterator();
+        while (iterator.hasNext()) {
+            int playerValue = iterator.next();
+            if (playerIndex == index && playerValue == value) {
                 return 1;
             }
+            playerIndex++;
         }
         return 0;
     }
@@ -104,4 +109,14 @@ public class NumberComparator {
         System.out.println(message == "" ? NOTHING_MSG.getValue() : message);
         return FAIL;
     }
+
+    public void print(Set<Integer> set) {
+        Iterator<Integer> it = set.iterator();
+        String str = "";
+        while (it.hasNext()) {
+            str += it.next() + "";
+        }
+        System.out.println(str);
+    }
+
 }
