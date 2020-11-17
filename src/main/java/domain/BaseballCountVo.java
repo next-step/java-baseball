@@ -1,10 +1,12 @@
 package domain;
 
 public class BaseballCountVo {
+
   private int strike = 0;
   private int ball = 0;
 
-  public BaseballCountVo() { }
+  public BaseballCountVo() {
+  }
 
   public BaseballCountVo(int strike, int ball) {
     this.strike = strike;

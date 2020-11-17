@@ -5,6 +5,7 @@ import utils.BaseballValidation;
 import domain.BaseballCountVo;
 
 public class BaseballGameUserService {
+
   private static Scanner scan = new Scanner(System.in);
   public int BASEBALL_LENGTH = 3;
 
@@ -29,7 +30,7 @@ public class BaseballGameUserService {
     int strike = result.getStrike();
     int ball = result.getBall();
 
-    if (BaseballValidation.isZero(strike) && BaseballValidation.isZero(ball)){
+    if (BaseballValidation.isZero(strike) && BaseballValidation.isZero(ball)) {
       printNothing();
     }
 
@@ -53,7 +54,7 @@ public class BaseballGameUserService {
   }
 
   private void printBallCount(int count) {
-    if(BaseballValidation.isZero(count)) {
+    if (BaseballValidation.isZero(count)) {
       return;
     }
 
@@ -61,7 +62,7 @@ public class BaseballGameUserService {
   }
 
   private void printStrikeCount(int count) {
-    if(BaseballValidation.isZero(count)) {
+    if (BaseballValidation.isZero(count)) {
       return;
     }
 

@@ -8,18 +8,17 @@ public class BaseballGameResource {
   BaseballGameService baseballGameService;
   BaseballGameUserService baseballGameUserService;
 
-
   public BaseballGameResource() {
     baseballGameService = new BaseballGameService();
     baseballGameUserService = new BaseballGameUserService();
   }
 
-  public boolean isGameStatus(){
+  public boolean isGameStatus() {
     return baseballGameUserService.isGameStart();
   }
 
 
-  public void play(){
+  public void play() {
     baseballGameService.playGame();
   }
 

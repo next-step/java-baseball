@@ -12,11 +12,8 @@ public class BaseballGameService {
     String computerNumbers = GenerateRandomNumber.generateRandomNumber();
     do {
       String player = baseballGameUserService.playerInputValue();
-
       BaseballCountVo result = isResult(computerNumbers, player);
-
       gameStatus = baseballGameUserService.printBallStatus(result);
-
 
     } while (!gameStatus);
   }
@@ -26,10 +23,10 @@ public class BaseballGameService {
     int ballCount = 0;
     int strikeCount = 0;
     String[] playerInput = stringToStringArray(player);
-    for (int i = 0; i< computer.length(); i++) {
-      int findIndex = computer.indexOf(playerInput[i]);
-      BaseballCountVo result = getBaseballCount(findIndex , i);
 
+    for (int i = 0; i < computer.length(); i++) {
+      int findIndex = computer.indexOf(playerInput[i]);
+      BaseballCountVo result = getBaseballCount(findIndex, i);
       ballCount += result.getBall();
       strikeCount += result.getStrike();
     }
@@ -41,14 +38,14 @@ public class BaseballGameService {
     int ball = 0;
     int strike = 0;
 
-    if(BaseballValidation.isNothing(index)) {
-      return new BaseballCountVo(0,0);
+    if (BaseballValidation.isNothing(index)) {
+      return new BaseballCountVo(0, 0);
     }
 
     strike += BaseballValidation.isStrike(loop, index);
     ball += BaseballValidation.isBall(loop, index);
 
-    return new BaseballCountVo(strike , ball);
+    return new BaseballCountVo(strike, ball);
   }
 
   public String[] stringToStringArray(String value) {
