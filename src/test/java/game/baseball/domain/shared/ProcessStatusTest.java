@@ -26,7 +26,7 @@ class ProcessStatusTest {
 	void valueOf_ReturnUnknownWhenOtherNumber(int input) {
 		assertThatIllegalArgumentException()
 			.isThrownBy(() -> ProcessStatus.valueOf(input))
-			.withMessage("잘못된 값을 입력하셨습니다.");
+			.withMessage(Message.INPUT_WRONG_VALUE);
 	}
 
 }

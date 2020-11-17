@@ -41,7 +41,7 @@ public class NumberUtils {
 
 	public static void validateUniqueNumbers(int numbersSize, int numberIndexMapSize) {
 		if (numbersSize != numberIndexMapSize) {
-			throw new IllegalArgumentException("중복된 숫자가 포함된 숫자 리스트입니다.");
+			throw new IllegalArgumentException(Message.REQUIRE_DIFFERENT_NUMBER);
 		}
 	}
 }

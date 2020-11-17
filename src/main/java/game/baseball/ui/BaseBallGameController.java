@@ -6,6 +6,7 @@ import java.util.Scanner;
 import game.baseball.application.BaseBallGameService;
 import game.baseball.domain.model.BaseBallResult;
 import game.baseball.domain.shared.GameStatus;
+import game.baseball.domain.shared.Message;
 
 public class BaseBallGameController {
 	private final BaseBallGameService baseBallGameService;
@@ -20,7 +21,7 @@ public class BaseBallGameController {
 
 	public boolean runGame() {
 		try {
-			int input = waitInputNumber("숫자를 입력해주세요 : ");
+			int input = waitInputNumber(Message.INPUT_NUMBER);
 			BaseBallResult baseBallResult = baseBallGameService.runGame(input);
 			printGameResult(baseBallResult);
 
@@ -34,7 +35,7 @@ public class BaseBallGameController {
 	private void printGameResult(BaseBallResult baseBallResult) {
 		System.out.println(baseBallResult.toString());
 		if (baseBallResult.isWin()) {
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			System.out.println(Message.THREE_STRIKE_GAME_OVER);
 		}
 	}
 
@@ -49,7 +50,7 @@ public class BaseBallGameController {
 
 	private Boolean confirmRestart() {
 		try {
-			int input = waitInputNumber("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
+			int input = waitInputNumber(Message.INPUT_ONE_OR_TWO_FOR_RESTART);
 			return baseBallGameService.isRestart(input);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
@@ -73,7 +74,7 @@ public class BaseBallGameController {
 			Scanner scanner = new Scanner(System.in);
 			return scanner.nextInt();
 		} catch (InputMismatchException exception) {
-			System.out.println("잘못된 값을 입력하셨습니다.");
+			System.out.println(Message.INPUT_WRONG_VALUE);
 			return null;
 		}
 	}

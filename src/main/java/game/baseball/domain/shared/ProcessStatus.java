@@ -20,6 +20,6 @@ public enum ProcessStatus {
 		if (code == EXIT.getCode()) {
 			return EXIT;
 		}
-		throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+		throw new IllegalArgumentException(Message.INPUT_WRONG_VALUE);
 	}
 }

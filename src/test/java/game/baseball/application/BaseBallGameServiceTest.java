@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import game.baseball.domain.model.AnswerNumber;
 import game.baseball.domain.model.BaseBallResult;
 import game.baseball.domain.repository.AnswerNumberRepository;
+import game.baseball.domain.shared.Message;
 
 class BaseBallGameServiceTest {
 	private final BaseBallGameService SUT = new BaseBallGameService();
@@ -59,6 +60,6 @@ class BaseBallGameServiceTest {
 	void isRestart_ThrowIllegalArgumentException(int input) {
 		assertThatIllegalArgumentException()
 			.isThrownBy(() -> SUT.isRestart(input))
-			.withMessage("잘못된 값을 입력하셨습니다.");
+			.withMessage(Message.INPUT_WRONG_VALUE);
 	}
 }

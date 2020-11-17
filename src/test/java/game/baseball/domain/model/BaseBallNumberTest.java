@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import game.baseball.domain.shared.Message;
 import game.baseball.domain.shared.NumberUtils;
 
 class BaseBallNumberTest {
@@ -27,7 +28,7 @@ class BaseBallNumberTest {
 	void validateNull_ThrowIllegalArgumentExceptionByNull() {
 		assertThatIllegalArgumentException()
 			.isThrownBy(() -> new BaseBallNumber(null))
-			.withMessage("숫자는 반드시 null이 아니어야 합니다.");
+			.withMessage(Message.REQUIRE_NOT_NULL);
 	}
 
 	@ParameterizedTest
@@ -35,7 +36,7 @@ class BaseBallNumberTest {
 	void validateSize_ThrowIllegalArgumentExceptionBySize(int number) {
 		assertThatIllegalArgumentException()
 			.isThrownBy(() -> new BaseBallNumber(NumberUtils.split(number)))
-			.withMessage("숫자는 3자리의 수 이어야 합니다.");
+			.withMessage(Message.REQUIRE_THREE_DIGIT);
 	}
 
 	@ParameterizedTest
@@ -43,7 +44,7 @@ class BaseBallNumberTest {
 	void validateDuplication_ThrowIllegalArgumentExceptionByDuplication(int number) {
 		assertThatIllegalArgumentException()
 			.isThrownBy(() -> new BaseBallNumber(NumberUtils.split(number)))
-			.withMessage("각 자리의 숫자들은 서로 다른 수 이어야 합니다.");
+			.withMessage(Message.REQUIRE_DIFFERENT_NUMBER);
 	}
 
 	@ParameterizedTest
@@ -51,7 +52,7 @@ class BaseBallNumberTest {
 	void validateRange_ThrowIllegalArgumentExceptionByRange(int number) {
 		assertThatIllegalArgumentException()
 			.isThrownBy(() -> new BaseBallNumber(NumberUtils.split(number)))
-			.withMessage("각 자리의 숫자들은 1부터 9까지 수 이어야 합니다.");
+			.withMessage(Message.REQUIRE_ONE_TO_NINE);
 	}
 
 	@ParameterizedTest

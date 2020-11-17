@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import game.baseball.domain.shared.Message;
 import game.baseball.domain.shared.NumberUtils;
 
 public class BaseBallNumber {
@@ -23,20 +24,20 @@ public class BaseBallNumber {
 
 	private void validateNull(List<Integer> numbers) {
 		if (numbers == null) {
-			throw new IllegalArgumentException("숫자는 반드시 null이 아니어야 합니다.");
+			throw new IllegalArgumentException(Message.REQUIRE_NOT_NULL);
 		}
 	}
 
 	private void validateSize(List<Integer> numbers) {
 		if (numbers.size() != NUMBERS_SIZE) {
-			throw new IllegalArgumentException("숫자는 3자리의 수 이어야 합니다.");
+			throw new IllegalArgumentException(Message.REQUIRE_THREE_DIGIT);
 		}
 	}
 
 	private void validateDuplication(List<Integer> numbers) {
 		Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 		if (uniqueNumbers.size() != numbers.size()) {
-			throw new IllegalArgumentException("각 자리의 숫자들은 서로 다른 수 이어야 합니다.");
+			throw new IllegalArgumentException(Message.REQUIRE_DIFFERENT_NUMBER);
 		}
 	}
 
@@ -48,7 +49,7 @@ public class BaseBallNumber {
 
 	private void validateRange(int number) {
 		if (number < MIN_NUMBER || number > MAX_NUMBER) {
-			throw new IllegalArgumentException("각 자리의 숫자들은 1부터 9까지 수 이어야 합니다.");
+			throw new IllegalArgumentException(Message.REQUIRE_ONE_TO_NINE);
 		}
 	}
 

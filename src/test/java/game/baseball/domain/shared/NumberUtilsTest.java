@@ -50,6 +50,6 @@ class NumberUtilsTest {
 				List<Integer> numbers = NumberUtils.split(number);
 				NumberUtils.createNumberIndexMap(numbers);
 			})
-			.withMessage("중복된 숫자가 포함된 숫자 리스트입니다.");
+			.withMessage(Message.REQUIRE_DIFFERENT_NUMBER);
 	}
 }
