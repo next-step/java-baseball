@@ -1,16 +1,19 @@
 package com.sang5c.baseball.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 public class Numbers {
 
-    private final List<String> numbers;
+    private final List<Number> numbers = new ArrayList<>();
 
     private Numbers(List<String> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        for (String number : numbers) {
+            this.numbers.add(Number.of(number));
+        }
     }
 
     private void validate(List<String> numbers) {
