@@ -7,10 +7,13 @@ import java.util.*;
 
 public class InputView {
 
+    private static final int MAX_BIDDING_COUNT = 3;
     private static final String QUESTION_PLAY_NUMBERS = "숫자를 입력해주세요 :  ";
     private static final String QUESTION_PLAY_AGAIN = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 :  ";
     private static final String INPUT_NUMBERS_DELIMITER = ",";
     private static final String INPUT_NUMBERS_BRACES = "{}()[]<>";
+    private static final String INPUT_GAME_RESTART = "1";
+    private static final String INPUT_GAME_END = "2";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> setBallNumber() throws DifferentThreeNumberRequiredException, NumberOnlyException {
@@ -20,14 +23,14 @@ public class InputView {
 
     // open to Test
     public static List<String> setBallNumber(String inputBallNumbers) throws DifferentThreeNumberRequiredException, NumberOnlyException {
-        Set<String> ballNumbers = new HashSet<>();
-        List<String> splitedStrings;
-        splitedStrings = splitInput(inputBallNumbers);
-        for (String numberString : splitedStrings) {
-            ballNumbers.add(numberString);
+        List<String> ballNumbers = new ArrayList<>();
+        Set<String> ballNumbersSet = new LinkedHashSet<>();
+        ballNumbers = splitInput(inputBallNumbers);
+        for (String numberString : ballNumbers) {
+            ballNumbersSet.add(numberString);
         }
-        if (ballNumbers.size() != 3) throw new DifferentThreeNumberRequiredException();
-        return new ArrayList<>(ballNumbers);
+        if (ballNumbersSet.size() != MAX_BIDDING_COUNT && ballNumbers.size() != MAX_BIDDING_COUNT) throw new DifferentThreeNumberRequiredException();
+        return new ArrayList<>(ballNumbersSet);
     }
 
     private static List<String> splitInput(String inputBallNumbers) throws NumberOnlyException {
@@ -69,8 +72,8 @@ public class InputView {
     public static boolean restart() {
         System.out.println(QUESTION_PLAY_AGAIN);
         String result = scanner.next();
-        if (result.equals("1")) return true;
-        if (result.equals("2")) return false;
+        if (result.equals(INPUT_GAME_RESTART)) return true;
+        if (result.equals(INPUT_GAME_END)) return false;
         //todo:: 1 재시작 ,2 종료 키 아닌 경우, 우선은 종료처리.
         return false;
     }

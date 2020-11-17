@@ -39,15 +39,16 @@ public class BaseBallGame {
         }
     }
 
-    private void checkBall(List<String> dealerNumbers, List<String> playerInputNumbers, int index) {
-        if (playerInputNumbers.contains(dealerNumbers.get(index)) && !ballCount.isStrikeLocation(index)) {
-            ballCount.addBallCount();
-        }
-    }
-
     private void checkStrike(List<String> dealerNumbers, List<String> playerInputNumbers, int strikeIndex) {
         if (dealerNumbers.get(strikeIndex).equals(playerInputNumbers.get(strikeIndex))) {
             ballCount.addStrikeCount(strikeIndex);
+        }
+    }
+
+    private void checkBall(List<String> dealerNumbers, List<String> playerInputNumbers, int index) {
+        if (ballCount.isStrikeLocation(index)) return;
+        if (dealerNumbers.contains(playerInputNumbers.get(index)) && !ballCount.isStrikeLocation(index)) {
+            ballCount.addBallCount();
         }
     }
 
@@ -58,4 +59,5 @@ public class BaseBallGame {
     public BallCount getBallCount() {
         return ballCount;
     }
+
 }

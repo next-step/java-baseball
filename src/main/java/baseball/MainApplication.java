@@ -29,7 +29,7 @@ public class MainApplication {
         BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(new ArrayList<String>()));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
         // to Test
-        System.out.println(dealersNumber);
+        // System.out.println(dealersNumber);
         try {
             playerBidding(baseBallGame);
         } catch (NumberOnlyException numberOnlyException) {
@@ -41,7 +41,9 @@ public class MainApplication {
 
     private static void playerBidding(BaseBallGame baseBallGame) throws NumberOnlyException, DifferentThreeNumberRequiredException {
         do {
-            baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber())));
+            // player
+            BallNumber plyaerBallNumber = new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber()));
+            baseBallGame.play(plyaerBallNumber);
             ResultView.printBallCount(baseBallGame.getBallCount());
         } while (!baseBallGame.isFinish());
     }
