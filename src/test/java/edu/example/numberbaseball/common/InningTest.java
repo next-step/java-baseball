@@ -54,4 +54,15 @@ class InningTest {
                 .isThrownBy(() -> new Inning(ballList));
     }
 
+    @DisplayName("`Inning`에 생성시킬 `Ball` 리스트 정보를 주지 않으면, 랜덤 값의 `Ball` 리스트로 `Inning`을 초기화한다.")
+    @Test
+    void createValidInningWithRandomNumberList() {
+        Inning inning = new Inning();
+
+        List<Integer> ballNumberList = inning.getBallNumberList();
+        int ballNumberListSize = ballNumberList.size();
+
+        assertEquals(VALID_BALL_SIZE_FOR_INNING, ballNumberListSize);
+    }
+
 }
