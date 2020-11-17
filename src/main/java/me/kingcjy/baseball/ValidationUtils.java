@@ -9,7 +9,7 @@ import java.util.Set;
 public class ValidationUtils {
 
     public static ValidationResult getValidationResult(String input) {
-        if (input.length() != 3) {
+        if (input.length() != Baseball.DIGIT) {
             return ValidationResult.INVALID_LENGTH;
         }
 

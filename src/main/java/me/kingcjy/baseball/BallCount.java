@@ -1,5 +1,6 @@
 package me.kingcjy.baseball;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,10 @@ import java.util.Map;
 public class BallCount {
 
     private Map<Score, Integer> scores;
+
+    public BallCount() {
+        this(Collections.EMPTY_LIST);
+    }
 
     public BallCount(List<Score> scores) {
         this.scores = new HashMap<>();
@@ -30,5 +35,24 @@ public class BallCount {
 
     public int countBall() {
         return scores.getOrDefault(Score.BALL, 0);
+    }
+
+    public void printResult() {
+        String message = getMessageByScore(Score.STRIKE) + getMessageByScore(Score.BALL);
+
+        if ("".equals(message.trim())) {
+            System.out.println(Score.NOTHING.getDisplayName());
+            return;
+        }
+
+        System.out.println(message.trim());
+    }
+
+    private String getMessageByScore(Score score) {
+        if (scores.get(score) == null) {
+            return "";
+        }
+
+        return " " + scores.get(score) + " " + score.getDisplayName();
     }
 }

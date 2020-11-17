@@ -15,7 +15,7 @@ public class InputManager {
         ValidationResult validationResult = null;
         int input = 0;
 
-        while(validationResult != ValidationResult.SUCCESS) {
+        while (validationResult != ValidationResult.SUCCESS) {
             System.out.print(INPUT_MESSAGE);
             input = scanner.nextInt();
             validationResult = ValidationUtils.getValidationResult(Integer.toString(input));
