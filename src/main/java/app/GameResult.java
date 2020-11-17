@@ -36,4 +36,12 @@ public class GameResult {
 	public void setNothingCount(int nothingCount) {
 		this.nothingCount = nothingCount;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%d %s, %d %s, %d %s 입니다.",
+				strikeCount, JudgeType.STRIKE.name(),
+				ballCount, JudgeType.BALL.name(),
+				nothingCount, JudgeType.NOTHING.name());
+	}
 }

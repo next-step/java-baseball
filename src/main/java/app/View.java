@@ -44,6 +44,10 @@ public class View {
 		}
 	}
 
+	public void gameResultOutput(GameResult gameResult) {
+		output(gameResult.toString());
+	}
+
 	public static void main(String[] args) {
 		View view = new View();
 		view.input();
