@@ -25,10 +25,11 @@ public class Number {
     }
 
     public static Number of(int number) {
+        validate(number);
         return cache.get(number);
     }
 
-    private void validate(int number) {
+    private static void validate(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("out of range: " + number);
         }
