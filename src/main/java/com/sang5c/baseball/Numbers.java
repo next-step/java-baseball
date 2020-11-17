@@ -1,6 +1,5 @@
 package com.sang5c.baseball;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -40,17 +39,29 @@ public class Numbers {
     public Count compare(Numbers userNumbers) {
         Count count = new Count(0, 0);
 
-        // for (int i = 0; i < userStrings.size(); i++) {
-        //     if (questionStrings.contains(userStrings.get(i))) {
-        //         if (questionStrings.get(i).equals(userStrings.get(i))) {
-        //             count = count.increaseStrikeCount();
-        //             continue;
-        //         }
-        //         count = count.increaseBallCount();
-        //     }
-        // }
-
+        for (int i = 0; i < numbers.size(); i++) {
+            count = countBall(userNumbers, count, i);
+            count = countStrike(userNumbers, count, i);
+        }
         return count;
+    }
+
+    private Count countStrike(Numbers userNumbers, Count count, int i) {
+        if (numbers.get(i).equals(userNumbers.numbers.get(i))) {
+            return count.increaseStrikeCount();
+        }
+        return count;
+    }
+
+    private Count countBall(Numbers userNumbers, Count count, int i) {
+        if (contains(userNumbers, i) && !numbers.get(i).equals(userNumbers.numbers.get(i))) {
+            return count.increaseBallCount();
+        }
+        return count;
+    }
+
+    private boolean contains(Numbers userNumbers, int i) {
+        return this.numbers.contains(userNumbers.numbers.get(i));
     }
 
 }

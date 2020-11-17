@@ -7,10 +7,7 @@ public class NumericalBaseBall {
     public static void main(String[] args) {
         while (true) {
             // 서로 다른 1~9 랜덤 숫자 세개 출력 -> 입력받았다고 생각하기.
-            // Random random = new Random();
-
-            // String computer = scanner.nextLine();
-            String computer = "146";
+            String computer = "146"; // TODO: random
             Numbers question = Numbers.of(computer);
             System.out.println("question : " + question);
 
@@ -65,19 +62,6 @@ public class NumericalBaseBall {
         if (count.getStrikeCount() != 0) {
             System.out.print(count.getStrikeCount() + " 스트라이크 ");
         }
-    }
-
-    private static Set<String> generateNumbersOfString(String str) {
-        String[] split = str.split("");
-        Set<String> set = new LinkedHashSet<>(Arrays.asList(split.clone()));
-        if (set.size() != 3) {
-            throw new IllegalArgumentException("check input");
-        }
-        return set;
-    }
-
-    private static int generateRandomNumber(Random random) {
-        return random.nextInt(9) + 1;
     }
 
 }
