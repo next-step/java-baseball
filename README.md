@@ -6,7 +6,8 @@
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
-##[Flow]
+## [Flow]
+
 1. Computer로부터 3개의 숫자(랜덤)를 고른다.  
 2. Player가 추측하는 숫자를 입력한다.
 3. Computer가 Player가 입력한 숫자를 보고 스트라이크,볼 판별(숫자맞추기 기능)
@@ -14,18 +15,18 @@
  
 
 
-##[Class and Method 목록]
-###1. class Game 
+## [Class and Method 목록]
+### 1. class Game 
     //game을 play하는 method
     void play()
-###2. class Player
+### 2. class Player
     //추측하는 숫자 입력
     void inputGuessableNumber() throws IOException;
 
     //입력된 숫자를 배열에 저장하는 메서드
     void saveInputNumberArr(int inputNumber);
 
-###3. class Ball
+### 3. class Ball
     //1~9까지의 ball을 세팅한다.
     void initBallArr();
     
@@ -41,7 +42,7 @@
     //각각의 숫자를 3자리숫자로 만들어주는 method
     int mergeNumber();
     
-###4. class Computer
+### 4. class Computer
     //3개의 랜덤 볼을 고르는 method(중복제외)
     void selectGameBall();
     
