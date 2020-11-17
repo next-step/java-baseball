@@ -1,5 +1,6 @@
 package com.github.esjo;
 
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NumberGenerator {
@@ -38,6 +39,25 @@ public class NumberGenerator {
      * */
     public int generateRandomNumber() {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
+    /**
+     * 야구게임을 위한 3자리 정수를 사용자로 부터 입력받음.
+     * @return NumberGenerator 사용자 입력값 셋
+     * */
+    public NumberGenerator generateThreeDigitsByInput(BaseBallIO baseBallIO) throws Exception {
+        this.input = baseBallIO.readThreeDigits();
+        return this;
+    }
+
+    /**
+     * 사용자로 부터 입력받은 정수의 각 자리수를 Set에 할당
+     * */
+    public void digitsToSet(Set<Integer> set) {
+        String digits = this.input;
+        for (int i = 0; i < digits.length(); i++) {
+            set.add(Integer.parseInt(digits.charAt(i) + ""));
+        }
     }
 
 }
