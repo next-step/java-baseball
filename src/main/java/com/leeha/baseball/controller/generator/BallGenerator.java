@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import com.leeha.baseball.exception.CapacityOutOfRangeException;
-import com.leeha.baseball.exception.MinimumAndMaximumRangeInvalidException;
+import com.leeha.baseball.exception.InvalidCapacityException;
+import com.leeha.baseball.exception.InvalidMinimumOrMaximumException;
 
 public class BallGenerator {
 
@@ -19,20 +19,20 @@ public class BallGenerator {
     private List<Integer> numbers;
 
     public BallGenerator(int capacity, int minimumNumber, int maximumNumber) {
-        validateOption(capacity, minimumNumber, maximumNumber);
+        validateParameter(capacity, minimumNumber, maximumNumber);
 
         this.capacity = capacity;
         this.minimumNumber = minimumNumber;
         this.maximumNumber = maximumNumber;
     }
 
-    private void validateOption(int capacity, int minimumNumber, int maximumNumber) {
+    private void validateParameter(int capacity, int minimumNumber, int maximumNumber) {
         if (capacity < 0) {
-            throw new CapacityOutOfRangeException(INVALID_CAPACITY_EXCEPTION);
+            throw new InvalidCapacityException(INVALID_CAPACITY_EXCEPTION);
         }
 
         if (maximumNumber < minimumNumber) {
-            throw new MinimumAndMaximumRangeInvalidException(INVALID_MINIMUM_OR_MAXIMUM_EXCEPTION);
+            throw new InvalidMinimumOrMaximumException(INVALID_MINIMUM_OR_MAXIMUM_EXCEPTION);
         }
     }
 
