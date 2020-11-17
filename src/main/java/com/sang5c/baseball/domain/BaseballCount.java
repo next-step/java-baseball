@@ -1,6 +1,6 @@
 package com.sang5c.baseball.domain;
 
-public class Count {
+public class BaseballCount {
 
     private static final int ZERO_COUNT = 0;
     private static final int THREE_STRIKE = 3;
@@ -8,22 +8,22 @@ public class Count {
     private final int strikeCount;
     private final int ballCount;
 
-    public Count() {
+    public BaseballCount() {
         this.strikeCount = ZERO_COUNT;
         this.ballCount = ZERO_COUNT;
     }
 
-    public Count(int strikeCount, int ballCount) {
+    public BaseballCount(int strikeCount, int ballCount) {
         this.strikeCount = strikeCount;
         this.ballCount = ballCount;
     }
 
-    public Count increaseStrikeCount() {
-        return new Count(strikeCount + 1, ballCount);
+    public BaseballCount increaseStrikeCount() {
+        return new BaseballCount(strikeCount + 1, ballCount);
     }
 
-    public Count increaseBallCount() {
-        return new Count(strikeCount, ballCount + 1);
+    public BaseballCount increaseBallCount() {
+        return new BaseballCount(strikeCount, ballCount + 1);
     }
 
     public int getStrikeCount() {

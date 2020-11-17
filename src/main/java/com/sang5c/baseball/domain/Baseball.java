@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class BaseBall {
+public class Baseball {
 
     static final int BASEBALL_NUMBERS_LENGTH = 3;
     private static final String ERROR_DUPLICATED = "숫자 중복 불가";
@@ -12,7 +12,7 @@ public class BaseBall {
 
     private final List<Number> numbers;
 
-    private BaseBall(List<Number> numbers) {
+    private Baseball(List<Number> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -35,48 +35,48 @@ public class BaseBall {
         }
     }
 
-    public static BaseBall of(String str) {
+    public static Baseball of(String str) {
         String[] split = str.split("");
         List<Number> numbers = new ArrayList<>();
         for (String number : split) {
             numbers.add(Number.of(number));
         }
-        return new BaseBall(numbers);
+        return new Baseball(numbers);
     }
 
-    public static BaseBall of(List<Integer> integers) {
+    public static Baseball of(List<Integer> integers) {
         List<Number> numbers = new ArrayList<>();
         for (Integer number : integers) {
             numbers.add(Number.of(number));
         }
-        return new BaseBall(numbers);
+        return new Baseball(numbers);
     }
 
-    public Count compare(BaseBall userBaseBall) {
-        Count count = new Count();
+    public BaseballCount compare(Baseball userBaseball) {
+        BaseballCount baseballCount = new BaseballCount();
         for (int i = 0; i < numbers.size(); i++) {
-            count = countBall(userBaseBall, count, i);
-            count = countStrike(userBaseBall, count, i);
+            baseballCount = countBall(userBaseball, baseballCount, i);
+            baseballCount = countStrike(userBaseball, baseballCount, i);
         }
-        return count;
+        return baseballCount;
     }
 
-    private Count countStrike(BaseBall userBaseBall, Count count, int i) {
-        if (numbers.get(i).equals(userBaseBall.numbers.get(i))) {
-            return count.increaseStrikeCount();
+    private BaseballCount countStrike(Baseball userBaseball, BaseballCount baseballCount, int i) {
+        if (numbers.get(i).equals(userBaseball.numbers.get(i))) {
+            return baseballCount.increaseStrikeCount();
         }
-        return count;
+        return baseballCount;
     }
 
-    private Count countBall(BaseBall userBaseBall, Count count, int i) {
-        if (contains(userBaseBall, i) && !numbers.get(i).equals(userBaseBall.numbers.get(i))) {
-            return count.increaseBallCount();
+    private BaseballCount countBall(Baseball userBaseball, BaseballCount baseballCount, int i) {
+        if (contains(userBaseball, i) && !numbers.get(i).equals(userBaseball.numbers.get(i))) {
+            return baseballCount.increaseBallCount();
         }
-        return count;
+        return baseballCount;
     }
 
-    private boolean contains(BaseBall userBaseBall, int i) {
-        return this.numbers.contains(userBaseBall.numbers.get(i));
+    private boolean contains(Baseball userBaseball, int i) {
+        return this.numbers.contains(userBaseball.numbers.get(i));
     }
 
     @Override

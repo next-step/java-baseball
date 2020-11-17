@@ -1,18 +1,18 @@
 package com.sang5c.baseball;
 
 import com.sang5c.baseball.domain.Computer;
-import com.sang5c.baseball.domain.Count;
-import com.sang5c.baseball.domain.BaseBall;
+import com.sang5c.baseball.domain.BaseballCount;
+import com.sang5c.baseball.domain.Baseball;
 import com.sang5c.baseball.ui.InputView;
 import com.sang5c.baseball.ui.ResultView;
 
-public class NumericalBaseBall {
+public class NumericalBaseball {
     private static final String EXIT = "exit";
 
     public static void main(String[] args) {
         String userContinueInput;
         do {
-            BaseBall baseBall = Computer.randomNumbers();
+            Baseball baseBall = Computer.randomNumbers();
             System.out.println("question : " + baseBall);
 
             startUserInteraction(baseBall);
@@ -24,15 +24,15 @@ public class NumericalBaseBall {
         return !EXIT.equalsIgnoreCase(userContinueInput);
     }
 
-    private static void startUserInteraction(BaseBall baseBall) {
-        Count count;
+    private static void startUserInteraction(Baseball baseBall) {
+        BaseballCount baseballCount;
         do {
             String userInput = InputView.getUserNumbersInput();
-            BaseBall userBaseBall = BaseBall.of(userInput);
+            Baseball userBaseball = Baseball.of(userInput);
 
-            count = baseBall.compare(userBaseBall);
-            ResultView.printCount(count);
-        } while (!count.isThreeStrike());
+            baseballCount = baseBall.compare(userBaseball);
+            ResultView.printCount(baseballCount);
+        } while (!baseballCount.isThreeStrike());
     }
 
 
