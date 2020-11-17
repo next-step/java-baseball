@@ -73,28 +73,86 @@ class BaseballTest {
 	@Test
 	void getGameResultTest() {
 		// given
-
+		GameNumber comNumber = setComNumber();
+		GameNumber userNumber = setUserNumber();
 
 		// when
-		GameResult gameResult = baseball.getGameResult(setComNumber(), setUserNumber());
+		GameResult gameResult = baseball.getGameResult(comNumber, userNumber);
 
 		// then
-		assertThat(gameResult).isNotNull();
+		assertThat(gameResult.getStrikeCount()).isEqualTo(1);
+		assertThat(gameResult.getBallCount()).isEqualTo(1);
+		assertThat(gameResult.getNothingCount()).isEqualTo(1);
 	}
 
 	@Test
 	void judgeNumberTest() {
+		// given
+		GameNumber comNumber = setComNumber();
+		GameNumber userNumber = setUserNumber();
+
+		// when
+		String judgeNumber1 = baseball.judgeNumber(comNumber, userNumber, 0);
+		String judgeNumber2 = baseball.judgeNumber(comNumber, userNumber, 1);
+		String judgeNumber3 = baseball.judgeNumber(comNumber, userNumber, 2);
+
+		// then
+		assertThat(judgeNumber1).isEqualTo(JudgeType.STRIKE.name());
+		assertThat(judgeNumber2).isEqualTo(JudgeType.BALL.name());
+		assertThat(judgeNumber3).isEqualTo(JudgeType.NOTHING.name());
+
 	}
 
 	@Test
 	void isStrikeTest() {
+		// given
+		GameNumber comNumber = setComNumber();
+		GameNumber userNumber = setUserNumber();
+
+		// when
+		boolean test1 = baseball.isStrike(comNumber, userNumber, 0);
+		boolean test2 = baseball.isStrike(comNumber, userNumber, 1);
+		boolean test3 = baseball.isStrike(comNumber, userNumber, 2);
+
+		// then
+		assertThat(test1).isTrue();
+		assertThat(test2).isFalse();
+		assertThat(test3).isFalse();
 	}
 
 	@Test
 	void isBallTest() {
+		// given
+		GameNumber comNumber = setComNumber();
+		GameNumber userNumber = setUserNumber();
+
+		boolean test1 = baseball.isBall(comNumber, userNumber, 0);
+		boolean test2 = baseball.isBall(comNumber, userNumber, 1);
+		boolean test3 = baseball.isBall(comNumber, userNumber, 2);
+
+		// then
+		assertThat(test1).isFalse();
+		assertThat(test2).isTrue();
+		assertThat(test3).isFalse();
 	}
 
 	@Test
 	void countJudgeTypeFromJudgeNumberResultList() {
+		// given
+		ArrayList<String> judgeNumberResultList = new ArrayList<>();
+		judgeNumberResultList.add(JudgeType.STRIKE.name());
+		judgeNumberResultList.add(JudgeType.STRIKE.name());
+		judgeNumberResultList.add(JudgeType.STRIKE.name());
+		judgeNumberResultList.add(JudgeType.BALL.name());
+		judgeNumberResultList.add(JudgeType.BALL.name());
+		judgeNumberResultList.add(JudgeType.NOTHING.name());
+
+		// when
+		GameResult gameResult = baseball.countJudgeTypeFromJudgeNumberResultList(judgeNumberResultList);
+
+		// then
+		assertThat(gameResult.getStrikeCount()).isEqualTo(3);
+		assertThat(gameResult.getBallCount()).isEqualTo(2);
+		assertThat(gameResult.getNothingCount()).isEqualTo(1);
 	}
 }

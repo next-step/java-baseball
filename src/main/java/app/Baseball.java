@@ -30,7 +30,7 @@ public class Baseball {
 
 	public GameResult getGameResult(GameNumber comNumber, GameNumber userNumber) {
 		ArrayList<String> judgeNumberResultList = new ArrayList<>();
-		for (int i = 0; i > userNumber.getGameNumberList().size(); i++) {
+		for (int i = 0; i < userNumber.getGameNumberList().size(); i++) {
 			judgeNumberResultList.add(judgeNumber(comNumber, userNumber, i));
 		}
 		return countJudgeTypeFromJudgeNumberResultList(judgeNumberResultList);
@@ -51,7 +51,8 @@ public class Baseball {
 	}
 
 	public boolean isBall(GameNumber comNumber, GameNumber userNumber, int index) {
-		return comNumber.getGameNumberList().contains(userNumber.getGameNumberList().get(index));
+		return !isStrike(comNumber, userNumber, index)
+				&& comNumber.getGameNumberList().contains(userNumber.getGameNumberList().get(index));
 	}
 
 	public GameResult countJudgeTypeFromJudgeNumberResultList(ArrayList<String> judgeNumberResultList) {
