@@ -13,9 +13,9 @@ public class Main {
 
     private static void playGame(Game game) {
         do {
-            inputNumber(game);                    // 세자리 숫자를 입력받는다.
-            showHintNumber(game.getStrike(), game.getBall());   // 사용자에게 힌트를 보여준다.
-        } while(game.getStrike() != 3);                         // 3 스트라이크이면 게임을 종료한다.
+            inputNumber(game);              // 세자리 숫자를 입력받는다.
+            showHintNumber(game);           // 사용자에게 힌트를 보여준다.
+        } while(game.getStrike() != 3);     // 3 스트라이크이면 게임을 종료한다.
     }
 
 
@@ -77,28 +77,27 @@ public class Main {
 
     /**
      * 사용자에게 힌트를 보여준다.
-     * @param strike    스트라이크 갯수
-     * @param ball      볼 갯수
+     * @param game
      */
-    private static void showHintNumber(Integer strike, Integer ball) {
+    private static void showHintNumber(Game game) {
 
-        if (strike == 0 && ball == 0) {
+        if (game.getStrike() == 0 && game.getBall() == 0) {
             System.out.println("낫싱");
             return;
         }
 
-        if (strike > 0 && ball > 0) {
-            System.out.println(strike.toString() + " 스트라이크 " + ball.toString() + " 볼");
+        if (game.getStrike() > 0 && game.getBall() > 0) {
+            System.out.println(game.getStrike().toString() + " 스트라이크 " + game.getBall().toString() + " 볼");
             return;
         }
 
-        if (strike > 0) {
-            System.out.println(strike.toString() + " 스트라이크 ");
+        if (game.getStrike() > 0) {
+            System.out.println(game.getStrike().toString() + " 스트라이크 ");
             return;
         }
 
-        if (ball > 0) {
-            System.out.println(ball.toString() + " 볼");
+        if (game.getBall() > 0) {
+            System.out.println(game.getBall().toString() + " 볼");
             return;
         }
     }
