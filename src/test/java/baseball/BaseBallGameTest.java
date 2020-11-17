@@ -67,4 +67,17 @@ class BaseBallGameTest {
         assertThat(baseBallGame.getBallCount().isNothing()).isFalse();
         assertThat(baseBallGame.getBallCount().isThreeStrike()).isTrue();
     }
+
+    @DisplayName(value = "3 Ball")
+    @ParameterizedTest
+    @ValueSource(strings = {"8,2,4"})
+    void playAllBall(String input) {
+        BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(computedBallNumber));
+        BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
+        baseBallGame.play(new BallNumber(new BallNumbersPlayerInputStrategy(InputView.setBallNumber(input))));
+        assertThat(baseBallGame.getBallCount().getStrikeCount()).isEqualTo(0);
+        assertThat(baseBallGame.getBallCount().getBallCount()).isEqualTo(3);
+        assertThat(baseBallGame.getBallCount().isNothing()).isFalse();
+        assertThat(baseBallGame.getBallCount().isThreeStrike()).isFalse();
+    }
 }
