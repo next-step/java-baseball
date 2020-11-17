@@ -1,6 +1,6 @@
 package com.woowa.precourse.util;
 
-public class QueryConverter { 
+public class QueryConverter {
 	private InputValidator inputValidator;
 
 	/* 생성자 */
