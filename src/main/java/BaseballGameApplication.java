@@ -16,8 +16,9 @@ public class BaseballGameApplication {
 			String guess = guess();
 			Hint hint = baseballGameService.getHint(answer, guess);
 			System.out.println(hint.getMessage());
-			hit = false;
+			hit = hint.is3Strike();
 		}
+
 	}
 
 	private String guess() {
