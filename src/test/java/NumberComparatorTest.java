@@ -86,4 +86,52 @@ class NumberComparatorTest {
         assertThat(status).isEqualTo(BaseballCompareResultStatus.MATCHED);
     }
 
+    @Test
+    @DisplayName("볼카운트 계산하는 메소드 테스트")
+    void test6() {
+        int testInput1 = 123;
+        int testInput2 = 456;
+        int ballCount1 = NumberComparator.calculateBallCount(testInput1, testInput2);
+        assertThat(ballCount1).isEqualTo(0);
+
+        int testInput3 = 123;
+        int testInput4 = 345;
+        int ballCount2 = NumberComparator.calculateBallCount(testInput3, testInput4);
+        assertThat(ballCount2).isEqualTo(1);
+
+        int testInput5 = 123;
+        int testInput6 = 341;
+        int ballCount3 = NumberComparator.calculateBallCount(testInput5, testInput6);
+        assertThat(ballCount3).isEqualTo(2);
+
+        int testInput7 = 123;
+        int testInput8 = 312;
+        int ballCount4 = NumberComparator.calculateBallCount(testInput7, testInput8);
+        assertThat(ballCount4).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("스트라이크카운트 계산하는 메소드 테스트")
+    void test7(){
+        int test1 = 123;
+        int test2 = 456;
+        int strikeCount1 = NumberComparator.calculateStrikeCount(test1, test2);
+        assertThat(strikeCount1).isEqualTo(0);
+
+        int test3 = 123;
+        int test4 = 156;
+        int strikeCount2 = NumberComparator.calculateStrikeCount(test3, test4);
+        assertThat(strikeCount2).isEqualTo(1);
+
+        int test5 = 123;
+        int test6 = 153;
+        int strikeCount3 = NumberComparator.calculateStrikeCount(test5, test6);
+        assertThat(strikeCount3).isEqualTo(2);
+
+        int test7 = 123;
+        int test8 = 123;
+        int strikeCount4 = NumberComparator.calculateStrikeCount(test7, test8);
+        assertThat(strikeCount4).isEqualTo(3);
+    }
+
 }
