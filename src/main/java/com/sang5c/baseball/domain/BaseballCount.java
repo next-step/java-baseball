@@ -27,4 +27,9 @@ public class BaseballCount {
         return count < MIN_COUNT || count > MAX_COUNT;
     }
 
+    public boolean isNothing() {
+        return ballCount == 0 && strikeCount == 0;
+    }
+
+
 }
