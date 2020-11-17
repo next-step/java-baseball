@@ -3,7 +3,6 @@ package game.baseball.number.participants.evaluators;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import game.baseball.number.exceptions.InvalidDifferentThreeNumberTypingException;
-import game.baseball.number.exceptions.InvalidRestartOrExitInputException;
 import game.baseball.number.validator.NumbersValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

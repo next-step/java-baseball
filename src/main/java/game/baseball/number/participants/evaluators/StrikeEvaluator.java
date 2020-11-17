@@ -7,12 +7,10 @@ import java.util.Iterator;
 class StrikeEvaluator implements Evaluator {
 
     private static final String STRIKE_TEXT = " 스트라이크";
-    private static final int ANSWER = 3;
 
     @Override
-    public boolean test(String pitchedNumbers, String hitNumbers) {
-        int strikes = countStrikes(pitchedNumbers.toCharArray(), hitNumbers.toCharArray());
-        return strikes == ANSWER;
+    public int evaluate(String pitchedNumbers, String hitNumbers) {
+        return countStrikes(pitchedNumbers.toCharArray(), hitNumbers.toCharArray());
     }
 
     private int countStrikes(char[] pitchedNumbers, char[] hitNumbers) {
