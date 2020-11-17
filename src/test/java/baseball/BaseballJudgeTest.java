@@ -15,7 +15,7 @@ class BaseballJudgeTest {
     void isRightAnswer() {
         // given
         int digitCount = 5;
-        BaseballJudgeMock mock = new BaseballJudgeMock(digitCount, 0, 0, "");
+        BaseballJudgeTestMock mock = new BaseballJudgeTestMock(digitCount, 0, 0, "");
 
         // when & then
         assertThat(mock.getGameDigitCount()).isEqualTo(digitCount);
@@ -31,7 +31,7 @@ class BaseballJudgeTest {
         int strikeCount = digitCount;
         int ballCount = 0;
         String judgementMessage = "hi";
-        BaseballJudgeMock mock = new BaseballJudgeMock(digitCount, strikeCount, ballCount, judgementMessage);
+        BaseballJudgeTestMock mock = new BaseballJudgeTestMock(digitCount, strikeCount, ballCount, judgementMessage);
 
         // when
         BaseballResult baseballResult = mock.createBaseBallResult(createAny(), createAny());

@@ -2,14 +2,14 @@ package baseball;
 
 import java.util.List;
 
-public class BaseballJudgeMock implements BaseballJudge {
+public class BaseballJudgeTestMock implements BaseballJudge {
 
     private final int digitCount;
     private final int strikeCount;
     private final int ballCount;
     private final String judgementMessage;
 
-    public BaseballJudgeMock(int digitCount, int strikeCount, int ballCount, String judgementMessage) {
+    public BaseballJudgeTestMock(int digitCount, int strikeCount, int ballCount, String judgementMessage) {
         this.digitCount = digitCount;
         this.strikeCount = strikeCount;
         this.ballCount = ballCount;
