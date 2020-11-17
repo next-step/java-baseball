@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 import org.dhlee.game.baseball.constant.BaseballConstant;
 import org.dhlee.game.baseball.validation.InputNumberValiator;
+import org.dhlee.game.enums.ProgressType;
 import org.dhlee.game.interfaces.Game;
 import org.dhlee.game.utils.ConvertUtils;
 import org.dhlee.game.utils.PrintUtils;
 import org.dhlee.game.utils.generator.RandomNumbersGenerator;
 
-public class BaseballGame implements Game {
+public class BaseballGame implements Game<ProgressType> {
 	private Scanner scanner;
 	private BaseballPlayer defensePlayer;
 	private BaseballPlayer attackPlayer;
@@ -57,6 +58,14 @@ public class BaseballGame implements Game {
 	}
 
 	@Override
-	public void stop() {
+	public ProgressType stop() {
+		PrintUtils.println(BaseballConstant.MESSAGE_END_GAME);
+		PrintUtils.println(BaseballConstant.MESSAGE_ENTER_CONTINUE_GAME);
+
+		String input = scanner.next();
+		if (InputNumberValiator.checkFormatValidate(input)) {
+			return ProgressType.getByCode(Integer.parseInt(input));
+		}
+		return ProgressType.EXIT;
 	}
 }

@@ -5,5 +5,5 @@ public interface Game<T> {
 
 	void start();
 
-	void stop();
+	T stop();
 }
