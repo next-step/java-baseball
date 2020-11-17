@@ -7,9 +7,18 @@ public class BaseballResult {
     private int strike;
     private int ball;
 
+
     public BaseballResult() {
         this.strike = 0;
         this.ball = 0;
+    }
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
     }
 
     public void checkAnswer(String source, String target) {
@@ -20,6 +29,7 @@ public class BaseballResult {
 
         print();
     }
+
 
     private boolean isStrike(String source, String target, int index) {
         return source.charAt(index) == target.charAt(index);
