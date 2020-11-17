@@ -3,7 +3,9 @@ package org.dhlee.game.baseball;
 import java.util.Scanner;
 
 import org.dhlee.game.baseball.constant.BaseballConstant;
+import org.dhlee.game.baseball.validation.InputNumberValiator;
 import org.dhlee.game.interfaces.Game;
+import org.dhlee.game.utils.ConvertUtils;
 import org.dhlee.game.utils.PrintUtils;
 import org.dhlee.game.utils.generator.RandomNumbersGenerator;
 
@@ -38,7 +40,20 @@ public class BaseballGame implements Game {
 	}
 
 	private boolean play(String input) {
-		return true;
+		if (InputNumberValiator.checkLengthValidate(input)
+			&& InputNumberValiator.checkFormatValidate(input)
+			&& InputNumberValiator.checkHasEqualNumberValidate(input)) {
+			attackPlayer.setNumbers(ConvertUtils.StringToIntList(input, BaseballConstant.NUMBER_LENGTH));
+			PlayResult playResult = defensePlayer.play(attackPlayer.getNumbers());
+			PrintUtils.println(playResult.getResultMessage());
+
+			return checkEndGame(playResult);
+		}
+		return false;
+	}
+
+	private boolean checkEndGame(PlayResult playResult) {
+		return playResult.getPlayResult(BaseballConstant.NUMBER_LENGTH);
 	}
 
 	@Override
