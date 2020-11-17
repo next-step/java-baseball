@@ -6,8 +6,8 @@ public class ResultView {
 
     public static final String THREE_STRIKE_ALL_CLEAR = "3개의 숫자를 모두 맞히셨습니다. 게임종료.";
     public static final String NOTHING = "NOTHING.";
+    public static final String BALL = " BALL.\t";
     public static final String STRIKE = " STRIKE.\t";
-    public static final String BALL = " BALL\t";
 
     public static void printBallCount(BallCount ballCount) {
         if (ballCount.isThreeStrike()) {
@@ -19,10 +19,11 @@ public class ResultView {
             return;
         }
         if (ballCount.getStrikeCount() > 0) {
-            System.out.println(ballCount.getStrikeCount() + STRIKE);
+            System.out.print(ballCount.getStrikeCount() + STRIKE);
         }
         if (ballCount.getBallCount() > 0) {
-            System.out.println(ballCount.getBallCount() == 0 ? "" : ballCount.getBallCount() + BALL);
+            System.out.print(ballCount.getBallCount() + BALL);
         }
+        System.out.println();
     }
 }

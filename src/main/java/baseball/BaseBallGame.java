@@ -21,8 +21,6 @@ public class BaseBallGame {
 
     public BaseBallGame(BallNumber dealerNumber) {
         this.dealerNumber = dealerNumber;
-        //todo:: input error Check
-
     }
 
     public void play(BallNumber playerInputNumber) {
@@ -35,12 +33,14 @@ public class BaseBallGame {
     private void getBallCount(List<String> dealerNumbers, List<String> playerInputNumbers) {
         for (int index = 0; index < dealerNumbers.size(); index++) {
             checkStrike(dealerNumbers, playerInputNumbers, index);
+        }
+        for (int index = 0; index < dealerNumbers.size(); index++) {
             checkBall(dealerNumbers, playerInputNumbers, index);
         }
     }
 
     private void checkBall(List<String> dealerNumbers, List<String> playerInputNumbers, int index) {
-        if (dealerNumbers.contains(playerInputNumbers.get(index)) && !ballCount.isStrikeLocation(index)) {
+        if (playerInputNumbers.contains(dealerNumbers.get(index)) && !ballCount.isStrikeLocation(index)) {
             ballCount.addBallCount();
         }
     }
@@ -58,5 +58,4 @@ public class BaseBallGame {
     public BallCount getBallCount() {
         return ballCount;
     }
-
 }
