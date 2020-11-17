@@ -5,20 +5,6 @@ import java.util.Scanner;
 
 public class BaseballGame {
 	
-	/**
-	 * * 정답 설정 ( = 3개의 랜덤숫자 생성)
-	 * * 사용자에게 숫자 입력받기
-	 * * 입력받은 숫자 검증하기
-	 *  : 입력된 타입 체크하기 / 중복된 숫자가 있으면 예외처리 하기
-	 * * 숫자야구게임 룰에 맞는 판단로직 만들기 ( 스트라이크 / 볼 )
-	 * * 판단 결과 출력
-	 * * 게임 반복 진행
-	 *  : 사용자에게 게임 다시할지 여부 질문 & 결과 반영
-	 *   (게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.)
-	 *
-	 */
-	
-	
 	public static void main(String[] args) {
 		BaseballGame game = new BaseballGame();
 		boolean replay = false;
@@ -53,25 +39,20 @@ public class BaseballGame {
 	}
 	
 	public void playGame() {
-		//게임 셋팅
 		boolean isGameOver = false;
 		int[] answer = makeAnswerNumber();
 		
-		//정답 맞출때까지 반복
 		do {
-			//1. 사용자에게 입력받기
 			int[] user = userNumber();
 			
 			int strikeCount = 0;
 			int ballCount = 0;
-			//2. 판단
+
 			strikeCount = checkStrikeCount(answer, user);
 			ballCount = checkBallCount(answer, user);
 			
-			//3. 판단 결과 출력
 			printResult(strikeCount, ballCount);
-			
-			//4. 게임 종료 여부 확인
+
 			if (strikeCount == 3) {
 				isGameOver = true;
 			}
