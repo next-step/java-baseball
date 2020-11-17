@@ -1,8 +1,8 @@
 package com.sang5c.baseball;
 
-import com.sang5c.baseball.domain.Computer;
-import com.sang5c.baseball.domain.BaseballCount;
 import com.sang5c.baseball.domain.Baseball;
+import com.sang5c.baseball.domain.BaseballCount;
+import com.sang5c.baseball.domain.Computer;
 import com.sang5c.baseball.ui.InputView;
 import com.sang5c.baseball.ui.ResultView;
 
@@ -34,6 +34,5 @@ public class NumericalBaseball {
             ResultView.printCount(baseballCount);
         } while (!baseballCount.isThreeStrike());
     }
-
 
 }
