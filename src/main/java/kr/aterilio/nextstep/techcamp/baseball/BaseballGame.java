@@ -5,7 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class BaseballGame {
 
-	private static final int GAME_SIZE = 3;
+	public static final int GAME_SIZE = 3;
+
 	private static final int MAX_GAME_CREATE_TRY = 30;
 
 	private static final int MIN_NUMBER = 1;
@@ -54,7 +55,7 @@ public class BaseballGame {
 	public BaseballResult judge(List<Integer> inputs) {
 		BaseballResult result = new BaseballResult();
 		if (!isCreateSuccess() || board.size() != inputs.size()) {
-			result.nothing();
+			result.failed();
 			return result;
 		}
 		for (int i = 0; i < board.size(); ++i) {

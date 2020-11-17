@@ -15,7 +15,9 @@ public class BaseballMain {
 		InputView inputView = new InputView();
 		inputView.welcome();
 
-		main.play(inputView);
+		do {
+			main.play(inputView);
+		} while(inputView.isContinue());
 	}
 
 	private void play(InputView inputView) {
@@ -27,16 +29,31 @@ public class BaseballMain {
 			return;
 		}
 
+		BaseballResult baseballResult = null;
+		do {
+			List<Integer> inputs = trying(inputView, baseballGame.getGameSize());
+			baseballResult = baseballGame.judge(inputs);
+			printResult(baseballResult);
+		} while(!baseballResult.isGameOver());
+
+		ResultView.printGameOver();
+	}
+
+	private List<Integer> trying(InputView inputView, int gameSize) {
+
 		List<Integer> inputs = Collections.emptyList();
 
 		do {
 			inputs = inputView.trying();
+		} while (inputs.size() != gameSize);
 
+		return inputs;
+	}
+
+	private void printResult(BaseballResult baseballResult) {
+		if (baseballResult != null && !baseballResult.isFailed()) {
 			ResultView resultView = new ResultView();
-			resultView.printResult(baseballGame.judge(inputs));
-		} while (inputs.size() != baseballGame.getGameSize());
-
-		// for debug
-		baseballGame.printBoard();
+			resultView.printResult(baseballResult);
+		}
 	}
 }

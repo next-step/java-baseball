@@ -5,7 +5,7 @@ public class BaseballResult {
 	private int countStrike = 0;
 	private int countBall = 0;
 
-	private boolean existResult = true;
+	private boolean failed = false;
 
 	public void strike() {
 		countStrike++;
@@ -23,11 +23,15 @@ public class BaseballResult {
 		return countBall;
 	}
 
-	public void nothing() {
-		existResult = false;
+	public void failed() {
+		failed = true;
 	}
 
-	public boolean hasResult() {
-		return existResult;
+	public boolean isFailed() {
+		return failed;
+	}
+
+	public boolean isGameOver() {
+		return BaseballGame.GAME_SIZE == countStrike;
 	}
 }

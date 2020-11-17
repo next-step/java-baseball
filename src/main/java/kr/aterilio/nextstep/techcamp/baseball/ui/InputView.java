@@ -12,6 +12,7 @@ public class InputView {
 												+ "1-9 까지의 숫자 세개를 입력하여 상대(컴퓨터)가 선정한 숫자 3개를 맞힐 수 있습니다.\n"
 												+ "=======================================================================";
 	private static final String MSG_STEP_INPUT = "숫자를 입력해주세요 : ";
+	private static final String MSG_CONTINUE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 	private static final String MSG_ERR_FORMAT = "입력된 데이터가 정수가 아닙니다.";
 	private static final String MSG_ERR_OUT_OF_RANGE = "허용된 입력 범위를 벗어났습니다.";
@@ -76,5 +77,10 @@ public class InputView {
 			split(number / 10, list);
 		}
 		list.add(number % 10);
+	}
+
+	public boolean isContinue() {
+		System.out.println(MSG_CONTINUE);
+		return INPUT_FLAG.NEW_GAME.isEqual(scanInt());
 	}
 }
