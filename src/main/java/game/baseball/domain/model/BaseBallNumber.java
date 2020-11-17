@@ -16,7 +16,7 @@ public class BaseBallNumber {
 	public BaseBallNumber(List<Integer> numbers) {
 		validateNull(numbers);
 		validateSize(numbers);
-		validateDuplicate(numbers);
+		validateDuplication(numbers);
 		validateRange(numbers);
 		this.numbers = numbers;
 	}
@@ -33,7 +33,7 @@ public class BaseBallNumber {
 		}
 	}
 
-	private void validateDuplicate(List<Integer> numbers) {
+	private void validateDuplication(List<Integer> numbers) {
 		Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 		if (uniqueNumbers.size() != numbers.size()) {
 			throw new IllegalArgumentException("각 자리의 숫자들은 서로 다른 수 이어야 합니다.");

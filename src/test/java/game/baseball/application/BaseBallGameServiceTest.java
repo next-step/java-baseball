@@ -16,7 +16,7 @@ class BaseBallGameServiceTest {
 
 	@Test
 	void startTest() {
-		SUT.start();
+		SUT.init();
 
 		assertThat(new AnswerNumberRepository().getAnswerNumber())
 			.isNotNull()
@@ -27,7 +27,7 @@ class BaseBallGameServiceTest {
 	@ValueSource(ints = 123)
 	@DisplayName("정상적인 값을 입력받아 runRound()를 실행하면 BaseBallResult를 반환한다")
 	void runRound_CorrectInput(int input) {
-		assertThat(SUT.runRound(input))
+		assertThat(SUT.runGame(input))
 			.isNotNull()
 			.isInstanceOf(BaseBallResult.class);
 	}
@@ -37,6 +37,28 @@ class BaseBallGameServiceTest {
 	@DisplayName("비정상적인 값을 입력받아 runRound()를 실행하면 IllegalArgumentException이 발생한다")
 	void runRound_IncorrectInput(int input) {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> SUT.runRound(input));
+			.isThrownBy(() -> SUT.runGame(input));
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = 2)
+	void isRestart_ReturnFalse(int input) {
+		assertThat(SUT.isRestart(input))
+			.isFalse();
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = 1)
+	void isRestart_ReturnTrue(int input) {
+		assertThat(SUT.isRestart(input))
+			.isTrue();
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = {4, 5, 6, 7})
+	void isRestart_ThrowIllegalArgumentException(int input) {
+		assertThatIllegalArgumentException()
+			.isThrownBy(() -> SUT.isRestart(input))
+			.withMessage("잘못된 값을 입력하셨습니다.");
 	}
 }

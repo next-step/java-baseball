@@ -1,11 +1,11 @@
 package game.baseball.domain.shared;
 
 public enum ProcessStatus {
-	RESTART(1), EXIT(2), UNKNOWN(null);
+	RESTART(1), EXIT(2);
 
-	private final Integer code;
+	private final int code;
 
-	ProcessStatus(Integer code) {
+	ProcessStatus(int code) {
 		this.code = code;
 	}
 
@@ -20,6 +20,6 @@ public enum ProcessStatus {
 		if (code == EXIT.getCode()) {
 			return EXIT;
 		}
-		return UNKNOWN;
+		throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
 	}
 }

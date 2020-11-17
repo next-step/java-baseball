@@ -1,9 +1,15 @@
 package game.baseball.domain.shared;
 
 public enum GameStatus {
-	CONTINUE, END;
+	CONTINUE(true), END(false);
 
-	public static GameStatus valueOf(boolean isWin) {
-		return isWin ? GameStatus.END : GameStatus.CONTINUE;
+	private final boolean isContinue;
+
+	GameStatus(boolean isContinue) {
+		this.isContinue = isContinue;
+	}
+
+	public boolean isContinue() {
+		return isContinue;
 	}
 }

@@ -74,6 +74,8 @@ class BaseBallResultTest {
 			result.update(BaseBallStatus.STRIKE);
 		}
 
+		assertThat(result.isContinue())
+			.isTrue();
 		assertThat(result.isWin())
 			.isFalse();
 	}
@@ -85,6 +87,9 @@ class BaseBallResultTest {
 		result.update(BaseBallStatus.STRIKE);
 		result.update(BaseBallStatus.STRIKE);
 		result.update(BaseBallStatus.STRIKE);
+
+		assertThat(result.isContinue())
+			.isFalse();
 		assertThat(result.isWin())
 			.isTrue();
 	}

@@ -1,11 +1,13 @@
 package game.baseball.domain.model;
 
 import game.baseball.domain.shared.BaseBallStatus;
+import game.baseball.domain.shared.GameStatus;
 import game.baseball.domain.shared.StringUtils;
 
 public class BaseBallResult {
 	private int strike = 0;
 	private int ball = 0;
+	private GameStatus gameStatus = GameStatus.CONTINUE;
 
 	public static BaseBallResult generateNotting() {
 		return new BaseBallResult();
@@ -25,10 +27,18 @@ public class BaseBallResult {
 		} else if (baseBallStatus == BaseBallStatus.BALL) {
 			this.ball++;
 		}
+
+		if (this.strike == 3) {
+			gameStatus = GameStatus.END;
+		}
+	}
+
+	public boolean isContinue() {
+		return gameStatus.isContinue();
 	}
 
 	public boolean isWin() {
-		return this.strike == 3;
+		return !isContinue();
 	}
 
 	@Override

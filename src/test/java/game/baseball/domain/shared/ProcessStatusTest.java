@@ -24,8 +24,9 @@ class ProcessStatusTest {
 	@ParameterizedTest
 	@ValueSource(ints = {3, 4, 5, 6, 7})
 	void valueOf_ReturnUnknownWhenOtherNumber(int input) {
-		assertThat(ProcessStatus.valueOf(input))
-			.isEqualTo(ProcessStatus.UNKNOWN);
+		assertThatIllegalArgumentException()
+			.isThrownBy(() -> ProcessStatus.valueOf(input))
+			.withMessage("잘못된 값을 입력하셨습니다.");
 	}
 
 }

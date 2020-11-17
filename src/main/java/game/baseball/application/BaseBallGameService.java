@@ -5,6 +5,7 @@ import game.baseball.domain.model.BaseBallResult;
 import game.baseball.domain.model.InputNumber;
 import game.baseball.domain.repository.AnswerNumberRepository;
 import game.baseball.domain.service.ResultJudgementService;
+import game.baseball.domain.shared.ProcessStatus;
 
 public class BaseBallGameService {
 	private final AnswerNumberRepository answerNumberRepository;
@@ -15,14 +16,18 @@ public class BaseBallGameService {
 		this.resultJudgementService = new ResultJudgementService();
 	}
 
-	public void start() {
+	public void init() {
 		answerNumberRepository.generate();
 	}
 
-	public BaseBallResult runRound(int input) {
+	public BaseBallResult runGame(int input) {
 		InputNumber inputNumber = InputNumber.generate(input);
 		AnswerNumber answerNumber = answerNumberRepository.getAnswerNumber();
 
 		return resultJudgementService.judgeResult(inputNumber, answerNumber);
+	}
+
+	public boolean isRestart(int input) {
+		return ProcessStatus.valueOf(input) == ProcessStatus.RESTART;
 	}
 }

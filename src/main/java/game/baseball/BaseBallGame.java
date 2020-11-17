@@ -1,7 +1,5 @@
 package game.baseball;
 
-import game.baseball.domain.shared.GameStatus;
-import game.baseball.domain.shared.ProcessStatus;
 import game.baseball.ui.BaseBallGameController;
 
 public class BaseBallGame {
@@ -9,26 +7,24 @@ public class BaseBallGame {
 
 	public static void main(String[] args) {
 		do {
-			start();
+			init();
 			run();
-		} while (confirmRestart());
+		} while (confirm());
 	}
 
-	private static void start() {
-		controller.startGame();
+	private static void init() {
+		controller.initGame();
 	}
 
 	private static void run() {
-		GameStatus gameStatus = GameStatus.CONTINUE;
+		boolean isContinue = true;
 
-		while (gameStatus == GameStatus.CONTINUE) {
-			gameStatus = controller.runRound();
+		while (isContinue) {
+			isContinue = controller.runGame();
 		}
-
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
 
-	private static boolean confirmRestart() {
-		return controller.confirmRestart() == ProcessStatus.RESTART;
+	private static boolean confirm() {
+		return controller.waitConfirmRestart();
 	}
 }
