@@ -1,6 +1,9 @@
 package edu.example.numberbaseball;
 
 import edu.example.numberbaseball.computer.Computer;
+import edu.example.numberbaseball.console.GameStatus;
+import edu.example.numberbaseball.console.InputConsole;
+import edu.example.numberbaseball.console.OutputConsole;
 import edu.example.numberbaseball.player.Player;
 import edu.example.numberbaseball.player.PlayerStatus;
 
@@ -12,6 +15,30 @@ import java.util.List;
 public class NumberBaseball {
     private final Computer computer = new Computer();
     private Player player;
+
+    public void run() {
+        boolean isContinued = true;
+        while (isContinued) {
+            player = new Player(InputConsole.readInputString());
+            int strikeCount = countStrike();
+            OutputConsole.printStrikeAndBall(strikeCount, countBall());
+            isContinued = isContinued(strikeCount);
+        }
+    }
+
+    private boolean isContinued(int strike) {
+        if (strike == computer.getNumberOfBalls()) {
+            OutputConsole.printWinningMessage();
+            computer.reset();
+            return isNewGame();
+        }
+        return true;
+    }
+
+    private boolean isNewGame() {
+        GameStatus gameStatus = InputConsole.readNewOrQuitGameNumber();
+        return gameStatus == GameStatus.NEW;
+    }
 
     private int countStrike() {
         int strike = 0;
