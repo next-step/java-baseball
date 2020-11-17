@@ -22,10 +22,10 @@ public class BaseballNumbers {
         if (!BaseballUtil.isAllNumber(this.numbers)) {
             throw new BizException(BizExceptionType.NUMBER_ONLY);
         }
-        if (!isRangeNumber(this.numbers)) {
+        if (!isRangeNumber()) {
             throw new BizException(BizExceptionType.OUT_OF_BOUNDS_NUMBER);
         }
-        if (isIncludeDuplicateNumber(this.numbers)) {
+        if (isIncludeDuplicateNumber()) {
             throw new BizException(BizExceptionType.DUPLICATE_NUMBER);
         }
     }
@@ -34,20 +34,28 @@ public class BaseballNumbers {
         return numbers;
     }
 
-    private boolean isRangeNumber(String inputText) {
-        String[] textArr = inputText.split("");
+    private boolean isRangeNumber() {
+        String[] textArr = this.numbers.split("");
+        int nonRangeCount = 0;
         for (String str : textArr) {
-            int number = Integer.parseInt(str);
-            if (number < BaseballConfiguration.MIN_NUMBER || number > BaseballConfiguration.MAX_NUMBER) {
-                return false;
-            }
+            nonRangeCount += countNonRange(str);
+        }
+        if (nonRangeCount != 0){
+            return false;
         }
         return true;
     }
+    private int countNonRange(String num){
+        int number = Integer.parseInt(num);
+        if (number < BaseballConfiguration.MIN_NUMBER || number > BaseballConfiguration.MAX_NUMBER) {
+            return 1;
+        }
+        return 0;
+    }
 
-    private boolean isIncludeDuplicateNumber(String inputText) {
+    private boolean isIncludeDuplicateNumber() {
         HashSet<String> set = new HashSet<>();
-        for (String num : inputText.split("")) {
+        for (String num : this.numbers.split("")) {
             set.add(num);
         }
         if (set.size() != BaseballConfiguration.REQUIRED_COUNT) {

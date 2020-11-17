@@ -25,14 +25,22 @@ public class BaseballUtilTest {
     }
 
     private boolean isRangeNumber(String[] numbers) {
-
+        int nonRangeCount = 0;
         for (String num : numbers) {
-            int number = Integer.parseInt(num);
-            if (number < BaseballConfiguration.MIN_NUMBER || number > BaseballConfiguration.MAX_NUMBER) {
-                return false;
-            }
+            nonRangeCount += countNonRange(num);
+        }
+        if(nonRangeCount != 0){
+            return false;
         }
         return true;
+    }
+
+    private int countNonRange(String num){
+        int number = Integer.parseInt(num);
+        if (number < BaseballConfiguration.MIN_NUMBER || number > BaseballConfiguration.MAX_NUMBER) {
+            return 1;
+        }
+        return 0;
     }
 
     private boolean isIncludeDuplicateNumber(String[] numbers) {

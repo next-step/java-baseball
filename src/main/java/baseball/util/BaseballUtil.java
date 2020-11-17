@@ -30,12 +30,21 @@ public class BaseballUtil {
     }
 
     public static boolean isAllNumber(String input) {
-        char[] chars = input.toCharArray();
-        for (char c : chars) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
+        char[] inputArray = input.toCharArray();
+        int nonNumberCount = 0;
+        for (char c : inputArray) {
+            nonNumberCount += isNonNumber(c);
+        }
+        if (nonNumberCount != 0) {
+            return false;
         }
         return true;
+    }
+
+    private static int isNonNumber(char number) {
+        if (!Character.isDigit(number)) {
+            return 1;
+        }
+        return 0;
     }
 }

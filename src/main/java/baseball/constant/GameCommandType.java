@@ -1,5 +1,7 @@
 package baseball.constant;
 
+import java.util.HashSet;
+
 public enum GameCommandType {
 
     RETRY("1"),
@@ -17,13 +19,16 @@ public enum GameCommandType {
 
     public static boolean isExistType(String command) {
         GameCommandType[] gameCommandTypes = GameCommandType.values();
+
+        HashSet<String> values = new HashSet<>();
         for (GameCommandType gameCommandType : gameCommandTypes) {
-            if (command.equals(gameCommandType.getCommand())) {
-                return true;
-            }
+            values.add(gameCommandType.getCommand());
+        }
+        if(values.contains(command)){
+            return true;
         }
         return false;
-    }
 
+    }
 
 }

@@ -34,7 +34,6 @@ public class GameScore {
 
         for (int i = 0; i < randomNumbers.length; i++) {
             String num = randomNumbers[i];
-
             ballCheck(num, inputNumber, i);
             strikeCheck(num, inputNumber, i);
         }
