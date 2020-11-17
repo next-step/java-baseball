@@ -7,15 +7,18 @@ public class Baseball {
     public static final int DIGIT = 3;
 
     private static final String GAME_FINISH_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+    private InputManager inputManager = new InputManager();
 
     public void start() {
-        while (true) {
+        boolean restart = true;
+
+        while (restart) {
             initGame();
+            restart = inputManager.scanRestart();
         }
     }
 
     private void initGame() {
-        InputManager inputManager = new InputManager();
         BallGenerator generator = new BallGenerator();
         Ball computerBall = generator.generate(DIGIT);
         BallCount ballCount = new BallCount();
