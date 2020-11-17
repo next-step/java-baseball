@@ -27,12 +27,12 @@ public class Number {
     }
 
     public Number(List<Integer> digits) {
-        this.digits = digits;
+        this.digits = Collections.unmodifiableList(digits);
         validateDigits();
     }
 
-    public List<Integer> getDigits() {
-        return digits;
+    protected List<Integer> getDigits() {
+        return Collections.unmodifiableList(digits);
     }
 
     public static Number generateRandomNumber(Integer size) {
