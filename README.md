@@ -36,7 +36,7 @@
 
 ## 객체 역할
 
-#### number
+### [ number ]
 ##### BaseBallNumber
 - 야구게임에서 사용하는 숫자 하나를 의미하는 객체
     - 1~9 까지 숫자를 검증한다.
@@ -54,7 +54,7 @@
     - PlayerNumberGenerator를 이용하여 Player 숫자 생성
 
 
-#### hint
+### [ hint ]
 ##### STRIKE
 - STRIKE 힌트 객체
     - STRIKE 갯수와 매칭 여부를 판단한다.
@@ -64,7 +64,7 @@
     - BALL 갯수와 매칭 여부를 판단한다.
 
 
-#### generator
+### [ generator ]
 ##### SourceNumbers
 - 숫자 생성기에서 사용할 숫자 객체
     - 사용할 1~9의 숫자를 생성하고 캐싱
@@ -78,7 +78,7 @@
     - Player가 입력값으로 야구게임 숫자를 생성
     
     
-#### exception
+### [ exception ]
 ##### BaseBallException
 - 야구게임 예외 처리
 
@@ -86,7 +86,7 @@
 - 야구게임 예외 메시지 관리
 
 
-#### view
+### [ view ]
 ##### InputView
 - 입력 관련 처리
 
