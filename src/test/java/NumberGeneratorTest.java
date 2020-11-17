@@ -24,9 +24,9 @@ class NumberGeneratorTest {
         int randomThreeDigit = NumberGenerator.makeRandomThreeDigit();
         assertThat(randomThreeDigit).isLessThan(1000);
         assertThat(randomThreeDigit).isGreaterThan(99);
+
         // 각 자리수를 분리하여 배열에 담음
         List<Integer> singleDigits = NumberGenerator.toSingleDigitArray(randomThreeDigit);
-
         assertThat(NumberGenerator.checkRightData(singleDigits)).isEqualTo(true);
     }
 

@@ -13,18 +13,22 @@ class BaseballCompareResultTest {
         BaseballCompareResult result1 = new BaseballCompareResult(0, 0);
         BaseballCompareResultStatus status1 = result1.getStatus();
         assertThat(status1).isEqualTo(BaseballCompareResultStatus.NOTHING);
+
         // 볼=1, 스트라이크=0.. 상태는 EXIST 이어야 한다
         BaseballCompareResult result2 = new BaseballCompareResult(1, 0);
         BaseballCompareResultStatus status2 = result2.getStatus();
         assertThat(status2).isEqualTo(BaseballCompareResultStatus.EXIST);
+
         // 볼=0, 스트라이크=1.. 상태는 EXIST 이어야 한다
         BaseballCompareResult result3 = new BaseballCompareResult(0, 1);
         BaseballCompareResultStatus status3 = result3.getStatus();
         assertThat(status3).isEqualTo(BaseballCompareResultStatus.EXIST);
+
         // 볼=1, 스트라이크=1.. 상태는 EXIST 이어야 한다
         BaseballCompareResult result4 = new BaseballCompareResult(1, 1);
         BaseballCompareResultStatus status4 = result4.getStatus();
         assertThat(status4).isEqualTo(BaseballCompareResultStatus.EXIST);
+
         // 볼=0, 스트라이크=3.. 상태는 MATCHED 이어야 한다
         BaseballCompareResult result5 = new BaseballCompareResult(0, 3);
         BaseballCompareResultStatus status5 = result5.getStatus();
@@ -35,6 +39,7 @@ class BaseballCompareResultTest {
             BaseballCompareResult result6 = new BaseballCompareResult(3, 1);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("올바른 볼, 스트라이크 카운트가 아닙니다.");
+
         // 볼, 스트라이크 갯수 합계가 3을 넘어서면 IllegalArgumentException을 발생시켜야 한다
         assertThatThrownBy(() -> {
             BaseballCompareResult result7 = new BaseballCompareResult(1, 3);

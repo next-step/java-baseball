@@ -9,6 +9,7 @@ class NumberComparatorTest {
     @Test
     @DisplayName("야구게임 테스트 - NOTHING")
     void test1() {
+        // 하나도 맞지 않는 두 값으로 테스트
         int testInput1 = 345;
         int testInput2 = 678;
 
@@ -25,6 +26,7 @@ class NumberComparatorTest {
     @Test
     @DisplayName("야구게임 테스트 - 볼 존재O, 스트라이크 존재X")
     void test2() {
+        // 비교결과가 1볼, 0스트라이크인 데이터로 테스트
         int testInput1 = 365;
         int testInput2 = 678;
 
@@ -41,6 +43,7 @@ class NumberComparatorTest {
     @Test
     @DisplayName("야구게임 테스트 - 볼 존재X, 스트라이크 존재O")
     void test3() {
+        // 비교결과가 0볼, 1스트라이크인 데이터로 테스트
         int testInput1 = 375;
         int testInput2 = 678;
 
@@ -57,6 +60,7 @@ class NumberComparatorTest {
     @Test
     @DisplayName("야구게임 테스트 - 볼, 스트라이크 둘 다 존재O")
     void test4() {
+        // 비교결과가 1볼, 1스트라이크인 데이터로 테스트
         int testInput1 = 875;
         int testInput2 = 678;
 
@@ -73,6 +77,7 @@ class NumberComparatorTest {
     @Test
     @DisplayName("야구게임 테스트 - 정답과 동일")
     void test5() {
+        // 비교결과가 동일한 데이터로 테스트
         int testInput1 = 678;
         int testInput2 = 678;
 
