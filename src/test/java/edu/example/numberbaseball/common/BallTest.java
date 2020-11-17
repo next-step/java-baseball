@@ -17,6 +17,7 @@ class BallTest {
     private static final int START_NUMBER_FOR_BALL = 1;
     private static final int END_NUMBER_FOR_BALL = 9;
     private static final int TEST_BALL_SIZE = END_NUMBER_FOR_BALL - START_NUMBER_FOR_BALL + 1;
+    private static final int INVALID_BALL_NUMBER = -1;
 
     @DisplayName("`Ball`의 숫자는 1~9까지 범위에서 결정된다.")
     @Test
@@ -56,10 +57,8 @@ class BallTest {
     @DisplayName("`Ball`의 숫자가 1~9까지 범위를 넘어서면 만들어지지 않는다.")
     @Test
     void generateInvalidBall() {
-        int invalidBallNumber = -1;
-
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Ball(invalidBallNumber));
+                .isThrownBy(() -> new Ball(INVALID_BALL_NUMBER));
     }
 
     List<Integer> getBallNumberList(List<Ball> ballList) {
