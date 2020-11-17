@@ -10,5 +10,4 @@ public class BaseballGeneratorTest {
         System.out.println(baseballAnswer1.toString());
         System.out.println(baseballAnswer2.toString());
     }
-
 }

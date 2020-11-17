@@ -11,8 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballTest {
-
-
     @Test
     @DisplayName("validation(size : over three digit) test")
     public void overTheSize3() {
@@ -103,5 +101,4 @@ public class BaseballTest {
         assertThat(result.getStrike().toString()).isEqualTo("0");
         assertThat(result.getBall().toString()).isEqualTo("1");
     }
-
 }
