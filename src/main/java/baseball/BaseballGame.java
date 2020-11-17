@@ -6,8 +6,17 @@ import java.util.Scanner;
 public class BaseballGame {
 
 	Scanner scanner = new Scanner(System.in);
+
 	static int ball = 0;
 	static int strike = 0;
+
+	public int getBall() {
+	        return ball;
+	}
+
+	public int getStrike() {
+        return strike;
+	}
 
 	public final int RESTART_GAME = 1;
 	public final int EXIT_GAME = 2;
@@ -34,14 +43,14 @@ public class BaseballGame {
 
 		RESTART_MENU_NUM_ERROR("1~2인 숫자만 입력 가능합니다.");
 
-		final private String message;
+		private final String MESSAGE;
 
 		private MESSAGE_CD(String message) {
-			this.message = message;
+			this.MESSAGE = message;
 		}
 
-		public String message() {
-			return message;
+		public String getMessage() {
+			return MESSAGE;
 		}
 	}
 
@@ -78,7 +87,6 @@ public class BaseballGame {
 			randomArray[i] = (int) (Math.random() * 9) + 1;
 			i = checkDupNumArray(randomArray, i);
 		}
-
 		return randomArray;
 	}
 
@@ -88,13 +96,14 @@ public class BaseballGame {
 	 * @return int[]
 	 */
 	public int[] getInputNum() {
-		Integer intputNum = 0;
+		int intputNum = 0;
 		int[] inputNumArray = new int[3];
 		intputNum = setInputNum();
 		for (int i = 0; i < 3; i++) {
 			int endIndex = i + 1;
 			inputNumArray[i] = Integer.parseInt(Integer.toString(intputNum).substring(i, endIndex));
 		}
+
 		return inputNumArray;
 	}
 
@@ -160,14 +169,14 @@ public class BaseballGame {
 		int inputNum = 0;
 		while (true) {
 			try {
-				System.out.print(MESSAGE_CD.INPUT_NUM.message);
+				System.out.print(MESSAGE_CD.INPUT_NUM.MESSAGE);
 				inputNum = scanner.nextInt();
 				validCheckBaseballInputNum(inputNum);
 				break;
 			} catch (InputMismatchException e) {
 				scanner = new Scanner(System.in);
 			} catch (IllegalArgumentException e) {
-				System.out.println(MESSAGE_CD.INPUT_NUM_ERROR.message);
+				System.out.println(MESSAGE_CD.INPUT_NUM_ERROR.MESSAGE);
 			}
 		}
 		return inputNum;
@@ -216,9 +225,9 @@ public class BaseballGame {
 	 * 야구게임 결과 메세지 출력
 	 */
 	public void printResultMessage() {
-		String message = strike + " " + MESSAGE_CD.STRIKE.message + " " + ball + " " + MESSAGE_CD.BALL.message;
+		String message = strike + " " + MESSAGE_CD.STRIKE.MESSAGE + " " + ball + " " + MESSAGE_CD.BALL.MESSAGE;
 		if (strike == 0 && ball == 0) {
-			message = MESSAGE_CD.NOTHING.message;
+			message = MESSAGE_CD.NOTHING.MESSAGE;
 		}
 		System.out.println(message);
 	}
@@ -227,7 +236,7 @@ public class BaseballGame {
 	 * 스트라이크 메세지 출력
 	 */
 	public void printStrikeMessage() {
-		System.out.println(MESSAGE_CD.SUCCESS.message() + "\n" + MESSAGE_CD.MENU.message);
+		System.out.println(MESSAGE_CD.SUCCESS.getMessage() + "\n" + MESSAGE_CD.MENU.MESSAGE);
 	}
 
 	/**
@@ -245,10 +254,10 @@ public class BaseballGame {
 				validCheckRestartMenuNum(gameMenuNum);
 				break;
 			} catch (InputMismatchException e) {
-				System.out.println(MESSAGE_CD.RESTART_MENU_NUM_ERROR.message);
+				System.out.println(MESSAGE_CD.RESTART_MENU_NUM_ERROR.MESSAGE);
 				scanner = new Scanner(System.in);
 			} catch (IllegalArgumentException e) {
-				System.out.println(MESSAGE_CD.RESTART_MENU_NUM_ERROR.message);
+				System.out.println(MESSAGE_CD.RESTART_MENU_NUM_ERROR.MESSAGE);
 			}
 		}
 		return false;
