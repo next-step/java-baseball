@@ -27,6 +27,6 @@ public class Computer {
     }
 
     public int getNumberOfBalls() {
-        return inning.getNumberOfBalls();
+        return Inning.getNumberOfBalls();
     }
 }

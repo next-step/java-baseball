@@ -8,8 +8,8 @@ import java.util.List;
  * 야구게임을 즐기는 `Player`
  */
 public class Player {
-    private PlayerStatus status = PlayerStatus.INACTIVE;
     private final Inning inning;
+    private PlayerStatus status = PlayerStatus.INACTIVE;
 
     public Player(Inning inning) {
         activate();

@@ -12,7 +12,7 @@ public class CollectionUtil {
     }
 
     public static List<Integer> fillRange(int start, int end) {
-        if(start > end) {
+        if (start > end) {
             throw new IllegalArgumentException("start, end는 `start <= end`를 만족해야합니다.");
         }
         List<Integer> integerList = new ArrayList<>();

@@ -27,6 +27,10 @@ public class Inning {
         this.ballList = generateBallList();
     }
 
+    public static int getNumberOfBalls() {
+        return NUMBER_OF_BALLS;
+    }
+
     public List<Integer> getBallNumberList() {
         return getBallNumberList(ballList);
     }
@@ -47,9 +51,5 @@ public class Inning {
         Set<Integer> ballNumberSet = new HashSet<>(NUMBER_OF_BALLS);
         ballNumberSet.addAll(getBallNumberList(ballsList));
         return ballNumberSet.size() != NUMBER_OF_BALLS;
-    }
-
-    public static int getNumberOfBalls() {
-        return NUMBER_OF_BALLS;
     }
 }
