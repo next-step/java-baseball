@@ -29,4 +29,12 @@ class BaseballCountTest {
         assertThat(baseballCount.getBallCount()).isEqualTo(1);
     }
 
+    @DisplayName("strike count 증가")
+    @Test
+    public void increaseStrikeCount() {
+        BaseballCount baseballCount = BaseballCount.of(0, 0);
+        baseballCount = baseballCount.increaseStrikeCount();
+        assertThat(baseballCount.getStrikeCount()).isEqualTo(1);
+    }
+
 }
