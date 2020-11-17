@@ -2,38 +2,38 @@ package baseball.rule;
 
 public class GameResult {
 
-    private final int strike;
-    private final int ball;
+    private final int strikeCount;
+    private final int ballCount;
 
-    public GameResult(int strike, int ball) {
-        this.strike = strike;
-        this.ball = ball;
+    public GameResult(int strikeCount, int ballCount) {
+        this.strikeCount = strikeCount;
+        this.ballCount = ballCount;
     }
 
-    public int getStrike() {
-        return strike;
+    public int getStrikeCount() {
+        return strikeCount;
     }
 
     public boolean isEndOfGame() {
-        return strike >= 3;
+        return strikeCount >= 3;
     }
 
-    public int getBall() {
-        return ball;
+    public int getBallCount() {
+        return ballCount;
     }
 
     @Override
     public String toString() {
-        if (strike == 0 && ball == 0)
+        if (strikeCount == 0 && ballCount == 0)
             return "낫씽";
 
-        String msg = "";
-        if (strike > 0)
-            msg += strike + " 스트라이크 ";
+        String resultMessage = "";
+        if (strikeCount > 0)
+            resultMessage += strikeCount + " 스트라이크 ";
 
-        if(ball > 0)
-            msg += ball + " 볼 ";
+        if(ballCount > 0)
+            resultMessage += ballCount + " 볼 ";
 
-        return msg;
+        return resultMessage;
     }
 }

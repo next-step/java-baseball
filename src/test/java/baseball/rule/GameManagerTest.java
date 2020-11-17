@@ -32,24 +32,24 @@ class GameManagerTest {
         gm = new GameManager(new Integer[] {4, 2, 5});
 
         GameResult result = gm.judge(new Integer[]{1, 2, 3});
-        assertThat(result.getStrike()).isEqualTo(1);
-        assertThat(result.getBall()).isEqualTo(0);
+        assertThat(result.getStrikeCount()).isEqualTo(1);
+        assertThat(result.getBallCount()).isEqualTo(0);
 
         result = gm.judge(new Integer[]{4, 5, 6});
-        assertThat(result.getStrike()).isEqualTo(1);
-        assertThat(result.getBall()).isEqualTo(1);
+        assertThat(result.getStrikeCount()).isEqualTo(1);
+        assertThat(result.getBallCount()).isEqualTo(1);
 
         result = gm.judge(new Integer[]{7, 8, 9});
-        assertThat(result.getStrike()).isEqualTo(0);
-        assertThat(result.getBall()).isEqualTo(0);
+        assertThat(result.getStrikeCount()).isEqualTo(0);
+        assertThat(result.getBallCount()).isEqualTo(0);
 
         result = gm.judge(new Integer[]{2, 4, 5});
-        assertThat(result.getStrike()).isEqualTo(1);
-        assertThat(result.getBall()).isEqualTo(2);
+        assertThat(result.getStrikeCount()).isEqualTo(1);
+        assertThat(result.getBallCount()).isEqualTo(2);
 
         result = gm.judge(new Integer[]{4, 2, 5});
-        assertThat(result.getStrike()).isEqualTo(3);
-        assertThat(result.getBall()).isEqualTo(0);
+        assertThat(result.getStrikeCount()).isEqualTo(3);
+        assertThat(result.getBallCount()).isEqualTo(0);
     }
 
 }

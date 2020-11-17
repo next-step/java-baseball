@@ -12,10 +12,10 @@ public class InputParser {
         if(inputStr.length() != ANSWER_LENGTH)
             throw new IllegalArgumentException();
 
-        Integer [] inputNums = new Integer[ANSWER_LENGTH];
+        Integer [] inputNumbers = new Integer[ANSWER_LENGTH];
         for (int i = 0; i < ANSWER_LENGTH; i++)
-            inputNums[i] = Integer.parseInt(String.valueOf(inputStr.charAt(i)));
+            inputNumbers[i] = Integer.parseInt(String.valueOf(inputStr.charAt(i)));
 
-        return inputNums;
+        return inputNumbers;
     }
 }

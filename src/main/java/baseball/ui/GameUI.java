@@ -47,9 +47,9 @@ public class GameUI {
         System.out.println("3자리 숫자를 입력해 주세요.");
     }
 
-    private void printResult(GameResult result) {
-        System.out.println("결과 : " + result);
-        checkExit(result);
+    private void printResult(GameResult gameResult) {
+        System.out.println("결과 : " + gameResult);
+        checkExit(gameResult);
     }
 
     private void checkExit(GameResult result) {
@@ -57,8 +57,8 @@ public class GameUI {
             return;
 
         while(true) {
-            String input = scanExitInput();
-            proceedExit(input);
+            String exitInput = scanExitInput();
+            proceedExit(exitInput);
         }
     }
 
