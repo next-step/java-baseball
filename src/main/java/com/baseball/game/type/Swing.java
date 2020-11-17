@@ -7,17 +7,17 @@ import com.baseball.game.service.SwingOperator;
 import java.util.Arrays;
 
 public enum Swing implements SwingOperator {
-    NOTHING("NOTHING!"){
+    NOTHING(""){
         public boolean isSwing(Pitcher pitcher, Batter batter, int idx){
             return !pitcher.isPresent(batter.getNumberFromIndex(idx));
         }
     },
-    BALL("BALL!"){
+    BALL("볼"){
         public boolean isSwing(Pitcher pitcher, Batter batter, int idx){
             return pitcher.isPresent(batter.getNumberFromIndex(idx)) && !isEqualsValueAndIndex(pitcher, batter, idx);
         }
     },
-    STRIKE("STRIKE!"){
+    STRIKE("스트라이크"){
         public boolean isSwing(Pitcher pitcher, Batter batter, int idx){
             return isEqualsValueAndIndex(pitcher, batter, idx);
         }

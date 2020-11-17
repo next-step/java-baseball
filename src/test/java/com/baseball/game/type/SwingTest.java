@@ -4,7 +4,8 @@ import com.baseball.game.domain.Batter;
 import com.baseball.game.domain.Pitcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,15 +17,16 @@ class SwingTest {
     @BeforeEach
     void init(){
         pitcherBox = Pitcher.create();
+        Batter tempBat = Batter.create(214);
+        pitcherBox.setNumberBox(tempBat.getNumberBox());
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {251})
     @DisplayName("스윙 결과 : 1스트라이크 1볼 1낫씽")
-    void checkVariousResult() {
+    void checkVariousResult(int numbers) {
         //given
-        Batter tempBat = Batter.create(284);
-        pitcherBox.setNumberBox(tempBat.getNumberBox());
-        batterBox = Batter.create(258);
+        batterBox = Batter.create(numbers);
 
         //when && then
         assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.STRIKE);
@@ -32,13 +34,12 @@ class SwingTest {
         assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.BALL);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {458})
     @DisplayName("스윙 결과 : 1볼 2낫씽")
-    void checkSwingResult() {
+    void checkBallAndNothing(int numbers) {
         //given
-        Batter tempBat = Batter.create(214);
-        pitcherBox.setNumberBox(tempBat.getNumberBox());
-        batterBox = Batter.create(458);
+        batterBox = Batter.create(numbers);
 
         //when && then
         assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.BALL);
@@ -46,13 +47,12 @@ class SwingTest {
         assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.NOTHING);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {421})
     @DisplayName("스윙 결과 : 3 볼")
-    void checkThreeBall() {
+    void checkThreeBall(int numbers) {
         //given
-        Batter tempBat = Batter.create(421);
-        pitcherBox.setNumberBox(tempBat.getNumberBox());
-        batterBox = Batter.create(214);
+        batterBox = Batter.create(numbers);
 
         //when && then
         assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.BALL);
@@ -60,13 +60,12 @@ class SwingTest {
         assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.BALL);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {214})
     @DisplayName("스윙 결과 : 3 스트라이크")
-    void checkThreeStrike() {
+    void checkThreeStrike(int numbers) {
         //given
-        Batter tempBat = Batter.create(214);
-        pitcherBox.setNumberBox(tempBat.getNumberBox());
-        batterBox = Batter.create(214);
+        batterBox = Batter.create(numbers);
 
         //when && then
         assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.STRIKE);

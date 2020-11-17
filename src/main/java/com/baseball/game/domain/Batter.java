@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Batter {
 
-        private List<NumberBox> numberBox;
+    private List<NumberBox> numberBox;
 
     public Batter(int swingNumbers){
         createBatterBox(swingNumbers);

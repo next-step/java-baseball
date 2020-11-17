@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Pitcher {
+    private static final int BOX_SIZE = 3;
     private List<NumberBox> numberBox;
 
     public static Pitcher create(){
@@ -17,7 +18,7 @@ public class Pitcher {
     }
 
     private void createPitcherBox() {
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i < BOX_SIZE ; i++) {
             numberBox.add(NumberBox.of(i, getDistinctValue()));
         }
     }
