@@ -29,7 +29,7 @@ public enum Swing implements SwingOperator {
         this.text = text;
     }
 
-    public static Swing swingResult(Pitcher pitcher, Batter batter, int idx) {
+    public static Swing findSwingResult(Pitcher pitcher, Batter batter, int idx) {
         return Arrays.stream(Swing.values())
                 .filter(s -> s.isSwing(pitcher, batter, idx))
                 .findFirst()

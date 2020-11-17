@@ -21,7 +21,7 @@ public class ResultBoard {
 
     private void verify(Pitcher pitcher, Batter batter){
         for (int i = 0; i <pitcher.getNumberBox().size() ; i++) {
-            Swing key = Swing.swingResult(pitcher, batter, i);
+            Swing key = Swing.findSwingResult(pitcher, batter, i);
             swingBoard.put(key, increaseCount(key));
         }
     }
@@ -48,12 +48,12 @@ public class ResultBoard {
     }
 
     public boolean isOut(){
-        return swingBoard.get(Swing.STRIKE) == OUT_COUNT;
+        return swingBoard.get(Swing.STRIKE) != null && swingBoard.get(Swing.STRIKE) == OUT_COUNT;
     }
 
     @Override
     public String toString() {
-        String result = "";
+        String result = "스윙 결과 : ";
         for(Swing swing : swingBoard.keySet()){
             if(swing != Swing.NOTHING){
                 result += String.format("%d%s ", swingBoard.get(swing), swing.getText());

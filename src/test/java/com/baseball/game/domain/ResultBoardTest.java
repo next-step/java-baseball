@@ -1,12 +1,17 @@
 package com.baseball.game.domain;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("스윙 결과판 테스트")
 class ResultBoardTest {
     private Pitcher pitcher;
     private Batter batter;
@@ -74,5 +79,11 @@ class ResultBoardTest {
         //then
         assertTrue(resultBoard.toString().contains("3스트라이크"));
         assertTrue(resultBoard.isOut());
+    }
+
+    @Test
+    public void fasdfdsf(){
+        List<Integer> aa = Lists.list(1,2,3);
+        System.out.println(aa.toString());
     }
 }

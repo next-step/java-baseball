@@ -1,5 +1,7 @@
 package com.baseball.game.domain;
 
+import java.util.List;
+
 public class NumberBox {
     private final static int MIN_VALUE = 1;
     private final static int MAX_VALUE = 9;
@@ -24,10 +26,6 @@ public class NumberBox {
         return MAX_VALUE;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
     public int getNumber() {
         return number;
     }
@@ -36,4 +34,11 @@ public class NumberBox {
         return this.number == number;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "index:" + index +
+                ", number:" + number +
+                '}';
+    }
 }

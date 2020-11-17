@@ -44,4 +44,9 @@ public class Pitcher {
     public void setNumberBox(List<NumberBox> numberBox) {
         this.numberBox = numberBox;
     }
+
+    @Override
+    public String toString() {
+        return "생성된 투수 숫자 힌트 -> " + numberBox.toString();
+    }
 }

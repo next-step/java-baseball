@@ -29,9 +29,9 @@ class SwingTest {
         batterBox = Batter.create(numbers);
 
         //when && then
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.STRIKE);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.NOTHING);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.BALL);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.STRIKE);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.NOTHING);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.BALL);
     }
 
     @ParameterizedTest
@@ -42,9 +42,9 @@ class SwingTest {
         batterBox = Batter.create(numbers);
 
         //when && then
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.BALL);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.NOTHING);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.NOTHING);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.BALL);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.NOTHING);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.NOTHING);
     }
 
     @ParameterizedTest
@@ -55,9 +55,9 @@ class SwingTest {
         batterBox = Batter.create(numbers);
 
         //when && then
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.BALL);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.BALL);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.BALL);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.BALL);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.BALL);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.BALL);
     }
 
     @ParameterizedTest
@@ -68,8 +68,8 @@ class SwingTest {
         batterBox = Batter.create(numbers);
 
         //when && then
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.STRIKE);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.STRIKE);
-        assertThat(Swing.swingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.STRIKE);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 0)).isEqualTo(Swing.STRIKE);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 1)).isEqualTo(Swing.STRIKE);
+        assertThat(Swing.findSwingResult(pitcherBox, batterBox, 2)).isEqualTo(Swing.STRIKE);
     }
 }
