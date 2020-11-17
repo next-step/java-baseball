@@ -20,6 +20,20 @@ public class Baseball {
     }
 
     /**
+     * 새로운 게임시작
+     * @return number
+     */
+    public int startGame() {
+        pitcher = new Pitcher(NUMBER_LENGTH);
+        int number = 0;
+        do {
+            number = inputNumber();
+        } while (getResult(number) != ResultStatus.WIN); // 예측 성공이 아니라면 계속 진행
+
+        return number;
+    }
+
+    /**
      * 숫자입력 후 검증
      * @return number
      */
