@@ -15,7 +15,7 @@ public class NumbersTest {
 	@CsvSource(value = {"1234:3자리의 숫자를 입력해야 합니다.",
 			"012:1부터 9까지의 숫자를 입력해야 합니다.",
 			"112:중복되지 않은 숫자를 입력해야 합니다."}, delimiter = ':')
-	public void newNumbers_DuplicateNumber_IllegalArgumentException(String numberString, String message) {
+	public void newNumbers_NotValidNumber_IllegalArgumentException(String numberString, String message) {
 		final String[] split = numberString.split("");
 		final List<Integer> numberCandidateList = new ArrayList<>();
 		for (String s : split) {
@@ -25,5 +25,6 @@ public class NumbersTest {
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage(message);
 	}
-
+	
+	
 }
