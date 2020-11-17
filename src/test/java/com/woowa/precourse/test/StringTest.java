@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 
 
-public class StringTest { 
+public class StringTest {
 	@Test
 	@DisplayName(value = "'1,2'을 ',' 로 split 했을 때 1과 2로 잘 분리되는지 확인하는 학습 테스트")
 	public void requirement1() {
