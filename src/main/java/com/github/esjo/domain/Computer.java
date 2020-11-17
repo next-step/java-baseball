@@ -3,6 +3,7 @@ package com.github.esjo.domain;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.github.esjo.NumberComparator;
 import com.github.esjo.NumberGenerator;
 
 public class Computer {
@@ -26,6 +27,16 @@ public class Computer {
         }
         computer.setNumberSet(set);
         return computer;
+    }
+
+    /**
+     * Computer객체와 Player객체의 numberSet비교
+     * @param player Player객체 = 게임플레이어
+     * */
+    public void matchWith(Player player) {
+        NumberComparator numberComparator = new NumberComparator(); // numberSet 비교를 위한 클래스
+        Status statusOfPlayer = numberComparator.compareAwithB(computer.getNumberSet(), player.getNumberSet());
+        player.setStatus(statusOfPlayer);
     }
 
     /** getter for numberSet */
