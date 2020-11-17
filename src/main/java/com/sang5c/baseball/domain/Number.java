@@ -25,10 +25,14 @@ public class Number {
     }
 
     public static Number of(String number) {
+        checkNullOrEmpty(number);
+        return of(Integer.parseInt(number));
+    }
+
+    private static void checkNullOrEmpty(String number) {
         if (Objects.isNull(number) || number.isEmpty()) {
             throw new IllegalArgumentException("number null or empty");
         }
-        return of(Integer.parseInt(number));
     }
 
     public static Number of(int number) {
