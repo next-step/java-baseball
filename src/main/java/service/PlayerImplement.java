@@ -30,7 +30,6 @@ public class PlayerImplement implements Player {
 
     @Override
     public void inputGuessableNumber() throws IOException {
-        System.out.print("숫자를 입력해주세요 :");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         this.inputNum = Integer.parseInt(br.readLine());
     }

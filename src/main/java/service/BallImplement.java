@@ -6,10 +6,12 @@ import java.util.Random;
 
 public class BallImplement implements Ball {
     int[] ballArr;
-    int[] saveRandomBallArr = new int[3];
-    int saveRandomNumber = 0;
+    int[] saveRandomBallArr;
+    int saveRandomNumber;
     BallImplement(){
         ballArr = new int[9];
+        saveRandomBallArr = new int[3];
+        this.saveRandomNumber = 0;
         //ballArr 초기화(1,2,3...9)
         initBallArr();
     }
@@ -52,7 +54,7 @@ public class BallImplement implements Ball {
     public int mergeNumber() {
         int hundred = ballArr[0]*100;
         int ten = ballArr[1]*10;
-        int one = ballArr[0];
+        int one = ballArr[2];
         return hundred + ten + one;
     }
 
