@@ -18,7 +18,7 @@ public class BaseballGameApplication {
 			System.out.println(hint.getMessage());
 			hit = hint.is3Strike();
 		}
-
+		choiceBetweenEndOrRestart();
 	}
 
 	private String guess() {
@@ -26,4 +26,12 @@ public class BaseballGameApplication {
 		return scanner.nextLine();
 	}
 
+	private void choiceBetweenEndOrRestart() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		String input = scanner.nextLine();
+		translateChoice(input);
+	}
+	private void translateChoice(String choice) {
+		// TODO implement
+	}
 }
