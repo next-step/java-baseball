@@ -32,16 +32,25 @@ public class GameScore {
         this.strike = 0;
         this.ball = 0;
 
-        String[] inputNumbers = inputNumber.split("");
-
         for (int i = 0; i < randomNumbers.length; i++) {
             String num = randomNumbers[i];
-            if (!num.equals(inputNumbers[i]) && inputNumber.contains(num)) {
-                this.ball++;
-            }
-            if (num.equals(inputNumbers[i])) {
-                this.strike++;
-            }
+
+            ballCheck(num, inputNumber, i);
+            strikeCheck(num, inputNumber, i);
+        }
+    }
+
+    private void ballCheck(String randomNumber, String inputNumber, int idx) {
+        String[] inputNumbers = inputNumber.split("");
+        if (inputNumber.contains(randomNumber) && !randomNumber.equals(inputNumbers[idx])) {
+            this.ball++;
+        }
+    }
+
+    private void strikeCheck(String randomNumber, String inputNumber, int idx) {
+        String[] inputNumbers = inputNumber.split("");
+        if (randomNumber.equals(inputNumbers[idx])) {
+            this.strike++;
         }
     }
 
