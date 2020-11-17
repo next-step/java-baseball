@@ -1,5 +1,6 @@
-package domain;
+package domain.number;
 
+import domain.number.BaseBallNumber;
 import exception.BaseBallException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

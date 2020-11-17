@@ -1,5 +1,8 @@
-package domain;
+package domain.number;
 
+import domain.generator.RandomNumberGenerator;
+import domain.number.BaseBallNumbers;
+import domain.number.ComputerBallNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

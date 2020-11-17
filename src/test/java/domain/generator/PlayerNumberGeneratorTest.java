@@ -1,5 +1,7 @@
-package domain;
+package domain.generator;
 
+import domain.generator.PlayerNumberGenerator;
+import domain.number.BaseBallNumber;
 import exception.BaseBallException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
