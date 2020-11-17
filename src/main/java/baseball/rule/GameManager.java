@@ -1,10 +1,12 @@
 package baseball.rule;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class GameManager {
     private final int ANSWER_LENGTH = 3;
-    private final int [] answers = new int[ANSWER_LENGTH];
+    private Integer[] answers;
     private final Random random = new Random();
 
     public GameManager() {
@@ -12,13 +14,18 @@ public class GameManager {
     }
 
     public void generateAnswers() {
-        for (int i = 0; i < answers.length; i++) {
+        Set<Integer> set = new HashSet<>();
+
+        while(set.size() < ANSWER_LENGTH) {
             int randomNum = random.nextInt(10);
-            answers[i] = randomNum;
+            set.add(randomNum);
         }
+
+        answers = set.toArray(new Integer[0]);
     }
 
-    public int[] getAnswers() {
+    public Integer[] getAnswers() {
         return answers;
     }
+
 }
