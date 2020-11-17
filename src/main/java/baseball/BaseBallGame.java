@@ -1,9 +1,9 @@
 package baseball;
 
+import java.util.List;
+
 import baseball.domain.BallCount;
 import baseball.domain.BallNumber;
-
-import java.util.List;
 
 /**
  * BaseBall Game
@@ -46,7 +46,9 @@ public class BaseBallGame {
     }
 
     private void checkBall(List<String> dealerNumbers, List<String> playerInputNumbers, int index) {
-        if (ballCount.isStrikeLocation(index)) return;
+        if (ballCount.isStrikeLocation(index)) {
+            return;
+        }
         if (dealerNumbers.contains(playerInputNumbers.get(index)) && !ballCount.isStrikeLocation(index)) {
             ballCount.addBallCount();
         }

@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.ArrayList;
+
 import baseball.domain.BallNumber;
 import baseball.domain.BallNumbersPlayerInputStrategy;
 import baseball.domain.BallNumbersRandomStrategy;
@@ -8,7 +10,6 @@ import baseball.exception.NumberOnlyException;
 import baseball.view.InputView;
 import baseball.view.ResultView;
 
-import java.util.ArrayList;
 
 /**
  * Java Baseball Game

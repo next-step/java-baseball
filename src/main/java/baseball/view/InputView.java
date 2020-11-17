@@ -1,9 +1,10 @@
 package baseball.view;
 
+import java.util.*;
+
 import baseball.exception.DifferentThreeNumberRequiredException;
 import baseball.exception.NumberOnlyException;
 
-import java.util.*;
 
 public class InputView {
 
@@ -22,14 +23,16 @@ public class InputView {
     }
 
     // open to Test
-    public static List<String> setBallNumber(String inputBallNumbers) throws DifferentThreeNumberRequiredException, NumberOnlyException {
+    public static List<String> setBallNumber(String inputBallNumbers)
+            throws DifferentThreeNumberRequiredException, NumberOnlyException {
         List<String> ballNumbers = new ArrayList<>();
         Set<String> ballNumbersSet = new LinkedHashSet<>();
         ballNumbers = splitInput(inputBallNumbers);
         for (String numberString : ballNumbers) {
             ballNumbersSet.add(numberString);
         }
-        if (ballNumbersSet.size() != MAX_BIDDING_COUNT && ballNumbers.size() != MAX_BIDDING_COUNT) throw new DifferentThreeNumberRequiredException();
+        if (ballNumbersSet.size() != MAX_BIDDING_COUNT && ballNumbers.size() != MAX_BIDDING_COUNT)
+            throw new DifferentThreeNumberRequiredException();
         return new ArrayList<>(ballNumbersSet);
     }
 
@@ -37,18 +40,23 @@ public class InputView {
         List<String> splitedStrings = new ArrayList<>();
         char[] splitedChars = inputBallNumbers.toCharArray();
         for (char splitedChar : splitedChars) {
-            boolean isNumber = isNumberCheck(splitedChar);
-            boolean isExtraInput = checkExtraInput(splitedChar, isNumber);
-            if (!isExtraInput && isNumber) {
-                splitedStrings.add(String.valueOf(splitedChar));
-            }
+            addEachInputAfterCheck(splitedStrings, splitedChar);
         }
         return splitedStrings;
     }
 
+    private static void addEachInputAfterCheck(List<String> splitedStrings, char splitedChar) {
+        boolean isNumber = isNumberCheck(splitedChar);
+        boolean isExtraInput = checkExtraInput(splitedChar, isNumber);
+        if (!isExtraInput && isNumber) {
+            splitedStrings.add(String.valueOf(splitedChar));
+        }
+    }
+
     private static boolean checkExtraInput(char splitedChar, boolean isNumber) throws NumberOnlyException {
         String inputString = String.valueOf(splitedChar);
-        if (!isNumber && !INPUT_NUMBERS_BRACES.contains(inputString) && !INPUT_NUMBERS_DELIMITER.contains(inputString)) {
+        if (!isNumber && !INPUT_NUMBERS_BRACES.contains(inputString)
+                && !INPUT_NUMBERS_DELIMITER.contains(inputString)) {
             throw new NumberOnlyException();
         }
         return false;
@@ -72,8 +80,12 @@ public class InputView {
     public static boolean restart() {
         System.out.println(QUESTION_PLAY_AGAIN);
         String result = scanner.next();
-        if (result.equals(INPUT_GAME_RESTART)) return true;
-        if (result.equals(INPUT_GAME_END)) return false;
+        if (result.equals(INPUT_GAME_RESTART)) {
+            return true;
+        }
+        if (result.equals(INPUT_GAME_END)) {
+            return false;
+        }
         //todo:: 1 재시작 ,2 종료 키 아닌 경우, 우선은 종료처리.
         return false;
     }
