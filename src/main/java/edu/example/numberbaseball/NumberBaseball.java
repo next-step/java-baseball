@@ -4,6 +4,8 @@ import edu.example.numberbaseball.computer.Computer;
 import edu.example.numberbaseball.player.Player;
 import edu.example.numberbaseball.player.PlayerStatus;
 
+import java.util.List;
+
 /**
  * 숫자야구게임 애플리케이션 로직을 담당하는 컴포넌트
  */
@@ -31,6 +33,28 @@ public class NumberBaseball {
         int computerBallNumber = computer.getBallNumber(index);
         int playerBallNumber = player.getBallNumber(index);
         return computerBallNumber == playerBallNumber;
+    }
+
+    private int countBall() {
+        int ball = 0;
+        for (int i = 0; i < computer.getNumberOfBalls(); i++) {
+            ball = ball + matchBall(i);
+        }
+        return ball;
+    }
+
+    private int matchBall(int index) {
+        if (!isStrike(index) && isBall(index)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private boolean isBall(int index) {
+        checkPlayerState();
+        List<Integer> computerBallNumberList = computer.getBallNumberList();
+        int playerBallNumber = player.getBallNumber(index);
+        return computerBallNumberList.contains(playerBallNumber);
     }
 
     private void checkPlayerState() {
