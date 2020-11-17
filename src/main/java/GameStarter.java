@@ -1,16 +1,23 @@
+import baseball.BaseballDigitGenerator;
 import baseball.BaseballGame;
+import baseball.BaseballJudgeMock;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class GameStarter {
 
+    private static List<String> INPUT_AVAILABLE_CHARS = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
+    private final static int DIGITS = 3;
     private final static String COMMAND_START = "1";
     private final static String COMMAND_END = "2";
 
     public static void main(String[] args) {
         GameStarter gameStarter = new GameStarter();
+        BaseballDigitGenerator baseballDigitGenerator = new BaseballDigitGenerator(INPUT_AVAILABLE_CHARS, DIGITS);
+        BaseballGame baseballGame = new BaseballGame(baseballDigitGenerator, new BaseballJudgeMock());
         do {
-            BaseballGame baseballGame = new BaseballGame();
             baseballGame.play();
         } while (gameStarter.askPlayNewGame());
     }
