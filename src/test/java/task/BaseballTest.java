@@ -4,7 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BaseballTest {
 
@@ -29,5 +32,30 @@ class BaseballTest {
             baseball.user.add(baseball.random.nextInt(10)+1);
 
         assertThat(baseball.user).isNotEmpty().hasSize(3);
+    }
+
+    @Test
+    @DisplayName("스트라이크 및 볼 체크 정상적으로 되는지 확인")
+    void strikeAndBallCompare() {
+        baseball.user.addAll(Arrays.asList(1,2,3));
+        baseball.computer.addAll(Arrays.asList(1,2,3));
+        baseball.compare();
+        assertEquals(3,baseball.strike);
+        assertEquals(0,baseball.ball);
+
+        baseball.user.clear();
+        baseball.strike = 0;
+        baseball.user.addAll(Arrays.asList(3,1,2));
+        baseball.compare();
+        assertEquals(3,baseball.ball);
+        assertEquals(0,baseball.strike);
+
+        baseball.user.clear();
+        baseball.ball = 0;
+        baseball.user.addAll(Arrays.asList(4,5,6));
+        baseball.compare();
+        assertEquals(0,baseball.ball);
+        assertEquals(0,baseball.strike);
+
     }
 }
