@@ -18,8 +18,7 @@ public class GameApplication {
     public static boolean playInning(){
         boolean strikeOut = false;
         Pitcher pitcher = new Pitcher();
-        int key = pitcher.generateKey();
-        Referee referee = new Referee(key);
+        Referee referee = new Referee(pitcher.generateDigits());
 
         do{
             int battingDigit = pitcher.pitch();

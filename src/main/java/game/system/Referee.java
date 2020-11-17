@@ -2,6 +2,8 @@ package game.system;
 
 import game.ui.UtilUserInterface;
 
+import java.util.Arrays;
+
 public class Referee {
 
     private boolean lastGame;
@@ -9,8 +11,8 @@ public class Referee {
     private int strikeCount;
     private int ballCount;
 
-    public Referee(int key){
-        this.key = key;
+    public Referee(int[] digits){
+        this.key = Integer.parseInt(Arrays.toString(digits).replaceAll("[^0-9]",""));;
         strikeCount = 0;
         ballCount = 0;
     }

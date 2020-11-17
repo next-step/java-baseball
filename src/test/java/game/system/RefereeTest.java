@@ -8,15 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RefereeTest {
 
-    private int key;
+    private int [] digits;
 
     RefereeTest(){
-        this.key = 123;
+        this.digits = new int[]{1, 2, 3};
     }
 
     @Test
     public void meetsAllDigitAndPosition_Then_StrikeOut(){
-        Referee referee = new Referee(key);
+        Referee referee = new Referee(digits);
         int battingDigit = 123;
         boolean result = referee.isStrikeOut(battingDigit);
 
@@ -25,7 +25,7 @@ class RefereeTest {
 
     @Test
     public void inputDigit_1_Then_ContinueGame(){
-        Referee referee = new Referee(key);
+        Referee referee = new Referee(digits);
         String userInput = "1";
 
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
@@ -36,7 +36,7 @@ class RefereeTest {
 
     @Test
     public void inputDigit_2_Then_LastGame(){
-        Referee referee = new Referee(key);
+        Referee referee = new Referee(digits);
         String userInput = "2";
 
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
