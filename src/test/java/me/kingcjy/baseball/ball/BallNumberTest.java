@@ -45,5 +45,4 @@ class BallNumberTest {
 
         assertThat(ballNumber.getScore(other)).isEqualTo(Score.NOTHING);
     }
-
 }
