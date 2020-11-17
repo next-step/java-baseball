@@ -14,6 +14,7 @@ public class BaseballGame {
     }
 
     public void play() {
+        System.out.println("게임이 시작되었습니다!");
         List<String> answer = this.baseballDigitGenerator.generateRandomDigits(new Random());
         BaseballResult result;
         do {
