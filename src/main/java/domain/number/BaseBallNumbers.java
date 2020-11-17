@@ -35,7 +35,7 @@ public class BaseBallNumbers {
         return MATCH_COUNT_NO_CHANGE;
     }
 
-    public static int fineBallCount(BaseBallNumbers computer, BaseBallNumbers player) {
+    public static int findBallCount(BaseBallNumbers computer, BaseBallNumbers player) {
         int ballCount = 0;
         for (int i = INIT_COUNT; i < LAST_COUNT; i++) {
             ballCount += matchBallNumber(computer, player, i);

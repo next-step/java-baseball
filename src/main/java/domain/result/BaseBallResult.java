@@ -13,7 +13,7 @@ public class BaseBallResult {
 
     public BaseBallResult(ComputerBallNumber computerBallNumber, PlayerBallNumber playerBallNumber) {
         this.strike = new Strike(BaseBallNumbers.findStrikeCount(computerBallNumber.getBallNumbers(), playerBallNumber.getBallNumbers()));
-        this.ball = new Ball(BaseBallNumbers.fineBallCount(computerBallNumber.getBallNumbers(), playerBallNumber.getBallNumbers()));
+        this.ball = new Ball(BaseBallNumbers.findBallCount(computerBallNumber.getBallNumbers(), playerBallNumber.getBallNumbers()));
     }
 
     public Strike getStrike() {

@@ -2,8 +2,6 @@ package domain.number;
 
 import domain.generator.BaseBallNumberGenerator;
 import domain.generator.PlayerNumberGenerator;
-import domain.number.BaseBallNumber;
-import domain.number.BaseBallNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -57,7 +55,7 @@ class BaseBallNumbersTest {
         BaseBallNumbers playerBaseBallNumbers = new BaseBallNumbers(new PlayerNumberGenerator(input));
 
         // when
-        int ballCount = BaseBallNumbers.fineBallCount(computerBaseBallNumbers, playerBaseBallNumbers);
+        int ballCount = BaseBallNumbers.findBallCount(computerBaseBallNumbers, playerBaseBallNumbers);
 
         // then
         assertThat(ballCount).isEqualTo(2);
