@@ -1,9 +1,6 @@
 package baseball;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class BaseballDigitGenerator {
 
@@ -25,8 +22,21 @@ public class BaseballDigitGenerator {
     }
 
     private List<String> getShuffledAvailableCharList(Random random) {
-        List<String> shuffledChars = new ArrayList<>(availableCharList);
+        List<String> shuffledChars = new ArrayList<>(this.availableCharList);
         Collections.shuffle(shuffledChars, random);
         return shuffledChars;
+    }
+
+    List<String> generateDigitsByUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        String guide = createGuideMessage(this.availableCharList, this.digits);
+        System.out.println(guide);
+        String input = scanner.next();
+        return Arrays.asList(input.split(""));
+    }
+
+    static String createGuideMessage(Iterable<String> availableChars, int digits) {
+        String elementInfos = String.join(",", availableChars);
+        return String.format("문자를 %d자리 입력해주세요. 가능한 문자는 다음과 같습니다.(%s)", digits, elementInfos);
     }
 }
