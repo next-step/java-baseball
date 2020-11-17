@@ -1,4 +1,4 @@
-package domain;
+package domain.number;
 
 import exception.BaseBallException;
 import exception.ExceptionMessage;

@@ -1,5 +1,10 @@
-package domain;
+package controller;
 
+import domain.generator.PlayerNumberGenerator;
+import domain.generator.RandomNumberGenerator;
+import domain.number.ComputerBallNumber;
+import domain.number.PlayerBallNumber;
+import domain.result.BaseBallResult;
 import exception.BaseBallException;
 import exception.ExceptionMessage;
 import view.InputView;

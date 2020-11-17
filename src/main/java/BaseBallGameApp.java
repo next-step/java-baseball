@@ -1,4 +1,4 @@
-import domain.BaseBallGame;
+import controller.BaseBallGame;
 
 public class BaseBallGameApp {
 

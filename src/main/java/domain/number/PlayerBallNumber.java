@@ -1,4 +1,6 @@
-package domain;
+package domain.number;
+
+import domain.generator.BaseBallNumberGenerator;
 
 public class PlayerBallNumber {
     private BaseBallNumbers playerBaseBallNumber;

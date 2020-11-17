@@ -1,8 +1,8 @@
 package view;
 
-import domain.Ball;
-import domain.BaseBallResult;
-import domain.Strike;
+import domain.hint.Ball;
+import domain.result.BaseBallResult;
+import domain.hint.Strike;
 
 public class OutputView {
 

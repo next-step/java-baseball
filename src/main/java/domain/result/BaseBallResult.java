@@ -1,4 +1,10 @@
-package domain;
+package domain.result;
+
+import domain.hint.Ball;
+import domain.hint.Strike;
+import domain.number.BaseBallNumbers;
+import domain.number.ComputerBallNumber;
+import domain.number.PlayerBallNumber;
 
 public class BaseBallResult {
 

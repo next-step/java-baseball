@@ -1,4 +1,7 @@
-package domain;
+package domain.generator;
+
+import domain.number.BaseBallNumber;
+import domain.number.SourceNumbers;
 
 import java.util.ArrayList;
 import java.util.Collections;

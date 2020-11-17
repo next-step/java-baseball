@@ -1,4 +1,4 @@
-package domain;
+package domain.hint;
 
 public class Ball {
 

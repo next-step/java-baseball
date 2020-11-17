@@ -1,5 +1,7 @@
-package domain;
+package domain.generator;
 
+import domain.number.BaseBallNumber;
+import domain.number.SourceNumbers;
 import exception.BaseBallException;
 import exception.ExceptionMessage;
 
