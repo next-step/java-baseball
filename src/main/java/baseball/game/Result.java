@@ -29,10 +29,6 @@ class Result {
         this.ball++;
     }
 
-    boolean isNoting() {
-        return this.strike == 0 && this.ball == 0;
-    }
-
     boolean isClearStrike() {
         return this.strike == CLEAR_STRIKE_COUNT;
     }
