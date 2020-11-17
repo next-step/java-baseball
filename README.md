@@ -20,3 +20,5 @@ package me.rn00n.baseball
 7. 별도의 메인 클래스에 게임 생성 - Main.class
 
 ##### * 입력할 숫자 자릿수가 n자리 가능하도록 구현 (기본 3자리)
+
+# 문병량 - rn00n@naver.com
