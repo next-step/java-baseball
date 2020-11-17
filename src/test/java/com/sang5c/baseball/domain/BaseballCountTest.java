@@ -14,4 +14,11 @@ class BaseballCountTest {
         assertThatIllegalArgumentException().isThrownBy(() -> BaseballCount.of(1, 3));
     }
 
+    @DisplayName("카운트가 모두 0이면 낫싱")
+    @Test
+    public void nothing() {
+        BaseballCount baseballCount = BaseballCount.of(0, 0);
+        assertThat(baseballCount.isNothing()).isTrue();
+    }
+
 }

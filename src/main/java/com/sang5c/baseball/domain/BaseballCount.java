@@ -7,7 +7,7 @@ public class BaseballCount {
     private final int ballCount;
     private final int strikeCount;
 
-    public BaseballCount(int ballCount, int strikeCount) {
+    private BaseballCount(int ballCount, int strikeCount) {
         this.ballCount = ballCount;
         this.strikeCount = strikeCount;
     }
