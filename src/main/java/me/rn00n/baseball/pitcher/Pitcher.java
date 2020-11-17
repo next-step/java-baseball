@@ -22,7 +22,7 @@ public class Pitcher {
     /**
      * 다음 자릿수가 있는지 확인
      * @param number
-     * @return
+     * @return true/false
      */
     private boolean hasNextNumber(int number) {
         String s_number = String.valueOf(number);
@@ -32,7 +32,7 @@ public class Pitcher {
     /**
      * 스트라이크 개수 확인
      * @param predictNumber
-     * @return
+     * @return count
      */
     public int getStrike(int predictNumber) {
         int targetNumber = this.number;
@@ -54,7 +54,7 @@ public class Pitcher {
     /**
      * 볼 개수 확인 (문자열로 변환하여 처리)
      * @param predictNumber
-     * @return
+     * @return count
      */
     public int getBall(int predictNumber) {
         int targetNumber = this.number;
@@ -83,7 +83,7 @@ public class Pitcher {
     /**
      * 포볼(낫싱) 확인
      * @param predictNumber
-     * @return
+     * @return true/false
      */
     public boolean isNothing(int predictNumber) {
         int count = 0;
