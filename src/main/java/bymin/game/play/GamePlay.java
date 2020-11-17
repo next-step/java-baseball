@@ -1,5 +1,7 @@
 package bymin.game.play;
 
+import bymin.game.constans.GameResult;
+
 import java.util.*;
 
 public class GamePlay {
@@ -11,8 +13,13 @@ public class GamePlay {
 		return sc.next();
 	}
 
-	public String play(Map<String, Integer> mapResult, String run, ArrayList<Integer> numList) {
-		gameCheckRuleFirstNumber(numList, run.toCharArray(), mapResult);
+	public String play(Map<String, Integer> mapResult, String setString, ArrayList<Integer> numList) {
+		char[] userBall = setString.toCharArray();
+		if (userBall.length > 3) {
+			System.out.println("3 자리 숫자를 입력해주세요");
+			return "0";
+		}
+		gameCheckRuleFirstNumber(numList, setString.toCharArray(), mapResult);
 		resultMessage(mapResult);
 		return result(mapResult);
 	}
@@ -31,12 +38,12 @@ public class GamePlay {
 
 	public void gemeCheckStrike(int numberCheck, int charCheck, boolean check, Map<String, Integer> mapResult) {
 		if (numberCheck == charCheck && check) {
-			mapResult.put("스트라이크", mapResult.get("스트라이크") + 1);
+			mapResult.put(GameResult.STRIKE, mapResult.get(GameResult.STRIKE) + 1);
 			return;
 		}
 
 		if (check) {
-			mapResult.put("볼", mapResult.get("볼") + 1);
+			mapResult.put(GameResult.BALL, mapResult.get(GameResult.BALL) + 1);
 		}
 	}
 
@@ -57,7 +64,7 @@ public class GamePlay {
 	}
 
 	public String result(Map<String, Integer> mapResult) {
-		if (mapResult.get("스트라이크") == 3) {
+		if (mapResult.get(GameResult.STRIKE) == 3) {
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
 			return sc.next();
 		}

@@ -1,5 +1,7 @@
 package bymin.game.master;
 
+import bymin.game.constans.GameResult;
+import bymin.game.constans.Rule;
 import bymin.game.play.GamePlay;
 import bymin.game.play.MakeNumberBaseBall;
 
@@ -19,16 +21,16 @@ public class GameMaster {
         boolean endFlag = true;	// 종료를 판단하는 조건절
         while (endFlag) {
             String end = gamePlayCall();
-            if ("1".equals(end)) makeNumberBaseBall.make();
-            if ("2".equals(end)) endFlag = false;
+            if (Rule.REGAME.getPlayType().equals(end)) makeNumberBaseBall.make();
+			if (Rule.STOP.getPlayType().equals(end)) endFlag = false;
         }
     }
 
     public String gamePlayCall(){
         Map<String, Integer> mapResult = new HashMap<>();
-        mapResult.put("스트라이크", 0);
-        mapResult.put("볼", 0);
-        String run = gamePlay.run();
-        return gamePlay.play(mapResult, run, makeNumberBaseBall.getNumList());
+        mapResult.put(GameResult.STRIKE, 0);
+        mapResult.put(GameResult.BALL, 0);
+        String setString = gamePlay.run();
+        return gamePlay.play(mapResult, setString, makeNumberBaseBall.getNumList());
     }
 }
