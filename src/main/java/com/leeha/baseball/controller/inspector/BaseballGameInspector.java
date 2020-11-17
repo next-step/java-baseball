@@ -14,13 +14,10 @@ public class BaseballGameInspector {
     public boolean inspect(List<Integer> balls, List<String> answer) {
         validateParameter(balls, answer);
 
-        ListIterator<Integer> iterator = balls.listIterator();
         BaseballGameScore score = new BaseballGameScore();
+        compareAnswer(balls, answer, score);
 
-        while (iterator.hasNext()) {
-            calculateScore(score, balls, iterator.next(), answer.get(iterator.nextIndex() - 1));
-        }
-
+        score.displayScore();
         return score.isPerfectScore(balls.size());
     }
 
@@ -31,6 +28,14 @@ public class BaseballGameInspector {
 
         if (balls.size() != answer.size()) {
             throw new InvalidAnswerException(INVALID_ANSWER_EXCEPTION);
+        }
+    }
+
+    private void compareAnswer(List<Integer> balls, List<String> answer, BaseballGameScore score) {
+        ListIterator<Integer> iterator = balls.listIterator();
+
+        while (iterator.hasNext()) {
+            calculateScore(score, balls, iterator.next(), answer.get(iterator.nextIndex() - 1));
         }
     }
 
