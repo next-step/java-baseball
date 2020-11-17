@@ -2,6 +2,7 @@ package baseball.process;
 
 import baseball.bo.Opponent;
 import baseball.bo.Player;
+import baseball.enums.UserCommandEnum;
 
 import java.util.Scanner;
 
@@ -9,9 +10,6 @@ public class BaseballGame {
 
     Opponent opponent;
     Player player;
-
-    private final String COMMAND_RESTART = "1";
-    private final String COMMAND_END = "2";
 
     private void initPlayer() {
         opponent = new Opponent();
@@ -42,11 +40,11 @@ public class BaseballGame {
 
         executeCommand(inputData);
 
-        return COMMAND_END.equals(inputData);
+        return UserCommandEnum.COMMAND_END.equals(inputData);
     }
 
     private boolean isCorrectCommand(String inputData) {
-        if(!COMMAND_END.equals(inputData) && !COMMAND_RESTART.equals(inputData)) {
+        if (!UserCommandEnum.contains(inputData)) {
             System.out.println("1 또는 2 를 입력해 주세요.");
             return false;
         }
@@ -54,7 +52,7 @@ public class BaseballGame {
     }
 
     private void executeCommand(String inputData) {
-        if(COMMAND_RESTART.equals(inputData)) {
+        if(UserCommandEnum.COMMAND_RESTART.equals(inputData)) {
             initPlayer();
         }
     }
