@@ -17,6 +17,7 @@ public class ScannerHelper {
 	}
 
 	public List<Integer> getGuess() {
+		System.out.print("숫자를 입력해주세요 : ");
 		String inputValue = scanner.nextLine();
 		final List<Integer> guessList = new ArrayList<>();
 		final int length = inputValue.length() > 3 ? 3 : inputValue.length();
@@ -26,5 +27,11 @@ public class ScannerHelper {
 		}
 
 		return guessList;
+	}
+
+	public int getOption() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		return Integer.parseInt(scanner.nextLine());
 	}
 }
