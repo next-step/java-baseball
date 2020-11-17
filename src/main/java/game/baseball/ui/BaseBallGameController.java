@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import game.baseball.application.BaseBallGameService;
+import game.baseball.domain.model.BaseBallResult;
+import game.baseball.domain.shared.GameStatus;
 
 public class BaseBallGameController {
 	private final BaseBallGameService baseBallGameService;
@@ -16,17 +18,16 @@ public class BaseBallGameController {
 		baseBallGameService.start();
 	}
 
-	public void inputAndRunRound() {
-		int input = waiteInputNumber();
-
+	public GameStatus runRound() {
 		try {
-			baseBallGameService.runRound(input);
-		} catch (Exception exception) {
+			int input = waiteInputNumber();
+			BaseBallResult baseBallResult = baseBallGameService.runRound(input);
+			System.out.println(baseBallResult.toString());
+			return GameStatus.valueOf(baseBallResult.isWin());
+		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
-			return;
+			return GameStatus.CONTINUE;
 		}
-
-		//라운드 결과를 받아서 출력
 	}
 
 	private int waiteInputNumber() {
@@ -41,15 +42,12 @@ public class BaseBallGameController {
 	}
 
 	private Integer inputInteger() {
-		Integer number = null;
-
 		try {
 			Scanner scanner = new Scanner(System.in);
-			number = scanner.nextInt();
+			return scanner.nextInt();
 		} catch (InputMismatchException exception) {
 			System.out.println("잘못된 숫자를 입력하셨습니다.");
+			return null;
 		}
-
-		return number;
 	}
 }
