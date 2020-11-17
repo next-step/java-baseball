@@ -80,6 +80,11 @@ class OpponentTest {
         assertThat(opponent.getBall()).isEqualTo(0);
         assertThat(opponent.getMessage()).isEqualTo("1 스트라이크");
 
+        opponent.calculateStrike("423");
+        assertThat(opponent.getStrike()).isEqualTo(2);
+        assertThat(opponent.getBall()).isEqualTo(0);
+        assertThat(opponent.getMessage()).isEqualTo("2 스트라이크");
+
         opponent.calculateStrike("456");
         assertThat(opponent.getStrike()).isEqualTo(1);
         assertThat(opponent.getBall()).isEqualTo(1);
@@ -89,5 +94,10 @@ class OpponentTest {
         assertThat(opponent.getStrike()).isEqualTo(0);
         assertThat(opponent.getBall()).isEqualTo(0);
         assertThat(opponent.getMessage()).isEqualTo("낫싱");
+
+        opponent.calculateStrike("425");
+        assertThat(opponent.getStrike()).isEqualTo(3);
+        assertThat(opponent.getBall()).isEqualTo(0);
+        assertThat(opponent.getMessage()).isEqualTo("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
 }
