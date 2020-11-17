@@ -165,4 +165,22 @@ public class BaseballGame {
 		return ball;
 	}
 	
+	// 스트라이크, 볼 결과 출력
+	private static void printResult(int strikeCount, int ballCount) {
+		StringBuilder sb = new StringBuilder();
+		if (strikeCount > 0) {
+			sb.append(strikeCount + "스트라이크 ");
+		}
+		if (ballCount > 0) {
+			sb.append(ballCount + "볼");
+		}
+		if (strikeCount == 0 && ballCount == 0) {
+			sb.append("낫싱");
+		}
+		if (strikeCount == 3) {
+			sb.append("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료 ");
+		}
+		System.out.println(sb.toString());
+	}
+	
 }
