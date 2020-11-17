@@ -1,6 +1,7 @@
 package domain;
 
 import domain.SourceNumbers;
+import exception.BaseBallException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -60,7 +61,7 @@ class SourceNumbersTest {
     void validate_source_number_range (int input) {
         assertThatThrownBy(() -> {
             SourceNumbers.getBall(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자는 1~9까지만 가능합니다.");
+        }).isInstanceOf(BaseBallException.class)
+                .hasMessage("각 자리 숫자는 1~9까지로 이루어져야 합니다.");
     }
 }

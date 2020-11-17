@@ -1,5 +1,6 @@
 package domain;
 
+import exception.BaseBallException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -33,7 +34,7 @@ class PlayerNumberGeneratorTest {
     void check_number_length (int input) {
         assertThatThrownBy(() -> {
             PlayerNumberGenerator playerNumberGenerator = new PlayerNumberGenerator(input);
-        }).isInstanceOf(IllegalArgumentException.class)
+        }).isInstanceOf(BaseBallException.class)
                 .hasMessage("세자리 정수를 입력해 주세요");
     }
 
@@ -43,7 +44,7 @@ class PlayerNumberGeneratorTest {
     void check_duplicate_number (int input) {
         assertThatThrownBy(() -> {
             PlayerNumberGenerator playerNumberGenerator = new PlayerNumberGenerator(input);
-        }).isInstanceOf(IllegalArgumentException.class)
+        }).isInstanceOf(BaseBallException.class)
                 .hasMessage("입력한 각 자리 숫자는 중복 될 수 없습니다.");
     }
 

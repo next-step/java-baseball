@@ -1,5 +1,8 @@
 package domain;
 
+import exception.BaseBallException;
+import exception.ExceptionMessage;
+
 import java.util.*;
 
 public class PlayerNumberGenerator implements BaseBallNumberGenerator {
@@ -25,14 +28,14 @@ public class PlayerNumberGenerator implements BaseBallNumberGenerator {
 
     private void checkNumberLength(int numbers) {
         if ((int)(Math.log10(numbers) + 1) != BALL_MAX_SIZE) {
-            throw new IllegalArgumentException("세자리 정수를 입력해 주세요");
+            throw new BaseBallException(ExceptionMessage.WRONG_INPUT_NUMBER_LENGTH);
         }
     }
 
     private void checkDuplicatedNumber() {
         Set<BaseBallNumber> ballNumberSet = new HashSet<>(baseBallNumbers);
         if (ballNumberSet.size() < baseBallNumbers.size()) {
-            throw new IllegalArgumentException("입력한 각 자리 숫자는 중복 될 수 없습니다.");
+            throw new BaseBallException(ExceptionMessage.DUPLICATE_INPUT_NUMBER);
         }
     }
 

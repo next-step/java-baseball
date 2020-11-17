@@ -1,5 +1,6 @@
 package domain;
 
+import exception.BaseBallException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,7 @@ class BaseBallNumberTest {
     void validate_number_range_test(int input) {
         assertThatThrownBy(() -> {
             new BaseBallNumber(input);
-        }).isInstanceOf(IllegalArgumentException.class)
+        }).isInstanceOf(BaseBallException.class)
                 .hasMessage("각 자리 숫자는 1~9까지로 이루어져야 합니다.");
     }
 

@@ -1,5 +1,8 @@
 package domain;
 
+import exception.BaseBallException;
+import exception.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class SourceNumbers {
 
     private static void checkNumberRange(int ballNumber) {
         if (ballNumber < MIN_NUMBER || ballNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException("숫자는 1~9까지만 가능합니다.");
+            throw new BaseBallException(ExceptionMessage.NONE_VALID_INPUT_RANGE);
         }
     }
 }

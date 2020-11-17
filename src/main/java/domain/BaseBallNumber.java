@@ -1,5 +1,8 @@
 package domain;
 
+import exception.BaseBallException;
+import exception.ExceptionMessage;
+
 import java.util.Objects;
 
 public class BaseBallNumber implements Comparable<BaseBallNumber> {
@@ -14,7 +17,7 @@ public class BaseBallNumber implements Comparable<BaseBallNumber> {
 
     private void validateNumberRange(final int number) {
         if(!String.valueOf(number).matches(BALL_NUMBER_PATTERN)) {
-            throw new IllegalArgumentException("각 자리 숫자는 1~9까지로 이루어져야 합니다.");
+            throw new BaseBallException(ExceptionMessage.NONE_VALID_INPUT_RANGE);
         }
     }
 

@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallException;
+import exception.ExceptionMessage;
 import view.InputView;
 import view.OutputView;
 
@@ -50,7 +52,7 @@ public class BaseBallGame {
 
     private static void checkGameProgressValue(int gameProgressValue) {
         if (gameProgressValue != RESTART && gameProgressValue != EXIT) {
-            throw new IllegalArgumentException("입력할 수 있는 범위가 아닙니다.");
+            throw new BaseBallException(ExceptionMessage.NONE_VALID_INPUT_VALUE);
         }
     }
 
