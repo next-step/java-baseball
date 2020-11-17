@@ -69,7 +69,6 @@ public class Opponent {
             if (charAt == value.charAt(j)) {
                 gameResults.increaseBall();
             }
-
         }
     }
 

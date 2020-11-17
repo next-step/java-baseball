@@ -16,7 +16,6 @@ public class NumberGenerator {
         }
     }
 
-
     public Integer getRandomNumber() {
         int i = rand.nextInt(numbers.size());
         Integer integer = numbers.get(i);
