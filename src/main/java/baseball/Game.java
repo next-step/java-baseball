@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class Game {
     private Scanner scanner;
     private Computer computer;
+    private Result result;
 
     public Game() {
         init();
@@ -14,10 +15,13 @@ public class Game {
     private void init() {
         this.scanner = new Scanner(System.in);
         this.computer = new Computer();
+        this.result = new Result();
     }
 
     public void run() {
         int input = input();
+        Checker.checkStrikeOrBall(input, computer.getAnswer(), result);
+        System.out.println(result.getResultMessage());
     }
 
     private int input() {

@@ -1,6 +1,6 @@
 package baseball;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
