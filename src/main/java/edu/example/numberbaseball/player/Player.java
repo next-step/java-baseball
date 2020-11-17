@@ -20,15 +20,11 @@ public class Player {
         this.status = PlayerStatus.ACTIVE;
     }
 
-    public Inning getInning() {
-        return inning;
-    }
-
     public PlayerStatus getStatus() {
         return status;
     }
 
-    private List<Integer> getBallNumberList() {
+    public List<Integer> getBallNumberList() {
         return inning.getBallNumberList();
     }
 

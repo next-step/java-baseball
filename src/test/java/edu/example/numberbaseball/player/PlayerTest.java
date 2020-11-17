@@ -24,9 +24,7 @@ class PlayerTest {
         List<Ball> inputBallList = new ArrayList<>(Arrays.asList(new Ball(ONE), new Ball(TWO), new Ball(THREE)));
         Inning inputInning = new Inning(inputBallList);
         Player player = new Player(inputInning);
-
-        Inning playerInning = player.getInning();
-        List<Integer> inningBallNumberList = playerInning.getBallNumberList();
+        List<Integer> inningBallNumberList = player.getBallNumberList();
         int ballNumberListSize = inningBallNumberList.size();
 
         assertEquals(VALID_BALL_SIZE_FOR_INNING, ballNumberListSize);
