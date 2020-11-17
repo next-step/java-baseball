@@ -84,7 +84,7 @@ public class BallsController {
      * @throws Exception
      */
     public String checkBalls(String balls) throws Exception {
-        if(balls.length() != 3 && !Pattern.matches("^[1-9]*$", balls)) {
+        if(balls.length() != 3 || !Pattern.matches("^[1-9]*$", balls)) {
             throw new Exception("입력 값이 올바르지 않습니다.");
         }
         return balls;
