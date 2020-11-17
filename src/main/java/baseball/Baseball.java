@@ -30,6 +30,7 @@ public class Baseball {
 
     protected void judge(final List<Integer> guessList, final List<Integer> answerList) {
         if (answerList.equals(guessList)) {
+            replayOrEnd();
             return;
         }
 
@@ -48,5 +49,13 @@ public class Baseball {
         } else if (guessIndex != -1) {
             result.addBall();
         }
+    }
+
+    protected void replayOrEnd() {
+        if (scannerHelper.getOption() == 2) {
+            System.exit(0);
+        }
+
+        this.answerList = NumberUtil.generate();
     }
 }
