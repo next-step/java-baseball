@@ -35,7 +35,7 @@ public class GameUI {
                 restartGame();
             } catch (QuitException ex) {
                 printExitGame();
-                throw ex;
+                break;
             }
         }
     }
