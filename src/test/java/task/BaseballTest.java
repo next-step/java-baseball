@@ -21,4 +21,13 @@ class BaseballTest {
         baseball.computerNumberInput();
         assertThat(baseball.computer).isNotEmpty().hasSize(3);
     }
+
+    @Test
+    @DisplayName("유저 컬렉션 빈 객체 및 사이즈 체크")
+    void createUserDataCheck() {
+        while (baseball.user.size() < baseball.COLLECTION_MAXIMUM_LENGTH)
+            baseball.user.add(baseball.random.nextInt(10)+1);
+
+        assertThat(baseball.user).isNotEmpty().hasSize(3);
+    }
 }
