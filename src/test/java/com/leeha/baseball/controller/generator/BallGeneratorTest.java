@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class BallGeneratorTest {
+class BallGeneratorTest {
 
     public static final int CAPACITY = 3;
     public static final int MINIMUM_NUMBER = 1;
@@ -17,12 +17,12 @@ public class BallGeneratorTest {
     private static BallGenerator generator;
 
     @BeforeAll
-    public static void initialize() {
+    static void initialize() {
         generator = new BallGenerator(CAPACITY, MINIMUM_NUMBER, MAXIMUM_NUMBER);
     }
 
     @Test
-    public void generate_ShouldReturnList() {
+    void generate_ShouldReturnNonNullList() {
         List<Integer> numbers = generator.generate();
 
         assertThat(numbers)
@@ -32,7 +32,7 @@ public class BallGeneratorTest {
     }
 
     @Test
-    public void generate_ShouldReturnSizeOfListEqualsCapacity() {
+    void generate_ShouldReturnSizeOfListEqualsCapacity() {
         List<Integer> numbers = generator.generate();
 
         assertThat(numbers)
@@ -40,7 +40,7 @@ public class BallGeneratorTest {
     }
 
     @Test
-    public void generate_ShouldNotIncludeDuplicateNumbers() {
+    void generate_ShouldReturnNumbersWithoutDuplicate() {
         List<Integer> numbers = generator.generate();
 
         assertThat(numbers)
@@ -48,7 +48,7 @@ public class BallGeneratorTest {
     }
 
     @Test
-    public void generate_ShouldNotDuplicatedList() {
+    void generate_ShouldReturnRandomlyList() {
         List<Integer> numbers1 = generator.generate();
         List<Integer> numbers2 = generator.generate();
 

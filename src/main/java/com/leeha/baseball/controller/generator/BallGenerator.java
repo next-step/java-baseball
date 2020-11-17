@@ -3,9 +3,9 @@ package com.leeha.baseball.controller.generator;
 import static com.leeha.baseball.exception.BaseballGameExceptionCode.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Predicate;
 
 import com.leeha.baseball.exception.InvalidCapacityException;
 import com.leeha.baseball.exception.InvalidMinimumOrMaximumException;
@@ -40,17 +40,17 @@ public class BallGenerator {
         numbers = new ArrayList<>(capacity);
 
         while (numbers.size() < capacity) {
-            addIfEnsureCondition((number) -> !numbers.contains(number));
+            addIfEnsureCondition(number -> !numbers.contains(number));
         }
 
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     private int generateRandomNumber() {
         return new Random().nextInt((maximumNumber + 1) - minimumNumber) + minimumNumber;
     }
 
-    private void addIfEnsureCondition(Predicate<Integer> condition) {
+    private void addIfEnsureCondition(BallConditionPredicate<Integer> condition) {
         int number = generateRandomNumber();
 
         if (condition.test(number)) {

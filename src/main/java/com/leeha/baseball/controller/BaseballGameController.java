@@ -3,6 +3,7 @@ package com.leeha.baseball.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import com.leeha.baseball.controller.generator.BallGenerator;
 import com.leeha.baseball.controller.inspector.BaseballGameInspector;
@@ -10,11 +11,13 @@ import com.leeha.baseball.controller.validator.BallValidator;
 
 public class BaseballGameController {
 
+    private static final Pattern answerSplitPattern = Pattern.compile("");
+
     private final BallGenerator generator;
     private final BallValidator validator;
     private final BaseballGameInspector inspector;
 
-    public BaseballGameController(GameOption options) {
+    public BaseballGameController(BaseballGameOption options) {
         generator = new BallGenerator(
             options.getBallCount(),
             options.getMinimumBallNumber(),
@@ -35,7 +38,7 @@ public class BaseballGameController {
     }
 
     private List<String> splitAnswer(String answer) {
-        return Arrays.asList(answer.split(""));
+        return Arrays.asList(answerSplitPattern.split(answer));
     }
 
     private String readAnswer(Scanner scanner) {

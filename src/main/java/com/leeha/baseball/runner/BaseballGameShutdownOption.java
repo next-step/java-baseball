@@ -2,28 +2,26 @@ package com.leeha.baseball.runner;
 
 public enum BaseballGameShutdownOption {
 
-    START("1", "게임 시작"),
-    END("2", "게임 종료");
+    GAME_START("1"),
+    GAME_END("2");
 
     private final String code;
-    private final String description;
 
-    BaseballGameShutdownOption(String code, String description) {
+    BaseballGameShutdownOption(String code) {
         this.code = code;
-        this.description = description;
     }
 
     public String getCode() {
         return code;
     }
 
-    public static BaseballGameShutdownOption toOption(String code) {
-        for (BaseballGameShutdownOption operator : values()) {
-            if (operator.getCode().equalsIgnoreCase(code)) {
-                return operator;
-            }
+    public static boolean exists(String code) {
+        boolean exists = false;
+
+        for (BaseballGameShutdownOption option : values()) {
+            exists = exists || option.getCode().equalsIgnoreCase(code);
         }
 
-        return null;
+        return exists;
     }
 }
