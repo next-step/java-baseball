@@ -1,6 +1,7 @@
 package baseball;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Game {
     private Scanner scanner;
@@ -15,5 +16,24 @@ public class Game {
         this.computer = new Computer();
     }
 
-    public void run() { }
+    public void run() {
+        int input = input();
+    }
+
+    private int input() {
+        System.out.print("숫자를 입력해주세요 : ");
+        int input = Integer.parseInt(scanner.nextLine());
+        if (!validInput(input)) {
+            System.out.print("유효하지 않은 정답을 입력하셨습니다. 다시 ");
+            return input();
+        }
+        return input;
+    }
+
+    private boolean validInput(int input) {
+        if ((input >= 111 && input <= 999) && Pattern.matches("^[1-9]*$", Integer.toString(input))) {
+            return true;
+        }
+        return false;
+    }
 }
