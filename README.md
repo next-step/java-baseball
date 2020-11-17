@@ -5,3 +5,5 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+1~9 서로 다른 수로 이루어진 3자리 숫자를 추출하여 야구 게임을 진행한다.
