@@ -5,3 +5,11 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+
+- [ ] 정답 숫자 만들기
+- [ ] 숫자 입력 받기
+- [ ] 안내 문구 출력
+- [ ] 스트라이크 볼 판단하기
+- [ ] 재시작 or 종료
