@@ -6,12 +6,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         do {
-            playGame(new Game());      // 1~9 사이의 서로 다른 세자리 숫자를 랜덤으로 만들고 게임을 플레이한다.
-        } while (isMoreGame());        // 게임을 다시 시작하거나 완전히 종료한다.
+            play(new Game());               // 1~9 사이의 서로 다른 세자리 숫자를 랜덤으로 만들고 게임을 플레이한다.
+        } while (isMoreGame());             // 게임을 다시 시작하거나 완전히 종료한다.
     }
 
 
-    private static void playGame(Game game) {
+    private static void play(Game game) {
         do {
             inputNumber(game);              // 세자리 숫자를 입력받는다.
             showHintNumber(game);           // 사용자에게 힌트를 보여준다.
