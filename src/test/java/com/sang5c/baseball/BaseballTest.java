@@ -20,4 +20,10 @@ class BaseballTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Baseball("12"));
     }
 
+    @DisplayName("숫자가 중복될 경우 에러가 발생한다")
+    @Test
+    public void duplicated() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Baseball("133"));
+    }
+
 }
