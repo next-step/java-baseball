@@ -25,7 +25,7 @@ class BallNumberTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3", "4,5,6", "2,3,6", "9,5,6"})
     void playerInputBallNumberCheck(String inputString) {
-        List<Integer> ballNumbers = InputView.setBallNumber(inputString);
+        List<String> ballNumbers = InputView.setBallNumber(inputString);
         assertThat(ballNumbers.size()).isEqualTo(3);
         assertThat(ballNumbers.size()).isEqualTo(3);
     }

@@ -12,11 +12,8 @@ public class BallCount {
     private int ballCount = 0;
     private Set<Integer> strikeIndex = new HashSet<>();
 
-    public void addStrikeCount() {
+    public void addStrikeCount(int strikeIndexInput) {
         this.strikeCount++;
-    }
-
-    public void addStrikeIndex(Integer strikeIndexInput) {
         strikeIndex.add(strikeIndexInput);
     }
 

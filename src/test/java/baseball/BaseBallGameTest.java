@@ -14,16 +14,15 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class BaseBallGameTest {
 
-    private List<Integer> computedBallNumber = new ArrayList<>();
-    private List<Integer> inputBallNumber = new ArrayList<>();
+    private List<String> computedBallNumber = new ArrayList<>();
 
     @DisplayName(value = "컴퓨터 딜러의 설정 번호 임의 지정")
     @BeforeEach
     void setup() {
         computedBallNumber = new ArrayList<>();
-        computedBallNumber.add(2);
-        computedBallNumber.add(4);
-        computedBallNumber.add(8);
+        computedBallNumber.add("2");
+        computedBallNumber.add("4");
+        computedBallNumber.add("8");
     }
 
     @DisplayName(value = "같은 수 같은 자리 = STRIKE n개 , 다른 자리 BALL n개")

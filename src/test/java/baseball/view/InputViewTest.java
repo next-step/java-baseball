@@ -24,10 +24,10 @@ class InputViewTest {
     @ValueSource(strings = {"3,5,7"})
     void splitByComma(String input) {
         StringTokenizer stringTokenizer = new StringTokenizer(input, ",");
-        List<Integer> splitedList;
+        List<String> splitedList;
         splitedList = InputView.setBallNumber(input);
         for (int i = 0; i < splitedList.size(); i++) {
-            assertThat(Integer.valueOf(stringTokenizer.nextToken())).isEqualTo(splitedList.get(i));
+            assertThat(stringTokenizer.nextToken()).isEqualTo(splitedList.get(i));
         }
     }
 
@@ -58,7 +58,7 @@ class InputViewTest {
     @ValueSource(strings = {"357"})
     void splitWtithoutDelimiter(String input) {
         char[] chars = input.toCharArray();
-        List<Integer> splitedList = InputView.setBallNumber(input);
+        List<String> splitedList = InputView.setBallNumber(input);
         for (int i = 0; i < splitedList.size(); i++) {
             assertThat(String.valueOf(chars[i])).isEqualTo(String.valueOf(splitedList.get(i)));
         }

@@ -11,18 +11,18 @@ public class InputView {
     private static final String INPUT_NUMBERS_BRACES = "{}()[]<>";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<Integer> setBallNumber() {
-        List<Integer> ballNumbers = setBallNumber(inputBallNumbers());
+    public static List<String> setBallNumber() {
+        List<String> ballNumbers = setBallNumber(inputBallNumbers());
         return ballNumbers;
     }
 
     // open to Test
-    public static List<Integer> setBallNumber(String inputBallNumbers) throws IllegalArgumentException {
-        Set<Integer> ballNumbers = new HashSet<>();
+    public static List<String> setBallNumber(String inputBallNumbers) throws IllegalArgumentException {
+        Set<String> ballNumbers = new HashSet<>();
         List<String> splitedStrings;
         splitedStrings = splitInput(inputBallNumbers);
         for (String numberString : splitedStrings) {
-            ballNumbers.add(Integer.valueOf(numberString));
+            ballNumbers.add(numberString);
         }
         return new ArrayList<>(ballNumbers);
     }

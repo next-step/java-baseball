@@ -4,14 +4,14 @@ import java.util.List;
 
 public class BallNumbersPlayerInputStrategy implements BallNumbersStrategy {
 
-    List<Integer> ballNumbers;
+    List<String> ballNumbers;
 
-    public BallNumbersPlayerInputStrategy(List<Integer> ballNumbers) {
+    public BallNumbersPlayerInputStrategy(List<String> ballNumbers) {
         this.ballNumbers = ballNumbers;
     }
 
     @Override
-    public List<Integer> getBallNumber() {
+    public List<String> getBallNumber() {
         return ballNumbers;
     }
 

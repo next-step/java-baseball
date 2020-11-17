@@ -4,18 +4,18 @@ import java.util.List;
 
 public class BallNumber {
 
-    // to Test
-    public List<Integer> getBallNumber() {
-        return ballNumber;
-    }
-
-    private List<Integer> ballNumber;
+    private List<String> ballNumber;
 
     private BallNumber() {
     }
 
     public BallNumber(BallNumbersStrategy ballNumbersStrategy) {
         this.ballNumber = ballNumbersStrategy.getBallNumber();
+    }
+
+    // to Test
+    public List<String> getBallNumber() {
+        return ballNumber;
     }
 
     @Override

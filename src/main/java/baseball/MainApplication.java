@@ -23,7 +23,7 @@ public class MainApplication {
 
     private static void baseBallGame() {
         // dealer
-        BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(new ArrayList<Integer>()));
+        BallNumber dealersNumber = new BallNumber(new BallNumbersRandomStrategy(new ArrayList<String>()));
         BaseBallGame baseBallGame = new BaseBallGame(dealersNumber);
 
         do {
