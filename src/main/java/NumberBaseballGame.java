@@ -15,9 +15,7 @@ public class NumberBaseballGame {
 
 	/**
 	 * 
-	 * 숫자를 입력받아 게임 진행
-	 * 
-	 * @param randomNum 생성된 랜덤 정수
+	 * 게임준비 (랜덤숫자 만들어두고 게임 반복)
 	 * 
 	 */
 	private static void readyBaseball() {
