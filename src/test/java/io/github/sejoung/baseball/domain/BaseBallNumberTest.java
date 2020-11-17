@@ -13,7 +13,8 @@ class BaseBallNumberTest {
 
 	@DisplayName("1, 2 스트라이트 및 볼 테스트")
 	@ParameterizedTest
-	@CsvSource(value = {"125:2 스트라이크", "165:1 스트라이크", "451:1 볼", "431:2 볼", "231:3 볼"}, delimiter = ':')
+	@CsvSource(value = {"125:2 스트라이크", "165:1 스트라이크", "451:1 볼", "431:2 볼", "231:3 볼",
+		"135:1 스트라이크 1 볼", "132:1 스트라이크 2 볼"}, delimiter = ':')
 	void oneTwoStrikeAndOneTwothreeBall(String input, String expected) {
 		BaseBallNumber baseBallNumber = new BaseBallNumber(TestUtils.makeNumberList("123"), input);
 		assertThat(assertThat(baseBallNumber.check().trim())
