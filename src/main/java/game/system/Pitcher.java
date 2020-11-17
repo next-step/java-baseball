@@ -21,8 +21,8 @@ public class Pitcher {
         return digits;
     }
 
-    public int pitch(){
+    public String pitch(){
         String message = "숫자를 입력해주세요 : ";
-        return UtilUserInterface.viewUI(UserInterface.PITCH, message);
+        return UtilUserInterface.getUserInput(UserInterface.PITCH, message);
     }
 }

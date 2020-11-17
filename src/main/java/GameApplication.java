@@ -21,8 +21,8 @@ public class GameApplication {
         Referee referee = new Referee(pitcher.generateDigits());
 
         do{
-            int battingDigit = pitcher.pitch();
-            strikeOut = referee.judgeBatting(battingDigit);
+            String batting = pitcher.pitch();
+            strikeOut = referee.judgeBatting(batting);
         }while (!strikeOut);
 
         return referee.askFinish();
