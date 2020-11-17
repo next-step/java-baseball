@@ -39,4 +39,12 @@ public class BaseballCount {
         return ballCount;
     }
 
+    public BaseballCount increaseStrikeCount() {
+        return new BaseballCount(ballCount, strikeCount + 1);
+    }
+
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
 }
