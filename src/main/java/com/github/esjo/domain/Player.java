@@ -10,8 +10,13 @@ public class Player {
 
     private static Set<Integer> numberSet;  // LinkedHashSet : 순서를 가지고 중복을 허용하지 않음.
     private static Player player;
+    private static Status status = Status.INIT;
 
     private Player() {
+    }
+
+    private Player(Status status) {
+        this.status = status;
     }
 
     /**Player객체 초기화 정적 메서드
@@ -20,7 +25,9 @@ public class Player {
      * @return Player 객체 생성
      * */
     public static Player createNumberSet(NumberGenerator numberGenerator, BaseBallIO baseBallIO) {
-        player = new Player();
+        if (status == Status.INIT) { // 플레이어가 게임을 (재)시작 하면 객체를 새로 생성한다.
+            player = new Player(Status.PLAY);
+        }
         readValidNumber(numberGenerator, baseBallIO);
         return player;
     }
@@ -61,4 +68,13 @@ public class Player {
         this.numberSet = numberSet;
     }
 
+    /** getter for status */
+    public Status getStatus() {
+        return status;
+    }
+
+    /** setter for status */
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

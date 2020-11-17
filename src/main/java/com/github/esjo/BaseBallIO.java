@@ -37,6 +37,18 @@ public class BaseBallIO {
     }
 
     /**
+     * 재시작/종료가 유효한 1자리 정수
+     * @return String 유효한 3자리 정수
+     * @Exception 해당 입력값이 유효하지 않은 이유를 메세지로 던짐
+     * */
+    public String readPlayOrQuit() throws Exception {
+        do {
+            this.input = bufferedReader.readLine();
+        } while (!this.baseBallIO.isValidatePlayOrQuit());
+        return this.input;
+    }
+
+    /**
      * 입력값 유효성 검증 - readThreeDigits
      * */
     private boolean isValidateThreeDigits() throws Exception {
@@ -44,6 +56,16 @@ public class BaseBallIO {
                 .isRightLength(Rule.NUMBER_OF_DIGITS.getValue())
                 .isInRange(Rule.MIN.getValue(), Rule.MAX.getValue())
                 .isNotDuplicate();
+        return true;
+    }
+
+    /**
+     * 입력값 유효성 검증 - readPlayOrQuit
+     * */
+    private boolean isValidatePlayOrQuit() throws Exception {
+        this.baseBallIO.isInteger()
+                .isRightLength(1)
+                .isInRange(1, 2);
         return true;
     }
 
