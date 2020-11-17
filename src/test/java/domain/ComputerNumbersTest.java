@@ -14,7 +14,7 @@ class ComputerNumbersTest {
         computerNumbers = new ComputerNumbers();
     }
 
-    @DisplayName("size()가 3이면 서로 다른 3자리 수로 생성된거다.")
+    @DisplayName("크기가 3이면 서로 다른 3자리 수로 생성된거다.")
     @Test
     void makeRandomNumber() {
         boolean result = computerNumbers.getComputerNumbers().size() == 3;
