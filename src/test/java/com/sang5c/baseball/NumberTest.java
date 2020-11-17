@@ -16,7 +16,7 @@ class NumberTest {
             Number.MAX_NUMBER
     })
     public void validRange(int number) {
-        assertThatCode(() -> new Number(number)).doesNotThrowAnyException();
+        assertThatCode(() -> Number.of(number)).doesNotThrowAnyException();
     }
 
     @DisplayName("경계값 밖은 exception이 발생한다.")
@@ -26,13 +26,13 @@ class NumberTest {
             Number.MAX_NUMBER + 1
     })
     public void invalidRange(int number) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Number(number));
+        assertThatIllegalArgumentException().isThrownBy(() -> Number.of(number));
     }
 
     @DisplayName("생성한 객체가 같은 객체이다")
     @Test
     public void caching() {
-        assertThat(new Number(3)).isEqualTo(new Number(3));
+        assertThat(Number.of(3)).isEqualTo(Number.of(3));
     }
 
 }

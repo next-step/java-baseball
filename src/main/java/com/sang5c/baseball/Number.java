@@ -9,9 +9,13 @@ public class Number {
 
     private final int number;
 
-    public Number(int number) {
+    private Number(int number) {
         validate(number);
         this.number = number;
+    }
+
+    public static Number of(int number) {
+        return new Number(number);
     }
 
     private void validate(int number) {
