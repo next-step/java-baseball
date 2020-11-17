@@ -1,6 +1,5 @@
-package kr.aterilio.nextstep.techcamp;
+package kr.aterilio.nextstep.techcamp.baseball;
 
-import kr.aterilio.nextstep.techcamp.baseball.BaseballGame;
 import org.junit.jupiter.api.RepeatedTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
