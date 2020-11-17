@@ -45,10 +45,11 @@ public class Opponent {
     }
 
     private void increaseBall(String strikeNumber, String inputNumber, int idx) {
+        // strike: 입력문자열의 index 위치 문자값과 strike 기준값의 index 위치 문자값이 같을 때
         if (strikeNumber.charAt(idx)==inputNumber.charAt(idx)) {
             strike++;
         }
-
+        // ball: 입력문자열의 index 위치 문자값이 strike 문자열에 존재하나 위치가 같지 않을 때
         int indexOf = strikeNumber.indexOf(inputNumber.charAt(idx));
         if (indexOf != -1 && indexOf != idx) {
             ball++;
