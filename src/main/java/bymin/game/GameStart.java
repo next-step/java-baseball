@@ -1,10 +1,10 @@
 package bymin.game;
 
-import bymin.game.play.GameMaster;
+import bymin.game.master.GameMaster;
 
 public class GameStart {
     public static void main(String[] args) {
         GameMaster gameMaster = new GameMaster();
-        gameMaster.whilePlay();
+        gameMaster.whilLoopStartePlay();
     }
 }
