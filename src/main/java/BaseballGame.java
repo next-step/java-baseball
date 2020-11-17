@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -13,7 +14,6 @@ public class BaseballGame {
 
         while (islive) {
             this.resetStrikeBall();
-            System.out.print(Arrays.deepToString(new int[][]{right_answer}));
             String input = this.getInput();
             this.check(input);
         }
@@ -39,10 +39,27 @@ public class BaseballGame {
      * @return
      */
     private int[] createAnswerArray() {
-        // todo 중복 번호 없게 수정해야함
+        ArrayList<Integer> temp_array = new ArrayList<Integer>(){
+            {
+                add(1);
+                add(2);
+                add(3);
+                add(4);
+                add(5);
+                add(6);
+                add(7);
+                add(8);
+                add(9);
+            }
+        };
+        int max_idx = temp_array.size();
+
         int[] answer = new int[3];
         for (int i = 0; i < 3; i++) {
-            answer[i] = this.getRandomNum();
+            int remove_idx = this.getRandomNum(max_idx);
+            answer[i] = temp_array.get(remove_idx);
+            temp_array.remove(remove_idx);
+            max_idx--;
         }
         return answer;
     }
@@ -51,9 +68,9 @@ public class BaseballGame {
      * 랜덤 번호 가져오기 0-8
      * @return
      */
-    private int getRandomNum() {
+    private int getRandomNum(int max_idx) {
         double random = Math.random();
-        int random_idx = (int)(random * 8);
+        int random_idx = (int)(random * max_idx);
 
         return random_idx;
     }
