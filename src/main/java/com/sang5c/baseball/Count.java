@@ -10,6 +10,14 @@ public class Count {
         this.ballCount = ballCount;
     }
 
+    public Count increaseStrikeCount() {
+        return new Count(strikeCount + 1, ballCount);
+    }
+
+    public Count increaseBallCount() {
+        return new Count(strikeCount, ballCount + 1);
+    }
+
     public int getStrikeCount() {
         return strikeCount;
     }
