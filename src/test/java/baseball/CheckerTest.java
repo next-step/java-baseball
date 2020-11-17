@@ -29,4 +29,13 @@ public class CheckerTest {
         assertThat(result.getStrike()).isEqualTo(expectedStrike);
         assertThat(result.getBall()).isEqualTo(expectedBall);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"3, true", "2, false", "1, false", "0, false"})
+    @DisplayName("3스트라이크면 true를 반환한")
+    public void testIsAnswer(int strike, boolean expectedResult) {
+        Result result = new Result();
+        result.setStrike(strike);
+        assertThat(Checker.isAnswer(result)).isEqualTo(expectedResult);
+    }
 }

@@ -5,6 +5,13 @@ import java.util.List;
 
 public class Checker {
 
+    public static boolean isAnswer(Result result) {
+        if (result.getStrike() == Constants.ANSWER_SIZE) {
+            return true;
+        }
+        return false;
+    }
+
     public static void checkStrikeOrBall(int input, List<Integer> answer, Result result) {
         List<Integer> inputList = convertInputToList(input);
         for (int i = 0; i < Constants.ANSWER_SIZE; i++) {

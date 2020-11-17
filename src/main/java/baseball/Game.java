@@ -19,9 +19,15 @@ public class Game {
     }
 
     public void run() {
+        result.init();
         int input = input();
         Checker.checkStrikeOrBall(input, computer.getAnswer(), result);
         System.out.println(result.getResultMessage());
+        if (Checker.isAnswer(result)) {
+            choiceReRun();
+            return;
+        }
+        run();
     }
 
     private int input() {
@@ -39,5 +45,17 @@ public class Game {
             return true;
         }
         return false;
+    }
+
+    private void choiceReRun() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int input = Integer.parseInt(scanner.nextLine());
+        if (input == Constants.RE_RUN) {
+            new Game().run();
+            return;
+        }
+        if (input == Constants.END) {
+            System.exit(0);
+        }
     }
 }
