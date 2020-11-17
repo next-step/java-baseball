@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class StringTest {
 
     @Test
+    @DisplayName("split two-unit string value")
     public void splitContain() {
         // given
         String foo = "1,2";
@@ -22,6 +23,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("split one-length string value")
     public void splitOneUnit() {
         // given
         String foo = "1";
@@ -36,6 +38,7 @@ public class StringTest {
 
 
     @Test
+    @DisplayName("erase parenthesis by substring")
     public void eraseParenthesis() {
         // given
         String foo = "(1,2)";
@@ -49,7 +52,7 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("String.charAt occurred StringIndexOutOfBoundsException.")
     public void stringIndexOutOfBoundsException() {
         // given
         String abc = "abc";
