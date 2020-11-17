@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -7,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HintTest {
 
+    @DisplayName("스트라이크,볼,낫싱이 발생할 수 있는 모든 경우의 수를 검증")
     @ParameterizedTest
     @CsvSource(value = {"123,123,3,0", "123,321,1,2", "123,312,0,3",
             "123,125,2,0", "123,142,1,1", "123,932,0,2",

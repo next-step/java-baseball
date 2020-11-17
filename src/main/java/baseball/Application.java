@@ -10,6 +10,12 @@ import baseball.exception.IncorrectNumbersException;
 
 import java.util.Scanner;
 
+/**
+ * 야구 게임을 실행하는 어플리케이션
+ * 재시작/종류 기능이 있다.
+ *
+ * @author  Yonggu Han
+ */
 public class Application {
 
     private static final Scanner scanner = new Scanner(System.in);

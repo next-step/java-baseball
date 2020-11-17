@@ -3,6 +3,12 @@ package baseball.domain;
 import baseball.exception.IncorrectInputException;
 import baseball.view.GameView;
 
+/**
+ * 야구 게임에서 플레이어를 의미한다.
+ * 플레이어는 숫자를 입력한다.
+ *
+ * @author  Yonggu Han
+ */
 public class Player {
 
     public Number inputNumber(GameView gameView) {

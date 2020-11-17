@@ -9,6 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 야구 게임에서의 숫자를 의미한다.
+ * 1-9 까지의 숫자만 존재하며, 중복되지 않는다.
+ *
+ * @author  Yonggu Han
+ */
 public class Number {
 
     private static final List<Integer> ALLOWED_DIGITS = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);

@@ -2,6 +2,11 @@ package baseball.domain;
 
 import java.util.List;
 
+/**
+ * 두 숫자를 비교하여 스트라이크와 볼의 갯수를 제공하는 힌트를 의미한다.
+ *
+ * @author  Yonggu Han
+ */
 public class Hint {
 
     private int ballCount = 0;

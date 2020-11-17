@@ -5,6 +5,12 @@ import baseball.domain.Hint;
 
 import java.util.Scanner;
 
+/**
+ * 야구 게임에서 입/출력을 역할을 하는 GameView 인터페이스를 구현한 클래스
+ * 콘솔을 통해 입/출력을 한다.
+ *
+ * @author  Yonggu Han
+ */
 public class ConsoleView implements GameView {
 
     private static final Scanner scanner = new Scanner(System.in);

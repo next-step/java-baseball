@@ -1,5 +1,10 @@
 package baseball.exception;
 
+/**
+ * 잘못된 입력에 대한 예외
+ *
+ * @author  Yonggu Han
+ */
 public class IncorrectInputException extends RuntimeException {
 
     public IncorrectInputException() {
