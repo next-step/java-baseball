@@ -14,4 +14,5 @@ public class Computer {
         Collections.shuffle(list);
         return Baseball.of(list.subList(0, Baseball.BASEBALL_NUMBER_LENGTH));
     }
+
 }

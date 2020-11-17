@@ -1,7 +1,8 @@
 package com.sang5c.baseball.domain;
 
 public class BaseballCount {
-    
+    private static final String ERROR_COUNT_SUM = "count 합계 범위는 0 ~ 3";
+
     private static final int ZERO_COUNT = 0;
     private static final int MIN_COUNT = 0;
     private static final int MAX_COUNT = 3;
@@ -17,7 +18,7 @@ public class BaseballCount {
 
     public static BaseballCount of(int ballCount, int strikeCount) {
         if (invalidCountSum(ballCount, strikeCount)) {
-            throw new IllegalArgumentException("count error");
+            throw new IllegalArgumentException(ERROR_COUNT_SUM);
         }
         return new BaseballCount(ballCount, strikeCount);
     }

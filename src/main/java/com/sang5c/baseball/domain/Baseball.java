@@ -1,8 +1,14 @@
 package com.sang5c.baseball.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Baseball {
+
+    private static final String ERROR_DUPLICATED = "duplicated value: ";
+    private static final String ERROR_INPUT_SIZE = "check input str size: ";
 
     static final int BASEBALL_NUMBER_LENGTH = 3;
 
@@ -38,13 +44,13 @@ public class Baseball {
     private void checkDuplicate(List<Number> numbers) {
         Set<Number> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException("duplicated value: " + numbers);
+            throw new IllegalArgumentException(ERROR_DUPLICATED + numbers);
         }
     }
 
     private void checkSize(List<Number> numbers) {
         if (numbers.size() != 3) {
-            throw new IllegalArgumentException("check input str size: " + numbers.size());
+            throw new IllegalArgumentException(ERROR_INPUT_SIZE + numbers.size());
         }
     }
 

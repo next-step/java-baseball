@@ -14,6 +14,7 @@ class BaseballCountTest {
     public void setup() {
         count = BaseballCount.of(0, 0);
     }
+
     @DisplayName("카운트의 합은 0이상 3이하이다")
     @Test
     public void countSum() {

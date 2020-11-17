@@ -34,4 +34,5 @@ public class BaseballApplication {
             ResultView.printCount(baseballCount);
         } while (!baseballCount.isThreeStrike());
     }
+
 }
