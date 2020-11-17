@@ -6,7 +6,7 @@ import com.woowa.precourse.util.Answer;
 import com.woowa.precourse.util.AnswerGenerator;
 import com.woowa.precourse.util.QueryConverter;
 
-public class BaseballGame implements Game {
+public class BaseballGame implements Game { 
 	private AnswerGenerator uniqueNumberMaker;
 	private QueryConverter validNumberConverter;
 	private Scanner scanner;

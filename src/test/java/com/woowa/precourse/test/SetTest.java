@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class SetTest {
+public class SetTest { 
 	public Set<Integer> numbers;
 
 	@BeforeEach

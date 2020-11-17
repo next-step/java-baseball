@@ -3,7 +3,7 @@ package com.woowa.precourse.util;
 import java.util.HashSet;
 import java.util.Set;
 
-public class InputValidator {
+public class InputValidator { 
 	/* 숫자인지 유효성 검증 */
 	public boolean isNumber(String stringBasedNumber) {
 		String regExp = "^[0-9]+$";

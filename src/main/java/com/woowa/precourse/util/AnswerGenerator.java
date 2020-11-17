@@ -3,7 +3,7 @@ package com.woowa.precourse.util;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AnswerGenerator {
+public class AnswerGenerator { 
 	int[] uniqueNumber = new int[3];
 	Set<Integer> numberSet = new HashSet<>();
 
