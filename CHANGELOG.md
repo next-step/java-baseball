@@ -47,7 +47,7 @@
 
 ### Features
 
-* 사용자 값 입력 받는 기능 및 야구게임 메세지 enum 추가  ([2f7e3b386344ef5a63e6cd96b3e6d2c24b1c1c3a](https://github.com/superjunki/java-baseball/commits/)2f7e3b386344ef5a63e6cd96b3e6d2c24b1c1c3a)
+* 사용자 값 입력 받는 기능 및 야구게임 메세지 enum 추가  ([2f7e3b386344ef5a63e6cd96b3e6d2c24b1c1c3a](https://github.com/superjunki/java-baseball/commits/2f7e3b386344ef5a63e6cd96b3e6d2c24b1c1c3a))
 
 
 
