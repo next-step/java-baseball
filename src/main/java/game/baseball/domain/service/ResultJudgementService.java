@@ -3,7 +3,7 @@ package game.baseball.domain.service;
 import game.baseball.domain.model.AnswerNumber;
 import game.baseball.domain.model.BaseBallNumber;
 import game.baseball.domain.model.BaseBallResult;
-import game.baseball.domain.model.BaseBallStatus;
+import game.baseball.domain.shared.BaseBallStatus;
 import game.baseball.domain.model.InputNumber;
 
 public class ResultJudgementService {

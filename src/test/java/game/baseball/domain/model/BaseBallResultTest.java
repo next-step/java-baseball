@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import game.baseball.domain.shared.BaseBallStatus;
+
 class BaseBallResultTest {
 
 	@ParameterizedTest

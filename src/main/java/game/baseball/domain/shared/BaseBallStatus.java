@@ -1,4 +1,4 @@
-package game.baseball.domain.model;
+package game.baseball.domain.shared;
 
 public enum BaseBallStatus {
 	STRIKE("스트라이크"), BALL("볼"), NOTTING("낫싱");

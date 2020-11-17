@@ -1,5 +1,6 @@
 package game.baseball.domain.model;
 
+import game.baseball.domain.shared.BaseBallStatus;
 import game.baseball.domain.shared.StringUtils;
 
 public class BaseBallResult {
