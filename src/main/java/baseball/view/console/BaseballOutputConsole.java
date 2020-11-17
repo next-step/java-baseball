@@ -13,6 +13,7 @@ public class BaseballOutputConsole implements BaseballOutput {
 		printNumStrike(response);
 		printNumBall(response);
 		printNothing(response);
+		System.out.println();
 	}
 
 	private void printNumStrike(GuessFeedbackResponse response) {

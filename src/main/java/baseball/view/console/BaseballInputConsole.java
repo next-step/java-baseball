@@ -14,7 +14,7 @@ public class BaseballInputConsole implements BaseballInput {
 
 	private final String GUESS_NUMBER_MESSAGE = "숫자를 입력해주세요 : ";
 	private final String GUESS_NUMBER_ERROR_MESSAGE = "잘못된 입력값. 다시 입력해주세요.";
-	private final String END_GAME_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+	private final String END_GAME_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n";
 	private final String END_GAME_ERROR_MESSAGE = "잘못된 입력값. 다시 입력해주세요.";
 	private final int NUMBER_OF_GUESS_NUMBER = 3;
 	private final int END_GAME_INPUT_LENGTH = 1;
@@ -74,7 +74,6 @@ public class BaseballInputConsole implements BaseballInput {
 	}
 
 	private boolean isValidEndGameAction(String rawInput) {
-		System.out.println(rawInput);
 		if (rawInput.length() != END_GAME_INPUT_LENGTH
 				|| (rawInput.charAt(0) != '1' && rawInput.charAt(0) != '2')
 		) {
