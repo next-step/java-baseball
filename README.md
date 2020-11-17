@@ -74,12 +74,14 @@
             - 3개 `Ball`이 모두 매칭 된 경우, "3개의 숫자를 모두 맞히셨습니다! 게임 종료"를 출력한다.
 
 - `NumberBaseball`
-    - [ ] 하나의 `Inning`에서 `Player`의 Strike 갯수 반환
-        - `Player`는 `Inning` 정보를 가지고 있어야 한다.
-        - `Player`는 `Inning` 정보를 가지고 있으면 'ACTIVE', 없으면 'INACTIVE' 상태를 가진다. 
-    - [ ] 하나의 `Inning`에서 `Player`의 Strike 갯수 반환
+    - [ ] 하나의 `Inning`에서 `Player`의 스트라이크 갯수 반환
         - `Player`는 `Inning` 정보를 가지고 있어야 한다.
         - `Player`는 `Inning` 정보를 가지고 있으면 'ACTIVE', 없으면 'INACTIVE' 상태를 가진다.
+        - `Player` 상태는 'ACTIVE'가 되어야 한다.
+    - [ ] 하나의 `Inning`에서 `Player`의 볼 갯수 반환
+        - `Player`는 `Inning` 정보를 가지고 있어야 한다.
+        - `Player`는 `Inning` 정보를 가지고 있으면 'ACTIVE', 없으면 'INACTIVE' 상태를 가진다.
+        - `Player` 상태는 'ACTIVE'가 되어야 한다.
     - [ ] 숫자야구게임 실행을 위한 `NumberBaseball` 실행 메서드
         - (1) `Player`는 `Inning` 입력한다.
         - (2) `Computer`와 `Player`의 `Inning`을 매칭한다.
