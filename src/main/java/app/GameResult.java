@@ -44,4 +44,8 @@ public class GameResult {
 				ballCount, JudgeType.BALL.name(),
 				nothingCount, JudgeType.NOTHING.name());
 	}
+
+	public boolean isGameSuccess() {
+		return this.getStrikeCount() == GameNumberRule.LENGTH.getValue();
+	}
 }
