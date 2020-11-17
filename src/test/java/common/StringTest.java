@@ -1,8 +1,10 @@
 package common;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
 
@@ -44,5 +46,18 @@ public class StringTest {
         // then
         assertThat(erasedFoo).isEqualTo("1,2");
 
+    }
+
+    @Test
+    @DisplayName("")
+    public void stringIndexOutOfBoundsException() {
+        // given
+        String abc = "abc";
+
+        // when & then
+        assertThatThrownBy(() -> {abc.charAt(4);})
+                .isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessageContaining("String index out of range: 4")
+                ;
     }
 }
