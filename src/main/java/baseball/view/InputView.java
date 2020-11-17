@@ -1,7 +1,9 @@
 package baseball.view;
 
+import baseball.exception.DifferentThreeNumberRequiredException;
+import baseball.exception.NumberOnlyException;
+
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class InputView {
 
@@ -11,23 +13,24 @@ public class InputView {
     private static final String INPUT_NUMBERS_BRACES = "{}()[]<>";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> setBallNumber() {
+    public static List<String> setBallNumber() throws DifferentThreeNumberRequiredException, NumberOnlyException {
         List<String> ballNumbers = setBallNumber(inputBallNumbers());
         return ballNumbers;
     }
 
     // open to Test
-    public static List<String> setBallNumber(String inputBallNumbers) throws IllegalArgumentException {
+    public static List<String> setBallNumber(String inputBallNumbers) throws DifferentThreeNumberRequiredException, NumberOnlyException {
         Set<String> ballNumbers = new HashSet<>();
         List<String> splitedStrings;
         splitedStrings = splitInput(inputBallNumbers);
         for (String numberString : splitedStrings) {
             ballNumbers.add(numberString);
         }
+        if (ballNumbers.size() != 3) throw new DifferentThreeNumberRequiredException();
         return new ArrayList<>(ballNumbers);
     }
 
-    private static List<String> splitInput(String inputBallNumbers) throws IllegalArgumentException {
+    private static List<String> splitInput(String inputBallNumbers) throws NumberOnlyException {
         List<String> splitedStrings = new ArrayList<>();
         char[] splitedChars = inputBallNumbers.toCharArray();
         for (char splitedChar : splitedChars) {
@@ -40,10 +43,10 @@ public class InputView {
         return splitedStrings;
     }
 
-    private static boolean checkExtraInput(char splitedChar, boolean isNumber) throws IllegalArgumentException {
+    private static boolean checkExtraInput(char splitedChar, boolean isNumber) throws NumberOnlyException {
         String inputString = String.valueOf(splitedChar);
         if (!isNumber && !INPUT_NUMBERS_BRACES.contains(inputString) && !INPUT_NUMBERS_DELIMITER.contains(inputString)) {
-            throw new IllegalArgumentException("숫자만 입력 가능");
+            throw new NumberOnlyException();
         }
         return false;
     }

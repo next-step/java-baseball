@@ -1,5 +1,7 @@
 package baseball;
 
+import baseball.domain.BallNumber;
+import baseball.domain.BallNumbersRandomStrategy;
 import baseball.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

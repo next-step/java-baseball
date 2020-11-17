@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.domain.BallCount;
+import baseball.domain.BallNumber;
 
 import java.util.List;
 
@@ -29,8 +30,6 @@ public class BaseBallGame {
         List<String> dealerNumbers = dealerNumber.getBallNumber();
         List<String> playerInputNumbers = playerInputNumber.getBallNumber();
         getBallCount(dealerNumbers, playerInputNumbers);
-        // test log
-        System.out.println(dealerNumbers);
     }
 
     private void getBallCount(List<String> dealerNumbers, List<String> playerInputNumbers) {

@@ -1,5 +1,8 @@
 package baseball;
 
+import baseball.domain.BallNumber;
+import baseball.domain.BallNumbersPlayerInputStrategy;
+import baseball.domain.BallNumbersRandomStrategy;
 import baseball.view.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
