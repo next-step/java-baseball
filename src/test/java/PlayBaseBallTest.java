@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 class PlayBaseBallTest {
 
 	// 1부터 9까지 서로 다른 3자리 수
@@ -53,6 +56,82 @@ class PlayBaseBallTest {
 			selectString += number;
 		}
 		assertThat(selectString).isEqualTo("245");
+	}
+
+	@DisplayName("입력받은 수가 3자리 인지")
+	@Test
+	void inputValueCaseOne() {
+		String intputString = "123";
+		boolean cheked = true;
+		if (intputString.length() != 3) {
+			cheked = false;
+		}
+		assertThat(cheked).isTrue();
+	}
+
+	@DisplayName("입력받은 수가 글자가 있는 경우")
+	@Test
+	void inputValueCaseTwo() {
+		String intputString = "1ㄲㄴ";
+		boolean isNumber = false;
+		try {
+			Integer.parseInt(intputString);
+			isNumber = true;
+		} catch (NumberFormatException e) {
+
+		}
+		assertThat(isNumber).isFalse();
+	}
+
+	@DisplayName("입력받은 수가 숫자인 경우")
+	@Test
+	void inputValueCaseThree() {
+		String intputString = "111";
+		boolean isNumber = false;
+		try {
+			Integer.parseInt(intputString);
+			isNumber = true;
+		} catch (NumberFormatException e) {
+
+		}
+		assertThat(isNumber).isTrue();
+	}
+
+	@DisplayName("입력받은 3자리 수 중복된 숫자가 있는 경우")
+	@Test
+	void inputValueCaseFour() {
+		String intputString = "111";
+		Set resultSet = new HashSet<>();
+		for (int i = 0; i < intputString.length(); i++) {
+			resultSet.add(new Character(intputString.charAt(i)));
+		}
+		int size = resultSet.size();
+		assertThat(size).isEqualTo(1);
+	}
+
+	@DisplayName("입력받은 3자리 수 중복된 숫자가 없는 경우")
+	@Test
+	void inputValueCaseFive() {
+		String intputString = "123";
+		Set resultSet = new HashSet<>();
+		for (int i = 0; i < intputString.length(); i++) {
+			resultSet.add(new Character(intputString.charAt(i)));
+		}
+		int size = resultSet.size();
+		assertThat(size).isEqualTo(3);
+	}
+
+
+	@DisplayName("입력받은 수가 3자리 에 0이 있는지 확인")
+	@Test
+	void inputValueCaseSix() {
+		String intputString = "023";
+		int index = intputString.indexOf("0");
+		boolean isZero = true;
+		if (index == -1) {
+			isZero = false;
+		}
+		assertThat(isZero).isTrue();
 	}
 
 }
