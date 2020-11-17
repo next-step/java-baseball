@@ -1,6 +1,6 @@
 package com.sang5c.baseball.ui;
 
-import com.sang5c.baseball.Count;
+import com.sang5c.baseball.domain.Count;
 
 public class ResultView {
 

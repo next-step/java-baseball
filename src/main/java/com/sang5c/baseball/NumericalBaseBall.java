@@ -1,5 +1,7 @@
 package com.sang5c.baseball;
 
+import com.sang5c.baseball.domain.Count;
+import com.sang5c.baseball.domain.Numbers;
 import com.sang5c.baseball.ui.InputView;
 import com.sang5c.baseball.ui.ResultView;
 

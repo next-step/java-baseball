@@ -1,4 +1,4 @@
-package com.sang5c.baseball;
+package com.sang5c.baseball.domain;
 
 public class Count {
 
