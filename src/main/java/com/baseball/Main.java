@@ -13,7 +13,7 @@ public class Main {
 
     private static void playGame(Game game) {
         do {
-            game.inputNumber(inputNumber());                    // 세자리 숫자를 입력받는다.
+            inputNumber(game);                    // 세자리 숫자를 입력받는다.
             showHintNumber(game.getStrike(), game.getBall());   // 사용자에게 힌트를 보여준다.
         } while(game.getStrike() != 3);                         // 3 스트라이크이면 게임을 종료한다.
     }
@@ -42,14 +42,38 @@ public class Main {
      * 사용자가 추측하는 세자리 숫자를 입력받는다.
      * @return
      */
-    private static Integer inputNumber() {
+    private static Integer inputNumber(Game game) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("숫자를 입력해주세요: ");
-        Integer answer = sc.nextInt();
-
-        return answer;
+        Integer inputNumber = 0;
+        do {
+            System.out.print("숫자를 입력해주세요: ");
+            inputNumber = sc.nextInt();
+            game.inputNumber(inputNumber);
+        } while (! validateNumber(game));
+        return inputNumber;
     }
+
+    /**
+     * 사용자가 입력한 숫자의 유효성을 체크하여 잘못된 값을 입력했을 경우
+     * 해당 메세지를 보여준다.
+     * @param game
+     * @return
+     */
+    private static Boolean validateNumber(Game game) {
+        if (! game.isThreeNumber()) {
+            System.out.println("세자리 숫자로 입력하세요.");
+            return false;
+        }
+
+        if (! game.isDifferentNumber()) {
+            System.out.println("각자리의 숫자는 서로 달라야 합니다.");
+            return false;
+        }
+
+        return true;
+    }
+
 
     /**
      * 사용자에게 힌트를 보여준다.

@@ -18,6 +18,7 @@ public class Game {
     }
 
     Integer randomNumber;
+    Integer inputNumber;
 
     public Integer getStrike() {
         return strike;
@@ -71,9 +72,39 @@ public class Game {
         this.i1 = inputNumber / 100;
         this.i2 = (inputNumber - this.i1 * 100) / 10;
         this.i3 = inputNumber % 10;
+        this.inputNumber = inputNumber;
 
         countStrike();
         countBall();
+    }
+
+
+    /**
+     * 사용자가 입력한 숫자가 세자리인지 확인한다.
+     * @return
+     */
+    public Boolean isThreeNumber() {
+        if (this.inputNumber >= 111 && this.inputNumber <= 999) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * 사용자가 입력한 숫자가 서로 다른지 확인한다.
+     * @return
+     */
+    public Boolean isDifferentNumber() {
+        if (this.i1 == this.i2)
+            return false;
+        if (this.i2 == this.i3)
+            return false;
+        if (this.i3 == this.i1)
+            return false;
+
+        return true;
     }
 
 

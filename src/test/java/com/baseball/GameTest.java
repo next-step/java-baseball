@@ -29,6 +29,34 @@ class GameTest {
         assertTrue(n3 != n1);
     }
 
+    @DisplayName("세자리 숫자 확인")
+    @Test
+    void isThreeNumberTest() {
+        Game game = new Game();
+
+        game.inputNumber(1234);
+        assertFalse(game.isThreeNumber());
+        game.inputNumber(12);
+        assertFalse(game.isThreeNumber());
+        game.inputNumber(123);
+        assertTrue(game.isThreeNumber());
+    }
+
+    @DisplayName("각자리 숫자가 다른지 확인")
+    @Test
+    void isDifferentNumberTest() {
+        Game game = new Game();
+
+        game.inputNumber(111);
+        assertFalse(game.isDifferentNumber());
+        game.inputNumber(112);
+        assertFalse(game.isDifferentNumber());
+        game.inputNumber(212);
+        assertFalse(game.isDifferentNumber());
+        game.inputNumber(123);
+        assertTrue(game.isThreeNumber());
+    }
+
     @DisplayName("스트라이크 갯수 세기")
     @Test
     void countStrike() {
