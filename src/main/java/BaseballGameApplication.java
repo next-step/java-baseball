@@ -31,7 +31,19 @@ public class BaseballGameApplication {
 		String input = scanner.nextLine();
 		translateChoice(input);
 	}
+
 	private void translateChoice(String choice) {
-		// TODO implement
+		if (choice.equals("1")) {
+			start();
+			return;
+		}
+		if (choice.equals("2")) {
+			terminate();
+		}
+	}
+
+	private void terminate() {
+		scanner.close();
+		System.exit(0);
 	}
 }
