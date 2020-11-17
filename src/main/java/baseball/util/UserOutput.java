@@ -1,13 +1,14 @@
 package baseball.util;
 
-import baseball.domain.BaseballGoalNumber;
+import baseball.dao.BaseballConstant;
 
-public class UserOutput {
+public class UserOutput extends BaseballConstant {
 
-	private static final String PRINT_USER_INPUT_NUMBER = "숫자를 입력해주세요 : ";
-	private static final String PRINT_TO_BE_CONTINUED = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-	private static final String PRINT_USER_GAME_END = BaseballGoalNumber.BASEBALL_GAME_COUNT + "개의 숫자를 모두 맞히셨습니다! 게임종료";
+	private static final String PRINT_USER_INPUT_NUMBER = "숫자를 입력해주세요(" + BASEBALL_GAME_COUNT + "자리) : ";
+	private static final String PRINT_USER_GAME_END = BASEBALL_GAME_COUNT + "개의 숫자를 모두 맞히셨습니다! 게임종료";
 	private static final String PRINT_USER_INPUT_ERROR = "잘못된 입력을 하셨습니다. 다시 입력해 주세요.";
+	private static final String PRINT_TO_BE_CONTINUED =
+		"게임을 새로 시작하려면 " + BASEBALL_GAME_RESTART + ", 종료하려면 " + BASEBALL_GAME_END + "를 입력하세요.";
 
 	private static final String PRINT_STRIKE = " 스트라이크 ";
 	private static final String PRINT_BALL = " 볼 ";
@@ -15,37 +16,34 @@ public class UserOutput {
 
 	private static final String PRINT_NEXT_LINE = "\n";
 
-	private void messagePrint(final String message) {
+	private static void messagePrint(final String message) {
 
 		System.out.print(message);
 	}
 
-	public void printNextLine() {
+	public static void printNextLine() {
 
 		messagePrint(PRINT_NEXT_LINE);
 	}
 
-	public void printBall(Integer ballCount) {
+	public static void printBall(Integer ballCount) {
+
 		messagePrint(ballCount + PRINT_BALL);
 	}
 
-	public void printStrike(
+	public static void printStrike(
 		Integer strikeCount) {
 		messagePrint(strikeCount + PRINT_STRIKE);
 	}
 
-	public void printNothing() {
+	public static void printNothing() {
 
 		messagePrint(PRINT_NOTHING);
 	}
 
-	public void printUserInputNumber() {
+	public static void printUserInputNumber() {
 
 		messagePrint(PRINT_USER_INPUT_NUMBER);
-	}
-
-	public void printToBeContinued() {
-		messagePrint(PRINT_TO_BE_CONTINUED + PRINT_NEXT_LINE);
 	}
 
 	public void printGameEnd() {
@@ -53,7 +51,12 @@ public class UserOutput {
 		messagePrint(PRINT_USER_GAME_END + PRINT_NEXT_LINE);
 	}
 
-	public void printInputError() {
+	public static void printToBeContinued() {
+
+		messagePrint(PRINT_TO_BE_CONTINUED + PRINT_NEXT_LINE);
+	}
+
+	public static void printInputError() {
 
 		messagePrint(PRINT_USER_INPUT_ERROR + PRINT_NEXT_LINE);
 	}
