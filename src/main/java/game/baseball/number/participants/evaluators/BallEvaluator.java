@@ -12,9 +12,8 @@ class BallEvaluator implements Evaluator {
     public static final int NOT_EXIST = -1;
 
     @Override
-    public boolean test(String pitchedNumbers, String hitNumbers) {
-        int balls = countBalls(pitchedNumbers, hitNumbers);
-        return balls == 0;
+    public int evaluate(String pitchedNumbers, String hitNumbers) {
+        return countBalls(pitchedNumbers, hitNumbers);
     }
 
     private int countBalls(String pitchedNumbers, String hitNumbers) {

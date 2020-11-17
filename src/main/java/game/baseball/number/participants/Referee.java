@@ -1,7 +1,7 @@
 package game.baseball.number.participants;
 
 import game.baseball.number.participants.evaluators.Evaluator;
-import game.baseball.number.validator.NumbersValidator;
+import game.baseball.number.utils.ConsoleOutputUtil;
 import game.baseball.number.validator.Validator;
 
 final class Referee {
@@ -9,6 +9,10 @@ final class Referee {
     private final Evaluator strikeEvaluator;
     private final Evaluator ballEvaluator;
     private final Validator<String> validator;
+
+    private static final String NOTHING_TEXT = "낫싱";
+    private static final int NOTHING = 0;
+    private static final int ANSWER = 3;
 
     private String pitchedNumbers;
 
@@ -29,8 +33,11 @@ final class Referee {
 
     boolean judge(String hitNumbers) {
         validator.validate(hitNumbers);
-        boolean isAnswer = strikeEvaluator.test(pitchedNumbers, hitNumbers);
-        ballEvaluator.test(pitchedNumbers, hitNumbers);
-        return isAnswer;
+        int strikes = strikeEvaluator.evaluate(pitchedNumbers, hitNumbers);
+        int balls = ballEvaluator.evaluate(pitchedNumbers, hitNumbers);
+        if (strikes == NOTHING && balls == NOTHING) {
+            ConsoleOutputUtil.print(NOTHING_TEXT);
+        }
+        return strikes == ANSWER;
     }
 }

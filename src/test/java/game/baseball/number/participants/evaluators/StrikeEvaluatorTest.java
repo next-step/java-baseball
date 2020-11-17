@@ -1,7 +1,6 @@
 package game.baseball.number.participants.evaluators;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +15,7 @@ class StrikeEvaluatorTest {
         final String given = "123";
         Evaluator strikeEvaluator = new StrikeEvaluator();
 
-        assertFalse(strikeEvaluator.test(given, input), "input: " + input);
+        assertEquals(1, strikeEvaluator.evaluate(given, input), "input: " + input);
     }
 
     @ParameterizedTest
@@ -26,7 +25,7 @@ class StrikeEvaluatorTest {
         final String given = "123";
         Evaluator strikeEvaluator = new StrikeEvaluator();
 
-        assertFalse(strikeEvaluator.test(given, input), "input: " + input);
+        assertEquals(2, strikeEvaluator.evaluate(given, input), "input: " + input);
     }
 
     @ParameterizedTest
@@ -36,7 +35,7 @@ class StrikeEvaluatorTest {
         final String given = "123";
         Evaluator strikeEvaluator = new StrikeEvaluator();
 
-        assertTrue(strikeEvaluator.test(given, input), "input: " + input);
+        assertEquals(3, strikeEvaluator.evaluate(given, input), "input: " + input);
     }
 
     @ParameterizedTest
@@ -46,6 +45,6 @@ class StrikeEvaluatorTest {
         final String given = "457";
         Evaluator strikeEvaluator = new StrikeEvaluator();
 
-        assertTrue(strikeEvaluator.test(given, input), "input: " + input);
+        assertEquals(3, strikeEvaluator.evaluate(given, input), "input: " + input);
     }
 }
