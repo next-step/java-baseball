@@ -47,4 +47,25 @@ class BaseballDigitGeneratorTest {
         // then
         assertThat(generated).hasSize(digits);
     }
+
+    @Test
+    @DisplayName("입력받은 문자열이 야구게임 조건에 만족하는지 테스트")
+    void isValidateInput() {
+        // given
+        List<String> availableChars = Arrays.asList("1", "2", "3", "4", "5", "6", "7");
+        int digits = 5;
+
+        // when
+        String digitRight_availableNo = "12349";
+        String digitNo_availableRight = "1234";
+        String digitNo_availableDuplicated = "1233";
+        String digitRight_availableRight = "12345";
+
+        // then
+        assertThat(BaseballDigitGenerator.isValidateInput(digitRight_availableNo, availableChars, digits)).isFalse();
+        assertThat(BaseballDigitGenerator.isValidateInput(digitNo_availableRight, availableChars, digits)).isFalse();
+        assertThat(BaseballDigitGenerator.isValidateInput(digitNo_availableDuplicated, availableChars, digits)).isFalse();
+        assertThat(BaseballDigitGenerator.isValidateInput(digitRight_availableRight, availableChars, digits)).isTrue();
+
+    }
 }
