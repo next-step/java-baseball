@@ -26,4 +26,11 @@ class BaseballTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Baseball.of("133"));
     }
 
+    @DisplayName("3스트라이크 카운트 비교")
+    @Test
+    public void compareThreeStrike() {
+        Baseball baseball = Baseball.of("123");
+        BaseballCount baseballCount = baseball.compare(Baseball.of("123"));
+        assertThat(baseballCount.isThreeStrike()).isTrue();
+    }
 }
