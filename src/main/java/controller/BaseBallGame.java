@@ -38,8 +38,8 @@ public class BaseBallGame {
     private static PlayerBallNumber createPlayerWithInputNumber() {
         try {
             return new PlayerBallNumber(new PlayerNumberGenerator(InputView.inputPlayerBallNumber()));
-        } catch (IllegalArgumentException | NullPointerException e) {
-            OutputView.printExceptionMessage(e.getMessage());
+        } catch (BaseBallException exception) {
+            OutputView.printExceptionMessage(exception.getMessage());
             return createPlayerWithInputNumber();
         }
     }
@@ -49,8 +49,8 @@ public class BaseBallGame {
             int input = InputView.inputRestartOrExitNumber();
             checkGameProgressValue(input);
             return input;
-        } catch (IllegalArgumentException | NullPointerException e) {
-            OutputView.printExceptionMessage(e.getMessage());
+        } catch (BaseBallException exception) {
+            OutputView.printExceptionMessage(exception.getMessage());
             return inputRestartFlagWithValidation();
         }
     }
