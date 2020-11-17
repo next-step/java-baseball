@@ -23,8 +23,16 @@ public class Inning {
         this.ballList = ballsList;
     }
 
+    public Inning() {
+        this.ballList = generateBallList();
+    }
+
     public List<Integer> getBallNumberList() {
         return getBallNumberList(ballList);
+    }
+
+    private List<Ball> generateBallList() {
+        return new BallGenerator().generateRandomBallList(NUMBER_OF_BALLS);
     }
 
     private List<Integer> getBallNumberList(List<Ball> ballsList) {
@@ -41,7 +49,7 @@ public class Inning {
         return ballNumberSet.size() != NUMBER_OF_BALLS;
     }
 
-    public int getNumberOfBalls() {
+    public static int getNumberOfBalls() {
         return NUMBER_OF_BALLS;
     }
 }

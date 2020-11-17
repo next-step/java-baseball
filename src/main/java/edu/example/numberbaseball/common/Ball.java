@@ -20,6 +20,14 @@ public class Ball {
         this.number = number;
     }
 
+    public static int getStartNumber() {
+        return START_NUMBER;
+    }
+
+    public static int getEndNumber() {
+        return END_NUMBER;
+    }
+
     private boolean isValid(int number) {
         return number >= START_NUMBER && number <= END_NUMBER;
     }
