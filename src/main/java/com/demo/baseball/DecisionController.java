@@ -27,6 +27,13 @@ public class DecisionController {
     }
 
     /**
+     * decision initialize
+     */
+    public void initDecision() {
+        this.decision = new Decision();
+    }
+
+    /**
      * param compared to ballsController randomBalls's exist value and same position
      * @param ball
      * @return DecisionBall
