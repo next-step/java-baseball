@@ -12,7 +12,8 @@ class NumberTest {
     @DisplayName("숫자는 1부터 9까지 생성 가능하다")
     @ParameterizedTest
     @ValueSource(ints = {
-            1, 9
+            Number.MIN_NUMBER,
+            Number.MAX_NUMBER
     })
     public void validRange(int number) {
         assertThatCode(() -> new Number(number)).doesNotThrowAnyException();
@@ -21,7 +22,8 @@ class NumberTest {
     @DisplayName("경계값 밖은 exception이 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {
-            0, 10
+            Number.MIN_NUMBER - 1,
+            Number.MAX_NUMBER + 1
     })
     public void invalidRange(int number) {
         assertThatIllegalArgumentException().isThrownBy(() -> new Number(number));

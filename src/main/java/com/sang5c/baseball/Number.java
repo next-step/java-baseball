@@ -2,6 +2,9 @@ package com.sang5c.baseball;
 
 public class Number {
 
+    static final int MIN_NUMBER = 1;
+    static final int MAX_NUMBER = 9;
+
     private final int number;
 
     public Number(int number) {
@@ -10,7 +13,7 @@ public class Number {
     }
 
     private void validate(int number) {
-        if (number < 1 || number > 9) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("out of range: " + number);
         }
     }
