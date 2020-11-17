@@ -53,7 +53,7 @@ public class BaseballGame {
 
     private void executeCommand(String inputData) {
         if(UserCommandEnum.COMMAND_RESTART.equals(inputData)) {
-            initPlayer();
+            opponent.resetStrikeNumber();
         }
     }
 }
