@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.exception.DuplicatedNumbersException;
 import baseball.exception.IncorrectNumbersException;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class Number {
             throw new IncorrectNumbersException("숫자가 비었습니다.");
         }
         if (!ALLOWED_DIGITS.containsAll(digits)) {
-            throw new IncorrectNumbersException("허용되지 않은 숫자가 존재합니다.");
+            throw new DuplicatedNumbersException("허용되지 않은 숫자가 존재합니다.");
         }
         if (new HashSet<>(digits).size() != digits.size()) {
             throw new IncorrectNumbersException("중복된 숫자가 존재합니다.");
