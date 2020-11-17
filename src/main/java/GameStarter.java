@@ -1,6 +1,6 @@
 import baseball.BaseballDigitGenerator;
 import baseball.BaseballGame;
-import baseball.BaseballJudgeMock;
+import baseball.BaseballJudgeImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +16,7 @@ public class GameStarter {
     public static void main(String[] args) {
         GameStarter gameStarter = new GameStarter();
         BaseballDigitGenerator baseballDigitGenerator = new BaseballDigitGenerator(INPUT_AVAILABLE_CHARS, DIGITS);
-        BaseballGame baseballGame = new BaseballGame(baseballDigitGenerator, new BaseballJudgeMock());
+        BaseballGame baseballGame = new BaseballGame(baseballDigitGenerator, new BaseballJudgeImpl(DIGITS));
         do {
             baseballGame.play();
         } while (gameStarter.askPlayNewGame());
