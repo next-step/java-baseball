@@ -1,7 +1,5 @@
 package NumberBaseballGame;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class NumberBaseballGame {
@@ -20,48 +18,14 @@ public class NumberBaseballGame {
 
 	public int[] getInputDate() {
 		InputData inputData = new InputData();
-
 		return inputData.getInputDate();
 	}
 
-	public BallCount judgeBallCount(int[] inputData) {
-		List<BallCount> ballCountList = new ArrayList<BallCount>();
-		BallCount ballCountSum = new BallCount();
-
-		for (int i = 0; i < 3; i++) {
-			ballCountList.add(checkBallCount(i, inputData[i]));
-		}
-
-		for (int i = 0; i < ballCountList.size(); i++) {
-			ballCountSum.addStrikeCount(ballCountList.get(i).getStrike());
-			ballCountSum.addBallCount(ballCountList.get(i).getBall());
-		}
-
-		return ballCountSum;
-	}
-
-	public BallCount checkBallCount(int index, int value) {
-		BallCount ballCount = new BallCount();
-
-		for (int j = 0; j < 3; j++) {
-			ballCount.checkStrike(index, value, j, answer.getAnswer()[j]);
-			ballCount.checkBall(index, value, j, answer.getAnswer()[j]);
-		}
-
-		return ballCount;
-	}
-
-	public void printBallCount(BallCount ballCount) {
-		if (ballCount.getStrike() != 0) {
-			System.out.print(ballCount.getStrike() + " 스트라이크    ");
-		}
-		if (ballCount.getBall() != 0) {
-			System.out.print(ballCount.getBall() + " 볼 ");
-		}
-		if (ballCount.getStrike() + ballCount.getBall() == 0) {
-			System.out.print("낫씽");
-		}
-		System.out.print("\n");
+	public BallCount getJudgment(int[] inputData) {
+		BallCountJudgment judgment = new BallCountJudgment(inputData, answer);
+		judgment.judgeBallCount();
+		judgment.printBallCount();
+		return judgment.getBallCountJudgment();
 	}
 
 	public boolean isEndGame(BallCount ballCount) {

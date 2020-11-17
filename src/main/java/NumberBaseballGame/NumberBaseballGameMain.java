@@ -21,8 +21,7 @@ public class NumberBaseballGameMain {
 
 		while (isContinueGame) {
 			inputData = game.getInputDate();
-			ballCount = game.judgeBallCount(inputData);
-			game.printBallCount(ballCount);
+			ballCount = game.getJudgment(inputData);
 			isContinueGame = game.isEndGame(ballCount);
 		}
 	}
