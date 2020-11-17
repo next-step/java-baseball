@@ -1,6 +1,7 @@
 package kr.aterilio.nextstep.techcamp.baseball;
 
 import kr.aterilio.nextstep.techcamp.baseball.ui.InputView;
+import kr.aterilio.nextstep.techcamp.baseball.ui.ResultView;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +31,12 @@ public class BaseballMain {
 
 		do {
 			inputs = inputView.trying();
+
+			ResultView resultView = new ResultView();
+			resultView.printResult(baseballGame.judge(inputs));
 		} while (inputs.size() != baseballGame.getGameSize());
+
+		// for debug
+		baseballGame.printBoard();
 	}
 }

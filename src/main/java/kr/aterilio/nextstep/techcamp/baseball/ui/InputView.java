@@ -65,13 +65,13 @@ public class InputView {
 		return Collections.<Integer>emptyList();
 	}
 
-	private List<Integer> splitInput(int number) {
+	public static List<Integer> splitInput(int number) {
 		ArrayList<Integer> list = new ArrayList<>();
 		split(number, list);
 		return list;
 	}
 
-	private void split(int number, List<Integer> list) {
+	private static void split(int number, List<Integer> list) {
 		if (number > 10) {
 			split(number / 10, list);
 		}
