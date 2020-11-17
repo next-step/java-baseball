@@ -1,4 +1,4 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.validation;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

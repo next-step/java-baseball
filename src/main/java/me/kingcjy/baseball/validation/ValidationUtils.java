@@ -1,4 +1,6 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.validation;
+
+import me.kingcjy.baseball.Baseball;
 
 import java.util.HashSet;
 import java.util.Set;

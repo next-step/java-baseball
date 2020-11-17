@@ -1,14 +1,23 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.ball;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author KingCjy
  */
 class BallNumberTest {
+
+    @Test
+    @DisplayName("1 ~ 9이외의 다른 값이 들어갈 때 throw Exception")
+    public void createTest() {
+        assertThatThrownBy(() -> {
+            new BallNumber(10, 1);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     @DisplayName("같은 숫자, 같은 포지션일 때 Score.STRIKE를 리턴한다.")

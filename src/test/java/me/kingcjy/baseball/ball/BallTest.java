@@ -1,7 +1,9 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.ball;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,9 +30,8 @@ public class BallTest {
 
         BallCount ballCount = ball.judgeBallCount(other);
 
-        assertThat(ballCount.countStrike()).isEqualTo(1);
-        assertThat(ballCount.countBall()).isEqualTo(1);
         assertThat(ballCount.isFinish()).isFalse();
+        assertThat(ballCount).isEqualTo(new BallCount(Arrays.asList(Score.STRIKE, Score.BALL, Score.NOTHING)));
     }
 
 }

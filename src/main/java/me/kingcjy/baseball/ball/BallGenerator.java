@@ -1,4 +1,4 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.ball;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -9,11 +9,7 @@ import java.util.Set;
  */
 public class BallGenerator {
 
-    private Random random;
-
-    public BallGenerator() {
-        this.random = new Random();
-    }
+    private Random random = new Random();
 
     public Ball generate(int digit) {
         Set<Integer> numbers = generateNumberSet(digit);

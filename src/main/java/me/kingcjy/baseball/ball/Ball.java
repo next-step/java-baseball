@@ -1,4 +1,4 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.ball;
 
 import java.util.ArrayList;
 import java.util.List;

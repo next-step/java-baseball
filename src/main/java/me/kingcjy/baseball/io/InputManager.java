@@ -1,4 +1,7 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.io;
+
+import me.kingcjy.baseball.validation.ValidationResult;
+import me.kingcjy.baseball.validation.ValidationUtils;
 
 import java.util.Scanner;
 

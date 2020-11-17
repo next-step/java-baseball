@@ -1,4 +1,4 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.ball;
 
 import java.util.Objects;
 
@@ -17,7 +17,7 @@ public class BallNumber {
         this.position = position;
 
         if (value < MIN || value > MAX) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("value는 " + MIN + "이상 " + MAX + "이하만 허용합니다.");
         }
     }
 

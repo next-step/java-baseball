@@ -1,4 +1,4 @@
-package me.kingcjy.baseball;
+package me.kingcjy.baseball.ball;
 
 /**
  * @author KingCjy
