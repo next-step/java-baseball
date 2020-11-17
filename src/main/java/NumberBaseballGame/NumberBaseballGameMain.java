@@ -3,12 +3,10 @@ package NumberBaseballGame;
 public class NumberBaseballGameMain {
 
 	public void start() {
-
 		boolean isRestartGame = true;
 
 		while (isRestartGame) {
 			NumberBaseballGame game = new NumberBaseballGame();
-			game.setAnswer();
 
 			startGame(game);
 

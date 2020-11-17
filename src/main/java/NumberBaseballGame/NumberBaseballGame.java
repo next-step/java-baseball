@@ -1,38 +1,17 @@
 package NumberBaseballGame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class NumberBaseballGame {
 
-	private Integer[] answer;
+	Answer answer;
 	Scanner scanner;
 
 	public NumberBaseballGame() {
-		answer = new Integer[3];
+		answer = new Answer();
 		scanner = new Scanner(System.in);
-	}
-
-	public void setAnswer() {
-		Integer[] numArray = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		List<Integer> numList = new ArrayList<Integer>(Arrays.asList(numArray));
-		int randomIndex = 0;
-
-		for (int i = 0; i < 3; i++) {
-			randomIndex = (int)(Math.random() * (numList.size()));
-			answer[i] = numList.get(randomIndex);
-			numList.remove(randomIndex);
-		}
-
-		System.out.println(answer[0] + ":" + answer[1] + ":" + answer[2]);
-	}
-
-	public void setAnswer(int firstValue, int secondValue, int thirdValue) {
-		answer[0] = firstValue;
-		answer[1] = secondValue;
-		answer[2] = thirdValue;
 	}
 
 	public int[] writeInputDate() {
@@ -75,8 +54,7 @@ public class NumberBaseballGame {
 	}
 
 	public int containsCount(String scData, String scDataToken) {
-		int count = scData.length() - scData.replace(scDataToken, "").length();
-		return count;
+		return scData.length() - scData.replace(scDataToken, "").length();
 	}
 
 	public int[] splitInputData(String scData) {
@@ -110,8 +88,8 @@ public class NumberBaseballGame {
 		BallCount ballCount = new BallCount();
 
 		for (int j = 0; j < 3; j++) {
-			ballCount.checkStrike(index, value, j, answer[j]);
-			ballCount.checkBall(index, value, j, answer[j]);
+			ballCount.checkStrike(index, value, j, answer.getAnswer()[j]);
+			ballCount.checkBall(index, value, j, answer.getAnswer()[j]);
 		}
 
 		return ballCount;
