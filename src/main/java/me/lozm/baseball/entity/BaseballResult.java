@@ -1,6 +1,7 @@
 package me.lozm.baseball.entity;
 
 import static me.lozm.baseball.common.CommonUtils.ANSWER_SIZE;
+import static me.lozm.baseball.common.CommonUtils.CORRECT_ANSWER_SIZE;
 
 public class BaseballResult {
 
@@ -28,6 +29,10 @@ public class BaseballResult {
         }
 
         print();
+    }
+
+    public boolean isCorrect() {
+        return strike == CORRECT_ANSWER_SIZE;
     }
 
 
