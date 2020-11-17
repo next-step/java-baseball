@@ -1,11 +1,11 @@
 package com.sang5c.baseball;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 class NumberTest {
 
@@ -27,6 +27,12 @@ class NumberTest {
     })
     public void invalidRange(int number) {
         assertThatIllegalArgumentException().isThrownBy(() -> new Number(number));
+    }
+
+    @DisplayName("생성한 객체가 같은 객체이다")
+    @Test
+    public void caching() {
+        assertThat(new Number(3)).isEqualTo(new Number(3));
     }
 
 }
