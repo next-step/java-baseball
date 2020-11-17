@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BaseballGame {
@@ -8,8 +9,11 @@ public class BaseballGame {
     private static int ball = 0;
 
     public void start() {
+        this.gameInit();
+
         while (islive) {
-            this.game_init();
+            this.resetStrikeBall();
+            System.out.print(Arrays.deepToString(new int[][]{right_answer}));
             String input = this.getInput();
             this.check(input);
         }
@@ -18,11 +22,40 @@ public class BaseballGame {
     /**
      * 게임 만들기
      */
-    private void game_init() {
+    private void gameInit() {
+        this.right_answer = this.createAnswerArray();
+    }
+
+    /**
+     * 스트라이크,볼 초기화
+     */
+    private void resetStrikeBall() {
         this.strike = 0;
         this.ball = 0;
-        // todo 정답이 매번바뀌게 구현해야함
-        this.right_answer = new int[]{1, 2, 3};
+    }
+
+    /**
+     * 정답 만들기
+     * @return
+     */
+    private int[] createAnswerArray() {
+        // todo 중복 번호 없게 수정해야함
+        int[] answer = new int[3];
+        for (int i = 0; i < 3; i++) {
+            answer[i] = this.getRandomNum();
+        }
+        return answer;
+    }
+
+    /**
+     * 랜덤 번호 가져오기 0-8
+     * @return
+     */
+    private int getRandomNum() {
+        double random = Math.random();
+        int random_idx = (int)(random * 8);
+
+        return random_idx;
     }
 
     /**
