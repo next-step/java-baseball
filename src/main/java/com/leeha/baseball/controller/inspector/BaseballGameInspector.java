@@ -1,12 +1,13 @@
 package com.leeha.baseball.controller.inspector;
 
-import static com.leeha.baseball.exception.BaseballGameExceptionCode.INVALID_ANSWER_EXCEPTION;
+import static com.leeha.baseball.exception.BaseballGameExceptionCode.*;
 
-import com.leeha.baseball.exception.InvalidAnswerException;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 
-import com.leeha.baseball.controller.GameScore;
+import com.leeha.baseball.controller.BaseballGameScore;
+import com.leeha.baseball.exception.InvalidAnswerException;
 
 public class BaseballGameInspector {
 
@@ -14,7 +15,7 @@ public class BaseballGameInspector {
         validateParameter(balls, answer);
 
         ListIterator<Integer> iterator = balls.listIterator();
-        GameScore score = new GameScore();
+        BaseballGameScore score = new BaseballGameScore();
 
         while (iterator.hasNext()) {
             calculateScore(score, balls, iterator.next(), answer.get(iterator.nextIndex() - 1));
@@ -24,12 +25,16 @@ public class BaseballGameInspector {
     }
 
     private void validateParameter(List<Integer> balls, List<String> answer) {
+        if (Objects.isNull(answer)) {
+            throw new InvalidAnswerException(INVALID_ANSWER_EXCEPTION);
+        }
+
         if (balls.size() != answer.size()) {
             throw new InvalidAnswerException(INVALID_ANSWER_EXCEPTION);
         }
     }
 
-    private void calculateScore(GameScore score, List<Integer> balls, Integer correctAnswer, String answer) {
+    private void calculateScore(BaseballGameScore score, List<Integer> balls, Integer correctAnswer, String answer) {
         if (isStrike(correctAnswer, Integer.parseInt(answer))) {
             score.addStrike();
             return;

@@ -1,14 +1,17 @@
 package com.leeha.baseball.controller.inspector;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import com.leeha.baseball.exception.InvalidAnswerException;
 import java.util.Arrays;
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import com.leeha.baseball.exception.InvalidAnswerException;
 
 class BaseballGameInspectorTest {
 
@@ -16,14 +19,14 @@ class BaseballGameInspectorTest {
     private static List<Integer> balls;
 
     @BeforeAll
-    public static void initialize() {
+    static void initialize() {
         inspector = new BaseballGameInspector();
         balls = Arrays.asList(1, 2, 9);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"123", "456", "789"})
-    void inspect_ShouldReturnFalse(String answer) {
+    void inspect_ShouldReturnFalseForIncorrectAnswer(String answer) {
         boolean inspect = inspector.inspect(balls, Arrays.asList(answer.split("")));
 
         assertThat(inspect)
@@ -32,13 +35,19 @@ class BaseballGameInspectorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "89", "99999"})
-    void inspect_ShouldReturnInvalidAnswerException(String answer) {
+    void inspect_ShouldReturnInvalidAnswerExceptionForNotFillAnswer(String answer) {
         assertThrows(InvalidAnswerException.class, () -> inspector.inspect(balls, Arrays.asList(answer.split(""))));
     }
 
     @ParameterizedTest
+    @NullAndEmptySource
+    void inspect_ShouldReturnInvalidAnswerExceptionForNullOrEmptyAnswer(List<String> numbers) {
+        assertThrows(InvalidAnswerException.class, () -> inspector.inspect(balls, numbers));
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"129"})
-    void inspect_ShouldReturnTrue(String answer) {
+    void inspect_ShouldReturnTrueForCorrectAnswer(String answer) {
         boolean inspect = inspector.inspect(balls, Arrays.asList(answer.split("")));
 
         assertThat(inspect)

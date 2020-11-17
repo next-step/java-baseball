@@ -1,6 +1,6 @@
 package com.leeha.baseball.controller;
 
-public class GameScore {
+public class BaseballGameScore {
 
     private int strike = 0;
     private int ball = 0;
