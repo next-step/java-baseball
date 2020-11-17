@@ -35,4 +35,22 @@ class BaseballTest {
         assertThat(baseballCount.getBallCount()).isEqualTo(0);
     }
 
+    @DisplayName("1스트라이크 1볼 카운트 비교")
+    @Test
+    public void compareOneStrikeOneBall() {
+        Baseball baseball = Baseball.of("123");
+        BaseballCount baseballCount = baseball.compare(Baseball.of("134"));
+        assertThat(baseballCount.getStrikeCount()).isEqualTo(1);
+        assertThat(baseballCount.getBallCount()).isEqualTo(1);
+    }
+
+    @DisplayName("낫싱 카운트 비교")
+    @Test
+    public void compareNothing() {
+        Baseball baseball = Baseball.of("123");
+        BaseballCount baseballCount = baseball.compare(Baseball.of("456"));
+        assertThat(baseballCount.getStrikeCount()).isEqualTo(0);
+        assertThat(baseballCount.getBallCount()).isEqualTo(0);
+    }
+
 }
