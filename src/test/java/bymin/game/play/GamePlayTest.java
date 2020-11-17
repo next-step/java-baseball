@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class GamePlayTest {
 
 	GamePlay gamePlay;
@@ -21,13 +23,14 @@ public class GamePlayTest {
 	}
 
 
-	@DisplayName("사이즈 체크!")
+	@DisplayName("result value print")
 	@Test
 	void gemeCheckStrike() {
 		Map<String, Integer> mapResult = new HashMap<>();
 		mapResult.put(GameResult.STRIKE, 0);
 		mapResult.put(GameResult.BALL, 0);
 		gamePlay.resultMessage(mapResult);
+		assertEquals(makeNumberBaseBall.numListCheck(1), false);
 	}
 
 }

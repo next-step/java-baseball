@@ -1,11 +1,10 @@
 package bymin.game.play;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import bymin.game.play.MakeNumberBaseBall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MakeNumberBaseBallTest {
 
@@ -17,14 +16,14 @@ public class MakeNumberBaseBallTest {
         makeNumberBaseBall.make();
     }
 
-    @DisplayName("사이즈 체크")
+    @DisplayName("size check!")
     @Test
     void isValidInputScore() {
 //        assertEquals(makeNumberBaseBall.getNumList().size(), 2);
         assertEquals(makeNumberBaseBall.getNumList().size(), 3);
     }
 
-	@DisplayName("숫자 3개 체크")
+	@DisplayName("number 3 check")
 	@Test
 	void isValidNumListCheck() {
 //        assertEquals(makeNumberBaseBall.getNumList().size(), 2);

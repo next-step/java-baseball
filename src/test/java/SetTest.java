@@ -22,7 +22,7 @@ public class SetTest {
         numbers.add(3);
     }
 
-    @DisplayName("size를 확인한다.")
+    @DisplayName("size check")
     @Test
     void size() {
         assertThat(numbers.size()).isEqualTo(4);

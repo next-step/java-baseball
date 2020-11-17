@@ -18,7 +18,7 @@ public class MakeNumberBaseBallTest_Make {
 		makeNumberBaseBall.setNumList(new ArrayList<>());
     }
 
-	@DisplayName("3개 이상의 데이터가 생기지 않는지 확인")
+	@DisplayName("3 over numberball check")
 	@Test
 	void isValidNumListCheck() {
 		assertEquals(makeNumberBaseBall.numListCheck(1), true);
