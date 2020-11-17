@@ -25,33 +25,24 @@ public class InputView {
 		System.out.println(MSG_WELCOME);
 	}
 
-	public List<Integer> trying() {
-
-		int input = INPUT_ERROR;
+	public List<Integer> read() {
 		System.out.print(MSG_STEP_INPUT);
-
-		try {
-			input = scanInt();
-		} catch (NumberFormatException e) {
-			System.out.println("[ERROR] " + MSG_ERR_FORMAT);
-			return getEmptyList();
-		}
-
-		if (!isInRange(input)) {
-			System.out.println("[ERROR] " + MSG_ERR_OUT_OF_RANGE);
-			return getEmptyList();
-		}
-
-		return splitInput(input);
+		int input = toInteger(scan());
+		return input == INPUT_ERROR || !isInRange(input) ? getEmptyList() : splitInput(input);
 	}
 
-	private int scanInt() {
+	private String scan() {
 		Scanner scanner = new Scanner(System.in);
-		return toInteger(scanner.nextLine());
+		return scanner.nextLine();
 	}
 
 	private int toInteger(String input) {
-		return Integer.parseInt(removeWhitespace(input));
+		try {
+			return Integer.parseInt(removeWhitespace(input));
+		} catch (NumberFormatException e) {
+			System.out.println("[ERROR] " + MSG_ERR_FORMAT);
+			return INPUT_ERROR;
+		}
 	}
 
 	private String removeWhitespace(String origin) {
@@ -59,7 +50,11 @@ public class InputView {
 	}
 
 	private boolean isInRange(int input){
-		return input >= INPUT_MIN && input <= INPUT_MAX;
+		if (input < INPUT_MIN || input > INPUT_MAX) {
+			System.out.println("[ERROR] " + MSG_ERR_OUT_OF_RANGE);
+			return false;
+		}
+		return true;
 	}
 
 	private List<Integer> getEmptyList() {
@@ -80,7 +75,19 @@ public class InputView {
 	}
 
 	public boolean isContinue() {
-		System.out.println(MSG_CONTINUE);
-		return INPUT_FLAG.NEW_GAME.isEqual(scanInt());
+		String input;
+		do {
+			System.out.println(MSG_CONTINUE);
+			input = scan();
+		} while (!isInRangeNewOrContinue(input));
+		return INPUT_FLAG.NEW_GAME.isEqual(input);
+	}
+
+	private boolean isInRangeNewOrContinue(String input) {
+		if (!INPUT_FLAG.NEW_GAME.isEqual(input) && !INPUT_FLAG.EXIT_GAME.isEqual(input)) {
+			System.out.println("[ERROR] " + MSG_ERR_OUT_OF_RANGE);
+			return false;
+		}
+		return true;
 	}
 }

@@ -1,6 +1,10 @@
 package kr.aterilio.nextstep.techcamp.baseball;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringJoiner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BaseballGame {
@@ -44,7 +48,7 @@ public class BaseballGame {
 		System.out.println(stringJoiner.toString());
 	}
 
-	private List<Integer> safeList(final List<Integer> board) {
+	private List<Integer> safeList(List<Integer> board) {
 		return board == null ? Collections.emptyList() : board;
 	}
 

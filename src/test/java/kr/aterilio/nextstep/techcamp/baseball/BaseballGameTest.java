@@ -1,6 +1,7 @@
 package kr.aterilio.nextstep.techcamp.baseball;
 
 import kr.aterilio.nextstep.techcamp.baseball.ui.InputView;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;

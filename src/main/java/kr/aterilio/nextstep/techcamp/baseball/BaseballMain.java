@@ -9,44 +9,38 @@ import java.util.List;
 public class BaseballMain {
 
 	public static void main(String[] args) {
-
 		BaseballMain main = new BaseballMain();
-
 		InputView inputView = new InputView();
 		inputView.welcome();
-
 		do {
 			main.play(inputView);
 		} while(inputView.isContinue());
 	}
 
 	private void play(InputView inputView) {
-
 		BaseballGame baseballGame = new BaseballGame();
 		baseballGame.create();
-
 		if (!baseballGame.isCreateSuccess()) {
 			return;
 		}
+		guess(inputView, baseballGame);
+	}
 
+	private void guess(InputView inputView, BaseballGame baseballGame) {
 		BaseballResult baseballResult = null;
 		do {
-			List<Integer> inputs = trying(inputView, baseballGame.getGameSize());
+			List<Integer> inputs = input(inputView, baseballGame.getGameSize());
 			baseballResult = baseballGame.judge(inputs);
 			printResult(baseballResult);
 		} while(!baseballResult.isGameOver());
-
 		ResultView.printGameOver();
 	}
 
-	private List<Integer> trying(InputView inputView, int gameSize) {
-
+	private List<Integer> input(InputView inputView, int gameSize) {
 		List<Integer> inputs = Collections.emptyList();
-
 		do {
-			inputs = inputView.trying();
+			inputs = inputView.read();
 		} while (inputs.size() != gameSize);
-
 		return inputs;
 	}
 

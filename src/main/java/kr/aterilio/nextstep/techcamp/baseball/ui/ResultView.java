@@ -14,26 +14,24 @@ public class ResultView {
 		if (result.isFailed()) {
 			return;
 		}
-		System.out.println(resultToString(result));
+		System.out.println(makeResultString(result));
 	}
 
-	private String resultToString(BaseballResult result) {
-
+	private String makeResultString(BaseballResult result) {
 		int countStrike = result.getCountStrike();
 		int countBall = result.getCountBall();
-
-		StringBuilder sb = new StringBuilder();
-
 		if (countStrike == 0 && countBall == 0) {
 			return MSG_NOTHING;
 		}
-		if (countStrike > 0) {
-			sb.append(countStrike).append(" ").append(MSG_STRIKE).append(" ");
-		}
-		if (countBall > 0) {
-			sb.append(countBall).append(" ").append(MSG_BALL).append(" ");
-		}
-		return sb.toString();
+		return makeResultStringStrike(countStrike) + makeResultStringBall(countBall);
+	}
+
+	private String makeResultStringStrike(int countStrike) {
+		return countStrike > 0 ? countStrike + " " + MSG_STRIKE + " " : "";
+	}
+
+	private String makeResultStringBall(int countBall) {
+		return countBall > 0 ? countBall + " " + MSG_BALL + " " : "";
 	}
 
 	public static void printGameOver() {
