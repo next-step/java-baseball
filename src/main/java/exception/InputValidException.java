@@ -1,8 +1,9 @@
-package app;
+package exception;
 
 public class InputValidException extends Exception {
-	InputValidException(String message) {
+	public InputValidException(String message) {
 		super(message);
 		System.out.println(message);
+
 	}
 }

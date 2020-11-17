@@ -1,4 +1,4 @@
-package app;
+package constants;
 
 public enum JudgeType {
 	STRIKE,

@@ -1,18 +1,19 @@
-package app;
+package service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+
+import constants.JudgeType;
+import vo.GameNumber;
+import vo.GameResult;
 
 class BaseballTest {
 
@@ -20,28 +21,23 @@ class BaseballTest {
 	Baseball baseball = new Baseball();
 
 	private GameNumber setComNumber() {
-		GameNumber comNumber = new GameNumber();
 		int[] arr = {1, 2, 3};
-		ArrayList<Integer> list = new ArrayList<Integer>(arr.length);
+		List<Integer> list = new ArrayList<>(arr.length);
 		for (int i : arr) {
 			list.add(i);
 		}
-		comNumber.setGameNumberList(list);
-		return comNumber;
+		return new GameNumber(list);
 	}
 
 	private GameNumber setUserNumber() {
-		GameNumber userNumber = new GameNumber();
 		int[] arr = {1, 3, 4};
-		ArrayList<Integer> list = new ArrayList<Integer>(arr.length);
+		List<Integer> list = new ArrayList<>(arr.length);
 		for (int i : arr) {
 			list.add(i);
 		}
-		userNumber.setGameNumberList(list);
-		return userNumber;
+		return new GameNumber(list);
 	}
 
-	@Test
 	@RepeatedTest(500)
 	void createRandomGameNumberTest() {
 		// given
@@ -68,7 +64,6 @@ class BaseballTest {
 		assertThat(gameNumber.getGameNumberList().get(1)).isEqualTo(2);
 		assertThat(gameNumber.getGameNumberList().get(2)).isEqualTo(3);
 	}
-
 
 	@Test
 	void getGameResultTest() {
