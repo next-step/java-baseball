@@ -33,3 +33,62 @@
 - [X] Computer 숫자 구현
 - [X] 숫자 매칭 결과 구현
 - [X] 야구게임 숫자 매칭 계산 및 실행
+
+## 객체 역할
+
+#### number
+##### BaseBallNumber
+- 야구게임에서 사용하는 숫자 하나를 의미하는 객체
+    - 1~9 까지 숫자를 검증한다.
+    
+##### BaseBallNumbers
+- 야구게임 숫자들을 가지고 있는 일급 컬렉션
+    - STRIKE, BALL 매칭 계산
+       
+##### ComputerBallNumber
+- Computer 숫자를 의미하는 객체
+    - RandomNumberGenerator를 이용하여 Computer 숫자 생성
+       
+##### PlayerBallNumber
+- Player 숫자를 의미하는 객체
+    - PlayerNumberGenerator를 이용하여 Player 숫자 생성
+
+
+#### hint
+##### STRIKE
+- STRIKE 힌트 객체
+    - STRIKE 갯수와 매칭 여부를 판단한다.
+    
+##### BALL
+- BALL 힌트 객체
+    - BALL 갯수와 매칭 여부를 판단한다.
+
+
+#### generator
+##### SourceNumbers
+- 숫자 생성기에서 사용할 숫자 객체
+    - 사용할 1~9의 숫자를 생성하고 캐싱
+
+##### RandomNumberGenerator
+- Random 숫자 생성기
+    - SourceNumbers를 사용하여 랜덤한 3자리 숫자를 생성
+    
+##### PlayerNumberGenerator
+- Player 입력한 숫자 생성기
+    - Player가 입력값으로 야구게임 숫자를 생성
+    
+    
+#### exception
+##### BaseBallException
+- 야구게임 예외 처리
+
+##### ExceptionMessage
+- 야구게임 예외 메시지 관리
+
+
+#### view
+##### InputView
+- 입력 관련 처리
+
+##### OutputView
+- 출력 관련 처리
