@@ -1,135 +1,72 @@
 package service.user;
 
-import model.entity.Baseball;
+import java.util.*;
 
 public class ComputerApiLogicService {
-	public final static int INPUT_PERMIT_LEGNTH = 3;
-	
-	Baseball baseball = new Baseball();
-	
-	public int getStrike() {
-		return baseball.getStrike();
-	}
-	
-	public char[] makeRandomNumber() {
-		boolean duplicateCheck = false;
-		char[] randomNumberArr = new char[INPUT_PERMIT_LEGNTH];
-		
-		while(!duplicateCheck) {
-			for(int i=0; i<randomNumberArr.length; i++) {
-				randomNumberArr[i] = Character.forDigit((int) (Math.random() * 9 + 1), 10);
-			}
-			
-			duplicateCheck = duplicateCheckNumber(randomNumberArr);
-		}
-		
-		return randomNumberArr;
-	}
-	
-	public boolean duplicateCheckNumber(char[] numberArr) {
-		if(numberArr[0] == numberArr[1] || numberArr[0] == numberArr[2] || numberArr[1] == numberArr[2]) {
-			return false;
-		}
-		return true;
-	}
-	
-	public boolean inputLenghCheck(char[] inputNumberArr) {
-		if(inputNumberArr.length > INPUT_PERMIT_LEGNTH || inputNumberArr.length < INPUT_PERMIT_LEGNTH) {
-			return false;
-		}
-		return true;
+	private final int PERMIT_LENGTH = 3;
+
+	public List<Integer> setToList(Set<Integer> randomNumber) {
+		return new ArrayList<>(randomNumber);
 	}
 
-	public boolean inputNumberCheck(char[] inputNumberArr) {
-		boolean flag = true;
-		for(int i=0; i<inputNumberArr.length; i++) {
-			if(!Character.isDigit(inputNumberArr[i])) {
-				flag = false;
-				break;
-			}
+	public List<Integer> stringToList(String inputNumber) {
+		List<Integer> inputNumberList = new ArrayList<>();
+
+		for(int i=0; i<inputNumber.length(); i++) {
+			inputNumberList.add(Integer.parseInt(inputNumber.substring(i,i+1)));
 		}
-		return flag;
+
+		return inputNumberList;
 	}
 
-	/**
-	 * 게임 참가자의 입력을 검사하여 도움말 출력
-	 * @param inputNumber
-	 * @return 
-	 */
-	public boolean printInputValidCheck(String inputNumber) {
-		char[] inputNumberArr = makeInputNumberArr(inputNumber);
-		
-		if(!inputLenghCheck(inputNumberArr))
-			System.out.println("3자리 숫자만 입력이 가능합니다.");
-		if(!inputNumberCheck(inputNumberArr))
-			System.out.println("숫자만 입력이 가능합니다.");
-		if(!duplicateCheckNumber(inputNumberArr))
-			System.out.println("중복된 숫자를 입력할 수 없습니다.");
-		
-		return inputLenghCheck(inputNumberArr) && inputNumberCheck(inputNumberArr) && duplicateCheckNumber(inputNumberArr);
-	}
-	
-	/**
-	 * 게임 참가자로부터 입력받은 문자열을
-	 * char 배열로 변환
-	 * @return
-	 */
-	public char[] makeInputNumberArr(String inputNumberStr) {
-		char[] inputNumberArr = new char[inputNumberStr.length()];
-		
-		for(int i=0; i<inputNumberStr.length(); i++) {
-			inputNumberArr[i] = inputNumberStr.charAt(i);
+	public Set<Integer> makeRandomNumber() {
+		Set<Integer> numberSet = new HashSet<>();
+
+		while (numberSet.size() < PERMIT_LENGTH) {
+			numberSet.add((int) (Math.random() * 9 + 1));
 		}
-		
-		return inputNumberArr;
+
+		return numberSet;
 	}
-	
-	public int calcStrike(char[] randomNumberArr, char[] inputNumberArr, int idx) {
-		if(randomNumberArr[idx] == inputNumberArr[idx]) {
-			baseball.setStrike(baseball.getStrike()+1);
-		}
-		
-		return baseball.getStrike();
-	}
-	
-	public int calcBall(char[] randomNumberArr, char[] inputNumberArr, int idx) {
-		int j=0;
-		
-		while(j<3) {
-			if(idx != j && randomNumberArr[idx] == inputNumberArr[j]) {
-				baseball.setBall(baseball.getBall()+1);
-			}
-			j++;
-		}
-		
-		return baseball.getBall();
-	}
-	
-	public boolean checkNothing() {
-		if(baseball.getStrike() == 0 && baseball.getBall() == 0)
-			return true;
-		return false;
-	}
-	
-	public String giveHint(char[] randomNumber, String inputNumberStr) {
+
+	public int calcStrike(List<Integer> inputNumberList, List<Integer> randomNumberList) {
 		int strike = 0;
-		int ball = 0;
-		String hint = "";
-		
-		for(int i=0; i<INPUT_PERMIT_LEGNTH; i++) {
-			strike = calcStrike(randomNumber, makeInputNumberArr(inputNumberStr), i);
-			ball = calcBall(randomNumber, makeInputNumberArr(inputNumberStr), i);
+		for(int i = 0; i < PERMIT_LENGTH; i++) {
+			if(inputNumberList.get(i).intValue() == randomNumberList.get(i).intValue())
+				strike++;
 		}
 		
-		if(ball == 0)
-			hint = strike + " 스트라이크";
-		if(strike == 0) 
-			hint = ball + " 볼";
-		if(strike > 0 && ball > 0)
-			hint = strike + " 스트라이크 " + ball + " 볼";
-		if(checkNothing())
-			hint = "낫싱";
+		return strike;
+	}
+
+	public int calcBall(List<Integer> inputNumberList, List<Integer> randomNumberList) {
+		int ball = 0;
+		int i = 0;
+		int j = 0;
 		
-		return hint;
+		while(i < PERMIT_LENGTH) {
+			if(i != j && inputNumberList.get(i).intValue() == randomNumberList.get(j).intValue())
+				ball++;
+			
+			j++;
+			if(j==3) {
+				i++;
+				j=0;
+			}
+		}
+		
+		return ball;
+	}
+	
+	public Map<String, Integer> returnResultBaseballGame(List<Integer> inputNumberList, List<Integer> randomNumberList) {
+		Map<String, Integer> resultMap = new HashMap<>();
+
+		int strike = calcStrike(inputNumberList, randomNumberList);
+		int ball = calcBall(inputNumberList, randomNumberList);
+
+		resultMap.put("strike",strike);
+		resultMap.put("ball",ball);
+
+		return resultMap;
 	}
 }
