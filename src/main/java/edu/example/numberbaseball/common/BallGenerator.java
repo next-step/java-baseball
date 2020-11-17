@@ -10,7 +10,7 @@ import java.util.Random;
  * `Ball`을 생성하기 위한 기능을 가진 클래스
  */
 public class BallGenerator {
-    private static final int MAX_AVAILABLE_BALL_SIZE = Inning.getNumberOfBalls();
+    private static final int VALID_BALL_SIZE = Inning.getNumberOfBalls();
     private static final int START_BALL_NUMBER = Ball.getStartNumber();
     private static final int END_BALL_NUMBER = Ball.getEndNumber();
     private static final Random RANDOM = new Random();
@@ -27,7 +27,7 @@ public class BallGenerator {
     }
 
     private List<Integer> generateRandomIntegerList(int neededSize) {
-        if(neededSize > MAX_AVAILABLE_BALL_SIZE) {
+        if (neededSize != VALID_BALL_SIZE) {
             throw new IllegalArgumentException("생성할 수 있는 `Ball`의 갯수를 초과합니다.");
         }
         List<Integer> generatedNumberList = new ArrayList<>(neededSize);
