@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseballUtil {
-  public static List<Integer> splitNumber(int number) {
+
+  public static List<Integer> toList(int number) {
     int temp;
 
     int firstNumber = number / 100;
@@ -26,7 +27,13 @@ public class BaseballUtil {
   public static void validate(List<Integer> numbers) {
     Set<Integer> set = new HashSet<>(numbers);
     if (set.size() != 3) {
-      throw new IllegalArgumentException("duplicate number not allowed.");
+      throw new IllegalArgumentException("Duplicate number not allowed.");
+    }
+
+    for (final Integer number : numbers) {
+      if(number > 9) {
+        throw new IllegalArgumentException("Out of range..");
+      }
     }
   }
 }

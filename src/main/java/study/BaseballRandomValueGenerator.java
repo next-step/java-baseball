@@ -23,7 +23,7 @@ public class BaseballRandomValueGenerator {
     while (uniqueNumbers.size() < this.SIZE) {
       uniqueNumbers.add(this.peek());
     }
-    numbers = new ArrayList<>(uniqueNumbers);
+    this.numbers = new ArrayList<>(uniqueNumbers);
   }
 
   public void shuffle() {

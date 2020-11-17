@@ -25,14 +25,14 @@ class UserInputTest {
   void testNumberDuplicate() throws Exception {
     final int input = 112;
     assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-      List<Integer> integers = BaseballUtil.splitNumber(input);
+      List<Integer> integers = BaseballUtil.toList(input);
     }).withMessageMatching("duplicate number not allowed.");
   }
 
   @Test
   @DisplayName("랜덤숫자를 섞은 이후 값을 비교한다.")
   void testShuffle() throws Exception {
-    List<Integer> splitUserInputValue = BaseballUtil.splitNumber(userInputValue);
+    List<Integer> splitUserInputValue = BaseballUtil.toList(userInputValue);
     System.out.println("splitUserInputValue = " + splitUserInputValue);
 
     generator.shuffle();
