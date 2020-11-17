@@ -9,6 +9,8 @@ public class BaseballValidation {
     return true;
   }
 
+  public static boolean isFourBall(int strike, int ball) { return isZero(strike + ball);}
+
   public static boolean isZero(int value) {
     return value == 0;
   }

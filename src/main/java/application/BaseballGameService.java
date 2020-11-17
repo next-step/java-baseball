@@ -49,6 +49,9 @@ public class BaseballGameService {
   }
 
   public String[] stringToStringArray(String value) {
+    if(!BaseballValidation.validateInputNumber(value)){
+      return new String[0];
+    }
     return value.split("");
   }
 }

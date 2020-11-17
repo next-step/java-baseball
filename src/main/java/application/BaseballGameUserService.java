@@ -30,8 +30,9 @@ public class BaseballGameUserService {
     int strike = result.getStrike();
     int ball = result.getBall();
 
-    if (BaseballValidation.isZero(strike) && BaseballValidation.isZero(ball)) {
+    if (BaseballValidation.isFourBall(strike,ball)) {
       printNothing();
+      return false;
     }
 
     printStrikeCount(result.getStrike());
