@@ -20,8 +20,6 @@ public class Answer {
 			answer[i] = numList.get(randomIndex);
 			numList.remove(randomIndex);
 		}
-
-		System.out.println(answer[0] + ":" + answer[1] + ":" + answer[2]);
 	}
 
 	public Answer(int firstValue, int secondValue, int thirdValue) {
