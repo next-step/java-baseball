@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+* 1 ~ 9 임의의 수 3개 선택
+* 스트라이크 판별
+* 볼 or 낫싱 판별
+* 사용자 숫자 입력
+* 판별 결과 출력
