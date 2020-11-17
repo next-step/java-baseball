@@ -2,7 +2,7 @@ package com.woowa.precourse.util;
 
 import com.woowa.precourse.service.ResultType;
 
-public class Answer { 
+public class Answer {
 	private int[] answerNumber;
 
 	public Answer(int[] answerNumber) {
