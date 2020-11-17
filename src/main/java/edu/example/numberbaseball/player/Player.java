@@ -16,7 +16,7 @@ public class Player {
         this.inning = inning;
     }
 
-    public void activate() {
+    private void activate() {
         this.status = PlayerStatus.ACTIVE;
     }
 
