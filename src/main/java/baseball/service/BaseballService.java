@@ -19,6 +19,22 @@ public class BaseballService {
         setComputerNums();
         System.out.print("숫자를 입력해주세요 : ");
         divideInputNum(getInputNum());
+
+
+        int[] compareNums = compareNums();
+
+        if (isAllMatch(compareNums)) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        }
+
+        if (isNotAllMatch(compareNums)) {
+            System.out.println("낫싱");
+        }
+
+        if (isAnyMatch(compareNums)) {
+            printResult(compareNums);
+        }
     }
 
     private void setComputerNums() {
@@ -27,6 +43,10 @@ public class BaseballService {
 
         for (int i = 0; i < BALL_COUNT; i++) {
             computerNums[i] = getUniqueNum(set);
+        }
+
+        for (int n : computerNums) {
+            System.out.println(n);
         }
     }
 
@@ -58,5 +78,51 @@ public class BaseballService {
             inputNums[i] = strNum.charAt(i) - '0';
         }
         return inputNums;
+    }
+
+    private int[] compareNums() {
+        int[] compareNums = new int[BALL_COUNT];
+
+        for (int i = 0; i < BALL_COUNT; i++) {
+            for (int j = 0; j < BALL_COUNT; j++) {
+                compareNums[getCmpIndex(i, j)]++;
+            }
+        }
+        return compareNums;
+    }
+
+    private int getCmpIndex(int computerIndex, int inputIndex) {
+        if (computerNums[computerIndex] == inputNums[inputIndex]) {
+            if (computerIndex == inputIndex) {
+                return 0;
+            }
+            return 1;
+        }
+        return 2;
+    }
+
+    public boolean isAllMatch(int[] compareNums) {
+        return compareNums[0] == 3;
+    }
+
+    public boolean isNotAllMatch(int[] compareNums) {
+        return compareNums[0] == 0 && compareNums[1] == 0;
+    }
+
+    public boolean isAnyMatch(int[] compareNums) {
+        return compareNums[0] != 0 || compareNums[1] != 0;
+    }
+
+    private void printResult(int[] compareNums) {
+        StringBuffer sb = new StringBuffer();
+
+        if (compareNums[0] > 0) {
+            sb.append(compareNums[0]).append(" 스트라이크 ");
+        }
+        if (compareNums[1] > 0) {
+            sb.append(compareNums[1]).append(" 볼 ");
+        }
+
+        System.out.println(sb);
     }
 }
