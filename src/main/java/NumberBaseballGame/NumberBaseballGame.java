@@ -55,8 +55,28 @@ public class NumberBaseballGame {
 			System.out.println("1~9 숫자만 입력해야합니다");
 			return false;
 		}
-
+		if (isDuplicateInput(scData)) {
+			System.out.println("중복된 숫자를 입력했습니다");
+			return false;
+		}
 		return true;
+	}
+
+	public boolean isDuplicateInput(String scData) {
+		String[] scDataToken = scData.split("(?!^)");
+
+		for (int i = 0; i < 3; i++) {
+			if (containsCount(scData, scDataToken[i]) > 1) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public int containsCount(String scData, String scDataToken) {
+		int count = scData.length() - scData.replace(scDataToken, "").length();
+		return count;
 	}
 
 	public int[] splitInputData(String scData) {
