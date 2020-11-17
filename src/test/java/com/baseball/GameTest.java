@@ -10,7 +10,7 @@ class GameTest {
 
     @DisplayName("세자리 숫자 랜덤 생성")
     @RepeatedTest(value = 10)
-    void randomNumber() {
+    void randomNumberTest() {
         Game game = new Game();
         Integer randomNumber = game.getRandomNumber();
 
@@ -59,7 +59,7 @@ class GameTest {
 
     @DisplayName("스트라이크 갯수 세기")
     @Test
-    void countStrike() {
+    void countStrikeTest() {
         Game game = new Game(1, 2, 3);  // 123
 
         game.inputNumber(145);
@@ -80,7 +80,7 @@ class GameTest {
 
     @DisplayName("볼 갯수 세기")
     @Test
-    void countBall() {
+    void countBallTest() {
         Game game = new Game(1, 2, 3);  // 123
 
         game.inputNumber(415);
