@@ -12,14 +12,10 @@ class GameManagerTest {
 
     private GameManager gm;
 
-    @BeforeEach
-    void setUp() {
-        gm = new GameManager();
-    }
-
     @RepeatedTest(10)
     @DisplayName("정답 생성시 1~9까지 중복없는 숫자 3개 검증하기")
     void generateAnswersValid() {
+        gm = new GameManager();
         Integer[] answers = gm.getAnswers();
         assertThat(answers.length).isEqualTo(3);
 
@@ -29,6 +25,31 @@ class GameManagerTest {
         for (int answer : answers) {
             assertThat(answer).isBetween(0, 9);
         }
+    }
+
+    @Test
+    void judgeCorrection() {
+        gm = new GameManager(new Integer[] {4, 2, 5});
+
+        GameResult result = gm.judge(new Integer[]{1, 2, 3});
+        assertThat(result.getStrike()).isEqualTo(1);
+        assertThat(result.getBall()).isEqualTo(0);
+
+        result = gm.judge(new Integer[]{4, 5, 6});
+        assertThat(result.getStrike()).isEqualTo(1);
+        assertThat(result.getBall()).isEqualTo(1);
+
+        result = gm.judge(new Integer[]{7, 8, 9});
+        assertThat(result.getStrike()).isEqualTo(0);
+        assertThat(result.getBall()).isEqualTo(0);
+
+        result = gm.judge(new Integer[]{2, 4, 5});
+        assertThat(result.getStrike()).isEqualTo(1);
+        assertThat(result.getBall()).isEqualTo(2);
+
+        result = gm.judge(new Integer[]{4, 2, 5});
+        assertThat(result.getStrike()).isEqualTo(3);
+        assertThat(result.getBall()).isEqualTo(0);
     }
 
 }

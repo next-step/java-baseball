@@ -1,8 +1,6 @@
 package baseball.rule;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class GameManager {
     private final int ANSWER_LENGTH = 3;
@@ -11,6 +9,10 @@ public class GameManager {
 
     public GameManager() {
         generateAnswers();
+    }
+
+    public GameManager(Integer[] answers) {
+        this.answers = answers;
     }
 
     public void generateAnswers() {
@@ -26,6 +28,29 @@ public class GameManager {
 
     public Integer[] getAnswers() {
         return answers;
+    }
+
+    public GameResult judge(Integer[] inputNums) {
+        int strike = 0;
+        int ball = 0;
+
+        Set<Integer> inputSet = new HashSet<>(Arrays.asList(inputNums));
+        Set<Integer> answerSet = new HashSet<>(Arrays.asList(answers));
+
+        for (int i = 0; i < ANSWER_LENGTH; i++) {
+            Integer inputNum = inputNums[i];
+            Integer answer = answers[i];
+            if(inputNum.equals(answer)) {
+                strike++;
+                inputSet.remove(inputNum);
+                answerSet.remove(answer);
+            }
+        }
+
+        inputSet.retainAll(answerSet);
+        ball = inputSet.size();
+
+        return new GameResult(strike, ball);
     }
 
 }
