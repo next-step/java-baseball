@@ -50,4 +50,42 @@ public class BallsControllerTest {
     }
 
 
+    @Test
+    public void checkBalls() {
+        try {
+            String testBalls = "123";
+            String checkedBalls = this.ballsController.checkBalls(testBalls);
+
+            assertThat(checkedBalls).isEqualTo(testBalls);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void checkBallsError() {
+
+        assertThatThrownBy(() -> {this.ballsController.checkBalls("a23");})
+                .isInstanceOf(Exception.class)
+                .hasMessageContaining("입력 값이 올바르지 않습니다.");
+    }
+
+    @Test
+    public void setInsertBalls() {
+        // given
+        String balls = "123";
+        try {
+            this.ballsController.setInsertBalls(balls);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // when & then
+        assertThat(this.ballsController.getInsertBalls().getBalls())
+                .hasSize(3)
+                .contains(1, 2, 3);
+
+    }
+
+
 }

@@ -12,6 +12,7 @@ public class BallsController {
 
     public BallsController() {
         this.randomBalls = new Balls();
+        this.insertBalls = new Balls();
     }
 
     public Balls getRandomBalls() {
@@ -45,7 +46,9 @@ public class BallsController {
     }
 
     /**
-     *
+     * 이미 생성된 randomBalls에 중복되는 값이 있는지 체크
+     * 중복 되는 경우 0을 리턴
+     * 중복 되지 않는 경우 파라미터 값을 그대로 리턴
      * @param number
      * @return number
      */
@@ -54,6 +57,36 @@ public class BallsController {
             return number;
         }
         return 0;
+    }
+
+    public Balls getInsertBalls() {
+        return insertBalls;
+    }
+
+    /**
+     * 입력받은 3자리 숫자를 유효성 검사 후에 리스트에 세팅한다.
+     * @param balls
+     * @return
+     * @throws Exception
+     */
+    public List<Integer> setInsertBalls(String balls) throws Exception {
+        for (String ball : checkBalls(balls).split("")) {
+            this.insertBalls.getBalls().add(Integer.parseInt(ball));
+        }
+        return this.insertBalls.getBalls();
+    }
+
+    /**
+     * 입력받은 3자리 숫자의 패턴을 체크한다.
+     * @param balls
+     * @return balls
+     * @throws Exception
+     */
+    public String checkBalls(String balls) throws Exception {
+        if(balls.length() != 3 && !Pattern.matches("^[1-9]*$", balls)) {
+            throw new Exception("입력 값이 올바르지 않습니다.");
+        }
+        return balls;
     }
 
 }
