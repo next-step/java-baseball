@@ -27,10 +27,12 @@ public class BaseballInputConsole implements BaseballInput {
 
 	private String getValidGuessNumber() {
 		String rawInput;
+
 		do {
 			System.out.print(GUESS_NUMBER_MESSAGE);
 			rawInput = scanner.nextLine();
 		} while (!isValidGuessNumber(rawInput));
+
 		return rawInput;
 	}
 
@@ -63,9 +65,11 @@ public class BaseballInputConsole implements BaseballInput {
 
 	private GuessNumberRequest convertToGuessNumberRequest(String rawInput) {
 		List<Integer> guessNumber = new ArrayList<>();
+
 		for (int i = 0; i < NUMBER_OF_GUESS_NUMBER; i++) {
 			guessNumber.add(rawInput.charAt(i) - '0');
 		}
+
 		return new GuessNumberRequest(guessNumber);
 	}
 
@@ -77,10 +81,12 @@ public class BaseballInputConsole implements BaseballInput {
 
 	private String getValidEndGameAction() {
 		String rawInput;
+
 		do {
 			System.out.print(END_GAME_MESSAGE);
 			rawInput = scanner.nextLine();
 		} while (!isValidEndGameAction(rawInput));
+
 		return rawInput;
 	}
 
@@ -95,11 +101,13 @@ public class BaseballInputConsole implements BaseballInput {
 	}
 
 	private EndGameRequest convertToEndGameRequest(String rawInput) {
+
 		if (rawInput.charAt(0) == '1') {
 			return new EndGameRequest(EndGameRequest.Action.RESTART);
 		} else if (rawInput.charAt(0) == '2') {
 			return new EndGameRequest(EndGameRequest.Action.END);
 		}
+
 		return null;
 	}
 }

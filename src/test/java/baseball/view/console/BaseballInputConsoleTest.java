@@ -21,11 +21,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidGuessNumberTest() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidGuessNumberMethod(testClass);
 
+		// when
 		String testInput = "123";
 
+		// then
 		try {
 			assertTrue((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -35,11 +38,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidGuessNumberTestFailLength() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidGuessNumberMethod(testClass);
 
+		// when
 		String testInput = "1";
 
+		// then
 		try {
 			assertFalse((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -49,11 +55,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidGuessNumberTestFailNumeric() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidGuessNumberMethod(testClass);
 
+		// when
 		String testInput = "abc";
 
+		// then
 		try {
 			assertFalse((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -63,11 +72,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidGuessNumberTestFailDuplicateNumber() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidGuessNumberMethod(testClass);
 
+		// when
 		String testInput = "121";
 
+		// then
 		try {
 			assertFalse((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -82,12 +94,15 @@ class BaseballInputConsoleTest {
 	}
 	@Test
 	void convertToGuessNumberRequestTest() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getConvertToGuessNumberRequestMethod(testClass);
 
+		// when
 		String testInput = "123";
 		List<Integer> expectedResult = Arrays.asList(1, 2, 3);
 
+		// then
 		try {
 			GuessNumberRequest actualResult = ((GuessNumberRequest) method.invoke(testClass, testInput));
 			assertEquals(expectedResult, actualResult.getGuessNumbers());
@@ -104,11 +119,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidEndGameActionTest() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidEndGameActionMethod(testClass);
 
+		// when
 		String testInput = "1";
 
+		// then
 		try {
 			assertTrue((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -118,11 +136,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidEndGameActionTestFailLength() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidEndGameActionMethod(testClass);
 
+		// when
 		String testInput = "12";
 
+		// then
 		try {
 			assertFalse((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -132,11 +153,14 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void isValidEndGameActionTestFailAction() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getIsValidEndGameActionMethod(testClass);
 
+		// when
 		String testInput = "3";
 
+		// then
 		try {
 			assertFalse((Boolean) method.invoke(testClass, testInput));
 		} catch (Exception e) {
@@ -152,12 +176,15 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void convertToEndGameRequestTestRestart() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getConvertToEndGameRequestMethod(testClass);
 
+		// when
 		String testInput = "1";
 		Action expectedResult = Action.RESTART;
 
+		// then
 		try {
 			EndGameRequest actualResult = (EndGameRequest) method.invoke(testClass, testInput);
 			assertEquals(expectedResult, actualResult.getAction());
@@ -168,12 +195,15 @@ class BaseballInputConsoleTest {
 
 	@Test
 	void convertToEndGameRequestTestEnd() throws NoSuchMethodException {
+		// given
 		BaseballInputConsole testClass = new BaseballInputConsole();
 		Method method = getConvertToEndGameRequestMethod(testClass);
 
+		// when
 		String testInput = "2";
 		Action expectedResult = Action.END;
 
+		// then
 		try {
 			EndGameRequest actualResult = (EndGameRequest) method.invoke(testClass, testInput);
 			assertEquals(expectedResult, actualResult.getAction());

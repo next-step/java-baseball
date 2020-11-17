@@ -41,18 +41,23 @@ public class BaseballGameService {
 
 	private static List<Integer> getRandomNumberList() {
 		List<Integer> numberSet = new ArrayList<>();
+
 		for (int i = 1; i <= 9; i++) {
 			numberSet.add(i);
 		}
 		Collections.shuffle(numberSet);
+
 		return numberSet;
 	}
 
 	public GuessFeedbackResponse guessNumber(GuessNumberRequest request) {
 		List<Integer> userGuessNumber = request.getGuessNumbers();
+
 		int numStrike = countStrike(userGuessNumber);
 		int numBall = countBall(userGuessNumber);
+
 		setIsUserGuessCorrect(numStrike);
+
 		return new GuessFeedbackResponse(numStrike, numBall);
 	}
 
@@ -64,9 +69,11 @@ public class BaseballGameService {
 
 	private int countStrike(List<Integer> userGuessNumber) {
 		int numStrike = 0;
+
 		for (int i = 0; i < NUMBER_OF_GUESS_NUMBER; i++) {
 			numStrike += addToStrikeCount(userGuessNumber.get(i), i);
 		}
+
 		return numStrike;
 	}
 
@@ -79,9 +86,11 @@ public class BaseballGameService {
 
 	private int countBall(List<Integer> userGuessNumber) {
 		int numBall = 0;
+
 		for (int i = 0; i < NUMBER_OF_GUESS_NUMBER; i++) {
 			numBall += addToBallCount(userGuessNumber.get(i), i);
 		}
+
 		return numBall;
 	}
 
