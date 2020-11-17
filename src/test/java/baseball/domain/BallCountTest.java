@@ -17,7 +17,7 @@ class BallCountTest {
         assertThat(ballCount.toString())
                 .isEqualTo("BallCount [strike=0, ball=0]");
 
-        assertThat(ballCount.isNoithing()).isTrue();
+        assertThat(ballCount.isNothing()).isTrue();
 
         assertThat(ballCount.getCurrent()).isEqualTo("낫싱");
     }

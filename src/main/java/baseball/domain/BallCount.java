@@ -4,7 +4,7 @@ public class BallCount {
     private int strike;
     private int ball;
 
-    public boolean isNoithing() {
+    public boolean isNothing() {
         return (strike == 0 && ball == 0);
     }
 
@@ -23,7 +23,7 @@ public class BallCount {
     public String getCurrent() {
         String result = "";
 
-        if (isNoithing()) { return "낫싱"; }
+        if (isNothing()) { return "낫싱"; }
 
         if (strike != 0) { result += strike  + " 스트라이크 "; }
 

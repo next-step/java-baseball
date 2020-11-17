@@ -21,7 +21,15 @@ public class BaseballNumbersGenerator {
         return new BaseballNumbers(new ArrayList<>(numbers));
     }
 
+    public BaseballNumbers generateComputerNumbers(int input) {
+        return generate(input);
+    }
+
     public BaseballNumbers generateUserNumbers(int input) {
+        return generate(input);
+    }
+
+    public BaseballNumbers generate(int input) {
         if (input < 0) {
             throw new NumberRangeException();
         }
