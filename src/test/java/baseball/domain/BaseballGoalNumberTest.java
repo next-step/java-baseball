@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import baseball.dao.BaseballConstant;
+
 class BaseballGoalNumberTest {
 
 	@Test
@@ -15,7 +17,7 @@ class BaseballGoalNumberTest {
 		BaseballGoalNumber baseballGoal = new BaseballGoalNumber();
 
 		assertThat(baseballGoal.baseballGoalNumber).isNotNull();
-		assertThat(baseballGoal.baseballGoalNumber.size()).isEqualTo(BaseballGoalNumber.BASEBALL_GAME_COUNT);
+		assertThat(baseballGoal.baseballGoalNumber.size()).isEqualTo(BaseballConstant.BASEBALL_GAME_COUNT);
 		System.out.println(baseballGoal.baseballGoalNumber.toString());
 	}
 }
