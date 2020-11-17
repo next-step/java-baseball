@@ -13,8 +13,7 @@ public class TestPlayer implements Player {
 	private NumberValidator numberValidator = new NumberValidator();
 
 	public TestPlayer(String strRequestNumbers) {
-		if (!numberValidator.validate(strRequestNumbers))
-			throw new IllegalArgumentException("invalid requestNumbers");
+		numberValidator.validate(strRequestNumbers);
 
 		this.requestNumbers = convertToIntegerArrays(strRequestNumbers);
 	}

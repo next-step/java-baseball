@@ -15,8 +15,7 @@ public class ScannerPlayer implements Player {
 	@Override
 	public List<Integer> getRequestNumbers() {
 		String numbers = scanner.nextLine();
-		if (!numberValidator.validate(numbers))
-			throw new IllegalArgumentException("invalid requestNumbers");
+		numberValidator.validate(numbers);
 
 		return DataConvertUtils.convertToIntegerArrays(numbers);
 	}

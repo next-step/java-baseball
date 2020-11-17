@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class NumberValidatorTest {
 	private NumberValidator numberValidator;
@@ -15,13 +16,23 @@ class NumberValidatorTest {
 		numberValidator = new NumberValidator();
 	}
 
-	@DisplayName("데이터가 유효한 숫자인지 확인")
+	@DisplayName("데이터가 유효하지 않은 숫자 확인")
 	@ParameterizedTest()
-	@CsvSource(value = {":false", "123:true", "1W2:false", "102:false", "1324:false", "122:false", "1:false"}, delimiter = ':')
-	public void toCheckNumbers(String strNumbers, boolean expected) {
-		NumberValidator numberValidator = new NumberValidator();
-		boolean isValid = numberValidator.validate(strNumbers);
+	@CsvSource(value = {":" + NumberValidator.NULL_MESSAGE, "1W2:유효한 요청 번호가 아닙니다.",
+		"102:" + NumberValidator.INVALID_MESSAGE, "1324:" + NumberValidator.INVALID_MESSAGE,
+		"122:" + NumberValidator.DUPLICATE_MESSAGE, "1:" + NumberValidator.INVALID_MESSAGE}
+		, delimiter = ':'
+	)
+	public void toCheckInvalidNumbers(String strNumbers, String errorMessage) {
+		assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validate(strNumbers))
+			.withMessage(errorMessage)
+		;
+	}
 
-		assertThat(isValid).isEqualTo(expected);
+	@DisplayName("데이터가 유효한 숫자 확인")
+	@ParameterizedTest()
+	@ValueSource(strings = {"123"})
+	public void toCheckValidNumbers(String strNumbers) {
+		numberValidator.validate(strNumbers);
 	}
 }

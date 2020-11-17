@@ -9,30 +9,39 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NumberValidator {
-	public boolean validate(List<Integer> numbers) {
+
+	static final String NULL_MESSAGE = "요청된 번호가 없습니다.";
+	static final String DUPLICATE_MESSAGE = "중복된 번호가 있습니다.";
+	static final String INVALID_MESSAGE = "유효한 요청 번호가 아닙니다.";
+
+	public void validate(List<Integer> numbers) {
 		if (numbers == null)
-			return false;
+			throw new IllegalArgumentException(NULL_MESSAGE);
 
-		return !isDuplicate(numbers);
+		checkDuplicate(numbers);
 	}
 
-	public boolean validate(String numbers) {
-		if (numbers == null ||
-			!isNumbers(numbers)
-		)
-			return false;
+	public void validate(String numbers) {
+		if (numbers == null || "".equals(numbers))
+			throw new IllegalArgumentException(NULL_MESSAGE);
 
-		return this.validate(convertToIntegerArrays(numbers));
+		checkValidNumbers(numbers);
+
+		this.validate(convertToIntegerArrays(numbers));
 	}
 
-	private boolean isDuplicate(List<Integer> numbers) {
+	private void checkDuplicate(List<Integer> numbers) {
 		Set<Integer> unique = new HashSet<>(numbers);
-		return unique.size() != numbers.size();
+		if (unique.size() != numbers.size())
+			throw new IllegalArgumentException(DUPLICATE_MESSAGE);
+
 	}
 
-	private boolean isNumbers(String numbers) {
+	private void checkValidNumbers(String numbers) {
 		Pattern compile = Pattern.compile("^[1-9]{3}$");
 		Matcher matcher = compile.matcher(numbers);
-		return matcher.find();
+		if (!matcher.find())
+			throw new IllegalArgumentException(INVALID_MESSAGE);
+
 	}
 }
