@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,8 @@ public class BallGeneratorTest {
         BallGenerator ballGenerator = new BallGenerator();
         Ball ball = ballGenerator.generate(3);
 
-        int[] numbers = ball.getNumbers();
+        List<BallNumber> ballNumbers = ball.getNumbers();
+        int[] numbers = ballNumbersToIntArray(ballNumbers);
         int uniqueCount = getUniqueCount(numbers);
 
         assertThat(numbers.length).isEqualTo(uniqueCount);
@@ -32,4 +34,15 @@ public class BallGeneratorTest {
         }
         return set.size();
     }
+
+    private int[] ballNumbersToIntArray(List<BallNumber> ballNumbers) {
+        int[] result = new int[ballNumbers.size()];
+
+        for (int i = 0; i < ballNumbers.size(); i++) {
+            result[i] = ballNumbers.get(i).getValue();
+        }
+
+        return result;
+    }
+
 }

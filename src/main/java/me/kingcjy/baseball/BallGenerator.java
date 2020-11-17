@@ -25,8 +25,8 @@ public class BallGenerator {
     private Set<Integer> generateNumberSet(int digit) {
         Set<Integer> numbers = new HashSet<>();
 
-        while(numbers.size() < digit) {
-            numbers.add(random.nextInt(9) +1);
+        while (numbers.size() < digit) {
+            numbers.add(random.nextInt(9) + 1);
         }
 
         return numbers;
@@ -35,7 +35,7 @@ public class BallGenerator {
     private int[] setToIntArray(Set<Integer> numbers) {
         int[] result = new int[numbers.size()];
 
-        int i = 0 ;
+        int i = 0;
         for (Integer number : numbers) {
             result[i] = number;
             i++;
