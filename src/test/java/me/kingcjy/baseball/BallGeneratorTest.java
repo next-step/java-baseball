@@ -29,6 +29,7 @@ public class BallGeneratorTest {
 
     private int getUniqueCount(int[] numbers) {
         Set<Integer> set = new HashSet<>();
+
         for (int i = 0; i < numbers.length; i++) {
             set.add(numbers[i]);
         }

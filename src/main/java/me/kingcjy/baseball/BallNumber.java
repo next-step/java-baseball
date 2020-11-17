@@ -1,5 +1,7 @@
 package me.kingcjy.baseball;
 
+import java.util.Objects;
+
 /**
  * @author KingCjy
  */
@@ -23,7 +25,37 @@ public class BallNumber {
         return value;
     }
 
-    public int getPosition() {
-        return position;
+    public Score getScore(BallNumber other) {
+        if (this.equals(other)) {
+            return Score.STRIKE;
+        }
+
+        if (this.value == other.value) {
+            return Score.BALL;
+        }
+
+        return Score.NOTHING;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BallNumber that = (BallNumber) o;
+        return value == that.value &&
+                position == that.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, position);
+    }
+
+    @Override
+    public String toString() {
+        return "BallNumber{" +
+                "value=" + value +
+                ", position=" + position +
+                '}';
     }
 }
