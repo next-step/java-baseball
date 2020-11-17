@@ -11,9 +11,15 @@ public class Baseball {
     }
 
     public void start() {
+        boolean isUserCorrect = false;
         opponent.selectValue();
-        player.inputValue();
-        opponent.judgeGame(player.getValue());
-        opponent.printGameResult();
+
+        while (!isUserCorrect) {
+            player.inputValue();
+            opponent.judgeGame(player.getValue());
+            opponent.printGameResult();
+            isUserCorrect = opponent.isUserCorrect();
+        }
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
 }

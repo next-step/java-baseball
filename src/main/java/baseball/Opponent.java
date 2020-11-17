@@ -3,7 +3,7 @@ package baseball;
 public class Opponent {
 
     private String value;
-    private final GameResults gameResults;
+    private GameResults gameResults;
 
     public Opponent() {
         value = "";
@@ -29,6 +29,7 @@ public class Opponent {
     }
 
     public void judgeGame(String playerValue) {
+        gameResults = new GameResults();
         judgeStrike(playerValue);
         judgeBall(playerValue);
         finishGame();
@@ -83,5 +84,9 @@ public class Opponent {
     public void printGameResult() {
         String gameResult = gameResults.getGameResult();
         System.out.println(gameResult);
+    }
+
+    public boolean isUserCorrect() {
+        return gameResults.getStrike() == 3;
     }
 }
