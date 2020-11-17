@@ -11,19 +11,19 @@ class BaseballTest {
     @DisplayName("3개의 숫자 문자열로 야구 객체를 생성한다")
     @Test
     public void create() {
-        assertThat(new Baseball("123")).isNotNull();
+        assertThat(Baseball.of("123")).isNotNull();
     }
 
     @DisplayName("길이가 3이 아닌 경우 에러가 발생한다")
     @Test
     public void invalidLength() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Baseball("12"));
+        assertThatIllegalArgumentException().isThrownBy(() -> Baseball.of("12"));
     }
 
     @DisplayName("숫자가 중복될 경우 에러가 발생한다")
     @Test
     public void duplicated() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Baseball("133"));
+        assertThatIllegalArgumentException().isThrownBy(() -> Baseball.of("133"));
     }
 
 }

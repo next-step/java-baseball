@@ -6,13 +6,20 @@ public class Baseball {
 
     private final List<String> numbers;
 
-    public Baseball(String s) {
-        String[] split = s.split("");
-        List<String> numbers = new ArrayList<>(Arrays.asList(split));
+    private Baseball(List<String> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    private void validate(List<String> numbers) {
         checkDuplicate(numbers);
         checkSize(numbers);
+    }
 
-        this.numbers = numbers;
+    public static Baseball of(String str) {
+        String[] split = str.split("");
+        List<String> numbers = new ArrayList<>(Arrays.asList(split));
+        return new Baseball(numbers);
     }
 
     private void checkDuplicate(List<String> numbers) {
