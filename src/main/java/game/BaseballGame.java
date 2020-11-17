@@ -32,7 +32,11 @@ public class BaseballGame {
 		//1. 사용자에게 입력받기
 		int[] user = userNumber();
 		
+		int strikeCount = 0;
+		int ballCount = 0;
 		//2. 판단
+		strikeCount = checkStrikeCount(answer, user);
+		ballCount = checkBallCount(answer, user);
 		
 		//3. 판단 결과 출력
 	}
@@ -128,6 +132,37 @@ public class BaseballGame {
 			userNumber[i] = Character.digit(data.charAt(i),10);
 		}
 		return userNumber;
+	}
+	
+	
+	// 스트라이크 카운트
+	private static int checkStrikeCount(int[] answer, int[] user) {
+		int strike = 0;
+		if (answer[0] == user[0]) {
+			strike++;
+		}
+		if (answer[1] == user[1]) {
+			strike++;
+		}
+		if (answer[2] == user[2]) {
+			strike++;
+		}
+		return strike;
+	}
+	
+	// 볼 카운트
+	private static int checkBallCount(int[] answer, int[] user) {
+		int ball = 0;
+		if((answer[0] == user[1]) || (answer[0] == user[2])) {
+			ball++;
+		}
+		if((answer[1] == user[0]) || (answer[1] == user[2])) {
+			ball++;
+		}
+		if((answer[2] == user[0]) || (answer[2] == user[1])) {
+			ball++;
+		}
+		return ball;
 	}
 	
 }
