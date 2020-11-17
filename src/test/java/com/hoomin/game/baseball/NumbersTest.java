@@ -1,31 +1,29 @@
 package com.hoomin.game.baseball;
 
-import static org.assertj.core.api.Assertions.*;
+import com.hoomin.game.baseball.domain.Numbers;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import com.hoomin.game.baseball.domain.Numbers;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NumbersTest {
 
-	@Test
-	public void newNumbers_3MoreList_IllegalArgumentException() {
-		final List<Integer> numberList = Arrays.asList(1, 2, 3, 4);
-		assertThatThrownBy(() -> new Numbers(numberList))
-				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("3자리의 숫자를 입력해야 합니다.");
-	}
-
-	@Test
-	public void newNumbers_IncludeNumberZero_IllegalArgumentException() {
-		final List<Integer> numberCandidateList = Arrays.asList(0, 1, 2);
+	@ParameterizedTest
+	@CsvSource(value = {"1234:3자리의 숫자를 입력해야 합니다.",
+			"012:1부터 9까지의 숫자를 입력해야 합니다.",
+			"112:중복되지 않은 숫자를 입력해야 합니다."}, delimiter = ':')
+	public void newNumbers_DuplicateNumber_IllegalArgumentException(String numberString, String message) {
+		final String[] split = numberString.split("");
+		final List<Integer> numberCandidateList = new ArrayList<>();
+		for (String s : split) {
+			numberCandidateList.add(Integer.valueOf(s));
+		}
 		assertThatThrownBy(() -> new Numbers(numberCandidateList))
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("1부터 9까지의 숫자를 입력해야 합니다.");
+				.hasMessage(message);
 	}
 
 }
