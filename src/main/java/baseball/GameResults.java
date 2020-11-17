@@ -34,7 +34,7 @@ public class GameResults {
 
     private String getBallResults() {
         if (ball > 0) {
-            return String.format("%d 볼", ball);
+            return String.format("%d 볼 ", ball);
         }
         return "";
     }
@@ -52,6 +52,13 @@ public class GameResults {
     }
 
     public String getGameResult() {
-        return getStrikeResults() + getBallResults();
+        return getStrikeResults() + getBallResults() + getNothingResults();
+    }
+
+    private String getNothingResults() {
+        if (nothing == 3) {
+            return "낫싱";
+        }
+        return "";
     }
 }
