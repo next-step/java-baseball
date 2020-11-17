@@ -1,5 +1,5 @@
 package com.woowa.precourse.service;
 
-public enum ResultType { 
+public enum ResultType {
 	STRIKE, BALL, NOTHING
 }
