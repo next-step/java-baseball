@@ -3,6 +3,7 @@ package baseball.players.referee;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -75,6 +76,13 @@ class RefereeTest {
 	}
 
 	@Test
+	@DisplayName("재시작시 Referee가 Opponent 초기화")
 	void resetOpponent() {
+		List<Integer> hiddenNumber = Arrays.asList(1, 2, 3);
+		Opponent opponent = new Computer(hiddenNumber);
+		DefaultReferee referee = new DefaultReferee(opponent);
+		referee.resetOpponent();
+
+		assertThat(hiddenNumber).isNotEqualTo(opponent.getHiddenNumbers());
 	}
 }
