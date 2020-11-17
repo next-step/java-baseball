@@ -3,8 +3,9 @@ package org.dhlee.game.baseball;
 import java.util.List;
 
 import org.dhlee.game.interfaces.Player;
+import org.dhlee.game.utils.CompareUtils;
 
-public class BaseballPlayer implements Player {
+public class BaseballPlayer implements Player<PlayResult> {
 	private String name;
 	private List<Integer> numbers;
 
@@ -30,8 +31,31 @@ public class BaseballPlayer implements Player {
 	}
 
 	@Override
-	public void play() {
+	public PlayResult play(List<Integer> value) {
+		int strikeCount = getStrikeCount(value);
+		int ballCount = getBallCount(value);
+		return new PlayResult(strikeCount, ballCount);
+	}
 
+	public int getStrikeCount(List<Integer> value) {
+		int count = 0;
+		for (int i = 0; i < value.size(); i++) {
+			count = CompareUtils.compareNumbers(this.numbers.get(i), value.get(i))
+				? count + 1
+				: count;
+		}
+		return count;
+	}
+
+	public int getBallCount(List<Integer> value) {
+		int count = 0;
+		for (int i = 0; i < value.size(); i++) {
+			count =
+				!CompareUtils.compareNumbers(this.numbers.get(i), value.get(i)) && this.numbers.contains(value.get(i))
+					? count + 1
+					: count;
+		}
+		return count;
 	}
 
 }

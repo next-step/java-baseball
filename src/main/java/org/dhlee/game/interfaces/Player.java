@@ -1,5 +1,7 @@
 package org.dhlee.game.interfaces;
 
-public interface Player {
-	void play();
+import java.util.List;
+
+public interface Player<T> {
+	T play(List<Integer> value);
 }
