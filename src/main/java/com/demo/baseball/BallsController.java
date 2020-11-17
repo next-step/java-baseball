@@ -70,6 +70,7 @@ public class BallsController {
      * @throws Exception
      */
     public List<Integer> setInsertBalls(String balls) throws Exception {
+        initInsertBalls();
         for (String ball : checkBalls(balls).split("")) {
             this.insertBalls.getBalls().add(Integer.parseInt(ball));
         }
@@ -89,4 +90,10 @@ public class BallsController {
         return balls;
     }
 
+    /**
+     * insertBalls initialize
+     */
+    public void initInsertBalls() {
+        this.insertBalls = new Balls();
+    }
 }

@@ -21,6 +21,7 @@ public class DecisionController {
      * set decision used ballsController insertBalls
      */
     public void setDecision() {
+        initDecision();
         for (int ball : this.ballsController.getInsertBalls().getBalls()) {
             this.addDecision(makeDecision(ball));
         }
