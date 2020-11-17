@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BallsControllerTest {
@@ -36,5 +37,17 @@ public class BallsControllerTest {
         assertThat(balls).hasSize(3);
 
     }
+
+    @Test
+    public void checkDuplication() {
+        // given
+        List<Integer> randomBalls = this.ballsController.setRandomBalls();
+
+        // when & then
+        int duplication = this.ballsController.checkDuplication(randomBalls.get(1));
+        assertThat(duplication).isEqualTo(0);
+
+    }
+
 
 }

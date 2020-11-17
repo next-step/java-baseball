@@ -2,10 +2,12 @@ package com.demo.baseball;
 
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class BallsController {
 
     private Balls randomBalls;
+    private Balls insertBalls;
     private final Random random = new Random();
 
     public BallsController() {
@@ -35,12 +37,23 @@ public class BallsController {
     public int makeRandomBall() {
         int number = 0;
 
-        while (true) {
-            number = this.random.nextInt(10);
-            if (number != 0 && !this.randomBalls.getBalls().contains(number)) {
-                return number;
-            }
+        while (number == 0) {
+            number = checkDuplication(this.random.nextInt(10));
         }
+
+        return number;
+    }
+
+    /**
+     *
+     * @param number
+     * @return number
+     */
+    public int checkDuplication(int number) {
+        if (number != 0 && !this.randomBalls.getBalls().contains(number)) {
+            return number;
+        }
+        return 0;
     }
 
 }
