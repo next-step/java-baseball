@@ -6,10 +6,11 @@ public class NumberComparator {
         if (NumberGenerator.checkRightData(inputSecond) == false) throw new IllegalArgumentException("올바른 데이터가 아닙니다.");
 
         // 볼 카운트 계산
-
+        int ballCount = calculateBallCount(inputFirst, inputSecond);
         // 스트라이크 카운트 계산
+        int strikeCount = calculateStrikeCount(inputFirst, inputSecond);
 
-        return new BaseballCompareResult();
+        return new BaseballCompareResult(ballCount, strikeCount);
     }
 
     public static int calculateBallCount(int inputFirst, int inputSecond) {
