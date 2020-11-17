@@ -13,7 +13,7 @@ public class UserInput extends UserOutput {
 	private static final Boolean INPUT_ERROR = false;
 
 	// 유저 입력 수
-	private Integer userResultInput;
+	protected Integer userResultInput;
 
 	/**
 	 * 유저 야구게임 3자리 입력 메서드
@@ -86,7 +86,7 @@ public class UserInput extends UserOutput {
 	 * @param inputNumber : 입력받은 문자열
 	 * @return : 숫자 입력 여부 확인
 	 */
-	private boolean isNumber(String inputNumber) {
+	protected boolean isNumber(String inputNumber) {
 
 		boolean result;
 
@@ -104,7 +104,7 @@ public class UserInput extends UserOutput {
 	 * 재시작 여부 입력 받은 값 체크 메서드
 	 * @return : 정상 게임 재시작 입력 여부 (1 or 2)
 	 */
-	private boolean validRestartNumber() {
+	protected boolean validRestartNumber() {
 
 		if (this.userResultInput.equals(BASEBALL_GAME_RESTART) ||
 			this.userResultInput.equals(BASEBALL_GAME_END)) {
@@ -119,7 +119,7 @@ public class UserInput extends UserOutput {
 	 * 야구 게임 3자리 입력 정상 여부 체크 메서드
 	 * @return : 정상 야구 게임 숫자 3자리 여부 (중복 되지 않은 3자리 수)
 	 */
-	private boolean validBassballNumber() {
+	protected boolean validBassballNumber() {
 
 		this.duplicateCheckSet = addBaseballSet();
 
