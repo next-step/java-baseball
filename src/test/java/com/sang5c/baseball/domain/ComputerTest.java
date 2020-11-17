@@ -7,9 +7,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ComputerTest {
 
-    @DisplayName("랜덤으로 Baseball 정상 생성")
+    @DisplayName("랜덤으로 Baseball 생성")
     @Test
-    public void randomNumbers() {
+    public void randomBaseball() {
         assertThat(Computer.randomBaseball()).isInstanceOf(Baseball.class);
     }
 

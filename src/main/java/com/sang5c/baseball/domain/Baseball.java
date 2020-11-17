@@ -3,13 +3,14 @@ package com.sang5c.baseball.domain;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 public class Baseball {
 
-    static final int BASEBALL_NUMBERS_LENGTH = 3;
-    private static final String ERROR_DUPLICATED = "숫자 중복 불가";
-    private static final String ERROR_LENGTH = "입력 길이가 3이 아님";
+    private static final String ERROR_DUPLICATED = "duplicated value: ";
+    private static final String ERROR_INPUT_SIZE = "check input str size: ";
+
+    static final int BASEBALL_NUMBER_LENGTH = 3;
 
     private final List<Number> numbers;
 
@@ -23,24 +24,11 @@ public class Baseball {
         checkSize(numbers);
     }
 
-    private void checkDuplicate(List<Number> numbers) {
-        HashSet<Number> numberSet = new HashSet<>(numbers);
-        if (numberSet.size() != numbers.size()) {
-            throw new IllegalArgumentException(ERROR_DUPLICATED);
-        }
-    }
-
-    private void checkSize(List<Number> numbers) {
-        if (numbers.size() != BASEBALL_NUMBERS_LENGTH) {
-            throw new IllegalArgumentException(ERROR_LENGTH);
-        }
-    }
-
     public static Baseball of(String str) {
         String[] split = str.split("");
         List<Number> numbers = new ArrayList<>();
-        for (String number : split) {
-            numbers.add(Number.of(number));
+        for (String s : split) {
+            numbers.add(Number.of(s));
         }
         return new Baseball(numbers);
     }
@@ -53,45 +41,45 @@ public class Baseball {
         return new Baseball(numbers);
     }
 
-    public BaseballCount compare(Baseball userBaseball) {
-        BaseballCount baseballCount = new BaseballCount();
-        for (int i = 0; i < numbers.size(); i++) {
-            baseballCount = countBall(userBaseball.numbers, baseballCount, i);
-            baseballCount = countStrike(userBaseball.numbers, baseballCount, i);
+    private void checkDuplicate(List<Number> numbers) {
+        Set<Number> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException(ERROR_DUPLICATED + numbers);
+        }
+    }
+
+    private void checkSize(List<Number> numbers) {
+        if (numbers.size() != 3) {
+            throw new IllegalArgumentException(ERROR_INPUT_SIZE + numbers.size());
+        }
+    }
+
+    public BaseballCount compare(Baseball target) {
+        BaseballCount baseballCount = BaseballCount.of(0, 0);
+        for (int i = 0; i < BASEBALL_NUMBER_LENGTH; i++) {
+            baseballCount = checkBallCount(baseballCount, target.numbers, i);
+            baseballCount = checkStrikeCount(baseballCount, target.numbers, i);
         }
         return baseballCount;
     }
 
-    private BaseballCount countStrike(List<Number> userNumbers, BaseballCount baseballCount, int i) {
-        if (numbers.get(i).equals(userNumbers.get(i))) {
+    private BaseballCount checkStrikeCount(BaseballCount baseballCount, List<Number> userNumbers, int index) {
+        if (numbers.get(index).equals(userNumbers.get(index))) {
             return baseballCount.increaseStrikeCount();
         }
         return baseballCount;
     }
 
-    private BaseballCount countBall(List<Number> userNumbers, BaseballCount baseballCount, int i) {
-        if (numbers.contains(userNumbers.get(i)) && !numbers.get(i).equals(userNumbers.get(i))) {
+    private BaseballCount checkBallCount(BaseballCount baseballCount, List<Number> userNumbers, int index) {
+        if (numbers.contains(userNumbers.get(index)) && !numbers.get(index).equals(userNumbers.get(index))) {
             return baseballCount.increaseBallCount();
         }
         return baseballCount;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Baseball baseball = (Baseball) o;
-        return Objects.equals(numbers, baseball.numbers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(numbers);
-    }
-
-    @Override
     public String toString() {
-        return "Numbers{" +
+        return "Baseball{" +
                 "numbers=" + numbers +
                 '}';
     }

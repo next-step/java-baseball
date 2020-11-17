@@ -7,12 +7,12 @@ import java.util.List;
 public class Computer {
 
     public static Baseball randomBaseball() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = Number.MIN_NUMBER; i <= Number.MAX_NUMBER; i++) {
-            numbers.add(i);
+        List<Integer> list = new ArrayList<>();
+        for (int i = Number.MIN_NUMBER; i < Number.MAX_NUMBER; i++) {
+            list.add(i);
         }
-        Collections.shuffle(numbers);
-        return Baseball.of(numbers.subList(0, Baseball.BASEBALL_NUMBERS_LENGTH));
+        Collections.shuffle(list);
+        return Baseball.of(list.subList(0, Baseball.BASEBALL_NUMBER_LENGTH));
     }
 
 }

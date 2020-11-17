@@ -1,52 +1,65 @@
 package com.sang5c.baseball.domain;
 
 public class BaseballCount {
+    private static final String ERROR_COUNT_SUM = "count 합계 범위는 0 ~ 3";
 
     private static final int ZERO_COUNT = 0;
+    private static final int MIN_COUNT = 0;
+    private static final int MAX_COUNT = 3;
     private static final int THREE_STRIKE = 3;
 
-    private final int strikeCount;
     private final int ballCount;
+    private final int strikeCount;
 
-    public BaseballCount() {
-        this.strikeCount = ZERO_COUNT;
-        this.ballCount = ZERO_COUNT;
-    }
-
-    public BaseballCount(int strikeCount, int ballCount) {
-        this.strikeCount = strikeCount;
+    private BaseballCount(int ballCount, int strikeCount) {
         this.ballCount = ballCount;
+        this.strikeCount = strikeCount;
     }
 
-    public BaseballCount increaseStrikeCount() {
-        return new BaseballCount(strikeCount + 1, ballCount);
+    public static BaseballCount of(int ballCount, int strikeCount) {
+        if (invalidCountSum(ballCount, strikeCount)) {
+            throw new IllegalArgumentException(ERROR_COUNT_SUM);
+        }
+        return new BaseballCount(ballCount, strikeCount);
     }
 
-    public BaseballCount increaseBallCount() {
-        return new BaseballCount(strikeCount, ballCount + 1);
+    private static boolean invalidCountSum(int ballCount, int strikeCount) {
+        return invalidRange(ballCount + strikeCount) || invalidRange(ballCount) || invalidRange(strikeCount);
     }
 
-    public int getStrikeCount() {
-        return strikeCount;
-    }
-
-    public int getBallCount() {
-        return ballCount;
-    }
-
-    public boolean isThreeStrike() {
-        return strikeCount == THREE_STRIKE;
+    private static boolean invalidRange(int count) {
+        return count < MIN_COUNT || count > MAX_COUNT;
     }
 
     public boolean isNothing() {
         return ballCount == ZERO_COUNT && strikeCount == ZERO_COUNT;
     }
 
+    public BaseballCount increaseBallCount() {
+        return new BaseballCount(ballCount + 1, strikeCount);
+    }
+
+    public int getBallCount() {
+        return ballCount;
+    }
+
+    public BaseballCount increaseStrikeCount() {
+        return new BaseballCount(ballCount, strikeCount + 1);
+    }
+
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
+    public boolean isThreeStrike() {
+        return strikeCount == THREE_STRIKE;
+    }
+
     @Override
     public String toString() {
-        return "Count{" +
-                "strikeCount=" + strikeCount +
-                ", ballCount=" + ballCount +
+        return "BaseballCount{" +
+                "ballCount=" + ballCount +
+                ", strikeCount=" + strikeCount +
                 '}';
     }
 

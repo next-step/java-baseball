@@ -6,10 +6,11 @@ import java.util.Objects;
 
 public class Number {
 
+    private static final String ERROR_EMPTY_STRING = "number null or empty";
+    private static final String ERROR_OUT_OF_RANGE = "out of range: ";
+
     static final int MIN_NUMBER = 1;
     static final int MAX_NUMBER = 9;
-    private static final String ERROR_OUT_OF_RANGE = "범위를 벗어남(1 ~ 9), 입력: ";
-    private static final String ERROR_EMPTY_STRING = "빈 문자열로 생성 불가능";
 
     private final int number;
 
@@ -26,15 +27,15 @@ public class Number {
         this.number = number;
     }
 
-    private static void validate(int number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE + number);
-        }
-    }
-
     public static Number of(String number) {
         checkNullOrEmpty(number);
         return of(Integer.parseInt(number));
+    }
+
+    private static void checkNullOrEmpty(String number) {
+        if (Objects.isNull(number) || number.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_EMPTY_STRING);
+        }
     }
 
     public static Number of(int number) {
@@ -42,9 +43,9 @@ public class Number {
         return cache.get(number);
     }
 
-    private static void checkNullOrEmpty(String str) {
-        if (Objects.isNull(str) || str.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_EMPTY_STRING);
+    private static void validate(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE + number);
         }
     }
 

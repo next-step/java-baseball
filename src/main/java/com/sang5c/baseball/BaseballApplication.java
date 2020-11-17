@@ -6,7 +6,7 @@ import com.sang5c.baseball.domain.Computer;
 import com.sang5c.baseball.ui.InputView;
 import com.sang5c.baseball.ui.ResultView;
 
-public class NumericalBaseball {
+public class BaseballApplication {
     private static final String EXIT = "exit";
 
     public static void main(String[] args) {
