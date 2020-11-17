@@ -14,6 +14,10 @@ public class NumberBaseballGame {
 		scanner = new Scanner(System.in);
 	}
 
+	public NumberBaseballGame(int firstValue, int secondValue, int thirdValue) {
+		answer = new Answer(firstValue, secondValue, thirdValue);
+	}
+
 	public int[] writeInputDate() {
 		String scData = "";
 

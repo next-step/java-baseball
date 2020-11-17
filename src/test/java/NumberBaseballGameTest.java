@@ -14,8 +14,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountAnswer = new BallCount();
 		ballCountAnswer.setStrike(3);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		int[] inputData = {1, 2, 3};
 		ballCountSum = game.judgeBallCount(inputData);
@@ -33,8 +32,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountAnswer = new BallCount();
 		ballCountAnswer.setStrike(2);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		// case 1
 		int[] inputData1 = {1, 2, 9};
@@ -67,8 +65,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountAnswer = new BallCount();
 		ballCountAnswer.setStrike(1);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		// case 1
 		int[] inputData1 = {1, 8, 9};
@@ -102,8 +99,7 @@ class NumberBaseballGameTest {
 		ballCountAnswer.setStrike(1);
 		ballCountAnswer.setBall(2);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		// case 1
 		int[] inputData1 = {1, 3, 2};
@@ -140,8 +136,7 @@ class NumberBaseballGameTest {
 		ballCountAnswer.setStrike(1);
 		ballCountAnswer.setBall(1);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		// case 1
 		int[] inputData1 = {1, 3, 9};
@@ -193,8 +188,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountAnswer = new BallCount();
 		ballCountAnswer.setBall(3);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		int[] inputData1 = {2, 3, 1};
 		ballCountSum = game.judgeBallCount(inputData1);
@@ -212,8 +206,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountAnswer = new BallCount();
 		ballCountAnswer.setBall(2);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		// case 1
 		int[] inputData1 = {2, 3, 9};
@@ -246,8 +239,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountAnswer = new BallCount();
 		ballCountAnswer.setBall(1);
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		// case 1
 		int[] inputData1 = {8, 3, 9};
@@ -276,8 +268,7 @@ class NumberBaseballGameTest {
 		BallCount ballCountSum = new BallCount();
 		BallCount ballCountAnswer = new BallCount();
 
-		NumberBaseballGame game = new NumberBaseballGame();
-		game.setAnswer(1, 2, 3);
+		NumberBaseballGame game = new NumberBaseballGame(1, 2, 3);
 
 		int[] inputData = {4, 5, 6};
 		ballCountSum = game.judgeBallCount(inputData);
