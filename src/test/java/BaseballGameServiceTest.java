@@ -32,6 +32,7 @@ class BaseballGameServiceTest {
 		assertEquals(3, hint.getStrike());
 		assertTrue(hint.is3Strike());
 		assertFalse(hint.isNothing());
+		assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임종료", hint.getMessage());
 	}
 
 	@DisplayName("2 스트라이크: 2개의 숫자가 위치와 값이 같은 경우")
@@ -43,6 +44,7 @@ class BaseballGameServiceTest {
 		assertEquals(0, hint.getBall());
 		assertFalse(hint.is3Strike());
 		assertFalse(hint.isNothing());
+		assertEquals("2 스트라이크 ", hint.getMessage());
 	}
 
 	@DisplayName("1 스트라이크 2볼: 1개의 숫자가 위치와 값이 같고, 2개의 숫자가 위치는 다르고 값은 같은 경우")
@@ -54,6 +56,7 @@ class BaseballGameServiceTest {
 		assertEquals(2, hint.getBall());
 		assertFalse(hint.is3Strike());
 		assertFalse(hint.isNothing());
+		assertEquals("1 스트라이크 2 볼", hint.getMessage());
 	}
 
 	@DisplayName("3 볼: 3개의 숫자가 위치는 다르고 값은 같은 경우")
@@ -65,6 +68,7 @@ class BaseballGameServiceTest {
 		assertEquals(0, hint.getStrike());
 		assertFalse(hint.is3Strike());
 		assertFalse(hint.isNothing());
+		assertEquals("3 볼", hint.getMessage());
 	}
 
 	@DisplayName("낫싱: 0개의 숫자가 위치도 다르고 값도 다른 경우")
@@ -76,6 +80,7 @@ class BaseballGameServiceTest {
 		assertEquals(0, hint.getBall());
 		assertFalse(hint.is3Strike());
 		assertTrue(hint.isNothing());
+		assertEquals("낫싱", hint.getMessage());
 	}
 
 

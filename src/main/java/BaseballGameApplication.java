@@ -14,6 +14,8 @@ public class BaseballGameApplication {
 		boolean hit = false;
 		while (!hit) {
 			String guess = guess();
+			Hint hint = baseballGameService.getHint(answer, guess);
+			System.out.println(hint.getMessage());
 			hit = false;
 		}
 	}
@@ -22,5 +24,5 @@ public class BaseballGameApplication {
 		System.out.print("숫자를 입력해 주세요 : ");
 		return scanner.nextLine();
 	}
-	
+
 }
