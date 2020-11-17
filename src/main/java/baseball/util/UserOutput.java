@@ -46,7 +46,7 @@ public class UserOutput extends BaseballConstant {
 		messagePrint(PRINT_USER_INPUT_NUMBER);
 	}
 
-	public void printGameEnd() {
+	public static void printGameEnd() {
 
 		messagePrint(PRINT_USER_GAME_END + PRINT_NEXT_LINE);
 	}
