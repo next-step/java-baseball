@@ -47,6 +47,11 @@ public class BaseballJudgeImpl implements BaseballJudge {
         List<String> judgementList = new ArrayList<>();
         createCountMessage(strikeCount, "스트라이크").ifPresent(judgementList::add);
         createCountMessage(ballCount, "볼").ifPresent(judgementList::add);
+
+        if (judgementList.size() == 0) {
+            return "낫싱";
+        }
+
         return String.join(" ", judgementList);
     }
 

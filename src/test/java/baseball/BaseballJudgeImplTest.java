@@ -66,12 +66,14 @@ class BaseballJudgeImplTest {
         String strike1Ball1 = baseballJudge.createJudgementMessage(1, 1, digits);
         String strike2Ball0 = baseballJudge.createJudgementMessage(2, 0, digits);
         String strike0Ball2 = baseballJudge.createJudgementMessage(0, 2, digits);
+        String nothing = baseballJudge.createJudgementMessage(0, 0, digits);
         String right = baseballJudge.createJudgementMessage(3, 0, digits);
 
         // then
         assertThat(strike1Ball1).isEqualTo("1스트라이크 1볼");
         assertThat(strike2Ball0).isEqualTo("2스트라이크");
         assertThat(strike0Ball2).isEqualTo("2볼");
+        assertThat(nothing).isEqualTo("낫싱");
         assertThat(right).isEqualTo(String.format("%s개의 숫자를 모두 맞히셨습니다! 게임 종료", digits));
     }
 }
