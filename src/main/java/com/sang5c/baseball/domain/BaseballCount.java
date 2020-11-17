@@ -1,6 +1,8 @@
 package com.sang5c.baseball.domain;
 
 public class BaseballCount {
+    
+    private static final int ZERO_COUNT = 0;
     private static final int MIN_COUNT = 0;
     private static final int MAX_COUNT = 3;
     private static final int THREE_STRIKE = 3;
@@ -29,7 +31,7 @@ public class BaseballCount {
     }
 
     public boolean isNothing() {
-        return ballCount == 0 && strikeCount == 0;
+        return ballCount == ZERO_COUNT && strikeCount == ZERO_COUNT;
     }
 
     public BaseballCount increaseBallCount() {
