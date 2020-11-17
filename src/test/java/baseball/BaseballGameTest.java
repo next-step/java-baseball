@@ -1,3 +1,5 @@
+package baseball;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +37,6 @@ public class BaseballGameTest {
         baseballGame.setInputNumbers(inputNumberString);
         baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getStrike().getCount()).isEqualTo(3);
-        baseballGame.printHint();
     }
 
     @Test
@@ -47,7 +48,6 @@ public class BaseballGameTest {
         baseballGame.setInputNumbers(inputNumberString);
         baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getBall().getCount()).isEqualTo(3);
-        baseballGame.printHint();
     }
 
     @Test
@@ -60,7 +60,6 @@ public class BaseballGameTest {
         baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getStrike().getCount()).isEqualTo(1);
         assertThat(baseballGame.getHint().getBall().getCount()).isEqualTo(2);
-        baseballGame.printHint();
     }
 
     @Test
@@ -72,7 +71,6 @@ public class BaseballGameTest {
         baseballGame.setInputNumbers(inputNumberString);
         baseballGame.calculateHint();
         assertThat(baseballGame.getHint().getNothing().getCount()).isEqualTo(1);
-        baseballGame.printHint();
     }
 
 }
