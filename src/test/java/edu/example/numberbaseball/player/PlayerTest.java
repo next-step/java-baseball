@@ -30,4 +30,13 @@ class PlayerTest {
         assertEquals(VALID_BALL_SIZE_FOR_INNING, ballNumberListSize);
     }
 
+    @DisplayName("`Player`가 생성되면, 상태는 INACTIVE에서 ACTIVE로 변경된다.")
+    @Test
+    void checkActivePlayer() {
+        List<Ball> inputBallList = new ArrayList<>(Arrays.asList(new Ball(ONE), new Ball(TWO), new Ball(THREE)));
+        Inning inputInning = new Inning(inputBallList);
+        Player player = new Player(inputInning);
+
+        assertEquals(PlayerStatus.ACTIVE, player.getStatus());
+    }
 }
