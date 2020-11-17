@@ -3,9 +3,11 @@ package baseball;
 public class GameResults {
 
     private int strike;
+    private int ball;
 
     public GameResults() {
         this.strike = 0;
+        this.ball = 0;
     }
 
     public void increaseStrike() {
@@ -17,11 +19,25 @@ public class GameResults {
         if (strike > 0) {
             return String.format("%d 스트라이크", strike);
         }
-
         return "";
     }
 
     public int getStrike() {
         return strike;
+    }
+
+    public void increaseBall() {
+        ball++;
+    }
+
+    private String getBallResults() {
+        if (ball > 0) {
+            return String.format("%d 스트라이크", ball);
+        }
+        return "";
+    }
+
+    public int getBall() {
+        return ball;
     }
 }

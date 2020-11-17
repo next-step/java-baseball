@@ -3,7 +3,7 @@ package baseball;
 public class Opponent {
 
     private String value;
-    private GameResults gameResults;
+    private final GameResults gameResults;
 
     public Opponent() {
         value = "";
@@ -31,16 +31,17 @@ public class Opponent {
 
     public void judgeGame(String playerValue) {
         judgeStrike(playerValue);
+        judgeBall(playerValue);
 
     }
 
     private void judgeStrike(String playerValue) {
         for (int i = 0; i < playerValue.length(); i++) {
-            compareChar(playerValue.charAt(i), value.charAt(i));
+            checkStrike(playerValue.charAt(i), value.charAt(i));
         }
     }
 
-    private void compareChar(char playerValue, char value) {
+    private void checkStrike(char playerValue, char value) {
         if (playerValue == value) {
             gameResults.increaseStrike();
         }
@@ -48,5 +49,27 @@ public class Opponent {
 
     public int getStrikeCnt() {
         return gameResults.getStrike();
+    }
+
+    private void judgeBall(String playerValue) {
+        for (int i = 0; i < playerValue.length(); i++) {
+            hasBall(i, playerValue.charAt(i));
+        }
+    }
+
+    private void hasBall(int i, char charAt) {
+        for (int j = 0; j < 3; j++) {
+            if (j == i) {
+                continue;
+            }
+            if (charAt == value.charAt(j)) {
+                gameResults.increaseBall();
+            }
+
+        }
+    }
+
+    public int getBallCnt() {
+        return gameResults.getBall();
     }
 }

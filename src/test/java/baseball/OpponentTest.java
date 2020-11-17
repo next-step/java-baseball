@@ -85,4 +85,53 @@ class OpponentTest {
         Assertions.assertEquals(opponent.getStrikeCnt(), 0);
     }
 
+    @Test
+    void judge_ball_value_three_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("312");
+
+        //Then
+        Assertions.assertEquals(opponent.getBallCnt(), 3);
+
+    }
+
+    @Test
+    void judge_ball_value_two_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("321");
+
+        //Then
+        Assertions.assertEquals(opponent.getBallCnt(), 2);
+    }
+
+    @Test
+    void judge_ball_value_one_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("324");
+
+        //Then
+        Assertions.assertEquals(opponent.getBallCnt(), 1);
+    }
+
+    @Test
+    void judge_ball_value_zero_correct() {
+        //Given
+        Opponent opponent = new Opponent("123");
+
+        //When
+        opponent.judgeGame("678");
+
+        //Then
+        Assertions.assertEquals(opponent.getBallCnt(), 0);
+    }
+
 }
