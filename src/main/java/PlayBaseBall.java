@@ -16,26 +16,30 @@ public class PlayBaseBall {
 	public static void main(String[] args) {
 		int number = getRandomNumber();
 		PlayBaseBall playBaseBall = new PlayBaseBall();
+		String computerNumber = playBaseBall.getThreeDifferentNumber(number, "");
 		Scanner scan = new Scanner(System.in);
+			while (true) {
+				System.out.println("숫자를 입력해주세요 : ");
+				String inputValue = scan.nextLine();
 
-			System.out.println("숫자를 입력해주세요 : ");
-			String inputValue = scan.nextLine();
+				String message = playBaseBall.verifyInputValue(inputValue);
 
-			String message = playBaseBall.verifyInputValue(inputValue);
-
-			if(!message.isEmpty()) {
-				System.out.println(message);
+				if (!message.isEmpty()) {
+					System.out.println(message);
+				}
+				if (message.isEmpty()) {
+					playBaseBall.process(inputValue, computerNumber);
+				}
+				if (playBaseBall.getStrike() == 3) {
+					playBaseBall.getFinishiMessage();
+					int select = scan.nextInt();
+					if(select != 1) {
+						playBaseBall.finishiProcess();
+					}
+					computerNumber =  playBaseBall.getThreeDifferentNumber(number, "");
+				}
+				playBaseBall.initNumber();
 			}
-
-			String computerNumber = "";
-			if (message.isEmpty()) {
-				computerNumber = playBaseBall.getThreeDifferentNumber(number, "");
-				System.out.println("computerNumber" + computerNumber);
-				playBaseBall.process(inputValue, computerNumber);
-				String resultMessage = playBaseBall.getResultMessage();
-				System.out.println(resultMessage);
-			}
-
 
 	}
 
@@ -69,10 +73,18 @@ public class PlayBaseBall {
 		if (value.isEmpty()) {
 			message = "숫자를 입력해 주세요.";
 		}
-		message = validationValueLength(value);
-		message = validationValueIsNumber(value);
-		message = validationValueIsZero(value);
-		message = validationValueIsDuplication(value);
+		if (message.isEmpty()) {
+			message = validationValueLength(value);
+		}
+		if (message.isEmpty()) {
+			message = validationValueIsNumber(value);
+		}
+		if (message.isEmpty()) {
+			message = validationValueIsZero(value);
+		}
+		if (message.isEmpty()) {
+			message = validationValueIsDuplication(value);
+		}
 		return message;
 	}
 
@@ -138,6 +150,7 @@ public class PlayBaseBall {
 			int userNo = userIterator.next();
 			checkedProcess(computerNo, userNo, userIntegerList);
 		}
+		resultMessage();
 	}
 
 	public void checkedProcess(int computerNumber, int userNumber, ArrayList<Integer> userIntegerList) {
@@ -159,7 +172,7 @@ public class PlayBaseBall {
 		}
 	}
 
-	public String getResultMessage() {
+	public void resultMessage() {
 		String message = "";
 		if (strike > 0 ) {
 			message = strike + " 스트라이크 ";
@@ -170,7 +183,35 @@ public class PlayBaseBall {
 		if (nothing == 3 ) {
 			message = "낫싱";
 		}
-		return message;
+		System.out.println(message);
+	}
+
+	public void getFinishiMessage() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		initNumber();
+	}
+
+	public void finishiProcess() {
+		System.exit(0);
+	}
+
+	public int getStrike() {
+		return this.strike;
+	}
+
+	public int getBall() {
+		return this.ball;
+	}
+
+	public int getNothing() {
+		return this.nothing;
+	}
+
+	public void initNumber() {
+		this.strike = 0;
+		this.ball = 0;
+		this.nothing = 0;
 	}
 
 
