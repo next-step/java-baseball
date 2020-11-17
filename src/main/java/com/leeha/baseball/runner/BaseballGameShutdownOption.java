@@ -1,6 +1,6 @@
 package com.leeha.baseball.runner;
 
-public enum GameOperator {
+public enum BaseballGameShutdownOption {
 
     START("1", "게임 시작"),
     END("2", "게임 종료");
@@ -8,7 +8,7 @@ public enum GameOperator {
     private final String code;
     private final String description;
 
-    GameOperator(String code, String description) {
+    BaseballGameShutdownOption(String code, String description) {
         this.code = code;
         this.description = description;
     }
@@ -17,8 +17,8 @@ public enum GameOperator {
         return code;
     }
 
-    public static GameOperator toGameOperator(String code) {
-        for (GameOperator operator : values()) {
+    public static BaseballGameShutdownOption toOption(String code) {
+        for (BaseballGameShutdownOption operator : values()) {
             if (operator.getCode().equalsIgnoreCase(code)) {
                 return operator;
             }

@@ -27,11 +27,13 @@ public class BaseballGameRunner {
     }
 
     private boolean end(Scanner scanner) {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        String answer = scanner.next();
+        BaseballGameShutdownOption operator;
 
-        // TODO 예외 처리
+        do {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            operator = BaseballGameShutdownOption.toOption(scanner.next());
+        } while (Objects.isNull(operator));
 
-        return Objects.equals(GameOperator.toGameOperator(answer), GameOperator.END);
+        return Objects.equals(operator, BaseballGameShutdownOption.END);
     }
 }
