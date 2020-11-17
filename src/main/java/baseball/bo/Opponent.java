@@ -1,5 +1,7 @@
 package baseball.bo;
 
+import baseball.constant.AppConstant;
+
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
@@ -22,7 +24,7 @@ public class Opponent {
         Set<Integer> numberSet = new LinkedHashSet<>();
         Random random = new Random();
         
-        while (numberSet.size()<3) {
+        while (numberSet.size() < AppConstant.STRIKE_NUMBER) {
             int i = random.nextInt(9) + 1;
             numberSet.add(i);
         }
@@ -57,8 +59,8 @@ public class Opponent {
     }
 
     public String getMessage() {
-        if (strike==3) {
-            return "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+        if (strike==AppConstant.STRIKE_NUMBER) {
+            return AppConstant.STRIKE_NUMBER + "개의 숫자를 모두 맞히셨습니다! 게임 종료";
         }
         if (strike==0 && ball==0) {
             return "낫싱";
@@ -71,7 +73,7 @@ public class Opponent {
     }
 
     public boolean isLose() {
-        return strike == 3;
+        return strike == AppConstant.STRIKE_NUMBER;
     }
 
     public String getStrikeNumber() {

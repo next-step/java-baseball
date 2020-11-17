@@ -1,5 +1,7 @@
 package baseball.bo;
 
+import baseball.constant.AppConstant;
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -26,7 +28,7 @@ public class Player {
 
     /**
      * 입력숫자 검증
-     *  - 3자리 입력여부
+     *  - STRIKE number 자리수 입력여부
      *  - 숫자 입력여부
      *  - 숫자 0 입력여부
      *  - 중복문자 입력여부
@@ -38,8 +40,8 @@ public class Player {
     }
 
     private boolean isLengthCorrect(String strikeNumber) {
-        if (strikeNumber==null || strikeNumber.length()!=3) {
-            System.out.println("3자리의 숫자를 입력해 주세요.");
+        if (strikeNumber==null || strikeNumber.length()!= AppConstant.STRIKE_NUMBER) {
+            System.out.println(AppConstant.STRIKE_NUMBER + "자리의 숫자를 입력해 주세요.");
             return false;
         }
         return true;
