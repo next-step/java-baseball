@@ -36,9 +36,8 @@ public class BaseballInputConsole implements BaseballInput {
 
 	private boolean isValidGuessNumber(String rawInput) {
 		if (!checkGuessNumberLength(rawInput)
-				|| !Character.isDigit(rawInput.charAt(0))
-				|| !Character.isDigit(rawInput.charAt(1))
-				|| !Character.isDigit(rawInput.charAt(2))
+				|| !checkGuessNumberNumeric(rawInput)
+				|| !checkGuessNumberDuplicate(rawInput)
 		) {
 			System.out.println(GUESS_NUMBER_ERROR_MESSAGE);
 			return false;
@@ -48,6 +47,18 @@ public class BaseballInputConsole implements BaseballInput {
 
 	private boolean checkGuessNumberLength(String rawInput) {
 		return rawInput.length() == NUMBER_OF_GUESS_NUMBER;
+	}
+
+	private boolean checkGuessNumberNumeric(String rawInput) {
+		return Character.isDigit(rawInput.charAt(0))
+				&& Character.isDigit(rawInput.charAt(1))
+				&& Character.isDigit(rawInput.charAt(2));
+	}
+
+	private boolean checkGuessNumberDuplicate(String rawInput) {
+		return rawInput.charAt(0) != rawInput.charAt(1)
+				&& rawInput.charAt(0) != rawInput.charAt(2)
+				&& rawInput.charAt(1) != rawInput.charAt(2);
 	}
 
 	private GuessNumberRequest convertToGuessNumberRequest(String rawInput) {

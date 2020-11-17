@@ -61,6 +61,20 @@ class BaseballInputConsoleTest {
 		}
 	}
 
+	@Test
+	void isValidGuessNumberTestFailDuplicateNumber() throws NoSuchMethodException {
+		BaseballInputConsole testClass = new BaseballInputConsole();
+		Method method = getIsValidGuessNumberMethod(testClass);
+
+		String testInput = "121";
+
+		try {
+			assertFalse((Boolean) method.invoke(testClass, testInput));
+		} catch (Exception e) {
+			assert(false);
+		}
+	}
+
 	private Method getConvertToGuessNumberRequestMethod(BaseballInputConsole testClass) throws NoSuchMethodException {
 		Method method = testClass.getClass().getDeclaredMethod("convertToGuessNumberRequest", String.class);
 		method.setAccessible(true);
