@@ -2,6 +2,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BaseballGame {
+    String com = "";
+    String user = "";
     int strike = 0;
     int ball = 0;
     static char menu = ' ';
@@ -20,9 +22,8 @@ public class BaseballGame {
     }
 
     public void playGame() {
-        String com = getNum();
-        System.out.println("computer number : " + com);
-        String user = "";
+        com = getNum();
+        user = "";
         do {
             Scanner in = new Scanner(System.in);
             System.out.print("input user number : ");
@@ -44,11 +45,12 @@ public class BaseballGame {
     }
 
     private void inspectResult(int strike, int ball) {
-        if (strike != 0) System.out.println(strike + " strike ");
-        if (ball != 0) System.out.println(ball + " ball ");
-        if (strike == 0 && ball == 0) System.out.println("Nothing!");
+        if (strike != 0) System.out.print(strike + " strike ");
+        if (ball != 0) System.out.print(ball + " ball ");
+        if (strike == 0 && ball == 0) System.out.print("Nothing!");
         this.strike = 0;
         this.ball = 0;
+        System.out.println();
     }
 
     private static void selectMenu() {
@@ -60,10 +62,11 @@ public class BaseballGame {
     }
 
     public static void main(String[] args) {
-        BaseballGame bg = new BaseballGame();
+        BaseballGame game = new BaseballGame();
         do {
-            bg.playGame();
-            System.out.print("메뉴<다시시작(1) | 완전히 종료(2)>를 선택하세요 : ");
+            game.playGame();
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+            System.out.println("메뉴<다시시작(1) | 완전히 종료(2)>를 선택하세요 : ");
             selectMenu();
             if (menu == '2') break;
         } while (menu == '1');
