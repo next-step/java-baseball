@@ -7,6 +7,7 @@ public class CommonUtils {
     public static final int START_NUMBER = 1;
     public static final int END_NUMBER = 9;
     public static final int ANSWER_SIZE = 3;
+    public static final int CORRECT_ANSWER_SIZE = 3;
 
     public static final boolean CANDIDATE_IS_USED = true;
     public static final boolean CANDIDATE_IS_NOT_USED = false;
@@ -20,9 +21,9 @@ public class CommonUtils {
     public static final String INPUT_MESSAGE_ANSWER = "" + ANSWER_SIZE + "자리 숫자를 입력해주세요: ";
     public static final String INPUT_MESSAGE_RESTART = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요: ";
 
+    private static Scanner scanner = new Scanner(System.in);
 
     public static String input(String printMessage, String inputRegExp) {
-        Scanner scanner = new Scanner(System.in);
         String input = null;
         boolean isNotComplete = true;
         while (isNotComplete) {
@@ -30,7 +31,6 @@ public class CommonUtils {
             input = scanner.next();
             isNotComplete = input.matches(inputRegExp) ? false : true;
         }
-        scanner.close();
         return input;
     }
 
