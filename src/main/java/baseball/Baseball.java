@@ -14,6 +14,6 @@ public class Baseball {
         opponent.selectValue();
         player.inputValue();
         opponent.judgeGame(player.getValue());
-
+        opponent.printGameResult();
     }
 }

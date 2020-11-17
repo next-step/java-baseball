@@ -19,7 +19,7 @@ public class GameResults {
 
     private String getStrikeResults() {
         if (strike > 0) {
-            return String.format("%d 스트라이크", strike);
+            return String.format("%d 스트라이크 ", strike);
         }
         return "";
     }
@@ -34,7 +34,7 @@ public class GameResults {
 
     private String getBallResults() {
         if (ball > 0) {
-            return String.format("%d 스트라이크", ball);
+            return String.format("%d 볼", ball);
         }
         return "";
     }
@@ -49,5 +49,9 @@ public class GameResults {
 
     public int getNothing() {
         return nothing;
+    }
+
+    public String getGameResult() {
+        return getStrikeResults() + getBallResults();
     }
 }

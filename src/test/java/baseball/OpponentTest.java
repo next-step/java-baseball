@@ -43,6 +43,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("123");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getStrikeCnt(), 3);
@@ -56,6 +57,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("124");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getStrikeCnt(), 2);
@@ -68,6 +70,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("154");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getStrikeCnt(), 1);
@@ -80,6 +83,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("254");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getStrikeCnt(), 0);
@@ -92,6 +96,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("312");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 3);
@@ -105,6 +110,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("321");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 2);
@@ -117,6 +123,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("324");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 1);
@@ -129,6 +136,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("678");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 0);
@@ -141,6 +149,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("678");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 0);
@@ -156,6 +165,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("673");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 0);
@@ -170,6 +180,7 @@ class OpponentTest {
 
         //When
         opponent.judgeGame("273");
+        opponent.printGameResult();
 
         //Then
         Assertions.assertEquals(opponent.getBallCnt(), 1);

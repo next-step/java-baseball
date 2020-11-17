@@ -79,4 +79,9 @@ public class Opponent {
     public int getNothingCnt() {
         return gameResults.getNothing();
     }
+
+    public void printGameResult() {
+        String gameResult = gameResults.getGameResult();
+        System.out.println(gameResult);
+    }
 }
