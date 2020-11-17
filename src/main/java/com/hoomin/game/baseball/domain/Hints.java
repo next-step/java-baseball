@@ -28,27 +28,54 @@ public class Hints {
 		return getCountByHintState(HintState.BALL);
 	}
 
-	private Integer getCountByHintState(HintState hintState) {
+	private Integer getCountByHintState(HintState anotherHintState) {
 		Integer count = 0;
 		for (HintState item : hintStateList) {
-			if (item.equals(hintState)) {
-				count++;
-			}
+			count = increaseCountIfEquals(anotherHintState, item, count);
 		}
 		return count;
 	}
 
+	private Integer increaseCountIfEquals(HintState anotherHintState, HintState  hintState, Integer count) {
+		if (hintState.equals(anotherHintState)) {
+			count++;
+		}
+		return count;
+	}
+
+	/**
+	 * 10줄 넘어가는데 단일책임원칙은 만족하는거 같은데..
+	 * final Integer strikeCount = getStrikeCount();
+	 * final Integer ballCount = getBallCount();
+	 * if (strikeCount > 0 && ballCount > 0) {
+	 * 	return strikeCount + " 스트라이크 " + ballCount + " 볼";
+	 *           }
+	 * if (strikeCount > 0) {
+	 * 	return strikeCount + " 스트라이크";
+	 *   }
+	 * if (ballCount > 0) {
+	 * 	return ballCount + " 볼";
+	 *   }
+	 * return "낫싱";
+	 *
+	 *
+	 */
 	@Override
 	public String toString() {
-		if (getStrikeCount() > 0 && getBallCount() > 0) {
-			return getStrikeCount() + " 스트라이크 " + getBallCount() + " 볼";
+		final Integer strikeCount = getStrikeCount();
+		final Integer ballCount = getBallCount();
+		if (strikeCount.equals(0) && ballCount.equals(0)) {
+			return "낫싱";
 		}
-		if (getStrikeCount() > 0) {
-			return getStrikeCount() + " 스트라이크";
+		StringBuilder builder = new StringBuilder();
+		getStrikeAndBallMessage(builder, strikeCount, " 스트라이크 ");
+		getStrikeAndBallMessage(builder, ballCount, " 볼");
+		return builder.toString().trim();
+	}
+
+	private void getStrikeAndBallMessage(StringBuilder builder, Integer count, String message) {
+		if (count > 0) {
+			builder.append(count).append(message);
 		}
-		if (getBallCount() > 0) {
-			return getBallCount() + " 볼";
-		}
-		return "낫싱";
 	}
 }
