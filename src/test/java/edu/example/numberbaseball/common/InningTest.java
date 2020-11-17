@@ -1,5 +1,6 @@
 package edu.example.numberbaseball.common;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,15 +17,20 @@ class InningTest {
     private static final int THREE = 3;
     private static final int VALID_BALL_SIZE_FOR_INNING = 3;
 
-    @DisplayName("`Inning`은 서로 다른 숫자를 가진 3개 `Ball`을 가진다.")
-    @Test
-    void createValidInning() {
+    private Inning inning;
+
+    @BeforeEach
+    void setup() {
         List<Ball> ballList = new ArrayList<>(VALID_BALL_SIZE_FOR_INNING);
         ballList.add(new Ball(ONE));
         ballList.add(new Ball(TWO));
         ballList.add(new Ball(THREE));
-        Inning inning = new Inning(ballList);
+        inning = new Inning(ballList);
+    }
 
+    @DisplayName("`Inning`은 서로 다른 숫자를 가진 3개 `Ball`을 가진다.")
+    @Test
+    void createValidInning() {
         List<Integer> ballNumberList = inning.getBallNumberList();
         int ballNumberListSize = ballNumberList.size();
 
