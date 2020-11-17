@@ -12,7 +12,7 @@ public class Referee {
     private int ballCount;
 
     public Referee(int[] digits){
-        this.key = Integer.parseInt(Arrays.toString(digits).replaceAll("[^0-9]",""));;
+        this.key = Integer.parseInt(Arrays.toString(digits).replaceAll("[^0-9]",""));
         strikeCount = 0;
         ballCount = 0;
     }
