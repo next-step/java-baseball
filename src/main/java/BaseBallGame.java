@@ -1,10 +1,11 @@
-import util.BaseBallGameUtil;
 import util.GeneratorRandomNumbers;
-import util.Validator;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-import static common.Constant.TEXT_INPUT;
+import static common.Constant.TEXT_GAME_END;
+import static common.Constant.TEXT_GAME_RESTART;
+import static util.BaseBallGameUtil.playGame;
 
 
 public class BaseBallGame {
@@ -12,69 +13,36 @@ public class BaseBallGame {
 
     public static void main(String args[]) {
 
-            run();
+        run();
 
     }
 
-
-    private static void run(){
+    // 실행 메서드
+    public static void run() {
 
         boolean isContinue = true;
 
-        BaseBallGameUtil baseBallGameUtil = new BaseBallGameUtil();
-
-        // 컴퓨터 랜덤값
-        int[] computerNumbers = GeneratorRandomNumbers.generatorNumbers();
-
-        System.out.println(Arrays.toString(computerNumbers));
-
-        while(isContinue){
-
-            int[] userNumbers = userInput();
-
-            isContinue = baseBallGameUtil.baseBallGameUtil(computerNumbers, userNumbers);
-
+        while (isContinue) {
+            // 컴퓨터 랜덤값
+            int[] computerNumbers = GeneratorRandomNumbers.generatorNumbers();
+            System.out.println(Arrays.toString(computerNumbers));
+            playGame(computerNumbers);
+            isContinue = gameEndCheck();
         }
-
-
     }
 
-
-
-
-    private static int[] userInput(){
+    // 게임 계속, 종료 메서드
+    private static boolean gameEndCheck() {
         Scanner scanner = new Scanner(System.in);
-
-
-        String userInput;
-
-        do {
-
-            userInput = scanner.nextLine();
-
-        }while(!validatorCheckNumber(userInput));
-
-
-        int[] inputNumbers = new int[3];
-        System.out.println(TEXT_INPUT);
-        String[] input = scanner.nextLine().split("");
-
-
-        for (int i = 0; i < input.length; i++){
-
-            inputNumbers[i] = Integer.parseInt(userInput);
+        int gameFlag = 1;
+        boolean gameStatus = false;
+        System.out.println(TEXT_GAME_END);
+        System.out.println(TEXT_GAME_RESTART);
+        int input = scanner.nextInt();
+        if (gameFlag == input) {
+            gameStatus = true;
         }
-
-
-        return inputNumbers;
+        return gameStatus;
 
     }
-
-
-    private
-
-
-
-
-
 }
