@@ -29,6 +29,7 @@ public class BaseBallUtil {
         }
         return ballCnt;
     }
+
     //스트라이크 갯수 파악해주는 메서드
     public  int getStrikeCount(int [] computerNumber,int [] userNumber){
         int strikeCnt=0;
@@ -52,7 +53,7 @@ public class BaseBallUtil {
         return generator;
     }
 
-    //제외한 숫자를 다시 int형으로 반환해줌.
+    //제외한 숫자를 다시 int [] 형으로 반환해줌.
     public int[] numGenerator(){
         int [] generator = new int[3];
         Iterator<Integer> iterator = getDeduplicate().iterator();

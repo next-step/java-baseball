@@ -1,5 +1,7 @@
 import domain.BaseballType;
 import exception.BaseBallException;
+import service.BaseBallUtilService;
+import service.BaseBallUtilServiceImpl;
 import util.BaseBallUtil;
 
 import java.util.*;
@@ -11,17 +13,18 @@ public class BaseBallClient {
 
 
     public static void main(String[] args) {
-        BaseBallUtil baseBallUtil = new BaseBallUtil();
-        computerNumber = baseBallUtil.numGenerator();
+        BaseBallUtilService ballUtilService = new BaseBallUtilServiceImpl();
+        computerNumber = ballUtilService.numGenerator();
+
         while(isGame){
             System.out.print("숫자를 입력해주세요 : ");
             String input = scan.next();
             BaseBallException.throwsCheck(input);
-            int [] userNumber = baseBallUtil.userNumGenerator(input);
-            int strikeCnt = baseBallUtil.getStrikeCount(computerNumber,userNumber);
-            int ballCnt = baseBallUtil.getBallCount(computerNumber,userNumber);
-            Map<String,Integer> map = baseBallUtil.setBaseballMap(strikeCnt,ballCnt);
-            resultPrint(map);
+            int [] userNumber = ballUtilService.userNumGenerator(input);
+            int strikeCnt = ballUtilService.getStrikeCount(computerNumber,userNumber);
+            int ballCnt = ballUtilService.getBallCount(computerNumber,userNumber);
+            Map<String,Integer> map = ballUtilService.setBaseballMap(strikeCnt,ballCnt);
+            ballUtilService.resultPrint(map);
         }
     }
 
