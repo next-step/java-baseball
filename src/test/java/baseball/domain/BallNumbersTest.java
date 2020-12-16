@@ -18,9 +18,9 @@ class BallNumbersTest {
                 .isEqualTo(Arrays.asList(1, 2, 3));
     }
 
-    @DisplayName("입력 문자열이 1~9 사이의 숫자가 아닌 문자열일 경우 예외가 발생한다.")
+    @DisplayName("문자열이 1~9 사이의 숫자가 아닌 문자열일 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {"032", "a32"})
+    @CsvSource({"032", "a32"})
     void validateNumber(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> BallNumbers.from(input))
@@ -28,7 +28,16 @@ class BallNumbersTest {
     }
 
 
-    @DisplayName("입력 문자열에 중복된 숫자가 있을 경우 예외가 발생한다.")
+    @DisplayName("문자열이 세자리 수가 아닌 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"32", "4253"})
+    void validateSizeThree(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> BallNumbers.from(input))
+                .withMessage("세자리 수여야 합니다.");
+    }
+
+    @DisplayName("문자열에 중복된 숫자가 있을 경우 예외가 발생한다.")
     @Test
     void validateDuplicate() {
         assertThatIllegalArgumentException()

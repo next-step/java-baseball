@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class BallNumbers {
+    private static final int VALID_NUMBERS_LENGTH = 3;
+
     private List<Integer> numbers;
 
     private BallNumbers(List<Integer> numbers) {
@@ -17,6 +19,7 @@ public class BallNumbers {
         for (char number : ballNumbers.toCharArray()) {
             numbers.add(getNumberInRangeOneToNine(number));
         }
+        requireLengthThree(numbers);
         requireNotDuplicate(numbers);
 
         return new BallNumbers(numbers);
@@ -28,6 +31,12 @@ public class BallNumbers {
             throw new IllegalArgumentException("1~9 사이의 숫자만 허용됩니다.");
         }
         return numberAsInt;
+    }
+
+    private static void requireLengthThree(List<Integer> numbers) {
+        if (numbers.size() != VALID_NUMBERS_LENGTH) {
+            throw new IllegalArgumentException("세자리 수여야 합니다.");
+        }
     }
 
     private static void requireNotDuplicate(List<Integer> numbers) {
