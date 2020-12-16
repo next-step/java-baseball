@@ -26,4 +26,13 @@ class BallNumbersTest {
                 .isThrownBy(() -> BallNumbers.from(input))
                 .withMessage("1~9 사이의 숫자만 허용됩니다.");
     }
+
+
+    @DisplayName("입력 문자열에 중복된 숫자가 있을 경우 예외가 발생한다.")
+    @Test
+    void validateDuplicate() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> BallNumbers.from("311"))
+                .withMessage("중복된 숫자는 허용되지 않습니다.");
+    }
 }

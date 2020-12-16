@@ -1,7 +1,9 @@
 package baseball.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BallNumbers {
     private List<Integer> numbers;
@@ -15,6 +17,7 @@ public class BallNumbers {
         for (char number : ballNumbers.toCharArray()) {
             numbers.add(getNumberInRangeOneToNine(number));
         }
+        requireNotDuplicate(numbers);
 
         return new BallNumbers(numbers);
     }
@@ -25,6 +28,14 @@ public class BallNumbers {
             throw new IllegalArgumentException("1~9 사이의 숫자만 허용됩니다.");
         }
         return numberAsInt;
+    }
+
+    private static void requireNotDuplicate(List<Integer> numbers) {
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
+
+        if (numbers.size() != distinctNumbers.size()) {
+            throw new IllegalArgumentException("중복된 숫자는 허용되지 않습니다.");
+        }
     }
 
     public List<Integer> getNumbers() {
