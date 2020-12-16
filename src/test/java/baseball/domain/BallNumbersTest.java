@@ -52,4 +52,12 @@ class BallNumbersTest {
         int result = BallNumbers.from(first).countSameNumberAndDigit(BallNumbers.from(second));
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("두 BallNumbers가 주어지면, 중복되는 숫자의 갯수를 구한다")
+    @ParameterizedTest
+    @CsvSource({"321,123,3", "123,123,3", "123,421,2", "123,456,0"})
+    void countDuplicateNumber(String first, String second, int expected) {
+        int result = BallNumbers.from(first).countDuplicateNumber(BallNumbers.from(second));
+        assertThat(result).isEqualTo(expected);
+    }
 }

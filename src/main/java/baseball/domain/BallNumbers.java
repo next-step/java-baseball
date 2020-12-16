@@ -1,9 +1,6 @@
 package baseball.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BallNumbers {
     private static final int BALL_NUMBERS_LENGTH = 3;
@@ -54,6 +51,14 @@ public class BallNumbers {
             count += isSame(numbers.get(i), other.numbers.get(i));
         }
         return count;
+    }
+
+    public int countDuplicateNumber(BallNumbers other) {
+        Set<Integer> union = new HashSet<>();
+        union.addAll(numbers);
+        union.addAll(other.numbers);
+
+        return numbers.size() + other.numbers.size() - union.size();
     }
 
     private int isSame(Integer number, Integer other) {
