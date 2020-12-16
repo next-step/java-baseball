@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class BallNumbers {
-    private static final int VALID_NUMBERS_LENGTH = 3;
+    private static final int BALL_NUMBERS_LENGTH = 3;
+    private static final int INIT_COUNT = 0;
 
     private List<Integer> numbers;
 
@@ -34,7 +35,7 @@ public class BallNumbers {
     }
 
     private static void requireLengthThree(List<Integer> numbers) {
-        if (numbers.size() != VALID_NUMBERS_LENGTH) {
+        if (numbers.size() != BALL_NUMBERS_LENGTH) {
             throw new IllegalArgumentException("세자리 수여야 합니다.");
         }
     }
@@ -45,6 +46,21 @@ public class BallNumbers {
         if (numbers.size() != distinctNumbers.size()) {
             throw new IllegalArgumentException("중복된 숫자는 허용되지 않습니다.");
         }
+    }
+
+    public int countSameNumberAndDigit(BallNumbers other) {
+        int count = INIT_COUNT;
+        for (int i = 0; i < BALL_NUMBERS_LENGTH; i++) {
+            count += isSame(numbers.get(i), other.numbers.get(i));
+        }
+        return count;
+    }
+
+    private int isSame(Integer number, Integer other) {
+        if (number.equals(other)) {
+            return 1;
+        }
+        return 0;
     }
 
     public List<Integer> getNumbers() {

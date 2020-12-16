@@ -44,4 +44,12 @@ class BallNumbersTest {
                 .isThrownBy(() -> BallNumbers.from("311"))
                 .withMessage("중복된 숫자는 허용되지 않습니다.");
     }
+
+    @DisplayName("두 BallNumbers가 주어지면, 같은 수가 같은 자리에 위치하는 갯수를 구한다")
+    @ParameterizedTest
+    @CsvSource({"321,123,1", "123,123,3", "123,143,2", "123,312,0"})
+    void countSameNumberAndDigit(String first, String second, int expected) {
+        int result = BallNumbers.from(first).countSameNumberAndDigit(BallNumbers.from(second));
+        assertThat(result).isEqualTo(expected);
+    }
 }
