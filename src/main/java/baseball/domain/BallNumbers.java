@@ -1,12 +1,17 @@
 package baseball.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class BallNumbers {
     private static final int BALL_NUMBERS_LENGTH = 3;
     private static final int INIT_COUNT = 0;
+    private static final int MIN_VALID_NUMBER = 1;
+    private static final int MAX_VALID_NUMBER = 9;
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     private BallNumbers(List<Integer> numbers) {
         this.numbers = numbers;
@@ -15,7 +20,7 @@ public class BallNumbers {
     public static BallNumbers from(String ballNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (char number : ballNumbers.toCharArray()) {
-            numbers.add(getNumberInRangeOneToNine(number));
+            numbers.add(toBallNumber(number));
         }
         requireLengthThree(numbers);
         requireNotDuplicate(numbers);
@@ -23,12 +28,17 @@ public class BallNumbers {
         return new BallNumbers(numbers);
     }
 
-    private static int getNumberInRangeOneToNine(char number) {
+    private static int toBallNumber(char number) {
         int numberAsInt = Character.getNumericValue(number);
-        if (numberAsInt <= 0 || numberAsInt >= 10) {
+        requireInRangeOneToNine(numberAsInt);
+
+        return numberAsInt;
+    }
+
+    private static void requireInRangeOneToNine(int number) {
+        if (number < MIN_VALID_NUMBER || number > MAX_VALID_NUMBER) {
             throw new IllegalArgumentException("1~9 사이의 숫자만 허용됩니다.");
         }
-        return numberAsInt;
     }
 
     private static void requireLengthThree(List<Integer> numbers) {
@@ -62,7 +72,7 @@ public class BallNumbers {
     }
 
     private int isSame(Integer number, Integer other) {
-        if (number.equals(other)) {
+        if (number.intValue() == other.intValue()) {
             return 1;
         }
         return 0;
