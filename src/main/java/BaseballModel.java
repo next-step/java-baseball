@@ -20,4 +20,8 @@ public class BaseballModel {
         }
         ballNumber = sb.toString();
     }
+
+    public String getBallNumber(){
+        return ballNumber;
+    }
 }
