@@ -9,9 +9,9 @@ public class GameResult {
         this.ball = ball;
     }
 
-    public static GameResult of(BallNumbers first, BallNumbers second) {
-        int strike = first.countSameNumberAndDigit(second);
-        int ball = first.countDuplicateNumber(second) - strike;
+    public static GameResult of(BallNumbers player1, BallNumbers player2) {
+        int strike = player1.countSameNumberAndPlaceWith(player2);
+        int ball = player1.countSameNumberWith(player2) - strike;
 
         return new GameResult(strike, ball);
     }

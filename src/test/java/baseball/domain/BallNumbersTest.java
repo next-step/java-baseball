@@ -15,18 +15,9 @@ class BallNumbersTest {
     @Test
     void create() {
         assertThat(BallNumbers.from("123").getNumbers())
+                .extracting(BallNumber::getNumber)
                 .isEqualTo(Arrays.asList(1, 2, 3));
     }
-
-    @DisplayName("문자열이 1~9 사이의 숫자가 아닌 문자열일 경우 예외가 발생한다.")
-    @ParameterizedTest
-    @CsvSource({"032", "a32"})
-    void validateNumber(String input) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> BallNumbers.from(input))
-                .withMessage("1~9 사이의 숫자만 허용됩니다.");
-    }
-
 
     @DisplayName("문자열이 세자리 수가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
@@ -49,7 +40,7 @@ class BallNumbersTest {
     @ParameterizedTest
     @CsvSource({"321,123,1", "123,123,3", "123,143,2", "123,312,0"})
     void countSameNumberAndDigit(String first, String second, int expected) {
-        int result = BallNumbers.from(first).countSameNumberAndDigit(BallNumbers.from(second));
+        int result = BallNumbers.from(first).countSameNumberAndPlaceWith(BallNumbers.from(second));
         assertThat(result).isEqualTo(expected);
     }
 
@@ -57,7 +48,7 @@ class BallNumbersTest {
     @ParameterizedTest
     @CsvSource({"321,123,3", "123,123,3", "123,421,2", "123,456,0"})
     void countDuplicateNumber(String first, String second, int expected) {
-        int result = BallNumbers.from(first).countDuplicateNumber(BallNumbers.from(second));
+        int result = BallNumbers.from(first).countSameNumberWith(BallNumbers.from(second));
         assertThat(result).isEqualTo(expected);
     }
 }
