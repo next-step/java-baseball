@@ -36,6 +36,14 @@ public class BallNumbers {
         return new BallNumbers(numbers);
     }
 
+    public static BallNumbers from(List<Integer> ballNumbers) {
+        List<BallNumber> numbers = new ArrayList<>();
+        for (int number : ballNumbers) {
+            numbers.add(new BallNumber(number));
+        }
+        return new BallNumbers(numbers);
+    }
+
     public int countSameNumberAndPlaceWith(BallNumbers other) {
         int count = INIT_COUNT;
         for (int i = 0; i < BALL_NUMBERS_LENGTH; i++) {
