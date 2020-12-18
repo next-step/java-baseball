@@ -3,7 +3,7 @@ package baseball.domain;
 import java.util.*;
 
 public class BallNumbers {
-    private static final int BALL_NUMBERS_LENGTH = 3;
+    public static final int BALL_NUMBERS_LENGTH = 3;
     private static final int INIT_COUNT = 0;
 
     private final List<BallNumber> numbers;

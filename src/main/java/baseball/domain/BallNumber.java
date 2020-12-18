@@ -3,8 +3,8 @@ package baseball.domain;
 import java.util.Objects;
 
 public class BallNumber {
-    private static final int MIN_VALID_NUMBER = 1;
-    private static final int MAX_VALID_NUMBER = 9;
+    public static final int MIN_VALID_NUMBER = 1;
+    public static final int MAX_VALID_NUMBER = 9;
 
     private final int number;
 
