@@ -5,13 +5,13 @@ import java.util.Set;
 public class BaseballModel {
 
     private String ballNumber;
-    private static final int LengthOfBallNumber = 3;
+    private static final int LENGTH_OF_BALL_NUMBER = 3;
 
     public void initializeBallNumber() {
         Set<Integer> integerSet = new HashSet<>();
         Random random = new Random();
 
-        while(integerSet.size() < LengthOfBallNumber){
+        while(integerSet.size() < LENGTH_OF_BALL_NUMBER){
             integerSet.add(random.nextInt(10));
         }
 
