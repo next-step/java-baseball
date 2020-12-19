@@ -28,4 +28,13 @@ class GameResultTest {
 
         assertThat(result.isNothing()).isEqualTo(expected);
     }
+
+    @DisplayName("두 BallNumbers가 같으면 3 스트라이크이다.")
+    @ParameterizedTest
+    @CsvSource({"123,123,true", "123,245,false", "123,145,false"})
+    void isThreeStrike(String player, String computer, boolean expected) {
+        GameResult result = GameResult.of(BallNumbers.from(player), BallNumbers.from(computer));
+
+        assertThat(result.isThreeStrike()).isEqualTo(expected);
+    }
 }
