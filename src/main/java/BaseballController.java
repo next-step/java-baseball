@@ -18,4 +18,22 @@ public class BaseballController {
         }
         return strikeCount;
     }
+
+    public int isBallAtIndex(String input, String answer, int index){
+        if(isStrikeAtIndex(input, answer, index) == 1){
+            return 0;
+        }
+        if(answer.indexOf(input.charAt(index)) == -1){
+            return 0;
+        }
+        return 1;
+    }
+
+    public int getBallCount(String input, String answer){
+        int ballCount = 0;
+        for(int index = 0 ; index < input.length() ; ++index){
+            ballCount += isBallAtIndex(input, answer, index);
+        }
+        return ballCount;
+    }
 }
