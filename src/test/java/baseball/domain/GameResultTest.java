@@ -19,4 +19,13 @@ class GameResultTest {
                 () -> assertThat(result.getBall()).isEqualTo(ball)
         );
     }
+
+    @DisplayName("두 BallNumbers에 같은 수가 없으면 낫싱이다.")
+    @ParameterizedTest
+    @CsvSource({"123,456,true", "123,245,false", "123,145,false"})
+    void isNothing(String player, String computer, boolean expected) {
+        GameResult result = GameResult.of(BallNumbers.from(player), BallNumbers.from(computer));
+
+        assertThat(result.isNothing()).isEqualTo(expected);
+    }
 }

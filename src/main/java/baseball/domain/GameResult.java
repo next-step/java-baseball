@@ -16,6 +16,10 @@ public class GameResult {
         return new GameResult(strike, ball);
     }
 
+    public boolean isNothing() {
+        return strike == 0 && ball == 0;
+    }
+
     public int getStrike() {
         return strike;
     }
