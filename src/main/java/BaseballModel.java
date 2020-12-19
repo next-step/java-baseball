@@ -25,4 +25,8 @@ public class BaseballModel {
     public String getBallNumber(){
         return ballNumber;
     }
+
+    public static int getLengthOfBallNumber() {
+        return LENGTH_OF_BALL_NUMBER;
+    }
 }
