@@ -36,7 +36,7 @@ public class BaseballController {
 
     public boolean throwBall(){
         String ballInput = baseballView.viewInput();
-        while(!isValidInput(ballInput)){
+        while(!isValidBallInput(ballInput)){
             ballInput = baseballView.viewInput();
         }
 
@@ -48,8 +48,8 @@ public class BaseballController {
         return strikeCount == BaseballModel.getLengthOfBallNumber();
     }
 
-    public boolean isValidInput(String input){
-        return input.matches("[0-9]{3}");
+    public boolean isValidBallInput(String ballInput){
+        return ballInput.matches("[0-9]{3}");
     }
 
     public int isStrikeAtIndex(String input, String answer, int index){
