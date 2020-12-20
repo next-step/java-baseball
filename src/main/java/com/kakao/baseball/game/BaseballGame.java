@@ -34,7 +34,6 @@ public class BaseballGame {
         if ((input <= 100) || (input >= 1000)) {
             return false;
         }
-
         for (int i = 0; i < BASEBALL_LENGTH; i++) {
             if (strInput.charAt(i) == '0') {
                 return false;
@@ -104,7 +103,7 @@ public class BaseballGame {
             result.append(" 볼 ");
         }
         if (result.length() == 0) {
-            result.append("숫자를 맞히지 못했습니다.");
+            result.append("숫자를 하나도 맞히지 못했습니다.");
         }
         return result.toString();
     }
