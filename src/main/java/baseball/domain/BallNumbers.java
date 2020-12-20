@@ -29,17 +29,17 @@ public class BallNumbers {
     }
 
     public static BallNumbers from(String ballNumbers) {
-        List<BallNumber> numbers = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
         for (char number : ballNumbers.toCharArray()) {
-            numbers.add(new BallNumber(Character.getNumericValue(number)));
+            numbers.add(Character.getNumericValue(number));
         }
-        return new BallNumbers(numbers);
+        return from(numbers);
     }
 
     public static BallNumbers from(List<Integer> ballNumbers) {
         List<BallNumber> numbers = new ArrayList<>();
         for (int number : ballNumbers) {
-            numbers.add(new BallNumber(number));
+            numbers.add(BallNumber.from(number));
         }
         return new BallNumbers(numbers);
     }

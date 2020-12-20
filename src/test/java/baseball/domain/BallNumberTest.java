@@ -12,7 +12,7 @@ class BallNumberTest {
     @DisplayName("1~9 사이의 숫자로 BallNumber를 생성한다")
     @Test
     void create() {
-        BallNumber ballNumber = new BallNumber(1);
+        BallNumber ballNumber = BallNumber.from(1);
 
         assertThat(ballNumber.getNumber()).isEqualTo(1);
     }
@@ -22,7 +22,7 @@ class BallNumberTest {
     @CsvSource({"-1", "0", "10"})
     void validateNumber(int input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BallNumber(input))
+                .isThrownBy(() -> BallNumber.from(input))
                 .withMessage("1~9 사이의 숫자만 허용됩니다.");
     }
 }

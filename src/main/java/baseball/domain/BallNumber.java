@@ -1,14 +1,29 @@
 package baseball.domain;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BallNumber {
     public static final int MIN_VALID_NUMBER = 1;
     public static final int MAX_VALID_NUMBER = 9;
 
+    private static final List<BallNumber> ballNumbers = new ArrayList<>();
+
+    static {
+        for (int i = MIN_VALID_NUMBER; i <= MAX_VALID_NUMBER; i++) {
+            ballNumbers.add(new BallNumber(i));
+        }
+    }
+
+    public static BallNumber from(int number) {
+        requireInRangeOneToNine(number);
+
+        return ballNumbers.get(number - 1);
+    }
+
     private final int number;
 
-    public BallNumber(int number) {
+    private BallNumber(int number) {
         requireInRangeOneToNine(number);
 
         this.number = number;
@@ -22,18 +37,5 @@ public class BallNumber {
 
     public int getNumber() {
         return number;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BallNumber that = (BallNumber) o;
-        return number == that.number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
     }
 }
