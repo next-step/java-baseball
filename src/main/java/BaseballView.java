@@ -17,6 +17,9 @@ public class BaseballView {
         if(ballCount > 0){
             sb.append(String.format("%d볼", ballCount));
         }
+        if(sb.length() == 0){
+            sb.append("낫싱");
+        }
         System.out.println(sb.toString());
     }
 
