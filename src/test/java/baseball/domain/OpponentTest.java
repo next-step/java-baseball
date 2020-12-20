@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,12 +17,5 @@ class OpponentTest {
         assertThat(result.getNumbers())
                 .extracting(BallNumber::getNumber)
                 .isEqualTo(Arrays.asList(1, 2, 3));
-    }
-
-    static class OneTwoThreeGenerator implements NumberGenerateStrategy {
-        @Override
-        public List<Integer> generate() {
-            return Arrays.asList(1, 2, 3);
-        }
     }
 }
