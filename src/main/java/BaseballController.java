@@ -1,5 +1,41 @@
 public class BaseballController {
 
+    private final BaseballModel baseballModel = new BaseballModel();
+    private final BaseballView baseballView = new BaseballView();
+
+    public void run() {
+        boolean continued = true;
+        while(continued){
+            continued = playRound();
+        }
+    }
+
+    public boolean playRound() {
+        baseballModel.initializeBallNumber();
+
+        boolean isCorrectBall = false;
+        while(!isCorrectBall){
+            isCorrectBall = throwBall();
+        }
+
+        String restartInput = baseballView.viewCorrectResult(BaseballModel.getLengthOfBallNumber());
+        return restartInput.equals("1");
+    }
+
+    public boolean throwBall(){
+        String ballInput = baseballView.viewInput();
+        while(!isValidInput(ballInput)){
+            ballInput = baseballView.viewInput();
+        }
+
+        int strikeCount = getStrikeCount(ballInput, baseballModel.getBallNumber());
+        int ballCount = getBallCount(ballInput, baseballModel.getBallNumber());
+
+        baseballView.viewStrikeBallCount(strikeCount, ballCount);
+
+        return strikeCount == BaseballModel.getLengthOfBallNumber();
+    }
+
     public boolean isValidInput(String input){
         return input.matches("[0-9]{3}");
     }
