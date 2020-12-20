@@ -12,10 +12,10 @@ class OpponentTest {
     @Test
     void generateBallNumbers() {
         Opponent opponent = new Opponent(new OneTwoThreeGenerator());
-        BallNumbers result = opponent.generateBallNumbers();
+        BaseBallNumbers result = opponent.generateBallNumbers();
 
         assertThat(result.getNumbers())
-                .extracting(BallNumber::getNumber)
+                .extracting(BaseBallNumber::getNumber)
                 .isEqualTo(Arrays.asList(1, 2, 3));
     }
 }

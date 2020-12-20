@@ -7,7 +7,7 @@ public class Opponent {
         this.numberGenerateStrategy = numberGenerateStrategy;
     }
 
-    public BallNumbers generateBallNumbers() {
-        return BallNumbers.from(numberGenerateStrategy.generate());
+    public BaseBallNumbers generateBallNumbers() {
+        return BaseBallNumbers.from(numberGenerateStrategy.generate());
     }
 }

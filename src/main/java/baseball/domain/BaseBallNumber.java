@@ -3,27 +3,27 @@ package baseball.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BallNumber {
+public class BaseBallNumber {
     public static final int MIN_VALID_NUMBER = 1;
     public static final int MAX_VALID_NUMBER = 9;
 
-    private static final List<BallNumber> ballNumbers = new ArrayList<>();
+    private static final List<BaseBallNumber> BASE_BALL_NUMBERS = new ArrayList<>();
 
     static {
         for (int i = MIN_VALID_NUMBER; i <= MAX_VALID_NUMBER; i++) {
-            ballNumbers.add(new BallNumber(i));
+            BASE_BALL_NUMBERS.add(new BaseBallNumber(i));
         }
     }
 
-    public static BallNumber from(int number) {
+    public static BaseBallNumber from(int number) {
         requireInRangeOneToNine(number);
 
-        return ballNumbers.get(number - 1);
+        return BASE_BALL_NUMBERS.get(number - 1);
     }
 
     private final int number;
 
-    private BallNumber(int number) {
+    private BaseBallNumber(int number) {
         requireInRangeOneToNine(number);
 
         this.number = number;

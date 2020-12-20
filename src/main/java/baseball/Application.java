@@ -3,7 +3,7 @@ package baseball;
 import baseball.domain.BaseBallGame;
 import baseball.domain.NumberGenerateStrategy;
 import baseball.domain.Opponent;
-import baseball.domain.RandomBallNumberGenerator;
+import baseball.domain.RandomBallNumbersGenerator;
 import baseball.ui.GameController;
 import baseball.ui.InputView;
 import baseball.ui.OutputView;
@@ -32,7 +32,7 @@ public class Application {
 
 
     public static Application initialize() {
-        RandomBallNumberGenerator numberGenerateStrategy = new RandomBallNumberGenerator();
+        RandomBallNumbersGenerator numberGenerateStrategy = new RandomBallNumbersGenerator();
         Opponent opponent = new Opponent(numberGenerateStrategy);
 
         return new Application(

@@ -9,7 +9,7 @@ public class GameResult {
         this.ball = ball;
     }
 
-    public static GameResult of(BallNumbers player1, BallNumbers player2) {
+    public static GameResult of(BaseBallNumbers player1, BaseBallNumbers player2) {
         int strike = player1.countSameNumberAndPlaceWith(player2);
         int ball = player1.countSameNumberWith(player2) - strike;
 

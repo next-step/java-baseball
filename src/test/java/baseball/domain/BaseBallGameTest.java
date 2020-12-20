@@ -1,6 +1,5 @@
 package baseball.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,7 +24,7 @@ class BaseBallGameTest {
     void end(String guess, boolean expected) {
         BaseBallGame game = BaseBallGame.initialize(new Opponent(new OneTwoThreeGenerator()));
 
-        game.guess(BallNumbers.from(guess));
+        game.guess(BaseBallNumbers.from(guess));
 
         assertThat(game.isEnd()).isEqualTo(expected);
     }

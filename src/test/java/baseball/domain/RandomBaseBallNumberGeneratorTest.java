@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static baseball.domain.BallNumber.MAX_VALID_NUMBER;
-import static baseball.domain.BallNumber.MIN_VALID_NUMBER;
-import static baseball.domain.BallNumbers.BALL_NUMBERS_LENGTH;
+import static baseball.domain.BaseBallNumber.MAX_VALID_NUMBER;
+import static baseball.domain.BaseBallNumber.MIN_VALID_NUMBER;
+import static baseball.domain.BaseBallNumbers.BALL_NUMBERS_LENGTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class RandomBallNumberGeneratorTest {
+class RandomBaseBallNumberGeneratorTest {
     @DisplayName("1~9 사이의 3개의 랜덤한 숫자를 생성하는지 확인한다")
     @Test
     void generate() {
-        RandomBallNumberGenerator randomNumberGenerator = new RandomBallNumberGenerator();
+        RandomBallNumbersGenerator randomNumberGenerator = new RandomBallNumbersGenerator();
         List<Integer> results = randomNumberGenerator.generate();
 
         Condition<Integer> lessThanMin = new Condition<>(it -> it < MIN_VALID_NUMBER, "less than 1");

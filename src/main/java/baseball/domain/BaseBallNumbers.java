@@ -2,33 +2,33 @@ package baseball.domain;
 
 import java.util.*;
 
-public class BallNumbers {
+public class BaseBallNumbers {
     public static final int BALL_NUMBERS_LENGTH = 3;
     private static final int INIT_COUNT = 0;
 
-    private final List<BallNumber> numbers;
+    private final List<BaseBallNumber> numbers;
 
-    private BallNumbers(List<BallNumber> numbers) {
+    private BaseBallNumbers(List<BaseBallNumber> numbers) {
         requireLengthThree(numbers);
         requireNotDuplicate(numbers);
 
         this.numbers = Collections.unmodifiableList(numbers);
     }
 
-    private void requireLengthThree(List<BallNumber> numbers) {
+    private void requireLengthThree(List<BaseBallNumber> numbers) {
         if (numbers.size() != BALL_NUMBERS_LENGTH) {
             throw new IllegalArgumentException("세자리 수여야 합니다.");
         }
     }
 
-    private void requireNotDuplicate(List<BallNumber> numbers) {
-        Set<BallNumber> distinctNumbers = new HashSet<>(numbers);
+    private void requireNotDuplicate(List<BaseBallNumber> numbers) {
+        Set<BaseBallNumber> distinctNumbers = new HashSet<>(numbers);
         if (numbers.size() != distinctNumbers.size()) {
             throw new IllegalArgumentException("중복된 숫자는 허용되지 않습니다.");
         }
     }
 
-    public static BallNumbers from(String ballNumbers) {
+    public static BaseBallNumbers from(String ballNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (char number : ballNumbers.toCharArray()) {
             numbers.add(Character.getNumericValue(number));
@@ -36,15 +36,15 @@ public class BallNumbers {
         return from(numbers);
     }
 
-    public static BallNumbers from(List<Integer> ballNumbers) {
-        List<BallNumber> numbers = new ArrayList<>();
+    public static BaseBallNumbers from(List<Integer> ballNumbers) {
+        List<BaseBallNumber> numbers = new ArrayList<>();
         for (int number : ballNumbers) {
-            numbers.add(BallNumber.from(number));
+            numbers.add(BaseBallNumber.from(number));
         }
-        return new BallNumbers(numbers);
+        return new BaseBallNumbers(numbers);
     }
 
-    public int countSameNumberAndPlaceWith(BallNumbers other) {
+    public int countSameNumberAndPlaceWith(BaseBallNumbers other) {
         int count = INIT_COUNT;
         for (int i = 0; i < BALL_NUMBERS_LENGTH; i++) {
             count += isSame(numbers.get(i), other.numbers.get(i));
@@ -52,22 +52,22 @@ public class BallNumbers {
         return count;
     }
 
-    public int countSameNumberWith(BallNumbers other) {
-        Set<BallNumber> union = new HashSet<>();
+    public int countSameNumberWith(BaseBallNumbers other) {
+        Set<BaseBallNumber> union = new HashSet<>();
         union.addAll(numbers);
         union.addAll(other.numbers);
 
         return numbers.size() + other.numbers.size() - union.size();
     }
 
-    private int isSame(BallNumber number, BallNumber other) {
+    private int isSame(BaseBallNumber number, BaseBallNumber other) {
         if (number.equals(other)) {
             return 1;
         }
         return 0;
     }
 
-    public List<BallNumber> getNumbers() {
+    public List<BaseBallNumber> getNumbers() {
         return numbers;
     }
 }

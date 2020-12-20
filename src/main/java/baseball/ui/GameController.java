@@ -1,6 +1,6 @@
 package baseball.ui;
 
-import baseball.domain.BallNumbers;
+import baseball.domain.BaseBallNumbers;
 import baseball.domain.BaseBallGame;
 import baseball.domain.GameResult;
 import baseball.domain.Opponent;
@@ -21,7 +21,7 @@ public class GameController {
     }
 
     public void guess(BaseBallGame game) {
-        GameResult result = game.guess(BallNumbers.from(inputView.enterBallNumbers()));
+        GameResult result = game.guess(BaseBallNumbers.from(inputView.enterBallNumbers()));
         outputView.printResult(GameResultResponse.from(result));
     }
 

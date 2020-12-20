@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static baseball.domain.BallNumber.MAX_VALID_NUMBER;
-import static baseball.domain.BallNumber.MIN_VALID_NUMBER;
-import static baseball.domain.BallNumbers.BALL_NUMBERS_LENGTH;
+import static baseball.domain.BaseBallNumber.MAX_VALID_NUMBER;
+import static baseball.domain.BaseBallNumber.MIN_VALID_NUMBER;
+import static baseball.domain.BaseBallNumbers.BALL_NUMBERS_LENGTH;
 
-public class RandomBallNumberGenerator implements NumberGenerateStrategy {
+public class RandomBallNumbersGenerator implements NumberGenerateStrategy {
     private static final int FIRST_INDEX = 0;
 
     @Override

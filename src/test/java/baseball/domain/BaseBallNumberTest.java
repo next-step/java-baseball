@@ -8,13 +8,13 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class BallNumberTest {
+class BaseBallNumberTest {
     @DisplayName("1~9 사이의 숫자로 BallNumber를 생성한다")
     @Test
     void create() {
-        BallNumber ballNumber = BallNumber.from(1);
+        BaseBallNumber baseBallNumber = BaseBallNumber.from(1);
 
-        assertThat(ballNumber.getNumber()).isEqualTo(1);
+        assertThat(baseBallNumber.getNumber()).isEqualTo(1);
     }
 
     @DisplayName("BallNumber 생성 시, 1~9 이외의 숫자일 경우 예외가 발생한다")
@@ -22,7 +22,7 @@ class BallNumberTest {
     @CsvSource({"-1", "0", "10"})
     void validateNumber(int input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> BallNumber.from(input))
+                .isThrownBy(() -> BaseBallNumber.from(input))
                 .withMessage("1~9 사이의 숫자만 허용됩니다.");
     }
 }

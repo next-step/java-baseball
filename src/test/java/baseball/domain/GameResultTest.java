@@ -12,7 +12,7 @@ class GameResultTest {
     @ParameterizedTest
     @CsvSource({"123,123,3,0", "425,123,1,0", "425,521,1,1", "425,789,0,0", "425,524,1,2", "425,426,2,0"})
     void result(String player, String computer, int strike, int ball) {
-        GameResult result = GameResult.of(BallNumbers.from(player), BallNumbers.from(computer));
+        GameResult result = GameResult.of(BaseBallNumbers.from(player), BaseBallNumbers.from(computer));
 
         assertAll(
                 () -> assertThat(result.getStrike()).isEqualTo(strike),
@@ -24,7 +24,7 @@ class GameResultTest {
     @ParameterizedTest
     @CsvSource({"123,456,true", "123,245,false", "123,145,false"})
     void isNothing(String player, String computer, boolean expected) {
-        GameResult result = GameResult.of(BallNumbers.from(player), BallNumbers.from(computer));
+        GameResult result = GameResult.of(BaseBallNumbers.from(player), BaseBallNumbers.from(computer));
 
         assertThat(result.isNothing()).isEqualTo(expected);
     }
@@ -33,7 +33,7 @@ class GameResultTest {
     @ParameterizedTest
     @CsvSource({"123,123,true", "123,245,false", "123,145,false"})
     void isThreeStrike(String player, String computer, boolean expected) {
-        GameResult result = GameResult.of(BallNumbers.from(player), BallNumbers.from(computer));
+        GameResult result = GameResult.of(BaseBallNumbers.from(player), BaseBallNumbers.from(computer));
 
         assertThat(result.isThreeStrike()).isEqualTo(expected);
     }

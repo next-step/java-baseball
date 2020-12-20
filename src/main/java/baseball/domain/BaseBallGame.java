@@ -1,10 +1,10 @@
 package baseball.domain;
 
 public class BaseBallGame {
-    private final BallNumbers opponentNumbers;
+    private final BaseBallNumbers opponentNumbers;
     private boolean end;
 
-    private BaseBallGame(BallNumbers opponentNumbers, boolean end) {
+    private BaseBallGame(BaseBallNumbers opponentNumbers, boolean end) {
         this.opponentNumbers = opponentNumbers;
         this.end = end;
     }
@@ -13,7 +13,7 @@ public class BaseBallGame {
         return new BaseBallGame(opponent.generateBallNumbers(), false);
     }
 
-    public GameResult guess(BallNumbers numbers) {
+    public GameResult guess(BaseBallNumbers numbers) {
         GameResult result = GameResult.of(numbers, opponentNumbers);
         if (result.isThreeStrike()) {
             end = true;
