@@ -13,6 +13,14 @@ public class BaseBallGame {
         return new BaseBallGame(opponent.generateBallNumbers(), false);
     }
 
+    public GameResult guess(BallNumbers numbers) {
+        GameResult result = GameResult.of(numbers, opponentNumbers);
+        if (result.isThreeStrike()) {
+            end = true;
+        }
+        return result;
+    }
+
     public boolean isEnd() {
         return end;
     }
