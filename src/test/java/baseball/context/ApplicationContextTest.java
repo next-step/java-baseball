@@ -1,10 +1,9 @@
-package baseball;
+package baseball.context;
 
 import org.junit.jupiter.api.Test;
 
-class ApplicationTest {
+class ApplicationContextTest {
     @Test
     void contextLoads() {
-        Application.initialize();
     }
 }
