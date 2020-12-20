@@ -1,4 +1,4 @@
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -8,7 +8,7 @@ public class BaseballModel {
     private static final int LENGTH_OF_BALL_NUMBER = 3;
 
     public void initializeBallNumber() {
-        Set<Integer> integerSet = new HashSet<>();
+        Set<Integer> integerSet = new LinkedHashSet<>();
         Random random = new Random();
 
         while(integerSet.size() < LENGTH_OF_BALL_NUMBER){
