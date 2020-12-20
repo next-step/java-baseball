@@ -18,8 +18,20 @@ public class BaseballController {
             isCorrectBall = throwBall();
         }
 
-        String restartInput = baseballView.viewCorrectResult(BaseballModel.getLengthOfBallNumber());
+        String restartInput = getRestartInput();
         return restartInput.equals("1");
+    }
+
+    public String getRestartInput(){
+        String restartInput = "";
+        while(isValidRestartInput(restartInput)){
+            restartInput = baseballView.viewCorrectResult(BaseballModel.getLengthOfBallNumber());
+        }
+        return restartInput;
+    }
+
+    boolean isValidRestartInput(String restartInput){
+        return !restartInput.equals("1") && !restartInput.equals("2");
     }
 
     public boolean throwBall(){
