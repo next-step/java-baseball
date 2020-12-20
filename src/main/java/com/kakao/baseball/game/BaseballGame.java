@@ -16,37 +16,36 @@ public class BaseballGame {
         this.baseballNumber = initBaseballNumber();
     }
 
-    private int initBaseballNumber() {
+    public int initBaseballNumber() {
         Random random = new Random();
         int randomNumber = 0;
 
         while (!this.validateInput(randomNumber)) {
-            randomNumber = random.nextInt(1000);
+            randomNumber = random.nextInt(900)+100;
         }
 
         return randomNumber;
     }
 
     public boolean validateInput(int input) {
-        boolean validationResult = true;
         Set<Character> numSet = new HashSet<>();
         String strInput = String.valueOf(input);
 
         if ((input <= 100) || (input >= 1000)) {
-            validationResult = false;
+            return false;
         }
 
         for (int i = 0; i < BASEBALL_LENGTH; i++) {
             if (strInput.charAt(i) == '0') {
-                validationResult = false;
+                return false;
             }
             if (numSet.contains(strInput.charAt(i))) {
-                validationResult = false;
+                return false;
             }
             numSet.add(strInput.charAt(i));
         }
 
-        return validationResult;
+        return true;
     }
 
     public void checkUserInput(int input) {
@@ -75,6 +74,9 @@ public class BaseballGame {
     private void checkBall(String computerNumber, String userInputNumber) {
         for (int i = 0; i < BASEBALL_LENGTH; i++) {
             for (int j = 0; j < BASEBALL_LENGTH; j++) {
+                if(i==j){
+                    continue;
+                }
                 increaseBallCountIfEqualNumber(computerNumber.charAt(i), userInputNumber.charAt(j));
             }
         }
