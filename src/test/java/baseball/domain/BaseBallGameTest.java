@@ -12,7 +12,7 @@ class BaseBallGameTest {
     @DisplayName("초기화한 숫자야구 게임의 초기 상태는 종료되지 않은 상태이다")
     @Test
     void initialize() {
-        BaseBallGame game = BaseBallGame.initialize(new Opponent(new OneTwoThreeGenerator()));
+        BaseBallGame game = BaseBallGame.initialize(new OneTwoThreeGenerator());
 
         boolean result = game.isEnd();
 
@@ -23,7 +23,7 @@ class BaseBallGameTest {
     @ParameterizedTest
     @CsvSource({"123,true", "243,false"})
     void end(String guess, boolean expected) {
-        BaseBallGame game = BaseBallGame.initialize(new Opponent(new OneTwoThreeGenerator()));
+        BaseBallGame game = BaseBallGame.initialize(new OneTwoThreeGenerator());
 
         game.guess(BaseBallNumbers.from(guess));
 
@@ -33,7 +33,7 @@ class BaseBallGameTest {
     @DisplayName("종료된 게임은 추측할 수 없다")
     @Test
     void validateProceeding() {
-        BaseBallGame game = BaseBallGame.initialize(new Opponent(new OneTwoThreeGenerator()));
+        BaseBallGame game = BaseBallGame.initialize(new OneTwoThreeGenerator());
         game.guess(BaseBallNumbers.from("123"));
 
         assertThatIllegalStateException()

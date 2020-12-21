@@ -1,7 +1,7 @@
 package baseball.context;
 
 import baseball.controller.GameController;
-import baseball.domain.Opponent;
+import baseball.domain.NumberGenerateStrategy;
 import baseball.domain.RandomBallNumbersGenerator;
 import baseball.ui.InputView;
 import baseball.ui.OutputView;
@@ -12,11 +12,11 @@ public class ApplicationContext {
     private static final ApplicationContext applicationContext;
 
     static {
-        Opponent opponent = new Opponent(new RandomBallNumbersGenerator());
+        NumberGenerateStrategy numberGenerateStrategy = new RandomBallNumbersGenerator();
         InputView inputView = new InputView(new Scanner(System.in));
         OutputView outputView = new OutputView();
 
-        applicationContext = new ApplicationContext(new GameController(inputView, outputView, opponent));
+        applicationContext = new ApplicationContext(new GameController(inputView, outputView, numberGenerateStrategy));
     }
 
     public static GameController getGameController() {

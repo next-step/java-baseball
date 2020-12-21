@@ -9,8 +9,9 @@ public class BaseBallGame {
         this.end = end;
     }
 
-    public static BaseBallGame initialize(Opponent opponent) {
-        return new BaseBallGame(opponent.generateBallNumbers(), false);
+    public static BaseBallGame initialize(NumberGenerateStrategy numberGenerateStrategy) {
+        BaseBallNumbers numbers = BaseBallNumbers.from(numberGenerateStrategy.generate());
+        return new BaseBallGame(numbers, false);
     }
 
     public GameResult guess(BaseBallNumbers numbers) {
