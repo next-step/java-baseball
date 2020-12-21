@@ -19,7 +19,7 @@ public class Application {
 
     private static void doGame(GameController controller) {
         BaseBallGame game = controller.startGame();
-        while (!game.isEnd()) {
+        while (controller.isProceeding(game)) {
             controller.guess(game);
         }
     }
