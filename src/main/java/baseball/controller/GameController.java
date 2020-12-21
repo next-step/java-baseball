@@ -1,9 +1,12 @@
-package baseball.ui;
+package baseball.controller;
 
 import baseball.domain.BaseBallGame;
 import baseball.domain.BaseBallNumbers;
 import baseball.domain.GameResult;
 import baseball.domain.Opponent;
+import baseball.ui.GameResultResponse;
+import baseball.ui.InputView;
+import baseball.ui.OutputView;
 
 public class GameController {
     private final InputView inputView;
