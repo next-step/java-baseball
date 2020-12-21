@@ -39,7 +39,7 @@ public class BaseBallNumbers {
     public static BaseBallNumbers from(List<Integer> ballNumbers) {
         List<BaseBallNumber> numbers = new ArrayList<>();
         for (int number : ballNumbers) {
-            numbers.add(BaseBallNumber.from(number));
+            numbers.add(BaseBallNumber.valueOf(number));
         }
         return new BaseBallNumbers(numbers);
     }
