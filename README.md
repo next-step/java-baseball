@@ -1,7 +1,18 @@
 # 숫자 야구 게임
-## 진행 방법
-* 숫자 야구 게임 요구사항을 파악한다.
-* 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 과제를 제출한다.
+## Computer
+- nextTurn() : 컴퓨터의 다음 난수를 반환한다.
 
-## 과제 제출 과정
-* [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+## User
+- nextTurn() : 유저로부터 입력을 받고 반환한다.
+
+## Result
+- strikeCounts : 스트라이크 횟수를 저장한다.
+- ballCounts : 볼 횟수를 저장한다.
+
+## Judge
+- getResults(userTurn, computerTurn) : 유저의 값과 컴퓨터의 값을 통해 결과를 반환한다.
+- getStrikeCounts(userTurn, computerTurn) : 유저의 값과 컴퓨터의 값을 통해 스트라이크 횟수를 반환한다.
+- getBallCounts(userTurn, computerTurn) : 유저의 값과 컴퓨터의 값을 통해 볼 횟수를 반환한다.
+
+## BaseballSimulator
+- doSimulation() : 숫자 야구 게임을 진행한다.
