@@ -20,7 +20,7 @@ class BaseballModelTest {
         for(int index = 0 ; index < ballNumber.length() ; ++index){
             characterSet.add(ballNumber.charAt(index));
         }
-        Assertions.assertThat(characterSet.size()).isEqualTo(baseballModel.getLengthOfBallNumber());
+        Assertions.assertThat(characterSet.size()).isEqualTo(BaseballModel.getLengthOfBallNumber());
     }
 
 }
