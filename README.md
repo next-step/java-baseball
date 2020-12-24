@@ -3,7 +3,7 @@
 - nextTurn() : 컴퓨터의 다음 난수를 반환한다.
 
 ## User
-- nextTurn() : 유저로부터 입력을 받고 반환한다.
+- nextTurn() : 유저로부터 추측할 수를 입력을 받고 반환한다.
 ## Check
 - validationCheck(turn) : 유효한 값인지 검사한다.
 - rangeCheck(turn) : 유효한 범위인지 검사한다.
