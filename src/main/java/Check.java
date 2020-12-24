@@ -1,5 +1,5 @@
 public class Check {
-    public boolean validationCheck(int turn) {
+    public static boolean validationCheck(int turn) {
         if (!rangeCheck(turn)) {
             return false;
         }
@@ -12,10 +12,10 @@ public class Check {
 
         return true;
     }
-    private boolean rangeCheck(int turn) {
+    private static boolean rangeCheck(int turn) {
         return 123 <= turn && turn <= 987;
     }
-    private boolean zeroDigitCheck(int turn) {
+    private static boolean zeroDigitCheck(int turn) {
         if (turn % 10 == 0) {
             return false;
         }
@@ -27,7 +27,7 @@ public class Check {
         }
         return true;
     }
-    private boolean sameDigitCheck(int turn) {
+    private static boolean sameDigitCheck(int turn) {
         int counts = 0;
         counts += turn / 100 == turn / 10 % 10 ? 1 : 0;
         counts += turn / 100 == turn % 10 ? 1 : 0;
