@@ -41,4 +41,14 @@ class BaseballControllerTest {
         Assertions.assertThat(baseballController.getStrikeCount("123", "132")).isEqualTo(1);
         Assertions.assertThat(baseballController.getStrikeCount("123", "111")).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("볼 개수를 올바르게 구하는지 확인")
+    void getBallCount() {
+        Assertions.assertThat(baseballController.getBallCount("123", "123")).isEqualTo(0);
+        Assertions.assertThat(baseballController.getBallCount("123", "124")).isEqualTo(0);
+        Assertions.assertThat(baseballController.getBallCount("123", "132")).isEqualTo(2);
+        Assertions.assertThat(baseballController.getBallCount("111", "123")).isEqualTo(2);
+    }
+
 }
