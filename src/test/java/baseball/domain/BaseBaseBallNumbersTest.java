@@ -19,7 +19,7 @@ class BaseBaseBallNumbersTest {
                 .isEqualTo(Arrays.asList(1, 2, 3));
     }
 
-    @DisplayName("문자열이 세자리 수가 아닌 경우 예외가 발생한다.")
+    @DisplayName("BaseBallNumbers 생성 시, 문자열이 세자리 수가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
     @CsvSource({"32", "4253"})
     void validateSizeThree(String input) {
@@ -28,12 +28,21 @@ class BaseBaseBallNumbersTest {
                 .withMessage("세자리 수여야 합니다.");
     }
 
-    @DisplayName("문자열에 중복된 숫자가 있을 경우 예외가 발생한다.")
+    @DisplayName("BaseBallNumbers 생성 시, 문자열에 중복된 숫자가 있을 경우 예외가 발생한다.")
     @Test
     void validateDuplicate() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> BaseBallNumbers.from("311"))
                 .withMessage("중복된 숫자는 허용되지 않습니다.");
+    }
+
+    @DisplayName("BaseBallNumbers 생성 시, 문자열에 유효한 숫자가 포함되어있다면 예외가 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"a32", "420"})
+    void validateBaseBallNumber(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> BaseBallNumbers.from(input))
+                .withMessage("1~9 사이의 숫자만 허용됩니다.");
     }
 
     @DisplayName("두 BallNumbers가 주어지면, 같은 수가 같은 자리에 위치하는 갯수를 구한다")
