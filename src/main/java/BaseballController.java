@@ -49,7 +49,7 @@ public class BaseballController {
     }
 
     public boolean isValidBallInput(String ballInput){
-        return ballInput.matches("[0-9]{3}");
+        return ballInput.matches(String.format("[0-9]{%d}", BaseballModel.getLengthOfBallNumber()));
     }
 
     public int isStrikeAtIndex(String input, String answer, int index){
