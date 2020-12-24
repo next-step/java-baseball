@@ -20,4 +20,16 @@ class BaseballControllerTest {
         Assertions.assertThat(baseballController.isValidBallInput("91(")).isFalse();
         Assertions.assertThat(baseballController.isValidBallInput("abc")).isFalse();
     }
+
+    @Test
+    @DisplayName("사용자가 입력한 재시작 숫자의 유효성 탐지")
+    void testValidRestartInput() {
+        Assertions.assertThat(baseballController.isValidRestartInput("1")).isTrue();
+        Assertions.assertThat(baseballController.isValidRestartInput("2")).isTrue();
+
+        Assertions.assertThat(baseballController.isValidRestartInput("")).isFalse();
+        Assertions.assertThat(baseballController.isValidRestartInput("0")).isFalse();
+        Assertions.assertThat(baseballController.isValidRestartInput("a")).isFalse();
+        Assertions.assertThat(baseballController.isValidRestartInput("12")).isFalse();
+    }
 }
