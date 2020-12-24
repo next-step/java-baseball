@@ -35,7 +35,7 @@ class BaseballControllerTest {
 
     @Test
     @DisplayName("스트라이크 개수를 올바르게 구하는지 확인")
-    void getStrikcCount() {
+    void getStrikeCount() {
         Assertions.assertThat(baseballController.getStrikeCount("123", "123")).isEqualTo(3);
         Assertions.assertThat(baseballController.getStrikeCount("123", "124")).isEqualTo(2);
         Assertions.assertThat(baseballController.getStrikeCount("123", "132")).isEqualTo(1);
