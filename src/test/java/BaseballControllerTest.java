@@ -32,4 +32,13 @@ class BaseballControllerTest {
         Assertions.assertThat(baseballController.isValidRestartInput("a")).isFalse();
         Assertions.assertThat(baseballController.isValidRestartInput("12")).isFalse();
     }
+
+    @Test
+    @DisplayName("스트라이크 개수를 올바르게 구하는지 확인")
+    void getStrikcCount() {
+        Assertions.assertThat(baseballController.getStrikeCount("123", "123")).isEqualTo(3);
+        Assertions.assertThat(baseballController.getStrikeCount("123", "124")).isEqualTo(2);
+        Assertions.assertThat(baseballController.getStrikeCount("123", "132")).isEqualTo(1);
+        Assertions.assertThat(baseballController.getStrikeCount("123", "111")).isEqualTo(1);
+    }
 }
