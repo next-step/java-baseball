@@ -4,6 +4,11 @@
 
 ## User
 - nextTurn() : 유저로부터 입력을 받고 반환한다.
+## Check
+- validationCheck(turn) : 유효한 값인지 검사한다.
+- rangeCheck(turn) : 유효한 범위인지 검사한다.
+- zeroDigitCheck(turn) : 자릿수에 0이 있는지 검사한다.
+- sameDigitCheck(turn) : 같은 자릿수가 있는지 검사한다.
 
 ## Result
 - strikeCounts : 스트라이크 횟수를 저장한다.
