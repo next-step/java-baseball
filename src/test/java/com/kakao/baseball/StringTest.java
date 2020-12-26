@@ -4,29 +4,33 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+/**
+ * junit 과 assertj를 이용해서 String에 대한 test를 학습
+ */
 public class StringTest {
 
     @Test
-    public void splitTest1(){
+    public void splitTest1() {
         String str = "1,2";
-        assertThat(str.split(",")).containsOnly("1","2");
+        assertThat(str.split(",")).containsOnly("1", "2");
     }
 
     @Test
-    public void splitTest2(){
-        String str="1";
+    public void splitTest2() {
+        String str = "1";
         assertThat(str.split(",")).containsExactly("1");
     }
 
     @Test
-    public void substringTest(){
+    public void substringTest() {
         String str = "(1,2)";
-        assertThat(str.substring(1,str.length()-1)).isEqualTo("1,2");
+        assertThat(str.substring(1, str.length() - 1)).isEqualTo("1,2");
     }
 
     @Test
     @DisplayName("charAtTest")
-    public void charAtTest(){
+    public void charAtTest() {
         String str = "abc";
         assertThat(str.charAt(0)).isEqualTo('a');
         assertThat(str.charAt(1)).isEqualTo('b');
