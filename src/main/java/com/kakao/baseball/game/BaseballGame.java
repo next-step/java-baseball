@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * 야구 게임이 구현된 클래스입니다.
+ * 숫자야구 게임으로서 사용자의 입력에 따른 검증, 체크, 결과등이 수행됩니다.
+ */
 public class BaseballGame {
 
     private int baseballNumber;

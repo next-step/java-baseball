@@ -4,6 +4,10 @@ import com.kakao.baseball.game.BaseballGame;
 
 import java.util.Scanner;
 
+/**
+ * 게임이 실행되는 클래스 입니다.
+ * 이 클래스를 생성하고 run메소드를 호출하면 야구 게임이 동작합니다.
+ */
 public class Playground {
     private BaseballGame baseballGame;
     private Scanner sc;
