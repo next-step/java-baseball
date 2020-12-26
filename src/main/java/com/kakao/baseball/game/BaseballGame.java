@@ -17,14 +17,14 @@ public class BaseballGame {
     private final int BASEBALL_LENGTH = 3;
 
     public BaseballGame() {
-        this.baseballNumber = initBaseballNumber();
+        baseballNumber = initBaseballNumber();
     }
 
     public int initBaseballNumber() {
         Random random = new Random();
         int randomNumber = 0;
 
-        while (!this.validateInput(randomNumber)) {
+        while (!validateInput(randomNumber)) {
             randomNumber = random.nextInt(900)+100;
         }
 
@@ -52,11 +52,11 @@ public class BaseballGame {
     }
 
     public void checkUserInput(int input) {
-        String computerNumber = String.valueOf(this.baseballNumber);
+        String computerNumber = String.valueOf(baseballNumber);
         String userInputNumber = String.valueOf(input);
 
-        this.strikeCount = 0;
-        this.ballCount = 0;
+        strikeCount = 0;
+        ballCount = 0;
 
         checkStrike(computerNumber, userInputNumber);
         checkBall(computerNumber, userInputNumber);
@@ -70,7 +70,7 @@ public class BaseballGame {
 
     private void increaseStrikeCountIfEqualNumber(char computerNum, char userNum) {
         if (computerNum == userNum) {
-            this.strikeCount++;
+            strikeCount++;
         }
     }
 
@@ -87,23 +87,23 @@ public class BaseballGame {
 
     private void increaseBallCountIfEqualNumber(char computerNum, char userNum) {
         if (computerNum == userNum) {
-            this.ballCount++;
+            ballCount++;
         }
     }
 
     public String getResult() {
         StringBuilder result = new StringBuilder();
-        if (this.strikeCount == 3) {
+        if (strikeCount == BASEBALL_LENGTH) {
             result.append(BASEBALL_LENGTH);
             result.append("개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return result.toString();
         }
-        if (this.strikeCount > 0) {
-            result.append(this.strikeCount);
+        if (strikeCount > 0) {
+            result.append(strikeCount);
             result.append(" 스트라이크 ");
         }
-        if (this.ballCount > 0) {
-            result.append(this.ballCount);
+        if (ballCount > 0) {
+            result.append(ballCount);
             result.append(" 볼 ");
         }
         if (result.length() == 0) {
@@ -113,6 +113,6 @@ public class BaseballGame {
     }
 
     public boolean isWin() {
-        return this.strikeCount == 3;
+        return strikeCount == BASEBALL_LENGTH;
     }
 }
