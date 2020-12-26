@@ -11,12 +11,12 @@ public class BaseBall {
         System.out.println("Hello World!");
     }
 
-    public int setNumTest(){
+    int setNumTest(){
         while ( (setNum() == 0) || (zeroCheck() == 0));
         return comNum1*100 + comNum2*10 + comNum3;
     }
 
-    private int setNum(){
+    int setNum(){
         comNum1 = (int)(Math.random()*10);
         comNum2 = (int)(Math.random()*10);
         comNum3 = (int)(Math.random()*10);
@@ -27,11 +27,11 @@ public class BaseBall {
         return 0;
     }
 
-    private int zeroCheck() {
+    int zeroCheck() {
         return comNum1 != 0 && comNum2 != 0 && comNum3 != 0 ? 1 : 0;
     }
 
-    private void inputNum(){
+    void inputNum(){
         System.out.print("세자리 숫자를 입력해주세요 : ");
         userNum = sc.next();
         if (userNum.length() != 3){
@@ -41,5 +41,19 @@ public class BaseBall {
         userNum1 = Character.getNumericValue(userNum.charAt(0));
         userNum2 = Character.getNumericValue(userNum.charAt(1));
         userNum3= Character.getNumericValue(userNum.charAt(2));
+    }
+
+    int checkStrike(int user, int com){
+        if (user == com){
+            return 1;
+        }
+        return 0;
+    }
+
+    int checkBall(int user, int com1, int com2){
+        if (user == com1 || user == com2){
+            return 1;
+        }
+        return 0;
     }
 }
