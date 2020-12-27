@@ -8,7 +8,11 @@ public class BaseballGame {
     }
 
     public void start(){
-        // TODO: 2020/12/27  
+        boolean isNotMatched = true;
+        while(isNotMatched){
+            System.out.print("숫자를 입력해주세 : ");
+            checkInput(InputReader.getNumberInput());
+        }
     }
 
     private String generateRandomNumber(){
@@ -19,5 +23,9 @@ public class BaseballGame {
                 rand.nextInt(10),
                 rand.nextInt(10)
         );
+    }
+
+    private boolean checkInput(int input){
+        return true;
     }
 }
