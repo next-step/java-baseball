@@ -14,4 +14,8 @@ public class Str {
     public String[] split() {
         return value.split(",");
     }
+
+    public char charAt(int index) {
+        return value.charAt(index);
+    }
 }

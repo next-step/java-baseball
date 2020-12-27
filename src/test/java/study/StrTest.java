@@ -1,8 +1,9 @@
 package study;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class StrTest {
     @Test
@@ -24,5 +25,22 @@ public class StrTest {
         Str str = new Str("(1,2)");
         String removeResult = str.removeParenthesis();
         assertThat(removeResult).isEqualTo("1,2");
+    }
+
+    @Test
+    public void isCorrectSecondCharOfString() {
+        Str str = new Str("abc");
+        char secondChar = str.charAt(1);
+        assertThat(secondChar).isEqualTo('b');
+    }
+
+    @Test
+    @DisplayName("When index passed as argument is bigger than string size should throw exception")
+    public void charAtOutOfBounds() {
+        Str str = new Str("abc");
+        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+                .isThrownBy(() -> {
+                    str.charAt(4);
+                }).withMessageMatching("String index out of range: \\d+");
     }
 }
