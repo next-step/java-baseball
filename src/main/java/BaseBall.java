@@ -28,7 +28,7 @@ public class BaseBall {
             balls = increaseWhenBall(balls, userInput.get(i));
         }
 
-        return new Respond(strikes, balls);
+        return new Respond(strikes, balls - strikes);
     }
 
     private int increaseWhenStrike(int strikes, int x, int y) {
