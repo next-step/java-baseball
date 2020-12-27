@@ -41,4 +41,11 @@ public class InputHandler {
         return ret;
     }
 
+    public Command getUserCommand() throws IllegalArgumentException {
+        int userCmd = Integer.parseInt(scanner.nextLine());
+        Command ret =  Command.getCommand(userCmd);
+        if (ret == Command.UNDEFINED) throw new IllegalArgumentException();
+        return ret;
+    }
+
 }
