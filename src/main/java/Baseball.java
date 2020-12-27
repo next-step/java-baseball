@@ -6,6 +6,15 @@
 public class Baseball {
     final private static int INPUT_LENGTH = 3;
 
+    public static int countBalls(String a, String b){
+        int balls = 0;
+        for(int i=0; i<INPUT_LENGTH; i++){
+            String s = StringController.chopAt(b, i);
+            balls += (s.indexOf(a.charAt(i)) >= 0) ? 1: 0;
+        }
+        return balls;
+    }
+
     public static int countStrikes(String a, String b) {
         int strikes = 0;
         for(int i=0; i<INPUT_LENGTH; i++){
