@@ -4,7 +4,7 @@ public class BaseBall {
 
     private final List<Integer> answer;
     private final int MAX_SIZE = 3;
-    private Set<Integer> answerNumberSet;
+    private List<Integer> answerNumber;
 
     public BaseBall() {
         answer = new ArrayList<>();
@@ -23,7 +23,7 @@ public class BaseBall {
             strikes = increaseWhenStrike(strikes, answer.get(i), userInput.get(i));
         }
 
-        answerNumberSet = new HashSet<>(answer);
+        answerNumber = new LinkedList<>(answer);
         for (int i = 0; i < MAX_SIZE; i++) {
             balls = increaseWhenBall(balls, userInput.get(i));
         }
@@ -37,8 +37,8 @@ public class BaseBall {
     }
 
     private int increaseWhenBall(int balls, int x) {
-        if (answerNumberSet.contains(x)) {
-            answerNumberSet.remove(x);
+        if (answerNumber.contains(x)) {
+            answerNumber.remove(answerNumber.indexOf(x));
             return balls + 1;
         }
         return balls;
