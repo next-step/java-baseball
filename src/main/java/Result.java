@@ -1,6 +1,6 @@
 public class Result {
-    public int strikeCounts;
-    public int ballCounts;
+    private int strikeCounts;
+    private int ballCounts;
 
     Result(int s, int b) {
         this.strikeCounts = s;
