@@ -6,11 +6,20 @@
 public class Baseball {
     final private static int INPUT_LENGTH = 3;
 
+    public static String generateBaseballNumbers() {
+        String s = "";
+        while(s.length() < INPUT_LENGTH){
+            int random0to9 = (int) (Math.random() * 10);
+            s += (s.contains(Integer.toString(random0to9))) ? "" : random0to9;
+        }
+        return s;
+    }
+
     public static int countBalls(String a, String b){
         int balls = 0;
         for(int i=0; i<INPUT_LENGTH; i++){
             String s = StringController.chopAt(b, i);
-            balls += (s.indexOf(a.charAt(i)) >= 0) ? 1: 0;
+            balls += (s.indexOf(a.charAt(i)) >= 0) ? 1 : 0;
         }
         return balls;
     }
@@ -28,6 +37,9 @@ public class Baseball {
             return false;
         }
         if(in.length() != Baseball.INPUT_LENGTH) {
+            return false;
+        }
+        if(StringController.hasDuplicatedChar(in)){
             return false;
         }
         return true;

@@ -7,6 +7,13 @@ import static org.assertj.core.api.Assertions.*;
 
 public class BaseballTest {
     @Test
+    void generateBaseballNumbers_void_NumericWithLengthOf3(){
+        for(int i=0; i<100; i++){
+            String generated = Baseball.generateBaseballNumbers();
+            assertThat(Baseball.isValidInput(generated)).as("Generated : " + generated).isEqualTo(true);
+        }
+    }
+    @Test
     void isValidInput_LengthIsNot3_False(){
         assertThat(Baseball.isValidInput("12345")).isEqualTo(false);
         assertThat(Baseball.isValidInput("1234")).isEqualTo(false);
