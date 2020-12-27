@@ -1,7 +1,26 @@
 # 숫자 야구 게임
-## 진행 방법
-* 숫자 야구 게임 요구사항을 파악한다.
-* 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 과제를 제출한다.
 
-## 과제 제출 과정
-* [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+## 기능 요구사항 도출
+1. 게임 진행의 기본적인 틀(사용자 인터페이스) 제작
+2. 1 ~ 9까지의 서로 다른 수로 이루어진 3자리의 숫자를 생성하는 함수 작성 - 단위 테스트 적용
+3. 생성된 수와 사용자 입력 수로부터 스트라이크, 볼 정보를 추출하는 함수 작성 - 단위 테스트 적용
+
+## 프로그래밍 요구사항
+#### 자바 코드 컨벤션을 지키면서 프로그래밍한다.
+    • https://google.github.io/styleguide/javaguide.html 참고  
+    • https://myeonguni.tistory.com/1596 참고  
+#### indent(인덴트,들여쓰기) depth를 2가 넘지 않도록 구현한다. 1까지만 허용한다.
+    • 예를들어 while문 안에 if문이 있으면 들여쓰기는 2이다.  
+    • 힌트: indent(인덴트,들여쓰기) depth를 줄이는 좋은 방법은 함수(또는메소드)를 분리하면 된다.  
+#### 자바8에 추가된 stream api를 사용하지 않고 구현해야한다. 단, 람다는 사용 가능하다.
+#### else 예약어를 쓰지 않는다.
+• 힌트: if조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.  
+#### 함수(또는메소드)의 길이가 10라인을 넘어가지 않도록 구현한다.
+#### 함수(또는메소드)가 한 가지 일만 잘 하도록 구현한다.
+
+## 과제 진행 요구사항
+#### 미션은 https://github.com/next-step/java-baseball 저장소를 fork/clone해 시작한다.
+#### 기능을 구현하기 전에 java-baseball/README.md 파일에 구현할 기능 목록을 정리해 추가한다.
+#### git의 commit단위는 앞 단계에서 README.md 파일에 정리한 기능 목록단위로 추가한다.
+#### AngularJS Commit Message Conventions 참고해 commitlog를 남긴다.
+#### 과제 진행 및 제출방법은 프리코스 과제 제출문서를 참고한다.
