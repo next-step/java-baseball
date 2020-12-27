@@ -56,4 +56,16 @@ public class BaseBall {
         }
         return 0;
     }
+
+    void hint(int strike, int ball){
+        if (strike == 3){
+            System.out.println(strike + " strike");
+            return;
+        }
+        if (strike != 0 || ball != 0){
+            System.out.println(strike + " strike " + ball + " ball");
+            return;
+        }
+        System.out.println("Nothing");
+    }
 }
