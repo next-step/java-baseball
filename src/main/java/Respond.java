@@ -16,4 +16,11 @@ public class Respond {
         return balls;
     }
 
+    @Override
+    public String toString() {
+        String ret = "";
+        if (strikes > 0) ret += (strikes + " 스트라이크 ");
+        if (balls > 0) ret += (balls + " 볼 ");
+        return ret;
+    }
 }
