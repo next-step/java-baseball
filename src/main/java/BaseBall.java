@@ -7,12 +7,12 @@ public class BaseBall {
     private List<Integer> answerNumber;
 
     public BaseBall() {
-        answer = new ArrayList<>();
-        for (int i = 0; i < MAX_SIZE; i++) {
-            Random generator = new Random();
-            int randomNumber = generator.nextInt(9) + 1;
-            answer.add(randomNumber);
+        Random generator = new Random();
+        Set<Integer> numberSet = new HashSet<>();
+        while (numberSet.size() < MAX_SIZE) {
+            numberSet.add(generator.nextInt(9) + 1);
         }
+        answer = new ArrayList<>(numberSet);
     }
 
     public Respond calculate(List<Integer> userInput) {
