@@ -5,3 +5,11 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+## 구현할 기능
+* 에뮬레이터와 베이스볼 게임 구현
+* 랜덤넘버 로직 구현
+* 숫자 입력 구현
+* 체크 로직 구현
+* 게임 재시작 입력 구현
