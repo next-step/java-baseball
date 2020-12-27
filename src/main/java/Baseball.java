@@ -11,8 +11,8 @@ public class Baseball {
     final private static Scanner scanner = new Scanner(System.in);
 
     public static void run(){
-        int balls = 0;
-        int strikes = 0;
+        int balls;
+        int strikes;
         String opponentInput = generateBaseballNumbers();
         do {
             String userInput = getValidUserInput();
@@ -38,7 +38,7 @@ public class Baseball {
     }
 
     private static String getValidUserInput(){
-        String userInput = "";
+        String userInput;
         do {
             System.out.println(INPUT_LENGTH + "자리 숫자를 입력해주세요 : ");
             userInput = scanner.next();
