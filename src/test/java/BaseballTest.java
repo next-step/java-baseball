@@ -17,4 +17,11 @@ public class BaseballTest {
         assertThat(Baseball.isValidInput("123")).isEqualTo(true);
     }
 
+    @Test
+    void testStrikesCounter(){
+        assertThat(Baseball.countStrikes("123", "234")).isEqualTo(0);
+        assertThat(Baseball.countStrikes("123", "132")).isEqualTo(1);
+        assertThat(Baseball.countStrikes("123", "124")).isEqualTo(2);
+        assertThat(Baseball.countStrikes("123", "123")).isEqualTo(3);
+    }
 }
