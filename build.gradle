@@ -4,11 +4,16 @@ apply plugin: 'eclipse'
 version = '1.0.0'
 sourceCompatibility = 1.8
 
+test {
+    useJUnitPlatform()
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter:5.5.2')
-    testCompile('org.assertj:assertj-core:3.14.0')
+    testImplementation 'org.assertj:assertj-core:3.18.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
