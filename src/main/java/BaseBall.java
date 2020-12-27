@@ -10,7 +10,7 @@ public class BaseBall {
         answer = new ArrayList<>();
         for (int i = 0; i < MAX_SIZE; i++) {
             Random generator = new Random();
-            int randomNumber = generator.nextInt(10);
+            int randomNumber = generator.nextInt(9) + 1;
             answer.add(randomNumber);
         }
     }
