@@ -17,4 +17,8 @@ public class MySet {
     public int size() {
         return set.size();
     }
+
+    public boolean contains(int value) {
+        return set.contains(value);
+    }
 }
