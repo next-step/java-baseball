@@ -7,6 +7,10 @@ public class Str {
         this.value = value;
     }
 
+    public String removeParenthesis() {
+        return value.substring(1, value.length() - 1);
+    }
+
     public String[] split() {
         return value.split(",");
     }

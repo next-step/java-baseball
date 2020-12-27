@@ -18,4 +18,11 @@ public class StrTest {
         String[] splitResult = str.split();
         assertThat(splitResult).containsExactly("1");
     }
+
+    @Test
+    public void removeBothSidesParenthesis() {
+        Str str = new Str("(1,2)");
+        String removeResult = str.removeParenthesis();
+        assertThat(removeResult).isEqualTo("1,2");
+    }
 }
