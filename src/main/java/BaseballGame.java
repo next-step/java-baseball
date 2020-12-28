@@ -45,5 +45,28 @@ public class BaseballGame {
 		}
 		return;
 	}
+	
+	private boolean matchResult(int[] count) {
+		printResult(count);
+		if(count[0] == LEN) {
+			return false;
+		}
+		return true;
+	}
+	
+	private void printResult(int[] count) {
+		if(count[0] == LEN) {
+			System.out.println(count[0] + " 스트라이크");
+			return;
+		}	
+		if(count[0] > 0)
+			System.out.print(count[0] + " 스트라이크 ");
+		if(count[1] > 0)
+			System.out.print(count[1]+"볼");
+		if(count[0] == 0 && count[1] == 0) 
+			System.out.print("낫싱");
+		System.out.println();
+		return;
+	}
 
 }
