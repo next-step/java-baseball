@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+1. 스트라이크, 볼, 낫싱을 저장할 클래스
+2. 게임을 시작하는 함수
+3. 게임 그만할건지 판단 함수
+4. 스트라이크, 볼, 낫싱을 판별하는 함수
+5. 정답 판별 함수
