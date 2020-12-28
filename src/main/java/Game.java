@@ -24,14 +24,21 @@ public class Game {
         return String.valueOf(generated);
     }
 
-    // TODO
     public int countStrikes(String input, String answer){
-        return 3;
+        int matches = 0;
+        for (int i = 0; i < numLength; ++i){
+            matches += (input.charAt(i) == answer.charAt(i)) ? 1 : 0;
+        }
+        return matches;
     }
 
-    // TODO
     public int countBalls(String input, String answer){
-        return 3;
+        int matches = 0;
+        for (int i = 0; i < numLength; ++i){
+            int answerIdx = answer.indexOf(input.charAt(i));
+            matches += (answerIdx != -1 && answerIdx != i) ? 1 : 0;
+        }
+        return matches;
     }
 
     private boolean confirmAnswer(String input, String answer){
@@ -40,7 +47,7 @@ public class Game {
 
         dialogue.printGuessResult(strikes, balls);
         
-        if(strikes == numLength){
+        if (strikes == numLength){
             return true;
         }
         return false;
@@ -57,6 +64,7 @@ public class Game {
     public void startGame(){
         String answer = generateAnswer();
         String input = null;
+
         do{
             input = dialogue.requestGuess();
         }while(!confirmAnswer(input, answer));
