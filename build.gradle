@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'application'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
@@ -11,4 +12,12 @@ repositories {
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.5.2')
     testCompile('org.assertj:assertj-core:3.14.0')
+}
+
+application {
+    mainClassName = 'App'
+}
+
+run {
+    standardInput = System.in
 }
