@@ -45,9 +45,43 @@ public class BaseBallGame {
         setAnswer();
         do {
             int userNumber = getUserNumber();
-
+            checkNumber(userNumber);
         } while(getStrike() != 3);
         return 0;
+    }
+
+    public void checkNumber(int Number) {
+        int userHundreds = Number / 100;
+        int userTens = (Number % 100) / 10;
+        int userOnes = Number % 10;
+        checkStrike(userHundreds, userTens, userOnes);
+        checkBall(userHundreds, userTens, userOnes);
+    }
+
+    public void checkStrike(int userHundreds, int userTens, int userOnes) {
+        strike = 0;
+        if(answerHundreds == userHundreds) {
+            strike++;
+        }
+        if(answerTens == userTens) {
+            strike++;
+        }
+        if(answerOnes == userOnes) {
+            strike++;
+        }
+    }
+
+    public void checkBall(int userHundreds, int userTens, int userOnes) {
+        ball = 0;
+        if(userHundreds == answerTens || userHundreds == answerOnes) {
+            ball ++;
+        }
+        if(userTens == answerHundreds || userTens == answerOnes) {
+            ball ++;
+        }
+        if(userOnes == answerHundreds || userOnes == answerTens) {
+            ball ++;
+        }
     }
 
     public int getNumber() {
