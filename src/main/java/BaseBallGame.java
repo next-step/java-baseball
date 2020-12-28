@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,6 +24,10 @@ public class BaseBallGame {
         return answerOnes;
     }
 
+    public int getStrike() {
+        return strike;
+    }
+
     public BaseBallGame() {
         sc = new Scanner(System.in);
         answerHundreds = 0;
@@ -38,9 +43,32 @@ public class BaseBallGame {
 
     public int playGame() {
         setAnswer();
+        do {
+            int userNumber = getUserNumber();
 
+        } while(getStrike() != 3);
         return 0;
     }
+
+    public int getNumber() {
+        try {
+            int command = sc.nextInt();
+            return command;
+        } catch (InputMismatchException e) {
+            sc = new Scanner(System.in);
+            return 0;
+        }
+    }
+
+    public int getUserNumber() {
+        int number;
+        do {
+            System.out.print("숫자를 입력해주세요 : ");
+            number = getNumber();
+        } while(number > 999 || number < 100);
+        return number;
+    }
+
 
     public void setAnswer() {
         Random random = new Random();
