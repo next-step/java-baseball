@@ -40,6 +40,10 @@ public class BaseBallGame {
         return strike;
     }
 
+    public int getBall() {
+        return ball;
+    }
+
     public BaseBallGame() {
         sc = new Scanner(System.in);
         answerHundreds = 0;
@@ -58,8 +62,32 @@ public class BaseBallGame {
         do {
             int userNumber = getUserNumber();
             checkNumber(userNumber);
+            printResult();
         } while(getStrike() != 3);
-        return 0;
+        System.out.println("3개의 숫자를 모두 맞추셨습니다! 게임종료");
+        return continueGame();
+    }
+
+    public void printResult() {
+        if(strike != 0) {
+            System.out.print(strike + " 스트라이크 ");
+        }
+        if(ball != 0) {
+            System.out.print(ball + " 볼");
+        }
+        if(strike ==0 && ball ==0) {
+            System.out.print("Nothing");
+        }
+        System.out.println();
+    }
+
+    public int continueGame() {
+        int command;
+        do {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+            command = getNumber();
+        } while(command != 1 && command != 2);
+        return command;
     }
 
     public void checkNumber(int Number) {
