@@ -18,6 +18,10 @@ application {
     mainClassName = 'App'
 }
 
+test {
+    useJUnitPlatform()
+}
+
 run {
     standardInput = System.in
 }

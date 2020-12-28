@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Game {
     private GameDialogue dialogue = new GameDialogue();
     private boolean isEnded = false;
@@ -7,18 +9,28 @@ public class Game {
         this.numLength = numLength;
     }
 
-    // TODO
-    private String generateNum(){
-        return "123";
+    public String generateAnswer(){
+        Random rand = new Random();
+        int generated = 0;
+        ArrayList<Integer> nums = 
+            new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+
+        for (int i = 0; i < numLength; ++i){
+            int selected = rand.nextInt(nums.size());
+            generated = generated * 10 + nums.get(selected);
+            nums.remove(selected);
+        }
+
+        return String.valueOf(generated);
     }
 
     // TODO
-    private int countStrikes(String input, String answer){
+    public int countStrikes(String input, String answer){
         return 3;
     }
 
     // TODO
-    private int countBalls(String input, String answer){
+    public int countBalls(String input, String answer){
         return 3;
     }
 
@@ -43,9 +55,8 @@ public class Game {
     }
 
     public void startGame(){
-        String answer = generateNum();
+        String answer = generateAnswer();
         String input = null;
-
         do{
             input = dialogue.requestGuess();
         }while(!confirmAnswer(input, answer));
