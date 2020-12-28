@@ -14,6 +14,33 @@ public class BaseballGame {
 			baseballGame.playBaseBallGame();
 		}while(baseballGame.isNewGame());	
 	}
+	
+	public boolean isNewGame() {
+		System.out.println("3개를 모두 맞히셨습니다! 게임종료");
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		return checkInput(input);
+	}
+
+
+	public boolean checkInput(String input) {
+		if(isInvalidLen(input) || isInvalidVal(input)) 
+			throw new IllegalArgumentException("ERROR: 입력 값이 잘못 되었습니다.");
+		if(input.equals("1"))
+			return true;
+		return false;
+	}
+	
+	private boolean isInvalidVal(String input) {
+		if(input.charAt(0) == CONTINUE || input.charAt(0) == EXIT) return false;
+		return true;
+	}
+
+	private boolean isInvalidLen(String input) {
+		if(input.length() != 1) return true;
+		return false;
+	}
 
 	private void playBaseBallGame() {
 		//난수 생성
