@@ -1,6 +1,8 @@
 package baseball;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Checker {
 
@@ -17,5 +19,12 @@ public class Checker {
             strike += compare(computer.get(i), user.get(i));
         }
         return strike;
+    }
+
+    public int checkBall(List<Integer> computer, List<Integer> user) {
+        Set<Integer> matchSet = new HashSet<>(computer);
+        matchSet.retainAll(user);
+
+        return matchSet.size() - checkStrike(computer, user);
     }
 }

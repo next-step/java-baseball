@@ -36,4 +36,16 @@ public class CheckerTest {
         assertThat(checker.checkStrike(computer, user2)).isEqualTo(0);
         assertThat(checker.checkStrike(computer, user3)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("볼 수를 반환한다")
+    public void checkBallTest() {
+        List<Integer> computer = List.of(3, 8, 6);
+        List<Integer> user1 = List.of(3, 8, 6);
+        List<Integer> user2 = List.of(8, 3, 5);
+        List<Integer> user3 = List.of(3, 4, 5);
+        assertThat(checker.checkBall(computer, user1)).isEqualTo(0);
+        assertThat(checker.checkBall(computer, user2)).isEqualTo(2);
+        assertThat(checker.checkBall(computer, user3)).isEqualTo(0);
+    }
 }
