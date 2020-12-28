@@ -12,6 +12,18 @@ public class BaseBallGame {
     private int strike;
     private int ball;
 
+    public void setAnswerHundreds(int answerHundreds) {
+        this.answerHundreds = answerHundreds;
+    }
+
+    public void setAnswerTens(int answerTens) {
+        this.answerTens = answerTens;
+    }
+
+    public void setAnswerOnes(int answerOnes) {
+        this.answerOnes = answerOnes;
+    }
+
     public int getAnswerHundreds() {
         return answerHundreds;
     }
