@@ -15,6 +15,10 @@ public class BaseBall {
         answer = new ArrayList<>(numberSet);
     }
 
+    public void setAnswer(int num1, int num2, int num3) {
+        answer = new ArrayList<>(Arrays.asList(num1, num2, num3));
+    }
+
     public Respond calculate(List<Integer> userInput) {
         int strikes = 0;
         int balls = 0;
