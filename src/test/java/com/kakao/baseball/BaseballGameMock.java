@@ -5,36 +5,33 @@ import java.util.Random;
 import java.util.Set;
 
 public class BaseballGameMock {
-    private int baseballNumber = 123;
+    private int baseballNumber;
     private int strikeCount;
     private int ballCount;
 
     private final int BASEBALL_LENGTH = 3;
 
     public BaseballGameMock() {
+        baseballNumber = 123;
     }
 
     public void initBaseballNumber() {
+
         baseballNumber = 456;
     }
 
     public boolean validateInput(int input) {
         Set<Character> numSet = new HashSet<>();
         String strInput = String.valueOf(input);
-
-        if ((input <= 100) || (input >= 1000)) {
+        if ((input <= Math.pow(10, BASEBALL_LENGTH - 1)) || (input >= Math.pow(10, BASEBALL_LENGTH))) {
             return false;
         }
         for (int i = 0; i < BASEBALL_LENGTH; i++) {
-            if (strInput.charAt(i) == '0') {
-                return false;
-            }
-            if (numSet.contains(strInput.charAt(i))) {
+            if (numSet.contains(strInput.charAt(i)) || strInput.charAt(i) == '0') {
                 return false;
             }
             numSet.add(strInput.charAt(i));
         }
-
         return true;
     }
 
@@ -72,6 +69,7 @@ public class BaseballGameMock {
         }
     }
 
+
     private void increaseBallCountIfEqualNumber(char computerNum, char userNum) {
         if (computerNum == userNum) {
             ballCount++;
@@ -81,20 +79,23 @@ public class BaseballGameMock {
     public String getResult() {
         StringBuilder result = new StringBuilder();
         if (strikeCount == BASEBALL_LENGTH) {
-            result.append(BASEBALL_LENGTH);
-            result.append("개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            result.append(BASEBALL_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return result.toString();
         }
+        if (strikeCount == 0 && ballCount == 0) {
+            result.append("낫싱");
+            return result.toString();
+        }
+        return getCountString();
+    }
+
+    public String getCountString() {
+        StringBuilder result = new StringBuilder();
         if (strikeCount > 0) {
-            result.append(strikeCount);
-            result.append(" 스트라이크 ");
+            result.append(strikeCount + " 스트라이크 ");
         }
         if (ballCount > 0) {
-            result.append(ballCount);
-            result.append(" 볼 ");
-        }
-        if (result.length() == 0) {
-            result.append("숫자를 하나도 맞히지 못했습니다.");
+            result.append(ballCount + " 볼 ");
         }
         return result.toString();
     }

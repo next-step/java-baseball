@@ -28,14 +28,14 @@ public class BaseballGameTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"234,2 볼","678,숫자를 하나도 맞히지 못했습니다.","123,3개의 숫자를 모두 맞히셨습니다! 게임 종료"})
+    @CsvSource({"234,2 볼","678,낫싱","123,3개의 숫자를 모두 맞히셨습니다! 게임 종료"})
     public void checkTest(int input, String result){
         baseballGame.checkUserInput(input);
         assertThat(baseballGame.getResult()).contains(result);
     }
 
     @ParameterizedTest
-    @CsvSource({"234,1 볼","178,숫자를 하나도 맞히지 못했습니다.","456,3개의 숫자를 모두 맞히셨습니다! 게임 종료"})
+    @CsvSource({"234,1 볼","178,낫싱","456,3개의 숫자를 모두 맞히셨습니다! 게임 종료"})
     public void checkTestAfterInit(int input, String result){
         baseballGame.initBaseballNumber();
         baseballGame.checkUserInput(input);
