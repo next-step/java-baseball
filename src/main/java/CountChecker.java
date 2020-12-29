@@ -51,4 +51,16 @@ public class CountChecker {
 
         System.out.println(result);
     }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public int getStrikeCnt() {
+        return strikeCnt;
+    }
+
+    public int getBallCnt() {
+        return ballCnt;
+    }
 }
