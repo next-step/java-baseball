@@ -47,7 +47,7 @@ public class CountChecker {
 
         if(strikeCnt > 0) result += strikeCnt + " 스트라이크";
         if(ballCnt > 0) result += ballCnt + " 볼";
-        if(result.isEmpty()) result = "맞춘 숫자가 없습니다.";
+        if(result.isEmpty()) result = "포볼(맞춘 숫자가 없습니다.)";
 
         System.out.println(result);
     }
