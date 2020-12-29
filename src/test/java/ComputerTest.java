@@ -57,4 +57,60 @@ class ComputerTest {
                 .as("failure - Each number should be unique")
                 .isEqualTo(Computer.NUMBER_OF_DIGIT);
     }
+
+    @Test
+    public void ballCountTest() {
+        computer.setHiddenNumbers("123");
+        assertThat(computer.guessNumber("456")
+                .getBall()).as("failure - miscount ball")
+                .isEqualTo(0);
+
+        assertThat(computer.guessNumber("321")
+                .getBall()).as("failure - miscount ball")
+                .isEqualTo(2);
+
+        assertThat(computer.guessNumber("123")
+                .getBall()).as("failure - miscount ball")
+                .isEqualTo(0);
+
+        assertThat(computer.guessNumber("932")
+                .getBall()).as("failure - miscount ball")
+                .isEqualTo(2);
+
+        assertThat(computer.guessNumber("231")
+                .getBall()).as("failure - miscount ball")
+                .isEqualTo(3);
+
+        assertThat(computer.guessNumber("415")
+                .getBall()).as("failure - miscount ball")
+                .isEqualTo(1);
+    }
+
+    @Test
+    public void strikeCountTest() {
+        computer.setHiddenNumbers("123");
+        assertThat(computer.guessNumber("456")
+                .getStrike()).as("failure - miscount strike")
+                .isEqualTo(0);
+
+        assertThat(computer.guessNumber("321")
+                .getStrike()).as("failure - miscount strike")
+                .isEqualTo(1);
+
+        assertThat(computer.guessNumber("123")
+                .getStrike()).as("failure - miscount strike")
+                .isEqualTo(3);
+
+        assertThat(computer.guessNumber("234")
+                .getStrike()).as("failure - miscount strike")
+                .isEqualTo(0);
+
+        assertThat(computer.guessNumber("153")
+                .getStrike()).as("failure - miscount strike")
+                .isEqualTo(2);
+
+        assertThat(computer.guessNumber("932")
+                .getStrike()).as("failure - miscount strike")
+                .isEqualTo(0);
+    }
 }

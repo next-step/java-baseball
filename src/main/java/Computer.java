@@ -14,8 +14,12 @@ public class Computer {
         return hiddenNumbers;
     }
 
-    public void setHiddenNumbers(ArrayList<Integer> hiddenNumbers) {
-        this.hiddenNumbers = hiddenNumbers;
+    //This method is only used for test
+    public void setHiddenNumbers(String hiddenNumbers) {
+        this.hiddenNumbers.clear();
+        for(int i=0;i<NUMBER_OF_DIGIT;i++){
+            this.hiddenNumbers.add(hiddenNumbers.charAt(i) - '0');
+        }
     }
 
     public void selectRandomNumber() {
@@ -29,11 +33,12 @@ public class Computer {
         }
     }
 
-    public GuessResult guessNumber(ArrayList<Integer> guessNumber) {
+    public GuessResult guessNumber(String guessNumber) {
         GuessResult guessResult = new GuessResult();
         for (int idx = 0; idx < NUMBER_OF_DIGIT; idx++) {
-            countStrike(idx, guessNumber.get(idx), guessResult);
-            countBall(idx, guessNumber.get(idx), guessResult);
+            int targetNumber = guessNumber.charAt(idx) - '0';
+            countStrike(idx, targetNumber, guessResult);
+            countBall(idx, targetNumber, guessResult);
         }
         return guessResult;
     }
