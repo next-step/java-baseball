@@ -22,10 +22,11 @@ public class BaseballGame {
 
     public void initBaseballNumber() {
         Random random = new Random();
+        int pivot = (int) Math.pow(10, BASEBALL_LENGTH - 1);
         int randomNumber = 0;
 
         while (!validateInput(randomNumber)) {
-            randomNumber = random.nextInt(900)+100;
+            randomNumber = random.nextInt(pivot * 9) + pivot;
         }
         baseballNumber = randomNumber;
     }
@@ -33,20 +34,15 @@ public class BaseballGame {
     public boolean validateInput(int input) {
         Set<Character> numSet = new HashSet<>();
         String strInput = String.valueOf(input);
-
-        if ((input <= 100) || (input >= 1000)) {
+        if ((input <= Math.pow(10, BASEBALL_LENGTH - 1)) || (input >= Math.pow(10, BASEBALL_LENGTH))) {
             return false;
         }
         for (int i = 0; i < BASEBALL_LENGTH; i++) {
-            if (strInput.charAt(i) == '0') {
-                return false;
-            }
-            if (numSet.contains(strInput.charAt(i))) {
+            if (numSet.contains(strInput.charAt(i)) || strInput.charAt(i) == '0') {
                 return false;
             }
             numSet.add(strInput.charAt(i));
         }
-
         return true;
     }
 
@@ -76,13 +72,14 @@ public class BaseballGame {
     private void checkBall(String computerNumber, String userInputNumber) {
         for (int i = 0; i < BASEBALL_LENGTH; i++) {
             for (int j = 0; j < BASEBALL_LENGTH; j++) {
-                if(i==j){
+                if (i == j) {
                     continue;
                 }
                 increaseBallCountIfEqualNumber(computerNumber.charAt(i), userInputNumber.charAt(j));
             }
         }
     }
+
 
     private void increaseBallCountIfEqualNumber(char computerNum, char userNum) {
         if (computerNum == userNum) {
@@ -93,20 +90,23 @@ public class BaseballGame {
     public String getResult() {
         StringBuilder result = new StringBuilder();
         if (strikeCount == BASEBALL_LENGTH) {
-            result.append(BASEBALL_LENGTH);
-            result.append("개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            result.append(BASEBALL_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return result.toString();
         }
+        if (strikeCount == 0 && ballCount == 0) {
+            result.append("낫싱");
+            return result.toString();
+        }
+        return getCountString();
+    }
+
+    public String getCountString() {
+        StringBuilder result = new StringBuilder();
         if (strikeCount > 0) {
-            result.append(strikeCount);
-            result.append(" 스트라이크 ");
+            result.append(strikeCount + " 스트라이크 ");
         }
         if (ballCount > 0) {
-            result.append(ballCount);
-            result.append(" 볼 ");
-        }
-        if (result.length() == 0) {
-            result.append("숫자를 하나도 맞히지 못했습니다.");
+            result.append(ballCount + " 볼 ");
         }
         return result.toString();
     }
