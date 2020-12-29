@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -19,6 +22,13 @@ public class QuizGenerator {
         return (int)(Math.random() * (MAX - MIN + 1) + MIN);
     }
 
+    private ArrayList<Integer> convertSetToShuffledList(HashSet<Integer> set) {
+        ArrayList<Integer> list = new ArrayList<>(set);
+        Collections.shuffle(list);
+
+        return list;
+    }
+
     private int getRandomAnswerNumber() {
         HashSet<Integer> set = new HashSet<>();
 
@@ -27,8 +37,9 @@ public class QuizGenerator {
         }
 
         StringBuilder tempString = new StringBuilder("");
+        ArrayList<Integer> list = convertSetToShuffledList(set);
 
-        for(int num : set) {
+        for(int num : list) {
             tempString.append(num);
         }
 
