@@ -2,9 +2,9 @@ import java.util.*;
 
 public class BaseBall {
 
-    private final List<Integer> answer;
+    private List<Integer> answer;
     private final int MAX_SIZE = 3;
-    private List<Integer> answerNumber;
+    private List<Integer> tempAnswer;
 
     public BaseBall() {
         Random generator = new Random();
@@ -18,16 +18,13 @@ public class BaseBall {
     public Respond calculate(List<Integer> userInput) {
         int strikes = 0;
         int balls = 0;
-
         for (int i = 0; i < MAX_SIZE; i++) {
             strikes = increaseWhenStrike(strikes, answer.get(i), userInput.get(i));
         }
-
-        answerNumber = new LinkedList<>(answer);
+        tempAnswer = new LinkedList<>(answer);
         for (int i = 0; i < MAX_SIZE; i++) {
             balls = increaseWhenBall(balls, userInput.get(i));
         }
-
         return new Respond(strikes, balls - strikes);
     }
 
@@ -37,8 +34,8 @@ public class BaseBall {
     }
 
     private int increaseWhenBall(int balls, int x) {
-        if (answerNumber.contains(x)) {
-            answerNumber.remove(answerNumber.indexOf(x));
+        if (tempAnswer.contains(x)) {
+            tempAnswer.remove(tempAnswer.indexOf(x));
             return balls + 1;
         }
         return balls;
