@@ -7,21 +7,21 @@ public class BaseballGameNumberComparator {
     }
 
     public int getBall(int x, int y) {
-        int count = 0;
+        int ball = lengthOfNumber * 2;
         boolean[] check = new boolean[10];
         for (int i = 0; i < this.lengthOfNumber; i++) {
-            count += checkFirstDigit(check, x);
-            count += checkFirstDigit(check, y);
-            x /= 10;
-            y /= 10;
+            ball -= checkDigit(check, x, i);
+            ball -= checkDigit(check, y, i);
         }
-        return count - getStrike(x, y);
+        return ball - getStrike(x, y);
     }
 
-    public int checkFirstDigit(boolean[] check, int num) {
-        if(check[num % 10]) {
+    public int checkDigit(boolean[] check, int num, int index) {
+        int digit = (num / (int)Math.pow(10, index)) % 10;
+        if(check[digit]) {
             return 0;
         }
+        check[digit] = true;
         return 1;
     }
 
