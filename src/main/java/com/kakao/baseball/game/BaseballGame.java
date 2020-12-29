@@ -17,18 +17,17 @@ public class BaseballGame {
     private final int BASEBALL_LENGTH = 3;
 
     public BaseballGame() {
-        baseballNumber = initBaseballNumber();
+        initBaseballNumber();
     }
 
-    public int initBaseballNumber() {
+    public void initBaseballNumber() {
         Random random = new Random();
         int randomNumber = 0;
 
         while (!validateInput(randomNumber)) {
             randomNumber = random.nextInt(900)+100;
         }
-
-        return randomNumber;
+        baseballNumber = randomNumber;
     }
 
     public boolean validateInput(int input) {
