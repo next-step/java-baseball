@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,20 +10,26 @@ public class main {
     public static int strike = 0;
     public static int ball = 0;
     public static void main(String[] args) {
-        makeAnswerRandom();
-        problem();
+        boolean playing = true;
+
+        while(playing){
+            makeAnswerRandom();
+            playing = problem();
+        }
     }
 
-    public static void problem(){
-        while(true){
+    public static boolean problem(){
+        boolean correct = false;
+        while(!correct){
             System.out.print("숫자를 입력해주세요 : ");
             String num = sc.next();
 
-            isAnswer(num);
+            correct = isAnswer(num);
             ball = 0;
             strike = 0;
         }
 
+        return showMenu();
     }
 
     public static boolean showMenu(){
@@ -30,6 +37,7 @@ public class main {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         int num = sc.nextInt();
 
+        Arrays.fill(used, false);
         if(num == 1)
             return true;
 
@@ -56,21 +64,17 @@ public class main {
         for(int i=0; i<3; i++){
             isStrikeOrBall(i, num);
         }
-
-        if(strike != 0)
-            System.out.print(strike+"스트라이크 ");
-
-        if(ball != 0)
-            System.out.print(ball+"볼");
-
-        if(strike == 0 && ball == 0)
-            System.out.print("일치하는 숫자가 없습니다.");
-
-        System.out.println();
+        showStrikeandBallMsg();
         if(strike == 3)
             return true;
-
         return false;
+    }
+
+    public static void showStrikeandBallMsg(){
+        if(strike != 0) System.out.print(strike+"스트라이크 ");
+        if(ball != 0) System.out.print(ball+"볼");
+        if(strike == 0 && ball == 0) System.out.print("일치하는 숫자가 없습니다.");
+        System.out.println();
     }
 
     public static void isStrikeOrBall(int n, String num){
