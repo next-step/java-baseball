@@ -20,7 +20,7 @@ public class QuizGenerator {
     }
 
     private int getRandomAnswerNumber() {
-        HashSet<Integer> set = new HashSet<Integer>();
+        HashSet<Integer> set = new HashSet<>();
 
         while(set.size() < answerLength) {
             set.add(getRandomSingleDigitInt());
