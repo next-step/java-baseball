@@ -1,11 +1,12 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class main {
 
     public static Scanner sc = new Scanner(System.in);
-
+    public static boolean used[] = new boolean[10];
+    public static int answer[] = {0, 0, 0};
     public static void main(String[] args) {
-        
     }
 
     public static void problem(){
@@ -25,5 +26,21 @@ public class main {
             return true;
 
         return false;
+    }
+
+    public static void makeAnswerRandom(){
+        for(int i=0; i<3; i++){
+            answer[i] = getRandomNumber();
+            used[answer[i]] = true;
+        }
+    }
+
+    public static int getRandomNumber(){
+        Random random = new Random();
+        int number = random.nextInt(9) + 1;
+        while(used[number])
+            number = random.nextInt(9) + 1;
+
+        return number;
     }
 }
