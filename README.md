@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+
+- 플레이어가 맞출 세자리의 숫자 생성 기능
+- 스트라이크 횟수 세는 기능
+- 볼 횟수 세는 기능
+- 플레이어로부터 숫자를 입력받고 결과를 출력하는 기능
