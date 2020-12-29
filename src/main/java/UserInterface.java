@@ -1,9 +1,7 @@
 import exception.DuplicateNumberException;
 import exception.NumberLengthException;
 
-import java.io.IOException;
 import java.util.HashSet;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -26,14 +24,25 @@ public class UserInterface {
         int inputNumber = 0;
         Scanner sc = new Scanner(System.in);
         int answerNumber = quizGenerator.generate();
-        CountChecker countChecker = new CountChecker(answerNumber);
 
         System.out.println("테스트용 정답 출력 : " + answerNumber);
 
-        while(inputNumber != answerNumber) {
-            printQuizMessage();
+        inProgressGame(sc, inputNumber, answerNumber);
 
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+        inputNumber = sc.nextInt();
+
+        return inputNumber != 1;
+    }
+
+    private void inProgressGame(Scanner sc, int inputNumber, int answerNumber) {
+        CountChecker countChecker = new CountChecker(answerNumber);
+
+        while(inputNumber != answerNumber) {
             try {
+                printQuizMessage();
                 inputNumber = sc.nextInt();
                 checkInputNumberFormat(inputNumber);
             } catch (NumberLengthException error) {
@@ -47,16 +56,8 @@ public class UserInterface {
                 sc.next();
                 continue;
             }
-
             countChecker.check(inputNumber);
         }
-
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-
-        inputNumber = sc.nextInt();
-
-        return inputNumber != 1;
     }
 
     private void checkInputNumberFormat(int inputNumber) {
