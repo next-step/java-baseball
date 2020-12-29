@@ -5,3 +5,6 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+1. 기본적으로 필요한 클래스(스트라이크, 볼, 낫싱을 저장할 클래스, 게임 동작할 클래스, 메인 클래스)
+2. 게임 동작에 필요한 함수(게임 시작, 게임 끝, 정답 확인)
