@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+* 게임 실행 틀
+* 컴퓨터 수 생성
+* 게임 진행
+* 단위 테스트
