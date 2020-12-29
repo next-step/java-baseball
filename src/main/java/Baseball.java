@@ -59,7 +59,7 @@ public class Baseball {
             System.out.print(baseballResult[1] + " 볼 ");
         }
         if (baseballResult[2] == MAX_SIZE) {
-            System.out.println("낫싱");
+            System.out.print("낫싱");
         }
         System.out.println();
     }
