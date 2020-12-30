@@ -9,9 +9,7 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
 
-        Scanner sc = new Scanner(System.in);
-
-        BaseBallGameTest myBaseBallGame = new BaseBallGameTest();
+        BaseBallGame myBaseBallGame = new BaseBallGame();
         myBaseBallGame.newGameStart();
 
     }

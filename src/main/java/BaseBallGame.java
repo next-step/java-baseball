@@ -2,7 +2,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
-public class BaseBallGameTest {
+public class BaseBallGame {
     private int targetNumber;
     Scanner sc = new Scanner(System.in);
 
@@ -10,17 +10,20 @@ public class BaseBallGameTest {
         return targetNumber;
     }
 
-    private void makeTagetNumber(){
+    public void setTargetNumber(int targetNumber){this.targetNumber = targetNumber; }
+
+    public int makeTagetNumber(){
         Random random= new Random();
         HashSet<Integer> set = new HashSet<>();
-        this.targetNumber = 0;
+        int result = 0;
         do {
             set.add(random.nextInt(9) + 1);
         } while (set.size() < 3);
 
         for (Integer integer : set) {
-            this.targetNumber = this.targetNumber * 10 + integer;
+            result = result * 10 + integer;
         }
+        return result;
 
     }
 
@@ -35,7 +38,7 @@ public class BaseBallGameTest {
     }
 
     private void play(){
-        makeTagetNumber();
+        this.targetNumber = makeTagetNumber();
         System.out.println(this.targetNumber);
         while(true){
             System.out.print("숫자를 입력해주세요: ");
@@ -45,7 +48,7 @@ public class BaseBallGameTest {
             }
         }
     }
-    private boolean isMatch(int number){
+    public boolean isMatch(int number){
         if(!checkInputNumber(number)){
             System.out.println("잘못된 입력입니다");
             return false;
@@ -59,7 +62,7 @@ public class BaseBallGameTest {
         return strikeCount == 3;
 
     }
-    private boolean checkInputNumber(int number){
+    public boolean checkInputNumber(int number){
         if(number >= 1000 || number < 100){
             return false;
         }
@@ -71,7 +74,7 @@ public class BaseBallGameTest {
         return set.size() == 3;
     }
 
-    private int strikeCount(int number){
+    public int strikeCount(int number){
         int result = 0;
         for(int i = 0; i < 3; i++){
             if(((int)(this.targetNumber / (int)(Math.pow(10, i))) % 10) == ((int)(number / (int)(Math.pow(10, i))) % 10)){
@@ -81,7 +84,7 @@ public class BaseBallGameTest {
         return result;
     }
 
-    private int ballCount(int number, int strikeCount){
+    public int ballCount(int number, int strikeCount){
         HashSet<Integer> set = new HashSet<>();
 
         for(int i = 0; i < 3; i++){
