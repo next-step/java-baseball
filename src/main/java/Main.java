@@ -4,7 +4,24 @@ class ID{
     }
     public void genByTyping(){
     }
+
     public String compare(ID o){
+        int strkCnt = getStrikeCnt();
+        int ballCnt = getBallCnt();
+        if(3 == strkCnt){
+            return "same";
+        }
+        return strikeMSG(strkCnt) + ballMSG(ballCnt);
+    }
+    private int getStrikeCnt(){
+    }
+    private int getBallCnt(){
+    }
+    private String strikeMSG(int cnt){
+        return cnt + "스트라이크 ";
+    }
+    private String ballMSG(int cnt){
+        return cnt + "볼";
     }
 }
 
