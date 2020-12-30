@@ -4,6 +4,7 @@ public class Baseball {
     private static final Scanner scanner = new Scanner(System.in);
     private static final int MAX_SIZE = 3;
     private static final int NEW_GAME = 1;
+    private static final int END_GAME = 2;
 
     public int getNumber() {
         return scanner.nextInt();
@@ -26,8 +27,12 @@ public class Baseball {
     }
 
     public int getPlayerNumber() {
-        System.out.println("숫자를 입력해주세요 : ");
-        return getNumber();
+        int input;
+        do {
+            System.out.println("숫자를 입력해주세요 : ");
+            input = getNumber();
+        } while (input < 100 || input > 999);
+        return input;
     }
 
     public int getBaseballResultIndex(int playerNumber, int playerNumberIndex, List<Integer> computerNumberList) {
@@ -75,8 +80,12 @@ public class Baseball {
     }
 
     public boolean continueGame() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        return getNumber() == NEW_GAME;
+        int input;
+        do {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            input = getNumber();
+        } while (input != NEW_GAME && input != END_GAME);
+        return input == NEW_GAME;
     }
 
     public int getRandomIndex(List<Integer> listForComputerNumber) {
