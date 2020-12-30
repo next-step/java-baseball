@@ -46,6 +46,23 @@ public class Game {
         return count;
     }
 
+    static int checkWith(int idx, int[] computer, int[] user){
+        int count = 0;
+
+        count += checkEqual(computer[idx], user[(idx+1)%3]);
+        count += checkEqual(computer[idx], user[(idx+2)%3]);
+
+        return count;
+    }
+
+    static int countBall(int[] computer, int[] user){
+        int count = 0;
+        for(int i = 0; i<3; i++){
+            count += checkWith(i, computer, user);
+        }
+        return count;
+    }
+
     public static void main(String[] args){
         System.out.println("start game");
     }

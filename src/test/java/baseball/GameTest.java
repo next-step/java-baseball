@@ -23,4 +23,13 @@ public class GameTest {
 
         assertThat(count).isEqualTo(1);
     }
+
+    @Test
+    public void testCountBall(){
+        int[] computer = {1, 3, 5};
+        int[] user = {1, 5, 3};
+        int count = Game.countBall(computer, user);
+
+        assertThat(count).isEqualTo(2);
+    }
 }
