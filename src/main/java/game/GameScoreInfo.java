@@ -3,8 +3,8 @@ package game;
 import common.GameResultPhrases;
 
 public class GameScoreInfo {
-    int strikeCount;
-    int ballCount;
+    private int strikeCount;
+    private int ballCount;
     private final int GAME_NUMBER_COUNT = 3;
 
     public int getStrikeCount() {
@@ -13,6 +13,22 @@ public class GameScoreInfo {
 
     public int getBallCount() {
         return ballCount;
+    }
+
+    public void addOneStrikeCount() {
+        this.strikeCount++;
+    }
+
+    public void addOneBallCount() {
+        this.ballCount++;
+    }
+
+    public void subOneStrikeCount() {
+        this.strikeCount--;
+    }
+
+    public void subOneBallCount() {
+        this.ballCount--;
     }
 
     public void setStrikeCount(int strikeCount) {

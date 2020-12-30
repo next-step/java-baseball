@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class GameScoreInfoTest {
 
-    GameScoreInfo gameScoreInfo;
+    private GameScoreInfo gameScoreInfo;
 
     @BeforeAll
     void setGameScoreInfo() {
