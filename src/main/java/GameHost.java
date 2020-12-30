@@ -1,8 +1,20 @@
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 
 public class GameHost {
     private Integer[] threeNumGeneratedByComputer;
+    private Integer[] threeNumEnteredByPlayer;
+
+    public static void main(String[] args) {
+        GameHost host = new GameHost();
+        host.playGame();
+    }
+
+    public void playGame() {
+        generateRandThreeNum();
+        enterPlayersThreeNum();
+    }
 
     private void generateRandThreeNum() {
         threeNumGeneratedByComputer = new Integer[3];
@@ -15,12 +27,38 @@ public class GameHost {
         randNumDeduplicated.toArray(threeNumGeneratedByComputer);
     }
 
-    public void playGame() {
+    private void enterPlayersThreeNum() {
+        Scanner scanner = new Scanner(System.in);
+        String enteredNum;
 
+        do {
+            System.out.print("숫자를 입력해주세요 : ");
+            enteredNum = scanner.nextLine();
+        } while (!isValid(enteredNum));
+
+        setPlayersNumArrFrom(enteredNum);
     }
 
-    public static void main(String[] args) {
-        GameHost newGame = new GameHost();
-        newGame.playGame();
+    private boolean isValid(String numberStr) {
+        return (numberStr.length() == 3 && numberStr.matches("^[1-9]*$")
+                && isUniqueEach(numberStr));
+    }
+
+    private boolean isUniqueEach(String numberStr) {
+        HashSet<Character> uniqueNumber = new HashSet<>();
+
+        for (int i = 0; i < numberStr.length(); i++) {
+            uniqueNumber.add(numberStr.charAt(i));
+        }
+
+        return (uniqueNumber.size() == numberStr.length());
+    }
+
+    private void setPlayersNumArrFrom(String numberStr) {
+        threeNumEnteredByPlayer = new Integer[3];
+
+        for (int i = 0; i < numberStr.length(); i++) {
+            threeNumEnteredByPlayer[i] = numberStr.charAt(i) - '0';
+        }
     }
 }
