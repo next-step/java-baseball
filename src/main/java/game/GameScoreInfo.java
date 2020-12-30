@@ -1,11 +1,11 @@
 package game;
 
-import common.GameResultPhrases;
+import common.GameGuidePhrases;
+import common.GameOption;
 
 public class GameScoreInfo {
     private int strikeCount;
     private int ballCount;
-    private final int GAME_NUMBER_COUNT = 3;
 
     public int getStrikeCount() {
         return strikeCount;
@@ -23,14 +23,6 @@ public class GameScoreInfo {
         this.ballCount++;
     }
 
-    public void subOneStrikeCount() {
-        this.strikeCount--;
-    }
-
-    public void subOneBallCount() {
-        this.ballCount--;
-    }
-
     public void setStrikeCount(int strikeCount) {
         this.strikeCount = strikeCount;
     }
@@ -39,29 +31,31 @@ public class GameScoreInfo {
         this.ballCount = ballCount;
     }
 
-    public String makeScoreResultString(){
+    public String makeScoreResultString() {
         StringBuilder resultStringBuilder = new StringBuilder();
 
-        if(strikeCount == GAME_NUMBER_COUNT){
-            resultStringBuilder.append(GameResultPhrases.SUCCESS);
+        if (this.getStrikeCount() == GameOption.RANDOM_NUMBER_COUNT) {
+            resultStringBuilder.append(GameGuidePhrases
+                    .SUCCESS
+                    .replaceAll("\\{\\}",String.valueOf(GameOption.RANDOM_NUMBER_COUNT)));
             return resultStringBuilder.toString();
         }
 
-        if(strikeCount == 0 && ballCount == 0){
-           resultStringBuilder.append(GameResultPhrases.FAIL);
+        if (this.getStrikeCount() == 0 && this.getBallCount() == 0) {
+            resultStringBuilder.append(GameGuidePhrases.FAIL);
             return resultStringBuilder.toString();
         }
 
-        if(strikeCount > 0){
-            resultStringBuilder.append(strikeCount);
-            resultStringBuilder.append(GameResultPhrases.DELIMETER);
-            resultStringBuilder.append(GameResultPhrases.STRIKE);
-            resultStringBuilder.append(GameResultPhrases.DELIMETER);
+        if (this.getStrikeCount() > 0) {
+            resultStringBuilder.append(this.getStrikeCount());
+            resultStringBuilder.append(GameGuidePhrases.DELIMETER);
+            resultStringBuilder.append(GameGuidePhrases.STRIKE);
+            resultStringBuilder.append(GameGuidePhrases.DELIMETER);
         }
 
-        if(ballCount > 0){
-            resultStringBuilder.append(ballCount);
-            resultStringBuilder.append(GameResultPhrases.BALL);
+        if (this.getBallCount() > 0) {
+            resultStringBuilder.append(this.getBallCount());
+            resultStringBuilder.append(GameGuidePhrases.BALL);
         }
 
         return resultStringBuilder.toString().trim();
