@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+#구현할 기능
+1. target 이 될 3자리 숫자를 생성한다.
+2. 1에서 만든 target number 를 validation 한 후에
+3. 유저의 입력값을 바탕으로 ball count 와 strike count 를 계산하는 기능을 구현
+4. 만일 값이 일치하면 게임 종료, 불일치 하면 힌트 준다
