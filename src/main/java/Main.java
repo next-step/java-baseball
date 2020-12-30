@@ -19,6 +19,10 @@ public class Main {
     }
 
     public static void processToFindComputerID(ID computerID){
+        ID userID = new ID();
+        do {
+            userID.genByTyping();
+        }while(!"same".equals(computerID.compare(userID)));
     }
 
     public static boolean askForContinue(){
