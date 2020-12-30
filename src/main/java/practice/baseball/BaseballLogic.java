@@ -1,14 +1,12 @@
 package practice.baseball;
 
-import java.util.stream.IntStream;
-
 public class BaseballLogic {
 
     private int[] arrNumber;
     private int iStrikeCount;
     private int iBallCount;
 
-    public void setBaseballNumbers() {
+    public int[] setBaseballNumbers() {
         this.arrNumber = new int[3];
 
         do {
@@ -16,6 +14,7 @@ public class BaseballLogic {
             this.arrNumber[1] = (int) ((Math.random()*10000) % 9) + 1;
             this.arrNumber[2] = (int) ((Math.random()*10000) % 9) + 1;
         } while(checkValidNumber(this.arrNumber));
+        return this.arrNumber;
     }
 
     private boolean checkValidNumber(int[] arrNumber) {
