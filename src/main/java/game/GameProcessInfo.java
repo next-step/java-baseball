@@ -1,5 +1,7 @@
 package game;
 
+import common.GameOption;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -8,7 +10,6 @@ public class GameProcessInfo {
 
     private ArrayList<String> randomNumberArray;
     private Random random;
-    public final int RANDOM_NUMBER_COUNT = 3;
 
     public GameProcessInfo(){
         makeGameProcessInfoNumberArray();
@@ -18,11 +19,11 @@ public class GameProcessInfo {
         return randomNumberArray;
     }
 
-    public ArrayList<String> makeGameProcessInfoNumberArray() {
+    private ArrayList<String> makeGameProcessInfoNumberArray() {
 
         HashSet<Integer> numberSet = new HashSet<>();
 
-        while (numberSet.size() < RANDOM_NUMBER_COUNT) {
+        while (numberSet.size() < GameOption.RANDOM_NUMBER_COUNT) {
             numberSet.add(getRandomNumber());
         }
 
@@ -36,10 +37,10 @@ public class GameProcessInfo {
     }
 
     private int getRandomNumber() {
-        return getRandomInstance().nextInt(8) + 1;
+        return getRandomInstance().nextInt(9) + 1;
     }
 
-    public Random getRandomInstance() {
+    private Random getRandomInstance() {
         if (random == null) {
             random = new Random();
         }

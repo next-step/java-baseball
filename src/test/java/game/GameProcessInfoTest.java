@@ -1,5 +1,6 @@
 package game;
 
+import common.GameOption;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -21,14 +22,14 @@ class GameProcessInfoTest {
 
     @Test
     void makeGameProcessInfoNumberArray() {
-        ArrayList<String> numberArray = gameProcessInfo.makeGameProcessInfoNumberArray();
+        ArrayList<String> numberArray = gameProcessInfo.getRandomNumberArray();
         HashSet<Integer> numberSet = new HashSet<>();
 
         for(String number : numberArray){
             numberSet.add(Integer.parseInt(number));
         }
 
-        assertTrue(numberSet.size() == gameProcessInfo.RANDOM_NUMBER_COUNT);
+        assertTrue(numberSet.size() == GameOption.RANDOM_NUMBER_COUNT);
     }
 
 }
