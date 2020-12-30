@@ -49,7 +49,7 @@ public class BaseballGame {
             sb.append(ball).append("볼");
         }
         if (sb.length() == 0) {
-            sb.append("틀렸습니다");
+            sb.append("낫싱");
         }
         System.out.println(sb.toString());
     }
