@@ -28,7 +28,12 @@ public class Game {
         do {
             Scanner scanner = new Scanner(System.in);
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. : ");
-            input = Integer.parseInt(scanner.nextLine());
+            try {
+                input = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("유효한 인풋을 넣어주세요.");
+                input = -1;
+            }
         } while (input != 1 && input != 2);
         return GameState.getState(input);
     }
