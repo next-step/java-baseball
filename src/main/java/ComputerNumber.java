@@ -1,7 +1,6 @@
 public class ComputerNumber {
 
     private int lengthOfNumber;
-    private int number;
     private BaseballGameNumberChecker checker;
 
     public ComputerNumber(int lengthOfNumber) {
@@ -10,14 +9,15 @@ public class ComputerNumber {
     }
 
     public int getNumber() {
-        while (!checker.isCorrect(this.number)) {
-            this.number = this.makeRandomNumber();
+        int number = 0;
+        while (!checker.isCorrect(number)) {
+            number = this.makeRandomNumber();
         }
-        return this.number;
+        return number;
     }
 
     public int makeRandomNumber() {
-        return (int)((Math.random() - 1) * Math.pow(10, lengthOfNumber));
+        return (int)(Math.random() * Math.pow(10, lengthOfNumber));
     }
 
 }
