@@ -9,11 +9,37 @@ public class BaseBallGame {
 
         sc=new Scanner(System.in);
         while (isStart()) {
-
+            startGame();
         }
 
     }
 
+    private void startGame(){
+
+        String answer=generateAnswer();
+        
+    }
+
+    private String generateAnswer(){
+
+        HashSet<Integer> set=new HashSet<Integer>();
+        Random random=new Random();
+        while(set.size()<MAX_LENGTH){
+            set.add(random.nextInt(9)+1);
+        }
+        List<Integer> list=new ArrayList<>(set);
+        Collections.shuffle(list);
+        return listToString(list);
+    }
+
+    private String listToString(List list){
+
+        String answer="";
+        for(int i=0;i<list.size();i++){
+            answer+=String.valueOf(list.get(i));
+        }
+        return answer;
+    }
 
 
     private boolean isStart(){
@@ -45,5 +71,6 @@ public class BaseBallGame {
     }
 
 }
+
 
 
