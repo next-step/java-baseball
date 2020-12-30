@@ -8,7 +8,11 @@ public class Computer {
     static final int MAX_NUMBER = 9;
     static final int MIN_NUMBER = 1;
 
-    private ArrayList<Integer> hiddenNumbers = new ArrayList<Integer>();
+    private ArrayList<Integer> hiddenNumbers;
+
+    public Computer() {
+        this.hiddenNumbers = new ArrayList<>();
+    }
 
     public ArrayList<Integer> getHiddenNumbers() {
         return hiddenNumbers;
