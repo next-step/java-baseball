@@ -18,7 +18,7 @@ public class BaseballGameNumberComparator {
 
     public int checkDigit(boolean[] check, int num, int index) {
         int digit = (num / (int)Math.pow(10, index)) % 10;
-        if(check[digit]) {
+        if (check[digit]) {
             return 0;
         }
         check[digit] = true;
