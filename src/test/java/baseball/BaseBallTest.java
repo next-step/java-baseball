@@ -17,7 +17,8 @@ public class BaseBallTest {
     @CsvSource({
             "1, 2, 1스트라이크 2볼",
             "2, 0, 2스트라이크",
-            "0, 1, 1볼"})
+            "0, 1, 1볼",
+            "0, 0, nothing"})
     @DisplayName("힌트 문자열을 반환한다.")
     public void makeHintStrTest(int strike, int ball, String hintStr) {
         String actual = baseBall.makeHindStr(strike, ball);

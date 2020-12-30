@@ -36,6 +36,9 @@ public class BaseBall {
     }
 
     public String makeHindStr(int strike, int ball) {
+        if (strike == 0 && ball == 0) {
+            return "nothing";
+        }
         if (strike == 0) {
             return String.format("%d볼", ball);
         }
