@@ -86,4 +86,31 @@ public class BaseBall {
 
     }
 
+    private int getStrike() {
+        int strike = 0;
+
+        if(com_num[0] == user_num[0])
+            strike++;
+        if(com_num[1] == user_num[1])
+            strike++;
+        if(com_num[2] == user_num[2])
+            strike++;
+
+        return strike;
+    }
+
+    private int getBall() {
+        int ball = 0;
+
+        if(user_num[0] == com_num[1] || user_num[0] == com_num[2])
+            ball++;
+        if(user_num[1] == com_num[0] || user_num[1] == com_num[2])
+            ball++;
+        if(user_num[2] == com_num[0] || user_num[2] == com_num[1])
+            ball++;
+
+        return ball;
+    }
+
+
 }
