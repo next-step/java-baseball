@@ -24,22 +24,35 @@ public class Game {
     }
 
     public GameState askToContinue() {
-        int input;
+        String input;
         do {
             Scanner scanner = new Scanner(System.in);
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. : ");
-            try {
-                input = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("유효한 인풋을 넣어주세요.");
-                input = -1;
-            }
-        } while (input != 1 && input != 2);
-        return GameState.getState(input);
+            input = scanner.nextLine();
+        } while (!isValidateInput(input));
+        return GameState.getState(Integer.parseInt(input));
     }
 
     private void printResult(GuessResult guessResult) {
         System.out.println(guessResult.toString());
     }
 
+    private boolean isValidateInput(String input) {
+        if (!isInputInteger(input) || !isInput1Or2(input)) {
+            System.out.println("올바르지 않은 인풋입니다. 1또는 2를 입력해 주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isInputInteger(String input) {
+        return input.matches("[0-9]+");
+    }
+
+    private boolean isInput1Or2(String input) {
+        int inputToInteger = Integer.parseInt(input);
+        if (inputToInteger != 1 && inputToInteger != 2)
+            return false;
+        return true;
+    }
 }
