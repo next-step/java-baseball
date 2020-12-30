@@ -1,7 +1,7 @@
 /*
  * BaseBall
  *
- * 0.1
+ * 0.2
  *
  * 2020.12.28
  *
@@ -17,9 +17,11 @@ public class BaseBall {
     int[] user_num = new int[3];
     boolean[] used_num = new boolean[10];
     boolean end;
+    boolean error;
 
     private void init() {
         end = false;
+        error = false;
 
         //숫자의 사용여부 저장 배열
         for(int i=0;i<10;i++)
@@ -43,6 +45,45 @@ public class BaseBall {
         used_num[num] = true;   // num이 사용되었음을 체크
 
         return num;
+    }
+
+    private int parseString() {
+        int input;
+
+        Scanner sc = new Scanner(System.in);
+        String Sinput = sc.nextLine();
+
+        try {
+            input = Integer.parseInt(Sinput);
+        } catch (NumberFormatException e) {
+            error = true;
+            return -1;
+        }
+
+        return input;
+    }
+
+    private boolean checkError(int input) {
+        //3자리 이상인 수 확인
+        if(input > 0)
+            return true;
+
+        //중복 확인
+        return user_num[0] == user_num[1] || user_num[0] == user_num[2] || user_num[1] == user_num[2];
+    }
+
+    private void scanNum() {
+        int input = parseString();
+
+        for(int i=2;i>=0;i--){
+            user_num[i] = input % 10;
+            input /= 10;
+        }
+
+        if(checkError(input)) {
+            error = true;
+        }
+
     }
 
 }
