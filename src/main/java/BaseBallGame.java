@@ -16,8 +16,14 @@ public class BaseBallGame {
 
     private void startGame(){
 
-        String answer=generateAnswer();
-        
+        String botAnswer=generateAnswer();
+        String userAnswer;
+
+    }
+    private String getUserInput(){
+
+        System.out.print("숫자를 입력해주세요:");
+        return sc.nextLine();
     }
 
     private String generateAnswer(){
