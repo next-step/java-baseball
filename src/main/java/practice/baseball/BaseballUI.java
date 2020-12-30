@@ -5,24 +5,26 @@ import java.util.Scanner;
 public class BaseballUI {
 
     private BaseballLogic objBase;
-    private String strInput;
 
     public static void main(String[] args) {
         BaseballUI objUI = new BaseballUI();
         do {
-            objUI.loopMainFunction();
+            objUI.objBase = new BaseballLogic();
+            objUI.objBase.setBaseballNumbers();
+            objUI.loopUserGame();
+            break;
         } while(true);
     }
 
-    public void loopMainFunction() {
-        this.objBase.setNumbers();
-        this.inputNumber();
+    public void loopUserGame() {
+        String sUserNumber = this.inputUserNumber();
+        this.objBase.compareUserNumberWithNumber(sUserNumber);
     }
 
-    public void inputNumber() {
+    public String inputUserNumber() {
         System.out.println("숫자를 입력해주세요 : ");
         Scanner scan = new Scanner(System.in);
-        this.strInput = scan.nextLine();
+        return scan.nextLine();
     }
 
 
