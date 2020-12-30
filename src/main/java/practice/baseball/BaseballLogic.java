@@ -1,6 +1,7 @@
 package practice.baseball;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class BaseballLogic {
 
@@ -40,10 +41,16 @@ public class BaseballLogic {
     }
 
     private int isBall(int iNumber) {
-        int iBallCount = Arrays.asList(this.arrNumber).indexOf(iNumber);
-        if ( iBallCount > -1 )
-            return iBallCount;
+        if (IntStream.of(this.arrNumber).anyMatch( x -> x == iNumber ))
+            return 1;
         return 0;
+    }
+
+    public int[] getCounts() {
+        int[] arrStrikeAndBallCount = new int[2];
+        arrStrikeAndBallCount[0] = this.iStrikeCount;
+        arrStrikeAndBallCount[1] = this.iBallCount;
+        return arrStrikeAndBallCount;
     }
 
 }

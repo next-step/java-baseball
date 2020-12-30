@@ -12,13 +12,19 @@ public class BaseballUI {
             objUI.objBase = new BaseballLogic();
             objUI.objBase.setBaseballNumbers();
             objUI.loopUserGame();
-            break;
+            //objUI.printGameComplte();
         } while(true);
+        //} while(objUI.doReStart());
     }
 
     public void loopUserGame() {
-        int[] arrUserNumber = this.inputUserNumber();
-        this.objBase.compareUserNumberWithNumber(arrUserNumber);
+        int[] arrStrikeAndBallCount;
+        do {
+            int[] arrUserNumber = this.inputUserNumber();
+            this.objBase.compareUserNumberWithNumber(arrUserNumber);
+            arrStrikeAndBallCount = this.objBase.getCounts();
+            this.printOutputStrikeAndBall(arrStrikeAndBallCount);
+        } while(arrStrikeAndBallCount[0] != 3);
     }
 
     public int[] inputUserNumber() {
@@ -33,5 +39,20 @@ public class BaseballUI {
         return arrUserNumber;
     }
 
+    public void printOutputStrikeAndBall(int[] arrStrikeAndBallCount ) {
+        String strOutput = this.makeOutputString(arrStrikeAndBallCount[0], arrStrikeAndBallCount[1]);
+        System.out.println(strOutput);
+    }
+
+    private String makeOutputString( int iStrikeCount, int iBallCount ) {
+        String strOutput = "";
+        if( iStrikeCount > 0 )
+            strOutput += Integer.toString(iStrikeCount) + "스트라이크 ";
+        if( iBallCount > 0 )
+            strOutput += Integer.toString(iBallCount) + "볼";
+        if( strOutput == "" )
+            return "낫싱\n";
+        return strOutput + "\n";
+    }
 
 }
