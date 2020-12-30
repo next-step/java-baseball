@@ -21,7 +21,7 @@ public class GameManager {
             // view : 힌트 출 (x 스트라이크, y 볼)
             System.out.println(res);
         }
-        // view : 3개의 숫자를 모두 맞히셨습니! 게임 종료
+        // view : 3개의 숫자를 모두 맞히셨습니다! 게임 종료
         System.out.println(Messages.findAnswerMessage);
     }
 
