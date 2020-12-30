@@ -111,4 +111,79 @@ public class BaseBallTest {
 
         assertThat(error).isFalse();
     }
+
+
+    private int getStrike() {
+        int strike = 0;
+
+        if(com_num[0] == user_num[0])
+            strike++;
+        if(com_num[1] == user_num[1])
+            strike++;
+        if(com_num[2] == user_num[2])
+            strike++;
+
+        return strike;
+    }
+
+    private int getBall() {
+        int ball = 0;
+
+        if(user_num[0] == com_num[1] || user_num[0] == com_num[2])
+            ball++;
+        if(user_num[1] == com_num[0] || user_num[1] == com_num[2])
+            ball++;
+        if(user_num[2] == com_num[0] || user_num[2] == com_num[1])
+            ball++;
+
+        return ball;
+    }
+
+    @Test
+    @DisplayName("볼 개수 파악 로직 테스트")
+    public void checkBall() {
+        int res;
+        //int[] com = {1, 2, 3};
+        //int[] user = {1, 2, 3};
+
+        //int[] com = {1, 2, 3};
+        //int[] user = {3, 2, 1};
+
+        int[] com = {1, 2, 3};
+        int[] user = {4, 2, 5};
+
+        com_num = com.clone();
+        user_num = user.clone();
+
+        res = getBall();
+
+        //assertThat(res).isEqualTo(0);
+        //assertThat(res).isEqualTo(2);
+        assertThat(res).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("스트라이 개수 파악 로직 테스트")
+    public void checkStrike() {
+        int res;
+        //int[] com = {1, 2, 3};
+        //int[] user = {1, 2, 3};
+
+        //int[] com = {1, 2, 3};
+        //int[] user = {3, 2, 1};
+
+        int[] com = {1, 2, 3};
+        int[] user = {4, 2, 5};
+
+        com_num = com.clone();
+        user_num = user.clone();
+
+        res = getStrike();
+
+        //assertThat(res).isEqualTo(3);
+        //assertThat(res).isEqualTo(1);
+        assertThat(res).isEqualTo(1);
+
+    }
+
 }
