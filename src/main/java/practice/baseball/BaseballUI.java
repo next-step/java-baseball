@@ -17,14 +17,20 @@ public class BaseballUI {
     }
 
     public void loopUserGame() {
-        String sUserNumber = this.inputUserNumber();
-        this.objBase.compareUserNumberWithNumber(sUserNumber);
+        int[] arrUserNumber = this.inputUserNumber();
+        this.objBase.compareUserNumberWithNumber(arrUserNumber);
     }
 
-    public String inputUserNumber() {
+    public int[] inputUserNumber() {
+        int[] arrUserNumber = new int[3];
         System.out.println("숫자를 입력해주세요 : ");
         Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
+        int iInputNumber = scan.nextInt();
+        for( int i = 0; i < 3; i++ ) {
+            arrUserNumber[i] = iInputNumber % 10;
+            iInputNumber /= 10;
+        }
+        return arrUserNumber;
     }
 
 
