@@ -1,7 +1,7 @@
 /*
  * BaseBallTest
  *
- * 0.1
+ * 0.2
  *
  * 2020.12.28
  *
@@ -12,7 +12,6 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +20,11 @@ public class BaseBallTest {
     int[] user_num = new int[3];
     boolean[] used_num = new boolean[10];
     boolean end;
+    boolean error;
 
     @Test
-    @DisplayName("랜덤으로 만들어지는 수 체")
-    public void Test(){
+    @DisplayName("랜덤으로 만들어지는 수 테스트")
+    public void Test1(){
         init();
         assertThat(com_num[0]).isGreaterThan(0).isLessThan(10);
         assertThat(com_num[1]).isGreaterThan(0).isLessThan(10);
@@ -37,6 +37,7 @@ public class BaseBallTest {
 
     private void init() {
         end = false;
+        error = false;
 
         //숫자의 사용여부 저장 배열
         for(int i=0;i<10;i++)
@@ -62,4 +63,52 @@ public class BaseBallTest {
         return num;
     }
 
+    private int parseString() {
+        int input;
+
+        //Test를 위한 입력 변경
+//        Scanner sc = new Scanner(System.in);
+//        String Sinput = sc.nextLine();
+
+        String Sinput = "123";
+        //Sinput = "1235";
+        //Sinput = "558";
+        //Sinput = "846";
+        //Sinput = "qwe1";
+
+        try {
+            input = Integer.parseInt(Sinput);
+        } catch (NumberFormatException e) {
+            error = true;
+            return -1;
+        }
+
+        return input;
+    }
+
+    private boolean checkError(int input) {
+        //3자리 이상인 수 확인
+        if(input > 0)
+            return true;
+
+        //중복 확인
+        return user_num[0] == user_num[1] || user_num[0] == user_num[2] || user_num[1] == user_num[2];
+    }
+
+    @Test
+    @DisplayName("유저가 입력한 숫자 파싱하여 저장된 값 테스트")
+    public void scanNum() {
+        int input = parseString();
+
+        for(int i=2;i>=0;i--){
+            user_num[i] = input % 10;
+            input /= 10;
+        }
+
+        if(checkError(input)) {
+            error = true;
+        }
+
+        assertThat(error).isFalse();
+    }
 }
