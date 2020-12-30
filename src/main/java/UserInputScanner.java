@@ -9,6 +9,7 @@ public class UserInputScanner {
     public String scanInput() {
         String input;
         do {
+            System.out.printf("숫자를 입력해 주세요 : ");
             Scanner scanner = new Scanner(System.in);
             input = scanner.nextLine();
         } while (!isValidateInput(input));
