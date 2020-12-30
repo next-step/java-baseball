@@ -186,4 +186,46 @@ public class BaseBallTest {
 
     }
 
+    private String getResult(int strike, int ball) {
+
+        String res = "";
+
+        if(strike > 0)
+            res += strike + "스트라이크 ";
+        if(ball > 0)
+            res += ball + "볼";
+        if(strike == 0 && ball == 0)
+            res += "낫싱";
+
+        return res;
+    }
+
+    @Test
+    @DisplayName("결과 출력 테스트")
+    public void printResult() {
+        if(error)
+            return;
+
+        //int[] com = {1, 2, 3};
+        //int[] user = {3, 2, 5};
+
+        int[] com = {3, 2, 1};
+        int[] user = {3, 2, 1};
+
+        com_num = com.clone();
+        user_num = user.clone();
+
+        int strike = getStrike();
+        int ball = getBall();
+
+        String res = getResult(strike,ball);
+
+        System.out.println(res);
+
+        if(strike == 3){
+            end = true;
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        }
+    }
+
 }
