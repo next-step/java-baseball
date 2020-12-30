@@ -1,17 +1,20 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class BaseBallGame {
 
     static private Scanner sc;
+    static private final int MAX_LENGTH=3;
 
     public void runBaseBallGame(){
 
         sc=new Scanner(System.in);
-        while(isStart()){
+        while (isStart()) {
 
         }
 
     }
+
+
 
     private boolean isStart(){
 
@@ -21,7 +24,7 @@ public class BaseBallGame {
             startInput=sc.nextLine();
         }
 
-        return false;
+        return checkStartInput(startInput);
     }
 
     private boolean validateStartInput(String startInput){
@@ -33,6 +36,13 @@ public class BaseBallGame {
         return false;
     }
 
+    private boolean checkStartInput(String startInput){
+
+        if(startInput.equals("1")){
+            return true;
+        }
+        return false;
+    }
 
 }
 
