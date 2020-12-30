@@ -30,6 +30,22 @@ public class Game {
         return result;
     }
 
+    static int checkEqual(int num1, int num2){
+        if(num1 == num2)
+            return 1;
+        return 0;
+    }
+
+    static int countStrike(int[] computer, int[] user){
+        int count = 0;
+
+        for(int i = 0; i < 3; i++){
+            count += checkEqual(computer[i], user[i]);
+        }
+
+        return count;
+    }
+
     public static void main(String[] args){
         System.out.println("start game");
     }

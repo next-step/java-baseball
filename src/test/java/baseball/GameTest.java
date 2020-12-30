@@ -14,4 +14,13 @@ public class GameTest {
                 && numbers[0] != numbers[2]).isTrue();
         assertThat(base).contains(numbers);
     }
+
+    @Test
+    public void testCountStrike(){
+        int[] computer = {1, 3, 5};
+        int[] user = {1, 5, 3};
+        int count = Game.countStrike(computer, user);
+
+        assertThat(count).isEqualTo(1);
+    }
 }
