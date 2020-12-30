@@ -4,8 +4,17 @@ import java.util.List;
 
 public class BaseBall {
 
+    private final NumberGenerator numberGenerator = new NumberGenerator();
     private final NumberScanner numberScanner = new NumberScanner();
     private final Checker checker = new Checker();
+
+    public void start() {
+        List<Integer> computer = numberGenerator.generate();
+
+        while (!guess(computer));
+
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    }
 
     public boolean guess(List<Integer> computer) {
         System.out.print("숫자를 입력해주세요: ");
@@ -20,7 +29,6 @@ public class BaseBall {
         System.out.println(makeHindStr(strike, ball));
 
         if (strike == 3) {
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return true;
         }
 
