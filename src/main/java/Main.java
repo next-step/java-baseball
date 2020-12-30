@@ -1,7 +1,28 @@
+import java.util.Random;
+
 class ID{
-    private int[] arr;
+    private int[] arr, exist;
+    private Random rd;
+
     public void genByRandom(){
+        arr = new int[3];
+        exist = new int[10];
+        rd = new Random();
+
+        for(int i = 0; i < 3; i++){
+            genChoiceAt(i);
+        }
     }
+
+    private void genChoiceAt(int idx){
+        int t;
+        do {
+            t = rd.nextInt();
+        } while (0 != exist[t]);
+        exist[t] = 1;
+        arr[idx] = t;
+    }
+
     public void genByTyping(){
     }
 
