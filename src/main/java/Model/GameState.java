@@ -8,7 +8,7 @@ public enum GameState {
     END(2);
 
     private int stateId;
-    private static HashMap<Integer,GameState> gameStateMap = new HashMap<>();
+    private static HashMap<Integer, GameState> gameStateMap = new HashMap<>();
 
     GameState(int stateId) {
         this.stateId = stateId;

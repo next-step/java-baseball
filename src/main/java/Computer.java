@@ -21,7 +21,7 @@ public class Computer {
     //This method is only used for test
     public void setHiddenNumbers(String hiddenNumbers) {
         this.hiddenNumbers.clear();
-        for(int i=0;i<NUMBER_OF_DIGIT;i++){
+        for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
             this.hiddenNumbers.add(hiddenNumbers.charAt(i) - '0');
         }
     }
