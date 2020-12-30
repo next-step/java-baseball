@@ -23,7 +23,7 @@ public class BaseballLogic {
         return false;
     }
 
-    public void compareUserNumberWithNumber(int[] arrUserNumber) {
+    public int compareUserNumberWithNumber(int[] arrUserNumber) {
         this.iBallCount = 0;
         this.iStrikeCount = 0;
 
@@ -32,6 +32,8 @@ public class BaseballLogic {
             this.iBallCount += this.isBall(arrUserNumber[i]) - iStrike;
             this.iStrikeCount += iStrike;
         }
+
+        return iStrikeCount + iBallCount;
     }
 
     private int isStrike(int iNumber, int index) {
@@ -66,6 +68,11 @@ public class BaseballLogic {
         arrStrikeAndBallCount[1] = this.iBallCount;
 
         return arrStrikeAndBallCount;
+    }
+
+    //for test
+    public void setBaseballNumber(int[] paraNumber) {
+        this.arrNumber = paraNumber;
     }
 
 }
