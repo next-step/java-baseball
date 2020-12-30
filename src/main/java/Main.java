@@ -26,5 +26,7 @@ public class Main {
     }
 
     public static boolean askForContinue(){
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        return 2 != sc.nextInt();
     }
 }
