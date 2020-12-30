@@ -8,17 +8,20 @@ public class BaseballUI {
 
     public static void main(String[] args) {
         BaseballUI objUI = new BaseballUI();
+
         do {
             objUI.objBase = new BaseballLogic();
             objUI.objBase.setBaseballNumbers();
             objUI.loopUserGame();
             System.out.println("3개 숫자를 모두 맞히셨습니다!");
         } while(objUI.doRestart());
+
         System.out.print("게임 종료");
     }
 
     public void loopUserGame() {
         int[] arrStrikeAndBallCount;
+
         do {
             int[] arrUserNumber = this.inputUserNumber();
             this.objBase.compareUserNumberWithNumber(arrUserNumber);
@@ -30,12 +33,13 @@ public class BaseballUI {
     public int[] inputUserNumber() {
         int[] arrUserNumber = new int[3];
         System.out.print("숫자를 입력해주세요 : ");
-        Scanner scan = new Scanner(System.in);
-        int iInputNumber = scan.nextInt();
+        int iInputNumber = new Scanner(System.in).nextInt();
+
         for( int i = 0; i < 3; i++ ) {
             arrUserNumber[i] = iInputNumber % 10;
             iInputNumber /= 10;
         }
+
         return arrUserNumber;
     }
 
@@ -46,6 +50,7 @@ public class BaseballUI {
 
     private String makeOutputString( int iStrikeCount, int iBallCount ) {
         String strOutput = "";
+
         if( iStrikeCount > 0 )
             strOutput += iStrikeCount + "스트라이크 ";
         if( iBallCount > 0 )
@@ -57,8 +62,8 @@ public class BaseballUI {
 
     private boolean doRestart() {
         System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        Scanner scan = new Scanner(System.in);
-        int iUserInputForRestart = scan.nextInt();
+        int iUserInputForRestart = new Scanner(System.in).nextInt();
+
         if( iUserInputForRestart == 1 )
             return true;
         return false;

@@ -10,6 +10,7 @@ public class BaseballLogic {
 
     public void setBaseballNumbers() {
         this.arrNumber = new int[3];
+
         do {
             this.arrNumber[0] = (int) ((Math.random()*10000) % 9) + 1;
             this.arrNumber[1] = (int) ((Math.random()*10000) % 9) + 1;
@@ -26,6 +27,7 @@ public class BaseballLogic {
     public void compareUserNumberWithNumber(int[] arrUserNumber) {
         this.iBallCount = 0;
         this.iStrikeCount = 0;
+
         for(int i = 0; i < arrUserNumber.length; i++) {
             int iStrike = this.isStrike(arrUserNumber[i] , i);
             this.iBallCount += this.isBall(arrUserNumber[i]) - iStrike;
@@ -40,15 +42,30 @@ public class BaseballLogic {
     }
 
     private int isBall(int iNumber) {
-        if (IntStream.of(this.arrNumber).anyMatch( x -> x == iNumber ))
+        boolean bBall = false;
+        int index = 0;
+
+        do {
+            bBall = isMatched(iNumber, this.arrNumber[index++]);
+        } while(!bBall && index < 3);
+
+        if( bBall )
             return 1;
         return 0;
     }
 
+    private boolean isMatched(int iUserNumber, int iComputerNumber) {
+        if( iUserNumber == iComputerNumber )
+            return true;
+        return false;
+    }
+
     public int[] getCounts() {
         int[] arrStrikeAndBallCount = new int[2];
+
         arrStrikeAndBallCount[0] = this.iStrikeCount;
         arrStrikeAndBallCount[1] = this.iBallCount;
+
         return arrStrikeAndBallCount;
     }
 
