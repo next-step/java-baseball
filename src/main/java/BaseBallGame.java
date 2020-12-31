@@ -14,7 +14,7 @@ public class BaseBallGame {
         System.out.println("게임을 종료합니다.");
     }
 
-    private void startGame(){
+    public void startGame(){
 
         String botAnswer=generateAnswer();
         while(!checkClear(botAnswer));
@@ -22,7 +22,7 @@ public class BaseBallGame {
 
     }
 
-    private boolean checkClear(String botAnswer){
+    public boolean checkClear(String botAnswer){
 
         String userAnswer=getUserAnswer();
         BallCount ballCount=getBallCount(botAnswer,userAnswer);
@@ -33,7 +33,7 @@ public class BaseBallGame {
         return false;
     }
 
-    private BallCount getBallCount(String botAnswer,String userAnswer){
+    public BallCount getBallCount(String botAnswer,String userAnswer){
 
         int ball=0;
         int strike=0;
@@ -44,7 +44,7 @@ public class BaseBallGame {
         return new BallCount(strike,ball);
     }
 
-    private int countBall(char botChar, String userAnswer, int passIndex){
+    public int countBall(char botChar, String userAnswer, int passIndex){
 
         if(botChar==userAnswer.charAt(0)&&passIndex!=0){
             return 1;
@@ -58,7 +58,7 @@ public class BaseBallGame {
         return 0;
     }
 
-    private int checkSame(char botChar,char userChar){
+    public int checkSame(char botChar,char userChar){
 
         if(botChar==userChar){
             return 1;
@@ -66,7 +66,7 @@ public class BaseBallGame {
         return 0;
     }
 
-    private String getUserAnswer(){
+    public String getUserAnswer(){
 
         System.out.print("숫자를 입력해주세요:");
         String userAnswer=sc.nextLine();
@@ -77,7 +77,7 @@ public class BaseBallGame {
         return userAnswer;
     }
 
-    private boolean validateUserAnswer(String userAnswer){
+    public boolean validateUserAnswer(String userAnswer){
 
         if(validateMaxLength(userAnswer) && validateStringToInteger(userAnswer) && validateDuplicate(userAnswer)){
             return true;
@@ -87,7 +87,7 @@ public class BaseBallGame {
 
     }
 
-    private boolean validateMaxLength(String userAnswer){
+    public boolean validateMaxLength(String userAnswer){
 
         if(userAnswer.length()==MAX_LENGTH){
             return true;
@@ -95,7 +95,7 @@ public class BaseBallGame {
         return false;
     }
 
-    private boolean validateStringToInteger(String userAnswer){
+    public boolean validateStringToInteger(String userAnswer){
 
         try {
             Integer.parseInt(userAnswer);
@@ -105,7 +105,7 @@ public class BaseBallGame {
         }
     }
 
-    private boolean validateDuplicate(String userAnswer){
+    public boolean validateDuplicate(String userAnswer){
 
         HashSet<Character> set=new HashSet<>();
         int index=0;
@@ -118,7 +118,7 @@ public class BaseBallGame {
         return false;
     }
 
-    private String generateAnswer(){
+    public String generateAnswer(){
 
         HashSet<Integer> set=new HashSet<Integer>();
         Random random=new Random();
@@ -130,7 +130,7 @@ public class BaseBallGame {
         return listToString(list);
     }
 
-    private String listToString(List list){
+    public String listToString(List list){
 
         String answer="";
         for(int i=0; i<list.size(); i++){
@@ -140,7 +140,7 @@ public class BaseBallGame {
     }
 
 
-    private boolean isStart(){
+    public boolean isStart(){
 
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String startInput=sc.nextLine();
@@ -151,7 +151,7 @@ public class BaseBallGame {
         return checkStartInput(startInput);
     }
 
-    private boolean validateStartInput(String startInput){
+    public boolean validateStartInput(String startInput){
 
         if(startInput.equals("1")||startInput.equals("2")){
             return true;
@@ -160,7 +160,7 @@ public class BaseBallGame {
         return false;
     }
 
-    private boolean checkStartInput(String startInput){
+    public boolean checkStartInput(String startInput){
 
         if(startInput.equals("1")){
             return true;
