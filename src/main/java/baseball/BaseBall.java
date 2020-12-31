@@ -36,10 +36,10 @@ public class BaseBall {
     }
 
     private int random() {
-        int num = (int) (Math.random() * 9 + 1);  // 1 ~ 9까지 수를 랜덤으로 생성
+        int num = (int) (Math.random() * 9 + 1);    // 1 ~ 9까지 수를 랜덤으로 생성
 
         while(used_num[num]){
-            num = (int) (Math.random() * 9 + 1);  // 1 ~ 9까지 수를 랜덤으로 생성
+            num = (int) (Math.random() * 9 + 1);    // 1 ~ 9까지 수를 랜덤으로 생성
         }
 
         used_num[num] = true;   // num이 사용되었음을 체크
@@ -128,6 +128,7 @@ public class BaseBall {
     }
 
     private void printResult() {
+        // error 상태에선 결과 출력 생략
         if(error)
             return;
         int strike = getStrike();
@@ -144,15 +145,18 @@ public class BaseBall {
     }
 
     private boolean loopCheck() {
-        error = false;
+        error = false;  //반복을 시작할 때 error 상태 false로 초기화
 
+        //end 상태일 경우 계속해서 반복
         if(!end)
             return true;
+
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 다른 숫자를 입력하세요.");
 
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
 
+        //input == 1 이면 게임 재시작
         if(input == 1){
             init();
             return true;
