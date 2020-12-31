@@ -5,10 +5,10 @@ import validators.EndNumberValidator;
 
 public class Main {
     public static void main(String[] args){
-        new BaseballGame()
-                .setEndingInputChecker(new EndNumberValidator())
-                .setInputManager(new InputManager())
-                .setNumberChecker(new BaseballNumberValidator())
-                .play();
+        new BaseballGame(
+                new BaseballNumberValidator(),
+                new EndNumberValidator(),
+                new InputManager()
+        ).play();
     }
 }

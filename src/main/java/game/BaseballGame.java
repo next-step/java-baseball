@@ -10,21 +10,19 @@ public class BaseballGame {
     static final String commentWhenReceiveNumber = "숫자를 입력해 주세요: ";
 
     Validator numberChecker;
-    public BaseballGame setNumberChecker(Validator numberChecker) {
-        this.numberChecker = numberChecker;
-        return this;
-    }
-
     Validator endingInputChecker;
-    public BaseballGame setEndingInputChecker(Validator endingInputChecker) {
+    InputManager inputManager;
+
+    public BaseballGame(Validator numberChecker,
+                        Validator endingInputChecker,
+                        InputManager inputManager){
+        this.numberChecker = numberChecker;
         this.endingInputChecker = endingInputChecker;
-        return this;
+        this.inputManager = inputManager;
     }
 
-    InputManager inputManager;
-    public BaseballGame setInputManager(InputManager inputManager) {
-        this.inputManager = inputManager;
-        return this;
+    public BaseballGame() throws Exception{
+        throw new Exception("기본 생성자로는 사용 불가 합니다. 필수 의존성 넣어주세요.");
     }
 
     public void play(){
