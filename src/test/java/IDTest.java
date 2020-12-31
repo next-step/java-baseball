@@ -64,6 +64,28 @@ public class IDTest {
         assertEquals("2스트라이크 ", computerID.compare(userID));
     }
 
+    @Test
+    public void compareIDTest_senario_1strike_2ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByTyping(920);
+        userID.genByTyping(290);
+
+        assertEquals("1스트라이크 2볼", computerID.compare(userID));
+    }
+
+    @Test
+    public void compareIDTest_senario_1strike_1ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByTyping(920);
+        userID.genByTyping(912);
+
+        assertEquals("1스트라이크 1볼", computerID.compare(userID));
+    }
+
     private int arr2int(int[] arr){
         int retVal = 0;
         for(int i = 0; i < 3; i++){
@@ -71,6 +93,4 @@ public class IDTest {
         }
         return retVal;
     }
-
-
 }
