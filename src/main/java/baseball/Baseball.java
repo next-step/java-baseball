@@ -87,4 +87,114 @@ class Baseball{
         }
 
     }
+
+    /** scanNumber는 게임 중 user의 숫자 추측 입력값을 받는 변수입니다.
+     * @return 유저가 입력한 숫자값
+     */
+    public int scanNumber(){
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("숫자를 입력해주세요 : ");
+
+        return sc.nextInt();
+    }
+
+    /** checkScore는 user가 입력한 숫자에 대한 스코어를 score변수에 저장하는 메서드입니다.
+     * score를 초기화 뒤 checkNumber 메서드를 통해 각 자리수에 대한 결과를 반환해 오고, score의 해당 키 값을 증가시킵니다.
+     * @param check 유저가 입력한 숫자값.
+     */
+    public void checkScore(int check){
+
+        score.replace(STRIKE,0);
+        score.replace(BALL,0);
+        score.replace(MISS,0);
+        for (int i=0; i < LEN; i++){
+            String replaceKey = checkNumber(LEN - (i+1) , check % TEN);
+
+            score.replace(replaceKey,score.get(replaceKey)+1);
+            check = check / TEN;
+        }
+        return;
+    }
+
+    /** checkNumber은 유저가 입력한 값의 자리수와 자리에 따라서 스트라이크인지, 볼인지, 미스인지 판단하는 함수입니다.
+     * sameNumber을 통해 해당 숫자가 num에 있는지 확인하고, 위치까지 일치하는지 확인함으로서 판단한다.
+     * @param index 유저가 입력한 숫자값의 해당 자릿수.
+     * @param number 유저가 입력한 숫자값의 해당 자릿수 숫자값.
+     */
+    private String checkNumber(int index, int number){
+
+        boolean flag = sameNumber(number);
+
+        if (num[index] == number) {
+            return STRIKE;
+        }
+        if (flag == true) {
+            return BALL;
+        }
+        return MISS;
+    }
+
+    /** sameNumber 해당 숫자가 num안에 존재하는지 확인하는 메서드입니다. equalCheck 메서드를 통해 하나라도 같은게 있는지 확인합니다.
+     * @param number 유저가 입력한 숫자값의 해당 자릿수 숫자값.
+     * @return 값은 존재하면 true 존재하지 않을시 false가 반환됩니다.
+     */
+    private boolean sameNumber(int number){
+
+        boolean flag = false;
+
+        for (int i = 0; i < LEN; i++){
+            flag = equalCheck(num[i],number,flag);
+        }
+        return flag;
+    }
+
+    /** equalCheck는 sameNumber의 부속 메서드입니다.
+     * @param number1 비교할 숫자1
+     * @param number2 비교할 숫자2
+     * @param flag  이전에 이미 같은 숫자가 있었는지 여
+     * @return 이미 이전에 같은 숫자였을 경우 true 해당사항이 없으면 false를 반환합니다.
+     */
+    private boolean equalCheck(int number1, int number2, boolean flag){
+        if (number1 == number2 || flag == true) {
+            return true;
+        }
+        return false;
+    }
+
+    /** printScore는 연산된 스코어를 출력하기 위한 메서드입니다.
+     * 문장은 낫싱의 경우를 제외하고는 printer 변수를 통해 구성되며 printStrikeBall을 통해 전체적인 문장을 구성합니다.
+     * @return 결과적으로 출력될 문장.
+     */
+    public String printScore(){
+
+        String printer = "";
+
+        if (score.get(MISS) == LEN){
+            System.out.println(NOTTING);
+            return NOTTING;
+        }
+        printer = printStrikeBall(STRIKE, printer);
+        printer = printStrikeBall(BALL, printer);
+        System.out.println(printer);
+        return printer;
+    }
+
+    /** printStrikeBall 문장을 만들기 위한 메서드입니다,
+     * @param count 스트라이크와 볼 같은, 구성 종류에 관한 String
+     * @param printer  지금까지 쓰여진 문장.
+     * @return 문장을 추가하여 반환합니다.
+     */
+    private String printStrikeBall(String count, String printer){
+
+        if (score.get(count) == 0){
+            return printer;
+        }
+        if (printer != ""){
+            printer += " ";
+        }
+        return printer + Integer.toString(score.get(count)) + " " + count;
+    }
+
 }

@@ -25,4 +25,14 @@ public class BaseballTest {
             assertThat(num[i]).isNotEqualTo(num[(i+1)%LEN]);
         }
     }
+
+    /** checkScoreTest 컴퓨터의 값과 유저의 값에 따른 결과가 제대로 나오는지 확인하는 테스트 */
+    @ParameterizedTest
+    @CsvSource({"123,456,낫싱","123,132,1 스트라이크 2 볼","456,456,3 스트라이크"})
+    public void checkScoreTest(int setNumber, int inputNumber, String expected){
+        Baseball game = new Baseball();
+        game.testScore(setNumber);
+        game.checkScore(inputNumber);
+        assertThat(game.printScore()).isEqualTo(expected);
+    }
 }
