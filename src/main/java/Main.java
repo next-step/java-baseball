@@ -36,26 +36,43 @@ class ID{
         }
     }
 
-    /*
     public String compare(ID o){
-        int strkCnt = getStrikeCnt();
-        int ballCnt = getBallCnt();
+        int strkCnt = getStrikeCnt(o.arr);
+        int ballCnt = getBallCnt(o.arr);
         if(3 == strkCnt){
             return "same";
         }
         return strikeMSG(strkCnt) + ballMSG(ballCnt);
     }
-    private int getStrikeCnt(){
+
+    private int getStrikeCnt(int[] arr2){
+        int retVal = 0;
+
+        for(int i = 0; i < 3; i++){
+            int minv = Math.min(arr[i], arr2[i]);
+            int maxv = Math.max(arr[i], arr2[i]);
+            int t = (~(minv - maxv)) >>> 31; // minv == maxv ? 1:0;
+            exist[arr[i]] -= t;
+            retVal += t;
+        }
+        return retVal;
     }
-    private int getBallCnt(){
+
+    private int getBallCnt(int[] arr2){
+        int retVal = 0;
+        for(int i = 0; i < 3; i++){
+            retVal += exist[arr2[i]];
+        }
+        return retVal;
     }
+
     private String strikeMSG(int cnt){
         return cnt + "스트라이크 ";
     }
+
     private String ballMSG(int cnt){
         return cnt + "볼";
     }
-     */
 }
 
 /*

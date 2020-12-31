@@ -30,4 +30,22 @@ public class IDTest {
         }
         assertEquals(testInput, track);
     }
+
+    @Test
+    public void compareIDTest_senario_same(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByRandom();
+        userID.genByTyping(arr2int(computerID.arr));
+
+        assertEquals("same", computerID.compare(userID));
+    }
+    private int arr2int(int[] arr){
+        int retVal = 0;
+        for(int i = 0; i < 3; i++){
+            retVal = retVal * 10 + arr[i];
+        }
+        return retVal;
+    }
 }
