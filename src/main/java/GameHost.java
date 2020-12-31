@@ -19,6 +19,7 @@ public class GameHost {
             initializePlayerVariable();
             enterPlayersThreeNum();
             compareComputerAndPlayer();
+            printStrikeAndBall();
         } while (!isEndOfGame());
     }
 
@@ -96,5 +97,18 @@ public class GameHost {
             return;
         }
         ball++;
+    }
+
+    private void printStrikeAndBall() {
+        if (strike != 0) {
+            System.out.printf("%d 스트라이크 ", strike);
+        }
+        if (ball != 0) {
+            System.out.printf("%d 볼 ", ball);
+        }
+        if (strike == 0 && ball == 0) {
+            System.out.print("낫싱");
+        }
+        System.out.println();
     }
 }
