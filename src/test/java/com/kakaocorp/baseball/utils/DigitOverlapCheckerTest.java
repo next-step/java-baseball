@@ -12,7 +12,7 @@ public class DigitOverlapCheckerTest {
     void zeroIsValidNum() {
         checker = new DigitOverlapChecker(0);
 
-        isValidNum = checker.validate();
+        isValidNum = checker.isValid();
 
         assertThat(isValidNum).isTrue();
     }
@@ -21,7 +21,7 @@ public class DigitOverlapCheckerTest {
     void twoOverlappingDigitsIsInvalidNum() {
         checker = new DigitOverlapChecker(212);
 
-        isValidNum = checker.validate();
+        isValidNum = checker.isValid();
 
         assertThat(isValidNum).isFalse();
     }
@@ -30,7 +30,7 @@ public class DigitOverlapCheckerTest {
     void maximumValidNumIsOfLengthTen() {
         checker = new DigitOverlapChecker(1234567890);
 
-        isValidNum = checker.validate();
+        isValidNum = checker.isValid();
 
         assertThat(isValidNum).isTrue();
     }

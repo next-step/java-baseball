@@ -13,7 +13,7 @@ public class DigitOverlapChecker {
         this.targetNum = targetNum;
     }
 
-    public boolean validate() {
+    public boolean isValid() {
         initialize();
 
         countDigitUsage();

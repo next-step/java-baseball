@@ -36,7 +36,7 @@ public class NumWithNoOverlappingDigitGenerator {
         oneDigitInIntegerPart = Math.random() * 10;
         randomDigit = (int) oneDigitInIntegerPart;
 
-        if (randomDigit == 0) {
+        if (randomDigitIsZero()) {
             pickOneRandomDigitExcludingZero();
         }
     }
@@ -48,12 +48,20 @@ public class NumWithNoOverlappingDigitGenerator {
         numWithRandomDigitAppendedToUnitPlace = generatedNum * 10 + randomDigit;
         checker = new DigitOverlapChecker(numWithRandomDigitAppendedToUnitPlace);
 
-        if (checker.validate()) {
-            generatedNum = numWithRandomDigitAppendedToUnitPlace;
+        if (checker.isValid()) {
+            pickNewNumAsPartiallyGeneratedNum(numWithRandomDigitAppendedToUnitPlace);
         }
     }
 
     private void clearPreviousGeneratedNum() {
         generatedNum = 0;
+    }
+
+    private boolean randomDigitIsZero() {
+        return randomDigit == 0;
+    }
+
+    private void pickNewNumAsPartiallyGeneratedNum(int newNum) {
+        generatedNum = newNum;
     }
 }
