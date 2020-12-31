@@ -7,18 +7,26 @@ import validators.Validator;
 import java.util.Scanner;
 public class BaseballGame {
     public static final int NUMBER_LENGTH = 3;
+    static final String commentWhenReceiveNumber = "숫자를 입력해 주세요: ";
 
-    static Scanner scanner;
-    public static final String commentWhenReceiveNumber = "숫자를 입력해 주세요: ";
-    static Validator numberChecker;
-    static Validator endingInputChecker;
-    static InputManager inputManager;
-    static {
-        scanner = new Scanner(System.in);
-        numberChecker = new BaseballNumberValidator();
-        endingInputChecker = new EndNumberValidator();
-        inputManager = new InputManager();
+    Validator numberChecker;
+    public BaseballGame setNumberChecker(Validator numberChecker) {
+        this.numberChecker = numberChecker;
+        return this;
     }
+
+    Validator endingInputChecker;
+    public BaseballGame setEndingInputChecker(Validator endingInputChecker) {
+        this.endingInputChecker = endingInputChecker;
+        return this;
+    }
+
+    InputManager inputManager;
+    public BaseballGame setInputManager(InputManager inputManager) {
+        this.inputManager = inputManager;
+        return this;
+    }
+
     public void play(){
         Answer answer = new Answer();
 
