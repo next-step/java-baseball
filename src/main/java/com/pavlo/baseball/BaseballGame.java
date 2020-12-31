@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
+    private static final int STRIKE = 1;
+    private static final int BALL = 2;
+
     private static final int NUM_LENGTH = 3;
     private static final int NUM_RANGE = 9;
     private static final Scanner scanner = new Scanner(System.in);
@@ -28,37 +31,57 @@ public class BaseballGame {
 
     /* 컴퓨터의 3자리 난수값과 사용자의 값을 비교하여 적절한 msg 를 만들어내는 함수 */
     private String makeMsg() {
-        if (isInvalidInput(playerString)) {
-            return "사용자 입력값이 잘못 되었습니다.";
-        }
-
         StringBuilder msg = new StringBuilder();
-
         int strike = getStrikeCount(computerString, playerString);
         int ball = getBallCount(computerString, playerString);
-
-        if (strike > 0) {
-            msg.append(strike).append(" 스트라이크 ");
+        if(ball == 0 && strike == 0){
+            return "낫싱";
         }
-        if (ball > 0) {
-            msg.append(ball).append(" 볼");
+        msg.append(generateMsg(strike,STRIKE))
+                .append(generateMsg(ball,BALL))
+                .append("\n");
+        if(strike == NUM_LENGTH){
+            msg.append("3개의 숫자를 모두 맞히셨습니다! 게임 종료!!");
+            isAnswer = true;
         }
-        if (strike == 0 && ball == 0) {
-            msg.append("낫싱");
-        }
-
-
         return msg.toString();
     }
 
+    private String generateMsg(int cnt, int type) {
+        if(cnt == 0){
+            return "";
+        }
+        if(type == STRIKE){
+            return cnt + " 스트라이크 ";
+        }
+        return cnt + " 볼";
+    }
+
     /* 두개의 문자열 값으로 볼의 개수를 반환하는 함수 */
-    private int getBallCount(String computerString, String playerString){
-        return 1;
+    private int getBallCount(String computerString, String playerString) {
+        int cnt = 0;
+        for (int i = 0; i < NUM_LENGTH; i++) {
+            cnt += isSameChar(computerString.charAt(i), playerString.charAt((i + 1) % NUM_LENGTH));
+            cnt += isSameChar(computerString.charAt(i), playerString.charAt((i + 2) % NUM_LENGTH));
+        }
+        return cnt;
     }
 
     /* 두개의 문자열 값으로 스트라이크의 개수를 반환하는 함수 */
     private int getStrikeCount(String computerString, String playerString) {
-        return 1;
+        int cnt = 0;
+        for (int i = 0; i < NUM_LENGTH; i++) {
+            cnt += isSameChar(computerString.charAt(i), playerString.charAt(i));
+        }
+        return cnt;
+    }
+
+    /* 두개의 char 값이 같으면 1을 반환 다르다면 0을 반환 */
+    private int isSameChar(char a, char b) {
+        if (a == b) {
+            return 1;
+        }
+        return 0;
     }
 
     /* 게임이 끝난후 다시할건지 묻는 함수 */
@@ -73,9 +96,13 @@ public class BaseballGame {
         do {
             System.out.print("숫자를 입력해주세요 : ");
             playerString = scanner.nextLine();
+            if (isInvalidInput(playerString)) {
+                System.out.println("사용자 입력값이 잘못 되었습니다.");
+                continue;
+            }
             String msg = makeMsg();
             System.out.println(msg);
-        } while (isAnswer);
+        } while (!isAnswer);
     }
 
 
@@ -95,11 +122,9 @@ public class BaseballGame {
     /* 중복되지 않는 난수값을 얻기 위한 함수 */
     private int getRandomNumber(String numString) {
         int n = -1;
-
         do {
             n = (int) (Math.random() * NUM_RANGE) + 1;
         } while (numString.contains(Integer.toString(n)));
-
         return n;
     }
 
