@@ -79,7 +79,8 @@ public class BaseBallGame {
 
     public boolean validateUserAnswer(String userAnswer){
 
-        if(validateMaxLength(userAnswer) && validateStringToInteger(userAnswer) && validateDuplicate(userAnswer)){
+        if(validateMaxLength(userAnswer) && validateStringToInteger(userAnswer)
+                && validateDuplicate(userAnswer) && validateZero(userAnswer)){
             return true;
         }
         System.out.println("잘못된 입력입니다.");
@@ -94,12 +95,24 @@ public class BaseBallGame {
         }
         return false;
     }
+    public boolean validateZero(String userAnswer){
+
+        if(userAnswer.charAt(0)=='0'){
+            return false;
+        }
+        if(userAnswer.charAt(1)=='0'){
+            return false;
+        }
+        if(userAnswer.charAt(2)=='0'){
+            return false;
+        }
+        return true;
+    }
 
     public boolean validateStringToInteger(String userAnswer){
 
         try {
-            Integer.parseInt(userAnswer);
-            return true;
+            return Integer.parseInt(userAnswer)>=1;
         }catch (Exception e){
             return false;
         }
