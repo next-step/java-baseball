@@ -24,18 +24,25 @@ public class BaseballGame {
 
     /* 세자리의 난수를 생성하기 위한 함수*/
     public String makeComputerNumString() {
-        // 난수를 하나 뽑고 => 저장하고
         StringBuilder numString = new StringBuilder();
-        HashSet<Integer> numSet = new HashSet<>();
 
-        while (numSet.size() < NUM_LENGTH) {
-            int num = (int) (Math.random() * NUM_RANGE) + 1;
-            numSet.add(num);
+        while (numString.length() < NUM_LENGTH) {
+            int num = getRandomNumber(numString.toString());
+            numString.append(num);
         }
 
-        for (int n : numSet) {
-            numString.append(n);
-        }
         return numString.toString();
+    }
+
+
+    /* 중복되지 않는 난수값을 얻기 위한 함수 */
+    private int getRandomNumber(String numString) {
+        int n = -1;
+
+        do {
+            n = (int) (Math.random() * NUM_RANGE) + 1;
+        } while (numString.contains(Integer.toString(n)));
+
+        return n;
     }
 }
