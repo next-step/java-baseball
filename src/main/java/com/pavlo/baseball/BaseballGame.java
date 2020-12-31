@@ -21,6 +21,7 @@ public class BaseballGame {
     private String playerString;
     private boolean isAnswer = false;
 
+    /* 게임을 시작하는 함수 */
     public void start() {
         do {
             computerString = makeComputerNumString();
@@ -34,31 +35,32 @@ public class BaseballGame {
         StringBuilder msg = new StringBuilder();
         int strike = getStrikeCount(computerString, playerString);
         int ball = getBallCount(computerString, playerString);
-        if(ball == 0 && strike == 0){
+        if (ball == 0 && strike == 0) {
             return "낫싱";
         }
-        msg.append(generateMsg(strike,STRIKE))
-                .append(generateMsg(ball,BALL))
+        msg.append(generateMsg(strike, STRIKE))
+                .append(generateMsg(ball, BALL))
                 .append("\n");
-        if(strike == NUM_LENGTH){
-            msg.append("3개의 숫자를 모두 맞히셨습니다! 게임 종료!!");
+        if (strike == NUM_LENGTH) {
+            msg.append("3개의 숫자를 모두 맞히셨습니다! 게임 종료!!").append("\n");
             isAnswer = true;
         }
         return msg.toString();
     }
 
+    /* 개수와 타입 별로 메시지를 생성하여 반환하는 함수 */
     private String generateMsg(int cnt, int type) {
-        if(cnt == 0){
+        if (cnt == 0) {
             return "";
         }
-        if(type == STRIKE){
+        if (type == STRIKE) {
             return cnt + " 스트라이크 ";
         }
         return cnt + " 볼";
     }
 
     /* 두개의 문자열 값으로 볼의 개수를 반환하는 함수 */
-    private int getBallCount(String computerString, String playerString) {
+    public int getBallCount(String computerString, String playerString) {
         int cnt = 0;
         for (int i = 0; i < NUM_LENGTH; i++) {
             cnt += isSameChar(computerString.charAt(i), playerString.charAt((i + 1) % NUM_LENGTH));
@@ -68,7 +70,7 @@ public class BaseballGame {
     }
 
     /* 두개의 문자열 값으로 스트라이크의 개수를 반환하는 함수 */
-    private int getStrikeCount(String computerString, String playerString) {
+    public int getStrikeCount(String computerString, String playerString) {
         int cnt = 0;
         for (int i = 0; i < NUM_LENGTH; i++) {
             cnt += isSameChar(computerString.charAt(i), playerString.charAt(i));
@@ -129,7 +131,7 @@ public class BaseballGame {
     }
 
     /* 사용자의 입력 값을 확인하기 위한 함수 */
-    private boolean isInvalidInput(String playerString) {
+    public boolean isInvalidInput(String playerString) {
         if (playerString.contains("0") || playerString.length() != NUM_LENGTH) {
             return true;
         }
