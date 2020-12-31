@@ -21,13 +21,8 @@ public class NumWithNoOverlappingDigitGenerator {
     }
 
     private boolean hasEnoughDigitCnt() {
-        DigitCounter counter;
-        int digitCnt;
-
-        counter = new DigitCounter(generatedNum);
-        digitCnt = counter.getDigitCnt();
-
-        return digitCnt >= REQUIRED_DIGIT_CNT_FOR_GAME;
+        DigitCounter counter = new DigitCounter(generatedNum);
+        return counter.getDigitCnt() >= REQUIRED_DIGIT_CNT_FOR_GAME;
     }
 
     private void pickOneRandomDigitExcludingZero() {

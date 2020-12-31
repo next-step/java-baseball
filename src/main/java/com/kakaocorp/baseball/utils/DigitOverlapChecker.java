@@ -7,7 +7,7 @@ public class DigitOverlapChecker {
     private final int targetNum;
     private int[] digitUsedCnts;
     private boolean isValidNum;
-    private int temp;
+    private int numForUse;
 
     public DigitOverlapChecker(int targetNum) {
         this.targetNum = targetNum;
@@ -47,7 +47,7 @@ public class DigitOverlapChecker {
     }
 
     private void backupOriginalNum() {
-        temp = targetNum;
+        numForUse = targetNum;
     }
 
     private void assumeValidNum() {
@@ -55,22 +55,17 @@ public class DigitOverlapChecker {
     }
 
     private boolean hasRemainingDigit() {
-        DigitCounter counter;
-        int digitCnt;
-
-        counter = new DigitCounter(temp);
-        digitCnt = counter.getDigitCnt();
-
-        return digitCnt > 0;
+        DigitCounter counter = new DigitCounter(numForUse);
+        return counter.getDigitCnt() > 0;
     }
 
     private void increaseCounterForRightmostDigit() {
-        int rightmostDigit = temp % 10;
+        int rightmostDigit = numForUse % 10;
         digitUsedCnts[rightmostDigit]++;
     }
 
     private void trimRightmostDigit() {
-        temp /= 10;
+        numForUse /= 10;
     }
 
     private void checkIsUsedOnce(int digitUsedCnt) {

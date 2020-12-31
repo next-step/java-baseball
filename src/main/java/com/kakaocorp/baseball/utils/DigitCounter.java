@@ -3,7 +3,7 @@ package com.kakaocorp.baseball.utils;
 public class DigitCounter {
     private final int targetNum;
     private int digitCnt;
-    private int temp;
+    private int numForUse;
 
     public DigitCounter(int targetNum) {
         this.targetNum = targetNum;
@@ -26,7 +26,7 @@ public class DigitCounter {
     }
 
     private boolean hasRemainingDigit() {
-        return temp > 0;
+        return numForUse > 0;
     }
 
     private void increaseCounter() {
@@ -34,7 +34,7 @@ public class DigitCounter {
     }
 
     private void trimOneDigit() {
-        temp /= 10;
+        numForUse /= 10;
     }
 
     private void setCounterToZero() {
@@ -42,6 +42,6 @@ public class DigitCounter {
     }
 
     private void backupOriginalNum() {
-        temp = targetNum;
+        numForUse = targetNum;
     }
 }
