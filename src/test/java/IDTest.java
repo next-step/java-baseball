@@ -41,6 +41,16 @@ public class IDTest {
 
         assertEquals("same", computerID.compare(userID));
     }
+    @Test
+    public void compareIDTest_senario_3ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByTyping(123);
+        userID.genByTyping(231);
+
+        assertEquals("3볼", computerID.compare(userID));
+    }
     private int arr2int(int[] arr){
         int retVal = 0;
         for(int i = 0; i < 3; i++){
@@ -48,4 +58,7 @@ public class IDTest {
         }
         return retVal;
     }
+
+
+
 }

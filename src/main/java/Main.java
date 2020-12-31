@@ -27,12 +27,14 @@ class ID{
     }
 
     public void genByTyping(int data){
+        exist = new int[10];
         this.input = data;
         arr = new int[3];
 
         for(int i = 2; -1 < i; i--){
             arr[i] = data % 10;
             data /= 10;
+            exist[arr[i]] = 1;
         }
     }
 
@@ -67,11 +69,11 @@ class ID{
     }
 
     private String strikeMSG(int cnt){
-        return cnt + "스트라이크 ";
+        return (cnt == 0) ? "":(cnt + "스트라이크 ");
     }
 
     private String ballMSG(int cnt){
-        return cnt + "볼";
+        return (cnt == 0) ? "":(cnt + "볼");
     }
 }
 
