@@ -7,8 +7,17 @@ public class NumberScanner {
     private final Scanner scan = new Scanner(System.in);
 
     public List<Integer> scan() {
-        String numberStr = scan.next();
-        return makeList(numberStr);
+        List<Integer> numberList;
+        while (true) {
+            String numberStr = scan.next();
+            try {
+                numberList = makeList(numberStr);
+                break;
+            } catch (RuntimeException e) {
+                System.out.print("잘못된 입력입니다. 다시 입력해주세요: ");
+            }
+        }
+        return numberList;
     }
 
     public List<Integer> makeList(String numberStr) {
