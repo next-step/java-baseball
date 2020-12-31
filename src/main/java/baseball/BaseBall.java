@@ -1,7 +1,7 @@
 /*
  * BaseBall
  *
- * 0.3
+ * 0.4
  *
  * 2020.12.31
  *
@@ -159,5 +159,14 @@ public class BaseBall {
         return false;
     }
 
+    public void loop() {
+        init();
+
+        while(loopCheck()) {
+            System.out.print("숫자를 입력해주세요 : ");
+            scanNum();
+            printResult();
+        }
+    }
 
 }
