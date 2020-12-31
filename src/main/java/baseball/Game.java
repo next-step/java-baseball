@@ -1,6 +1,7 @@
 package baseball;
 
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class Game {
     static boolean checkNum(int randNum, HashSet<Integer> choosedNum){
@@ -63,7 +64,52 @@ public class Game {
         return count;
     }
 
+    static int[] getUserNum(int input){
+        int[] user = new int[3];
+
+        user[0] = input / 100;
+        input %= 100;
+        user[1] = input / 10;
+        user[2] = input % 10;
+
+        return user;
+    }
+    static boolean printResult(int[] computer, int[] user){
+        int strike = countStrike(computer, user);
+        int ball = countBall(computer, user);
+        if(strike == 3){
+            System.out.println(strike + " 스트라이크");
+            return false;
+        }
+        if(strike == 0 && ball == 0)  System.out.print("낫싱");
+        if(strike > 0) System.out.print(strike + " 스트라이크 ");
+        if(ball > 0) System.out.print(ball + " 볼");
+        System.out.println();
+        return true;
+    }
+    static int doGame(int[] computer){
+        Scanner scan = new Scanner(System.in);
+        int input;
+        int[] user;
+        boolean flag;
+        do{
+            System.out.print("숫자를 입력해주세요 : ");
+            input = scan.nextInt();
+            user = getUserNum(input);
+            flag = printResult(computer, user);
+        } while(flag);
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return scan.nextInt();
+    }
     public static void main(String[] args){
         System.out.println("start game");
+        int flag;
+
+        do {
+            int[] computer = makeNumbers();
+            flag = doGame(computer);
+        }while(flag == 1);
+
+        System.out.println("end game");
     }
 }
