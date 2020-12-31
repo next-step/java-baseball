@@ -17,7 +17,6 @@ public class BaseBallGame {
     private void startGame(){
 
         String botAnswer=generateAnswer();
-        System.out.println(botAnswer);
         while(!checkClear(botAnswer));
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 
