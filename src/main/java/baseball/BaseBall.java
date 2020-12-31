@@ -1,7 +1,7 @@
 /*
  * BaseBall
  *
- * 0.4
+ * 0.5
  *
  * 2020.12.31
  *
@@ -81,6 +81,7 @@ public class BaseBall {
         }
 
         if(checkError(input)) {
+            System.out.println("입력이 잘못 되었습니다. 다시 입력해주세요");
             error = true;
         }
 
