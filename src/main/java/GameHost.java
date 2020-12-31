@@ -22,13 +22,13 @@ public class GameHost {
         }
     }
 
-    private void requestReplay() {
+    public void requestReplay() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         gameRunStatus = scanner.nextInt();
     }
 
-    private void playOneGame() {
+    public void playOneGame() {
         generateRandThreeNum();
         do {
             initializePlayerVariable();
@@ -38,17 +38,17 @@ public class GameHost {
         } while (!isEndOfGame());
     }
 
-    private boolean isEndOfGame() {
+    public boolean isEndOfGame() {
         return (strike == 3);
     }
 
-    private void initializePlayerVariable() {
+    public void initializePlayerVariable() {
         threeNumEnteredByPlayer = new Integer[3];
         strike = 0;
         ball = 0;
     }
 
-    private void generateRandThreeNum() {
+    public void generateRandThreeNum() {
         threeNumGeneratedByComputer = new Integer[3];
         HashSet<Integer> randNumDeduplicated = new HashSet<>();
         Random randInstance = new Random();
@@ -59,7 +59,7 @@ public class GameHost {
         randNumDeduplicated.toArray(threeNumGeneratedByComputer);
     }
 
-    private void enterPlayersThreeNum() {
+    public void enterPlayersThreeNum() {
         Scanner scanner = new Scanner(System.in);
         String enteredNum;
 
@@ -70,12 +70,12 @@ public class GameHost {
         setPlayersNumArrFrom(enteredNum);
     }
 
-    private boolean isValid(String numberStr) {
+    public boolean isValid(String numberStr) {
         return (numberStr.length() == 3 && numberStr.matches("^[1-9]*$")
                 && isUniqueEach(numberStr));
     }
 
-    private boolean isUniqueEach(String numberStr) {
+    public boolean isUniqueEach(String numberStr) {
         HashSet<Character> uniqueNumber = new HashSet<>();
 
         for (int i = 0; i < numberStr.length(); i++) {
@@ -85,25 +85,25 @@ public class GameHost {
         return (uniqueNumber.size() == numberStr.length());
     }
 
-    private void setPlayersNumArrFrom(String numberStr) {
+    public void setPlayersNumArrFrom(String numberStr) {
         for (int i = 0; i < numberStr.length(); i++) {
             threeNumEnteredByPlayer[i] = numberStr.charAt(i) - '0';
         }
     }
 
-    private void compareComputerAndPlayer() {
+    public void compareComputerAndPlayer() {
         for (int pickedPlayerIdx = 0; pickedPlayerIdx < 3; pickedPlayerIdx++) {
             matchAllComputerIdxWithOnePlayerIdx(pickedPlayerIdx);
         }
     }
 
-    private void matchAllComputerIdxWithOnePlayerIdx(int playerIdx) {
+    public void matchAllComputerIdxWithOnePlayerIdx(int playerIdx) {
         for (int pickedComputerIdx = 0; pickedComputerIdx < 3; pickedComputerIdx++) {
             compareValWithTwoIdx(playerIdx, pickedComputerIdx);
         }
     }
 
-    private void compareValWithTwoIdx(int playerIdx, int computerIdx) {
+    public void compareValWithTwoIdx(int playerIdx, int computerIdx) {
         if (threeNumEnteredByPlayer[playerIdx] != threeNumGeneratedByComputer[computerIdx]) {
             return;
         }
@@ -114,7 +114,7 @@ public class GameHost {
         ball++;
     }
 
-    private void printStrikeAndBall() {
+    public void printStrikeAndBall() {
         if (strike != 0) {
             System.out.printf("%d 스트라이크 ", strike);
         }
