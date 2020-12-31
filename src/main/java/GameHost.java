@@ -15,9 +15,15 @@ public class GameHost {
 
     public void playGame() {
         generateRandThreeNum();
-        initializePlayerVariable();
-        enterPlayersThreeNum();
-        compareComputerAndPlayer();
+        do {
+            initializePlayerVariable();
+            enterPlayersThreeNum();
+            compareComputerAndPlayer();
+        } while (!isEndOfGame());
+    }
+
+    private boolean isEndOfGame() {
+        return (strike == 3);
     }
 
     private void initializePlayerVariable() {
