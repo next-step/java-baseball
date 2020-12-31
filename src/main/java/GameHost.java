@@ -15,8 +15,15 @@ public class GameHost {
 
     public void playGame() {
         generateRandThreeNum();
+        initializePlayerVariable();
         enterPlayersThreeNum();
         compareComputerAndPlayer();
+    }
+
+    private void initializePlayerVariable() {
+        threeNumEnteredByPlayer = new Integer[3];
+        strike = 0;
+        ball = 0;
     }
 
     private void generateRandThreeNum() {
@@ -57,16 +64,12 @@ public class GameHost {
     }
 
     private void setPlayersNumArrFrom(String numberStr) {
-        threeNumEnteredByPlayer = new Integer[3];
-
         for (int i = 0; i < numberStr.length(); i++) {
             threeNumEnteredByPlayer[i] = numberStr.charAt(i) - '0';
         }
     }
 
     private void compareComputerAndPlayer() {
-        strike = 0;
-        ball = 0;
         for (int pickedPlayerIdx = 0; pickedPlayerIdx < 3; pickedPlayerIdx++) {
             matchAllComputerIdxWithOnePlayerIdx(pickedPlayerIdx);
         }
