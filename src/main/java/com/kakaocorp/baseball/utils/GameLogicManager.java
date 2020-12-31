@@ -1,5 +1,15 @@
 package com.kakaocorp.baseball.utils;
 
+class DigitWithIdx {
+    public int digit;
+    public int idx;
+
+    public DigitWithIdx(int digit, int idx) {
+        this.digit = digit;
+        this.idx = idx;
+    }
+}
+
 public class GameLogicManager {
     protected final static int REQUIRED_DIGIT_CNT_FOR_GAME = 3;
     private int balls;
@@ -24,76 +34,63 @@ public class GameLogicManager {
     }
 
     public boolean hasRoundFinished() {
+        clearPreviousWork();
         checkBallsAndStrikes();
-        return playerRespondedWithCorrectAnswer();
+        return playerGuessedCorrectNum();
     }
 
     protected void checkBallsAndStrikes() {
-        strikes = 0;
-        balls = 0;
-        for (int i = 0, t1 = computerPick; i < REQUIRED_DIGIT_CNT_FOR_GAME; t1 /= 10, i++) {
-            for (int j = 0, t2 = playerPick; j < REQUIRED_DIGIT_CNT_FOR_GAME; t2 /= 10, j++) {
-                if ((t1 % 10) == (t2 % 10)) {
-                    if (i == j) {
-                        strikes++;
-                    } else {
-                        balls++;
-                    }
-                }
-            }
-        }
+        for (int i = 0; i < REQUIRED_DIGIT_CNT_FOR_GAME; i++) {
+            DigitWithIdx computerIthDigit =
+                    new DigitWithIdx(getIthDigitOf(computerPick, i), i);
 
-//        int idx;
-//        int playerPickBackup;
-//        int comparingDigitOfPlayerPick;
-//
-//        idx = 0;
-//        playerPickBackup = playerPick;
-//
-//        while (hasRemainingDigit(playerPickBackup)) {
-//            comparingDigitOfPlayerPick = nextUnitPlaceDigit(playerPickBackup);
-//            playerPickBackup = removeUnitPlaceDigit(playerPickBackup);
-//
-//            checkBallsDigitIdx(comparingDigitOfPlayerPick, idx);
-//            checkStrikesDigitIdx(comparingDigitOfPlayerPick, idx);
-//        }
+            compareFromPlayerNumTo(computerIthDigit);
+        }
     }
 
-    private boolean playerRespondedWithCorrectAnswer() {
+    private void clearPreviousWork() {
+        strikes = 0;
+        balls = 0;
+    }
+
+    private boolean playerGuessedCorrectNum() {
         return strikes == REQUIRED_DIGIT_CNT_FOR_GAME;
     }
 
-    private boolean hasRemainingDigit(int num) {
-        DigitCounter counter = new DigitCounter(num);
-        return counter.getDigitCnt() > 0;
+    private int getIthDigitOf(int value, int idx) {
+        int oneBasedIdx = idx + 1;
+        int factor = (int) Math.pow(10, oneBasedIdx);
+        int ithToFirst = value % factor;
+        int leftmostDigit = ithToFirst / (factor / 10);
+
+        return leftmostDigit;
     }
 
-    private int nextUnitPlaceDigit(int num) {
-        return num % 10;
-    }
+    private void compareFromPlayerNumTo(DigitWithIdx computerIthDigit) {
+        for (int i = 0; i < REQUIRED_DIGIT_CNT_FOR_GAME; i++) {
+            DigitWithIdx playerIthDigit =
+                    new DigitWithIdx(getIthDigitOf(playerPick, i), i);
 
-    private int removeUnitPlaceDigit(int num) {
-        return num / 10;
-    }
-
-    private void checkBallsDigitIdx(int digit, int playerPickIdx) {
-        int computerPickIdx;
-        int comparingDigitOfComputerPick;
-        int computerPickBackup;
-
-        computerPickIdx = 0;
-        computerPickBackup = computerPick;
-
-        while (hasRemainingDigit(computerPickBackup)) {
-            comparingDigitOfComputerPick =
-                    nextUnitPlaceDigit(computerPickBackup);
-            computerPickBackup = removeUnitPlaceDigit(computerPickBackup);
-
-
+            compareDigitsOfComputerPlayer(computerIthDigit, playerIthDigit);
         }
     }
 
-    private void checkStrikesDigitIdx(int digit, int playerPickIdx) {
+    private void compareDigitsOfComputerPlayer(DigitWithIdx computer, DigitWithIdx player) {
+        if (digitValuesMatch(computer.digit, player.digit)) {
+            increaseCounterOfStrikesOrBallsBasedOnIdx(computer.idx, player.idx);
+        }
+    }
 
+    private boolean digitValuesMatch(int d1, int d2) {
+        return d1 == d2;
+    }
+
+    private void increaseCounterOfStrikesOrBallsBasedOnIdx(int idx1, int idx2) {
+        if (idx1 == idx2) {
+            strikes++;
+            return;
+        }
+
+        balls++;
     }
 }
