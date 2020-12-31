@@ -81,22 +81,20 @@ public class Baseball {
 
     public static String getGameResult(int gameNumber, int inputNumber) {
 
-        int strikeCount = 0;
-        int ballCount = 0;
-        int[] digits = new int[10];
-        int digit1, digit2;
+        int strikeCount;
+        int ballCount;
         String gameResult = "";
 
         strikeCount = getStrikeCount(gameNumber, inputNumber);
         ballCount = getBallCount(gameNumber, inputNumber);
 
         if (strikeCount != 0) {
-            gameResult = String.valueOf(strikeCount) + " strike ";
+            gameResult = strikeCount + " strike ";
         }
         if (ballCount != 0) {
-            gameResult += String.valueOf(ballCount) + " ball";
+            gameResult += ballCount + " ball";
         }
-        if (gameResult == "") {
+        if (gameResult.equals("")) {
             gameResult = "Nothing";
         }
 

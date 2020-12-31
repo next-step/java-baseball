@@ -11,7 +11,7 @@ public class BaseballTest {
 //    @Test
 //    @DisplayName("사용자가 입력한 야구 숫자의 유효성 탐지")
 
-    void getInputNumber() {
+    public void getInputNumber() {
         Assertions.assertThat(Baseball.isValidNumber(Baseball.getInputNumber())).isTrue();
         Assertions.assertThat(Baseball.isValidNumber(Baseball.getInputNumber())).isTrue();
         Assertions.assertThat(Baseball.isValidNumber(Baseball.getInputNumber())).isTrue();
@@ -20,7 +20,7 @@ public class BaseballTest {
     }
 
 
-    void isValidNumber() {
+    public void isValidNumber() {
         Assertions.assertThat(Baseball.isValidNumber(123)).isTrue();
         Assertions.assertThat(Baseball.isValidNumber(987)).isTrue();
         Assertions.assertThat(Baseball.isValidNumber(745)).isTrue();
@@ -35,7 +35,7 @@ public class BaseballTest {
     }
 
 
-    void getGameResult() {
+    public void getGameResult() {
         Assertions.assertThat(Baseball.getGameResult(123, 456)).isEqualTo("Nothing");
         Assertions.assertThat(Baseball.getBallCount(123, 234)).isEqualTo("2 ball");
         Assertions.assertThat(Baseball.getBallCount(785, 420)).isEqualTo("Nothing");
@@ -44,7 +44,7 @@ public class BaseballTest {
     }
 
 
-    void getStrikeCount() {
+    public void getStrikeCount() {
         Assertions.assertThat(Baseball.getBallCount(123, 456)).isEqualTo(0);
         Assertions.assertThat(Baseball.getBallCount(123, 234)).isEqualTo(0);
         Assertions.assertThat(Baseball.getBallCount(785, 420)).isEqualTo(0);
@@ -53,7 +53,7 @@ public class BaseballTest {
     }
 
 
-    void getBallCount() {
+    public void getBallCount() {
         Assertions.assertThat(Baseball.getBallCount(123, 456)).isEqualTo(0);
         Assertions.assertThat(Baseball.getBallCount(123, 234)).isEqualTo(2);
         Assertions.assertThat(Baseball.getBallCount(785, 420)).isEqualTo(0);
@@ -62,7 +62,7 @@ public class BaseballTest {
     }
 
 
-    void generateRandomNumber() {
+    public void generateRandomNumber() {
         Assertions.assertThat(Baseball.isValidNumber(Baseball.generateRandomNumber())).isTrue();
         Assertions.assertThat(Baseball.isValidNumber(Baseball.generateRandomNumber())).isTrue();
         Assertions.assertThat(Baseball.isValidNumber(Baseball.generateRandomNumber())).isTrue();
@@ -76,7 +76,7 @@ public class BaseballTest {
 //    }
 
 
-    void isThreeStrike() {
+    public void isThreeStrike() {
         Assertions.assertThat(Baseball.isThreeStrike("3 strike")).isTrue();
         Assertions.assertThat(Baseball.isThreeStrike("Nothing")).isFalse();
         Assertions.assertThat(Baseball.isThreeStrike("1 strike")).isFalse();
