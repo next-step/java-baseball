@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Scanner;
+
 public class BaseBallTest {
     int[] com_num = new int[3];
     int[] user_num = new int[3];
@@ -24,7 +26,7 @@ public class BaseBallTest {
 
     @Test
     @DisplayName("랜덤으로 만들어지는 수 테스트")
-    public void Test1(){
+    public void initTest(){
         init();
         assertThat(com_num[0]).isGreaterThan(0).isLessThan(10);
         assertThat(com_num[1]).isGreaterThan(0).isLessThan(10);
@@ -97,7 +99,7 @@ public class BaseBallTest {
 
     @Test
     @DisplayName("유저가 입력한 숫자 파싱하여 저장된 값 테스트")
-    public void scanNum() {
+    public void scanNumTest() {
         int input = parseString();
 
         for(int i=2;i>=0;i--){
@@ -141,7 +143,7 @@ public class BaseBallTest {
 
     @Test
     @DisplayName("볼 개수 파악 로직 테스트")
-    public void checkBall() {
+    public void checkBallTest() {
         int res;
         //int[] com = {1, 2, 3};
         //int[] user = {1, 2, 3};
@@ -164,7 +166,7 @@ public class BaseBallTest {
 
     @Test
     @DisplayName("스트라이 개수 파악 로직 테스트")
-    public void checkStrike() {
+    public void checkStrikeTest() {
         int res;
         //int[] com = {1, 2, 3};
         //int[] user = {1, 2, 3};
@@ -186,7 +188,7 @@ public class BaseBallTest {
 
     }
 
-    private String getResult(int strike, int ball) {
+    private String getResultTest(int strike, int ball) {
 
         String res = "";
 
@@ -202,7 +204,7 @@ public class BaseBallTest {
 
     @Test
     @DisplayName("결과 출력 테스트")
-    public void printResult() {
+    public void printResultTest() {
         if(error)
             return;
 
@@ -218,7 +220,7 @@ public class BaseBallTest {
         int strike = getStrike();
         int ball = getBall();
 
-        String res = getResult(strike,ball);
+        String res = getResultTest(strike,ball);
 
         System.out.println(res);
 
