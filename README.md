@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+## 기능 요구사항
+1. 난수 생성
+2. 숫자 유효성 검사
+3. 게임 결과 생성(strike, ball 카운팅)
+4. 게임 진행
