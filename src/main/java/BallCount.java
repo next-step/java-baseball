@@ -24,5 +24,13 @@ public class BallCount {
         this.ball = ball;
     }
 
+    @Override
+    public String toString() {
+
+        if(strike==0&&ball==0){
+            return "낫싱";
+        }
+        return (strike!=0?this.strike+" 스트라이크 ":"")+(ball!=0?this.ball+" 볼":"");
+    }
 
 }

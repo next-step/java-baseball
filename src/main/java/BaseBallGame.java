@@ -11,13 +11,15 @@ public class BaseBallGame {
         while (isStart()) {
             startGame();
         }
-        System.out.println("종료");
+        System.out.println("게임을 종료합니다.");
     }
 
     private void startGame(){
 
         String botAnswer=generateAnswer();
-        while(checkClear(botAnswer));
+        System.out.println(botAnswer);
+        while(!checkClear(botAnswer));
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 
     }
 
@@ -28,6 +30,7 @@ public class BaseBallGame {
         if(ballCount.getStrike()==MAX_LENGTH){
             return true;
         }
+        System.out.println(ballCount.toString());
         return false;
     }
 
@@ -43,6 +46,7 @@ public class BaseBallGame {
     }
 
     private int countBall(char botChar, String userAnswer, int passIndex){
+
         if(botChar==userAnswer.charAt(0)&&passIndex!=0){
             return 1;
         }
