@@ -21,7 +21,6 @@ public class BaseballGame {
         }
     }
 
-
     private int[] generateRandomNumber(){
         Iterator<Integer> itr = generateSet().iterator();
         int []randomArr = new int[3];
@@ -50,7 +49,7 @@ public class BaseballGame {
         return false;
     }
 
-    private int[] numberToArr(int input){
+    public int[] numberToArr(int input){
         int []inputArr = new int[3];
         int k = 100;
         for(int i = 0; i < inputArr.length; i++){
@@ -78,7 +77,7 @@ public class BaseballGame {
         return randomArr.length * 2 - set.size();
     }
 
-    private boolean checkCondition(int strikeCnt, int duplicateCnt){
+    public boolean checkCondition(int strikeCnt, int duplicateCnt){
         int ballCnt = duplicateCnt - strikeCnt;
         if(strikeCnt == 3){
             System.out.println(generateStrikeMsg(strikeCnt));
@@ -94,8 +93,13 @@ public class BaseballGame {
         if(strikeCnt == 0) return "";
         return strikeCnt + " 스트라이크 ";
     }
+
     private String generateBallMsg(int ballCnt){
         if(ballCnt == 0) return "";
         return ballCnt + " 볼 ";
+    }
+
+    public int[] getRandomArr() {
+        return randomArr;
     }
 }
