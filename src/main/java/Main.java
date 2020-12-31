@@ -1,8 +1,8 @@
 import java.util.Random;
 
 class ID{
-    private int[] arr, exist;
-    private Random rd;
+    int[] arr, exist;
+    Random rd;
 
     public void genByRandom(){
         arr = new int[3];
@@ -17,12 +17,13 @@ class ID{
     private void genChoiceAt(int idx){
         int t;
         do {
-            t = rd.nextInt();
+            t = rd.nextInt(9) + 1;
         } while (0 != exist[t]);
         exist[t] = 1;
         arr[idx] = t;
     }
 
+    /*
     public void genByTyping(){
     }
 
@@ -44,8 +45,10 @@ class ID{
     private String ballMSG(int cnt){
         return cnt + "볼";
     }
+     */
 }
 
+/*
 public class Main {
 
     public static void main(String[] args) {
@@ -68,3 +71,4 @@ public class Main {
         return 2 != sc.nextInt();
     }
 }
+ */
