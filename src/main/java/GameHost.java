@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class GameHost {
     private Integer[] threeNumGeneratedByComputer;
     private Integer[] threeNumEnteredByPlayer;
+    private int strike;
+    private int ball;
 
     public static void main(String[] args) {
         GameHost host = new GameHost();
@@ -14,6 +16,7 @@ public class GameHost {
     public void playGame() {
         generateRandThreeNum();
         enterPlayersThreeNum();
+        compareComputerAndPlayer();
     }
 
     private void generateRandThreeNum() {
@@ -35,7 +38,6 @@ public class GameHost {
             System.out.print("숫자를 입력해주세요 : ");
             enteredNum = scanner.nextLine();
         } while (!isValid(enteredNum));
-
         setPlayersNumArrFrom(enteredNum);
     }
 
@@ -60,5 +62,30 @@ public class GameHost {
         for (int i = 0; i < numberStr.length(); i++) {
             threeNumEnteredByPlayer[i] = numberStr.charAt(i) - '0';
         }
+    }
+
+    private void compareComputerAndPlayer() {
+        strike = 0;
+        ball = 0;
+        for (int pickedPlayerIdx = 0; pickedPlayerIdx < 3; pickedPlayerIdx++) {
+            matchAllComputerIdxWithOnePlayerIdx(pickedPlayerIdx);
+        }
+    }
+
+    private void matchAllComputerIdxWithOnePlayerIdx(int playerIdx) {
+        for (int pickedComputerIdx = 0; pickedComputerIdx < 3; pickedComputerIdx++) {
+            compareValWithTwoIdx(playerIdx, pickedComputerIdx);
+        }
+    }
+
+    private void compareValWithTwoIdx(int playerIdx, int computerIdx) {
+        if (threeNumEnteredByPlayer[playerIdx] != threeNumGeneratedByComputer[computerIdx]) {
+            return;
+        }
+        if (playerIdx == computerIdx) {
+            strike++;
+            return;
+        }
+        ball++;
     }
 }
