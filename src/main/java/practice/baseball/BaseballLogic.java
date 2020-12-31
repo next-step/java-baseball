@@ -71,8 +71,11 @@ public class BaseballLogic {
     }
 
     //for test
-    public void setBaseballNumber(int[] paraNumber) {
-        this.arrNumber = paraNumber;
+    public void setBaseballNumberUsingArray(int[] paraNumber) {
+        this.arrNumber = new int[3];
+        for(int i = 0; i < paraNumber.length; i++) {
+            this.arrNumber[i] = paraNumber[i];
+        }
     }
 
 }
