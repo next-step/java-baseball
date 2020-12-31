@@ -78,6 +78,12 @@ public class BaseballLogic {
         }
     }
 
+    //for test
+    public void setStrikeAndBallValue(int paraStrikeCount,int paraBallCount ) {
+        this.iStrikeCount = paraStrikeCount;
+        this.iBallCount = paraBallCount;
+    }
+
 
 
 }

@@ -75,6 +75,29 @@ public class BaseballLogicTest {
         assertThat((int) method.invoke( this.objLogic, iTestInput[3]) ).isEqualTo(0);
     }
 
+    @Test
+    void isMatchedTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException  {
+        Method method = this.objLogic.getClass().getDeclaredMethod("isMatched", int.class, int.class);
+        method.setAccessible(true);
+
+        int[][] iTestInput = {{1,1}, {6,3}, {2,4}, {9,9}};
+        assertThat((boolean) method.invoke( this.objLogic, iTestInput[0][0], iTestInput[0][1]) ).isTrue();
+        assertThat((boolean) method.invoke( this.objLogic, iTestInput[1][0], iTestInput[1][1]) ).isFalse();
+        assertThat((boolean) method.invoke( this.objLogic, iTestInput[2][0], iTestInput[2][1]) ).isFalse();
+        assertThat((boolean) method.invoke( this.objLogic, iTestInput[3][0], iTestInput[3][1]) ).isTrue();
+    }
+
+    @Test
+    void getCountsTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException  {
+        Method method = this.objLogic.getClass().getDeclaredMethod("getCounts");
+        method.setAccessible(true);
+
+        this.objLogic.setStrikeAndBallValue(1,2);
+        assertThat((int[]) method.invoke( this.objLogic ))
+                .contains(1)
+                .contains(2)
+                .hasSize(2);
+    }
 
 }
 
