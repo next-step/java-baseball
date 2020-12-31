@@ -17,8 +17,50 @@ public class BaseBallGame {
     private void startGame(){
 
         String botAnswer=generateAnswer();
-        String userAnswer=getUserAnswer();
+        while(checkClear(botAnswer));
 
+    }
+
+    private boolean checkClear(String botAnswer){
+
+        String userAnswer=getUserAnswer();
+        BallCount ballCount=getBallCount(botAnswer,userAnswer);
+        if(ballCount.getStrike()==MAX_LENGTH){
+            return true;
+        }
+        return false;
+    }
+
+    private BallCount getBallCount(String botAnswer,String userAnswer){
+
+        int ball=0;
+        int strike=0;
+        for(int i=0; i<MAX_LENGTH; i++){
+            strike+=checkSame(botAnswer.charAt(i),userAnswer.charAt(i));
+            ball+=countBall(botAnswer.charAt(i),userAnswer,i);
+        }
+        return new BallCount(strike,ball);
+    }
+
+    private int countBall(char botChar, String userAnswer, int passIndex){
+        if(botChar==userAnswer.charAt(0)&&passIndex!=0){
+            return 1;
+        }
+        if(botChar==userAnswer.charAt(1)&&passIndex!=1){
+            return 1;
+        }
+        if(botChar==userAnswer.charAt(2)&&passIndex!=2){
+            return 1;
+        }
+        return 0;
+    }
+
+    private int checkSame(char botChar,char userChar){
+
+        if(botChar==userChar){
+            return 1;
+        }
+        return 0;
     }
 
     private String getUserAnswer(){
