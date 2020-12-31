@@ -18,7 +18,7 @@ checkRestart,restartSwitch,restart
 4. Baseball class 내 테스트를 위한 메서드 목록
 testNumber,testScore
 
-##### 각 메서드에 대한 설명은 코드 내 주석으로 달려있습니다.
+* 각 메서드에 대한 설명은 코드 내 주석으로 달려있습니다.
 
 
 ## Main 클래스
