@@ -51,9 +51,7 @@ class ID{
         int retVal = 0;
 
         for(int i = 0; i < 3; i++){
-            int minv = Math.min(arr[i], arr2[i]);
-            int maxv = Math.max(arr[i], arr2[i]);
-            int t = (~(minv - maxv)) >>> 31; // minv == maxv ? 1:0;
+            int t = (arr[i] == arr2[i]) ? 1 : 0;
             exist[arr[i]] -= t;
             retVal += t;
         }
