@@ -1,9 +1,9 @@
 /*
  * BaseBallTest
  *
- * 0.2
+ * 0.4
  *
- * 2020.12.28
+ * 2020.12.31
  *
  * 저작권 주의 by huey.j
  */
@@ -11,11 +11,10 @@
 package baseball;
 
 import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Scanner;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 public class BaseBallTest {
     int[] com_num = new int[3];
@@ -230,4 +229,42 @@ public class BaseBallTest {
         }
     }
 
+    private boolean loopCheck() {
+        error = false;
+
+        //int input = 1; // 1일 경우 Timeout 2000까지 반복
+        int input = 2; //2이고 end = false 일때 반복
+
+        //input = 2, end = true 일때 정상 종료
+        //int input = 2;
+        //end = true;
+
+        if(!end)
+            return true;
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 다른 숫자를 입력하세요.");
+
+        //Scanner sc = new Scanner(System.in);
+        //int input = sc.nextInt();
+
+
+        if(input == 1){
+            init();
+            return true;
+        }
+        return false;
+    }
+
+    @Test
+    @DisplayName("입력에 따른 loopCheck 테스트")
+    public void loopTest() {
+        //init();
+
+        assertTimeoutPreemptively(ofMillis(2000), () -> {
+            while(loopCheck()) {
+                //System.out.print("숫자를 입력해주세요 : ");
+                //scanNumTest();
+                //printResultTest();
+            }
+        });
+    }
 }
