@@ -2,9 +2,7 @@ package practice.baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -48,6 +46,35 @@ public class BaseballLogicTest {
         assertThat(this.objLogic.compareUserNumberWithNumber(input[3])).isEqualTo(2);
         assertThat(this.objLogic.compareUserNumberWithNumber(input[4])).isEqualTo(3);
     }
+
+    @Test
+    void isStrikeTest()  throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        int[] arrBaseball = {1,2,3};
+        this.objLogic.setBaseballNumberUsingArray(arrBaseball);
+        Method method = this.objLogic.getClass().getDeclaredMethod("isStrike", int.class, int.class);
+        method.setAccessible(true);
+
+        int[][] iTestInput = {{1,0}, {1,1}, {3,2}, {7,0}};
+        assertThat((int) method.invoke( this.objLogic, iTestInput[0][0], iTestInput[0][1] ) ).isEqualTo(1);
+        assertThat((int) method.invoke( this.objLogic, iTestInput[1][0], iTestInput[1][1] ) ).isEqualTo(0);
+        assertThat((int) method.invoke( this.objLogic, iTestInput[2][0], iTestInput[2][1] ) ).isEqualTo(1);
+        assertThat((int) method.invoke( this.objLogic, iTestInput[3][0], iTestInput[3][1] ) ).isEqualTo(0);
+    }
+
+    @Test
+    void isBallTest()  throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        int[] arrBaseball = {1,2,3};
+        this.objLogic.setBaseballNumberUsingArray(arrBaseball);
+        Method method = this.objLogic.getClass().getDeclaredMethod("isBall", int.class);
+        method.setAccessible(true);
+
+        int[] iTestInput = {1, 3, 4, 7};
+        assertThat((int) method.invoke( this.objLogic, iTestInput[0]) ).isEqualTo(1);
+        assertThat((int) method.invoke( this.objLogic, iTestInput[1]) ).isEqualTo(1);
+        assertThat((int) method.invoke( this.objLogic, iTestInput[2]) ).isEqualTo(0);
+        assertThat((int) method.invoke( this.objLogic, iTestInput[3]) ).isEqualTo(0);
+    }
+
 
 }
 
