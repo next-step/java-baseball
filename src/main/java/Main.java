@@ -41,6 +41,9 @@ class ID{
     public String compare(ID o){
         int strkCnt = getStrikeCnt(o.arr);
         int ballCnt = getBallCnt(o.arr);
+        if(0 == (strkCnt | ballCnt)){
+            return "낫싱";
+        }
         if(3 == strkCnt){
             return "same";
         }

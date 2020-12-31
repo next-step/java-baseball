@@ -32,14 +32,36 @@ public class IDTest {
     }
 
     @Test
-    public void compareIDTest_senario_same(){
+    public void compareIDTest_senario_0strike_0ball(){
         ID computerID = new ID();
         ID userID = new ID();
 
-        computerID.genByRandom();
-        userID.genByTyping(arr2int(computerID.arr));
+        computerID.genByTyping(254);
+        userID.genByTyping(319);
 
-        assertEquals("same", computerID.compare(userID));
+        assertEquals("낫싱", computerID.compare(userID));
+    }
+
+    @Test
+    public void compareIDTest_senario_0strike_1ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByTyping(123);
+        userID.genByTyping(345);
+
+        assertEquals("1볼", computerID.compare(userID));
+    }
+
+    @Test
+    public void compareIDTest_senario_0strike_2ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByTyping(123);
+        userID.genByTyping(235);
+
+        assertEquals("2볼", computerID.compare(userID));
     }
 
     @Test
@@ -54,14 +76,25 @@ public class IDTest {
     }
 
     @Test
-    public void compareIDTest_senario_2strike_0ball(){
+    public void compareIDTest_senario_1strike_0ball(){
         ID computerID = new ID();
         ID userID = new ID();
 
         computerID.genByTyping(123);
-        userID.genByTyping(923);
+        userID.genByTyping(925);
 
-        assertEquals("2스트라이크 ", computerID.compare(userID));
+        assertEquals("1스트라이크 ", computerID.compare(userID));
+    }
+
+    @Test
+    public void compareIDTest_senario_1strike_1ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByTyping(920);
+        userID.genByTyping(912);
+
+        assertEquals("1스트라이크 1볼", computerID.compare(userID));
     }
 
     @Test
@@ -76,14 +109,25 @@ public class IDTest {
     }
 
     @Test
-    public void compareIDTest_senario_1strike_1ball(){
+    public void compareIDTest_senario_2strike_0ball(){
         ID computerID = new ID();
         ID userID = new ID();
 
-        computerID.genByTyping(920);
-        userID.genByTyping(912);
+        computerID.genByTyping(123);
+        userID.genByTyping(923);
 
-        assertEquals("1스트라이크 1볼", computerID.compare(userID));
+        assertEquals("2스트라이크 ", computerID.compare(userID));
+    }
+
+    @Test
+    public void compareIDTest_senario_3strike_0ball(){
+        ID computerID = new ID();
+        ID userID = new ID();
+
+        computerID.genByRandom();
+        userID.genByTyping(arr2int(computerID.arr));
+
+        assertEquals("same", computerID.compare(userID));
     }
 
     private int arr2int(int[] arr){
