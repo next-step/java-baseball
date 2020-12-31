@@ -41,6 +41,7 @@ class ID{
     public String compare(ID o){
         int strkCnt = getStrikeCnt(o.arr);
         int ballCnt = getBallCnt(o.arr);
+        afterCompare(o.arr);
         if(0 == (strkCnt | ballCnt)){
             return "낫싱";
         }
@@ -61,6 +62,13 @@ class ID{
         return retVal;
     }
 
+    private void afterCompare(int[] arr2){
+        for(int i = 0; i < 3; i++){
+            int t = (arr[i] == arr2[i]) ? 1 : 0;
+            exist[arr[i]] += t;
+        }
+    }
+
     private int getBallCnt(int[] arr2){
         int retVal = 0;
         for(int i = 0; i < 3; i++){
@@ -78,7 +86,6 @@ class ID{
     }
 }
 
-/*
 public class Main {
 
     public static void main(String[] args) {
@@ -91,15 +98,19 @@ public class Main {
 
     public static void processToFindComputerID(ID computerID){
         ID userID = new ID();
+        String response;
         do {
+            System.out.printf("숫자를 입력해주세요: ");
             int userInput = new Scanner(System.in).nextInt();
             userID.genByTyping(userInput);
+            response = computerID.compare(userID);
+            System.out.println(response);
         }while(!"same".equals(computerID.compare(userID)));
     }
 
     public static boolean askForContinue(){
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
         java.util.Scanner sc = new java.util.Scanner(System.in);
         return 2 != sc.nextInt();
     }
 }
- */
