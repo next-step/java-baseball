@@ -1,8 +1,11 @@
 import java.util.Random;
+import java.util.Scanner;
 
 class ID{
     int[] arr, exist;
     Random rd;
+    Scanner sc;
+    int input;
 
     public void genByRandom(){
         arr = new int[3];
@@ -23,10 +26,17 @@ class ID{
         arr[idx] = t;
     }
 
-    /*
-    public void genByTyping(){
+    public void genByTyping(int data){
+        this.input = data;
+        arr = new int[3];
+
+        for(int i = 2; -1 < i; i--){
+            arr[i] = data % 10;
+            data /= 10;
+        }
     }
 
+    /*
     public String compare(ID o){
         int strkCnt = getStrikeCnt();
         int ballCnt = getBallCnt();
@@ -62,7 +72,8 @@ public class Main {
     public static void processToFindComputerID(ID computerID){
         ID userID = new ID();
         do {
-            userID.genByTyping();
+            int userInput = new Scanner(System.in).nextInt();
+            userID.genByTyping(userInput);
         }while(!"same".equals(computerID.compare(userID)));
     }
 

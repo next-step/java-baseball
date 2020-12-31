@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,5 +16,18 @@ public class IDTest {
             assertTrue(!exist[tid.arr[i]]);
             exist[tid.arr[i]] = true;
         }
-   }
+    }
+
+    @Test
+    public void genByTypingTest(){
+        ID tid = new ID();
+        int testInput = 010;
+
+        tid.genByTyping(testInput);
+        int track = 0;
+        for(int i = 0; i < 3; i++) {
+            track = track * 10 + tid.arr[i];
+        }
+        assertEquals(testInput, track);
+    }
 }
