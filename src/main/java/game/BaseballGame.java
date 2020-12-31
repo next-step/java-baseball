@@ -1,32 +1,22 @@
-import java.util.Scanner;
+package game;
 
+import validators.BaseballNumberValidator;
+import validators.EndNumberValidator;
+import validators.Validator;
+
+import java.util.Scanner;
 public class BaseballGame {
     public static final int NUMBER_LENGTH = 3;
 
     static Scanner scanner;
     public static final String commentWhenReceiveNumber = "숫자를 입력해 주세요: ";
-    static Checker numberChecker;
-    static Checker endingInputChecker;
+    static Validator numberChecker;
+    static Validator endingInputChecker;
     static InputManager inputManager;
     static {
         scanner = new Scanner(System.in);
-        numberChecker = new Checker() {
-            @Override
-            public void checkValid(String input) throws Exception{
-                if(input.length() != BaseballGame.NUMBER_LENGTH){
-                    throw new Exception("유효하지 않은 인풋 입니다");
-                }
-            }
-        };
-        endingInputChecker = new Checker() {
-            @Override
-            public void checkValid(String input) throws Exception {
-                if("1".equals(input) || "2".equals(input)){
-                    return;
-                }
-                throw new Exception("유효하지 않은 인풋 입니다");
-            }
-        };
+        numberChecker = new BaseballNumberValidator();
+        endingInputChecker = new EndNumberValidator();
         inputManager = new InputManager();
     }
     public void play(){
