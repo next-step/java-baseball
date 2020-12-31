@@ -35,4 +35,14 @@ public class BaseballTest {
         game.checkScore(inputNumber);
         assertThat(game.printScore()).isEqualTo(expected);
     }
+
+    /** checkRestartTest 3스트라이크시 제대로 checkRestart가 작동하는지에 대한 테스트 */
+    @ParameterizedTest
+    @CsvSource({"123,456,true","123,132,true","456,456,false","263,263,false"})
+    public void checkRestartTest(int setNumber, int inputNumber, boolean restart){
+        Baseball game = new Baseball();
+        game.testScore(setNumber);
+        game.checkScore(inputNumber);
+        assertThat(game.checkRestart()).isEqualTo(restart);
+    }
 }

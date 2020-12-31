@@ -197,4 +197,47 @@ class Baseball{
         return printer + Integer.toString(score.get(count)) + " " + count;
     }
 
+    /** checkRestart은 게임이 완료되었는지 확인하기 위한 메서드입니다,
+     * @return 3스트라이크면 true 아니면 false를 반환합니다.
+     */
+    public boolean checkRestart(){
+
+        if (score.get(STRIKE) != LEN){
+            return true;
+        }
+        return false;
+    }
+
+    /** restartSwitch는 게임 재시작 여부를 확인하기 위한 메서드입니다.
+     * 본래 checkRestart와 합쳐져 있었으나, checkRestart의 정상 작동 확인을 위해 분리하였습니다.
+     * 이유는 중도 입력에 대한 테스트 구성 방법을 모르기 때문입니다. restart()를 통해 게임 완료시 재시작 여부를 받아와서 반환합니다.
+     * @param flag checkRestart에서 3스트라이크 여부를 받아온 값입니다.
+     * @return 게임 완료가 아니거나, 재시작시 true를 반환하고 게임을 끝내도록 입력이 들어왔을 경우 false를 반환합니다.
+     */
+    public boolean restartSwitch(boolean flag){
+
+        if (flag==false){
+            return restart();
+        }
+        return true;
+    }
+
+    /** restart는 게임 재시작 여부를 묻기 위한 메서드입니다.
+     * 재시작 문구를 주고 입력에 따라서 재시작 여부를 반환합니다. 재시작시, makeNumber을 통해 num을 새로생성합니다.
+     * @return 게임 재시작 키인 RESTARTNUM값일 경우 true, 아닐경우 false를 반환합니다.
+     */
+    private boolean restart(){
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("3개의 숫자를 모두 맞추셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        if (sc.nextInt() == RESTARTNUM) {
+            makeNumber();               /* 재시작 시에는 게임 숫자를 다시 만들어준다. */
+            return true;
+        }
+        return false;
+    }
+
+
 }
