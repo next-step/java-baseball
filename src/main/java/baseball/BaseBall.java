@@ -1,9 +1,9 @@
 /*
  * BaseBall
  *
- * 0.2
+ * 0.3
  *
- * 2020.12.28
+ * 2020.12.31
  *
  * 저작권 주의 by huey.j
  */
@@ -141,5 +141,23 @@ public class BaseBall {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         }
     }
+
+    private boolean loopCheck() {
+        error = false;
+
+        if(!end)
+            return true;
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 다른 숫자를 입력하세요.");
+
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+
+        if(input == 1){
+            init();
+            return true;
+        }
+        return false;
+    }
+
 
 }
