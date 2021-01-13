@@ -70,10 +70,17 @@ public class BaseballGame {
     }
     private boolean isOverlap() {
         for(int i=0; i<3; i++) {
-            for (int j=i+1; j<3; j++) {
-                if(userAnswer[i] == userAnswer[j])  {
-                        return true;
-                }
+            if(equalsTwoNumber(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean equalsTwoNumber(int i) {
+        for (int j=i+1; j<3; j++) {
+            if(userAnswer[i] == userAnswer[j])  {
+                return true;
             }
         }
         return false;
