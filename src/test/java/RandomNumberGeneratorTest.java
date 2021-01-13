@@ -10,20 +10,18 @@ class RandomNumberGeneratorTest {
     @RepeatedTest(100)
     void randomNumber_3digits() {
         // when
-        RandomNumber randomNumber = RandomNumberGenerator.generate();
+        Number randomNumber = RandomNumberGenerator.generate();
 
         // then
-        assertThat(randomNumber.getRandomNumber()).isBetween(111, 999);
+        assertThat(randomNumber.getNumber()).isBetween(111, 999);
     }
 
     @DisplayName("모든 자리 수가 1부터 9 사이의 수인지 테스트")
     @RepeatedTest(100)
     void randomNumber_every_digit_between_1_9() {
-        // given
-        RandomNumber randomNumber = RandomNumberGenerator.generate();
-
         // when
-        int number = randomNumber.getRandomNumber();
+        Number randomNumber = RandomNumberGenerator.generate();
+        int number = randomNumber.getNumber();
         int hundreds = number / 100;
         int tens = number % 100 / 10;
         int units = number % 10;

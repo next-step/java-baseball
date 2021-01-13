@@ -4,9 +4,8 @@ public class RandomNumberGenerator {
 
     private static final Random random = new Random();
 
-    public static RandomNumber generate() {
-        int number = getNumber();
-        return new RandomNumber(number);
+    public static Number generate() {
+        return new Number(getNumber());
     }
 
     private static int getNumber() {
