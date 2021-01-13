@@ -19,14 +19,14 @@ public interface InputBehavior {
 - JudgmentBehavior : 입력 받은 값을 판단하는 인터페이스
 
 
-``` 
+``` java
 
 interface JudgmentBehavior {
     JudgmentResult getAnswer(String question);
 }
 
 
-``` 
+``` java
 
 - PrintBehavior : 숫자 야구에 대한 결과를 출력하는 인터페이스
 
