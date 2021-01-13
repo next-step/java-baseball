@@ -26,11 +26,11 @@ interface JudgmentBehavior {
 }
 
 
-``` java
+``` 
 
 - PrintBehavior : 숫자 야구에 대한 결과를 출력하는 인터페이스
 
-``` 
+``` java
 
 interface PrintBehavior {
     void printStage();
