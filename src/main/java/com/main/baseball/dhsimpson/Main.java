@@ -10,7 +10,12 @@ public class Main {
     }
     // 게임 실행
     void playGame(){
-
+        boolean isFinish = true;
+        while(isFinish){
+            // 게임 시작할 때 컴퓨터 번호 랜덤 설정
+            setComputerNum();
+            isFinish = playOnce();
+        }
     }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
     void setComputerNum(){
