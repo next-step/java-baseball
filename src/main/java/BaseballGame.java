@@ -42,15 +42,8 @@ public class BaseballGame {
         }
 
 
-
-
-        System.out.println("연산자를 입력하세요.");
-
     }
     private boolean isPermittedNumber(int num) {
-        if (0 < num && num < 10) {
-            return true;
-        }
-        else return false;
+        return 0 < num && num < 10;
     }
 }
