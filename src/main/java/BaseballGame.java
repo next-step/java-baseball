@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class BaseballGame {
 
@@ -21,9 +18,9 @@ public class BaseballGame {
             }
         }
     }
-    private boolean isAlreadySet( int n) {
+    private boolean isAlreadySet( int number) {
         for(int i=0; i<3; i++) {
-            if (answer[i] == n) {
+            if (answer[i] == number) {
                 return true;
             }
         }
@@ -31,5 +28,29 @@ public class BaseballGame {
     }
     public void start() {
         setRandomAnswer();
+    }
+
+    private void getUserInput() {
+        System.out.println("숫자 3개를 입력하세요.");
+        int [] userAnswers = new int[3];
+        int num;
+        Scanner input = new Scanner(System.in);
+
+        for (int i = 0; i<3; i++) {
+            num = input.nextInt();
+            userAnswers[i] = num;
+        }
+
+
+
+
+        System.out.println("연산자를 입력하세요.");
+
+    }
+    private boolean isPermittedNumber(int num) {
+        if (0 < num && num < 10) {
+            return true;
+        }
+        else return false;
     }
 }
