@@ -29,6 +29,10 @@ public class Main {
     void compareNums(){
 
     }
+    // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
+    boolean playOnce(){
+        return true;
+    }
     // 게임 진행 시 메시지 보여주기
     void gameMessage(){
 
