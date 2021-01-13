@@ -12,7 +12,7 @@ public class BaseballGame {
         int number;
 
         for (int i=0; i<3; i++) {
-            number = (int) (Math.random()*10+1);
+            number = (int) (Math.random()*9+1);
             if (!isAlreadySet(number)) {
                 answer[i] = number;
             }
