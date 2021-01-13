@@ -9,4 +9,11 @@ public class RandomNumber {
     public int getRandomNumber() {
         return randomNumber;
     }
+
+    @Override
+    public String toString() {
+        return "RandomNumber{" +
+                "randomNumber=" + randomNumber +
+                '}';
+    }
 }
