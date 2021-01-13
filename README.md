@@ -5,3 +5,46 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+- InputBehavior : 숫자 야구를 입력받는 인터페이스
+
+``` java
+
+public interface InputBehavior {
+    String inputQuestion();
+}
+
+```
+
+- JudgmentBehavior : 입력 받은 값을 판단하는 인터페이스
+
+
+``` 
+
+interface JudgmentBehavior {
+    JudgmentResult getAnswer(String question);
+}
+
+
+``` 
+
+- PrintBehavior : 숫자 야구에 대한 결과를 출력하는 인터페이스
+
+``` 
+
+interface PrintBehavior {
+    void printStage();
+    void printResult(JudgmentResult judgmentResult);
+}
+
+```
+
+- GameHost : 숫자 야구를 플레이하는 인터페이스
+
+``` Java
+
+interface GameHost {
+    void playGame();
+}
+
+```
