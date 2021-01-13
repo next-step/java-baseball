@@ -49,18 +49,33 @@ public class BaseballGame {
     }
     private boolean isWrongInputs() {
         for (int i = 0; i<3; i++) {
-            if(isPermittedNumber(userAnswer[i])) {
-                continue;
-            }
-            else {
+            if(!isPermittedNumber(userAnswer[i])) {
                 System.out.println("주의:: 1~9 의 숫자를 입력해주세요!");
                 return true;
             }
+            else {
+                continue;
+            }
         }
+        if (isOverlap()) {
+            System.out.println("주의:: 중복되지 않은 답을 입력해주세요!");
+            return true;
+        }
+
         return false;
     }
 
     private boolean isPermittedNumber(int num) {
         return 0 < num && num < 10;
+    }
+    private boolean isOverlap() {
+        for(int i=0; i<3; i++) {
+            for (int j=i+1; j<3; j++) {
+                if(userAnswer[i] == userAnswer[j])  {
+                        return true;
+                }
+            }
+        }
+        return false;
     }
 }
