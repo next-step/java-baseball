@@ -1,7 +1,9 @@
 package com.main.baseball.dhsimpson;
 
 import java.util.Scanner;
+
 import static java.lang.Math.pow;
+import static java.lang.Math.random;
 
 public class Main {
     int[] computerNum;
@@ -24,7 +26,8 @@ public class Main {
     }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
     void setComputerNum(){
-        int temp = scan.nextInt();
+        // 100 <= temp < 1000 의 난수 생성
+        int temp = (int)(random()*100 + 100);
         for(int i=1; i<=2; i++){
             computerNum[3-i] = (int)(temp%pow(10,1)) ;
             temp = (int)(temp/pow(10,1));
