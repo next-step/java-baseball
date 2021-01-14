@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class UserIO {
     private static final String GET_NUMBER_MSG = "숫자를 입력해주세요 : ";
+    private static final String INPUT_ISRESTART_MSG = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private final Scanner scanner;
 
     public UserIO(Scanner scanner) {
@@ -22,5 +23,12 @@ public class UserIO {
             number.add(val);
         }
         return number;
+    }
+
+    public Boolean inputIsRestart() {
+        System.out.println(INPUT_ISRESTART_MSG);
+        Integer val = this.scanner.nextInt();
+
+        return val.equals(1);
     }
 }
