@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ class RandomNumbersGeneratorTest {
     void randomNumber_3digits() {
         // when
         Numbers randomNumbers = RandomNumbersGenerator.generate();
-        Set<Integer> numbers = randomNumbers.getNumbers();
+        List<Integer> numbers = randomNumbers.getNumbers();
 
         // then
         assertThat(numbers).hasSize(3);
@@ -24,7 +24,7 @@ class RandomNumbersGeneratorTest {
     void randomNumber_every_digit_between_1_9() {
         // when
         Numbers randomNumbers = RandomNumbersGenerator.generate();
-        Set<Integer> numbers = randomNumbers.getNumbers();
+        List<Integer> numbers = randomNumbers.getNumbers();
 
         // then
         for (Integer number : numbers) {
