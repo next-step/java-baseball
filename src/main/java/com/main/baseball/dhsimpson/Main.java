@@ -68,7 +68,17 @@ public class Main {
     }
     int checkBall(int idx){
         int ballCount = 0;
-
+        // computerNum의 각 자릿수를 전체 탐색
+        for(int i=0; i<3; i++){
+            // 같은 idx는 건너 뜀
+            if(idx == i){
+                continue;
+            }
+            // 다른 idx의 숫자가 같다면 ballCount를 증가
+            else if(playerNum[idx]==computerNum[i]){
+                ballCount++;
+            }
+        }
         return ballCount;
     }
 
