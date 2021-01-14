@@ -28,11 +28,19 @@ public class BaseballGame {
         return false;
     }
     public void start() {
+        boolean isAllStrike = false;
+
         setRandomAnswer();
+        while (!isAllStrike) {
+            isAllStrike = processPhase();
+        }
+    }
+
+    public boolean processPhase() {
         do {
             getUserInput();
         } while (isWrongInputs());
-
+        return checkAnswer();
     }
 
     private void getUserInput() {
@@ -90,8 +98,8 @@ public class BaseballGame {
     private boolean checkAnswer() {
         int strikes = countStrikes();
         int balls = countBalls();
-        printResult(strikes,balls);
-        return true;
+        boolean isEnd = printResult(strikes,balls);
+        return isEnd;
     }
     private int countStrikes() {
         int numOfStrike = 0;
@@ -113,16 +121,15 @@ public class BaseballGame {
     }
     private boolean isBall(int i) {
         for(int j=0; j<SIZE_INPUT; j++) {
-            if(answer[i] == answer[j] && i != j) {
+            if(answer[i] == userAnswer[j] && i != j) {
                 return true;
             }
         }
         return false;
     }
-    private void printResult(int strikes,int balls) {
+    private boolean printResult(int strikes,int balls) {
         if (strikes == 0 && balls == 0) {
             System.out.println("낫씽!");
-            return;
         }
         else if (strikes == 0) {
             System.out.println(balls+" 볼");
@@ -132,6 +139,13 @@ public class BaseballGame {
         }
         else {
             System.out.println(strikes+" 스트라이크 "+balls+" 볼");
+        }
+
+        if (strikes == SIZE_INPUT) {
+            System.out.println("숫자를 모두 맞히셨습니다! 게임 종료");
+            return true;
+        } else {
+            return false;
         }
     }
 }
