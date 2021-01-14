@@ -44,23 +44,35 @@ public class Main {
         playerNum[0] = temp;
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
-    void compareNums(){
-
+    boolean compareNums(){
+        return false;
     }
     // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
     boolean playOnce(){
-        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setComputerNum, setPlayerNum에서만 발생할 듯?? 그 함수들에 throw 붙여주자
+        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setPlayerNum에서만 발생할 듯?? 그 함수에 throw 붙여주자
+        boolean playerWin = false;
         int isFinish;
         while(true){
             System.out.println("숫자를 입력해 주세요 : ");
             setPlayerNum();
-            compareNums(); // 이 안에서 gameMessage를 출력하자.
+            playerWin = compareNums(); // 이 안에서 gameMessage를 출력하자.
+            // 맞췄을 때 루프 종료
+            if(playerWin){
+                break;
+            }
+        }
+        // compareNums의 결과에 따라 게임
+
+        // 1,2 이외의 숫자 입력이나 숫자 이외를 입력 시 예외 발생
+        while(true){
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             isFinish = scan.nextInt();
             if(isFinish == 1){
                 return true;
             }else if(isFinish == 2){
                 return false;
+            }else{
+                System.out.println("잘못 된 숫자를 입력했습니다.");
             }
         }
     }
