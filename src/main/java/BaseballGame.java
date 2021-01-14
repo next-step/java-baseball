@@ -63,9 +63,11 @@ public class BaseballGame {
             System.out.print("숫자를 입력하세요: ");
             input = sc.nextLine();
 
-            if (isNumeric(input) && input.length() == 3) {
+            if (isNumeric(input) && isLengthThree(input)) {
                 putUserAnswer(input);
                 return;
+            } else {
+                System.out.println();
             }
         }
     }
@@ -81,7 +83,14 @@ public class BaseballGame {
         } else
             return false;
     }
-
+    private boolean isLengthThree(String s) {
+        if(s.length() == 3) {
+            return true;
+        } else {
+            System.out.println("주의:: 3자리 숫자를 입력하세요!");
+            return false;
+        }
+    }
     private boolean isNumeric(String s) {
         try {
             Integer.parseInt(s);
