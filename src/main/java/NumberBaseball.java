@@ -4,7 +4,7 @@ import java.util.Random;
 public class NumberBaseball {
   Scanner sc = new Scanner(System.in);
   String computerNumber, userNumber;
-  int strike=0, ball=0;
+  int strike, ball;
 
   public void startGame() {
     int gameStart = 1;
@@ -43,6 +43,8 @@ public class NumberBaseball {
 
   private void playGame() {
     while (true) {
+      strike=0; ball=0;
+
       System.out.println("숫자를 입력해 주세요 : ");
       userNumber = sc.next();
 
@@ -68,6 +70,14 @@ public class NumberBaseball {
   }
 
   private void checkResult() {
-
+    for (int i=0; i<3; i++) {
+      int idx = computerNumber.indexOf(userNumber.charAt(i));
+      if (idx == i) {
+        strike += 1;
+      }
+      else if (idx != -1) {
+        ball += 1;
+      }
+    }
   }
 }
