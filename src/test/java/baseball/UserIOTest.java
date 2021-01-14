@@ -34,8 +34,8 @@ class UserIOTest {
     }
 
     @Test
-    @DisplayName("Check get number from user")
-    public void testInputNumber() {
+    @DisplayName("Test input is converted to ArrayList<Integer> successfully")
+    public void inputNumber() {
         Scanner scanner = new Scanner("123");
 
         UserIO io = new UserIO(scanner);
