@@ -51,43 +51,45 @@ public class BaseballGame {
     private boolean startPhase() {
         do {
             getUserInput();
-        } while (isWrongInputs());
+        } while (checkOverlap());
         return checkAnswer();
     }
 
     private void getUserInput() {
-        System.out.print("숫자 3개를 입력하세요: ");
 
-        int num;
+        String input;
 
+        while (true) {
+            System.out.print("숫자를 입력하세요: ");
+            input = sc.nextLine();
 
-        for (int i = 0; i<SIZE_INPUT; i++) {
-            num = sc.nextInt();
-            userAnswer[i] = num;
+            if (isNumeric(input) && input.length() == 3) {
+                putUserAnswer(input);
+                return;
+            }
         }
-
-
     }
-    private boolean isWrongInputs() {
-        for (int i = 0; i<SIZE_INPUT; i++) {
-            if(!isPermittedNumber(userAnswer[i])) {
-                System.out.println("주의:: 1~9 의 숫자를 입력해주세요!");
-                return true;
-            }
-            else {
-                continue;
-            }
+    private void putUserAnswer(String s) {
+        for(int i=0; i < SIZE_INPUT; i++) {
+            userAnswer[i] = s.charAt(i) - '0';
         }
+    }
+    private boolean checkOverlap() {
         if (isOverlap()) {
             System.out.println("주의:: 중복되지 않은 답을 입력해주세요!");
             return true;
-        }
-
-        return false;
+        } else
+            return false;
     }
 
-    private boolean isPermittedNumber(int num) {
-        return 0 < num && num < 10;
+    private boolean isNumeric(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("주의:: 1~9 사이 숫자를 입력해주세요!");
+            return false;
+        }
     }
     private boolean isOverlap() {
         for(int i=0; i<SIZE_INPUT; i++) {
