@@ -121,7 +121,7 @@ public class BaseballGame {
     }
     private boolean isBall(int i) {
         for(int j=0; j<SIZE_INPUT; j++) {
-            if(answer[i] == answer[j] && i != j) {
+            if(answer[i] == userAnswer[j] && i != j) {
                 return true;
             }
         }
