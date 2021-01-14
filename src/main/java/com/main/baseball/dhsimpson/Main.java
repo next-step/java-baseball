@@ -33,7 +33,12 @@ public class Main {
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
     void setPlayerNum(){
-
+        int temp = scan.nextInt();
+        for(int i=1; i<=2; i++){
+            playerNum[3-i] = (int)(temp%pow(10,1)) ;
+            temp = (int)(temp/pow(10,1));
+        }
+        playerNum[0] = temp;
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
     void compareNums(){
