@@ -62,4 +62,8 @@ public class BallCount {
     public String getBallCountMessage() {
         return ballCountMessage;
     }
+
+    public boolean isThreeStrikes() {
+        return this.strike == 3;
+    }
 }
