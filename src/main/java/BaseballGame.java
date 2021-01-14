@@ -5,17 +5,22 @@ public class BaseballGame {
     private int [] answer;
     private int [] userAnswer;
     private final int SIZE_INPUT = 3;
+    private final Scanner sc;
     public BaseballGame() {
         this.answer = new int[SIZE_INPUT];
         this.userAnswer  = new int[SIZE_INPUT];
+        sc = new Scanner(System.in);
     }
+
+
     private void setRandomAnswer() {
         int number;
-
-        for (int i=0; i<SIZE_INPUT; i++) {
+        int i=0;
+        while (i<SIZE_INPUT) {
             number = (int) (Math.random()*9+1);
             if (!isAlreadySet(number)) {
                 answer[i] = number;
+                i++;
             }
         }
     }
@@ -28,15 +33,22 @@ public class BaseballGame {
         return false;
     }
     public void start() {
-        boolean isAllStrike = false;
+        boolean isAllStrike;
+        while (true) {
+            isAllStrike = false;
 
-        setRandomAnswer();
-        while (!isAllStrike) {
-            isAllStrike = processPhase();
+            setRandomAnswer();
+            while (!isAllStrike) {
+                isAllStrike = startPhase();
+            }
+            if (checkGameEnd()) {
+                break;
+            }
         }
+
     }
 
-    public boolean processPhase() {
+    private boolean startPhase() {
         do {
             getUserInput();
         } while (isWrongInputs());
@@ -44,13 +56,13 @@ public class BaseballGame {
     }
 
     private void getUserInput() {
-        System.out.println("숫자 3개를 입력하세요.");
+        System.out.print("숫자 3개를 입력하세요: ");
 
         int num;
-        Scanner input = new Scanner(System.in);
+
 
         for (int i = 0; i<SIZE_INPUT; i++) {
-            num = input.nextInt();
+            num = sc.nextInt();
             userAnswer[i] = num;
         }
 
@@ -147,5 +159,23 @@ public class BaseballGame {
         } else {
             return false;
         }
+    }
+
+    private boolean checkGameEnd() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 눌러주세요. ");
+        int input;
+        while (true) {
+            input = sc.nextInt();
+            if (input == 1) {
+                return false;
+            }
+            else if (input == 2) {
+                return true;
+            }
+            else {
+                System.out.println("1 혹은 2를 입력해주세요.");
+            }
+        }
+
     }
 }
