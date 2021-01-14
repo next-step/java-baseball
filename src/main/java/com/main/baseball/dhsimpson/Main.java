@@ -66,6 +66,11 @@ public class Main {
         }
         return false;
     }
+    int checkBall(int idx){
+        int ballCount = 0;
+
+        return ballCount;
+    }
 
 
     // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
