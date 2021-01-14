@@ -5,17 +5,21 @@ public class BaseballGame {
     private int [] answer;
     private int [] userAnswer;
     private final int SIZE_INPUT = 3;
+
     public BaseballGame() {
         this.answer = new int[SIZE_INPUT];
         this.userAnswer  = new int[SIZE_INPUT];
     }
+
+
     private void setRandomAnswer() {
         int number;
-
-        for (int i=0; i<SIZE_INPUT; i++) {
+        int i=0;
+        while (i<SIZE_INPUT) {
             number = (int) (Math.random()*9+1);
             if (!isAlreadySet(number)) {
                 answer[i] = number;
+                i++;
             }
         }
     }
@@ -32,11 +36,11 @@ public class BaseballGame {
 
         setRandomAnswer();
         while (!isAllStrike) {
-            isAllStrike = processPhase();
+            isAllStrike = startPhase();
         }
     }
 
-    public boolean processPhase() {
+    public boolean startPhase() {
         do {
             getUserInput();
         } while (isWrongInputs());
