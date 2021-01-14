@@ -2,31 +2,23 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class NumberBaseball {
-  public static void main(String[] args) {
-    NumberBaseball nb = new NumberBaseball();
-    nb.startGame();
-  }
+  Scanner sc = new Scanner(System.in);
+  String computerNumber, userNumber;
+  int strike=0, ball=0;
 
   public void startGame() {
     int gameStart = 1;
-    String userNumber, computerNumber;
-
-    Scanner sc = new Scanner(System.in);
-
     while (gameStart == 1){
-      computerNumber = this.resetGame();
+      this.resetGame();
 
-      System.out.println("숫자를 입력해 주세요 : ");
-      userNumber = sc.next();
-
-      this.playGame(computerNumber, userNumber);
+      this.playGame();
 
       System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
       gameStart = sc.nextInt();
     }
   }
 
-  private String resetGame() {
+  private void resetGame() {
     int[] numbers = new int[3];
     int result = 0;
     Random rand = new Random();
@@ -46,10 +38,36 @@ public class NumberBaseball {
     }
     result += numbers[2];
 
-    return String.valueOf(result);
+    computerNumber = String.valueOf(result);
   }
 
-  private void playGame(String target, String number) {
+  private void playGame() {
+    while (true) {
+      System.out.println("숫자를 입력해 주세요 : ");
+      userNumber = sc.next();
+
+      this.checkResult();
+
+      if (strike == 3) {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        return;
+      }
+      else if (ball != 0 && strike != 0) {
+        System.out.println(ball+"볼 "+strike+"스트라이크");
+      }
+      else if (ball != 0 && strike == 0) {
+        System.out.println(ball+"볼");
+      }
+      else if (ball == 0 && strike != 0) {
+        System.out.println(strike+"스트라이크");
+      }
+      else {
+        System.out.println("낫싱");
+      }
+    }
+  }
+
+  private void checkResult() {
 
   }
 }
