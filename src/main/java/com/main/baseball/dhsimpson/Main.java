@@ -1,5 +1,6 @@
 package com.main.baseball.dhsimpson;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Math.pow;
@@ -45,8 +46,28 @@ public class Main {
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
     boolean compareNums(){
+//        gameMessage 사용 할까 말까
+        int strike = 0;
+        int balls = 0;
+        ArrayList<Integer> idxList = new ArrayList<Integer>();
+        // 스트라이크 수 세기
+        for(int i=0; i<3; i++){
+            if(computerNum[i]==playerNum[i]){
+                strike++;
+            }else{
+                // 숫자가 다르다면 해당 idx를 저장
+                idxList.add(i);
+            }
+        }
+        // 볼 수 세기
+        for(int idx : idxList){
+            // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
+            balls += checkBall(idx);
+        }
         return false;
     }
+
+
     // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
     boolean playOnce(){
         //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setPlayerNum에서만 발생할 듯?? 그 함수에 throw 붙여주자
@@ -61,8 +82,6 @@ public class Main {
                 break;
             }
         }
-        // compareNums의 결과에 따라 게임
-
         // 1,2 이외의 숫자 입력이나 숫자 이외를 입력 시 예외 발생
         while(true){
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
@@ -76,7 +95,7 @@ public class Main {
             }
         }
     }
-    // 게임 진행 시 메시지 보여주기
+    // 게임 진행 시 메시지 보여주기 : compareNums 안에서
     void gameMessage(){
 
     }
