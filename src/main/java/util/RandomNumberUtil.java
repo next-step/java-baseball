@@ -1,7 +1,5 @@
 package util;
 
-import domain.BaseballGame;
-
 import java.util.Random;
 
 import static domain.BaseballGame.INPUT_NUMBER_SIZE;
