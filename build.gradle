@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
@@ -11,4 +10,9 @@ repositories {
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.5.2')
     testCompile('org.assertj:assertj-core:3.14.0')
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 }
