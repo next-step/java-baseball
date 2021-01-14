@@ -14,5 +14,8 @@ public class GameManager {
         // 플레이어의 입력을 받는다
         String inputValue = this.input.getInputValue("숫자를 입력해 주세요 : ");
         Numbers playerNumbers = new Numbers(inputValue);
+
+        BallCount ballCount = answerNumbers.getBallCount(playerNumbers);
+        System.out.println(ballCount.getBallCountMessage());
     }
 }

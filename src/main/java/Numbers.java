@@ -10,6 +10,7 @@ public class Numbers {
         this.numbers = numbers;
     }
 
+    // FIXME: 684 입력 -> 54, 56, 52
     public Numbers(String numbersString) {
         validate(numbersString);
         this.numbers = convertStringToCollectionOfIntegers(numbersString);
@@ -37,9 +38,7 @@ public class Numbers {
         return this.numbers;
     }
 
-    // TODO: 다른 `Numbers`를 인자로 받아 두 `Numbers`에 대해 볼카운트를 알려주는 public 메서드 완성
-    // TODO: BallCount라는 별도 객체를 만들지 고민 필요
-    public String getBallCount(Numbers anotherNumbers) {
-        return null;
+    public BallCount getBallCount(Numbers anotherNumbers) {
+        return new BallCount(this, anotherNumbers);
     }
 }
