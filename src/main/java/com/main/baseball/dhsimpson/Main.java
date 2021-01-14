@@ -1,6 +1,7 @@
 package com.main.baseball.dhsimpson;
 
 import java.util.Scanner;
+import static java.lang.Math.pow;
 
 public class Main {
     int[] computerNum;
@@ -23,7 +24,12 @@ public class Main {
     }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
     void setComputerNum(){
-
+        int temp = scan.nextInt();
+        for(int i=1; i<=2; i++){
+            computerNum[3-i] = (int)(temp%pow(10,1)) ;
+            temp = (int)(temp/pow(10,1));
+        }
+        computerNum[0] = temp;
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
     void setPlayerNum(){
@@ -35,7 +41,7 @@ public class Main {
     }
     // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
     boolean playOnce(){
-        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력)
+        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setComputerNum, setPlayerNum에서만 발생할 듯?? 그 함수들에 throw 붙여주자
         int isFinish;
         while(true){
             System.out.println("숫자를 입력해 주세요 : ");
