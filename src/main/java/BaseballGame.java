@@ -90,10 +90,7 @@ public class BaseballGame {
     private boolean checkAnswer() {
         int strikes = countStrikes();
         int balls = countBalls();
-        if (strikes == 0 && balls == 0) {
-            System.out.println("낫씽!");
-            return false;
-        }
+        printResult(strikes,balls);
         return true;
     }
     private int countStrikes() {
@@ -121,5 +118,20 @@ public class BaseballGame {
             }
         }
         return false;
+    }
+    private void printResult(int strikes,int balls) {
+        if (strikes == 0 && balls == 0) {
+            System.out.println("낫씽!");
+            return;
+        }
+        else if (strikes == 0) {
+            System.out.println(balls+" 볼");
+        }
+        else if (balls == 0) {
+            System.out.println(strikes+" 스트라이크");
+        }
+        else {
+            System.out.println(strikes+" 스트라이크 "+balls+" 볼");
+        }
     }
 }
