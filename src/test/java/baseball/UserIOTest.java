@@ -1,11 +1,12 @@
 package baseball;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,12 +19,17 @@ class UserIOTest {
     private static final PrintStream sysOut = System.out;
 
     @BeforeAll
-    public static void setupUserIOTest() {
+    public static void setupAllUserIOTest() {
         System.setOut(new PrintStream(testOut));
     }
 
+    @AfterEach
+    public void teardownEachUserIOTestMethod() {
+        testOut.reset();
+    }
+
     @AfterAll
-    public static void teardownUserIOTest() {
+    public static void teardownAllUserIOTest() {
         System.setOut(sysOut);
     }
 
@@ -45,5 +51,21 @@ class UserIOTest {
                         Arrays.asList(1, 2, 3)
                 )
         );
+    }
+
+    @ParameterizedTest
+    @DisplayName("Test input is converted to bool successfully")
+    @CsvSource({"1,true", "2,false"})
+    public void inputIsRestart(String input, Boolean expected) {
+        Scanner scanner = new Scanner(input);
+
+        UserIO io = new UserIO(scanner);
+        Boolean isRestart = io.inputIsRestart();
+
+        assertEquals(
+                "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n",
+                testOut.toString()
+        );
+        assertEquals(expected, isRestart);
     }
 }
