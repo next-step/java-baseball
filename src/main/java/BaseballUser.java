@@ -1,64 +1,50 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class BaseballUser {
     private HashMap<Integer, Integer> numbers;
 
     public void userThreeIntegerInput() {
-        int input = 0;
+        String input;
+        numbers = new HashMap<>();
 
         while (true) {
-            numbers = new HashMap<>();
             System.out.print("숫자를 입력해주세요 : ");
-            input = GameManager.userInput.nextInt();
-
-            if(numberSeparator(input)){
+            input = GameManager.userInput.next();
+            try{
+                numberSeparator(input);
                 break;
-            }
-            System.out.println("잘못된 값을 입력했습니다. 다시 입력해주세요 !");
-        }
-    }
-
-    private Boolean numberSeparator(int number) {
-        if (!isThreeNumber(number)) {
-            return Boolean.FALSE;
-        }
-
-        for (int i = 0, divider= 100; i < 3; ++i, divider /= 10){
-            int quotient = number / divider;
-            number = number % divider;
-            numbers.put(quotient, i);
-
-            if (!isOneToNine(quotient) || isDuplicated(i)) {
-                return Boolean.FALSE;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
             }
         }
-
-        if (numbers.size() != 3) {
-            return Boolean.FALSE;
-        }
-        return Boolean.TRUE;
     }
 
-    private Boolean isThreeNumber(int number) {
-        int numberLength = Integer.toString(number).length();
-        if (numberLength == 3) {
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
+    private void numberSeparator(String numberString) throws Exception {
+        isValidNumber(numberString);
 
-    private Boolean isOneToNine(int number) {
-        if (10 > number && number > 0) {
-            return Boolean.TRUE;
+        for(int i = 0; i < 3; ++i){
+            int number = numberString.charAt(i) - '0';
+            numbers.put(number, i);
         }
-        return Boolean.FALSE;
     }
-
-    private Boolean isDuplicated(int order) {
-        if (numbers.size() == order){
-            return Boolean.TRUE;
+    private void isValidNumber(String numberString) throws Exception {
+        if (numberString.length() != 3){
+            throw new Exception("3자리 숫자를 입력해주세요 !");
         }
-        return Boolean.FALSE;
+
+        HashSet<Integer> duplicateChecker = new HashSet<>();
+        for(char charNumber : numberString.toCharArray()){
+            int number = charNumber - '0';
+            if(1 > number || number > 9){
+                throw new Exception("1 ~ 9로 이루어진 3개 숫자를 입력해주세요 !");
+            }
+            duplicateChecker.add(number);
+        }
+
+        if(duplicateChecker.size() != 3){
+            throw new Exception("중복된 숫자가 있습니다. 다시 입력해주세요 !");
+        }
     }
 
     public HashMap<Integer, Integer> getNumbers() {
