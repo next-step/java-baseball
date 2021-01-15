@@ -17,4 +17,15 @@ public class GameInfo {
     public GameInfo(String number) {
         this.number = number;
     }
+
+    public GameInfo(String number, boolean gameResumption){
+        this.number = number;
+        this.gameResumption = gameResumption;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        GameInfo gameInfo = (GameInfo)obj;
+        return number.equals(gameInfo.getNumber()) && gameResumption == gameInfo.isGameResumption();
+    }
 }
