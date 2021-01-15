@@ -10,23 +10,18 @@ public class BaseballGameManager extends GameManager {
         this.game = game;
         while(start == 1){
             gameStart();
-
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             start = getOneOrTwoIntegerInput();
         }
         gameEnd();
     }
 
     public int getOneOrTwoIntegerInput() {
-        int input;
-        while (true){
-            input = GameManager.userInput.nextInt();
-            if (input == 1 || input == 2){
-                return input;
-            }
-            else {
-                System.out.println("1 또는 2를 입력해주세요.");
-            }
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = GameManager.userInput.next();
+        if (input.equals("1") || input.equals("2")) {
+            return Integer.parseInt(input);
+        } else {
+            return getOneOrTwoIntegerInput();
         }
     }
 
