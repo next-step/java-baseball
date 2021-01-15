@@ -13,6 +13,18 @@ public class BaseballGame {
         sc = new Scanner(System.in);
     }
 
+    public void start() {
+        boolean isAllStrike;
+        do {
+            isAllStrike = false;
+
+            setRandomAnswer();
+            while (!isAllStrike) {
+                isAllStrike = startPhase();
+            }
+        } while (!inputRestartOrEnd());
+
+    }
 
     private void setRandomAnswer() {
         int number;
@@ -33,22 +45,6 @@ public class BaseballGame {
             }
         }
         return false;
-    }
-
-    public void start() {
-        boolean isAllStrike;
-        while (true) {
-            isAllStrike = false;
-
-            setRandomAnswer();
-            while (!isAllStrike) {
-                isAllStrike = startPhase();
-            }
-            if (checkGameEnd()) {
-                break;
-            }
-        }
-
     }
 
     private boolean startPhase() {
@@ -129,7 +125,9 @@ public class BaseballGame {
     private boolean checkAnswer() {
         int strikes = countStrikes();
         int balls = countBalls();
-        boolean isEnd = printResult(strikes, balls);
+        printStrikesAndBalls(strikes, balls);
+        boolean isEnd = checkGameClear(strikes);
+
         return isEnd;
     }
 
@@ -162,7 +160,7 @@ public class BaseballGame {
         return false;
     }
 
-    private boolean printResult(int strikes, int balls) {
+    private void printStrikesAndBalls(int strikes, int balls) {
 
         if (strikes == 0 && balls == 0) {
             System.out.println("낫씽!");
@@ -174,7 +172,7 @@ public class BaseballGame {
             System.out.println(strikes + " 스트라이크 " + balls + " 볼");
         }
 
-        return checkGameClear(strikes);
+
     }
 
     private boolean checkGameClear(int strikes) {
@@ -187,7 +185,7 @@ public class BaseballGame {
 
     }
 
-    private boolean checkGameEnd() {
+    private boolean inputRestartOrEnd() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 눌러주세요. ");
         int input;
         while (true) {
