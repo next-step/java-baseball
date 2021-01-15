@@ -31,4 +31,11 @@ public class RequestUser {
         }
         return null;
     }
+
+    private String askResume() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ConstantString.GAME_RESUMPTION);
+        String st = sc.next();
+        return st;
+    }
 }
