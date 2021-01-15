@@ -6,12 +6,12 @@ import java.util.Scanner;
 import static java.lang.Math.pow;
 import static java.lang.Math.random;
 
-public class Main {
+public class Baseball {
     int[] computerNum;
     int[] playerNum;
     Scanner scan;
     // 기본 생성
-    Main(){
+    Baseball(){
         computerNum = new int[3];
         playerNum = new int[3];
         scan = new Scanner(System.in);
@@ -132,8 +132,5 @@ public class Main {
             System.out.printf("%d스트라이크 ", strikes);
         }
         System.out.println();
-    }
-    // Test
-    public static void main(String args){
     }
 }
