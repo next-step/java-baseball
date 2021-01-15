@@ -4,12 +4,12 @@ public class RequestUser {
 
     public GameInfo askUserForSuitableNum() {
         Scanner sc = new Scanner(System.in);
-        InternalGame internalGame = new InternalGame();
+        NumberUtil numberUtil = new NumberUtil();
         String userNumber;
         while (true) {
             System.out.println(ConstantString.REQUEST_NUM_INPUT);
             userNumber = sc.next();
-            if (internalGame.isSuitableNumber(userNumber)) {
+            if (numberUtil.isSuitableNumber(userNumber)) {
                 break;
             }
         }

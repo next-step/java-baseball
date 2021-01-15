@@ -75,21 +75,6 @@ public class InternalGame {
         return gameInfo;
     }
 
-
-    public boolean isSuitableNumber(String number) {
-        if (number.length() != 3 || !isInteger(number)) {
-            return false;
-        }
-        HashMap<Character, Boolean> numberHashMap = new HashMap<>();
-        for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i) == '0' || numberHashMap.containsKey(number.charAt(i))) {
-                return false;
-            }
-            numberHashMap.put(number.charAt(i), true);
-        }
-        return true;
-    }
-
     public GameInfo startBaseBallGame(GameInfo realGameInfo) {
         RequestUser requestUser = new RequestUser();
         GameInfo userGameInfo = requestUser.askUserForSuitableNum();

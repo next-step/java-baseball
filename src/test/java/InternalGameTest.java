@@ -35,11 +35,11 @@ class InternalGameTest {
 
     @Test
     void isSuitableNumber() {
-        InternalGame internalGame = new InternalGame();
-        assertEquals(internalGame.isSuitableNumber("123"), true);
-        assertEquals(internalGame.isSuitableNumber("012"), false);
-        assertEquals(internalGame.isSuitableNumber("ab1"), false);
-        assertEquals(internalGame.isSuitableNumber("112"), false);
-        assertEquals(internalGame.isSuitableNumber("1234"), false);
+        NumberUtil numberUtil = new NumberUtil();
+        assertEquals(numberUtil.isSuitableNumber("123"), true);
+        assertEquals(numberUtil.isSuitableNumber("012"), false);
+        assertEquals(numberUtil.isSuitableNumber("ab1"), false);
+        assertEquals(numberUtil.isSuitableNumber("112"), false);
+        assertEquals(numberUtil.isSuitableNumber("1234"), false);
     }
 }
