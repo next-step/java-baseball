@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 단위
+
+- 임의의 3자리 정수 정답 만들기
+- 사용자의 정답 입력 및 한 번의 사이클
+- 사용자 정답에 대한 결과값 반환
+- 게임 종료 시 게임 재시작 여부 확인
