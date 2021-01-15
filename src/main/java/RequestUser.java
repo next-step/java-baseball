@@ -16,4 +16,19 @@ public class RequestUser {
         GameInfo userInfo = new GameInfo(userNumber);
         return userInfo;
     }
+
+    public String askUserForResumeGame(GameInfo gameResultInfo) {
+        if (!gameResultInfo.isGameResumption()) {
+            String st = askResume();
+            switch (st) {
+                case "1":
+                    return "1";
+                case "2":
+                    return "2";
+                default:
+                    st = askResume();
+            }
+        }
+        return null;
+    }
 }
