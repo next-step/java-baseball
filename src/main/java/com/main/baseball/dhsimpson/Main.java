@@ -15,6 +15,7 @@ public class Main {
         computerNum = new int[3];
         playerNum = new int[3];
         scan = new Scanner(System.in);
+        playGame();
     }
     // 게임 실행
     void playGame(){
@@ -134,6 +135,5 @@ public class Main {
     }
     // Test
     public static void main(String args){
-
     }
 }
