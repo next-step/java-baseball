@@ -17,6 +17,7 @@ public class BaseballGame implements Game {
             initJudgements();
             user.userThreeIntegerInput();
             compareNumbers(user.getNumbers(), computer.getNumbers());
+            printResult();
         }
         gameEndMsg();
     }
@@ -57,6 +58,15 @@ public class BaseballGame implements Game {
         } else {
             ball += 1;
         }
+    }
 
+    private void printResult() {
+        if (ball > 0) {
+            System.out.printf("%d볼 ", ball);
+        }
+        if (strike > 0) {
+            System.out.printf("%d스트라이크", strike);
+        }
+        System.out.println();
     }
 }
