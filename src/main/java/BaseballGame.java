@@ -64,6 +64,9 @@ public class BaseballGame implements Game {
         if (strike > 0) {
             System.out.printf("%d스트라이크", strike);
         }
+        if (!(ball > 0 || strike > 0)){
+            System.out.printf("낫싱");
+        }
         System.out.println();
     }
 }
