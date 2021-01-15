@@ -120,7 +120,7 @@ public class Main {
         }
     }
     // 게임 진행 시 메시지 보여주기 : compareNums 안에서
-    void gameMessage(){
+    void gameMessage(int strikes, int balls){
 
     }
     // Test
