@@ -32,26 +32,30 @@ public class InternalGame {
         return ballCount;
     }
 
+    private String concatCountAndUnit(int strikeCount, int ballCount) {
+        String gameResult = "";
+        if (ballCount > 0) {
+            gameResult = Integer.toString(ballCount) + ConstantString.BALL;
+        }
+        if (strikeCount > 0) {
+            gameResult += Integer.toString(strikeCount) + ConstantString.STRIKE;
+        }
+        return gameResult;
+    }
+
     //TODO(daeun): 좀 더 나은 방식으로 할 수 없을지 고민
     private GameInfo getGameResultInfo(int strikeCount, int ballCount) {
         GameInfo gameInfo = new GameInfo();
         if (strikeCount == 3) {
-            gameInfo.setGameResult(ConstantString.THREE_STRIKE);
+            System.out.println(ConstantString.THREE_STRIKE);
+            gameInfo.setGameResumption(false);
             return gameInfo;
         }
-        gameInfo.setGameResumption(true);
         if (strikeCount == 0 && ballCount == 0) {
-            gameInfo.setGameResult(ConstantString.NOTHING);
+            System.out.println(ConstantString.NOTHING + "\n");
+        } else {
+            System.out.println(concatCountAndUnit(strikeCount, ballCount) + "\n");
         }
-        if (ballCount > 0) {
-            gameInfo.setGameResult(Integer.toString(ballCount) + ConstantString.BALL);
-        }
-        if (strikeCount > 0) {
-            gameInfo
-                .setGameResult(gameInfo.getGameResult() + Integer.toString(strikeCount)
-                    + ConstantString.STRIKE);
-        }
-        gameInfo.setGameResult(gameInfo.getGameResult() + "\n");
         return gameInfo;
     }
 
