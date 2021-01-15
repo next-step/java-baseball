@@ -1,9 +1,8 @@
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class InternalGame {
 
-    private int getStrikeCount(GameInfo realGameInfo, GameInfo userGameInfo) {
+    public int getStrikeCount(GameInfo realGameInfo, GameInfo userGameInfo) {
         String realNumber = realGameInfo.getNumber();
         String userNumber = userGameInfo.getNumber();
         int strikeCount = 0;
@@ -15,7 +14,7 @@ public class InternalGame {
         return strikeCount;
     }
 
-    private int getBallCount(GameInfo realGameInfo, GameInfo userGameInfo) {
+    public int getBallCount(GameInfo realGameInfo, GameInfo userGameInfo) {
         String realBall = realGameInfo.getNumber();
         String userBall = userGameInfo.getNumber();
         HashMap<Character, Integer> ballHashMap = new HashMap<>();
@@ -44,7 +43,7 @@ public class InternalGame {
     }
 
     //TODO(daeun): 좀 더 나은 방식으로 할 수 없을지 고민
-    private GameInfo getGameResultInfo(int strikeCount, int ballCount) {
+    public GameInfo getGameResultInfo(int strikeCount, int ballCount) {
         GameInfo gameInfo = new GameInfo();
         if (strikeCount == 3) {
             System.out.println(ConstantString.THREE_STRIKE);
