@@ -72,12 +72,12 @@ public class PlayBaseball {
             res = str_ball + "볼";
         }
         if (strike != 0) {
-            if (res != "") {
+            if (!res.equals("")) {
                 res = res + " ";
             }
             res = res + str_strike + "스트라이크";
         }
-        if (res == "") {
+        if (res.equals("")) {
             res = "낫싱";
         }
         return res;
@@ -96,9 +96,13 @@ public class PlayBaseball {
         while (true) {
             System.out.print("숫자를 입력 주세요 : ");
             try_ans = sc.nextInt();
+            if (123 > try_ans || 987 < try_ans) {
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                continue;
+            }
             res = myGame.getResult(ans, try_ans);
             System.out.println(res);
-            if (res == "3스트라이크") {
+            if (res.equals("3스트라이크")) {
                 break;
             }
         }
@@ -106,7 +110,7 @@ public class PlayBaseball {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         stop = sc.nextInt();
         while (stop != 1 && stop != 2) {
-            System.out.println("잘못된 입렵입니다. 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            System.out.println("잘못된 입력입니다. 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             stop = sc.nextInt();
         }
         return stop;
