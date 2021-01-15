@@ -49,6 +49,7 @@ public class Main {
 //        gameMessage 사용 할까 말까
         int strikes = 0;
         int balls = 0;
+        boolean isCorrect = false;
         ArrayList<Integer> idxList = new ArrayList<Integer>();
         // 스트라이크 수 세기
         for(int i=0; i<3; i++){
@@ -63,10 +64,16 @@ public class Main {
         for(int idx : idxList){
             // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
             balls += checkBall(idx);
-        }xs
-        // 현재의 strike, ball 상태 프린트 하고 종료 조건 발생
-        // 숫자를 전부 맞췄다면(3스트라이크) true 반환, 이외는 false 반환
-        return gameMessage(strikes, balls);
+        }
+        // 현재의 strike, ball 상태 프린트
+        gameMessage(strikes, balls);
+        // strike, ball 수에 따라 게임 종료 조건 명시
+        if (strikes==3){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     int checkBall(int idx){
         int ballCount = 0;
