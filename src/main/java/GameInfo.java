@@ -6,17 +6,17 @@ import lombok.Setter;
 @Setter
 public class GameInfo {
 
-    private String ball;
+    private String number;
     private String gameResult;
     private boolean gameResumption;
 
     public GameInfo() {
-        ball = "";
+        number = "";
         gameResult = "";
         gameResumption = false;
     }
 
-    public GameInfo(String ball) {
-        this.ball = ball;
+    public GameInfo(String number) {
+        this.number = number;
     }
 }

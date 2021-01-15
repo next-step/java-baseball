@@ -1,11 +1,11 @@
 public class InternalGame {
 
     private int getStrikeCount(GameInfo realGameInfo, GameInfo userGameInfo) {
-        String realBall = realGameInfo.getBall();
-        String userBall = userGameInfo.getBall();
+        String realNumber = realGameInfo.getNumber();
+        String userNumber = userGameInfo.getNumber();
         int strikeCount = 0;
-        for (int i = 0; i < realBall.length(); i++) {
-            if (realBall.charAt(i) == userBall.charAt(i)) {
+        for (int i = 0; i < realNumber.length(); i++) {
+            if (realNumber.charAt(i) == userNumber.charAt(i)) {
                 strikeCount++;
             }
         }
