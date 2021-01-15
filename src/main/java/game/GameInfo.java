@@ -1,4 +1,5 @@
-import lombok.Data;
+package game;
+
 import lombok.Getter;
 import lombok.Setter;
 

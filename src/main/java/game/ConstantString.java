@@ -1,3 +1,5 @@
+package game;
+
 public class ConstantString {
 
     static final String THREE_STRIKE = "3스트라이크\n 3개의 숫자를 모두 맞히셨습니다! 게임 종료\n";

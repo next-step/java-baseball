@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import game.GameInfo;
+import game.InternalGame;
 import org.junit.jupiter.api.Test;
 
 class InternalGameTest {
