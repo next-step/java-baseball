@@ -34,23 +34,15 @@ class UserIOTest {
     }
 
     @Test
-    @DisplayName("Test input is converted to ArrayList<Integer> successfully")
+    @DisplayName("Test input number message and return of input")
     public void inputNumber() {
         Scanner scanner = new Scanner("123");
 
         UserIO io = new UserIO(scanner);
-        ArrayList<Integer> number = io.inputNumber();
+        int number = io.inputNumber();
 
-        assertEquals(
-            "숫자를 입력해주세요 : ",
-            testOut.toString()
-        );
-        assertEquals(
-            number,
-            new ArrayList<>(
-                Arrays.asList(1, 2, 3)
-            )
-        );
+        assertEquals("숫자를 입력해주세요 : ", testOut.toString());
+        assertEquals(123, number);
     }
 
     @ParameterizedTest

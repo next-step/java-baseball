@@ -18,16 +18,9 @@ public class UserIO {
     }
 
     // 5.2.3 : Method names are written in lowerCamelCase
-    public ArrayList<Integer> inputNumber() {
-        ArrayList<Integer> number = new ArrayList<>();
-
+    public int inputNumber() {
         System.out.print(INPUT_NUMBER_MSG);
-        String[] strings = this.scanner.next().split("");
-        for (String s : strings) {
-            int val = Integer.parseInt(s);
-            number.add(val);
-        }
-        return number;
+        return this.scanner.nextInt();
     }
 
     public Boolean inputIsRestart() {
