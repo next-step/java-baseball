@@ -7,8 +7,8 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
-* Step1: [] Generate 3 random numbers
-	- [] Generate 3 unique random number
+* Step1: [x] Generate 3 random numbers
+	- [x] Generate 3 unique random number
 * Step2: [] Get input from user
 	- [] Get User input
 	- [] Validate User Input
