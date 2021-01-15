@@ -5,3 +5,16 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* Step1: [] Generate 3 random numbers
+	- [] Generate 3 unique random number
+* Step2: [] Get input from user
+	- [] Get User input
+	- [] Validate User Input
+* Step3: [] Compare user input and the answer
+	- [] If same numbers are in same place, Strike
+	- [] If user number is in the answer, but not correct spot, Ball
+	- [] If user number misses, Nothing 
+* Step4: [] Print result 
+* Step5: [] Ask user restart or quit
