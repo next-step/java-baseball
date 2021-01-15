@@ -58,7 +58,7 @@ public class InternalGame {
         return gameInfo;
     }
 
-    public GameInfo getRealGameInfo() {
+    public GameInfo getRealRandomNumInfo() {
         String ball = "";
         HashMap<Integer, Boolean> ballHashMap = new HashMap<>();
         while (ball.length() != 3) {
