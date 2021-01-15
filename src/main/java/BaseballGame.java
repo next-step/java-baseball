@@ -6,15 +6,14 @@ public class BaseballGame {
         GameInfo realGameInfo = internalGame.getRealGameInfo();
         while (true) {
             GameInfo gameResultInfo = internalGame.startBaseBallGame(realGameInfo);
-            String userAnswer = requestUser.askUserForResumeGame(gameResultInfo);
-            if (userAnswer == null) {
+            if (gameResultInfo.isGameResumption()) {
                 continue;
             }
-            if (!internalGame.isGameRenew(userAnswer)) {
+            Boolean resumeGame = requestUser.askUserForRenewGame();
+            if (!resumeGame) {
                 break;
-            } else {
-                realGameInfo = internalGame.getRealGameInfo();
             }
+            realGameInfo = internalGame.getRealGameInfo();
         }
     }
 }
