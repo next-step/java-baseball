@@ -10,6 +10,7 @@ public class UserIO {
     private static final String OUTPUT_BALL_MSG = "볼";
     private static final String OUTPUT_STRIKE_MSG = "스트라이크";
     private static final String OUTPUT_DELIMITER_MSG = " ";
+    private static final String OUTPUT_IS_FINISH_MSG = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     private final Scanner scanner;
 
     public UserIO(Scanner scanner) {
@@ -53,5 +54,9 @@ public class UserIO {
         }
 
         System.out.println(msg);
+    }
+
+    public void outputIsFinish() {
+        System.out.println(OUTPUT_IS_FINISH_MSG);
     }
 }
