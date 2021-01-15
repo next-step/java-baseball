@@ -68,4 +68,22 @@ class UserIOTest {
         );
         assertEquals(expected, isRestart);
     }
+
+    @ParameterizedTest
+    @DisplayName("Test output is printed with argument successfully")
+    @CsvSource({
+            "0, 0, '낫싱\n'",
+            "1, 0, '1볼\n'",
+            "0, 2, '2스트라이크\n'",
+            "2, 1, '2볼 1스트라이크\n'",
+    })
+    public void outputInfo(Integer ball, Integer strike, String expected) {
+        UserIO io = new UserIO(new Scanner(""));
+        io.outputInfo(ball, strike);
+
+        assertEquals(
+                expected,
+                testOut.toString()
+        );
+    }
 }
