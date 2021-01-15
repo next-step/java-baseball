@@ -2,18 +2,19 @@ import java.util.Scanner;
 
 public class PlayBaseball {
     public int oneGame() {
+        PlayBaseball myGame = new PlayBaseball;
         Scanner sc = new Scanner(System.in);
         int try_ans;
         int ans;
         int stop;
         String res;
 
-        ans = makeAnswer();
+        ans = myGame.makeAnswer();
 
         while (true) {
             System.out.print("숫자를 입력 주세요 : ");
             try_ans = sc.nextInt();
-            res = getResult(ans, try_ans);
+            res = myGame.getResult(ans, try_ans);
             System.out.println(res);
             if (res == "3스트라이크") {
                 break;
@@ -31,10 +32,11 @@ public class PlayBaseball {
 
 
     public static void main(String[] args) throws Exception{
+        PlayBaseball myGame = new PlayBaseball;
         int stop;
 
         while (true) {
-            stop = oneGame();
+            stop = myGame.oneGame();
             if (stop == 2) {
                 break;
             }
