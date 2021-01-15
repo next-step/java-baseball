@@ -121,7 +121,16 @@ public class Main {
     }
     // 게임 진행 시 메시지 보여주기 : compareNums 안에서
     void gameMessage(int strikes, int balls){
-
+        if(balls == 0 && strikes == 0) {
+            System.out.printf("낫싱");
+        }
+        else if(balls > 0) {
+            System.out.printf("%d볼 ", balls);
+        }
+        else if(strikes > 0) {
+            System.out.printf("%d스트라이크 ", strikes);
+        }
+        System.out.println();
     }
     // Test
     public static void main(String args){
