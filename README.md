@@ -17,5 +17,5 @@
 	- [x] If same numbers are in same place, Strike
 	- [x] If user number is in the answer, but not correct spot, Ball
 	- [x] If user number misses, Nothing 
-* Step4: [] Print result 
+* Step4: [x] Print result 
 * Step5: [] Ask user restart or quit
