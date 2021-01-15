@@ -32,14 +32,4 @@ class InternalGameTest {
         assertEquals(internalGame.getGameResultInfo(2, 1), new GameInfo("", true));
         assertEquals(internalGame.getGameResultInfo(0, 1), new GameInfo("", true));
     }
-
-    @Test
-    void isSuitableNumber() {
-        NumberUtil numberUtil = new NumberUtil();
-        assertEquals(numberUtil.isSuitableNumber("123"), true);
-        assertEquals(numberUtil.isSuitableNumber("012"), false);
-        assertEquals(numberUtil.isSuitableNumber("ab1"), false);
-        assertEquals(numberUtil.isSuitableNumber("112"), false);
-        assertEquals(numberUtil.isSuitableNumber("1234"), false);
-    }
 }
