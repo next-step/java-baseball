@@ -2,7 +2,7 @@ package util;
 
 import java.util.Random;
 
-import static domain.BaseballGame.INPUT_NUMBER_SIZE;
+import static domain.BaseballGame.NUMBER_SIZE;
 
 public class RandomNumberUtil {
     private static final Random RANDOM = new Random();
@@ -11,9 +11,9 @@ public class RandomNumberUtil {
     static boolean[] checkDistinct = new boolean[10];
 
     public static int[] getDistinctNumber() {
-        int[] systemNum = new int[INPUT_NUMBER_SIZE];
+        int[] systemNum = new int[NUMBER_SIZE];
         int numCnt = 0;
-        while (numCnt < INPUT_NUMBER_SIZE) {
+        while (numCnt < NUMBER_SIZE) {
             int tmp = getRandomNum(START_INCLUSIVE_NUM, END_INCLUSIVE_NUM);
             if (isDistinct(tmp)) {
                 systemNum[numCnt++] = tmp;

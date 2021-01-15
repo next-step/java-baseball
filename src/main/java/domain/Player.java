@@ -4,7 +4,7 @@ import util.ValidationUtil;
 
 import java.util.Scanner;
 
-import static domain.BaseballGame.INPUT_NUMBER_SIZE;
+import static domain.BaseballGame.NUMBER_SIZE;
 
 public class Player {
 
@@ -20,7 +20,7 @@ public class Player {
 
     private static int[] charToInt(char[] userInput) {
         int[] userInputNum = new int[3];
-        for (int i = 0; i < INPUT_NUMBER_SIZE; i++) {
+        for (int i = 0; i < NUMBER_SIZE; i++) {
             int tmp = userInput[i] - '0';
             userInputNum[i] = tmp;
         }

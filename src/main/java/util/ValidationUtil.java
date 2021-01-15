@@ -1,7 +1,8 @@
 package util;
 
+import static domain.BaseballGame.NUMBER_SIZE;
+
 public class ValidationUtil {
-    private static final int INPUT_SIZE_CONDITION = 3;
 
     public static void validateUserInput(char[] userInput) {
         validateInputSize(userInput.length);
@@ -10,7 +11,7 @@ public class ValidationUtil {
     }
 
     private static void validateInputSize(int length) {
-        if(length != INPUT_SIZE_CONDITION) {
+        if(length != NUMBER_SIZE) {
             throw new IllegalArgumentException("잘못 입력하셨습니다. 3자리수를 입력해야합니다. 다시 입력해주세요.");
         }
     }
