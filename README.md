@@ -13,9 +13,9 @@
 	- [x] Get User input
 	- [x] Validate User Input
 	- [x] Convert String to List
-* Step3: [] Compare user input and the answer
-	- [] If same numbers are in same place, Strike
-	- [] If user number is in the answer, but not correct spot, Ball
-	- [] If user number misses, Nothing 
+* Step3: [x] Compare user input and the answer
+	- [x] If same numbers are in same place, Strike
+	- [x] If user number is in the answer, but not correct spot, Ball
+	- [x] If user number misses, Nothing 
 * Step4: [] Print result 
 * Step5: [] Ask user restart or quit
