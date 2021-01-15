@@ -16,6 +16,7 @@ public class BaseballGame implements Game {
         while (!isThreeStrike()) {
             initJudgements();
             user.userThreeIntegerInput();
+            compareNumbers(user.getNumbers(), computer.getNumbers());
         }
         gameEndMsg();
     }
@@ -40,5 +41,22 @@ public class BaseballGame implements Game {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+
+    private void compareNumbers(HashMap<Integer, Integer> userNumbers, HashMap<Integer, Integer> computerNumbers) {
+        for (int number : userNumbers.keySet()) {
+            if (computerNumbers.containsKey(number)) {
+                strikeOrBall(userNumbers.get(number), computerNumbers.get(number));
+            }
+        }
+    }
+
+    private void strikeOrBall(int userNumber, int computerNumber) {
+        if (userNumber == computerNumber) {
+            strike += 1;
+        } else {
+            ball += 1;
+        }
+
     }
 }
