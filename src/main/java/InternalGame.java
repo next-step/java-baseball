@@ -69,4 +69,17 @@ public class InternalGame {
         System.out.println(ball);
         return gameInfo;
     }
+
+    public boolean isSuitableNumber(String number) {
+        if (number.length() != 3) {
+            return false;
+        }
+        HashMap<Integer, Boolean> numberHashMap = new HashMap<>();
+        for (int i = 0; i < number.length(); i++) {
+            if (numberHashMap.containsKey(number.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
