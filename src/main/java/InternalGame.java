@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Scanner;
+
 public class InternalGame {
 
     private int getStrikeCount(GameInfo realGameInfo, GameInfo userGameInfo) {
@@ -29,6 +31,7 @@ public class InternalGame {
         }
         return ballCount;
     }
+
     //TODO(daeun): 좀 더 나은 방식으로 할 수 없을지 고민
     private GameInfo getGameResultInfo(int strikeCount, int ballCount) {
         GameInfo gameInfo = new GameInfo();
@@ -81,5 +84,15 @@ public class InternalGame {
             }
         }
         return true;
+    }
+
+    public GameInfo startBaseBallGame(GameInfo realGameInfo) {
+        RequestUser requestUser = new RequestUser();
+        GameInfo userGameInfo = requestUser.askUserForSuitableNum();
+        int strikeCount = getStrikeCount(realGameInfo, userGameInfo);
+        int ballCount = getBallCount(realGameInfo, userGameInfo);
+        GameInfo gameResultInfo = getGameResultInfo(strikeCount, ballCount);
+        System.out.println(gameResultInfo.getGameResult());
+        return gameResultInfo;
     }
 }
