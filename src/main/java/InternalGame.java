@@ -1,3 +1,4 @@
+import java.util.HashMap;
 public class InternalGame {
 
     private int getStrikeCount(GameInfo realGameInfo, GameInfo userGameInfo) {
@@ -48,6 +49,24 @@ public class InternalGame {
                     + ConstantString.STRIKE);
         }
         gameInfo.setGameResult(gameInfo.getGameResult() + "\n");
+        return gameInfo;
+    }
+
+    public GameInfo getRealGameInfo() {
+        String ball = "";
+        HashMap<Integer, Boolean> ballHashMap = new HashMap<>();
+        while (ball.length() != 3) {
+            double randomValue = Math.random();
+            int num = (int) (randomValue * 9) + 1;
+            if (ballHashMap.containsKey(num)) {
+                continue;
+            } else {
+                ballHashMap.put(num, true);
+                ball += Integer.toString(num);
+            }
+        }
+        GameInfo gameInfo = new GameInfo(ball);
+        System.out.println(ball);
         return gameInfo;
     }
 }
