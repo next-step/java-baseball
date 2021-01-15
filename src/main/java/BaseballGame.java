@@ -13,8 +13,10 @@ public class BaseballGame implements Game {
         gameStartMsg();
         BaseballComputer computer = new BaseballComputer();
         BaseballUser user = new BaseballUser();
-        initJudgements();
-        user.userThreeIntegerInput();
+        while (!isThreeStrike()) {
+            initJudgements();
+            user.userThreeIntegerInput();
+        }
         gameEndMsg();
     }
 
@@ -31,5 +33,12 @@ public class BaseballGame implements Game {
     private void initJudgements() {
         strike = 0;
         ball = 0;
+    }
+
+    private Boolean isThreeStrike() {
+        if (strike == 3) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 }
