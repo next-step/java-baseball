@@ -6,6 +6,9 @@ public class BaseballGame implements Game {
     public void gameRun() {
         gameStartMsg();
         BaseballComputer opponent = new BaseballComputer();
+        BaseballUser user = new BaseballUser();
+        user.userThreeIntegerInput();
+
         gameEndMsg();
     }
 
