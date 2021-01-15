@@ -5,6 +5,7 @@ public class BaseballGame implements Game {
     @Override
     public void gameRun() {
         gameStartMsg();
+        BaseballComputer opponent = new BaseballComputer();
         gameEndMsg();
     }
 
