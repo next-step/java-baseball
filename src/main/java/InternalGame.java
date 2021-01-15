@@ -75,14 +75,6 @@ public class InternalGame {
         return gameInfo;
     }
 
-    private boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     public boolean isSuitableNumber(String number) {
         if (number.length() != 3 || !isInteger(number)) {
