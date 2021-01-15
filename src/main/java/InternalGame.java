@@ -97,7 +97,6 @@ public class InternalGame {
         int strikeCount = getStrikeCount(realGameInfo, userGameInfo);
         int ballCount = getBallCount(realGameInfo, userGameInfo);
         GameInfo gameResultInfo = getGameResultInfo(strikeCount, ballCount);
-        System.out.println(gameResultInfo.getGameResult());
         return gameResultInfo;
     }
 
