@@ -4,13 +4,10 @@ public class BaseballGame implements Game {
     private int strike;
     private int ball;
 
-    public BaseballGame() {
-        initJudgements();
-    }
-
     @Override
     public void gameRun() {
         gameStartMsg();
+        initJudgements();
         BaseballComputer computer = new BaseballComputer();
         BaseballUser user = new BaseballUser();
         while (!isThreeStrike()) {
