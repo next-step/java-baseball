@@ -1,8 +1,10 @@
 package baseball;
 
 import features.NumberUtil;
+import features.PrintResult;
 import features.Validator;
 import io.PrintInput;
+import io.PrintOutput;
 import model.Result;
 
 import java.util.List;
@@ -13,6 +15,7 @@ public class BaseballGame {
     private List<Integer> answer;
     private final Result result = new Result();
     private final PrintInput printInput = new PrintInput(new Scanner(System.in));
+    private final PrintOutput printOutput = new PrintOutput();
 
     public void play() {
         while (playing) {
@@ -21,6 +24,7 @@ public class BaseballGame {
             // Generate Random number
             answer = NumberUtil.generateAnswer();
             doGuess();
+            printOutput.printComplete();
             playing = false; // Test only Code
             // TODO: Quit when user got the answer
         }
@@ -29,7 +33,7 @@ public class BaseballGame {
     private void doGuess() {
         while (result.getStrike() != 3) {
             getInput();
-            System.out.println(String.format("%d Strike %d Ball", result.getStrike(), result.getBall()));
+            PrintResult.checkResult(result.getStrike(), result.getBall(), printOutput);
         }
     }
 
@@ -37,7 +41,7 @@ public class BaseballGame {
         while(true) {
             String userInput = printInput.recieveUserNumber();
             if(!Validator.isCorrectInput(userInput)) {
-                // TODO: print output error
+                printOutput.printError();
                 continue;
             }
             check(userInput);
@@ -48,6 +52,5 @@ public class BaseballGame {
     private void check(String userInput) {
         List<Integer> userList = NumberUtil.convertString(userInput);
         result.compare(answer, userList);
-        // TODO: check user number and hidden answer
     }
 }
