@@ -14,6 +14,8 @@ public class BaseballGame {
         int[] systemNum = RandomNumberUtil.getDistinctNumber();
         int strikeCnt = checkStrike(userInput, systemNum);
         PrintUtil.printStrikeHint(strikeCnt);
+        checkAnswer(strikeCnt);
+
     }
 
     private static int checkStrike(int[] userNum, int[] systemNum) {
@@ -24,6 +26,16 @@ public class BaseballGame {
             }
         }
         return strikeCnt;
+    }
+
+    private static boolean checkAnswer(int strikeCnt) {
+        if (strikeCnt == 3) {
+            PrintUtil.printGameOver();
+            PrintUtil.printAskReplayGame();
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
