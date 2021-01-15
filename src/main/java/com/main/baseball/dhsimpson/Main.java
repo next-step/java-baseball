@@ -47,13 +47,13 @@ public class Main {
     // 컴퓨터와 플레이어의 숫자 비교하기
     boolean compareNums(){
 //        gameMessage 사용 할까 말까
-        int strike = 0;
+        int strikes = 0;
         int balls = 0;
         ArrayList<Integer> idxList = new ArrayList<Integer>();
         // 스트라이크 수 세기
         for(int i=0; i<3; i++){
             if(computerNum[i]==playerNum[i]){
-                strike++;
+                strikes++;
             }else{
                 // 숫자가 다르다면 해당 idx를 저장
                 idxList.add(i);
@@ -63,8 +63,10 @@ public class Main {
         for(int idx : idxList){
             // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
             balls += checkBall(idx);
-        }
-        return false;
+        }xs
+        // 현재의 strike, ball 상태 프린트 하고 종료 조건 발생
+        // 숫자를 전부 맞췄다면(3스트라이크) true 반환, 이외는 false 반환
+        return gameMessage(strikes, balls);
     }
     int checkBall(int idx){
         int ballCount = 0;
@@ -92,7 +94,7 @@ public class Main {
             System.out.println("숫자를 입력해 주세요 : ");
             setPlayerNum();
             playerWin = compareNums(); // 이 안에서 gameMessage를 출력하자.
-            // 맞췄을 때 루프 종료
+            // 숫자 3개 전부 맞췄을 때 루프 종료
             if(playerWin){
                 break;
             }
