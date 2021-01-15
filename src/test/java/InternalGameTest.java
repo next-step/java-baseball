@@ -22,4 +22,14 @@ class InternalGameTest {
         assertEquals(internalGame.getBallCount(new GameInfo("123"), new GameInfo("142")), 1);
         assertEquals(internalGame.getBallCount(new GameInfo("123"), new GameInfo("456")), 0);
     }
+
+    @Test
+    void getGameResultInfo() {
+        InternalGame internalGame = new InternalGame();
+        assertEquals(internalGame.getGameResultInfo(3, 0), new GameInfo("", false));
+        assertEquals(internalGame.getGameResultInfo(2, 0), new GameInfo("", true));
+        assertEquals(internalGame.getGameResultInfo(0, 0), new GameInfo("", true));
+        assertEquals(internalGame.getGameResultInfo(2, 1), new GameInfo("", true));
+        assertEquals(internalGame.getGameResultInfo(0, 1), new GameInfo("", true));
+    }
 }
