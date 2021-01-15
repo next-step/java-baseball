@@ -66,4 +66,19 @@
         
         - Boolean askUserForRenewGame()
         : 사용자에게 게임 새롭게 시작할지 문의, 여부 리턴
-        
+
+* #### InternalGameTest: 숫자 야구 게임 내부에서 진행되는 함수들 테스트 class
+
+      - getStrikeCount
+      : 테스트 기준(3,2,1,0 스트라이크)
+      -  getBallCount 테스트
+      : 테스트 기준(3,2,1,0 볼)
+      -  getGameResultInfo 테스트
+      : 테스트기준(3스트라이크 -> false, 나머지 4가지 조건 -> true)
+
+* #### NumberUtilTest: 숫자 야구 게임 내부에서 숫자 관련된 유틸 테스트 class
+
+```
+   - isSuitableNumber
+   : 테스트 기준(올바른 경우, 0이 포함, 숫자 아닌 거 포함, 같은 수 2개, 숫자 4개)
+```
