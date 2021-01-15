@@ -95,4 +95,11 @@ public class InternalGame {
         System.out.println(gameResultInfo.getGameResult());
         return gameResultInfo;
     }
+
+    public Boolean isGameRenew(String userAnswer) {
+        if (userAnswer.equals("1")) {
+            return true;
+        }
+        return false;
+    }
 }
