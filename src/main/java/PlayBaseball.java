@@ -32,8 +32,19 @@ public class PlayBaseball {
 
         String str_strike = Integer.toString(strike);
         String str_ball = Integer.toString(ball);
-        res = str_ball + "볼 " + str_strike + "스트라이크";
 
+        if (ball != 0) {
+            res = str_ball + "볼";
+        }
+        if (strike != 0) {
+            if (res != "") {
+                res = res + " ";
+            }
+            res = res + str_strike + "스트라이크";
+        }
+        if (res == "") {
+            res = "낫싱";
+        }
         return res;
     }
 
