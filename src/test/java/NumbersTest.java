@@ -56,7 +56,7 @@ public class NumbersTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Numbers numbers = new Numbers("373");
         });
-        assertThat(exception.getMessage()).isEqualTo("각 자리의 수는 서로 달라야 합니다. 다시 입력해 주세요 : ");
+        assertThat(exception.getMessage()).isEqualTo("각 자리의 수는 모두 달라야 합니다. 다시 입력해 주세요 : ");
     }
 
     @DisplayName("생성자에 비어 있는 리스트를 넣으면 예외 발생")
