@@ -86,4 +86,16 @@ class UserIOTest {
                 testOut.toString()
         );
     }
+
+    @Test
+    @DisplayName("Test output is printed successfully")
+    public void outputIsFinish() {
+        UserIO io = new UserIO(new Scanner(""));
+        io.outputIsFinish();
+
+        assertEquals(
+                "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n",
+                testOut.toString()
+        );
+    }
 }
