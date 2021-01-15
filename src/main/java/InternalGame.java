@@ -81,11 +81,12 @@ public class InternalGame {
         if (number.length() != 3) {
             return false;
         }
-        HashMap<Integer, Boolean> numberHashMap = new HashMap<>();
+        HashMap<Character, Boolean> numberHashMap = new HashMap<>();
         for (int i = 0; i < number.length(); i++) {
             if (numberHashMap.containsKey(number.charAt(i))) {
                 return false;
             }
+            numberHashMap.put(number.charAt(i), true);
         }
         return true;
     }
