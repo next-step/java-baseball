@@ -18,15 +18,15 @@ public class InternalGame {
     private int getBallCount(GameInfo realGameInfo, GameInfo userGameInfo) {
         String realBall = realGameInfo.getNumber();
         String userBall = userGameInfo.getNumber();
+        HashMap<Character, Integer> ballHashMap = new HashMap<>();
         int ballCount = 0;
         for (int i = 0; i < realBall.length(); i++) {
-            for (int j = 0; j < userBall.length(); j++) {
-                if (i == j) {
-                    continue;
-                }
-                if (realBall.charAt(i) == userBall.charAt(j)) {
-                    ballCount++;
-                }
+            ballHashMap.put(realBall.charAt(i), i);
+        }
+        for (int i = 0; i < userBall.length(); i++) {
+            if (ballHashMap.containsKey(userBall.charAt(i)) && i != ballHashMap
+                .get(userBall.charAt(i))) {
+                ballCount++;
             }
         }
         return ballCount;
