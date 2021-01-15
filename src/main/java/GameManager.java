@@ -8,8 +8,14 @@ public class GameManager {
         this.continuesGame = true;
     }
 
-    public void start() {
+    /**
+     * GameManager가 새로운 게임을 시작합니다.
+     *
+     * @return 게임이 끝난 후, 플레이어가 새로운 게임을 시작하고자 하는지 여부
+     */
+    public boolean start() {
         Numbers answerNumbers = RandomNumbersGenerator.generate();
+        continuesGame = true;
         do {
             Numbers playerNumbers = getPlayerNumbersByInput();
             BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
@@ -19,21 +25,27 @@ public class GameManager {
                 continuesGame = false;
             }
         } while (continuesGame);
+        return askPlayerToPlayNewGame();
     }
 
     private Numbers getPlayerNumbersByInput() {
         Numbers numbers = null;
-        String inputValue = this.input.getInputValue("숫자를 입력해 주세요 : ");
+        String playerNumber = input.getInputValue("숫자를 입력해 주세요 : ");
         boolean incorrectInput = true;
         while (incorrectInput) {
             try {
-                numbers = new Numbers(inputValue);
+                numbers = new Numbers(playerNumber);
                 incorrectInput = false;
             } catch (IllegalArgumentException exception) {
                 System.out.print(exception.getMessage());
-                inputValue = this.input.getInputValue();
+                playerNumber = input.getInputValue();
             }
         }
         return numbers;
+    }
+
+    private boolean askPlayerToPlayNewGame() {
+        String playerResponse = input.getInputValue("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
+        return playerResponse.equals("1");
     }
 }
