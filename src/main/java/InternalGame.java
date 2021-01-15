@@ -11,4 +11,21 @@ public class InternalGame {
         }
         return strikeCount;
     }
+
+    private int getBallCount(GameInfo realGameInfo, GameInfo userGameInfo) {
+        String realBall = realGameInfo.getNumber();
+        String userBall = userGameInfo.getNumber();
+        int ballCount = 0;
+        for (int i = 0; i < realBall.length(); i++) {
+            for (int j = 0; j < userBall.length(); j++) {
+                if (i == j) {
+                    continue;
+                }
+                if (realBall.charAt(i) == userBall.charAt(j)) {
+                    ballCount++;
+                }
+            }
+        }
+        return ballCount;
+    }
 }
