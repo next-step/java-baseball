@@ -1,5 +1,7 @@
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.Set;
 
 public class NumberBaseball {
     Scanner sc = new Scanner(System.in);
@@ -48,8 +50,7 @@ public class NumberBaseball {
             strike=0;
             ball=0;
 
-            System.out.println("숫자를 입력해 주세요 : ");
-            userNumber = sc.next();
+            this.getUserNumber();
 
             this.checkResult();
 
@@ -66,6 +67,33 @@ public class NumberBaseball {
                 System.out.println("낫싱");
             }
         }
+    }
+
+    private void getUserNumber() {
+        while (true) {
+            System.out.println("숫자를 입력해 주세요 : ");
+            userNumber = sc.next();
+
+            if (this.checkAvailable()) {
+                return;
+            } else {
+                System.out.println("올바른 숫자를 입력해주세요.");
+            }
+        }
+    }
+
+    private Boolean checkAvailable() {
+        Set<Integer> hash_Set = new HashSet<Integer>();
+        for (int i=0; i<3; i++) {
+            if (Character.isDigit(userNumber.charAt(i)) == false) {
+                return false;
+            }
+            int nowNumber = Integer.valueOf(userNumber.substring(i, i+1));
+            if (1 <= nowNumber && nowNumber <= 9) {
+                hash_Set.add(nowNumber);
+            }
+        }
+        return hash_Set.size() == 3;
     }
 
     private void checkResult() {
