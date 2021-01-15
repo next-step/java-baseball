@@ -1,57 +1,51 @@
 package baseball;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserIOTest {
+class UserInputTest {
     private static final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
     private static final PrintStream sysOut = System.out;
 
     @BeforeAll
-    public static void setupAllUserIOTest() {
+    public static void setupAll() {
         System.setOut(new PrintStream(testOut));
     }
 
     @AfterEach
-    public void teardownEachUserIOTestMethod() {
+    void teardown() {
         testOut.reset();
     }
 
     @AfterAll
-    public static void teardownAllUserIOTest() {
+    public static void teardownAll() {
         System.setOut(sysOut);
     }
 
     @Test
-    @DisplayName("Test input number message and return of input")
-    public void inputNumber() {
+    @DisplayName("Test output is number message and return of user input")
+    void inputNumber() {
         Scanner scanner = new Scanner("123");
 
-        UserIO io = new UserIO(scanner);
-        int number = io.inputNumber();
+        UserInput input = new UserInput(scanner);
+        int number = input.inputNumber();
 
         assertEquals("숫자를 입력해주세요 : ", testOut.toString());
         assertEquals(123, number);
     }
 
     @Test
-    @DisplayName("Test input is restart message and return of input")
-    public void inputIsRestart() {
+    @DisplayName("Test output is restart message and return of user input")
+    void inputRestart() {
         Scanner scanner = new Scanner("1");
 
-        UserIO io = new UserIO(scanner);
-        int isRestart = io.inputIsRestart();
+        UserInput input = new UserInput(scanner);
+        int isRestart = input.inputRestart();
 
         assertEquals("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n", testOut.toString());
         assertEquals(1, isRestart);
