@@ -7,13 +7,11 @@ import lombok.Setter;
 public class GameInfo {
 
     private String number;
-    private String gameResult;
     private boolean gameResumption;
 
     public GameInfo() {
         number = "";
-        gameResult = "";
-        gameResumption = false;
+        gameResumption = true;
     }
 
     public GameInfo(String number) {
