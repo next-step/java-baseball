@@ -84,7 +84,7 @@ public class PlayBaseball {
     }
 
     public int oneGame() {
-        PlayBaseball myGame = new PlayBaseball;
+        PlayBaseball myGame = new PlayBaseball();
         Scanner sc = new Scanner(System.in);
         int try_ans;
         int ans;
@@ -113,7 +113,7 @@ public class PlayBaseball {
     }
 
     public static void main(String[] args) throws Exception{
-        PlayBaseball myGame = new PlayBaseball;
+        PlayBaseball myGame = new PlayBaseball();
         int stop;
 
         while (true) {
