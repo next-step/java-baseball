@@ -11,7 +11,8 @@
 	- [x] Generate 3 unique random number
 * Step2: [] Get input from user
 	- [] Get User input
-	- [] Validate User Input
+	- [x] Validate User Input
+	- [] Convert String to List
 * Step3: [] Compare user input and the answer
 	- [] If same numbers are in same place, Strike
 	- [] If user number is in the answer, but not correct spot, Ball
