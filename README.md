@@ -8,6 +8,9 @@
 
 ### Keywards
 - Innings : 야구에서 한 라운드를 1이닝이라고 합니다.
+- out, strike, ball, nothing 의 네가지 결과가 있습니다.
+
+## 처음 생각한 구조
 
 ### InputBehavior : 숫자 야구에서 입력을 관리하는 인터페이스
 
@@ -25,7 +28,7 @@ public interface InputBehavior {
 ``` java
 
 interface JudgmentBehavior {
-    InningsResult getInningsResult(String oneInnings); //1이닝이 들어오면, 결과를 돌려주는 함수입니다.
+    InningsResult getInningsResult(String inningsResult); //1이닝이 들어오면, 결과를 돌려주는 함수입니다.
 }
 
 
@@ -52,3 +55,83 @@ interface GameHost {
 }
 
 ```
+
+## 처음 생각한 것을 구현하면서 어려웠던 점
+- 입력과 출력하는 하는 부분을 분리해서 별도의 클래스로 구분지었는데, 그러다보니 해당 로직이 깨끗하지 않았습니다.
+- if, else 문을 어떻게 하면 단순하게 할 수 있을까? 특히, 조건에 따라서 게임이 종료되는 로직이 있는데, 해당 부분이 어려웠습니다.
+
+## 나 혼자 리팩토링
+
+### 관심사 분리
+- 입력과 출력 (View)
+- 게임의 로직처리 (Presenter) + 게임의 종료 조건 검사 (BaseballJudgment)
+- 게임의 결과 모델 (Model)
+
+### 게임의 주된 로직
+
+- play 로직 : 새로운 게임 시작 -> 이닝 시작 -> 이닝 종료 -> 매치가 종료되었는 지 체크 -> 게임 종료 체
+  
+```java
+    @Override
+    public void play(){
+        playNewGame();
+        do {
+            playInnings();
+            playEndInnings();
+            checkFinishGame(checkEndMatch());
+        } while(isContinueGame());
+    }
+```
+
+- BaseballNumber : 게임에서 숫자 야구의 난수를 만들고, 이닝을 입력시에 확인하는 역할을 담당
+  
+```java
+    public interface BaseballNumber {
+        void makeRandomAnswer();
+        InningsResult solveAnswer(String oneInnings);
+    }
+```
+
+- BaseballJudgment : BaseballNumber를 갖고 있어, 게임의 시작, 종료와 같은 상태를 체크하는 역할
+
+```java
+    public interface BaseballJudgment {
+        void playNewGame();
+        void putInningsResult(String oneInnings); //1이닝이 들어오면, 결과를 돌려주는 함수입니다.
+        InningsResult getCurrentInnings();
+        boolean isContinueGame();
+        void nextMatch(boolean isFinishGame);
+    }
+```
+
+- BaseballPresenter : 게임에서 로직을 처리하는 역할을 담당
+
+```java
+    public interface BaseballPresenter {
+        void setBaseBallView(BaseballView baseBallView);
+        void play();
+    }
+```
+
+- BaseballView : 게임에서 뷰에 대한 역할을 담당
+```java
+    public interface BaseballView {
+        void printStartInnings();
+        String inputOneInnings();
+        void printInningsResult(InningsResult inningsResult);
+        void printFinishInnings();
+        boolean inputIsFinishGame();
+    }
+```
+
+### 혼자서 리팩토링을 하고 얻은 점
+- 입출력을 하나의 뷰로 처리해서 로직의 깨끗함을 얻을 수 있었다.
+- Judgment를 통해서만 BaseballNumber의 데이터를 관리할 수 있었다.
+
+### 혼자서 리팩토링을 하고 아쉬운 점
+- if문을 어떻게 하면 없앨 수 있을까에 대한 고민을 많이 했다.
+- 리팩토링을 하면서 START, END와 같은 상태를 통해서 구현을 했는데, 상태와 함께 로직을 처리하는 것이 어려웠다. 숫자 야구에는 여러 가지 상태를 처리해야 할텐데, 이 때 쉽게 생각나는 것은 if문이나 switch문인데, 이러한 생각에서 벗어나는 방법이 궁금했고, 이러한 점을 객체로 처리할 수 있는 지 궁금했다.
+- 어떠한 관점에서, 어느 크기로 기능을 나누는 지도 궁금했다.
+- 코드를 예쁘게 짜는 다양한 방법들이 너무 궁금하다.
+
+### 함께 리팩토링을 하면서 다양한 관점들을 배우고 싶다.
