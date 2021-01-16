@@ -2,8 +2,8 @@ import java.util.List;
 
 public class BallCount {
 
-    private final int ball;
-    private final int strike;
+    private final int balls;
+    private final int strikes;
     private final String ballCountMessage;
 
     private final String EMPTY_STRING = "";
@@ -22,9 +22,9 @@ public class BallCount {
             }
         }
 
-        this.ball = balls;
-        this.strike = strikes;
-        this.ballCountMessage = createBallCountMessage(this.ball, this.strike);
+        this.balls = balls;
+        this.strikes = strikes;
+        this.ballCountMessage = createBallCountMessage(this.balls, this.strikes);
     }
 
     private String createBallCountMessage(int ball, int strike) {
@@ -59,6 +59,6 @@ public class BallCount {
     }
 
     public boolean isThreeStrikes() {
-        return this.strike == 3;
+        return this.strikes == 3;
     }
 }
