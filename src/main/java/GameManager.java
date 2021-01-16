@@ -8,6 +8,7 @@ public class GameManager {
         this.continuesGame = true;
     }
 
+    // TODO: 테스트 추가
     /**
      * GameManager가 새로운 게임을 시작합니다.
      *
@@ -19,7 +20,7 @@ public class GameManager {
         do {
             Numbers playerNumbers = getPlayerNumbersByInput();
             BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-            System.out.println(ballCount.getBallCountMessage());
+            ballCount.printCountMessages();
             if (ballCount.isThreeStrikes()) {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
                 continuesGame = false;

@@ -34,7 +34,7 @@ public class BallCount {
 
     private String createBallCountMessage(int ball, int strike) {
         if (isNoCount(ball, strike)) {
-            return "낫싱";
+            return "낫싱";    // TODO: 볼카운트 관련 enum으로 분리?
         }
         String ballString = createBallString(ball);
         String strikeString = createStrikeString(strike);
@@ -59,8 +59,8 @@ public class BallCount {
         return strike + "스트라이크";
     }
 
-    public String getBallCountMessage() {
-        return ballCountMessage;
+    public void printCountMessages() {
+        System.out.println(this.ballCountMessage);
     }
 
     public boolean isThreeStrikes() {

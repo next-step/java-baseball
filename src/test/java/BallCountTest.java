@@ -1,7 +1,7 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,10 +10,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BallCountTest {
 
     private static Numbers answerNumbers;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream standardOut = System.out;
 
     @BeforeAll
     static void beforeAll() {
         answerNumbers = new Numbers(List.of(7, 1, 3));
+    }
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
     }
 
     @DisplayName("볼과 스트라이크 모두 있는 경우")
@@ -24,10 +36,10 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        String ballCountMessage = ballCount.getBallCountMessage();
+        ballCount.printCountMessages();
 
         // then
-        assertThat(ballCountMessage).isEqualTo("1볼 1스트라이크");
+        assertThat(outputStreamCaptor.toString().trim()).isEqualTo("1볼 1스트라이크");
     }
 
     @DisplayName("볼만 있는 경우")
@@ -38,10 +50,10 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        String ballCountMessage = ballCount.getBallCountMessage();
+        ballCount.printCountMessages();
 
         // then
-        assertThat(ballCountMessage).isEqualTo("2볼");
+        assertThat(outputStreamCaptor.toString().trim()).isEqualTo("2볼");
     }
 
     @DisplayName("스트라이크만 있는 경우")
@@ -52,10 +64,10 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        String ballCountMessage = ballCount.getBallCountMessage();
+        ballCount.printCountMessages();
 
         // then
-        assertThat(ballCountMessage).isEqualTo("1스트라이크");
+        assertThat(outputStreamCaptor.toString().trim()).isEqualTo("1스트라이크");
     }
 
     @DisplayName("'낫싱'인 경우")
@@ -66,9 +78,9 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        String ballCountMessage = ballCount.getBallCountMessage();
+        ballCount.printCountMessages();
 
         // then
-        assertThat(ballCountMessage).isEqualTo("낫싱");
+        assertThat(outputStreamCaptor.toString().trim()).isEqualTo("낫싱");
     }
 }
