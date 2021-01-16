@@ -1,9 +1,10 @@
 // TODO: 테스트 추가
-// TODO: 입∙출력 관련 메시지 enum 사용
 public class GameManager {
 
     private final Input input;
     private boolean continuesGame;
+
+    private static final String PLAYER_REACTION_YES = "1";
 
     public GameManager(Input input) {
         this.input = input;
@@ -23,7 +24,7 @@ public class GameManager {
             BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
             ballCount.printDetailedMessage();
             if (ballCount.isThreeStrikes()) {
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                System.out.println(OutputMessage.GAME_FINISHED);
                 continuesGame = false;
             }
         } while (continuesGame);
@@ -32,14 +33,14 @@ public class GameManager {
 
     private Numbers getPlayerNumbersByInput() {
         Numbers numbers = null;
-        String playerNumber = input.getInputValue("숫자를 입력해 주세요 : ");
+        String playerNumber = input.getInputValue(OutputMessage.PLEASE_ENTER_NUMBER.toString());
         boolean incorrectInput = true;
         while (incorrectInput) {
             try {
                 numbers = new Numbers(playerNumber);
                 incorrectInput = false;
             } catch (IllegalArgumentException exception) {
-                System.out.print(exception.getMessage() + " 다시 입력해 주세요 : ");
+                System.out.print(exception.getMessage() + OutputMessage.PLEASE_ENTER_AGAIN);
                 playerNumber = input.getInputValue();
             }
         }
@@ -47,7 +48,7 @@ public class GameManager {
     }
 
     private boolean askPlayerToPlayNewGame() {
-        String playerResponse = input.getInputValue("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
-        return playerResponse.equals("1");
+        String playerResponse = input.getInputValue(OutputMessage.PLAY_A_NEW_GAME_OR_NOT.toString());
+        return playerResponse.equals(PLAYER_REACTION_YES);
     }
 }
