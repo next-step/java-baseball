@@ -1,15 +1,9 @@
-import baseball.*;
+import baseball.BaseballGame;
 
 public class Main {
-    public static void main(String[] args) {
-        GameHost gameHost = makeGameHost();
-        gameHost.playGame();
-    }
+    static final BaseballGame baseballGame = new BaseballGame();
 
-    private static GameHost makeGameHost() {
-        JudgmentBehavior judgmentBehavior = new JudgmentBehaviorImpl();
-        PrintBehavior printBehavior = new PrintBehaviorImpl();
-        InputBehavior inputBehavior = new InputBehaviorImpl();
-        return new GameHostImpl(judgmentBehavior, printBehavior, inputBehavior);
+    public static void main(String[] args) {
+        baseballGame.start();
     }
 }
