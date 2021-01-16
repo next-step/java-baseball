@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,5 +39,27 @@ class NumberTest {
             Exception.class,
             () -> new Number.Builder().byInt(num)
         );
+    }
+
+    @ParameterizedTest
+    @DisplayName("Test compare result of two number")
+    @CsvSource({
+        "456, 0, 0",
+        "156, 1, 0",
+        "561, 0, 1",
+        "142, 1, 1",
+    })
+    void compareNumber(int num, int expectedStrike, int expectedBall) {
+        Number answer = assertDoesNotThrow(() -> {
+            return new Number.Builder().byInt(123);
+        });
+
+        Number trial = assertDoesNotThrow(() -> {
+            return new Number.Builder().byInt(num);
+        });
+
+        InningInfo info = answer.compareNumber(trial);
+        assertEquals(expectedStrike, info.getStrike());
+        assertEquals(expectedBall, info.getBall());
     }
 }
