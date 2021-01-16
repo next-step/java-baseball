@@ -11,25 +11,20 @@ public class BallCount {
     public BallCount(Numbers numbers1, Numbers numbers2) {
         List<Integer> answerNumbers = numbers1.getNumbers();
         List<Integer> anotherNumbers = numbers2.getNumbers();
-
-        int ball = 0;
-        int strike = 0;
-
-        // TODO: extract method
+        int balls = 0;
+        int strikes = 0;
         int count = answerNumbers.size();
         for (int i = 0; i < count; i++) {
-            for (int j = 0; j < count; j++) {
-                if (answerNumbers.get(i).equals(anotherNumbers.get(j))) {
-                    if (i != j) ball++;
-                    else strike++;
-                    break;
-                }
+            if (answerNumbers.get(i).equals(anotherNumbers.get(i))) {
+                strikes++;
+            } else if (anotherNumbers.contains(answerNumbers.get(i))) {
+                balls++;
             }
         }
 
-        this.ball = ball;
-        this.strike = strike;
-        this.ballCountMessage = createBallCountMessage(ball, strike);
+        this.ball = balls;
+        this.strike = strikes;
+        this.ballCountMessage = createBallCountMessage(this.ball, this.strike);
     }
 
     private String createBallCountMessage(int ball, int strike) {
