@@ -14,8 +14,8 @@ class NumberTest {
         "Test random number is well generated well" +
         "(Not guarantee in all circumstances)"
     )
-    void builderRandom() {
-        assertDoesNotThrow(() -> new Number.Builder().Random());
+    void buildByRandom() {
+        assertDoesNotThrow(() -> new Number.Builder().byRandom());
     }
 
     @Test
