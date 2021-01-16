@@ -61,4 +61,29 @@ public class Number {
             flag[digit] = true;
         }
     }
+
+    private int find(int value) {
+        for (int i = 0; i < DIGIT_LENGTH; i++) {
+            if (this.digits[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public InningInfo compareNumber(Number other) {
+        int strike = 0;
+        int ball = 0;
+
+        for (int i = 0; i < DIGIT_LENGTH; i++) {
+            int matchedIdx = other.find(this.digits[i]);
+            if (matchedIdx == i) {
+                strike++;
+            } else if (matchedIdx != -1) {
+                ball++;
+            }
+        }
+
+        return new InningInfo(strike, ball);
+    }
 }
