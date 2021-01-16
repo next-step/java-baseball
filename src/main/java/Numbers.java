@@ -49,12 +49,12 @@ public class Numbers {
         }
     }
 
-    private static boolean isNumeric(String strNum) {
-        if (strNum == null) {
+    private static boolean isNumeric(String numericFormatString) {
+        if (numericFormatString == null) {
             return false;
         }
         try {
-            double d = Double.parseDouble(strNum);
+            Double.parseDouble(numericFormatString);
         } catch (NumberFormatException nfe) {
             return false;
         }
