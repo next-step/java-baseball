@@ -1,4 +1,4 @@
-package baseball;
+package baseball.model;
 
 public class InningsResult {
     private static final int END_MATCH_CONDITION = 3;
@@ -22,21 +22,19 @@ public class InningsResult {
         return strike == END_MATCH_CONDITION;
     }
 
-    public int getStrike() {
-        return strike;
-    }
-
     @Override
     public String toString() {
         StringBuilder resultBuffer = new StringBuilder();
         if (ball != 0) {
-            resultBuffer.append(ball).append("볼");
+            resultBuffer.append(ball).append("볼").append(" ");
         }
         if (strike != 0) {
-            resultBuffer.append(" ").append(strike).append("스트라이크");
+            resultBuffer.append(strike).append("스트라이크").append(" ");
         }
-        if (out != 0) {
-            resultBuffer.append(" ").append(out).append("아웃");
+        if (out == 3) {
+            resultBuffer.append("낫싱");
+        } else if (out != 0) {
+            resultBuffer.append(out).append("아웃");
         }
         return resultBuffer.toString();
     }
