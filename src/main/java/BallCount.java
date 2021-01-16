@@ -4,7 +4,6 @@ public class BallCount {
 
     private final int balls;
     private final int strikes;
-    private final String ballCountMessage;
 
     private final String EMPTY_STRING = "";
 
@@ -24,7 +23,10 @@ public class BallCount {
 
         this.balls = balls;
         this.strikes = strikes;
-        this.ballCountMessage = createBallCountMessage(this.balls, this.strikes);
+    }
+
+    public void printDetailedMessage() {
+        System.out.println(createBallCountMessage(this.balls, this.strikes));
     }
 
     private String createBallCountMessage(int balls, int strikes) {
@@ -52,10 +54,6 @@ public class BallCount {
             return EMPTY_STRING;
         }
         return strikes + BallCountMessage.STRIKE.toString();
-    }
-
-    public void printCountMessages() {
-        System.out.println(this.ballCountMessage);
     }
 
     public boolean isThreeStrikes() {

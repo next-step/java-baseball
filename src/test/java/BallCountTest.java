@@ -36,7 +36,7 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        ballCount.printCountMessages();
+        ballCount.printDetailedMessage();
 
         // then
         assertThat(outputStreamCaptor.toString().trim()).isEqualTo("1볼 1스트라이크");
@@ -50,7 +50,7 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        ballCount.printCountMessages();
+        ballCount.printDetailedMessage();
 
         // then
         assertThat(outputStreamCaptor.toString().trim()).isEqualTo("2볼");
@@ -64,7 +64,7 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        ballCount.printCountMessages();
+        ballCount.printDetailedMessage();
 
         // then
         assertThat(outputStreamCaptor.toString().trim()).isEqualTo("1스트라이크");
@@ -78,7 +78,7 @@ class BallCountTest {
 
         // when
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        ballCount.printCountMessages();
+        ballCount.printDetailedMessage();
 
         // then
         assertThat(outputStreamCaptor.toString().trim()).isEqualTo("낫싱");

@@ -20,7 +20,7 @@ public class GameManager {
         do {
             Numbers playerNumbers = getPlayerNumbersByInput();
             BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-            ballCount.printCountMessages();
+            ballCount.printDetailedMessage();
             if (ballCount.isThreeStrikes()) {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
                 continuesGame = false;
