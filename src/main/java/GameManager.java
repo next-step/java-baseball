@@ -1,3 +1,5 @@
+// TODO: 테스트 추가
+// TODO: 입∙출력 관련 메시지 enum 사용
 public class GameManager {
 
     private final Input input;
@@ -8,7 +10,6 @@ public class GameManager {
         this.continuesGame = true;
     }
 
-    // TODO: 테스트 추가
     /**
      * GameManager가 새로운 게임을 시작합니다.
      *
@@ -38,7 +39,7 @@ public class GameManager {
                 numbers = new Numbers(playerNumber);
                 incorrectInput = false;
             } catch (IllegalArgumentException exception) {
-                System.out.print(exception.getMessage());
+                System.out.print(exception.getMessage() + " 다시 입력해 주세요 : ");
                 playerNumber = input.getInputValue();
             }
         }
