@@ -10,6 +10,10 @@ public class ValidationUtil {
         validateInputDuplicate(userInput);
     }
 
+    public static void validateUserReplayInput(String userInput) {
+        validateReplayInputType(userInput);
+    }
+
     private static void validateInputSize(int length) {
         if(length != NUMBER_SIZE) {
             throw new IllegalArgumentException("잘못 입력하셨습니다. 3자리수를 입력해야합니다. 다시 입력해주세요.");
@@ -36,4 +40,15 @@ public class ValidationUtil {
             }
         }
     }
+
+    private static void validateReplayInputType(String userInput) {
+        if(userInput.length() != 1) {
+            throw new IllegalArgumentException("잘못 입력하셨습니다. 1 또는 2 를 입력해주세요.");
+        }
+        int tmp = userInput.charAt(0) - '0';
+        if(tmp != 1 && tmp != 2) {
+            throw new IllegalArgumentException("잘못 입력하셨습니다. 1 또는 2 를 입력해주세요.");
+        }
+    }
+
 }

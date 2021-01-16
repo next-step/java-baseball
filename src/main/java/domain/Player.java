@@ -18,6 +18,16 @@ public class Player {
         return charToInt(userInput);
     }
 
+    public static int getPlayerReplayInput(Scanner scanner) {
+        String userInput = scanner.next();
+        try {
+            ValidationUtil.validateUserReplayInput(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return Integer.parseInt(userInput);
+    }
+
     private static int[] charToInt(char[] userInput) {
         int[] userInputNum = new int[3];
         for (int i = 0; i < NUMBER_SIZE; i++) {
