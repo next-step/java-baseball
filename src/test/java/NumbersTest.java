@@ -66,6 +66,6 @@ public class NumbersTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Numbers numbers = new Numbers(List.of());
         });
-        assertThat(exception.getMessage()).isEqualTo("숫자가 충분하지 않습니다. 다시 입력해 주세요 : ");
+        assertThat(exception.getMessage()).isEqualTo("내용이 충분하지 않습니다. 다시 입력해 주세요 : ");
     }
 }

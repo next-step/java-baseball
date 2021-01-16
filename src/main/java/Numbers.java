@@ -3,6 +3,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+// TODO: exception message를 담은 enum 추가
 public class Numbers {
 
     private final List<Integer> numbers;
@@ -19,7 +20,7 @@ public class Numbers {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() < 3) {
-            throw new IllegalArgumentException("숫자가 충분하지 않습니다. 다시 입력해 주세요 : ");
+            throw new IllegalArgumentException("내용이 충분하지 않습니다. 다시 입력해 주세요 : ");
         }
         StringBuilder numbersString = new StringBuilder();
         for (int num : numbers) {
