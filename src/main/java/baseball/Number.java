@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Number {
@@ -14,6 +15,23 @@ public class Number {
                 DIGIT_LOW_BOUND, DIGIT_RIGHT_BOUND
             ).distinct().limit(DIGIT_LENGTH).toArray();
 
+            verifyDigitsLength(digits);
+            verifyDigitsValue(digits);
+
+            return new Number(digits);
+        }
+
+        public Number byInt(int num) throws Exception {
+            int[] digits = Arrays.stream(
+                String.valueOf(num).split("")
+            ).mapToInt(
+                Integer::parseInt
+            ).toArray();
+
+            return build(digits);
+        }
+
+        private Number build(int[] digits) throws Exception {
             verifyDigitsLength(digits);
             verifyDigitsValue(digits);
 
@@ -47,5 +65,9 @@ public class Number {
 
     public Number(int[] digits) {
         this.digits = digits;
+    }
+
+    public int[] getDigits() {
+        return digits;
     }
 }
