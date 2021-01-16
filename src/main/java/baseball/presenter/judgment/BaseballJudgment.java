@@ -1,4 +1,4 @@
-package baseball.judgment;
+package baseball.presenter.judgment;
 
 import baseball.model.InningsResult;
 

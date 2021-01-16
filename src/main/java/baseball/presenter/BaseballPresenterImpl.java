@@ -1,7 +1,7 @@
 package baseball.presenter;
 
-import baseball.judgment.BaseballJudgment;
-import baseball.judgment.BaseballJudgmentImpl;
+import baseball.presenter.judgment.BaseballJudgment;
+import baseball.presenter.judgment.BaseballJudgmentImpl;
 import baseball.model.InningsResult;
 import baseball.view.BaseballView;
 
