@@ -41,7 +41,8 @@ public class BaseballGame implements Game {
         return Boolean.FALSE;
     }
 
-    private void compareNumbers(HashMap<Integer, Integer> userNumbers, HashMap<Integer, Integer> computerNumbers) {
+    private void compareNumbers(HashMap<Integer, Integer> userNumbers,
+                                HashMap<Integer, Integer> computerNumbers) {
         for (int number : userNumbers.keySet()) {
             if (computerNumbers.containsKey(number)) {
                 updateScore(userNumbers.get(number), computerNumbers.get(number));
@@ -64,7 +65,7 @@ public class BaseballGame implements Game {
         if (strike > 0) {
             System.out.printf("%d스트라이크", strike);
         }
-        if (!(ball > 0 || strike > 0)){
+        if (!(ball > 0 || strike > 0)) {
             System.out.printf("낫싱");
         }
         System.out.println();

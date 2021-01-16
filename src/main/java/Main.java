@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        GameManager gm = new BaseballGameManager();
-        gm.gameProcess(new BaseballGame());
+        GameManager gmaeManager = new BaseballGameManager();
+        gmaeManager.gameProcess(new BaseballGame());
     }
 }

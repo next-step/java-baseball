@@ -1,18 +1,28 @@
 public class BaseballGameManager extends GameManager {
     private int start;
 
-    public BaseballGameManager(){
+    public BaseballGameManager() {
         start = 1;
     }
 
     @Override
-    public void gameProcess(Game game){
+    public void gameProcess(Game game) {
         this.game = game;
-        while(start == 1){
+        while (start == 1) {
             startGame();
             start = baseballProcessInput();
         }
         endGame();
+    }
+
+    @Override
+    public void startGame() {
+        game.run();
+    }
+
+    @Override
+    public void endGame() {
+        System.out.println(SystemMessage.BASEBALL_PROCESS_END_MESSAGE);
     }
 
     public int baseballProcessInput() {
@@ -23,16 +33,5 @@ public class BaseballGameManager extends GameManager {
         } else {
             return baseballProcessInput();
         }
-    }
-
-
-    @Override
-    public void startGame(){
-        game.run();
-    }
-
-    @Override
-    public void endGame(){
-        System.out.println(SystemMessage.BASEBALL_PROCESS_END_MESSAGE);
     }
 }
