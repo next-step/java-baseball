@@ -21,12 +21,12 @@ public class BaseballGame implements Game {
 
     @Override
     public void gameStartMsg() {
-        System.out.println("야구 게임 시작 !");
+        System.out.println(SystemMessage.BASEBALL_GAME_START_MESSAGE);
     }
 
     @Override
     public void gameEndMsg() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println(SystemMessage.BASEBALL_GAME_END_MESSAGE);
     }
 
     private void initJudgements() {

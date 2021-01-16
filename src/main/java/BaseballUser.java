@@ -9,7 +9,7 @@ public class BaseballUser {
         numbers = new HashMap<>();
 
         while (true) {
-            System.out.print("숫자를 입력해주세요 : ");
+            System.out.print(SystemMessage.THREE_INTEGER_INPUT);
             input = GameManager.userInput.next();
             try{
                 numberSeparator(input);
@@ -30,20 +30,20 @@ public class BaseballUser {
     }
     private void isValidNumber(String numberString) throws Exception {
         if (numberString.length() != 3){
-            throw new Exception("3자리 숫자를 입력해주세요 !");
+            throw new Exception(SystemMessage.THREE_INTEGER_EXCEPTION);
         }
 
         HashSet<Integer> duplicateChecker = new HashSet<>();
         for(char charNumber : numberString.toCharArray()){
             int number = charNumber - '0';
             if(1 > number || number > 9){
-                throw new Exception("1 ~ 9로 이루어진 3개 숫자를 입력해주세요 !");
+                throw new Exception(SystemMessage.ONE_NINE_INTEGER_EXCEPTION);
             }
             duplicateChecker.add(number);
         }
 
         if(duplicateChecker.size() != 3){
-            throw new Exception("중복된 숫자가 있습니다. 다시 입력해주세요 !");
+            throw new Exception(SystemMessage.DUPLICATE_INTEGER_EXCEPTION);
         }
     }
 

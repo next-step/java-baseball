@@ -16,7 +16,7 @@ public class BaseballGameManager extends GameManager {
     }
 
     public int getOneOrTwoIntegerInput() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(SystemMessage.BASEBALL_PROCESS_INPUT);
         String input = GameManager.userInput.next();
         if (input.equals("1") || input.equals("2")) {
             return Integer.parseInt(input);
@@ -33,6 +33,6 @@ public class BaseballGameManager extends GameManager {
 
     @Override
     public void gameEnd(){
-        System.out.println("프로그램이 종료됩니다.");
+        System.out.println(SystemMessage.BASEBALL_PROCESS_END_MESSAGE);
     }
 }
