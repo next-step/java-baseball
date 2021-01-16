@@ -14,10 +14,9 @@ public class BaseballGame {
         int[] userInput = Player.getPlayerInput(scanner);
         int[] systemNum = RandomNumberUtil.getDistinctNumber();
         int strikeCnt = checkStrike(userInput, systemNum);
-        PrintUtil.printStrikeHint(strikeCnt);
         checkAnswer(strikeCnt);
         int ballCnt = checkBall(userInput, systemNum);
-        PrintUtil.printBallHint(ballCnt);
+        checkGameStatus(ballCnt, strikeCnt);
     }
 
     private static int checkStrike(int[] userNum, int[] systemNum) {
@@ -32,6 +31,7 @@ public class BaseballGame {
 
     private static boolean checkAnswer(int strikeCnt) {
         if (strikeCnt == GAME_OVER_CONDITION_STRIKE) {
+            PrintUtil.printStrikeHint(strikeCnt);
             PrintUtil.printGameOver();
             PrintUtil.printAskReplayGame();
             return true;
@@ -53,6 +53,18 @@ public class BaseballGame {
             }
         }
         return ballCnt;
+    }
+
+    private static void checkGameStatus(int ballCnt, int strikeCnt) {
+        if (ballCnt == 0 && strikeCnt == 0) {
+            PrintUtil.printNothing();
+        } else if (ballCnt == 0) {
+            PrintUtil.printStrikeHint(strikeCnt);
+        } else if (strikeCnt == 0) {
+            PrintUtil.printBallHint(ballCnt);
+        } else {
+            PrintUtil.printBallAndStrike(ballCnt, strikeCnt);
+        }
     }
 
 }
