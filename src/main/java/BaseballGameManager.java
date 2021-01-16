@@ -9,30 +9,30 @@ public class BaseballGameManager extends GameManager {
     public void gameProcess(Game game){
         this.game = game;
         while(start == 1){
-            gameStart();
-            start = getOneOrTwoIntegerInput();
+            startGame();
+            start = baseballProcessInput();
         }
-        gameEnd();
+        endGame();
     }
 
-    public int getOneOrTwoIntegerInput() {
+    public int baseballProcessInput() {
         System.out.println(SystemMessage.BASEBALL_PROCESS_INPUT);
         String input = GameManager.userInput.next();
         if (input.equals("1") || input.equals("2")) {
             return Integer.parseInt(input);
         } else {
-            return getOneOrTwoIntegerInput();
+            return baseballProcessInput();
         }
     }
 
 
     @Override
-    public void gameStart(){
-        game.gameRun();
+    public void startGame(){
+        game.run();
     }
 
     @Override
-    public void gameEnd(){
+    public void endGame(){
         System.out.println(SystemMessage.BASEBALL_PROCESS_END_MESSAGE);
     }
 }

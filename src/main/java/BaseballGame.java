@@ -5,31 +5,31 @@ public class BaseballGame implements Game {
     private int ball;
 
     @Override
-    public void gameRun() {
-        gameStartMsg();
-        initJudgements();
+    public void run() {
+        printGameStartMessage();
+        initScore();
         BaseballComputer computer = new BaseballComputer();
         BaseballUser user = new BaseballUser();
         while (!isThreeStrike()) {
-            initJudgements();
-            user.userThreeIntegerInput();
+            initScore();
+            user.baseballUserInput();
             compareNumbers(user.getNumbers(), computer.getNumbers());
             printResult();
         }
-        gameEndMsg();
+        printGameEndMessage();
     }
 
     @Override
-    public void gameStartMsg() {
+    public void printGameStartMessage() {
         System.out.println(SystemMessage.BASEBALL_GAME_START_MESSAGE);
     }
 
     @Override
-    public void gameEndMsg() {
+    public void printGameEndMessage() {
         System.out.println(SystemMessage.BASEBALL_GAME_END_MESSAGE);
     }
 
-    private void initJudgements() {
+    private void initScore() {
         strike = 0;
         ball = 0;
     }
@@ -44,12 +44,12 @@ public class BaseballGame implements Game {
     private void compareNumbers(HashMap<Integer, Integer> userNumbers, HashMap<Integer, Integer> computerNumbers) {
         for (int number : userNumbers.keySet()) {
             if (computerNumbers.containsKey(number)) {
-                strikeOrBall(userNumbers.get(number), computerNumbers.get(number));
+                updateScore(userNumbers.get(number), computerNumbers.get(number));
             }
         }
     }
 
-    private void strikeOrBall(int userNumber, int computerNumber) {
+    private void updateScore(int userNumber, int computerNumber) {
         if (userNumber == computerNumber) {
             strike += 1;
         } else {

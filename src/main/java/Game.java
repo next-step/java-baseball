@@ -1,5 +1,5 @@
 public interface Game {
-    public void gameStartMsg();
-    public void gameEndMsg();
-    public void gameRun();
+    public void printGameStartMessage();
+    public void printGameEndMessage();
+    public void run();
 }

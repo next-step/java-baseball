@@ -6,10 +6,10 @@ public abstract class GameManager {
 
     public void gameProcess(Game game){
         this.game = game;
-        gameStart();
-        gameEnd();
+        startGame();
+        endGame();
     }
 
-    public abstract void gameStart();
-    public abstract void gameEnd();
+    public abstract void startGame();
+    public abstract void endGame();
 }

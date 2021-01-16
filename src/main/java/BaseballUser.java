@@ -4,7 +4,7 @@ import java.util.HashSet;
 public class BaseballUser {
     private HashMap<Integer, Integer> numbers;
 
-    public void userThreeIntegerInput() {
+    public void baseballUserInput() {
         String input;
         numbers = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class BaseballUser {
             System.out.print(SystemMessage.THREE_INTEGER_INPUT);
             input = GameManager.userInput.next();
             try{
-                numberSeparator(input);
+                separateNumbers(input);
                 break;
             } catch (Exception e){
                 System.out.println(e.getMessage());
@@ -20,7 +20,7 @@ public class BaseballUser {
         }
     }
 
-    private void numberSeparator(String numberString) throws Exception {
+    private void separateNumbers(String numberString) throws Exception {
         isValidNumber(numberString);
 
         for(int i = 0; i < 3; ++i){
