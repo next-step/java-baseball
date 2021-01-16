@@ -27,31 +27,31 @@ public class BallCount {
         this.ballCountMessage = createBallCountMessage(this.balls, this.strikes);
     }
 
-    private String createBallCountMessage(int ball, int strike) {
-        if (isNoCount(ball, strike)) {
+    private String createBallCountMessage(int balls, int strikes) {
+        if (isNoCount(balls, strikes)) {
             return BallCountMessage.NOTHING.toString();
         }
-        String ballString = createBallString(ball);
-        String strikeString = createStrikeString(strike);
+        String ballString = createBallString(balls);
+        String strikeString = createStrikeString(strikes);
         return (ballString + " " + strikeString).trim();
     }
 
-    private boolean isNoCount(int ball, int strike) {
-        return strike == 0 && ball == 0;
+    private boolean isNoCount(int balls, int strikes) {
+        return balls == 0 && strikes == 0;
     }
 
-    private String createBallString(int ball) {
-        if (ball <= 0) {
+    private String createBallString(int balls) {
+        if (balls <= 0) {
             return EMPTY_STRING;
         }
-        return ball + BallCountMessage.BALL.toString();
+        return balls + BallCountMessage.BALL.toString();
     }
 
-    private String createStrikeString(int strike) {
-        if (strike <= 0) {
+    private String createStrikeString(int strikes) {
+        if (strikes <= 0) {
             return EMPTY_STRING;
         }
-        return strike + BallCountMessage.STRIKE.toString();
+        return strikes + BallCountMessage.STRIKE.toString();
     }
 
     public void printCountMessages() {
