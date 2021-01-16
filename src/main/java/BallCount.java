@@ -29,11 +29,11 @@ public class BallCount {
 
     private String createBallCountMessage(int ball, int strike) {
         if (isNoCount(ball, strike)) {
-            return "낫싱";    // TODO: 볼카운트 관련 enum으로 분리?
+            return BallCountMessage.NOTHING.toString();
         }
         String ballString = createBallString(ball);
         String strikeString = createStrikeString(strike);
-        return (ballString + strikeString).trim();
+        return (ballString + " " + strikeString).trim();
     }
 
     private boolean isNoCount(int ball, int strike) {
@@ -44,14 +44,14 @@ public class BallCount {
         if (ball <= 0) {
             return EMPTY_STRING;
         }
-        return ball + "볼 ";
+        return ball + BallCountMessage.BALL.toString();
     }
 
     private String createStrikeString(int strike) {
         if (strike <= 0) {
             return EMPTY_STRING;
         }
-        return strike + "스트라이크";
+        return strike + BallCountMessage.STRIKE.toString();
     }
 
     public void printCountMessages() {
