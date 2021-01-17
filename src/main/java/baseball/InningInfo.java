@@ -1,8 +1,8 @@
 package baseball;
 
 public class InningInfo {
-    private int strike;
-    private int ball;
+    private final int strike;
+    private final int ball;
 
     public InningInfo(int strike, int ball) {
         this.strike = strike;
