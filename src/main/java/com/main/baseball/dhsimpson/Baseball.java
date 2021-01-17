@@ -15,7 +15,6 @@ public class Baseball {
         computerNum = new int[3];
         playerNum = new int[3];
         scan = new Scanner(System.in);
-        playGame();
     }
     // 게임 실행
     void playGame(){
@@ -47,7 +46,6 @@ public class Baseball {
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
     boolean compareNums(){
-//        gameMessage 사용 할까 말까
         int strikes = 0;
         int balls = 0;
         boolean isCorrect = false;
