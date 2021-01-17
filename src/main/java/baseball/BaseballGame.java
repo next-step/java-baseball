@@ -25,8 +25,18 @@ public class BaseballGame {
             answer = NumberUtil.generateAnswer();
             doGuess();
             printOutput.printComplete();
-            playing = false; // Test only Code
-            // TODO: Quit when user got the answer
+            askExit();
+        }
+    }
+
+    private void askExit() {
+        String option = printInput.askUserOption();
+        while(!Validator.isCorrectOption(option)) {
+            printOutput.printError();
+            option = printInput.askUserOption();
+        }
+        if (Integer.parseInt(option) == 2) {
+            playing = false;
         }
     }
 
@@ -39,7 +49,7 @@ public class BaseballGame {
 
     private void getInput() {
         while(true) {
-            String userInput = printInput.recieveUserNumber();
+            String userInput = printInput.receiveUserNumber();
             if(!Validator.isCorrectInput(userInput)) {
                 printOutput.printError();
                 continue;

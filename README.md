@@ -18,4 +18,4 @@
 	- [x] If user number is in the answer, but not correct spot, Ball
 	- [x] If user number misses, Nothing 
 * Step4: [x] Print result 
-* Step5: [] Ask user restart or quit
+* Step5: [x] Ask user restart or quit
