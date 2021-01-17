@@ -1,4 +1,3 @@
-// TODO: 테스트 추가
 public class GameManager {
 
     private final Input input;
@@ -20,15 +19,19 @@ public class GameManager {
         Numbers answerNumbers = RandomNumbersGenerator.generate();
         continuesGame = true;
         do {
-            Numbers playerNumbers = getPlayerNumbersByInput();
-            BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-            ballCount.printDetailedMessage();
-            if (ballCount.isThreeStrikes()) {
-                System.out.println(OutputMessage.GAME_FINISHED);
-                continuesGame = false;
-            }
+            playOneGame(answerNumbers);
         } while (continuesGame);
         return askPlayerToPlayNewGame();
+    }
+
+    private void playOneGame(Numbers answerNumbers) {
+        Numbers playerNumbers = getPlayerNumbersByInput();
+        BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
+        ballCount.printDetailedMessage();
+        if (ballCount.isThreeStrikes()) {
+            System.out.println(OutputMessage.GAME_FINISHED);
+            continuesGame = false;
+        }
     }
 
     private Numbers getPlayerNumbersByInput() {
