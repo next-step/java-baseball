@@ -18,6 +18,14 @@ public class Game {
         this.numberBuilder = numberBuilder;
     }
 
+    public void start() {
+        do {
+          play();
+        } while (
+            restart()
+        );
+    }
+
     public boolean restart() {
         while (true) {
             try {
