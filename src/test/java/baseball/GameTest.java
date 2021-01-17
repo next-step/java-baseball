@@ -18,6 +18,39 @@ class GameTest {
     private static final String NUMBER_MSG = "숫자를 입력해주세요 : ";
     private static final String FINISH_MSG = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n";
 
+    private static Stream<Arguments> providerStartParams() {
+        String[] inputs = {"123", "1", "456", "145", "451", "413", "123", "2"};
+        String[][] MultipleInnings = {{"3스트라이크"}, {"낫싱", "1스트라이크", "1볼", "1볼 1스트라이크", "3스트라이크"}};
+
+        String output = "";
+        for (String[] innings : MultipleInnings) {
+            output += Arrays.stream(innings).map(
+                s -> NUMBER_MSG + s + "\n"
+            ).collect(
+                Collectors.joining("")
+            );
+            output += FINISH_MSG + RESTART_MSG;
+        }
+
+        return Stream.of(
+            Arguments.of(String.join("\n", inputs), output)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("Test user's game start")
+    @MethodSource("providerStartParams")
+    void start(String input, String output) {
+        Scanner scanner = new Scanner(input);
+        MockUserIO mockUserIO = new MockUserIO(scanner);
+        MockBuilder mockBuilder = new MockBuilder();
+
+        Game game = new Game(mockUserIO, mockBuilder);
+        game.start();
+
+        assertEquals(output, mockUserIO.out);
+    }
+
     private static Stream<Arguments> providerRestartParams() {
         return Stream.of(
             Arguments.of("1", RESTART_MSG, true),
