@@ -26,7 +26,7 @@ public class Baseball {
         }
     }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
-    void setComputerNum(){
+    public void setComputerNum(){
         // 100 <= temp < 1000 의 난수 생성
         int temp = (int)(random()*100 + 100);
         for(int i=1; i<=2; i++){
@@ -36,7 +36,7 @@ public class Baseball {
         computerNum[0] = temp;
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
-    void setPlayerNum(){
+    public void setPlayerNum(){
         int temp = scan.nextInt();
         for(int i=1; i<=2; i++){
             playerNum[3-i] = (int)(temp%pow(10,1)) ;
@@ -45,7 +45,7 @@ public class Baseball {
         playerNum[0] = temp;
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
-    boolean compareNums(){
+    public boolean compareNums(){
         int strikes = 0;
         int balls = 0;
         boolean isCorrect = false;
@@ -74,7 +74,7 @@ public class Baseball {
             return false;
         }
     }
-    int checkBall(int idx){
+    public int checkBall(int idx){
         int ballCount = 0;
         // computerNum의 각 자릿수를 전체 탐색
         for(int i=0; i<3; i++){
@@ -92,7 +92,7 @@ public class Baseball {
 
 
     // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
-    boolean playOnce(){
+    public boolean playOnce(){
         //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setPlayerNum에서만 발생할 듯?? 그 함수에 throw 붙여주자
         boolean playerWin = false;
         int isFinish;
