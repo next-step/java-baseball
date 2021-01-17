@@ -89,6 +89,54 @@ public class Baseball {
         }
         return ballCount;
     }
+    // TDD를 위한 메서드들
+    // 두 수를 비교해 3Strike 인지 여부 반환
+    public boolean compareNums(int[] pNum, int[] cNum){
+        int strikes = 0;
+        int balls = 0;
+        boolean isCorrect = false;
+        ArrayList<Integer> idxList = new ArrayList<Integer>();
+        // 스트라이크 수 세기
+        for(int i=0; i<3; i++){
+            if(cNum[i]==pNum[i]){
+                strikes++;
+            }else{
+                // 숫자가 다르다면 해당 idx를 저장
+                idxList.add(i);
+            }
+        }
+        // 볼 수 세기
+        for(int idx : idxList){
+            // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
+            balls += checkBall(idx);
+        }
+        // 현재의 strike, ball 상태 프린트
+        gameMessage(strikes, balls);
+        // strike, ball 수에 따라 게임 종료 조건 명시
+        if (strikes==3){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    // strike 아닌 경우, 다른 위치에 ball인 숫자(위치는 다르지만 현재 idx의 숫자와 같은 숫자) 수 계산
+    public int checkBall(int[] pNum, int[] cNum, int idx){
+        int ballCount = 0;
+        // computerNum의 각 자릿수를 전체 탐색
+        for(int i=0; i<3; i++){
+            // 같은 idx는 건너 뜀
+            if(idx == i){
+                continue;
+            }
+            // 다른 idx의 숫자가 같다면 ballCount를 증가
+            else if(pNum[idx]==cNum[i]){
+                ballCount++;
+            }
+        }
+        return ballCount;
+    }
 
 
     // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
