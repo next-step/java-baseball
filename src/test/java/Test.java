@@ -17,12 +17,6 @@ public class Test {
         System.out.println("===테스트 종===");
     }
 
-//    @org.junit.jupiter.api.Test
-//    public void baseballGameTest() {
-//        Baseball playGame = new Baseball();
-//        playGame.playGame();
-//    }
-
     // Ball 갯수 check 하는 unit Test
     @org.junit.jupiter.api.Test
     public void testCompareNums() {
