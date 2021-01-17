@@ -4,10 +4,11 @@ import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserOutputTest {
+class UserIOTest {
     private static final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
     private static final PrintStream sysOut = System.out;
 
@@ -17,7 +18,7 @@ class UserOutputTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         testOut.reset();
     }
 
@@ -27,12 +28,26 @@ class UserOutputTest {
     }
 
     @Test
-    @DisplayName("Test message is printed to stdout")
-    void printMessage() {
+    @DisplayName("Test int value is returned from stdin with print message to stdout")
+    void scanInt() {
+        Scanner scanner = new Scanner("123");
         String msg = "TEST MESSAGE";
 
-        UserOutput output = new UserOutput();
-        output.printMessage(msg);
+        UserIO io = new UserIO(scanner);
+        int number = io.scanInt(msg);
+
+        assertEquals(msg, testOut.toString());
+        assertEquals(123, number);
+    }
+
+    @Test
+    @DisplayName("Test message is printed to stdout")
+    void printMsg() {
+        Scanner scanner = new Scanner("");
+        String msg = "TEST MESSAGE";
+
+        UserIO io = new UserIO(scanner);
+        io.printMsg(msg);
 
         assertEquals(msg, testOut.toString());
     }
