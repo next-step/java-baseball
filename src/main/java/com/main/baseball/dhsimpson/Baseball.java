@@ -11,7 +11,7 @@ public class Baseball {
     int[] playerNum;
     Scanner scan;
     // 기본 생성
-    Baseball(){
+    public Baseball(){
         computerNum = new int[3];
         playerNum = new int[3];
         scan = new Scanner(System.in);
