@@ -28,26 +28,15 @@ class UserInputTest {
     }
 
     @Test
-    @DisplayName("Test output is number message and return of user input")
-    void inputNumber() {
+    @DisplayName("Test int value is returned from stdin with print message to stdout")
+    void scanInt() {
         Scanner scanner = new Scanner("123");
+        String msg = "TEST MESSAGE";
 
         UserInput input = new UserInput(scanner);
-        int number = input.inputNumber();
+        int number = input.scanInt(msg);
 
-        assertEquals("숫자를 입력해주세요 : ", testOut.toString());
+        assertEquals(msg, testOut.toString());
         assertEquals(123, number);
-    }
-
-    @Test
-    @DisplayName("Test output is restart message and return of user input")
-    void inputRestart() {
-        Scanner scanner = new Scanner("1");
-
-        UserInput input = new UserInput(scanner);
-        int isRestart = input.inputRestart();
-
-        assertEquals("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n", testOut.toString());
-        assertEquals(1, isRestart);
     }
 }
