@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class RequestUser {
 
+    Scanner sc = new Scanner(System.in);
+
     public GameInfo askUserForSuitableNum() {
-        Scanner sc = new Scanner(System.in);
         NumberUtil numberUtil = new NumberUtil();
         String userNumber;
         while (true) {
@@ -21,7 +22,6 @@ public class RequestUser {
 
     public Boolean askUserForRenewGame() {
         InternalGame internalGame = new InternalGame();
-        Scanner sc = new Scanner(System.in);
         System.out.println(ConstantString.GAME_RESUMPTION);
         String userAnswer = sc.next();
         return internalGame.isGameRenew(userAnswer);
