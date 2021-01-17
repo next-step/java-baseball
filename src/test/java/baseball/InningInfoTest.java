@@ -22,7 +22,7 @@ class InningInfoTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Test play message by Inning info")
+    @DisplayName("Test end message by Inning info")
     @CsvSource({
         "2, 1, ''",
         "0, 3, '3개의 숫자를 모두 맞히셨습니다! 게임 종료\n'",
