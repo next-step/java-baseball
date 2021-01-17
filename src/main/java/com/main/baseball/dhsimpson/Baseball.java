@@ -17,7 +17,7 @@ public class Baseball {
         scan = new Scanner(System.in);
     }
     // 게임 실행
-    void playGame(){
+    public void playGame(){
         boolean isFinish = true;
         while(isFinish){
             // 게임 시작할 때 컴퓨터 번호 랜덤 설정
