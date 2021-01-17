@@ -89,6 +89,48 @@ public class Baseball {
         }
         return ballCount;
     }
+
+    // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
+    public boolean playOnce(){
+        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setPlayerNum에서만 발생할 듯?? 그 함수에 throw 붙여주자
+        boolean playerWin = false;
+        int isFinish;
+        while(true){
+            System.out.println("숫자를 입력해 주세요 : ");
+            setPlayerNum();
+            playerWin = compareNums(); // 이 안에서 gameMessage를 출력하자.
+            // 숫자 3개 전부 맞췄을 때 루프 종료
+            if(playerWin){
+                break;
+            }
+        }
+        // 1,2 이외의 숫자 입력이나 숫자 이외를 입력 시 예외 발생
+        while(true){
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            isFinish = scan.nextInt();
+            if(isFinish == 1){
+                return true;
+            }else if(isFinish == 2){
+                return false;
+            }else{
+                System.out.println("잘못 된 숫자를 입력했습니다.");
+            }
+        }
+    }
+    // 게임 진행 시 메시지 보여주기 : compareNums 안에서
+    void gameMessage(int strikes, int balls){
+        if(balls == 0 && strikes == 0) {
+            System.out.printf("낫싱");
+        }
+        else if(balls > 0) {
+            System.out.printf("%d볼 ", balls);
+        }
+        else if(strikes > 0) {
+            System.out.printf("%d스트라이크 ", strikes);
+        }
+        System.out.println();
+    }
+
     // TDD를 위한 메서드들
     // 두 수를 비교해 3Strike 인지 여부 반환
     public boolean compareNums(int[] pNum, int[] cNum){
@@ -136,47 +178,5 @@ public class Baseball {
             }
         }
         return ballCount;
-    }
-
-
-    // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
-    public boolean playOnce(){
-        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setPlayerNum에서만 발생할 듯?? 그 함수에 throw 붙여주자
-        boolean playerWin = false;
-        int isFinish;
-        while(true){
-            System.out.println("숫자를 입력해 주세요 : ");
-            setPlayerNum();
-            playerWin = compareNums(); // 이 안에서 gameMessage를 출력하자.
-            // 숫자 3개 전부 맞췄을 때 루프 종료
-            if(playerWin){
-                break;
-            }
-        }
-        // 1,2 이외의 숫자 입력이나 숫자 이외를 입력 시 예외 발생
-        while(true){
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            isFinish = scan.nextInt();
-            if(isFinish == 1){
-                return true;
-            }else if(isFinish == 2){
-                return false;
-            }else{
-                System.out.println("잘못 된 숫자를 입력했습니다.");
-            }
-        }
-    }
-    // 게임 진행 시 메시지 보여주기 : compareNums 안에서
-    void gameMessage(int strikes, int balls){
-        if(balls == 0 && strikes == 0) {
-            System.out.printf("낫싱");
-        }
-        else if(balls > 0) {
-            System.out.printf("%d볼 ", balls);
-        }
-        else if(strikes > 0) {
-            System.out.printf("%d스트라이크 ", strikes);
-        }
-        System.out.println();
     }
 }
