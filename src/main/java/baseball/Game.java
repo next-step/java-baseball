@@ -33,4 +33,43 @@ public class Game {
             userIO.printMsg(WRONG_FORMAT_MSG);
         }
     }
+
+    public void play() {
+        Number answer = buildAnswer();
+        while (true) {
+            Number trial = buildTrial();
+            InningInfo info = answer.compareNumber(trial);
+
+            String playMsg = info.playMessage();
+            userIO.printMsg(playMsg);
+
+            String endMsg = info.endMessage();
+            if (!endMsg.equals("")) {
+                userIO.printMsg(endMsg);
+                break;
+            }
+        }
+    }
+
+    private Number buildAnswer() {
+        while (true) {
+            try {
+                return numberBuilder.byRandom();
+            } catch (Exception e) {
+                userIO.printMsg(UNEXPECTED_MSG);
+                System.exit(1);
+            }
+        }
+    }
+
+    private Number buildTrial() {
+        while (true) {
+            int num = userIO.scanInt(NUMBER_MSG);
+            try {
+                return numberBuilder.byInt(num);
+            } catch (Exception e) {
+                userIO.printMsg(WRONG_FORMAT_MSG);
+            }
+        }
+    }
 }
