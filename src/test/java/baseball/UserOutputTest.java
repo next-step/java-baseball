@@ -1,8 +1,6 @@
 package baseball;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -28,27 +26,14 @@ class UserOutputTest {
         System.setOut(sysOut);
     }
 
-    @ParameterizedTest
-    @DisplayName("Test output is proper information message with argument")
-    @CsvSource({
-        "0, 0, '낫싱\n'",
-        "1, 0, '1볼\n'",
-        "0, 2, '2스트라이크\n'",
-        "2, 1, '2볼 1스트라이크\n'",
-    })
-    void printInfo(int ball, int strike, String expected) {
-        UserOutput output = new UserOutput();
-        output.printInfo(ball, strike);
-
-        assertEquals(expected, testOut.toString());
-    }
-
     @Test
-    @DisplayName("Test output is finish message")
-    void printFinish() {
-        UserOutput output = new UserOutput();
-        output.printFinish();
+    @DisplayName("Test message is printed to stdout")
+    void printMessage() {
+        String msg = "TEST MESSAGE";
 
-        assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n", testOut.toString());
+        UserOutput output = new UserOutput();
+        output.printMessage(msg);
+
+        assertEquals(msg, testOut.toString());
     }
 }
