@@ -7,6 +7,8 @@ public class Numbers {
 
     private final List<Integer> numbers;
 
+    private static final int NUMBERS_REQUIRED_SIZE = 3;
+
     public Numbers(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -18,7 +20,7 @@ public class Numbers {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() < 3) {
+        if (numbers.size() < NUMBERS_REQUIRED_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_ENOUGH_ELEMENTS.toString());
         }
         StringBuilder numbersString = new StringBuilder();
@@ -32,7 +34,7 @@ public class Numbers {
         if (!isNumeric(numbersString)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_A_NUMBER.toString());
         }
-        if (numbersString.length() != 3) {
+        if (numbersString.length() != NUMBERS_REQUIRED_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_THREE_DIGITS_NUMBER.toString());
         }
         Set<Integer> argNumbers = new LinkedHashSet<>();
