@@ -14,12 +14,12 @@ public class UserInput {
     // 5.2.3 : Method names are written in lowerCamelCase
     public int inputNumber() {
         System.out.print(NUMBER_MSG);
-        return this.scanner.nextInt();
+        return scanner.nextInt();
     }
 
     public int inputRestart() {
         System.out.println(RESTART_MSG);
-        return this.scanner.nextInt();
+        return scanner.nextInt();
     }
 
 }

@@ -1,7 +1,5 @@
 package baseball;
 
-import java.util.Objects;
-
 public class InningInfo {
     private int strike;
     private int ball;

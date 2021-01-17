@@ -64,7 +64,7 @@ public class Number {
 
     private int find(int value) {
         for (int i = 0; i < DIGIT_LENGTH; i++) {
-            if (this.digits[i] == value) {
+            if (digits[i] == value) {
                 return i;
             }
         }
@@ -76,7 +76,7 @@ public class Number {
         int ball = 0;
 
         for (int i = 0; i < DIGIT_LENGTH; i++) {
-            int matchedIdx = other.find(this.digits[i]);
+            int matchedIdx = other.find(digits[i]);
             if (matchedIdx == i) {
                 strike++;
             } else if (matchedIdx != -1) {
