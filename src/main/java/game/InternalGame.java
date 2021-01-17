@@ -29,33 +29,28 @@ public class InternalGame {
         return ballCount;
     }
 
-    //TODO(daeun): 좀 더 나은 방식으로 할 수 없을지 고민
     public GameInfo getGameResultInfo(int strikeCount, int ballCount) {
         GameInfo gameInfo = new GameInfo();
         if (strikeCount == 3) {
             System.out.println(ConstantString.THREE_STRIKE);
             gameInfo.setGameResumption(false);
-            return gameInfo;
+        } else {
+            System.out.println(Unit.printUnit(strikeCount, ballCount));
         }
-        System.out.println(Unit.printUnit(strikeCount, ballCount));
         return gameInfo;
     }
 
     public GameInfo getRealRandomNumInfo() {
-        String ball = "";
+        String randomNumberStr = "";
         HashMap<Integer, Boolean> ballHashMap = new HashMap<>();
-        while (ball.length() != 3) {
-            double randomValue = Math.random();
-            int num = (int) (randomValue * 9) + 1;
-            if (ballHashMap.containsKey(num)) {
-                continue;
-            } else {
-                ballHashMap.put(num, true);
-                ball += Integer.toString(num);
+        while (randomNumberStr.length() != 3) {
+            int randomNum = (int) (Math.random() * 9) + 1;
+            if (!ballHashMap.containsKey(randomNum)) {
+                ballHashMap.put(randomNum, true);
+                randomNumberStr += Integer.toString(randomNum);
             }
         }
-        GameInfo gameInfo = new GameInfo(ball);
-        return gameInfo;
+        return new GameInfo(randomNumberStr);
     }
 
     public GameInfo startBaseBallGame(GameInfo realGameInfo) {
