@@ -84,6 +84,6 @@ public class Number {
             }
         }
 
-        return new InningInfo(strike, ball);
+        return new InningInfo(strike, ball, DIGIT_LENGTH);
     }
 }
