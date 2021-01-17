@@ -44,8 +44,8 @@ class GameTest {
     }
 
     private static Stream<Arguments> providerPlayParams() {
-        String inputs[] = {"456", "145", "451", "413", "123"};
-        String innings[] = {"낫싱", "1스트라이크", "1볼", "1볼 1스트라이크", "3스트라이크"};
+        String[] inputs = {"456", "145", "451", "413", "123"};
+        String[] innings = {"낫싱", "1스트라이크", "1볼", "1볼 1스트라이크", "3스트라이크"};
 
         return Stream.of(
             Arguments.of(
