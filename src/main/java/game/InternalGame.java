@@ -4,9 +4,7 @@ import java.util.HashMap;
 
 public class InternalGame {
 
-    public int getStrikeCount(GameInfo realGameInfo, GameInfo userGameInfo) {
-        String realNumber = realGameInfo.getNumber();
-        String userNumber = userGameInfo.getNumber();
+    public int getStrikeCount(String realNumber, String userNumber) {
         int strikeCount = 0;
         for (int i = 0; i < realNumber.length(); i++) {
             if (realNumber.charAt(i) == userNumber.charAt(i)) {
@@ -16,17 +14,15 @@ public class InternalGame {
         return strikeCount;
     }
 
-    public int getBallCount(GameInfo realGameInfo, GameInfo userGameInfo) {
-        String realBall = realGameInfo.getNumber();
-        String userBall = userGameInfo.getNumber();
+    public int getBallCount(String realNumber, String userNumber) {
         HashMap<Character, Integer> ballHashMap = new HashMap<>();
         int ballCount = 0;
-        for (int i = 0; i < realBall.length(); i++) {
-            ballHashMap.put(realBall.charAt(i), i);
+        for (int i = 0; i < realNumber.length(); i++) {
+            ballHashMap.put(realNumber.charAt(i), i);
         }
-        for (int i = 0; i < userBall.length(); i++) {
-            if (ballHashMap.containsKey(userBall.charAt(i)) && i != ballHashMap
-                .get(userBall.charAt(i))) {
+        for (int i = 0; i < userNumber.length(); i++) {
+            if (ballHashMap.containsKey(userNumber.charAt(i)) && i != ballHashMap
+                .get(userNumber.charAt(i))) {
                 ballCount++;
             }
         }
@@ -65,8 +61,8 @@ public class InternalGame {
     public GameInfo startBaseBallGame(GameInfo realGameInfo) {
         RequestUser requestUser = new RequestUser();
         GameInfo userGameInfo = requestUser.askUserForSuitableNum();
-        int strikeCount = getStrikeCount(realGameInfo, userGameInfo);
-        int ballCount = getBallCount(realGameInfo, userGameInfo);
+        int strikeCount = getStrikeCount(realGameInfo.getNumber(), userGameInfo.getNumber());
+        int ballCount = getBallCount(realGameInfo.getNumber(), userGameInfo.getNumber());
         GameInfo gameResultInfo = getGameResultInfo(strikeCount, ballCount);
         return gameResultInfo;
     }
