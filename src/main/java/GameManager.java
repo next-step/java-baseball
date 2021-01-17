@@ -27,7 +27,7 @@ public class GameManager {
     private void playOneGame(Numbers answerNumbers) {
         Numbers playerNumbers = getPlayerNumbersByInput();
         BallCount ballCount = new BallCount(answerNumbers, playerNumbers);
-        ballCount.printDetailedMessage();
+        ballCount.printDetailedCountMessage();
         if (ballCount.isThreeStrikes()) {
             System.out.println(OutputMessage.GAME_FINISHED);
             continuesGame = false;

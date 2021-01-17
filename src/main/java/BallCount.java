@@ -25,7 +25,7 @@ public class BallCount {
         this.strikes = strikes;
     }
 
-    public void printDetailedMessage() {
+    public void printDetailedCountMessage() {
         System.out.println(createBallCountMessage(this.balls, this.strikes));
     }
 
