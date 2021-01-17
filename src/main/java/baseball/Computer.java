@@ -65,7 +65,7 @@ public class Computer {
         this.strike = strike;
     }
 
-    public void print() {
+    public void printResult() {
         if (strike == 0 && ball == 0) {
             System.out.println("낫싱");
             return;
@@ -74,11 +74,12 @@ public class Computer {
             System.out.print(strike + " 스트라이크 ");
         }
         if (ball != 0) {
-            System.out.println(ball + " 볼");
+            System.out.print(ball + " 볼");
         }
         if (strike == 3) {
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         }
+        System.out.println();
     }
 
     private void calcBall(int inputHundredNumber, int inputTenNumber, int inputOneNumber) {
