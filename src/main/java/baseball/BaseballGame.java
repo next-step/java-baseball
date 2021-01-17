@@ -17,6 +17,9 @@ public class BaseballGame {
     private final PrintInput printInput = new PrintInput(new Scanner(System.in));
     private final PrintOutput printOutput = new PrintOutput();
 
+    /**
+     * Playing game and generate hidden number.
+     */
     public void play() {
         while (playing) {
             // Reset Strike and Ball count
@@ -29,8 +32,12 @@ public class BaseballGame {
         }
     }
 
+    /**
+     * Ask user to quit or continue the game.
+     */
     private void askExit() {
         String option = printInput.askUserOption();
+        // When option is not validate, print error message and ask again.
         while(!Validator.isCorrectOption(option)) {
             printOutput.printError();
             option = printInput.askUserOption();
@@ -40,16 +47,24 @@ public class BaseballGame {
         }
     }
 
+    /**
+     * Playing game and generate hidden number.
+     */
     private void doGuess() {
+        // If strike count is 3, quit one game.
         while (result.getStrike() != 3) {
             getInput();
             PrintResult.checkResult(result.getStrike(), result.getBall(), printOutput);
         }
     }
 
+    /**
+     * Getting guess number from the user.
+     */
     private void getInput() {
         while(true) {
             String userInput = printInput.receiveUserNumber();
+            // When userInput is not validate, print error message and ask again.
             if(!Validator.isCorrectInput(userInput)) {
                 printOutput.printError();
                 continue;
@@ -59,6 +74,10 @@ public class BaseballGame {
         }
     }
 
+    /**
+     * Compare user number and the hidden number.
+     * @param userInput String of user input.
+     */
     private void check(String userInput) {
         List<Integer> userList = NumberUtil.convertString(userInput);
         result.compare(answer, userList);
