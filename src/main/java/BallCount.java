@@ -2,10 +2,10 @@ import java.util.List;
 
 public class BallCount {
 
+    private static final String EMPTY_STRING = "";
+
     private final int balls;
     private final int strikes;
-
-    private final String EMPTY_STRING = "";
 
     public BallCount(Numbers numbers1, Numbers numbers2) {
         List<Integer> answerNumbers = numbers1.getNumbers();

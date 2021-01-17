@@ -1,9 +1,9 @@
 public class GameManager {
 
+    private static final String PLAYER_REACTION_YES = "1";
+
     private final Input input;
     private boolean continuesGame;
-
-    private static final String PLAYER_REACTION_YES = "1";
 
     public GameManager(Input input) {
         this.input = input;

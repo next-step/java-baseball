@@ -5,9 +5,9 @@ import java.util.Set;
 
 public class Numbers {
 
-    private final List<Integer> numbers;
-
     private static final int NUMBERS_REQUIRED_SIZE = 3;
+
+    private final List<Integer> numbers;
 
     public Numbers(List<Integer> numbers) {
         validate(numbers);
