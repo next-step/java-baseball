@@ -8,6 +8,9 @@ public class RandomNumbersGenerator {
     private static final Random random = new Random();
     private static final int NUMBERS_REQUIRED_SIZE = 3;
 
+    private RandomNumbersGenerator() {
+    }
+
     public static Numbers generate() {
         return new Numbers(getRandomNumbers());
     }
