@@ -51,7 +51,7 @@ public class Numbers {
         }
     }
 
-    private static boolean isNumeric(String numericFormatString) {
+    private boolean isNumeric(String numericFormatString) {
         if (numericFormatString == null) {
             return false;
         }
