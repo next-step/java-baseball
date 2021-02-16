@@ -38,6 +38,8 @@ public class BaseballController {
             OutputView.inputNumber(); // 숫자를 입력해 주세요.
             String numbers = InputView.inputNumber();
             isEnd = baseball.compareNumbers(numbers); // 컴퓨터와 플레이어의 숫자를 비교
+            // 현재의 strike, ball 상태 프린트
+            OutputView.gameMessage(baseball);
         }
         OutputView.result();//3개의 숫자를 모두 맞히셨습니다! 게임 종료
     }

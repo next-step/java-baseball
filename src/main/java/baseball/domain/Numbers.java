@@ -1,8 +1,6 @@
 package baseball.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +17,11 @@ public class Numbers {
         numberToList(number);
     }
 
-    private void numberToList(String number) {
-        numbers = Arrays.stream(number.split("")).map(Integer::valueOf).collect(Collectors.toList());
+    private void numberToList(String numbers) {
+        this.numbers = Arrays
+                .stream(numbers.split(""))
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {
