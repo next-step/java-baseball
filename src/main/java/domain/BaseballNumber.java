@@ -5,6 +5,8 @@ import utils.Validator;
 import java.util.Objects;
 
 public class BaseballNumber {
+    public static final int MINIMUM_BASEBALL_NUMBER = 1;
+    public static final int MAXIMUM_BASEBALL_NUMBER = 9;
     private final int number;
 
     public BaseballNumber(int number){
