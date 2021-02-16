@@ -21,7 +21,7 @@ public class Numbers {
         }
     }
 
-    public int digits() {
+    public int numberOfDigits() {
         return this.numbers.size();
     }
 

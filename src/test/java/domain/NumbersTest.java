@@ -37,7 +37,7 @@ class NumbersTest {
         Numbers numbers = new Numbers(numbersList);
 
         // when
-        int size = numbers.digits();
+        int size = numbers.numberOfDigits();
 
         // then
         assertThat(size).isEqualTo(3);
