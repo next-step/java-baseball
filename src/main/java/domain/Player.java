@@ -1,13 +1,21 @@
 package domain;
 
-public abstract class Player {
+import static domain.BaseballNumberBundle.DEFAULT_BUNDLE_NUMBER;
+
+public class Player {
     private BaseballNumberBundle baseballNumberBundle;
 
     protected Player() {
         baseballNumberBundle = new BaseballNumberBundle(pickBaseballNumbers());
     }
 
-    protected abstract int pickBaseballNumbers();
+    public Player(int number){
+        baseballNumberBundle = new BaseballNumberBundle(number);
+    }
+
+    protected int pickBaseballNumbers(){
+        return DEFAULT_BUNDLE_NUMBER;
+    }
 
     public BaseballNumberBundle getBaseballNumberBundle() {
         return baseballNumberBundle;
