@@ -4,12 +4,13 @@ import model.Player;
 
 public class ResultView {
 
-    private static final String STRIKE_FORMAT = "%s스트라이크\n";
+    private static final String STRIKE_FORMAT = "%s스트라이크";
     private static final String BALL_FORMAT = "%s볼 ";
-
+    private static final String GAME_SET_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     public static void printResult(int strike, int ball) {
         printStrikes(strike);
         printBalls(ball);
+        System.out.println();
     }
 
     private static void printBalls(int ball) {
@@ -23,5 +24,9 @@ public class ResultView {
         if (strike > 0) {
             System.out.printf(STRIKE_FORMAT,strike);
         }
+    }
+
+    public static void printGameSet() {
+        System.out.println(GAME_SET_MESSAGE);
     }
 }
