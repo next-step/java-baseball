@@ -24,8 +24,16 @@ public class BaseballGameController {
     public void doGuess(BallCount ballCount, BallNumbers answerNumbers) {
         final int DONE = 3;
         while (!ballCount.isDone(DONE)) {
+            askGuessInput(ballCount, answerNumbers);
+        }
+    }
+
+    private void askGuessInput(BallCount ballCount, BallNumbers answerNumbers) {
+        try {
             BallNumbers guessNumbers = BallNumbers.of(inputView.getGuessNumbers());
             outputView.printResult(answerNumbers.match(ballCount, guessNumbers));
+        } catch (IllegalArgumentException e) {
+            outputView.printError();
         }
     }
 }
