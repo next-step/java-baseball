@@ -12,6 +12,7 @@ public class Numbers {
     public Numbers(final List<Integer> numbers) {
         Objects.requireNonNull(numbers);
         validateSize(numbers);
+        // TODO: 중복된 수 검사 & 테스트 추가
         this.numbers = new ArrayList<>(numbers);
     }
 
@@ -30,5 +31,27 @@ public class Numbers {
         return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
+    }
+
+    /**
+     * 서로 다른 두 Numbers가 갖고 있는 numbers(collection) 필드의 특정 index의 값이 동일한지 검사한다.
+     *
+     * @param index          비교 할 index
+     * @param anotherNumbers 비교할 다른 Numbers 객체
+     */
+    public boolean existsSameNumberAt(final int index, final Numbers anotherNumbers) {
+        int anotherNumber = anotherNumbers.numbers.get(index);
+        return this.numbers.get(index).equals(anotherNumber);
+    }
+
+    /**
+     * Numbers 객체가 내부적으로 갖고 있는 특정 number 값을 다른 Numbers 객체도 갖고 있는지 검사한다.
+     *
+     * @param index          비교 할 index
+     * @param anotherNumbers 비교할 다른 Numbers 객체
+     */
+    public boolean contains(final int index, final Numbers anotherNumbers) {
+        int number = this.numbers.get(index);
+        return anotherNumbers.numbers.contains(number);
     }
 }
