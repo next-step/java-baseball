@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,7 +29,34 @@ public class Number {
     private List<Integer> digits;
 
     public Number(List<Integer> digits) {
+        checkLength(digits);
+        checkDigitsBound(digits);
+        checkRepeat(digits);
+        
         this.digits = digits;
+    }
+
+    private void checkLength(List<Integer> digits) {
+        if (digits.size() != DIGIT_LENGTH) {
+            // TODO : Make error message to constant
+            throw new RuntimeException("Wrong length");
+        }
+    }
+
+    private void checkDigitsBound(List<Integer> digits) {
+        digits.forEach(digit -> checkDigitBound(digit));
+    }
+
+    private void checkDigitBound(Integer digit) {
+        if (digit < DIGIT_LEFT_BOUND || digit >= DIGIT_RIGHT_BOUND) {
+            throw new RuntimeException("Wrong digit");
+        }
+    }
+
+    private void checkRepeat(List<Integer> digits) {
+        if (digits.size() != new HashSet<>(digits).size()) {
+            throw new RuntimeException("Repeat exist");
+        }
     }
 
     public static Number createByInput(String input) {
