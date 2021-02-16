@@ -1,8 +1,11 @@
 package util;
 
-import static domain.BaseballGame.NUMBER_SIZE;
+import static controller.BaseballController.NUMBER_SIZE;
 
 public class ValidationUtil {
+
+    private ValidationUtil() {
+    }
 
     public static void validateUserInput(char[] userInput) {
         validateInputSize(userInput.length);
@@ -15,7 +18,7 @@ public class ValidationUtil {
     }
 
     private static void validateInputSize(int length) {
-        if(length != NUMBER_SIZE) {
+        if (length != NUMBER_SIZE) {
             throw new IllegalArgumentException("잘못 입력하셨습니다. 3자리수를 입력해야합니다. 다시 입력해주세요.");
         }
     }
@@ -42,11 +45,11 @@ public class ValidationUtil {
     }
 
     private static void validateReplayInputType(String userInput) {
-        if(userInput.length() != 1) {
+        if (userInput.length() != 1) {
             throw new IllegalArgumentException("잘못 입력하셨습니다. 1 또는 2 를 입력해주세요.");
         }
         int tmp = userInput.charAt(0) - '0';
-        if(tmp != 1 && tmp != 2) {
+        if (tmp != 1 && tmp != 2) {
             throw new IllegalArgumentException("잘못 입력하셨습니다. 1 또는 2 를 입력해주세요.");
         }
     }

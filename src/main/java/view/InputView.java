@@ -10,7 +10,10 @@ public class InputView {
 
     public static final String INFO_INPUT_NUMBER = "숫자를 입력해주세요 : ";
     public static final String INFO_INPUT_REPLAY_OPTION = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-    private final static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
+
+    private InputView() {
+    }
 
     public static NumberSet getPlayerInput() {
         System.out.print(INFO_INPUT_NUMBER);

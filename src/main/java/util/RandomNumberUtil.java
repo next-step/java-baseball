@@ -1,14 +1,18 @@
 package util;
 
+import static controller.BaseballController.NUMBER_SIZE;
+
 import java.util.Random;
 
-import static domain.BaseballGame.NUMBER_SIZE;
-
 public class RandomNumberUtil {
+
     private static final Random RANDOM = new Random();
     static final int START_INCLUSIVE_NUM = 1;
     static final int END_INCLUSIVE_NUM = 9;
     static boolean[] checkDistinct = new boolean[10];
+
+    private RandomNumberUtil() {
+    }
 
     public static int[] getDistinctNumber() {
         int[] systemNum = new int[NUMBER_SIZE];
@@ -36,7 +40,7 @@ public class RandomNumberUtil {
     }
 
     private static boolean isDistinct(int checkNum) {
-        if(!checkDistinct[checkNum]) {
+        if (!checkDistinct[checkNum]) {
             checkDistinct[checkNum] = true;
             return true;
         } else {

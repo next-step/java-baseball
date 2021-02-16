@@ -11,11 +11,11 @@ import view.OutputView;
 
 public class BaseballController {
 
-    private static State state = State.PLAY;
+    private State state = State.PLAY;
     public static final int NUMBER_SIZE = 3;
     public static final int GAME_OVER_CONDITION_STRIKE = 3;
-    private static NumberSet systemNumbers;
-    private static NumberSet playerNumbers;
+    private NumberSet systemNumbers;
+    private NumberSet playerNumbers;
 
     public void startGame() {
         initGame();
@@ -38,7 +38,7 @@ public class BaseballController {
             .collect(Collectors.toList()));
     }
 
-    private static int checkStrike() {
+    private int checkStrike() {
         int strikeCnt = 0;
         for (int i = 0; i < NUMBER_SIZE; i++) {
             if(playerNumbers.getNumbers().get(i).getNumber() == systemNumbers.getNumbers().get(i).getNumber()) {
@@ -48,15 +48,14 @@ public class BaseballController {
         return strikeCnt;
     }
 
-    private static void checkAnswer(int strikeCnt) {
+    private void checkAnswer(int strikeCnt) {
         if (strikeCnt == GAME_OVER_CONDITION_STRIKE) {
-            OutputView.printStrikeHint(strikeCnt);
-            OutputView.printGameOver();
+            OutputView.printGameOver(strikeCnt);
             checkPlayerReplayAnswer();
         }
     }
 
-    private static void checkPlayerReplayAnswer() {
+    private void checkPlayerReplayAnswer() {
         int option = InputView.getPlayerReplayInput();
         if(option == State.PLAY.getOption()) {
             systemNumbers = new NumberSet(Arrays.stream(RandomNumberUtil.getDistinctNumber())
