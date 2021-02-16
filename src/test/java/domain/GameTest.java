@@ -9,9 +9,9 @@ public class GameTest {
         Game game = new Game();
 
         game.setFinish(new MenuNumber("1"));
-        Assertions.assertThat(game.isRunning()).isFalse();
+        Assertions.assertThat(game.isRunning()).isTrue();
 
         game.setFinish(new MenuNumber("2"));
-        Assertions.assertThat(game.isRunning()).isTrue();
+        Assertions.assertThat(game.isRunning()).isFalse();
     }
 }

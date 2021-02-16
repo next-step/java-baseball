@@ -13,7 +13,6 @@ public class Round {
         return !isFinished;
     }
 
-
     public void setResult(List<String> result) {
         if (result.contains("3스트라이크")) {
             isFinished = true;
