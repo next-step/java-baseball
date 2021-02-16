@@ -1,22 +1,29 @@
 package baseball.model.shot;
 
 import baseball.model.AnswerNumbers;
+import baseball.model.InningResult;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Shots {
-    private final List<Shot> shots;
+    private final Map<Shot, Integer> shots = new HashMap<>();
+    private final AnswerNumbers answerNumbers;
     private int index = -1;
 
-    public Shots(final String inputData, final AnswerNumbers answerNumbers) {
-        final List<Integer> inputList = parsingInput(inputData);
-        shots = compareAnswer(inputList, answerNumbers);
+
+    public Shots(final AnswerNumbers answerNumbers) {
+        this.answerNumbers = answerNumbers;
     }
 
-    public List<Shot> getShots() {
-        return shots;
+    public InningResult makeResult(final String inputData) {
+        final List<Integer> inputList = parsingInput(inputData);
+        compareAnswer(inputList, answerNumbers);
+
+        return new InningResult(shots);
     }
 
     private List<Integer> parsingInput(final String inputData) {
@@ -27,13 +34,13 @@ public class Shots {
                 .collect(Collectors.toList());
     }
 
-    private List<Shot> compareAnswer(final List<Integer> inputList, final AnswerNumbers answerNumbers) {
-        return inputList.stream()
+    private void compareAnswer(final List<Integer> inputList, final AnswerNumbers answerNumbers) {
+        inputList.stream()
                 .map(answerNumber -> {
                     index++;
                     return getResult(answerNumber, answerNumbers);
                 })
-                .collect(Collectors.toList());
+                .forEach(result -> shots.put(result, shots.getOrDefault(result, 0) + 1));
     }
 
     private Shot getResult(int oneCount, final AnswerNumbers answerNumbers) {
