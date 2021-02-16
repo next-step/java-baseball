@@ -30,4 +30,17 @@ class BallCountTest {
         // then
         assertThat(threeStrikes).isTrue();
     }
+
+    @DisplayName("toString 출력 결과")
+    @Test
+    void testToString() {
+        // given
+        BallCount ballCount = new BallCount(2, 1);
+
+        // when
+        String toString = ballCount.toString();
+
+        // then
+        assertThat(toString).isEqualTo("2볼 1스트라이크");
+    }
 }
