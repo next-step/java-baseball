@@ -28,4 +28,12 @@ public class Validator {
             throw new IllegalArgumentException("중복된 숫자를 입력하면 안됩니다.");
         }
     }
+
+    public static void stringToIntegerValidation(String stringNumber){
+        try {
+            Integer.parseInt(stringNumber);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("숫자 데이터를 입력해주세요.");
+        }
+    }
 }
