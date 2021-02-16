@@ -1,4 +1,4 @@
-package domain;
+package BaseballGame.domain;
 
 public class Inning {
     private final int tryNumber;

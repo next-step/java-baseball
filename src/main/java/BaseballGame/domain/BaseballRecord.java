@@ -1,4 +1,4 @@
-package domain;
+package BaseballGame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,5 +12,9 @@ public class BaseballRecord {
 
     public List<Inning> getChart() {
         return this.chart;
+    }
+
+    public Inning getLastInning() {
+        return chart.get(chart.size() - 1);
     }
 }

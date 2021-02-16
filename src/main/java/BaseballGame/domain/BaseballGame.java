@@ -1,4 +1,4 @@
-package domain;
+package BaseballGame.domain;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -53,6 +53,10 @@ public class BaseballGame {
 
     public BaseballRecord getBaseballRecord() {
         return this.baseballRecord;
+    }
+
+    public Inning getLastResult() {
+        return baseballRecord.getLastInning();
     }
 
     public ArrayList<Integer> makeGroup(int value) {
