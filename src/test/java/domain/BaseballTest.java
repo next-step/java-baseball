@@ -7,7 +7,6 @@ import game.domain.BallNumber;
 import game.domain.Baseball;
 import java.util.Arrays;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -71,46 +70,32 @@ public class BaseballTest {
     @DisplayName("strike 개수를 잘 계산하는지 테스트")
     @ParameterizedTest
     @MethodSource("provideCalculateStrikeCountTest")
-    void calculateStrikeCountTest(Baseball randomBall, Long expected) {
+    void calculateStrikeCountTest(Baseball randomBall, int expected) {
         Baseball baseball = new Baseball("123");
         baseball.calculateStrikeBall(randomBall);
-        assertEquals(baseball.getStrikeCount(), expected);
+        assertEquals(baseball.getStrikeCount().intValue(), expected);
     }
 
     private static Stream<Arguments> provideCalculateStrikeCountTest() {
         return Stream.of(
-            Arguments.of(new Baseball("123"), Long.getLong("3")),
-            Arguments.of(new Baseball("456"), Long.getLong("0"))
+            Arguments.of(new Baseball("123"), 3),
+            Arguments.of(new Baseball("456"), 0)
         );
     }
 
     @DisplayName("ball 개수를 잘 계산하는지 테스트")
     @ParameterizedTest
     @MethodSource("provideCalculateBallCountTest")
-    void calculateBallCountTest(Baseball randomBall, Long expected) {
+    void calculateBallCountTest(Baseball randomBall, int expected) {
         Baseball baseball = new Baseball("123");
         baseball.calculateBall(randomBall);
-        assertEquals(baseball.getStrikeCount(), expected);
+        assertEquals(baseball.getBallCount().intValue(), expected);
     }
 
     private static Stream<Arguments> provideCalculateBallCountTest() {
         return Stream.of(
-            Arguments.of(
-                new Baseball("123"),
-                new Baseball(Arrays.asList(
-                    new BallNumber(1),
-                    new BallNumber(2),
-                    new BallNumber(3)
-                ))
-            ),
-            Arguments.of(
-                new Baseball("456"),
-                new Baseball(Arrays.asList(
-                    new BallNumber(4),
-                    new BallNumber(5),
-                    new BallNumber(6)
-                ))
-            )
+            Arguments.of(new Baseball("213"), 2),
+            Arguments.of(new Baseball("456"), 0)
         );
     }
 }
