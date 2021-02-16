@@ -31,8 +31,6 @@ public class BaseballController {
     private void playOnce() {
         // 컴퓨터 난수 & 플레이어 win-loss 상태 초기화.
         baseball.initGame();
-
-        baseball.printComputerNumbers(); // c.f. 테스팅 단계에서만 사용.
         isEnd = false;
         while(!isEnd){
             OutputView.inputNumber(); // 숫자를 입력해 주세요.
