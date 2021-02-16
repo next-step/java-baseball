@@ -34,6 +34,16 @@ public class AnswerNumbersTest {
     }
 
     @Test
+    @DisplayName("1이 들어올 때, 정답에 있는 지 확인하는 테스트")
+    void containsTest() {
+        final LinearStrategy linearStrategy = new LinearStrategy();
+        final AnswerNumbers answerNumbers = new AnswerNumbers(linearStrategy);
+
+        boolean isContains = answerNumbers.contains(1);
+        assertThat(isContains).isEqualTo(true);
+    }
+
+    @Test
     @DisplayName("잘못된 포지션으로 접근시에 에러 확인 테스트")
     void getAnswerNumberErrorTest() {
         final LinearStrategy linearStrategy = new LinearStrategy();

@@ -34,4 +34,8 @@ public class AnswerNumbers {
 
         return answerNumbers.get(position);
     }
+
+    public boolean contains(int answerNumber) {
+        return answerNumbers.contains(answerNumber);
+    }
 }
