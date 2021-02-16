@@ -14,7 +14,6 @@ public class Shots {
     private final AnswerNumbers answerNumbers;
     private int index = -1;
 
-
     public Shots(final AnswerNumbers answerNumbers) {
         this.answerNumbers = answerNumbers;
     }
@@ -22,8 +21,9 @@ public class Shots {
     public InningResult makeResult(final String inputData) {
         final List<Integer> inputList = parsingInput(inputData);
         compareAnswer(inputList, answerNumbers);
-
-        return new InningResult(shots);
+        final InningResult inningResult = new InningResult(shots);
+        initialize();
+        return inningResult;
     }
 
     private List<Integer> parsingInput(final String inputData) {
@@ -51,5 +51,10 @@ public class Shots {
             return Shot.BALL;
         }
         return Shot.OUT;
+    }
+
+    private void initialize() {
+        shots.clear();
+        index = -1;
     }
 }
