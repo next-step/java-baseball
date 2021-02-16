@@ -7,7 +7,7 @@ import java.util.List;
 public class Computer {
     private static final List<BallNumber> BALL_NUMBER_GENERATOR = new ArrayList<>();
 
-    private final BaseBallNumbers baseBallNumbers;
+    private BaseBallNumbers baseBallNumbers;
 
     static {
         for (int i = 1; i < 10; i++) {
@@ -15,12 +15,16 @@ public class Computer {
         }
     }
 
-    private Computer(List<BallNumber> ballNumbers) {
-        this.baseBallNumbers = BaseBallNumbers.of(ballNumbers);
+    private Computer() {
+        this.baseBallNumbers = BaseBallNumbers.of();
     }
 
     public BaseBallNumbers getBaseBallNumbers() {
         return baseBallNumbers;
+    }
+
+    public void shuffleBaseBallNumbers() {
+        this.baseBallNumbers = BaseBallNumbers.of(generateBallNumbers());
     }
 
     public void startChecking(Player player) {
@@ -33,6 +37,6 @@ public class Computer {
     }
 
     public static Computer of () {
-        return new Computer(generateBallNumbers());
+        return new Computer();
     }
 }
