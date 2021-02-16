@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.*;
 
 class BallNumbersTest {
@@ -13,7 +15,15 @@ class BallNumbersTest {
     @Test
     void createBallNumbersTest() {
         BallNumbers ballNumbers = BallNumbers.of("123");
-//        assertThat(ballNumbers).isEqualTo(new )
+        BallNumbers expected = new BallNumbers(
+                new ArrayList<Number>() {{
+                    add(Number.of(1));
+                    add(Number.of(2));
+                    add(Number.of(3));
+                }}
+        );
+        assertThat(ballNumbers).isEqualTo(expected);
+        assertThat(ballNumbers.hashCode()).isEqualTo(expected.hashCode());
     }
 
     @DisplayName("유저가 입력한 숫자가 중복된 숫자를 가지고 있을때 에러를 잘 던지는지 확인")

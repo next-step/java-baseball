@@ -13,7 +13,7 @@ public class BallNumbers {
 
     List<Number> ballNumbers;
 
-    private BallNumbers(List<Number> ballNumbers) {
+    public BallNumbers(List<Number> ballNumbers) {
         this.ballNumbers = ballNumbers;
     }
 
