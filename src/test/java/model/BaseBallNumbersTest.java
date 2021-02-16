@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BaseBallNumbersTest {
@@ -31,6 +32,25 @@ class BaseBallNumbersTest {
                     )
             );
         });
+    }
+    @DisplayName("야구 카운트 검증")
+    @Test
+    void checkBalls() {
+        BaseBallNumbers computerBalls = BaseBallNumbers.of(
+                Arrays.asList(BallNumber.of(1),
+                BallNumber.of(2),
+                BallNumber.of(3))
+        );
+        BaseBallNumbers playersBalls = BaseBallNumbers.of(
+                Arrays.asList(BallNumber.of(3),
+                        BallNumber.of(2),
+                        BallNumber.of(1))
+        );
+        Player player = Player.of(playersBalls);
+        computerBalls.checkStrikeBall(player);
+
+        assertThat(player.getStrike()).isEqualTo(1);
+        assertThat(player.getBall()).isEqualTo(2);
     }
 
 }

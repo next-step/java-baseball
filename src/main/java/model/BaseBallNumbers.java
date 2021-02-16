@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BaseBallNumbers {
@@ -37,5 +34,24 @@ public class BaseBallNumbers {
 
     public static BaseBallNumbers of (List<BallNumber> ballNumbers) {
         return new BaseBallNumbers(new ArrayList<>(ballNumbers));
+    }
+
+    public void checkStrikeBall(Player player) {
+        int strike = 0;
+        int ball = 0;
+        BaseBallNumbers playersBallNumbers = player.getBaseBallNumbers();
+        Set<BallNumber> copiedBalls = new HashSet<>(playersBallNumbers.ballNumbers);
+        for (int i = 0; i < NUMBERS_SIZE; i++) {
+            if(ballNumbers.get(i).equals(playersBallNumbers.getBallNumbers().get(i))) {
+                strike+=1;
+                copiedBalls.remove(ballNumbers.get(i));
+                continue;
+            }
+            if (copiedBalls.contains(ballNumbers.get(i))) {
+                ball += 1;
+            }
+        }
+        player.setStrike(strike);
+        player.setBall(ball);
     }
 }
