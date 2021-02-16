@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class InningTest {
 
-    @DisplayName("이닝 결과 가져오기")
+    @DisplayName("이닝 결과 가져오기 테스트")
     @Test
     void InningGetInfoTest() {
         // given
