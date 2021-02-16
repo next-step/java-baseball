@@ -1,7 +1,18 @@
 package domain;
 
 public class BaseballNumber {
-    public BaseballNumber(String number) {
 
+    private final int number;
+
+    public BaseballNumber(String number) {
+        this.number = Integer.parseInt(number);
+    }
+
+    public BaseballNumber(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

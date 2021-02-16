@@ -25,4 +25,8 @@ public class UserNumber {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<BaseballNumber> getNumbers() {
+        return numbers;
+    }
 }
