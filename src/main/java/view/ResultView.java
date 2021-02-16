@@ -8,8 +8,8 @@ public class ResultView {
     private static final String BALL_FORMAT = "%s볼 ";
     private static final String GAME_SET_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     public static void printResult(int strike, int ball) {
-        printStrikes(strike);
         printBalls(ball);
+        printStrikes(strike);
         System.out.println();
     }
 
