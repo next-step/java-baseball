@@ -34,6 +34,23 @@ public class BaseballNumberBundle {
         Validator.duplicatedThreeNumberValidation(number);
     }
 
+    public BaseballStatus getCompareResult(BaseballNumberBundle other){
+        int strike = 0;
+        int ball = 0;
+        for (BaseballNumber baseballNumber: numberBundle.keySet()){
+            if(other.getNumberBundle().containsKey(baseballNumber)){
+                int thisOrder = numberBundle.get(baseballNumber);
+                int otherOrder = other.getNumberBundle().get(baseballNumber);
+                if(thisOrder == otherOrder){
+                    strike += 1;
+                }else {
+                    ball += 1;
+                }
+            }
+        }
+        return new BaseballStatus(strike, ball);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
