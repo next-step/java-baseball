@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -70,6 +71,31 @@ class NumberTest {
             Arguments.of(Arrays.asList(1, 2, 4), 2),
             Arguments.of(Arrays.asList(1, 4, 5), 1),
             Arguments.of(Arrays.asList(4, 5, 6), 0)
+        );
+    }
+
+    @DisplayName("입력된 다른 숫자에 따른 볼 개수를 잘 구하는지 확인한다")
+    @ParameterizedTest
+    @MethodSource("providerGetBallParams")
+    void getBall(List<Integer> candidateDigits, int ball) {
+        Number answer = new Number(Arrays.asList(1, 2, 3));
+        Number candidate = new Number(candidateDigits);
+
+        assertEquals(
+            ball,
+            answer.getBall(candidate)
+        );
+    }
+
+    private static Stream<Arguments> providerGetBallParams() {
+        return Stream.of(
+            Arguments.of(Arrays.asList(4, 5, 6), 0),
+            Arguments.of(Arrays.asList(4, 1, 6), 1),
+            Arguments.of(Arrays.asList(4, 1, 2), 2),
+            Arguments.of(Arrays.asList(3, 1, 2), 3),
+            Arguments.of(Arrays.asList(1, 3, 2), 2),
+            Arguments.of(Arrays.asList(1, 3, 4), 1),
+            Arguments.of(Arrays.asList(1, 2, 3), 0)
         );
     }
 }
