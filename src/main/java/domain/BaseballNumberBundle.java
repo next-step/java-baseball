@@ -4,6 +4,7 @@ import utils.Validator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BaseballNumberBundle {
@@ -27,5 +28,18 @@ public class BaseballNumberBundle {
     private void validate(int number) {
         Validator.threeLengthNumberValidation(number);
         Validator.duplicatedThreeNumberValidation(number);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseballNumberBundle that = (BaseballNumberBundle) o;
+        return Objects.equals(numberBundle, that.numberBundle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberBundle);
     }
 }
