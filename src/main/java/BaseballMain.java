@@ -1,4 +1,4 @@
-import Controller.BaseballGame;
+import controller.BaseballGame;
 
 public class BaseballMain {
 
