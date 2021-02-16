@@ -5,3 +5,12 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+## 구현 정보
+
+* 숫자 야구 시작
+    * 숫자 야구 입력받기
+    * 계산
+    * 숫자 야구 결과 출력
+    
