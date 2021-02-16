@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BaseballNumberBundle {
+    public static final int BUNDLE_LENGTH = 3;
     private final List<BaseballNumber> numberBundle;
 
     public BaseballNumberBundle(int threeNumber) {

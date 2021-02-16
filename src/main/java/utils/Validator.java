@@ -1,6 +1,7 @@
 package utils;
 
 import domain.BaseballNumber;
+import domain.BaseballNumberBundle;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,7 +16,7 @@ public class Validator {
     }
 
     public static void threeLengthNumberValidation(int number){
-        if(String.valueOf(number).length() != 3){
+        if(String.valueOf(number).length() != BaseballNumberBundle.BUNDLE_LENGTH){
             throw new IllegalArgumentException("3자리의 수를 입력해야 합니다.");
         }
     }
@@ -23,7 +24,7 @@ public class Validator {
     public static void duplicatedThreeNumberValidation(int number){
         String[] splitStringNumbers = String.valueOf(number).split("");
         int uniqueNumberSize = new HashSet<>(Arrays.asList(splitStringNumbers)).size();
-        if (uniqueNumberSize != 3){
+        if (uniqueNumberSize != BaseballNumberBundle.BUNDLE_LENGTH){
             throw new IllegalArgumentException("중복된 숫자를 입력하면 안됩니다.");
         }
     }
