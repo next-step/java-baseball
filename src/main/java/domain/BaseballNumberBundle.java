@@ -35,20 +35,23 @@ public class BaseballNumberBundle {
     }
 
     public BaseballStatus getCompareResult(BaseballNumberBundle other){
-        int strike = 0;
-        int ball = 0;
-        for (BaseballNumber baseballNumber: other.getNumberBundle().keySet()){
-            if(numberBundle.containsKey(baseballNumber)){
-                int thisOrder = numberBundle.get(baseballNumber);
-                int otherOrder = other.getNumberBundle().get(baseballNumber);
-                if(thisOrder == otherOrder){
-                    strike += 1;
-                }else {
-                    ball += 1;
-                }
-            }
+        BaseballStatus status = new BaseballStatus();
+        Map<BaseballNumber, Integer> otherNumberBundle = other.getNumberBundle();
+        otherNumberBundle.keySet().stream()
+                .filter(numberBundle::containsKey)
+                .forEach(baseballNumber -> checkOrder(
+                        status,
+                        numberBundle.get(baseballNumber),
+                        otherNumberBundle.get(baseballNumber)));
+        return status;
+    }
+
+    private void checkOrder(BaseballStatus status, int thisOrder, int otherOrder) {
+        if(thisOrder == otherOrder){
+            status.increaseStrikeCount();
+        }else {
+            status.increaseBallCount();
         }
-        return new BaseballStatus(strike, ball);
     }
 
     @Override
