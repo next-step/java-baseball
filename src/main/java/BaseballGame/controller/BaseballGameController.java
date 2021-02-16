@@ -8,25 +8,21 @@ public class BaseballGameController {
     private static BaseballGame baseballGame = new BaseballGame();
 
     public void playBaseballGame() {
-        while (true) {
+        boolean reGame = true;
+        while (reGame) {
             playOneGame();
-            if (!InputView.askRegame()) {
-                break;
-            } else {
-                baseballGame = new BaseballGame();
-            }
+            reGame = InputView.askRegame();
+            baseballGame = new BaseballGame();
         }
     }
 
     public void playOneGame() {
-        while (true) {
+        boolean isCorrect = false;
+        while (!isCorrect) {
             int tryNumber = InputView.inputTryNumber(baseballGame.getNextInningCount());
-            boolean isCorrect = baseballGame.playInning(tryNumber);
-            if (isCorrect) {
-                OutputView.printCorrectMessage();
-                break;
-            }
+            isCorrect = baseballGame.playInning(tryNumber);
             OutputView.printInningResult(baseballGame.getLastResult());
         }
+        OutputView.printCorrectMessage();
     }
 }
