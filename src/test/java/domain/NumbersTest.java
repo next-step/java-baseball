@@ -29,6 +29,20 @@ class NumbersTest {
         assertThat(exception.getMessage()).isEqualTo("숫자는 3자리로 구성되어야 합니다.");
     }
 
+    @DisplayName("숫자로 구성된 문자열로 객체 생성")
+    @Test
+    void of() {
+        // given
+        String numbersString = "731";
+
+        // when
+        Numbers numbers = Numbers.of(numbersString);
+
+        // then
+        assertThat(numbers).isNotNull();
+        assertThat(numbers.toString()).isEqualTo(numbersString);
+    }
+
     @DisplayName("numbers의 자릿수를 리턴")
     @Test
     void numberOfDigits() {

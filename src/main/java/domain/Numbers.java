@@ -31,15 +31,15 @@ public class Numbers {
         return new Numbers(numbers);
     }
 
-    public int numberOfDigits() {
-        return this.numbers.size();
-    }
-
     @Override
     public String toString() {
         return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
+    }
+
+    public int numberOfDigits() {
+        return this.numbers.size();
     }
 
     /**
