@@ -8,13 +8,16 @@ public class BaseballDigit {
     private static final int MAX_NUMBER = 9;
     private static final String OUT_OF_RANGE_EXCEPTION = "잘못된 숫자입니다.";
 
-    private static final List<Integer> DIGITS = new ArrayList<>();
+    private final List<Integer> DIGITS = new ArrayList<>();
 
-    public BaseballDigit(String numbers) {
-        addBallNumber(numbers);
+    public BaseballDigit() {
     }
 
-    public void addBallNumber(String numbers) {
+    public BaseballDigit(String numbers) {
+        addBallNumbers(numbers);
+    }
+
+    public void addBallNumbers(String numbers) {
         String[] divideNumbers = numbers.split("");
         for (String number : divideNumbers) {
             int ballNumber = convertStringToInt(number);
@@ -23,7 +26,11 @@ public class BaseballDigit {
         }
     }
 
-    public static List<Integer> getBaseballValues() {
+    public void addBallNumbers(int ballNumber) {
+        DIGITS.add(ballNumber);
+    }
+
+    public List<Integer> getBaseballValues() {
         return DIGITS;
     }
 

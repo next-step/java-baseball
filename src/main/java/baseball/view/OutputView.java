@@ -5,7 +5,8 @@ public class OutputView {
     private static final String END_GAME = "게임을 종료합니다.";
     private static final String RESTART_GAME = "게임을 재시작 합니다.";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     private static void showCorrect() {
         System.out.println(CORRECT_MESSAGE);
