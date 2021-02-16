@@ -21,15 +21,15 @@ public class Baseball {
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
     public void setComputerNumber(){
         // 100 <= temp < 1000 의 난수 생성
-        int numbers = (int)(random()*100 + 100);
-        computerNumber = new Numbers(numbers);
+        Integer numbers = (int)(random()*100 + 100);
+        computerNumber = new Numbers(numbers.toString());
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
-    public void setPlayerNum(int numbers){
+    public void setPlayerNum(String numbers){
         playerNumber = new Numbers(numbers);
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
-    public boolean compareNumbers(int numbers){
+    public boolean compareNumbers(String numbers){
         setPlayerNum(numbers);
         int strikes = 0;
         int balls = 0;

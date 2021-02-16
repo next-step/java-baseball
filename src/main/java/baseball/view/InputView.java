@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class InputView {
     private static Scanner scan = new Scanner(System.in);
 
-    public static int inputNumber() {
-        return scan.nextInt();
+    public static String inputNumber() {
+        return scan.next();
     }
 
     public static boolean askEnd() {

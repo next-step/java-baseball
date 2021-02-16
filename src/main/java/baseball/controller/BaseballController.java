@@ -36,7 +36,7 @@ public class BaseballController {
         isEnd = false;
         while(!isEnd){
             OutputView.inputNumber(); // 숫자를 입력해 주세요.
-            int numbers = InputView.inputNumber();
+            String numbers = InputView.inputNumber();
             isEnd = baseball.compareNumbers(numbers); // 컴퓨터와 플레이어의 숫자를 비교
         }
         OutputView.result();//3개의 숫자를 모두 맞히셨습니다! 게임 종료
