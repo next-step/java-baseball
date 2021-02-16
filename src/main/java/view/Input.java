@@ -43,7 +43,7 @@ public class Input {
     }
 
     public boolean getNextGame() {
-        System.out.format(INPUT_NEXT_GAME_MSG, Answer.YES, Answer.NO);
+        System.out.format(INPUT_NEXT_GAME_MSG, Answer.YES.getInput(), Answer.NO.getInput());
         return Answer.of(scanner.nextLine()).getStatus();
     }
 }
