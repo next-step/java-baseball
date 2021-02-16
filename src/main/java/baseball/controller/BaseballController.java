@@ -1,9 +1,14 @@
 package baseball.controller;
 
+import baseball.domain.Baseball;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
 public class BaseballController {
+
+    private boolean playAgain;
+    private boolean isEnd;
+    private Baseball baseball;
 
     public void play(){
         init();
@@ -15,6 +20,9 @@ public class BaseballController {
 
 
     private void init() {
+        playAgain = true;
+        isEnd = false;
+        baseball = new Baseball();
     }
 
     private void playGame() {
@@ -25,16 +33,14 @@ public class BaseballController {
     }
 
     private void playOnce() {
+        // 컴퓨터 난수 & 플레이어 win-loss 상태 초기화.
+        baseball.initGame();
         while(!isEnd){
-            OutputView.inputNumber();
-            numbers = InputView.inputNumber();
-            isEnd = compareNumbers(numbers); // 컴퓨터와 플레이어의 숫자를 비교
+            OutputView.inputNumber(); // 숫자를 입력해 주세요.
+            int numbers = InputView.inputNumber();
+            isEnd = baseball.compareNumbers(numbers); // 컴퓨터와 플레이어의 숫자를 비교
             OutputView.result();//3개의 숫자를 모두 맞히셨습니다! 게임 종료
         }
-    }
-
-    private boolean compareNumbers(){
-        // 컴퓨터와 사람의 숫자를 비교하는 로직.
     }
 
     private boolean end() {

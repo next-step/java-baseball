@@ -1,34 +1,22 @@
 package baseball.domain;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.random;
 
 public class Baseball {
-    int[] computerNum;
-    int[] playerNum;
-    Scanner scan;
+    int[] computerNum; // TODO: 래핑 해줌
+    int[] playerNumber;
+    private boolean playerWin;
+
     // 기본 생성
     public Baseball(){
-        computerNum = new int[3];
-        playerNum = new int[3];
-
-        // Input View
-        scan = new Scanner(System.in);
-    }
-    // 게임 실행
-    public void playGame(){
-        boolean isFinish = true;
-        while(isFinish){
-            // 게임 시작할 때 컴퓨터 번호 랜덤 설정
-            setComputerNum();
-            isFinish = playOnce();
-        }
+        computerNum = new int[3]; // TODO: 일급 컬렉션으로.
+        playerNumber = new int[3];
     }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
-    public void setComputerNum(){
+    public void setComputerNumber(){
         // 100 <= temp < 1000 의 난수 생성
         int temp = (int)(random()*100 + 100);
         for(int i=1; i<=2; i++){
@@ -38,24 +26,24 @@ public class Baseball {
         computerNum[0] = temp;
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
-    public void setPlayerNum(){
+    public void setPlayerNum(int numbers){
         // Inpute View
-        int temp = scan.nextInt();
+        int temp = numbers;
         for(int i=1; i<=2; i++){
-            playerNum[3-i] = (int)(temp%pow(10,1)) ;
+            playerNumber[3-i] = (int)(temp%pow(10,1)) ;
             temp = (int)(temp/pow(10,1));
         }
-        playerNum[0] = temp;
+        playerNumber[0] = temp;
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
-    public boolean compareNums(){
+    public boolean compareNumbers(int numbers){
+        setPlayerNum(numbers);
         int strikes = 0;
         int balls = 0;
-        boolean isCorrect = false;
-        ArrayList<Integer> idxList = new ArrayList<Integer>();
+        ArrayList<Integer> idxList = new ArrayList<>();
         // 스트라이크 수 세기
         for(int i=0; i<3; i++){
-            if(computerNum[i]==playerNum[i]){
+            if(computerNum[i]== playerNumber[i]){
                 strikes++;
             }else{
                 // 숫자가 다르다면 해당 idx를 저장
@@ -86,43 +74,13 @@ public class Baseball {
                 continue;
             }
             // 다른 idx의 숫자가 같다면 ballCount를 증가
-            else if(playerNum[idx]==computerNum[i]){
+            else if(playerNumber[idx]==computerNum[i]){
                 ballCount++;
             }
         }
         return ballCount;
     }
 
-    // 한 루틴의 게임 : 숫자 맞출 때 까지 게임 진행하기
-    public boolean playOnce(){
-        //TODO : Scanner 관련 예외 발생 처(1,2 이외의 입력) -> setPlayerNum에서만 발생할 듯?? 그 함수에 throw 붙여주자
-        boolean playerWin = false;
-        int isFinish;
-        while(true){
-            System.out.println("숫자를 입력해 주세요 : ");
-            setPlayerNum();
-            playerWin = compareNums(); // 이 안에서 gameMessage를 출력하자.
-            // 숫자 3개 전부 맞췄을 때 루프 종료
-            if(playerWin){
-                break;
-            }
-        }
-        // 1,2 이외의 숫자 입력이나 숫자 이외를 입력 시 예외 발생
-        while(true){
-            //Output View
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            // Inpute View
-            isFinish = scan.nextInt();
-            if(isFinish == 1){
-                return true;
-            }else if(isFinish == 2){
-                return false;
-            }else{
-                //Output View
-                System.out.println("잘못 된 숫자를 입력했습니다.");
-            }
-        }
-    }
     //Output View
     // 게임 진행 시 메시지 보여주기 : compareNums 안에서
     void gameMessage(int strikes, int balls){
@@ -139,52 +97,63 @@ public class Baseball {
         System.out.println();
     }
 
-    // TDD를 위한 메서드들
-    // 두 수를 비교해 3Strike 인지 여부 반환
-    public boolean compareNums(int[] pNum, int[] cNum){
-        int strikes = 0;
-        int balls = 0;
-        boolean isCorrect = false;
-        ArrayList<Integer> idxList = new ArrayList<Integer>();
-        // 스트라이크 수 세기
-        for(int i=0; i<3; i++){
-            if(cNum[i]==pNum[i]){
-                strikes++;
-            }else{
-                // 숫자가 다르다면 해당 idx를 저장
-                idxList.add(i);
-            }
-        }
-        // 볼 수 세기
-        for(int idx : idxList){
-            // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
-            balls += checkBall(idx);
-        }
-        // 현재의 strike, ball 상태 프린트
-        gameMessage(strikes, balls);
-        // strike, ball 수에 따라 게임 종료 조건 명시
-        if (strikes==3){
-            return true;
-        }
-        else {
-            return false;
-        }
+    public void initGame() {
+        setComputerNumber(); // 컴퓨터 난수 생성.
+        playerWin = false;
     }
 
+    // TDD를 위한 메서드들
+    // 두 수를 비교해 3Strike 인지 여부 반환
+//    public boolean compareNumbers(int[] playeNumber){
+//        int strikes = 0; //TODO: Count로 래핑.
+//        int balls = 0;
+//        boolean isCorrect = false;
+//        ArrayList<Integer> idxList = new ArrayList<>();
+//
+//        // 스트라이크 수 세기
+//        for(int i=0; i<3; i++){
+//            if(computerNum[i]==playeNumber[i]){
+//                strikes++;
+//            }else{
+//                // 숫자가 다르다면 해당 idx를 저장
+//                idxList.add(i);
+//            }
+//        }
+//        // 볼 수 세기
+//        for(int idx : idxList){
+//            // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
+//            balls += checkBall(idx);
+//        }
+//
+//
+//
+//        // 현재의 strike, ball 상태 프린트
+//        //OutputView
+//        gameMessage(strikes, balls);
+//        // strike, ball 수에 따라 게임 종료 조건 명시
+//        if (strikes==3){
+//            return true;
+//        }
+//        else {
+//            return false;
+//        }
+//    }
+
     // strike 아닌 경우, 다른 위치에 ball인 숫자(위치는 다르지만 현재 idx의 숫자와 같은 숫자) 수 계산
-    public int checkBall(int[] pNum, int[] cNum, int idx){
-        int ballCount = 0;
-        // computerNum의 각 자릿수를 전체 탐색
-        for(int i=0; i<3; i++){
-            // 같은 idx는 건너 뜀
-            if(idx == i){
-                continue;
-            }
-            // 다른 idx의 숫자가 같다면 ballCount를 증가
-            else if(pNum[idx]==cNum[i]){
-                ballCount++;
-            }
-        }
-        return ballCount;
-    }
+//    public int checkBall(int[] pNum, int[] cNum, int idx){
+//        int ballCount = 0;
+//        // computerNum의 각 자릿수를 전체 탐색
+//        for(int i=0; i<3; i++){
+//            // 같은 idx는 건너 뜀
+//            if(idx == i){
+//                continue;
+//            }
+//            // 다른 idx의 숫자가 같다면 ballCount를 증가
+//            else if(pNum[idx]==cNum[i]){
+//                ballCount++;
+//            }
+//        }
+//        return ballCount;
+//    }
+
 }
