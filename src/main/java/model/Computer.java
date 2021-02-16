@@ -23,6 +23,10 @@ public class Computer {
         return baseBallNumbers;
     }
 
+    public void startChecking(Player player) {
+        baseBallNumbers.checkStrikeBall(player);
+    }
+
     private static List<BallNumber> generateBallNumbers () {
         Collections.shuffle(BALL_NUMBER_GENERATOR);
         return BALL_NUMBER_GENERATOR.subList(0,3);
