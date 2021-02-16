@@ -24,4 +24,13 @@ public class BallCount {
     public int hashCode() {
         return Objects.hash(balls, strikes);
     }
+
+    @Override
+    public String toString() {
+        return this.balls + "볼 " + this.strikes + "스트라이크";
+    }
+
+    public boolean threeStrikes() {
+        return this.equals(new BallCount(0, 3));
+    }
 }

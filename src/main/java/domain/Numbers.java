@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,6 +21,14 @@ public class Numbers {
         if (numbers.size() != 3) {
             throw new IllegalArgumentException("숫자는 3자리로 구성되어야 합니다.");
         }
+    }
+
+    public static Numbers of(final String numbersString) {
+        Objects.requireNonNull(numbersString);
+        List<Integer> numbers = Arrays.stream(numbersString.split(""))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return new Numbers(numbers);
     }
 
     public int numberOfDigits() {
