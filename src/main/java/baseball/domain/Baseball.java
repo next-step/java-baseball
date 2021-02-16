@@ -6,42 +6,27 @@ import static java.lang.Math.pow;
 import static java.lang.Math.random;
 
 public class Baseball {
-    int[] computerNumber; // TODO: 래핑 해줌
-    int[] playerNumber;
+    Numbers computerNumber; // TODO: 일급 컬렉션으로.래핑 해줌
+    Numbers playerNumber;
     private boolean playerWin;
 
     public void printComputerNumbers(){
         System.out.print("컴퓨터 숫자 : ");
-        for(Integer number : computerNumber){
+        for(Integer number : computerNumber.getNumbers()){
             System.out.print(number.toString());
         }
         System.out.println();
     }
 
-    // 기본 생성
-    public Baseball(){
-        computerNumber = new int[3]; // TODO: 일급 컬렉션으로.
-        playerNumber = new int[3];
-    }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
     public void setComputerNumber(){
         // 100 <= temp < 1000 의 난수 생성
-        int temp = (int)(random()*100 + 100);
-        for(int i=1; i<=2; i++){
-            computerNumber[3-i] = (int)(temp%pow(10,1)) ;
-            temp = (int)(temp/pow(10,1));
-        }
-        computerNumber[0] = temp;
+        int numbers = (int)(random()*100 + 100);
+        computerNumber = new Numbers(numbers);
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
     public void setPlayerNum(int numbers){
-        // Inpute View
-        int temp = numbers;
-        for(int i=1; i<=2; i++){
-            playerNumber[3-i] = (int)(temp%pow(10,1)) ;
-            temp = (int)(temp/pow(10,1));
-        }
-        playerNumber[0] = temp;
+        playerNumber = new Numbers(numbers);
     }
     // 컴퓨터와 플레이어의 숫자 비교하기
     public boolean compareNumbers(int numbers){
@@ -51,7 +36,7 @@ public class Baseball {
         ArrayList<Integer> idxList = new ArrayList<>();
         // 스트라이크 수 세기
         for(int i=0; i<3; i++){
-            if(computerNumber[i]== playerNumber[i]){
+            if(computerNumber.getNumbers().get(i)== playerNumber.getNumbers().get(i)){
                 strikes++;
             }else{
                 // 숫자가 다르다면 해당 idx를 저장
@@ -73,16 +58,16 @@ public class Baseball {
             return false;
         }
     }
-    public int checkBall(int idx){
+    public int checkBall(int index){
         int ballCount = 0;
         // computerNum의 각 자릿수를 전체 탐색
         for(int i=0; i<3; i++){
             // 같은 idx는 건너 뜀
-            if(idx == i){
+            if(index == i){
                 continue;
             }
             // 다른 idx의 숫자가 같다면 ballCount를 증가
-            else if(playerNumber[idx]== computerNumber[i]){
+            else if(playerNumber.getNumbers().get(index)== computerNumber.getNumbers().get(index)){
                 ballCount++;
             }
         }
