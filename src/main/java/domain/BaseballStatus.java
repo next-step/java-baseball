@@ -3,6 +3,7 @@ package domain;
 public class BaseballStatus {
     private final int strikeCount;
     private final int ballCount;
+    private static final int JACKPOT_COUNT = 3;
     private static final String STRIKE_MESSAGE = "%d스트라이크";
     private static final String BALL_MESSAGE = "%d볼";
     private static final String NOTHING_MESSAGE = "낫싱";
@@ -19,6 +20,10 @@ public class BaseballStatus {
 
     public int getBallCount() {
         return ballCount;
+    }
+
+    public boolean isJackpot() {
+        return strikeCount == JACKPOT_COUNT;
     }
 
     @Override
