@@ -7,13 +7,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballGameTest {
 
+    @DisplayName("정답 생성 테스")
+    @Test
+    void createAnswerTest() {
+        // given
+        BaseballGame baseballGame = new BaseballGame();
+
+        // when
+        int answer = baseballGame.createAnswer();
+
+        // then
+        System.out.println(answer);;
+    }
+
     @DisplayName("BaseballGame 한 이닝 플레이 테스트")
     @Test
     void playInningTest() {
         // given
-        int answer = 123;
         int tryNumber = 345;
-        BaseballGame baseballGame = new BaseballGame(answer);
+        BaseballGame baseballGame = new BaseballGame();
 
         // when
         baseballGame.playInning(tryNumber);

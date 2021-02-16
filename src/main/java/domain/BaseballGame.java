@@ -1,15 +1,32 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BaseballGame {
     private static final BaseballRecord baseballRecord = new BaseballRecord();
     private final int answer;
     private final ArrayList<Integer> answerGroup;
 
-    public BaseballGame(int answer) {
-        this.answer = answer;
+    public BaseballGame() {
+        this.answer = createAnswer();
         this.answerGroup = makeGroup(this.answer);
+    }
+
+    public int createAnswer() {
+        Random random = new Random();
+        int answer = 0;
+        ArrayList<Integer> randomBox = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            randomBox.add(i);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            int randomIndex = random.nextInt(randomBox.size());
+            answer += randomBox.remove(randomIndex);
+            answer *= 10;
+        }
+        return answer / 10;
     }
 
     public void playInning(int tryNumber) {
