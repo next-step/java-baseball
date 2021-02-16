@@ -2,26 +2,30 @@ package domain;
 
 import utils.Validator;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class BaseballNumberBundle {
     public static final int BUNDLE_LENGTH = 3;
     public static final int DEFAULT_BUNDLE_NUMBER = 123;
-    private final List<BaseballNumber> numberBundle;
+    private final Map<BaseballNumber, Integer> numberBundle;
 
     public BaseballNumberBundle(int threeNumber) {
         validate(threeNumber);
         String[] splitStringNumbers = String.valueOf(threeNumber).split("");
-        this.numberBundle = Arrays.stream(splitStringNumbers)
-                .map(Integer::parseInt)
-                .map(BaseballNumber::new)
-                .collect(Collectors.toList());
+        numberBundle = new HashMap<>();
+        putStringToBundle(splitStringNumbers);
     }
 
-    public List<BaseballNumber> getNumberBundle() {
+    private void putStringToBundle(String[] splitStringNumbers) {
+        for (String stringNumber : splitStringNumbers) {
+            BaseballNumber baseballNumber = new BaseballNumber(Integer.parseInt(stringNumber));
+            numberBundle.put(baseballNumber, numberBundle.size());
+        }
+    }
+
+    public Map<BaseballNumber, Integer> getNumberBundle() {
         return numberBundle;
     }
 

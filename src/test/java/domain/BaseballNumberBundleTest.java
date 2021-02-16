@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -16,10 +16,11 @@ class BaseballNumberBundleTest {
     @ValueSource(ints = {123, 345, 765, 987, 765, 423})
     void 정상_생성_테스트(int number) {
         BaseballNumberBundle baseballNumberBundle = new BaseballNumberBundle(number);
-        List<BaseballNumber> baseballNumbers = baseballNumberBundle.getNumberBundle();
+        Map<BaseballNumber, Integer> baseballNumbers = baseballNumberBundle.getNumberBundle();
         String[] numberString = String.valueOf(number).split("");
         for(int i = 0; i < 3; ++i){
-            assertThat(Integer.parseInt(numberString[i])).isEqualTo(baseballNumbers.get(i).getNumber());
+            BaseballNumber currentNumber = new BaseballNumber(Integer.parseInt(numberString[i]));
+            assertThat(baseballNumbers).containsKey(currentNumber);
         }
     }
 
