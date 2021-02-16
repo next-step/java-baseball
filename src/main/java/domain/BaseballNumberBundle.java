@@ -37,8 +37,8 @@ public class BaseballNumberBundle {
     public BaseballStatus getCompareResult(BaseballNumberBundle other){
         int strike = 0;
         int ball = 0;
-        for (BaseballNumber baseballNumber: numberBundle.keySet()){
-            if(other.getNumberBundle().containsKey(baseballNumber)){
+        for (BaseballNumber baseballNumber: other.getNumberBundle().keySet()){
+            if(numberBundle.containsKey(baseballNumber)){
                 int thisOrder = numberBundle.get(baseballNumber);
                 int otherOrder = other.getNumberBundle().get(baseballNumber);
                 if(thisOrder == otherOrder){
