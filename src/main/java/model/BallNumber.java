@@ -1,9 +1,9 @@
 package model;
 
-public class Number {
+public class BallNumber {
     private final int number;
 
-    private Number(final int number) {
+    private BallNumber(final int number) {
         validate(number);
         this.number = number;
     }
@@ -18,7 +18,7 @@ public class Number {
         return number;
     }
 
-    public static Number of (int number) {
-        return new Number(number);
+    public static BallNumber of (int number) {
+        return new BallNumber(number);
     }
 }

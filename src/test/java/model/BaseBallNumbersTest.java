@@ -7,16 +7,16 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NumbersTest {
+class BaseBallNumbersTest {
 
     @DisplayName("중복수가 포함된 숫자열의 검증")
     @Test
     void hasDuplicates() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Numbers numbers = Numbers.of(
-                    Arrays.asList(Number.of(1),
-                            Number.of(1),
-                            Number.of(3)
+            BaseBallNumbers baseBallNumbers = BaseBallNumbers.of(
+                    Arrays.asList(BallNumber.of(1),
+                            BallNumber.of(1),
+                            BallNumber.of(3)
                             )
             );
         });
@@ -26,8 +26,8 @@ class NumbersTest {
     @Test
     void wrongSize() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Numbers numbers = Numbers.of(
-                    Arrays.asList(Number.of(1)
+            BaseBallNumbers baseBallNumbers = BaseBallNumbers.of(
+                    Arrays.asList(BallNumber.of(1)
                     )
             );
         });
