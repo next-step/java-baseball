@@ -23,4 +23,12 @@ public class BaseballNumber {
     public int getNumber() {
         return number;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseballNumber that = (BaseballNumber) o;
+        return number == that.number;
+    }
 }
