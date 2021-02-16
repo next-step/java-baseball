@@ -3,9 +3,12 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -37,5 +40,23 @@ class BallNumbersTest {
     @ValueSource(strings = {"13", "1345", "1344"})
     void checkCorrectSizeTest(String numbers) {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> BallNumbers.of(numbers));
+    }
+
+    @DisplayName("유저의 숫자와 정답 숫자를 비교한다.")
+    @ParameterizedTest
+    @MethodSource("providerGetResultTestParam")
+    void matchTest(String number, String expected) {
+        BallNumbers answer = BallNumbers.of("123");
+        BallNumbers guess = BallNumbers.of(number);
+
+        assertThat(answer.match(new BallCount(), guess).toString()).hasToString(expected);
+    }
+
+    private static Stream<Arguments> providerGetResultTestParam() {
+        return Stream.of(
+                Arguments.of("132", "2볼 1스트라이크"),
+                Arguments.of("456", "낫싱"),
+                Arguments.of("123", "3스트라이크")
+        );
     }
 }
