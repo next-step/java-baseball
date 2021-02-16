@@ -8,9 +8,9 @@ public class Computer {
 
     public static final int MAX_NUMBER_INDEX = 3;
 
-    public List<Integer> generateRandomNumbers() {
+    public BallNumbers generateRandomNumbers() {
         List<Integer> answer = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         Collections.shuffle(answer);
-        return answer.subList(0, MAX_NUMBER_INDEX);
+        return BallNumbers.of(answer.subList(0, MAX_NUMBER_INDEX));
     }
 }
