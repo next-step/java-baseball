@@ -57,7 +57,6 @@ public class Baseball {
     }
 
     public Long getStrikeCount() {
-        System.out.println();
         return count.get(Unit.STRIKE);
     }
 

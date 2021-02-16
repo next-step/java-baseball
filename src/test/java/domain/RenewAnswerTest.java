@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import game.domain.BallNumber;
 import game.domain.RenewAnswer;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
