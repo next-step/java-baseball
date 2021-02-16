@@ -15,19 +15,24 @@ public class BaseballGame {
     }
 
     public int createAnswer() {
-        Random random = new Random();
         int answer = 0;
-        ArrayList<Integer> randomBox = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            randomBox.add(i);
-        }
+        ArrayList<Integer> oneToNineBox = makeOneToNineBox();
+        Random random = new Random();
 
         for (int i = 0; i < 3; i++) {
-            int randomIndex = random.nextInt(randomBox.size());
-            answer += randomBox.remove(randomIndex);
+            int randomIndex = random.nextInt(oneToNineBox.size());
+            answer += oneToNineBox.remove(randomIndex);
             answer *= 10;
         }
         return answer / 10;
+    }
+
+    public ArrayList<Integer> makeOneToNineBox() {
+        ArrayList<Integer> oneToNineBox = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            oneToNineBox.add(i);
+        }
+        return oneToNineBox;
     }
 
     public boolean playInning(int tryNumber) {
