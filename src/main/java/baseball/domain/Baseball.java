@@ -6,13 +6,21 @@ import static java.lang.Math.pow;
 import static java.lang.Math.random;
 
 public class Baseball {
-    int[] computerNum; // TODO: 래핑 해줌
+    int[] computerNumber; // TODO: 래핑 해줌
     int[] playerNumber;
     private boolean playerWin;
 
+    public void printComputerNumbers(){
+        System.out.print("컴퓨터 숫자 : ");
+        for(Integer number : computerNumber){
+            System.out.print(number.toString());
+        }
+        System.out.println();
+    }
+
     // 기본 생성
     public Baseball(){
-        computerNum = new int[3]; // TODO: 일급 컬렉션으로.
+        computerNumber = new int[3]; // TODO: 일급 컬렉션으로.
         playerNumber = new int[3];
     }
     // 컴퓨터가 숫자 지정하기. 한 번의 게임을 시작할 때 한 번만 실행한다.
@@ -20,10 +28,10 @@ public class Baseball {
         // 100 <= temp < 1000 의 난수 생성
         int temp = (int)(random()*100 + 100);
         for(int i=1; i<=2; i++){
-            computerNum[3-i] = (int)(temp%pow(10,1)) ;
+            computerNumber[3-i] = (int)(temp%pow(10,1)) ;
             temp = (int)(temp/pow(10,1));
         }
-        computerNum[0] = temp;
+        computerNumber[0] = temp;
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
     public void setPlayerNum(int numbers){
@@ -43,7 +51,7 @@ public class Baseball {
         ArrayList<Integer> idxList = new ArrayList<>();
         // 스트라이크 수 세기
         for(int i=0; i<3; i++){
-            if(computerNum[i]== playerNumber[i]){
+            if(computerNumber[i]== playerNumber[i]){
                 strikes++;
             }else{
                 // 숫자가 다르다면 해당 idx를 저장
@@ -74,7 +82,7 @@ public class Baseball {
                 continue;
             }
             // 다른 idx의 숫자가 같다면 ballCount를 증가
-            else if(playerNumber[idx]==computerNum[i]){
+            else if(playerNumber[idx]== computerNumber[i]){
                 ballCount++;
             }
         }
