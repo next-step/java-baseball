@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class UserNumber {
 
     private static final int LENGTH_OF_USER_NUMBER = 3;
+    private static final String REGEX = "";
     private final List<BaseballNumber> numbers;
 
     public UserNumber(String inputNumber) {
@@ -14,7 +15,7 @@ public class UserNumber {
     }
 
     private List<String> splitNumber(String inputNumber) {
-        String[] inputNumberSplit = inputNumber.split("");
+        String[] inputNumberSplit = inputNumber.split(REGEX);
         validateNumber(inputNumberSplit);
         return new ArrayList<>(Arrays.asList(inputNumberSplit));
     }

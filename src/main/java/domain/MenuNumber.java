@@ -1,7 +1,9 @@
 package domain;
 
 public class MenuNumber {
-    String menu;
+    public static final String RESTART_NUMBER = "1";
+    public static final String EXIT_NUMBER = "2";
+    private final String menu;
 
     public MenuNumber(String menu) {
         validateMenu(menu);
@@ -9,7 +11,7 @@ public class MenuNumber {
     }
 
     private void validateMenu(String menu) {
-        if (!menu.equals("1") && !menu.equals("2")) {
+        if (!menu.equals(RESTART_NUMBER) && !menu.equals(EXIT_NUMBER)) {
             throw new IllegalArgumentException();
         }
     }

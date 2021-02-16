@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 
 public class Round {
+    public static final String THREE_STRIKE = "3스트라이크";
     private boolean isFinished;
 
     public Round() {
@@ -14,7 +15,7 @@ public class Round {
     }
 
     public void setResult(List<String> result) {
-        if (result.contains("3스트라이크")) {
+        if (result.contains(THREE_STRIKE)) {
             isFinished = true;
         }
     }

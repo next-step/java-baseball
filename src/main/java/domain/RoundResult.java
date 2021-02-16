@@ -5,11 +5,15 @@ import java.util.List;
 
 public class RoundResult {
 
+    public static final String BALL = "볼";
+    public static final String STRIKE = "스트라이크";
+    public static final String NOTHING = "낫싱";
+    public static final int LENGTH_OF_NUMBER = 3;
     private final List<String> result;
     private final List<BaseballNumber> computer;
     private final List<BaseballNumber> userNumber;
-    int strike = 0;
-    int ball = 0;
+    int numberOfStrike = 0;
+    int numberOfBall = 0;
 
     public RoundResult(List<BaseballNumber> userNumber, List<BaseballNumber> computer) {
         result = new ArrayList<>();
@@ -18,34 +22,34 @@ public class RoundResult {
     }
 
     public List<String> getResult() {
-        for (int i=0; i<3;i++) {
-            getResultEachNumber(i);
+        for (int userNumberIndex = 0; userNumberIndex < LENGTH_OF_NUMBER; userNumberIndex++) {
+            getResultEachNumber(userNumberIndex);
         }
-        if (ball > 0) {
-            result.add(ball+"볼");
+        if (numberOfBall > 0) {
+            result.add(numberOfBall + BALL);
         }
-        if (strike > 0) {
-            result.add(strike+"스트라이크");
+        if (numberOfStrike > 0) {
+            result.add(numberOfStrike + STRIKE);
         }
         if (result.size() == 0) {
-            result.add("낫싱");
+            result.add(NOTHING);
         }
         return result;
     }
 
-    private void getResultEachNumber(int i) {
-        if (userNumber.get(i).getNumber() == computer.get(i).getNumber()) {
-            strike++;
+    private void getResultEachNumber(int userNumberIndex) {
+        if (userNumber.get(userNumberIndex).getNumber() == computer.get(userNumberIndex).getNumber()) {
+            numberOfStrike++;
             return;
         }
-        for (int j=0;j<3;j++) {
-            if (checkBall(i, j)) break;
+        for (int computerIndex = 0; computerIndex < LENGTH_OF_NUMBER; computerIndex++) {
+            if (checkBall(userNumberIndex, computerIndex)) break;
         }
     }
 
-    private boolean checkBall(int i, int j) {
-        if (userNumber.get(i).getNumber() == computer.get(j).getNumber() && i != j) {
-            ball++;
+    private boolean checkBall(int userNumberIndex, int computerIndex) {
+        if (userNumber.get(userNumberIndex).getNumber() == computer.get(computerIndex).getNumber() && userNumberIndex != computerIndex) {
+            numberOfBall++;
             return true;
         }
         return false;

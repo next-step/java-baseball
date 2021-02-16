@@ -7,7 +7,7 @@ import java.util.List;
 public class Computer {
     private static final int START = 1;
     private static final int END = 9;
-    public static final int LENGTH_OF_NUMBERS = 3;
+    private static final int LENGTH_OF_NUMBERS = 3;
     private List<BaseballNumber> numbers;
 
     public Computer(Boolean shuffled) {

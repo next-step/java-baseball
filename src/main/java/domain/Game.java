@@ -2,6 +2,7 @@ package domain;
 
 public class Game {
 
+    public static final String EXIT_NUMBER = "2";
     private boolean isFinish;
 
     public Game() {
@@ -13,7 +14,7 @@ public class Game {
     }
 
     public void setFinish(MenuNumber menuNumber) {
-        if (menuNumber.getMenu().equals("2")) {
+        if (menuNumber.getMenu().equals(EXIT_NUMBER)) {
             isFinish = true;
         }
     }
