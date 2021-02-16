@@ -1,15 +1,17 @@
 package baseball.view;
 
+import static baseball.view.ViewStringContants.*;
+
 public class OutputView {
     public static void inputNumber() {
-        System.out.println("숫자를 입력해 주세요 : ");
+        System.out.println(INPUT_NUMBERS.toString());
     }
 
     public static void result() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println(GAME_END.toString());
     }
 
     public static void end() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(ASK_REGAME.toString());
     }
 }
