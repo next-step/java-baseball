@@ -36,14 +36,14 @@ public class BaseBallNumbers {
         return ballNumbers.stream().map(Objects::toString).collect(Collectors.joining());
     }
 
-    public void checkStrikeBall(Player player) {
+    public void checkStrikeBall(final Player player) {
         //TODO: 리팩터링
         int strike = 0;
         int ball = 0;
         BaseBallNumbers playersBallNumbers = player.getBaseBallNumbers();
         Set<BallNumber> copiedBalls = new HashSet<>(playersBallNumbers.ballNumbers);
         for (int i = 0; i < NUMBERS_SIZE; i++) {
-            if(ballNumbers.get(i).equals(playersBallNumbers.getBallNumbers().get(i))) {
+            if(isEquals(playersBallNumbers, i)) {
                 strike+=1;
                 copiedBalls.remove(ballNumbers.get(i));
                 continue;
@@ -55,7 +55,12 @@ public class BaseBallNumbers {
         player.setStrike(strike);
         player.setBall(ball);
     }
-    public static BaseBallNumbers of (List<BallNumber> ballNumbers) {
+
+    private boolean isEquals(final BaseBallNumbers playersBallNumbers, int i) {
+        return ballNumbers.get(i).equals(playersBallNumbers.getBallNumbers().get(i));
+    }
+
+    public static BaseBallNumbers of (final List<BallNumber> ballNumbers) {
         return new BaseBallNumbers(new ArrayList<>(ballNumbers));
     }
 
