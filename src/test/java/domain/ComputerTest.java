@@ -15,7 +15,7 @@ class ComputerTest {
 
         // then
         assertThat(numbers).isNotNull();
-        assertThat(numbers.size()).isEqualTo(3);
+        assertThat(numbers.digits()).isEqualTo(3);
     }
 
     @DisplayName("컴퓨터가 선택한 수의 각 자릿수는 항상 distinct")

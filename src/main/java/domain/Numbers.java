@@ -11,10 +11,17 @@ public class Numbers {
 
     public Numbers(final List<Integer> numbers) {
         Objects.requireNonNull(numbers);
+        validateSize(numbers);
         this.numbers = new ArrayList<>(numbers);
     }
 
-    public int size() {
+    private void validateSize(final List<Integer> numbers) {
+        if (numbers.size() != 3) {
+            throw new IllegalArgumentException("숫자는 3자리로 구성되어야 합니다.");
+        }
+    }
+
+    public int digits() {
         return this.numbers.size();
     }
 
