@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class BaseballGame {
-    private static final BaseballRecord baseballRecord = new BaseballRecord();
+    private static BaseballRecord baseballRecord;
     private final int answer;
     private final ArrayList<Integer> answerGroup;
 
     public BaseballGame() {
         this.answer = createAnswer();
         this.answerGroup = makeGroup(this.answer);
+        this.baseballRecord = new BaseballRecord();
     }
 
     public int createAnswer() {
@@ -29,7 +30,7 @@ public class BaseballGame {
         return answer / 10;
     }
 
-    public void playInning(int tryNumber) {
+    public boolean playInning(int tryNumber) {
         ArrayList<Integer> tryNumberGroup = makeGroup(tryNumber);
 
         int strike = 0;
@@ -49,6 +50,11 @@ public class BaseballGame {
 
         Inning inning = new Inning(tryNumber, strike, ball);
         baseballRecord.recordInningResult(inning);
+
+        if (strike == 3) {
+            return true;
+        }
+        return false;
     }
 
     public BaseballRecord getBaseballRecord() {
@@ -68,5 +74,10 @@ public class BaseballGame {
         valueGroup.add(value);
 
         return valueGroup;
+    }
+
+    public int getNextInningCount() {
+        int NEXT = 1;
+        return this.getBaseballRecord().getChart().size() + NEXT;
     }
 }

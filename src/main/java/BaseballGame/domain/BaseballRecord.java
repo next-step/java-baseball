@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballRecord {
-    private static final List<Inning> chart = new ArrayList<>();
+    private static List<Inning> chart;
+
+    public BaseballRecord() {
+        this.chart = new ArrayList<>();
+    }
 
     public void recordInningResult(Inning inning) {
         this.chart.add(inning);
