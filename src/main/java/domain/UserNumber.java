@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class UserNumber {
 
     private static final int LENGTH_OF_USER_NUMBER = 3;
-    private List<BaseballNumber> numbers;
+    private final List<BaseballNumber> numbers;
 
     public UserNumber(String inputNumber) {
         List<String> numbersSplit = splitNumber(inputNumber);

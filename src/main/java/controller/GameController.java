@@ -27,7 +27,7 @@ public class GameController {
     }
 
     private void gameInit() {
-        computer = new Computer();
+        computer = new Computer(true);
     }
 
     public void gameStart() {
