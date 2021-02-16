@@ -2,9 +2,9 @@ package domain;
 
 public class Number {
 
-    private int number;
+    private final int number;
 
-    public Number(int number) {
+    public Number(final int number) {
         this.number = number;
     }
 
