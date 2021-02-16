@@ -13,15 +13,15 @@ public class Baseball {
     Numbers computerNumber;
     Numbers playerNumber;
 
-    private int playerStrikes;
-    private int playerBalls;
+    private Count playerStrikes;
+    private Count playerBalls;
 
     public int getPlayerStrikes() {
-        return playerStrikes;
+        return playerStrikes.getCount();
     }
 
     public int getPlayerBalls() {
-        return playerBalls;
+        return playerBalls.getCount();
     }
 
     public void printComputerNumbers(){
@@ -55,16 +55,16 @@ public class Baseball {
         playerStrikes = countStrike(indexList);
         playerBalls = countBall(indexList);
         // strike 수에 따라 게임 종료 조건 명시
-        if (playerStrikes == STRIKE_GAME_END_BOUND){
+        if (playerStrikes.getCount() == STRIKE_GAME_END_BOUND){
             return true;
         }
         return false;
     }
 
-    private int countStrike(ArrayList<Integer> indextList) {
-        int strikes = 0;
+    private Count countStrike(ArrayList<Integer> indextList) {
+        Count strikes = new Count();
         for(int i = 0; i< NUMBER_LENGTH; i++){
-            strikes += checkStrike(indextList, i);
+            strikes.increase(checkStrike(indextList, i));
         }
         return strikes;
     }
@@ -78,11 +78,11 @@ public class Baseball {
         return DONT_INCREASE;
     }
 
-    private int countBall(ArrayList<Integer> indexList) {
-        int balls = 0;
+    private Count countBall(ArrayList<Integer> indexList) {
+        Count balls = new Count();
         for(int index : indexList){
             // ball이 존재하는 지 playerNum[idx]와 computerNum[0~2]를 비교
-            balls += checkBall(index);
+            balls.increase(checkBall(index));
         }
         return balls;
     }
