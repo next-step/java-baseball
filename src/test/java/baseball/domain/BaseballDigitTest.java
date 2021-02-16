@@ -16,6 +16,6 @@ class BaseballDigitTest {
         DIGITS.add(1);
         DIGITS.add(2);
         DIGITS.add(3);
-        Assertions.assertThat(BaseballDigit.getBaseballValues().toString()).isEqualTo(DIGITS.toString());
+        Assertions.assertThat(baseballDigit.getBaseballValues().toString()).isEqualTo(DIGITS.toString());
     }
 }
