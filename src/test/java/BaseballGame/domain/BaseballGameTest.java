@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballGameTest {
 
-    @DisplayName("정답 생성 테스")
+    @DisplayName("정답 생성 테스트")
     @Test
     void createAnswerTest() {
         // given
@@ -15,9 +15,12 @@ public class BaseballGameTest {
 
         // when
         int answer = baseballGame.createAnswer();
+        boolean isOverHundred = answer > 100;
+        boolean isUnderThousand = answer < 1000;
 
         // then
-        System.out.println(answer);;
+        assertThat(isOverHundred).isEqualTo(true);
+        assertThat(isUnderThousand).isEqualTo(true);
     }
 
     @DisplayName("BaseballGame 한 이닝 플레이 테스트")
