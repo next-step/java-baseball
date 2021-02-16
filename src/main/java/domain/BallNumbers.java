@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BallNumbers {
 
     private static final Integer NUMBER_SIZE = 3;
 
-    List<Number> ballNumbers;
+    private final List<Number> ballNumbers;
 
-    public BallNumbers(List<Number> ballNumbers) {
+    public BallNumbers(final List<Number> ballNumbers) {
         this.ballNumbers = ballNumbers;
     }
 
@@ -37,6 +38,20 @@ public class BallNumbers {
         if (numbers.size() != NUMBER_SIZE || numbs.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    // 막힌거 적어보자 -> 플레이어 볼넘버가 생성됨 -> 볼 넘버를 받아와서 하나하나 돌려야함.
+    public BallCount match(BallCount ballCount, BallNumbers otherBallNumbers) {
+        ballCount.resetCount();
+        IntStream.range(0, NUMBER_SIZE).forEach(i -> {
+            ballCount.isStrike(ballNumbers.get(i), otherBallNumbers.ballNumbers.get(i));
+            ballCount.isBall(this, ballNumbers.get(i), otherBallNumbers.ballNumbers.get(i));
+        });
+        return ballCount;
+    }
+
+    public boolean contains(Number guessNumber) {
+        return this.ballNumbers.contains(guessNumber);
     }
 
     @Override
