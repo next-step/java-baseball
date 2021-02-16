@@ -1,4 +1,4 @@
-import com.main.baseball.dhsimpson.Baseball;
+import baseball.domain.Baseball;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 

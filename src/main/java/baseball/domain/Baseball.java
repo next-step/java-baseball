@@ -1,4 +1,4 @@
-package com.main.baseball.dhsimpson;
+package baseball.domain;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,6 +14,8 @@ public class Baseball {
     public Baseball(){
         computerNum = new int[3];
         playerNum = new int[3];
+
+        // Input View
         scan = new Scanner(System.in);
     }
     // 게임 실행
@@ -37,6 +39,7 @@ public class Baseball {
     }
     // 플레이어가 숫자 지정하기. 맞출 때 까지 실행한다.
     public void setPlayerNum(){
+        // Inpute View
         int temp = scan.nextInt();
         for(int i=1; i<=2; i++){
             playerNum[3-i] = (int)(temp%pow(10,1)) ;
@@ -106,19 +109,24 @@ public class Baseball {
         }
         // 1,2 이외의 숫자 입력이나 숫자 이외를 입력 시 예외 발생
         while(true){
+            //Output View
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            // Inpute View
             isFinish = scan.nextInt();
             if(isFinish == 1){
                 return true;
             }else if(isFinish == 2){
                 return false;
             }else{
+                //Output View
                 System.out.println("잘못 된 숫자를 입력했습니다.");
             }
         }
     }
+    //Output View
     // 게임 진행 시 메시지 보여주기 : compareNums 안에서
     void gameMessage(int strikes, int balls){
+
         if(balls == 0 && strikes == 0) {
             System.out.printf("낫싱");
         }
