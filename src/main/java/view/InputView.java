@@ -2,6 +2,7 @@ package view;
 
 import domain.Number;
 import domain.NumberSet;
+import domain.State;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import util.ValidationUtil;
@@ -29,7 +30,7 @@ public class InputView {
             .collect(Collectors.toList()));
     }
 
-    public static int getPlayerReplayInput() {
+    public static State getPlayerReplayInput() {
         System.out.println(INFO_INPUT_REPLAY_OPTION);
         String userInput = scanner.next();
         try {
@@ -37,7 +38,7 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return Integer.parseInt(userInput);
+        return State.valueOf(Integer.parseInt(userInput));
     }
 
 }
