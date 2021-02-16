@@ -12,6 +12,10 @@ public class BaseBallNumbers {
         this.ballNumbers = ballNumbers;
     }
 
+    private BaseBallNumbers() {
+        this.ballNumbers = new ArrayList<>();
+    }
+
     public List<BallNumber> getBallNumbers() {
         return ballNumbers;
     }
@@ -32,11 +36,8 @@ public class BaseBallNumbers {
         return ballNumbers.stream().map(Objects::toString).collect(Collectors.joining());
     }
 
-    public static BaseBallNumbers of (List<BallNumber> ballNumbers) {
-        return new BaseBallNumbers(new ArrayList<>(ballNumbers));
-    }
-
     public void checkStrikeBall(Player player) {
+        //TODO: 리팩터링
         int strike = 0;
         int ball = 0;
         BaseBallNumbers playersBallNumbers = player.getBaseBallNumbers();
@@ -54,4 +55,13 @@ public class BaseBallNumbers {
         player.setStrike(strike);
         player.setBall(ball);
     }
+    public static BaseBallNumbers of (List<BallNumber> ballNumbers) {
+        return new BaseBallNumbers(new ArrayList<>(ballNumbers));
+    }
+
+    public static BaseBallNumbers of () {
+        return new BaseBallNumbers();
+    }
+
+
 }

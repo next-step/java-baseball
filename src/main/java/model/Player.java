@@ -41,6 +41,6 @@ public class Player {
         return new Player(baseBallNumbers);
     }
     public static Player of() {
-        return new Player(BaseBallNumbers.of(new ArrayList<>()));
+        return new Player(BaseBallNumbers.of());
     }
 }
