@@ -1,5 +1,7 @@
 package controller;
 
+import domain.Computer;
+import domain.Game;
 import view.InputView;
 import view.OutputView;
 
@@ -13,7 +15,15 @@ public class GameController {
     }
 
     public void play() {
-        gameStart();
+        Game game = new Game();
+        while (game.isRunning()) {
+            gameInit();
+            gameStart();
+        }
+    }
+
+    private void gameInit() {
+        Computer computer = new Computer();
     }
 
     public void gameStart() {
