@@ -50,4 +50,26 @@ class NumberTest {
             Arguments.of("112")
         );
     }
+
+    @DisplayName("입력된 다른 숫자에 따른 스트라이크 개수를 잘 구하는지 확인한다")
+    @ParameterizedTest
+    @MethodSource("providerGetStrikeParams")
+    void getStrike(List<Integer> candidateDigits, int strike) {
+        Number answer = new Number(Arrays.asList(1, 2, 3));
+        Number candidate = new Number(candidateDigits);
+
+        assertEquals(
+            strike,
+            answer.getStrike(candidate)
+        );
+    }
+
+    private static Stream<Arguments> providerGetStrikeParams() {
+        return Stream.of(
+            Arguments.of(Arrays.asList(1, 2, 3), 3),
+            Arguments.of(Arrays.asList(1, 2, 4), 2),
+            Arguments.of(Arrays.asList(1, 4, 5), 1),
+            Arguments.of(Arrays.asList(4, 5, 6), 0)
+        );
+    }
 }

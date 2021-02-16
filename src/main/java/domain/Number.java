@@ -76,4 +76,13 @@ public class Number {
             )
         );
     }
+
+    public int getStrike(Number other) {
+        return (int) (
+            IntStream
+            .range(0, DIGIT_LENGTH)
+            .filter(idx -> this.digits.get(idx) == other.digits.get(idx))
+            .count()
+        );
+    }
 }
