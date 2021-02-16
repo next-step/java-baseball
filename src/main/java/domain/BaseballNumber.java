@@ -17,7 +17,7 @@ public class BaseballNumber {
     }
 
     private void validate(int number) {
-        Validator.OneToNineNumberValidation(number);
+        Validator.oneToNineNumberValidation(number);
     }
 
     @Override
