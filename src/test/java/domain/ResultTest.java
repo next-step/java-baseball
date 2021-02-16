@@ -24,6 +24,4 @@ class ResultTest {
                 Arguments.of(Result.STRIKE, 0, "")
         );
     }
-
-
 }

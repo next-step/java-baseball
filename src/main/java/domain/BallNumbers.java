@@ -40,7 +40,6 @@ public class BallNumbers {
         }
     }
 
-    // 막힌거 적어보자 -> 플레이어 볼넘버가 생성됨 -> 볼 넘버를 받아와서 하나하나 돌려야함.
     public BallCount match(BallCount ballCount, BallNumbers otherBallNumbers) {
         ballCount.resetCount();
         IntStream.range(0, NUMBER_SIZE).forEach(i -> {
