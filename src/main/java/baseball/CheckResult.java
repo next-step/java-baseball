@@ -75,6 +75,7 @@ public class CheckResult {
     private void outputMessage() {
         Output output = new Output();
         if(this.success) {
+            output.strikeAndBall(this.strike, this.ball);
             output.success();
         } else if(this.notThing) {
             output.notThing();
