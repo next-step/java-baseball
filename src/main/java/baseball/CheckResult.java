@@ -13,12 +13,13 @@ public class CheckResult {
     Boolean notThing;
 
 
-    public void getResult(List<Integer> randomNumList, String inputNum) {
+    public Boolean getResult(List<Integer> randomNumList, String inputNum) {
         inputNumList = arrayToList(inputNum);
         this.randomNumList = randomNumList;
         initResult();
         checkResult();
         outputMessage();
+        return this.success;
     }
 
     private void initResult() {

@@ -7,7 +7,7 @@ public class Input {
 
     public String startGame() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(INPUT_NUMBER);
+        System.out.print(INPUT_NUMBER);
         return scanner.nextLine();
     }
 }
