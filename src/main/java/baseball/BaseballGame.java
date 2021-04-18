@@ -1,6 +1,7 @@
 package baseball;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import view.ErrorMessage;
 import view.Input;
 import view.Output;
 
@@ -11,10 +12,12 @@ public class BaseballGame {
         Boolean success;
         String inputNum;
         List<Integer> randomNumberList = makeRandomNumberList();
+        ErrorMessage errorMessage = new ErrorMessage();
 
         while(true){
             inputNum = inputNum();
             if(!checkInputNumValid(inputNum)){
+                errorMessage.inputNumValidError();
                 continue;
             }
             success = checkSuccess(randomNumberList, inputNum);
@@ -49,17 +52,18 @@ public class BaseballGame {
     }
 
     private Boolean checkRestart() {
+        ErrorMessage errorMessage = new ErrorMessage();
+
         Output output = new Output();
-        int restartNum;
+        String restartNum;
         while(true) {
             restartNum = output.reStart();
-            if (restartNum == 1) {
+            if (restartNum.equals("1")) {
                 return true;
-            } else if (restartNum == 2) {
+            } else if (restartNum.equals("2")) {
                 break;
             } else {
-                //에러 메시자
-                System.out.println("옳바른 값 입력해주세요");
+                errorMessage.checkRestartNumError();
             }
         }
         return false;
