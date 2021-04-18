@@ -6,9 +6,22 @@ public class BaseballGame {
     private static int restart = 1;
 
     static void generateRandomNumber() {
-        int randomNumber = (int)(Math.random()*1000);
-        String stringNumber = String.valueOf(randomNumber);
-        answer = stringNumber;
+        int randomNumber;
+        String[] randomNumbers = new String[3];
+
+        for (int i = 0; i < randomNumbers.length; i++) {
+            randomNumber = (int)(Math.random()*9+1);
+
+            randomNumbers[i] = String.valueOf(randomNumber);
+
+            for (int j = 0; j < i; j++) {
+                if (randomNumbers[i].equals(randomNumbers[j])) {
+                    i--;
+                }
+            }
+        }
+
+        answer = randomNumbers[0]+randomNumbers[1]+randomNumbers[2];
     }
 
     static String compareNumbers(String inputNumber, String answerNumber, int inputIndex, int answerIndex) {
