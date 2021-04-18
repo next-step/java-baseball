@@ -71,6 +71,7 @@ public class BaseballGame {
         String[] splittedAnswer = answer.split("");
         String[] splittedInput;
         boolean isEnd = false;
+        int choice;
 
         while (restart == 1) {
             System.out.print("숫자를 입력해주세요 : ");
@@ -81,6 +82,17 @@ public class BaseballGame {
 
                 // compare answer with input
                 isEnd = compare(splittedAnswer, splittedInput);
+
+                if (isEnd) {
+                    System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                    System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+                    choice = scan.nextInt();
+
+                    if (choice == 2) {
+                        break;
+                    }
+                }
             } catch (Exception e) {
                 System.out.println("예기치 않은 오류로 종료합니다.");
                 break;
