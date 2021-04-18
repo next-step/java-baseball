@@ -3,7 +3,6 @@ package baseball;
 import java.util.*;
 
 public class CheckInputNumValidation {
-
     public boolean isValid(String inputNum) {
         if (!isInteger(inputNum)) {
             return false;

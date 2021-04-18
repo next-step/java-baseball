@@ -12,7 +12,6 @@ public class CheckResult {
     Boolean success;
     Boolean notThing;
 
-
     public Boolean getResult(List<Integer> randomNumList, String inputNum) {
         inputNumList = arrayToList(inputNum);
         this.randomNumList = randomNumList;
@@ -65,8 +64,8 @@ public class CheckResult {
 
     private List<Integer> arrayToList(String inputNum) {
         List<Integer> inputNumList = new ArrayList<Integer>();
-
         String[] inputNumArray = inputNum.split("");
+
         for (String num : inputNumArray) {
             inputNumList.add(Integer.parseInt(num));
         }
@@ -75,6 +74,7 @@ public class CheckResult {
 
     private void outputMessage() {
         Output output = new Output();
+
         if (this.success) {
             output.strikeAndBall(this.strike, this.ball);
             output.success();

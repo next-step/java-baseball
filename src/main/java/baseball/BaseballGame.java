@@ -52,9 +52,9 @@ public class BaseballGame {
 
     private Boolean checkRestart() {
         ErrorMessage errorMessage = new ErrorMessage();
-
         Output output = new Output();
         String restartNum;
+
         while (true) {
             restartNum = output.reStart();
             if (restartNum.equals("1")) {
@@ -67,6 +67,5 @@ public class BaseballGame {
         }
         return false;
     }
-
 }
 
