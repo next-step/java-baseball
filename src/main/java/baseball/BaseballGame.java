@@ -1,10 +1,8 @@
 package baseball;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import view.ErrorMessage;
 import view.Input;
 import view.Output;
-
 import java.util.List;
 
 public class BaseballGame {
@@ -14,23 +12,24 @@ public class BaseballGame {
         List<Integer> randomNumberList = makeRandomNumberList();
         ErrorMessage errorMessage = new ErrorMessage();
 
-        while(true){
+        while (true) {
             inputNum = inputNum();
-            if(!checkInputNumValid(inputNum)){
+            if (!checkInputNumValid(inputNum)) {
                 errorMessage.inputNumValidError();
                 continue;
             }
             success = checkSuccess(randomNumberList, inputNum);
-            if(!success){
+            if (!success) {
                 continue;
             }
-            if(!checkRestart()){
+            if (!checkRestart()) {
                 break;
-            } else{
+            } else {
                 randomNumberList = makeRandomNumberList();
             }
         }
     }
+
     private List<Integer> makeRandomNumberList() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         return randomNumberGenerator.makeRandomNumberList();
@@ -46,7 +45,7 @@ public class BaseballGame {
         return checkInputNumValidation.isValid(inputNum);
     }
 
-    private Boolean checkSuccess(List<Integer> randomNumberList, String inputNum){
+    private Boolean checkSuccess(List<Integer> randomNumberList, String inputNum) {
         CheckResult checkResult = new CheckResult();
         return checkResult.getResult(randomNumberList, inputNum);
     }
@@ -56,7 +55,7 @@ public class BaseballGame {
 
         Output output = new Output();
         String restartNum;
-        while(true) {
+        while (true) {
             restartNum = output.reStart();
             if (restartNum.equals("1")) {
                 return true;

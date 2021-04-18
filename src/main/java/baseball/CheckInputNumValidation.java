@@ -5,21 +5,21 @@ import java.util.*;
 public class CheckInputNumValidation {
 
     public boolean isValid(String inputNum) {
-        if(!isInteger(inputNum)){
+        if (!isInteger(inputNum)) {
             return false;
         }
-        if(!isValidLength(inputNum)){
+        if (!isValidLength(inputNum)) {
             return false;
         }
-        if(!isNotDuplicate(inputNum)){
+        if (!isNotDuplicate(inputNum)) {
             return false;
         }
         return true;
     }
 
     private boolean isInteger(String inputNum) {
-        for(int i = 0; i < inputNum.length(); i++) {
-            if(!Character.isDigit(inputNum.charAt(i))) {
+        for (int i = 0; i < inputNum.length(); i++) {
+            if (!Character.isDigit(inputNum.charAt(i))) {
                 return false;
             }
         }

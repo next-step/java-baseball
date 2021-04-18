@@ -30,14 +30,14 @@ public class CheckResult {
     }
 
     private void checkResult() {
-        for(int i = 0; i < inputNumList.size(); i++){
-           if(isStrike(i)){
-               this.strike++;
-               continue;
-           }
-           if(isBall(i)){
-               this.ball++;
-           }
+        for (int i = 0; i < inputNumList.size(); i++) {
+            if (isStrike(i)) {
+                this.strike++;
+                continue;
+            }
+            if (isBall(i)) {
+                this.ball++;
+            }
         }
         isSuccess();
         isNotThing();
@@ -52,13 +52,13 @@ public class CheckResult {
     }
 
     private void isNotThing() {
-        if(this.strike == 0 & this.ball == 0){
+        if (this.strike == 0 & this.ball == 0) {
             this.notThing = true;
         }
     }
 
     private void isSuccess() {
-        if(this.strike == 3){
+        if (this.strike == 3) {
             this.success = true;
         }
     }
@@ -67,7 +67,7 @@ public class CheckResult {
         List<Integer> inputNumList = new ArrayList<Integer>();
 
         String[] inputNumArray = inputNum.split("");
-        for(String num : inputNumArray){
+        for (String num : inputNumArray) {
             inputNumList.add(Integer.parseInt(num));
         }
         return inputNumList;
@@ -75,10 +75,10 @@ public class CheckResult {
 
     private void outputMessage() {
         Output output = new Output();
-        if(this.success) {
+        if (this.success) {
             output.strikeAndBall(this.strike, this.ball);
             output.success();
-        } else if(this.notThing) {
+        } else if (this.notThing) {
             output.notThing();
         } else {
             output.strikeAndBall(this.strike, this.ball);

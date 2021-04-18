@@ -13,7 +13,7 @@ public class RandomNumberGenerator {
 
     public List<Integer> makeRandomNumberList() {
         List<Integer> randomNumList = new ArrayList<Integer>();
-        while(randomNumList.size() < 3) {
+        while (randomNumList.size() < 3) {
             int randomNum = makeRandomNumber();
             if (!randomNumList.contains(randomNum)) {
                 randomNumList.add(randomNum);
