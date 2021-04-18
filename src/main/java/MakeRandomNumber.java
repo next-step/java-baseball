@@ -23,10 +23,11 @@ public class MakeRandomNumber {
         return number;
     }
 
-    int newRandomNumber = setNumber();
+    int newRandomNumber;
 
 
     public int getNewRandomNumber() {
+        newRandomNumber = setNumber();
         return newRandomNumber;
     }
 }
