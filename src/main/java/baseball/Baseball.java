@@ -44,7 +44,6 @@ public class Baseball {
             chc1 = randomNum.charAt(0);
             chc2 = randomNum.charAt(1);
             chc3 = randomNum.charAt(2);
-            System.out.println(randomNum);
             if (!(chc1==chc2 || chc1==chc3 || chc2==chc3)){
                 break;
             }
