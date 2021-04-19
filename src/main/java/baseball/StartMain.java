@@ -11,8 +11,8 @@ public class StartMain {
     public static void main(String[] args) {
 
         System.out.println("메인시작");
-        new Baseball().startBaseball();
-        new Baseball().playGoing();
+        String robotNum3 = new Baseball().startBaseball();
+        new Baseball().playGoing(robotNum3);
         new Baseball().endBaseball();
 
     }
