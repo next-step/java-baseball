@@ -84,7 +84,6 @@ public class BaseballGame {
         String[] splittedAnswer = answer.split("");
         String[] splittedInput;
         boolean isEnd = false;
-        int choice;
 
         while (restart == 1) {
             System.out.print("숫자를 입력해주세요 : ");
@@ -93,7 +92,6 @@ public class BaseballGame {
                 input = scan.nextInt();
                 splittedInput = String.valueOf(input).split("");
 
-                // compare answer with input
                 isEnd = compare(splittedAnswer, splittedInput);
 
                 if (isEnd) {
