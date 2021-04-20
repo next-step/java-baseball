@@ -1,7 +1,11 @@
 # 숫자 야구 게임
-## 진행 방법
-* 숫자 야구 게임 요구사항을 파악한다.
-* 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 과제를 제출한다.
+**번호 생성**
+3개로 된 배열 생성 후 각 자리마다 랜덤함수 부여
+3자리가 서로 다른 숫자가 되야 하기 때문에 중복 체크 후 변수를 하나 만들어서 저장
 
-## 과제 제출 과정
-* [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+**게임 start**
+strike, ball이라는 변수를 선언해서
+입력받은 문자랑 생성한 문자를 charAt 함수를 사용해서 자리마다 비교 후, strike와 ball에 ++를 통해서 값을 줌
+ball과 strike가 0이면 낫싱
+ball만 0이면 strike를 띄워주고
+strike만 0이면 ball를 띄워줌
