@@ -56,7 +56,6 @@ public class Baseball {
         Scanner sc = new Scanner(System.in);
         String num = sc.nextLine();
         System.out.println(num);
-        System.out.println("++++++++++++++++");
         if(num.equals("1")){
             resulet=true;
             playGoing();
