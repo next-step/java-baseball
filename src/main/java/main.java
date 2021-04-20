@@ -49,7 +49,6 @@ public class main {
                 + String.valueOf(numballCreate[2] + 1);
 
         System.out.println(numball);
-
     }
 
 }
