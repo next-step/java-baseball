@@ -18,24 +18,24 @@ public class main {
 
         numball = "";
 
-        numballCreate[0] = (int) (Math.random() * 8);
-        numballCreate[1] = (int) (Math.random() * 8);
-        numballCreate[2] = (int) (Math.random() * 8);
+        numballCreate[0] = (int) (Math.random() * 9);
+        numballCreate[1] = (int) (Math.random() * 9);
+        numballCreate[2] = (int) (Math.random() * 9);
 
         while (true) {
             if (numballCreate[0] == numballCreate[1]) {
 
-                numballCreate[1] = (int) (Math.random() * 8);
+                numballCreate[1] = (int) (Math.random() * 9);
             }
 
             if (numballCreate[1] == numballCreate[2]) {
 
-                numballCreate[2] = (int) (Math.random() * 8);
+                numballCreate[2] = (int) (Math.random() * 9);
             }
 
             if (numballCreate[0] == numballCreate[2]) {
 
-                numballCreate[2] = (int) (Math.random() * 8);
+                numballCreate[2] = (int) (Math.random() * 9);
             }
 
             if (numballCreate[0] != numballCreate[1] && numballCreate[1] != numballCreate[2]
