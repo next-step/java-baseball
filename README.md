@@ -5,3 +5,13 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 
+* 입력 
+* 출력
+* 확인 
+
+## 과제 진행 이슈
+* 미완성
+* (적용 x)report01 브런치에 구현
+* (적용 x)Angular JS Git Commit Message Conventions 참고해 커밋 메시지 작성
