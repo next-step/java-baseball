@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 리스트
+* 상대편, Opponent 클래스 구현(난수발생)
+* 입출력기, InputAndOutPut 구현(UI 담당)
+* 심판, Referee 클래스 구현(스트라이크, 볼, 낫싱 판단)
+* 게임 진행자, GameManager 클래스 구현(게임 흐름 제어)
