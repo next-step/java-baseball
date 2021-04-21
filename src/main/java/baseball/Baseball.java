@@ -42,6 +42,7 @@ public class Baseball {
 
             System.out.print("숫자를 입력해주세요 : ");
             input = scanner.nextLine();
+
             submitInput(input);
             printResult();
         }
