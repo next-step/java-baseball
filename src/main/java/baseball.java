@@ -28,7 +28,7 @@ public class baseball {
             rnum = set_number();
 
             // 랜덤 숫자 출력 부분
-			System.out.println("랜덤 숫자는 "+rnum[0]+", "+rnum[1]+", "+rnum[2]+"입니다.");
+			// System.out.println("랜덤 숫자는 "+rnum[0]+", "+rnum[1]+", "+rnum[2]+"입니다.");
             // count가 0보다 클 경우는 랜덤숫자 재생성을 하지 않고 입력부분부터 loop
             boolean status = false;
             while (count > 0 && !status) {
