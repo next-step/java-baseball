@@ -38,6 +38,7 @@ class HintGeneratorTest {
         assertEquals(expected, actual);
     }
 
+    @SuppressWarnings("unused")
     private static Stream<Arguments> test02Params() {
         return Stream.of(
             Arguments.of(Arrays.asList(5, 7, 2), 3),
@@ -64,6 +65,7 @@ class HintGeneratorTest {
         }
     }
 
+    @SuppressWarnings("unused")
     private static Stream<Arguments> test03Params() {
         return Stream.of(
             Arguments.of(Arrays.asList(2, 5, 7), 3),
@@ -84,6 +86,7 @@ class HintGeneratorTest {
         assertEquals(expected, actual);
     }
 
+    @SuppressWarnings("unused")
     private static Stream<Arguments> test04Params() {
         return Stream.of(
             Arguments.of(Arrays.asList(2, 7, 5), 1, 2),
