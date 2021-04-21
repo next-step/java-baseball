@@ -1,54 +1,66 @@
 package baseball.domain;
 
 import baseball.exception.InvalidateBallNumberException;
+import baseball.exception.InvalidateBallNumberException.InvalidateBallNumberSizeError;
+import baseball.exception.InvalidateBallNumberException.InvalidateBallNumberValueError;
+
+import java.util.*;
 
 public class BallNumber {
-    private int firstNumber;
-    private int secondNumber;
-    private int thirdNumber;
 
-    public BallNumber(int firstNumber, int secondNumber, int thirdNumber) throws Exception {
-        if(isValidate()) {
-            this.firstNumber = firstNumber;
-            this.secondNumber = secondNumber;
-            this.thirdNumber = thirdNumber;
-        }
-        throw new InvalidateBallNumberException(firstNumber + ", " + secondNumber + ", "  + thirdNumber);
+    private final static int NUMBER_SIZE = 3;
+    private final static int NUMBER_MAX_VALUE = 9;
+    private final static int NUMBER_MIN_VALUE = 1;
+
+    private LinkedHashSet<Integer> numbers;
+
+    public BallNumber() {
+        this.numbers = new LinkedHashSet<>();
+        Random random = new Random();
+        while(this.numbers.size() != NUMBER_SIZE)
+            this.numbers.add(random.nextInt(NUMBER_MAX_VALUE) + 1);
     }
 
-    public int getFirstNumber(){
-        return this.firstNumber;
+    public BallNumber(int baseballNumbers) throws InvalidateBallNumberException {
+        this.numbers = new LinkedHashSet<>();
+        inputBaseBall(baseballNumbers);
+        validate();
     }
 
-    public int getSecondNumber() {
-        return this.secondNumber;
+    private void inputBaseBall(int baseballNumbers){
+        String[] splitBaseballNumbers = String.valueOf(baseballNumbers).split("");
+        for(int index = 0; index < splitBaseballNumbers.length; index ++ )
+            this.numbers.add(Integer.parseInt(splitBaseballNumbers[index]));
     }
 
-    public int getThirdNumber() {
-        return this.thirdNumber;
+    private void validate() {
+        sizeValidate();
+        Iterator<Integer> numbersIterator = this.numbers.iterator();
+        while(numbersIterator.hasNext())
+            valueValidate(numbersIterator.next());
     }
 
-    private boolean isValidate() {
-        if(this.firstNumber == this.secondNumber || this.firstNumber == this.thirdNumber || this.secondNumber == this.thirdNumber)
-            return false;
-        return true;
+    private void sizeValidate() {
+        if(this.numbers.size() != NUMBER_SIZE)
+            throw new InvalidateBallNumberSizeError( "Size : " + this.numbers.size());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof BallNumber) {
-            BallNumber ballNumber = (BallNumber) obj;
-            return this.firstNumber == ballNumber.firstNumber &&
-                    this.secondNumber == ballNumber.secondNumber &&
-                    this.thirdNumber == ballNumber.thirdNumber;
-        }
-        return false;
+    private void valueValidate(int number) {
+        if (number > NUMBER_MAX_VALUE || number < NUMBER_MIN_VALUE)
+            throw new InvalidateBallNumberValueError("Ball Numbers : " + number);
+    }
+
+    public int getNumberByIndex(int index){
+        List<Integer> listNumbers = new ArrayList(this.numbers);
+        return listNumbers.get(index);
     }
 
     @Override
     public String toString() {
-        return "첫번째 숫자 : " + this.firstNumber + " " +
-               "두번째 숫자 : " + this.secondNumber + " " +
-               "세번째 숫자 : " + this.thirdNumber;
+        String ballNumberString = "";
+        Iterator<Integer> numbersIterator = this.numbers.iterator();
+        while(numbersIterator.hasNext())
+            ballNumberString += numbersIterator.next();
+        return ballNumberString;
     }
 }
