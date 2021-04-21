@@ -14,4 +14,15 @@ class StringTest {
 	void substring() {
 		assertThat("(1,2)".substring(1, 4)).isEqualTo("1,2");
 	}
+
+	@Test
+	void charAt() {
+		assertThat("abc".charAt(0)).isEqualTo('a');
+		assertThat("abc".charAt(1)).isEqualTo('b');
+		assertThat("abc".charAt(2)).isEqualTo('c');
+		assertThatThrownBy(() -> {
+			"abc".charAt(3);
+		}).isInstanceOf(StringIndexOutOfBoundsException.class)
+			.hasMessageContaining("String index out of range: 3");
+	}
 }
