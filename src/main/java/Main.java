@@ -5,5 +5,6 @@ public class Main {
         Baseball baseball = new Baseball();
         baseball.makeSecretNumber();
         baseball.inputUserNumber();
+        baseball.compare();
     }
 }
