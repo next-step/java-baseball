@@ -15,15 +15,10 @@ class BaseballTest {
     int ball;
 
     @Test
-    void main() {
-    }
-
-    @Test
     void initGame() {
-
         random.setSeed(System.currentTimeMillis());
-
         LinkedHashSet<Integer> set = new LinkedHashSet<>();
+
         while(set.size() != 3) {
             set.add(random.nextInt(9) + 1);
         }
@@ -50,12 +45,12 @@ class BaseballTest {
     }
 
     void submitInput(String input) {
-        for(int i=0; i < input.length(); i++) {
-            validate(i, input.charAt(i));
+        for (int i=0; i < input.length(); i++) {
+            validateChar(i, input.charAt(i));
         }
     }
 
-    void validate(int index, char number) {
+    void validateChar(int index, char number) {
         int location = answer.indexOf(number);
 
         if (location == index) {

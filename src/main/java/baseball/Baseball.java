@@ -11,7 +11,7 @@ public class Baseball {
     private static int ball;
 
     public static void main(String[] args) {
-        while(true) {
+        while (true) {
             initGame();
 
             playGame();
@@ -25,7 +25,7 @@ public class Baseball {
         random.setSeed(System.currentTimeMillis());
 
         LinkedHashSet<Integer> set = new LinkedHashSet<>();
-        while(set.size() != 3) {
+        while (set.size() != 3) {
             set.add(random.nextInt(9) + 1);
         }
 
@@ -36,7 +36,7 @@ public class Baseball {
 
     private static void playGame() {
         String input = "";
-        while(!input.equals(answer)) {
+        while (!input.equals(answer)) {
             strike = 0;
             ball = 0;
 
@@ -69,12 +69,12 @@ public class Baseball {
     }
 
     private static void submitInput(String input) {
-        for(int i=0; i < input.length(); i++) {
-            validate(i, input.charAt(i));
+        for (int i=0; i < input.length(); i++) {
+            validateChar(i, input.charAt(i));
         }
     }
 
-    private static void validate(int index, char number) {
+    private static void validateChar(int index, char number) {
         int location = answer.indexOf(number);
 
         if (location == index) {
