@@ -23,7 +23,7 @@ public class BallNumberTest {
 
     @DisplayName("BallNumber Constructor Test")
     @RepeatedTest(10)
-    public void ballNumberTest() {
+    public void initBallNumberTest() {
         BallNumber ballNumber = new BallNumber();
         defaultBallNumberTest(ballNumber);
 
@@ -32,7 +32,7 @@ public class BallNumberTest {
     @DisplayName("BallNumber Constructor(int ballNumbers) Test")
     @ParameterizedTest
     @ValueSource(ints = {123, 456, 789, 124, 462, 251, 812, 185})
-    public void ballNumberArgTest(int ballNumbers) {
+    public void initBallNumberArgTest(int ballNumbers) {
         BallNumber ballNumber = new BallNumber(ballNumbers);
         defaultBallNumberTest(ballNumber);
         assertTrue(
