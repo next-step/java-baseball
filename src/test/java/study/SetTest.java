@@ -28,21 +28,23 @@ public class SetTest {
     @DisplayName("크기 확인 메서드(size()) 테스트")
     @Test
     void sizeTest() {
-
+        assertThat(numbers).hasSize(3);
     }
 
     @DisplayName("콜렉션 내부 파라미터 포함여부 확인 메서드(contains()) 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
     void containsTest(int input) {
-
+        //when,then
+        assertThat(numbers.contains(input)).isTrue();
     }
 
     @DisplayName("콜렉션 내부에 존재하지 않는 파라미터 포함여부 테스트")
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void containsByConditionTest(int input, boolean inputBool) {
-
+        //when, then
+        assertThat(numbers.contains(input)).isEqualTo(inputBool);
     }
 
 }
