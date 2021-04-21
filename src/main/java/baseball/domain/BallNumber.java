@@ -8,17 +8,17 @@ import java.util.*;
 
 public class BallNumber {
 
-    private final static int NUMBER_SIZE = 3;
-    private final static int NUMBER_MAX_VALUE = 9;
-    private final static int NUMBER_MIN_VALUE = 1;
+    public final static int SIZE = 3;
+    public final static int MAX_VALUE = 9;
+    public final static int MIN_VALUE = 1;
 
     private LinkedHashSet<Integer> numbers;
 
     public BallNumber() {
         this.numbers = new LinkedHashSet<>();
         Random random = new Random();
-        while(this.numbers.size() != NUMBER_SIZE)
-            this.numbers.add(random.nextInt(NUMBER_MAX_VALUE) + 1);
+        while(this.numbers.size() != SIZE)
+            this.numbers.add(random.nextInt(MAX_VALUE) + 1);
     }
 
     public BallNumber(int baseballNumbers) throws InvalidateBallNumberException {
@@ -41,12 +41,12 @@ public class BallNumber {
     }
 
     private void sizeValidate() {
-        if(this.numbers.size() != NUMBER_SIZE)
+        if(this.numbers.size() != SIZE)
             throw new InvalidateBallNumberSizeError( "Size : " + this.numbers.size());
     }
 
     private void valueValidate(int number) {
-        if (number > NUMBER_MAX_VALUE || number < NUMBER_MIN_VALUE)
+        if (number > MAX_VALUE || number < MIN_VALUE)
             throw new InvalidateBallNumberValueError("Ball Numbers : " + number);
     }
 
@@ -63,4 +63,5 @@ public class BallNumber {
             ballNumberString += numbersIterator.next();
         return ballNumberString;
     }
+
 }
