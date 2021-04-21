@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Baseball {
 
@@ -39,7 +40,8 @@ public class Baseball {
         userChar = ("" + InputUserNumber).toCharArray();
     }
 
-    public void compare() {
+    public boolean compare() {
+        boolean result;
         this.strike = 0;
         this.ball = 0;
         String output = "";
@@ -52,7 +54,18 @@ public class Baseball {
         if (this.strike > 0) {
             output += this.strike + "스트라이크";
         }
-        System.out.println(output);
+        if (output.equals("")) {
+            output = "낫싱";
+        }
+        if (this.strike == 3) {
+            System.out.println("3스트라이크");
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            result = true;
+        } else {
+            System.out.println(output);
+            result = false;
+        }
+        return result;
     }
 
     public void strike() {
@@ -70,5 +83,20 @@ public class Baseball {
                 this.ball++;
             }
         }
+    }
+
+    public boolean gameShutdown() {
+        boolean result;
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+
+        Scanner sc = new Scanner(System.in);
+        int action = sc.nextInt();
+
+        if (action == 2) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
     }
 }
