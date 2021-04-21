@@ -21,18 +21,20 @@ public class Hint {
             return "nothing";
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
+        return addStrikeString() + addBallString();
+    }
 
+    private String addStrikeString() {
         if (strike > 0) {
-            stringBuilder.append(strike)
-                         .append(" strike ");
+            return strike + " strike ";
         }
+        return "";
+    }
 
+    private String addBallString() {
         if (ball > 0) {
-            stringBuilder.append(ball)
-                         .append(" ball");
+            return ball + " ball";
         }
-
-        return stringBuilder.toString();
+        return "";
     }
 }
