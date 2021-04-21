@@ -24,10 +24,11 @@ public class baseball {
             int strike = 0;
             int ball = 0;
 
+            // 정답 설정
             rnum = set_number();
 
             // 랜덤 숫자 출력 부분
-//			System.out.println("랜덤 숫자는 "+rnum[0]+", "+rnum[1]+", "+rnum[2]+"입니다.");
+			System.out.println("랜덤 숫자는 "+rnum[0]+", "+rnum[1]+", "+rnum[2]+"입니다.");
             // count가 0보다 클 경우는 랜덤숫자 재생성을 하지 않고 입력부분부터 loop
             boolean status = false;
             while (count > 0 && !status) {
@@ -57,6 +58,7 @@ public class baseball {
         System.out.println("end");
     }
 
+    // 정답 설정
     private static int[] set_number() {
         int[] rnum = new int[3];
 
@@ -126,10 +128,19 @@ public class baseball {
     private static int[] check_game(int[] rnum, int[] num) {
         int[] result = new int[2];
 
+        int strike = 0;
+        int ball = 0;
+
         // strike ball result
         for (int i = 0; i < 3; i++) {
-            result = check_ball(rnum, num, i);
+            int[] temp = new int[2];
+            temp = check_ball(rnum, num, i);
+            strike += temp[0];
+            ball += temp[1];
         }
+
+        result[0] = strike;
+        result[1] = ball;
 
         return result;
     }
@@ -138,20 +149,22 @@ public class baseball {
         int[] result = new int[2];
         int strike = 0;
         int ball = 0;
+
         for (int j = 0; j < 3; j++) {
-            String gameball = check_ball(rnum, num, i, j);
+            String gameball = check_ball_value(rnum, num, i, j);
             if(gameball == "strike") {
                 strike++;
             } else if(gameball == "ball") {
                 ball++;
             }
         }
+
         result[0] = strike;
         result[1] = ball;
         return result;
     }
 
-    private static String check_ball(int[] rnum, int[] num, int i, int j) {
+    private static String check_ball_value(int[] rnum, int[] num, int i, int j) {
         String ball = null;
         if (rnum[i] == num[j]) {
             if (i == j) {
