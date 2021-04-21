@@ -25,6 +25,7 @@ public class Baseball {
         random.setSeed(System.currentTimeMillis());
 
         LinkedHashSet<Integer> set = new LinkedHashSet<>();
+
         while (set.size() != 3) {
             set.add(random.nextInt(9) + 1);
         }
@@ -36,6 +37,7 @@ public class Baseball {
 
     private static void playGame() {
         String input = "";
+
         while (!input.equals(answer)) {
             strike = 0;
             ball = 0;
