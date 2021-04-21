@@ -1,3 +1,5 @@
+package domain;
+
 public class Hint {
 
     private static final int MAX_COUNT_OF_STRIKE = 3;

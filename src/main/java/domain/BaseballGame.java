@@ -1,3 +1,5 @@
+package domain;
+
 public class BaseballGame {
 
     private static BaseballGame instance;
@@ -15,12 +17,12 @@ public class BaseballGame {
     public void run() {
         do {
             // do something...
-        } while(restart());
+        } while(isNotEnd());
 
         exitGame();
     }
 
-    private boolean restart() {
+    private boolean isNotEnd() {
 
         // do something...
 
