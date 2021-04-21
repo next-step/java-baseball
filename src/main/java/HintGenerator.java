@@ -17,9 +17,8 @@ public class HintGenerator {
     private int getStrikeCount(List<Integer> numbers) {
 
         int count = 0;
-        for (int i = 0; i < numbers.size(); i++) {
-            count += equals(numbers.get(i), generatedNumbers.get(i)) ?
-                     1 : 0;
+        for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
+            count += isStrike(numbers, i) ? 1 : 0;
         }
 
         return count;
@@ -28,7 +27,6 @@ public class HintGenerator {
     private int getBallCount(List<Integer> numbers) {
 
         int count = 0;
-
         for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
             count += isBall(numbers, i) ? 1 : 0;
         }
@@ -40,7 +38,11 @@ public class HintGenerator {
         return a.intValue() == b.intValue();
     }
 
+    private boolean isStrike(List<Integer> numbers, int i) {
+        return equals(numbers.get(i), generatedNumbers.get(i));
+    }
+
     private boolean isBall(List<Integer> numbers, int index) {
-        return generatedNumbers.contains(numbers.get(index)) && !equals(numbers.get(index), generatedNumbers.get(index));
+        return generatedNumbers.contains(numbers.get(index)) && !isStrike(numbers, index);
     }
 }
