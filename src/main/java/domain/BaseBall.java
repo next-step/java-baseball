@@ -9,13 +9,31 @@ public class BaseBall {
 
     private final int number;
 
-    public BaseBall(int number) {
+    private BaseBall(int number) {
         this.number = number;
+    }
+
+    public static BaseBall fromNumber(int number) {
+        if(!cachedBaseBall.containsKey(number)) {
+            cachedBaseBall.put(number, new BaseBall(number));
+        }
+        return cachedBaseBall.get(number);
     }
 
     public static boolean isValidate(int number) {
         return INCLUSIVE_MIN <= number && number <= INCLUSIVE_MAX;
     }
 
+
+    public boolean isEqual(BaseBall opponent) {
+        if (this == opponent) {
+            return true;
+        }
+        if (opponent == null || this.getClass() != opponent.getClass()) {
+            return false;
+        }
+
+        return number == opponent.number;
+    }
 
 }
