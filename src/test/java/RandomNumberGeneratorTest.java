@@ -4,20 +4,20 @@ import org.junit.jupiter.api.RepeatedTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomGeneratorTest {
+class RandomNumberGeneratorTest {
 
-    private RandomGenerator randomGenerator;
+    private RandomNumberGenerator randomNumberGenerator;
 
     @BeforeEach
     void setUp() {
-        randomGenerator = new RandomGenerator();
+        randomNumberGenerator = new RandomNumberGenerator();
     }
 
     @DisplayName("난수 생성 범위 검증")
     @RepeatedTest(100)
     void test01() {
 
-        int actual = randomGenerator.nextInt();
+        int actual = randomNumberGenerator.nextInt();
         int expectedMinNumber = 1;
         int expectedMaxNumber = 9;
 
