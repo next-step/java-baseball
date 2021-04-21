@@ -34,4 +34,17 @@ public class StringTest {
         assertThat(1).isEqualTo(splitTarget.length);
         assertThat(splitTarget).containsExactly("1");
     }
+
+    @Test
+    @DisplayName("문자열 자르기")
+    void substring() {
+        // given
+        String target = "(1,2)";
+
+        // when
+        String substring = target.substring(1, 4);
+
+        // then
+        assertThat("1,2").isEqualTo(substring);
+    }
 }
