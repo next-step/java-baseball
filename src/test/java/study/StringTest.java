@@ -61,7 +61,7 @@ public class StringTest {
 
     @DisplayName("charAt 실패 테스트")
     @Test
-    void charAtExceptionTest() {
+    void charAtIndexOutOfBoundExceptionTest() {
         //given
         String abc = "abc";
 
