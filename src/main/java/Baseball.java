@@ -3,6 +3,7 @@ import java.util.Random;
 public class Baseball {
 
     int SecretNumber = 0;
+    int InputUserNumber = 0;
 
     public void makeSecretNumber() {
         Random rnd = new Random();
@@ -14,4 +15,7 @@ public class Baseball {
         SecretNumber = hundred + ten + one;
     }
 
+    public void inputUserNumber() {
+        System.out.println("숫자를 입력해 주세요 : ");
+    }
 }
