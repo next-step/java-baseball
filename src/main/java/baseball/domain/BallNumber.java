@@ -1,14 +1,19 @@
-package Domain;
+package baseball.domain;
+
+import baseball.exception.InvalidateBallNumberException;
 
 public class BallNumber {
     private int firstNumber;
     private int secondNumber;
     private int thirdNumber;
 
-    public BallNumber(int firstNumber, int secondNumber, int thirdNumber){
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-        this.thirdNumber = thirdNumber;
+    public BallNumber(int firstNumber, int secondNumber, int thirdNumber) throws Exception {
+        if(isValidate()) {
+            this.firstNumber = firstNumber;
+            this.secondNumber = secondNumber;
+            this.thirdNumber = thirdNumber;
+        }
+        throw new InvalidateBallNumberException(firstNumber + ", " + secondNumber + ", "  + thirdNumber);
     }
 
     public int getFirstNumber(){
@@ -21,6 +26,12 @@ public class BallNumber {
 
     public int getThirdNumber() {
         return this.thirdNumber;
+    }
+
+    private boolean isValidate() {
+        if(this.firstNumber == this.secondNumber || this.firstNumber == this.thirdNumber || this.secondNumber == this.thirdNumber)
+            return false;
+        return true;
     }
 
     @Override
