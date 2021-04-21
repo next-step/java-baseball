@@ -1,26 +1,24 @@
-import domain.enums.State;
-
-import java.util.Scanner;
+import domain.Number;
+import util.NumberUtil;
 
 public class BaseballGame {
     BaseballGame() {
     }
 
     public void play() {
-        final Scanner scanner = new Scanner(System.in);
         boolean isContinue = false;
 
         do {
-            isContinue = start(scanner);
-        } while(isContinue);
+            isContinue = start();
+        } while (isContinue);
     }
 
-    public boolean start(Scanner scanner) {
+    public boolean start() {
+        Number randomNumber = NumberUtil.generateRandomNumber();
         boolean isSolved = false;
 
         do {
             isSolved = true;
-            System.out.println("solved");
         } while (!isSolved);
 
         return askContinueGame();
