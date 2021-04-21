@@ -9,4 +9,9 @@ class StringTest {
 		assertThat("1,2".split(",")).contains("1").contains("2");
 		assertThat("1".split(",")).containsExactly("1");
 	}
+
+	@Test
+	void substring() {
+		assertThat("(1,2)".substring(1, 4)).isEqualTo("1,2");
+	}
 }
