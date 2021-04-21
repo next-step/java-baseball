@@ -1,16 +1,22 @@
 public class BaseBall {
 
-    private String input;
+    public static final String FOUR_BALL = "4B";
 
-    public BaseBall(String input) {
-        this.input = input;
+    private String answer;
+
+    public BaseBall(String answer) {
+        this.answer = answer;
     }
 
-    public String play(String playerInput) {
-        if (!input.contains(playerInput)) {
-            return "4B";
+    public String play(String input) {
+        if (notContainsByAnswer(input)) {
+            return FOUR_BALL;
         }
 
         return "";
+    }
+
+    private boolean notContainsByAnswer(String playerInput) {
+        return !answer.contains(playerInput);
     }
 }
