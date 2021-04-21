@@ -2,13 +2,13 @@ package domain;
 
 import java.util.List;
 
-public class HintGenerator {
+public class CorrectAnswerChecker {
 
     private static final int COUNT_OF_NUMBERS = 3;
 
     private final List<Integer> generatedNumbers;
 
-    public HintGenerator(List<Integer> numbers) {
+    public CorrectAnswerChecker(List<Integer> numbers) {
         this.generatedNumbers = numbers;
     }
 

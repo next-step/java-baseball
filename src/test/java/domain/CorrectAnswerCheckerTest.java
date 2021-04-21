@@ -13,17 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class HintGeneratorTest {
+class CorrectAnswerCheckerTest {
 
-    private static final HintGenerator hintGenerator = new HintGenerator(Arrays.asList(2, 5, 7));
+    private static final CorrectAnswerChecker CORRECT_ANSWER_CHECKER = new CorrectAnswerChecker(Arrays.asList(2, 5, 7));
 
     @DisplayName("맞춘 숫자가 없는 경우 nothing 출력")
     @Test
     void test01() {
 
         String expected = "nothing";
-        String actual = hintGenerator.makeHintFromNumbers(Arrays.asList(1, 3, 4))
-                                     .toString();
+        String actual = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(Arrays.asList(1, 3, 4))
+                                              .toString();
 
         assertEquals(expected, actual);
     }
@@ -34,8 +34,8 @@ class HintGeneratorTest {
     void test02(List<Integer> numbers, int countOfAnswer) {
 
         String expected = countOfAnswer + " ball";
-        String actual = hintGenerator.makeHintFromNumbers(numbers)
-                                     .toString();
+        String actual = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(numbers)
+                                              .toString();
 
         assertEquals(expected, actual);
     }
@@ -54,7 +54,7 @@ class HintGeneratorTest {
     @ParameterizedTest
     void test03(List<Integer> numbers, int countOfAnswer) {
 
-        Hint hint = hintGenerator.makeHintFromNumbers(numbers);
+        Hint hint = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(numbers);
         String expected = countOfAnswer + " strike ";
         String actual = hint.toString();
 
@@ -81,7 +81,7 @@ class HintGeneratorTest {
     @ParameterizedTest
     void test04(List<Integer> numbers, int countOfStrike, int countOfBall) {
 
-        Hint hint = hintGenerator.makeHintFromNumbers(numbers);
+        Hint hint = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(numbers);
         String expected = countOfStrike + " strike " + countOfBall + " ball";
         String actual = hint.toString();
 
