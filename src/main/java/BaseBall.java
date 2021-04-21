@@ -1,6 +1,7 @@
-public class BaseBall {
+import java.util.HashMap;
+import java.util.Map;
 
-    public static final String FOUR_BALL = "4B";
+public class BaseBall {
 
     private String answer;
 
@@ -8,12 +9,26 @@ public class BaseBall {
         this.answer = answer;
     }
 
-    public String play(String input) {
+    public Map<Character, Integer> play(String input) {
         if (notContainsByAnswer(input)) {
-            return FOUR_BALL;
+            return new HashMap<>();
         }
 
-        return "";
+        int sizeOfInput = input.length();
+        Map<Character, Integer> hint = new HashMap<>();
+        for (int i = 0; i < sizeOfInput; i++) {
+            if (answer.charAt(i) == input.charAt(i)) {
+                hint.put('S', hint.getOrDefault('S', 0) + 1);
+            }
+        }
+
+        for (int i = 0; i < sizeOfInput; i++) {
+            if (answer.indexOf(input.charAt(i)) != -1 && answer.charAt(i) != input.charAt(i)) {
+                hint.put('B', hint.getOrDefault('B', 0) + 1);
+            }
+        }
+
+        return hint;
     }
 
     private boolean notContainsByAnswer(String playerInput) {
