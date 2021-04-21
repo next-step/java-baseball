@@ -6,8 +6,8 @@
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
-##1. 요구사항 정의
-###1.1. 과제 진행 요구사항
+## 1. 요구사항 정의
+### 1.1. 과제 진행 요구사항
 |상세|구현 방법|비고|
 |:---|---|---|
 |•미션은 https://github.com/next-step/java-baseball-precourse 저장소를 fork/clone해 시작한다.|[x] fork <br> [x] clone||
@@ -15,7 +15,7 @@
 |•git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.<br>&nbsp;&nbsp;&nbsp;&nbsp;•AngularJS Commit Message Conventions 참고해 commit log를 남긴다.|[x] AngularJS Commit<br>&nbsp;&nbsp;&nbsp;&nbsp;Message Conventions 참고||
 |•과제 진행 및 제출 방법은 프리코스 과제 제출 문서를 참고한다.|[ ] 과제 제출 문서 참고<br>[ ] 과제 제출|•2021년<br>&nbsp;4월 27일(화)<br>&nbsp;23시 59분까지 <br>&nbsp;GitHub을 통한<br>&nbsp;**미션 제출**과 **메일** 완료|
 
-###1.2. 프로그래밍 요구사항
+### 1.2. 프로그래밍 요구사항
 |구분|상세|구현 방법|비고|
 |:---:|:---|---|---|
 |메소드 분리|• 자바 코드 컨벤션을 지키면서 프로그래밍한다.<br>&nbsp;&nbsp;• https://naver.github.io/hackday-conventions-java/|[ ] gradle-checkstyle 적용<br>[ ] gradle-checkstyle 적용<br>[ ] IntelliJ 적용<br>[ ] Github 적용||
@@ -26,7 +26,7 @@
 |단위 테스트|• 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in, Scanner) 로직은 제외 <br>&nbsp;&nbsp;• 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.|[ ] 핵심 로직 단위테스트<br>[ ] UI 로직 단위테스트||
 | |• JUnit5와 AssertJ 사용법에 익숙하지 않은 개발자는 첨부한 "학습테스트를 통해 JUnit 학습하기.pdf"<br>&nbsp;&nbsp;문서를 참고해 사용법을 익힌 후 JUnit5 기반 단위 테스트를 구현한다.|[ ] 사용법 학습||
 
-###1.3. 기능 요구사항
+### 1.3. 기능 요구사항
 |상세|구현 방법|비고|
 |:---|---|---|
 |•기본적으로 1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 맞추는 게임이다.|[ ] 게임 종료 판독 메서드|- 3 스트라이크 시 게임 종료<br>- 서로 다른 수로 이루어짐 : 자료구조 Set 활용<br>- '0'이 없음을 유의한다.|
@@ -35,7 +35,7 @@
 |• 이 같은 과정을 반복해 컴퓨터가 선택한 3개의 숫자를 모두 맞히면 게임이 종료된다.|[ ] 게임 종료 판독 메서드||
 |• 게임을 종료한 후 게임을 다시 시작하거나 완전히 종료할 수 있다.|[ ] Continue UI 메서드||
 
-####1.3.1. 프로그램 실행 결과
+#### 1.3.1. 프로그램 실행 결과
 ```
 숫자를 입력해주세요 : 123 1 스트라이크 1볼
 숫자를 입력해주세요 : 145 1볼
@@ -50,6 +50,7 @@
 ...
 ```
 
-##2. 설계
-###2.1. Flowchart
+## 2. 설계
+### 2.1. Flowchart
+
 ![image](./documents/2-architecture/baseball-flowchart.jpeg)
