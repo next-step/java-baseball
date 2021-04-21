@@ -1,14 +1,18 @@
 package play;
 
 import ui.InputDataVO;
+import util.GenerateRandomNumber;
+
+import java.util.List;
 
 public class BaseBallGamePlay implements GamePlay{
 
-	private int[] targetNumberArray;
+	private List<Integer> targetNumberArray;
 
 	@Override
 	public void init() {
-
+		// 목표 숫자 초기화
+		this.targetNumberArray = generateTargetNumber();
 	}
 
 	@Override
@@ -16,7 +20,8 @@ public class BaseBallGamePlay implements GamePlay{
 		return true;
 	}
 
-	private int[] generateTargetNumber(){
-		return new int[]{};
+	private List<Integer> generateTargetNumber(){
+		// 목표 숫자 생성
+		return GenerateRandomNumber.generate(10, 3);
 	}
 }
