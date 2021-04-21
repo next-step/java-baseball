@@ -1,4 +1,4 @@
-package baseball.strategy;
+package baseball.domain.strategy;
 
 import baseball.domain.BallNumbers;
 
