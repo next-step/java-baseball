@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.BaseballGame;
+import baseball.domain.BaseballResult;
 import baseball.domain.Numbers;
 import baseball.random.Random;
 import baseball.view.input.Input;
@@ -17,25 +18,32 @@ public class GameController {
     private final int numberSize;
     private final int ZERO = 0;
     private Random randomGenerator;
-    private Numbers numbers;
+    private Numbers randomNumbers;
 
     public GameController(final Input input, final Output output, final int numberSize, final Random randomGenerator) {
         this.input = input;
         this.output = output;
         this.numberSize = numberSize;
         this.randomGenerator = randomGenerator;
-        this.numbers = randomGenerator.getRandomNumber(numberSize);
+        this.randomNumbers = randomGenerator.getRandomNumber(numberSize);
     }
 
     public void start() {
-        System.out.println("computer" + numbers);
-        final Numbers userNumbers = getNumbers();
-        final BaseballGame game = new BaseballGame(numbers, userNumbers);
+        System.out.println("computer" + randomNumbers);
+        final Numbers userNumbers = getUserNumbers();
+        final BaseballGame game = new BaseballGame(randomNumbers, userNumbers);
         play(game);
+    }
+
+    public void reStart() {
+        randomNumbers = randomGenerator.getRandomNumber(numberSize);
+        start();
     }
 
     private void play(final BaseballGame game) {
         while (game.isNotEnd()) {
+            final BaseballResult result = game.playOneRound();
+            output.printResult(result);
             start();
         }
         output.printEndMessage();
@@ -43,12 +51,7 @@ public class GameController {
         System.exit(ZERO);
     }
 
-    public void reStart() {
-        numbers = randomGenerator.getRandomNumber(numberSize);
-        start();
-    }
-
-    private Numbers getNumbers() {
+    private Numbers getUserNumbers() {
         output.print(PLEASE_INPUT_NUMBERS);
         final List<String> numbers = input.getNumbers();
         validate(numbers);
@@ -58,7 +61,7 @@ public class GameController {
     private void validate(final List<String> numbers) {
         if (validateSize(numbers) || validateDuplicate(numbers)) {
             output.printValiedateNumber(numberSize);
-            getNumbers();
+            getUserNumbers();
         }
     }
 
