@@ -3,15 +3,15 @@ import java.util.Set;
 
 public class GameMachine {
 
-    public final static int RANDOM_NUMBER_SIZE = 3;
+    public final static int RANDOM_VALUE_MAX_LENGTH = 3;
 
-    private final Set<Integer> randomSets = new LinkedHashSet<>();
+    private final Set<Integer> randomSet = new LinkedHashSet<>();
 
     public static GameMachine of() {
         return new GameMachine();
     }
 
-    public int getCurrentRandomSetSize() {
-        return randomSets.size();
+    public int getRandomSetSize() {
+        return randomSet.size();
     }
 }

@@ -12,6 +12,6 @@ class GameMachineTest {
     void createGameMachineTest() {
         GameMachine gameMachine = GameMachine.of();
         assertNotEquals(null, gameMachine);
-        assertEquals(0, gameMachine.getCurrentRandomSetSize());
+        assertEquals(0, gameMachine.getRandomSetSize());
     }
 }
