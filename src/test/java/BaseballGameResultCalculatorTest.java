@@ -104,4 +104,14 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getBallsCnt(createdStr, "432"), 2);
     }
 
+    /* 볼 3개 반환하기 (1개 고정, 1개 변함)
+     * 214, 142 -> 3
+     * 214, 421 -> 3
+     */
+    @Test
+    public void isCountedThreeBallsWhenFirstIsFixed(){
+        String createdStr = "214";
+        assertEquals(calculator.getBallsCnt(createdStr, "142"), 3);
+        assertEquals(calculator.getBallsCnt(createdStr, "421"), 3);
+    }
 }
