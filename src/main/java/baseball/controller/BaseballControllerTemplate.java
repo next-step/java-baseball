@@ -1,0 +1,90 @@
+package baseball.controller;
+
+import baseball.config.BaseballConfig;
+import baseball.model.BaseballNumber;
+import baseball.model.BaseballResult;
+
+public abstract class BaseballControllerTemplate {
+
+    abstract public BaseballNumber readInputBaseballNumber();
+
+    abstract public BaseballResult checkTrial(BaseballNumber baseballNumber);
+
+    abstract public void printBaseballResult(BaseballResult baseballResult);
+
+    abstract public void printGameResult(BaseballResult baseballResult);
+
+    abstract public boolean askReGame();
+
+    public void run() {
+        this.run(new BaseballConfig());
+    }
+
+    public void run(BaseballConfig config) {
+        do {
+            // 1. Init Game
+            this.initGame(config.getSize(), config.getRadix());
+
+            // 2. Game Process Start
+            BaseballResult result = this.startGame(config.getCount());
+
+            // 3. Print Game Final Result
+            this.printGameResult(result);
+
+            // 4. Ask Continue to play game
+        } while (this.askReGame());
+    }
+
+    public void initGame() {
+        this.initGame(BaseballNumber.DEFAULT_NUMBERS_SIZE, BaseballNumber.DEFAULT_NUMBER_RADIX);
+    }
+
+    abstract public void initGame(int size, int radix);
+
+    public BaseballResult startGame() {
+        // Infinite Loop
+        BaseballResult result;
+        do {
+            // Unit Game Process
+            result = processGame();
+        } while (!result.isComplete());
+
+        return result;
+    }
+
+    public BaseballResult startGame(int tryCount) {
+        if (tryCount <= 0) {
+            this.startGame();
+        }
+
+        BaseballResult result = null;
+
+        // Finite Loop
+        for (int i = 0; i < tryCount; i++) {
+            // Unit Game Process
+            result = processGame();
+
+            if (result.isComplete()) {
+                return result;
+            }
+        }
+
+        return result;
+    }
+
+    public BaseballResult processGame() {
+        // 1. User Input Read
+        BaseballNumber baseballNumber = this.readInputBaseballNumber();
+
+        // 2. Input, Answer Compare & Check
+        BaseballResult baseballResult = this.checkTrial(baseballNumber);
+
+        // 3. Print Check Result
+        this.printBaseballResult(baseballResult);
+
+        // 4. Return Check Result
+        return baseballResult;
+    }
+
+
+}
