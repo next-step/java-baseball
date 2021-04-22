@@ -1,9 +1,9 @@
 package study;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -31,14 +31,12 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("splitStringUsingComma 메서드에 Input으로 \"1,\"이 들어왔을 때, 1이 정상적으로 Split 되는지 테스트 한다.")
     public void stringSplitOneCommaTest() {
         StringSplit spliter = new StringSplit();
         List<String> listString = spliter.splitStringUsingComma("1,");
 
         assertThat(listString)
                 .contains("1");
-
         assertThat(listString)
                 .containsExactly("1");
     }
