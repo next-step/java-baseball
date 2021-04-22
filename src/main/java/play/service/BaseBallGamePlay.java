@@ -1,6 +1,6 @@
-package play;
+package play.service;
 
-import ui.InputDataVO;
+import ui.dto.InputDataDto;
 import util.GenerateRandomNumber;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class BaseBallGamePlay implements GamePlay{
 	}
 
 	@Override
-	public boolean play(InputDataVO inputDataVO) {
+	public boolean play(InputDataDto inputDataDto) {
 		return true;
 	}
 

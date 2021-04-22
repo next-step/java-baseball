@@ -1,9 +1,9 @@
-import play.BaseBallGamePlay;
-import play.GamePlay;
-import ui.BaseBallGamerAction;
-import ui.GameCommand;
-import ui.GamerAction;
-import ui.InputDataVO;
+import play.service.BaseBallGamePlay;
+import play.service.GamePlay;
+import ui.service.BaseBallGamerAction;
+import ui.type.GameCommand;
+import ui.service.GamerAction;
+import ui.dto.InputDataDto;
 
 public class BaseBallGameManager {
 
@@ -25,10 +25,10 @@ public class BaseBallGameManager {
 
 	public void play(){
 		// 사용자 데이터 입력 받음
-		InputDataVO inputDataVO = gamerAction.inputData();
+		InputDataDto inputDataDto = gamerAction.inputData();
 
 		// 숫자 맞추기 시작
-		boolean isCollect = gamePlay.play(inputDataVO);
+		boolean isCollect = gamePlay.play(inputDataDto);
 		if(isCollect){ // 숫자를 맞추면 끝
 			return;
 		}
