@@ -13,4 +13,11 @@ public class StringMethod {
         return Arrays.asList(inputString.split(","));
     }
 
+    public char getCharInString(String string, int index) {
+        try {
+            return string.charAt(index);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw e;
+        }
+    }
 }

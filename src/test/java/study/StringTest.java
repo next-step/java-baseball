@@ -1,5 +1,6 @@
 package study;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -51,28 +52,48 @@ public class StringTest {
                 .containsExactly("1", "2");
     }
 
-//    @Test
-//    @DisplayName("String과 index가 주어졌을 때, index로 해당 String의 charAt() 메소드에서 " +
-//            "IndexOutOfBoundsException이 발생하는지 여부를 테스트 한다.")
-//    public void StringCharAtIndexExceptionTest() {
-//
-//        assertThatThrownBy(() -> {
-//            assertThat("abc".charAt(3)).isEqualTo('c');
-//        }).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining(
-////                "Index: 3, Size: 2"
-//                "String index out of range"
-//        );
-//
-//        assertThatThrownBy(() -> {
-//            assertThat("abc".charAt(-1)).isEqualTo('c');
-//        }).isInstanceOf(IndexOutOfBoundsException.class).hasMessageContaining(
-//                "Index: 3, Size: 2"
-//        );
-//
-////        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
-////            assertThat("abc".charAt(3)).isEqualTo('c');
-////        }).withMessageMatching(
-////                "Index: \\d+, Size: \\d+"
-////        );
-//    }
+    @Test
+    public void getCharInStringTest() {
+        StringMethod stringMethod = new StringMethod();
+
+        assertThat(stringMethod.getCharInString("abc", 0))
+                .isEqualTo('a');
+        assertThat(stringMethod.getCharInString("abc", 2))
+                .isEqualTo('c');
+    }
+
+    @Test
+    @DisplayName("String과 index가 주어졌을 때, index로 해당 String의 charAt() 메소드에서 " +
+            "IndexOutOfBoundsException이 발생하는지 여부를 테스트 한다.")
+    public void getCharInStringExceptionTest() {
+        StringMethod stringMethod = new StringMethod();
+
+        assertThatThrownBy(() -> {
+            assertThat(stringMethod.getCharInString("abc", 3)).isEqualTo('c');
+        }).isInstanceOf(StringIndexOutOfBoundsException.class).hasMessageContaining(
+                "String index out of range"
+        );
+
+        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
+            assertThat(stringMethod.getCharInString("abc", 3)).isEqualTo('c');
+        }).withMessageMatching(
+                "String index out of range: \\d+"
+        );
+    }
+
+    @Test
+    @DisplayName("예제에 있던 IndexOutOfBoundsException 과 Regx 사용한 내용 확인 테스트 메소드")
+    public void getCharInList() {
+        List<Character> charList = new ArrayList<>();
+        charList.add('a');
+        charList.add('b');
+        charList.add('c');
+
+        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
+            assertThat(charList.get(3)).isEqualTo('c');
+        }).withMessageMatching(
+                "Index \\d+ out of bounds for length \\d+"
+        );
+
+    }
 }
