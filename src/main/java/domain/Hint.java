@@ -12,8 +12,8 @@ public class Hint {
         this.ball = ball;
     }
 
-    public boolean isVictory() {
-        return strike == MAX_COUNT_OF_STRIKE;
+    public boolean isNotVictory() {
+        return strike != MAX_COUNT_OF_STRIKE;
     }
 
     @Override

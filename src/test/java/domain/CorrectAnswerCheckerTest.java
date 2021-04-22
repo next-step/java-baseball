@@ -62,9 +62,9 @@ class CorrectAnswerCheckerTest {
         assertEquals(expected, actual);
 
         if (countOfAnswer == 3) {
-            assertTrue(hint.isVictory());
+            assertFalse(hint.isNotVictory());
         } else {
-            assertFalse(hint.isVictory());
+            assertTrue(hint.isNotVictory());
         }
     }
 
