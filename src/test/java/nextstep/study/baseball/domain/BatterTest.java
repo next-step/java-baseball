@@ -6,9 +6,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import nextstep.study.baseball.util.BaseballUtil;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 @DisplayName("타자 테스트")
+@TestMethodOrder(MethodOrderer.DisplayName.class)
 public class BatterTest {
 
 	@Test
