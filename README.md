@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+1. 랜덤 3자리(1~9) 숫자 정 생성 기능
+2. 사용자에게 숫자 입력 받는 기능 (입력 값 Validation)
+3. 입력 값 정답 검증 및 결과 표기 기능
+4. 반복 가능한 게임 기능
