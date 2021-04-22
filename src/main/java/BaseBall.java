@@ -3,11 +3,14 @@ import java.util.Scanner;
 
 public class BaseBall {
     static int[] answer;
+    static boolean replay=true;
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         init();
-        playGame(s);
+        while (replay) {
+            playGame(s);
+        }
         s.close();
     }
 
@@ -15,10 +18,13 @@ public class BaseBall {
         boolean finish = false;
         String input;
         while (!finish) {
-            System.out.printf("insert numbers (3digits) :");
+            System.out.print("insert numbers (3digits) :");
             input = s.nextLine();
             finish = check(input);
         }
+        System.out.println("you matched all three balls! game over");
+        System.out.println("type 1 to replay, type anything to quit");
+        replay=Integer.parseInt(s.nextLine()) == 1;
     }
 
     private static boolean check(String input) {
@@ -32,13 +38,13 @@ public class BaseBall {
 
     private static void showHint(int[] result) {
         StringBuilder sb = new StringBuilder();
-        if(result[0]!=0){
-            sb.append(String.format("%d strikes ",result[0]));
+        if (result[0] != 0) {
+            sb.append(String.format("%d strikes ", result[0]));
         }
-        if(result[1]!=0){
-            sb.append(String.format("%d balls",result[1]));
+        if (result[1] != 0) {
+            sb.append(String.format("%d balls", result[1]));
         }
-        if(result[0]==0&&result[1]==0){
+        if (result[0] == 0 && result[1] == 0) {
             sb.append("NOTHING");
         }
         System.out.println(sb.toString());
