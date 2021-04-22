@@ -28,6 +28,10 @@ public class Numbers {
         return new HashSet(numbers).size() != 3;
     }
 
+    public List<String> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
