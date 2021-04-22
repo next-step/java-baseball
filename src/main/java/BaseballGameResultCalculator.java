@@ -7,4 +7,8 @@ public class BaseballGameResultCalculator {
     public BaseballGameResultCalculator(int maxLen){
         this.maxLen = maxLen;
     }
+
+    public int getStrikesCnt(String createdStr, String inputStr) {
+        return 3;
+    }
 }
