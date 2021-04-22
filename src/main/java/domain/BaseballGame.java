@@ -40,8 +40,7 @@ public class BaseballGame {
 
     private Numbers inputNumbers() {
         try {
-            int number = input.nextInt();
-            return new Numbers(number);
+            return new Numbers(input.nextInt());
         } catch (IllegalArgumentException | NullPointerException e) {
             output.printLine(e.getMessage());
         }
@@ -62,15 +61,17 @@ public class BaseballGame {
 
     private boolean continueGame() {
         output.printLine("정답입니다. 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        return RESTART_COMMAND.equals(inputCommand());
+    }
+
+    private String inputCommand() {
         input.nextLine();
         String command = input.nextLine();
-
         while (isInvalidCommand(command)) {
             output.printLine("1이나 2만 입력해주세요.");
             command = input.nextLine();
         }
-
-        return command.equals("1");
+        return command;
     }
 
     private boolean isInvalidCommand(String command) {

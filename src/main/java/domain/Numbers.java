@@ -7,7 +7,7 @@ public class Numbers {
 
     private static final int MINIMUM_NUMBERS_VALUE = 100;
     private static final int MAXIMUM_NUMBERS_VALUE = 999;
-    private static final int COUNT_OF_NUMBERS = 3;
+    private static final int MAX_SIZE_OF_NUMBERS = 3;
 
     private final List<Integer> list;
 
@@ -17,12 +17,8 @@ public class Numbers {
         String str = String.valueOf(numbers);
 
         for (int i = 0; i < str.length(); i++) {
-            list.add(charToInt(str.charAt(i)));
+            list.add(convert(str.charAt(i)));
         }
-    }
-
-    private int charToInt(char c) {
-        return c - '0';
     }
 
     public Numbers(List<Integer> list) {
@@ -37,9 +33,13 @@ public class Numbers {
     }
 
     private void validateList(List<Integer> list) {
-        if (list.size() != COUNT_OF_NUMBERS) {
+        if (list.size() != MAX_SIZE_OF_NUMBERS) {
             throw new IllegalArgumentException("3자리 숫자를 입력해야 합니다.");
         }
+    }
+
+    private int convert(char c) {
+        return c - '0';
     }
 
     public int get(int index) {

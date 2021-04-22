@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.function.BiFunction;
+
 public class AnswerChecker {
 
     private static final int COUNT_OF_NUMBERS = 3;
@@ -15,22 +17,18 @@ public class AnswerChecker {
     }
 
     private int getStrikeCount(Numbers numbers) {
-
-        int count = 0;
-        for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
-            count += ifStrikeThenPlusOne(numbers, i);
-        }
-
-        return count;
+        return getCount(this::ifStrikeThenPlusOne, numbers);
     }
 
     private int getBallCount(Numbers numbers) {
+        return getCount(this::ifBallThenPlusOne, numbers);
+    }
 
+    private int getCount(BiFunction<Numbers, Integer, Integer> biFunction, Numbers numbers) {
         int count = 0;
         for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
-            count += ifBallThenPlusOne(numbers, i);
+            count += biFunction.apply(numbers, i);
         }
-
         return count;
     }
 

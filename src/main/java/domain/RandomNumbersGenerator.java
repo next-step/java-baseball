@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
 
+    private static final int MAX_SIZE_OF_NUMBERS = 3;
+
     private final RandomNumberGenerator randomNumberGenerator;
 
     public RandomNumbersGenerator(RandomNumberGenerator randomNumberGenerator) {
@@ -19,7 +21,7 @@ public class RandomNumbersGenerator implements NumbersGenerator {
 
         Set<Integer> set = new HashSet<>();
 
-        while(set.size() < 3) {
+        while(set.size() < MAX_SIZE_OF_NUMBERS) {
             set.add(randomNumberGenerator.nextInt());
         }
 
