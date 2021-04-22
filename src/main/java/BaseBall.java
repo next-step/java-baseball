@@ -1,11 +1,22 @@
-import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BaseBall {
-    static int [] answer;
+    static int[] answer;
 
     public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
         init();
+        playGame(s);
+        s.close();
+    }
+
+    private static void playGame(Scanner s) {
+        boolean finish = false;
+        String input;
+        while(!finish){
+             input = s.nextLine();
+        }
     }
 
     private static void init() {
