@@ -14,6 +14,19 @@ public class BaseBall {
         this.answer = answer;
     }
 
+    public static void play() {
+        Scanner scan = new Scanner(System.in);
+        BaseBall game = new BaseBall();
+        boolean isFinish = false;
+
+        while (!isFinish) {
+            List<Integer> userAnswer = game.askAnswer(scan);
+            boolean isAnswer = game.isAnswer(userAnswer);
+            if (isAnswer) isFinish = game.finish(game.askFinish(scan));
+        }
+        scan.close();
+    }
+
     public static List<Integer> makeAnswer() {
         List<Integer> copy = new ArrayList<>(DEFAULT_RANGE);
         Collections.shuffle(copy);
@@ -36,6 +49,18 @@ public class BaseBall {
     public boolean finish(boolean isFinish) {
         if (!isFinish) refresh();
         return isFinish;
+    }
+
+    private List<Integer> askAnswer(Scanner scan) {
+        List<Integer> converted = new ArrayList<>();
+
+        System.out.print("숫자를 입력해주세요 : ");
+        String[] userResponse = String.valueOf(scan.nextInt()).split("");
+        for (int i = 0; i < userResponse.length; ++i) {
+            converted.add(Integer.valueOf(userResponse[i]));
+        }
+
+        return converted;
     }
 
     private boolean askFinish(Scanner scan) {
