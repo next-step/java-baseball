@@ -56,11 +56,6 @@ public class BaseballGame {
         }
 
         Hint hint = checker.makeResultHint(numbers);
-
-        if (hint == null) {
-            return true;
-        }
-
         output.printLine(hint.toString());
         return hint.isNotVictory();
     }
