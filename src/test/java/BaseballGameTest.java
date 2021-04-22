@@ -43,5 +43,6 @@ public class BaseballGameTest {
     @DisplayName("컴퓨터가 숫자를 하나 뽑는다")
     public void findOneNumberBox(){
         assertThat(randomBox.get(0)).isGreaterThan(0);
+
     }
 }
