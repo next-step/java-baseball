@@ -27,7 +27,6 @@ public class BaseBall {
         return INCLUSIVE_MIN <= number && number <= INCLUSIVE_MAX;
     }
 
-
     public int isEqualNumber(BaseBall opponent) {
         if(number == opponent.number) {
             return TRUE;
