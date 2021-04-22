@@ -27,28 +27,12 @@ public class RefreeDecision {
 		return nothingCount;
 	}
 
-	public int addStrikeCount() {
-		return strikeCount++;
+	@Override
+	public String toString() {
+		return "RefreeDecision{" +
+			"strikeCount=" + strikeCount +
+			", ballCount=" + ballCount +
+			", nothingCount=" + nothingCount +
+			'}';
 	}
-
-	public int addStrikeCount(int count) {
-		return strikeCount + count;
-	}
-
-	public int addBallCount() {
-		return ballCount++;
-	}
-
-	public int addBallCount(int count) {
-		return ballCount + count;
-	}
-
-	public int addNothingCount() {
-		return nothingCount++;
-	}
-
-	public int addNothingCount(int count) {
-		return nothingCount + count;
-	}
-
 }

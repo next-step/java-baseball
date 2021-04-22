@@ -14,12 +14,14 @@ public class RefreeTest {
 	@ParameterizedTest
 	@CsvSource(value = {"123:123"}, delimiter = ':')
 	void testMatch(String batterNum, String pitcherNum) {
-		System.out.println("batterNum:" + batterNum + ", pitcherNum:" + pitcherNum);
 
 		List<Integer> batterNums = BaseballUtil.strToList(batterNum);
 		List<Integer> picherNums = BaseballUtil.strToList(pitcherNum);
 
-		RefreeDecision decision = Referee.makeRefreeDecision(batterNums, picherNums);
+		Referee referee = new Referee();
+		RefreeDecision decision = referee.makeRefreeDecision(batterNums, picherNums);
+		System.out.println(decision);
+
 		assertThat(decision.getStrikeCount()).isEqualTo(3);
 	}
 
