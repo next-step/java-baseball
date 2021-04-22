@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class BaseballGameTest {
     private List<Integer> randomBox;
+    private List<Integer> player2Number;
 
     @Test
     @DisplayName("켄트백 형님의 말씀대로 nothing 부터..")
@@ -24,6 +25,11 @@ public class BaseballGameTest {
         for(int i=1;i<10;i++){
             randomBox.add(i);
         }
+    }
+
+    @BeforeEach
+    public void setPlayer2Number(){
+        player2Number = new ArrayList<>();
     }
 
     @Test
@@ -40,11 +46,31 @@ public class BaseballGameTest {
     }
 
     @Test
-    @DisplayName("컴퓨터가 숫자를 하나 뽑는다")
+    @DisplayName("상자에서 숫자를 하나 뽑는다")
     public void findOneNumberBox(){
         int number = randomBox.get(0);
         assertThat(number).isNotZero();
         assertThat(number).isPositive();
         assertThat(number).isInstanceOf(Integer.class);
+    }
+
+    @Test
+    @DisplayName("remove를 이용해 List의 숫자를 뽑으면서 전체 숫자를 줄이면 사이즈 관리가 편할듯")
+    public void removeOneNumberBox(){
+        int number = randomBox.remove(0);
+        assertThat(number).isNotZero();
+        assertThat(number).isPositive();
+        assertThat(number).isInstanceOf(Integer.class);
+        assertThat(randomBox.size()).isEqualTo(8);
+    }
+
+    @Test
+    @DisplayName("player2(컴퓨터)에 숫자를 넣는다")
+    public void addPlayer2Number(){
+        player2Number.add(randomBox.remove(0));
+        assertThat(player2Number.get(0)).isNotZero();
+        assertThat(player2Number.get(0)).isPositive();
+        assertThat(player2Number.get(0)).isInstanceOf(Integer.class);
+        assertThat(randomBox.size()).isEqualTo(8);
     }
 }
