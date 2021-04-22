@@ -35,4 +35,10 @@ public class BaseballGameResultCalculator {
     private boolean isBallAtIndex(String createdStr, String inputStr, int index) {
         return !(isStrikeAtIndex(createdStr, inputStr, index)) && createdStr.contains(inputStr.charAt(index)+"");
     }
+
+    public int[] calculateGameResult(String createdStr, String inputStr){
+        int strikes = getStrikesCnt(createdStr, inputStr);
+        int balls = getBallsCnt(createdStr, inputStr);
+        return new int[]{ strikes, balls };
+    }
 }

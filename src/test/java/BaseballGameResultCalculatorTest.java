@@ -1,6 +1,7 @@
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class BaseballGameResultCalculatorTest {
     private BaseballGameResultCalculator calculator;
@@ -137,5 +138,35 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getBallsCnt("156", "562"), 2);
         assertEquals(calculator.getBallsCnt("169", "916"), 3);
 
+    }
+
+    @Test
+    public void isCalculatedWell123And123(){
+        assertArrayEquals(calculator.calculateGameResult("123", "123"), new int[]{3, 0});
+    }
+
+    /* 많은 상황에서 계산 결과 잘 반환하는지 테스팅
+     * 모든 결과 테스트 확인
+     * 123 123 -> (3, 0)
+     * 123 125 -> (2, 0)
+     * 453 123 -> (1, 0)
+     * 231 123 -> (0, 3)
+     * 432 123 -> (0, 2)
+     * 891 123 -> (0, 1)
+     * 132 123 -> (1, 2)
+     * 134 123 -> (1, 1)
+     * 123 456 -> (0, 0)
+     */
+    @Test
+    public void isCalculatedWellManyWhenFixed() {
+        assertArrayEquals(calculator.calculateGameResult("123", "123"), new int[]{3, 0});
+        assertArrayEquals(calculator.calculateGameResult("123", "125"), new int[]{2, 0});
+        assertArrayEquals(calculator.calculateGameResult("453", "123"), new int[]{1, 0});
+        assertArrayEquals(calculator.calculateGameResult("231", "123"), new int[]{0, 3});
+        assertArrayEquals(calculator.calculateGameResult("432", "123"), new int[]{0, 2});
+        assertArrayEquals(calculator.calculateGameResult("891", "123"), new int[]{0, 1});
+        assertArrayEquals(calculator.calculateGameResult("132", "123"), new int[]{1, 2});
+        assertArrayEquals(calculator.calculateGameResult("134", "123"), new int[]{1, 1});
+        assertArrayEquals(calculator.calculateGameResult("123", "456"), new int[]{0, 0});
     }
 }
