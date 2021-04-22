@@ -3,7 +3,7 @@ package study;
 import java.util.Arrays;
 import java.util.List;
 
-public class StringSplit {
+public class StringMethod {
 
     public List<String> splitStringUsingComma(String inputString) {
         if (inputString.startsWith("(") && inputString.endsWith(")"))
