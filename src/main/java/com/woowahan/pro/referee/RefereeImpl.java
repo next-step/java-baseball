@@ -62,10 +62,12 @@ public class RefereeImpl implements Referee{
         }
     }
 
+    @Override
     public int getStrike() {
         return strike;
     }
 
+    @Override
     public int getBall() {
         return ball;
     }
