@@ -46,4 +46,28 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getStrikesCnt(createdStr, "284"), 2);
     }
 
+    /* 스트라이크 최종 테스트. 많은 상황에서 잘 동작하는지 확인
+     * 214, 928 -> 0
+     * 214, 201 -> 1
+     * 214, 816 -> 1
+     * 214, 984 -> 1
+     * 214, 211 -> 2
+     * 214, 814 -> 2
+     * 214, 284 -> 2
+     * 213, 213 -> 3
+     */
+    @Test
+    public void isCountedStrikesManyWhenFixed(){
+        String createdStr = "214";
+
+        assertEquals(calculator.getStrikesCnt(createdStr, "928"), 0);
+        assertEquals(calculator.getStrikesCnt(createdStr, "201"), 1);
+        assertEquals(calculator.getStrikesCnt(createdStr, "816"), 1);
+        assertEquals(calculator.getStrikesCnt(createdStr, "984"), 1);
+        assertEquals(calculator.getStrikesCnt(createdStr, "211"), 2);
+        assertEquals(calculator.getStrikesCnt(createdStr, "814"), 2);
+        assertEquals(calculator.getStrikesCnt(createdStr, "284"), 2);
+        assertEquals(calculator.getStrikesCnt(createdStr, "213"), 3);
+    }
+
 }
