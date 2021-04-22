@@ -18,15 +18,10 @@ class NumbersTest {
     @ParameterizedTest
     void test01(int arg) {
         Numbers numbers = new Numbers(arg);
-        List<Integer> list = numbers.get();
 
-        int expected = 3;
-        int actual = list.size();
-        assertEquals(expected, actual);
-
-        assertEquals(arg / 100, list.get(0));
-        assertEquals((arg % 100) / 10, list.get(1));
-        assertEquals(arg % 10, list.get(2));
+        assertEquals(arg / 100, numbers.get(0));
+        assertEquals((arg % 100) / 10, numbers.get(1));
+        assertEquals(arg % 10, numbers.get(2));
     }
 
     @DisplayName("매개변수가 3자리 정수가 아니면 exception")

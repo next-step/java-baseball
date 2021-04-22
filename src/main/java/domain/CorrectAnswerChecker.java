@@ -6,17 +6,17 @@ public class CorrectAnswerChecker {
 
     private static final int COUNT_OF_NUMBERS = 3;
 
-    private final List<Integer> generatedNumbers;
+    private final Numbers answer;
 
-    public CorrectAnswerChecker(List<Integer> numbers) {
-        this.generatedNumbers = numbers;
+    public CorrectAnswerChecker(Numbers answer) {
+        this.answer = answer;
     }
 
-    public Hint makeHintFromNumbers(List<Integer> numbers) {
+    public Hint makeResultHint(Numbers numbers) {
         return new Hint(getStrikeCount(numbers), getBallCount(numbers));
     }
 
-    private int getStrikeCount(List<Integer> numbers) {
+    private int getStrikeCount(Numbers numbers) {
 
         int count = 0;
         for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
@@ -26,7 +26,7 @@ public class CorrectAnswerChecker {
         return count;
     }
 
-    private int getBallCount(List<Integer> numbers) {
+    private int getBallCount(Numbers numbers) {
 
         int count = 0;
         for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
@@ -40,16 +40,16 @@ public class CorrectAnswerChecker {
         return a.intValue() == b.intValue();
     }
 
-    private int ifStrikeThenPlusOne(List<Integer> numbers, int i) {
-        if (equals(numbers.get(i), generatedNumbers.get(i))) {
+    private int ifStrikeThenPlusOne(Numbers numbers, int i) {
+        if (equals(numbers.get(i), answer.get(i))) {
             return 1;
         }
         return 0;
     }
 
-    private int ifBallThenPlusOne(List<Integer> numbers, int index) {
-        if (!equals(numbers.get(index), generatedNumbers.get(index))
-            && generatedNumbers.contains(numbers.get(index))) {
+    private int ifBallThenPlusOne(Numbers numbers, int index) {
+        if (!equals(numbers.get(index), answer.get(index))
+            && answer.contains(numbers.get(index))) {
             return 1;
         }
         return 0;

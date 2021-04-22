@@ -15,14 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CorrectAnswerCheckerTest {
 
-    private static final CorrectAnswerChecker CORRECT_ANSWER_CHECKER = new CorrectAnswerChecker(Arrays.asList(2, 5, 7));
+    private static final CorrectAnswerChecker CORRECT_ANSWER_CHECKER =
+        new CorrectAnswerChecker(new Numbers(Arrays.asList(2, 5, 7)));
 
     @DisplayName("맞춘 숫자가 없는 경우 nothing 출력")
     @Test
     void test01() {
 
         String expected = "nothing";
-        String actual = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(Arrays.asList(1, 3, 4))
+        String actual = CORRECT_ANSWER_CHECKER.makeResultHint(new Numbers(Arrays.asList(1, 3, 4)))
                                               .toString();
 
         assertEquals(expected, actual);
@@ -34,7 +35,7 @@ class CorrectAnswerCheckerTest {
     void test02(List<Integer> numbers, int countOfAnswer) {
 
         String expected = countOfAnswer + " ball";
-        String actual = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(numbers)
+        String actual = CORRECT_ANSWER_CHECKER.makeResultHint(new Numbers(numbers))
                                               .toString();
 
         assertEquals(expected, actual);
@@ -54,7 +55,7 @@ class CorrectAnswerCheckerTest {
     @ParameterizedTest
     void test03(List<Integer> numbers, int countOfAnswer) {
 
-        Hint hint = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(numbers);
+        Hint hint = CORRECT_ANSWER_CHECKER.makeResultHint(new Numbers(numbers));
         String expected = countOfAnswer + " strike ";
         String actual = hint.toString();
 
@@ -81,7 +82,7 @@ class CorrectAnswerCheckerTest {
     @ParameterizedTest
     void test04(List<Integer> numbers, int countOfStrike, int countOfBall) {
 
-        Hint hint = CORRECT_ANSWER_CHECKER.makeHintFromNumbers(numbers);
+        Hint hint = CORRECT_ANSWER_CHECKER.makeResultHint(new Numbers(numbers));
         String expected = countOfStrike + " strike " + countOfBall + " ball";
         String actual = hint.toString();
 

@@ -17,8 +17,12 @@ public class Numbers {
         String str = String.valueOf(numbers);
 
         for (int i = 0; i < str.length(); i++) {
-            list.add(str.charAt(i) - '0');
+            list.add(charToInt(str.charAt(i)));
         }
+    }
+
+    private int charToInt(char c) {
+        return c - '0';
     }
 
     public Numbers(List<Integer> list) {
@@ -38,7 +42,11 @@ public class Numbers {
         }
     }
 
-    public List<Integer> get() {
-        return list;
+    public int get(int index) {
+        return list.get(index);
+    }
+
+    public boolean contains(int number) {
+        return list.contains(number);
     }
 }
