@@ -7,8 +7,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BaseballNumberTest {
+
+    @Test
+    @DisplayName("숫자 정상생성")
+    void create() {
+        // given
+        BaseballNumber baseballNumber = new BaseballNumber(1);
+
+        // when then
+        assertThat(baseballNumber.match(1)).isTrue();
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 10})
@@ -21,13 +32,18 @@ class BaseballNumberTest {
     }
 
     @Test
-    @DisplayName("숫자 정상생성")
-    void create() {
+    @DisplayName("숫자 비교 검증")
+    void equals() {
         // given
-        BaseballNumber baseballNumber = new BaseballNumber(1);
+        BaseballNumber base = new BaseballNumber(1);
+        BaseballNumber targetEqual = new BaseballNumber(1);
+        BaseballNumber targetNotEqual = new BaseballNumber(2);
 
         // when then
-        assertThat(baseballNumber.match(1)).isTrue();
+        assertAll(
+                () -> assertThat(base.equals(targetEqual)).isTrue(),
+                () -> assertThat(base.equals(targetNotEqual)).isFalse()
+        );
     }
 
 }
