@@ -35,7 +35,24 @@
 * Junit5 사용   
 
 ## 사전 작업
-* [ ] IntelliJ에서 Junit test case 생성 
+* [x] IntelliJ에서 Junit test case 생성 
+* [ ] String 클래스 연습
+    * [ ] split() 테스트
+        * [ ] assertj > contains()
+        * [ ] assertj > containsExactly()
+    * [ ] substring() 테스트
+    * [ ] charAt() 테스트
+    * [ ] charAt() - OBE 테스트
+    * [ ] @DisplayName 활용 - 메소드 의도
+* [ ] SetCollection 테스트
+    * [ ] size() 테스트
+    * [ ] Junit ParameterizedTest 활용
+    * [ ] 입력 값이 다른 경우의 테스트
+    
+     
+    
+    
+    
 
 ## 구현 기능 목록   
 * [ ] UI 시작
@@ -53,3 +70,6 @@
 ## 참조
 * 코드 컨벤션 : <https://naver.github.io/hackday-conventions-java/>   
 * .gitattribute : <https://velog.io/@pks787/GitHub-CRLF-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95>
+* AssertJ Exception : <https://joel-costigliola.github.io/assertj/assertj-core-features-highlight.html>
+* Parameterized Tests : <https://www.baeldung.com/parameterized-tests-junit-5>
+* AssertJ 활용: <https://www.baeldung.com/introduction-to-assertj>
