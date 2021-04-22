@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.domain.BaseballGame;
 import baseball.domain.Numbers;
 import baseball.random.Random;
 import baseball.view.input.Input;
@@ -29,7 +30,17 @@ public class GameController {
     public void start() {
         System.out.println("computer" + numbers);
         final Numbers userNumbers = getNumbers();
-        System.out.println("user" + userNumbers);
+        final BaseballGame game = new BaseballGame(numbers, userNumbers);
+        play(game);
+    }
+
+    private void play(final BaseballGame game) {
+        while (game.isNotEnd()) {
+            start();
+        }
+        output.printEndMessage();
+        if (input.wantRestart()) reStart();
+        System.exit(ZERO);
     }
 
     public void reStart() {

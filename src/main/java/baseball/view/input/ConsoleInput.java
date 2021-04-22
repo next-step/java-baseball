@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleInput implements Input {
+    private final static int RE_START_NUMBER = 1;
     private final Scanner scanner;
 
     public ConsoleInput(InputStream stream) {
@@ -18,6 +19,11 @@ public class ConsoleInput implements Input {
         final String numbers = scanner.next();
         final String DELIMITER = "";
         return new ArrayList(Arrays.asList(numbers.split(DELIMITER)));
+    }
+
+    @Override
+    public boolean wantRestart() {
+        return scanner.nextInt() == RE_START_NUMBER;
     }
 
 }
