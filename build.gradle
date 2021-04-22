@@ -8,6 +8,11 @@ repositories {
     mavenCentral()
 }
 
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
     testCompile('org.assertj:assertj-core:3.19.0')
