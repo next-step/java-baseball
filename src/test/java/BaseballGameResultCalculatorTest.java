@@ -90,4 +90,18 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getBallsCnt(createdStr, "732"), 1);
     }
 
+    /* 볼 2개 반환하기 (1개 고정, 1개 변함)
+     * 214, 143 -> 2
+     * 214, 321 -> 2
+     * 214, 432 -> 2
+     */
+    @Test
+    public void isCountedTwoBallWhenFirstIsFixed(){
+        String createdStr = "214";
+
+        assertEquals(calculator.getBallsCnt(createdStr, "143"), 2);
+        assertEquals(calculator.getBallsCnt(createdStr, "321"), 2);
+        assertEquals(calculator.getBallsCnt(createdStr, "432"), 2);
+    }
+
 }
