@@ -14,8 +14,28 @@ public class BaseBall {
     private static void playGame(Scanner s) {
         boolean finish = false;
         String input;
-        while(!finish){
-             input = s.nextLine();
+        while (!finish) {
+            input = s.nextLine();
+            finish = check(input);
+        }
+    }
+
+    private static boolean check(String input) {
+        int[] result = new int[2];
+        for (int i = 0; i < 3; i++) {
+            judge(input, result, i);
+        }
+        return result[0] == 3;
+    }
+
+    private static void judge(String input, int[] result, int i) {
+        int value = Integer.parseInt(String.valueOf(input.charAt(i)));
+        if (answer[i] == value) {
+            result[0] += 1;
+            return;
+        }
+        if (isContain(value)) {
+            result[1] += 1;
         }
     }
 
