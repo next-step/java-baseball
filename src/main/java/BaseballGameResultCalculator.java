@@ -9,6 +9,12 @@ public class BaseballGameResultCalculator {
     }
 
     public int getStrikesCnt(String createdStr, String inputStr) {
-        return (createdStr.equals(inputStr)) ? 3 : 1;
+        int count = 0;
+
+        for (int i=0; i<maxLen; i++)
+            if (createdStr.charAt(i) == inputStr.charAt(i))
+                count += 1;
+
+        return count;
     }
 }

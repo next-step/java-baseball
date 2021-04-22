@@ -31,4 +31,19 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getStrikesCnt(createdStr, "984"), 1);
     }
 
+    /* 스트라이크 2개 반환하기 (1 고정, 1 변합)
+     * 2개의 스트라이크는 3개의 숫자라고 가정할 때 3곳에서 일어난다. 그것을 표현한 테스트 셋이다.
+     * 214, 211 -> 2
+     * 214, 814 -> 2
+     * 214, 284 -> 2
+     */
+    @Test
+    public void isCountedTwoStrikeWhenFirstIsFixed(){
+        String createdStr = "214";
+
+        assertEquals(calculator.getStrikesCnt(createdStr, "211"), 2);
+        assertEquals(calculator.getStrikesCnt(createdStr, "814"), 2);
+        assertEquals(calculator.getStrikesCnt(createdStr, "284"), 2);
+    }
+
 }
