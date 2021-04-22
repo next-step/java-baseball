@@ -3,6 +3,8 @@ package study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class StringTest {
     @Test
@@ -34,21 +36,15 @@ public class StringTest {
         Assertions.assertThat(output).isEqualTo("1,2");
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {"0:a", "1:b", "2:c"}, delimiter = ':')
     @DisplayName("요구사항 3 - 성공")
-    void charAt_succeed() {
+    void charAt_succeed(int index, char expected) {
         // given
         String input = "abc";
 
-        // when
-        char charAtOne = input.charAt(0);
-        char charAtTwo = input.charAt(1);
-        char charAtThree = input.charAt(2);
-
-        // then
-        Assertions.assertThat(charAtOne).isEqualTo('a');
-        Assertions.assertThat(charAtTwo).isEqualTo('b');
-        Assertions.assertThat(charAtThree).isEqualTo('c');
+        // when, then
+        Assertions.assertThat(input.charAt(index)).isEqualTo(expected);
     }
 
     @Test
