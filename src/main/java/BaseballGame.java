@@ -1,4 +1,5 @@
 import domain.Number;
+import domain.ScoreMatch;
 import util.NumberUtil;
 import view.Input;
 
@@ -18,11 +19,11 @@ public class BaseballGame {
 
     public boolean start() {
         Number randomNumber = NumberUtil.generateRandomNumber();
+        ScoreMatch scoreMatch = new ScoreMatch(randomNumber);
         boolean isSolved = false;
 
         do {
-            Number inputNumber = input.threeDigitNumber();
-            isSolved = true;
+            isSolved = scoreMatch.compare(input.threeDigitNumber());
         } while (!isSolved);
 
         return askContinueGame();

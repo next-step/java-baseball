@@ -7,4 +7,8 @@ public class Number {
     public Number(String number) {
         this.number = number;
     }
+
+    public String getNumber() {
+        return number;
+    }
 }
