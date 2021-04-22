@@ -70,4 +70,10 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getStrikesCnt(createdStr, "213"), 3);
     }
 
+    @Test
+    public void isCountedBallsWhen123And456(){
+        String testStr = "123";
+        assertEquals(calculator.getBallsCnt(testStr, "456"), 0);
+    }
+
 }

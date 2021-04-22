@@ -17,4 +17,8 @@ public class BaseballGameResultCalculator {
 
         return count;
     }
+
+    public int getBallsCnt(String createdStr, String inputStr) {
+        return 0;
+    }
 }
