@@ -1,6 +1,7 @@
 package nextstep.study.baseball.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,6 +60,18 @@ public class BaseballUtil {
 			return false;
 		}
 		return strNum.length() == length;
+	}
+
+	public static List<Integer> strToList(String str) {
+		if (str == null) {
+			return new ArrayList<>();
+		}
+		Integer[] intArray = new Integer[str.length()];
+
+		for (int i = 0; i < str.length(); i++) {
+			intArray[i] = Character.digit(str.charAt(i), 10);
+		}
+		return Arrays.asList(intArray);
 	}
 
 }
