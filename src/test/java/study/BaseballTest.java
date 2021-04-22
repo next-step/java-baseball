@@ -23,7 +23,7 @@ public class BaseballTest {
 	}
 	
 	@Test
-	@DisplayName("·£´ı »ı¼º ºñ±³")
+	@DisplayName("ì„ì˜ì˜ ìˆ«ì ìƒì„± ê¸°ëŠ¥ í…ŒìŠ¤íŠ¸")
 	public void generate_random_list_test() {
 		assertThat(inputListValue).isNotEqualTo(randomListValue);
 	}
