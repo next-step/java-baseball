@@ -1,18 +1,29 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.7.2'
+}
 
-version = '1.0.0'
-sourceCompatibility = 1.8
+group 'org.example'
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
-    testCompile('org.assertj:assertj-core:3.19.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2021.1'
+}
+patchPluginXml {
+    changeNotes """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
 test {
     useJUnitPlatform()
 }
