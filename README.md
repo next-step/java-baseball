@@ -49,11 +49,6 @@
     * [ ] Junit ParameterizedTest 활용
     * [ ] 입력 값이 다른 경우의 테스트
     
-     
-    
-    
-    
-
 ## 구현 기능 목록   
 * [ ] UI 시작
 * [ ] 서로 다른 3자리 정수 생성
@@ -73,3 +68,4 @@
 * AssertJ Exception : <https://joel-costigliola.github.io/assertj/assertj-core-features-highlight.html>
 * Parameterized Tests : <https://www.baeldung.com/parameterized-tests-junit-5>
 * AssertJ 활용: <https://www.baeldung.com/introduction-to-assertj>
+* commit message convention : <https://gist.github.com/stephenparish/9941e89d80e2bc58a153>
