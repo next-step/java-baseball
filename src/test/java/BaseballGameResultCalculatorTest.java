@@ -114,4 +114,28 @@ public class BaseballGameResultCalculatorTest {
         assertEquals(calculator.getBallsCnt(createdStr, "142"), 3);
         assertEquals(calculator.getBallsCnt(createdStr, "421"), 3);
     }
+
+    /* 볼 개수 세기 최종
+     * 456, 789 -> 0
+     * 147, 753 -> 1
+     * 469, 341 -> 1
+     * 275, 129 -> 1
+     * 249, 928 -> 2
+     * 368, 637 -> 2
+     * 156, 562 -> 2
+     * 169, 916 -> 3
+     */
+    @Test
+    public void isCountedBallManyWhenFixed(){
+
+        assertEquals(calculator.getBallsCnt("456", "789"), 0);
+        assertEquals(calculator.getBallsCnt("147", "753"), 1);
+        assertEquals(calculator.getBallsCnt("469", "341"), 1);
+        assertEquals(calculator.getBallsCnt("275", "129"), 1);
+        assertEquals(calculator.getBallsCnt("249", "928"), 2);
+        assertEquals(calculator.getBallsCnt("368", "637"), 2);
+        assertEquals(calculator.getBallsCnt("156", "562"), 2);
+        assertEquals(calculator.getBallsCnt("169", "916"), 3);
+
+    }
 }
