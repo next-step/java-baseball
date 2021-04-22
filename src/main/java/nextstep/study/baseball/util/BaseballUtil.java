@@ -40,7 +40,8 @@ public class BaseballUtil {
 	}
 
 	public static boolean validationNumber(String inputNums) {
-		return (isNumeric(inputNums) && isLength(inputNums, BaseConstants.INPUT_NUMBER_LENGTH));
+		String strRemovedDupChar = BaseballUtil.removeDuplicateChar(inputNums);
+		return (isNumeric(inputNums) && isLength(strRemovedDupChar, BaseConstants.INPUT_NUMBER_LENGTH));
 	}
 
 	public static boolean isNumeric(String strNum) {
