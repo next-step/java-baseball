@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+import static baseball.view.input.InputMessages.PLEASE_INPUT_VALID_NUMBERS;
+
 public class Numbers {
     private List<String> numbers;
 
@@ -14,7 +16,7 @@ public class Numbers {
 
     private void validateNumbers(List<String> numbers) {
         if(validateSize(numbers) || validateDuplicate(numbers)){
-            throw new IllegalArgumentException("서로다른 3자리 수를 입력해주세요");
+            throw new IllegalArgumentException(PLEASE_INPUT_VALID_NUMBERS);
         }
     }
 
