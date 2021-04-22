@@ -67,22 +67,22 @@ public class BaseballGameTest {
     @Test
     @DisplayName("player2(컴퓨터)에 숫자를 넣는다")
     public void addPlayer2Number(){
-        player2Number.add(randomBox.remove(0));
+        for(int i=0;i<3;i++){
+            player2Number.add(randomBox.remove(0));
+        }
+
+        assertThat(randomBox.size()).isEqualTo(6);
+
         assertThat(player2Number.get(0)).isInstanceOf(Integer.class);
         assertThat(player2Number.get(0)).isNotZero();
         assertThat(player2Number.get(0)).isEqualTo(1);
-        assertThat(randomBox.size()).isEqualTo(8);
 
-        player2Number.add(randomBox.remove(0));
         assertThat(player2Number.get(1)).isInstanceOf(Integer.class);
         assertThat(player2Number.get(1)).isNotZero();
         assertThat(player2Number.get(1)).isEqualTo(2);
-        assertThat(randomBox.size()).isEqualTo(7);
 
-        player2Number.add(randomBox.remove(0));
         assertThat(player2Number.get(2)).isInstanceOf(Integer.class);
         assertThat(player2Number.get(2)).isNotZero();
         assertThat(player2Number.get(2)).isEqualTo(3);
-        assertThat(randomBox.size()).isEqualTo(6);
     }
 }
