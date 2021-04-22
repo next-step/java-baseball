@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import nextstep.study.baseball.common.BaseConstants;
 
 public class BaseballUtil {
 
@@ -24,5 +25,9 @@ public class BaseballUtil {
 			stringList.add(String.valueOf(value));
 		}
 		return stringList;
+	}
+
+	public static void showMessage(String message) {
+		System.out.print(message);
 	}
 }
