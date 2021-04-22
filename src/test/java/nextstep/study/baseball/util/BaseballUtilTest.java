@@ -6,13 +6,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import nextstep.study.baseball.common.BaseConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
+@DisplayName("유틸클래스 테스트")
+@TestMethodOrder(MethodOrderer.DisplayName.class)
 public class BaseballUtilTest {
 
-	private final PrintStream standardOut = System.out;
 	private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
 	@BeforeEach
@@ -21,7 +25,7 @@ public class BaseballUtilTest {
 	}
 
 	@Test
-	@DisplayName("중복문자 제거 테스트")
+	@DisplayName("01. 중복문자 제거 테스트")
 	void testRemoveDuplicateChar() {
 		// Given
 		String strDupNumbers = "111111122222223333333";
@@ -34,7 +38,7 @@ public class BaseballUtilTest {
 	}
 
 	@Test
-	@DisplayName("숫자 리스트형을 문자열 리스트형으로 변환 테스트")
+	@DisplayName("02. 숫자 리스트형을 문자열 리스트형으로 변환 테스트")
 	void testConvertIntListToStringList() {
 		// Given
 		List<Integer> intList = Arrays.asList(1, 2, 3);
@@ -49,7 +53,7 @@ public class BaseballUtilTest {
 	}
 
 	@Test
-	@DisplayName("메세지 출력 테스트")
+	@DisplayName("03. 메세지 출력 테스트")
 	void testShowMessage() {
 		// Given
 		String message = "테스트 메세지!!";
@@ -59,6 +63,56 @@ public class BaseballUtilTest {
 
 		// Then
 		assertThat(message).isEqualTo(outputStreamCaptor.toString());
+	}
+
+	@Test
+	@DisplayName("04. 유효한 값을 입력시 출력메세지 테스트")
+	void testShowInputMessage() {
+		int makeCount = 0;
+		String message = BaseballUtil.getInputMessage(makeCount);
+		assertThat(message).isEqualTo(BaseConstants.MESSAGE_INPUT_NUMBER);
+	}
+
+	@Test
+	@DisplayName("05. 유효하지 않은 값을 입력시 출력메세지 테스트")
+	void testShowWrongInputMessage() {
+		int makeCount = 1; //1회이상 재입력
+		String message = BaseballUtil.getInputMessage(makeCount);
+		assertThat(message).isEqualTo(BaseConstants.MESSAGE_INPUT_WRONG_NUMBER);
+	}
+
+	@Test
+	@DisplayName("06. 입력값이 숫자가 아닐경우 체크")
+	void testCheckWorngNumber() {
+		String strNum = "1a3";
+		boolean isNum = BaseballUtil.isNumeric(strNum);
+		assertThat(isNum).isFalse();
+	}
+
+	@Test
+	@DisplayName("07. 입력값이 숫자인 경우 테스트")
+	void testCheckNumber() {
+		String strNum = "123";
+		boolean isNum = BaseballUtil.isNumeric(strNum);
+		assertThat(isNum).isTrue();
+	}
+
+	@Test
+	@DisplayName("08. 입력값이 3자리가 아닌경우 테스트")
+	void testCheckWrongLength() {
+		String strNum = "12";
+		int length = 3;
+		boolean result = BaseballUtil.isLength(strNum, length);
+		assertThat(result).isFalse();
+	}
+
+	@Test
+	@DisplayName("09. 입력값이 3자리인 경우 테스트")
+	void testCheckLength() {
+		String strNum = "123";
+		int length = 3;
+		boolean result = BaseballUtil.isLength(strNum, length);
+		assertThat(result).isTrue();
 	}
 
 }

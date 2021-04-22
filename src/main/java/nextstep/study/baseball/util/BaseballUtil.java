@@ -30,4 +30,35 @@ public class BaseballUtil {
 	public static void showMessage(String message) {
 		System.out.print(message);
 	}
+
+	public static String getInputMessage(int makeCount) {
+		if (makeCount > 0) {
+			return BaseConstants.MESSAGE_INPUT_WRONG_NUMBER;
+		}
+		return BaseConstants.MESSAGE_INPUT_NUMBER;
+	}
+
+	public static boolean validationNumber(String inputNums) {
+		return (isNumeric(inputNums) && isLength(inputNums, BaseConstants.INPUT_NUMBER_LENGTH));
+	}
+
+	public static boolean isNumeric(String strNum) {
+		if (strNum == null) {
+			return false;
+		}
+		try {
+			Integer num = Integer.parseInt(strNum);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean isLength(String strNum, int length) {
+		if (strNum == null) {
+			return false;
+		}
+		return strNum.length() == length;
+	}
+
 }
