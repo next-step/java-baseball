@@ -1,8 +1,6 @@
 package baseball.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static baseball.view.input.InputMessages.PLEASE_INPUT_VALID_NUMBERS;
 
@@ -12,6 +10,10 @@ public class Numbers {
     public Numbers(List<String> numbers) {
         validateNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    public Numbers(String... numbers) {
+        this(new ArrayList(Arrays.asList(numbers)));
     }
 
     private void validateNumbers(List<String> numbers) {
@@ -30,6 +32,18 @@ public class Numbers {
 
     public List<String> getNumbers() {
         return numbers;
+    }
+
+    public String get(int index) {
+        return numbers.get(index);
+    }
+
+    public int size() {
+        return numbers.size();
+    }
+
+    public boolean contains(String value) {
+        return numbers.contains(value);
     }
 
     @Override
