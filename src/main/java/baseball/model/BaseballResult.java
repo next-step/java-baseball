@@ -11,6 +11,8 @@ public class BaseballResult {
     private int strike;
     private int ball;
     private boolean isComplete;
+    private int size;
+    private int radix;
 
     private BaseballNumber[] baseballNumbers;
 
@@ -19,11 +21,13 @@ public class BaseballResult {
     }
 
     private BaseballResult(BaseballNumber left, BaseballNumber right) {
-        baseballNumbers = new BaseballNumber[]{left, right};
+        this.size = Math.min(left.getSize(), right.getSize());
+        this.radix = Math.min(left.getRadix(), right.getRadix());
+        this.baseballNumbers = new BaseballNumber[]{left, right};
 
-        boolean[] isChecked = new boolean[BaseballNumber.DEFAULT_NUMBER_RADIX];
+        boolean[] isChecked = new boolean[this.radix];
 
-        for (int i = 0; i < BaseballNumber.DEFAULT_NUMBERS_SIZE; i++) {
+        for (int i = 0; i < this.size; i++) {
             if (left.getNumbers()[i] == right.getNumbers()[i]) {
                 this.strike++;
             }
@@ -31,12 +35,12 @@ public class BaseballResult {
             isChecked[left.getNumbers()[i]] = true;
         }
 
-        if (this.strike == BaseballNumber.DEFAULT_NUMBERS_SIZE) {
+        if (this.strike == this.size) {
             this.isComplete = true;
             return;
         }
 
-        for (int i = 0; i < BaseballNumber.DEFAULT_NUMBERS_SIZE; i++) {
+        for (int i = 0; i < this.size; i++) {
             if (isChecked[right.getNumbers()[i]] && left.getNumbers()[i] != right.getNumbers()[i]) {
                 this.ball++;
             }
