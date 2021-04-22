@@ -42,7 +42,9 @@ public class BaseballGameTest {
     @Test
     @DisplayName("컴퓨터가 숫자를 하나 뽑는다")
     public void findOneNumberBox(){
-        assertThat(randomBox.get(0)).isGreaterThan(0);
-
+        int number = randomBox.get(0);
+        assertThat(number).isNotZero();
+        assertThat(number).isPositive();
+        assertThat(number).isInstanceOf(Integer.class);
     }
 }
