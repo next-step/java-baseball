@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -13,5 +14,37 @@ public class BaseBallTest {
         List<Integer> answer = BaseBall.makeAnswer();
         assertThat(answer.size()).isEqualTo(3);
         assertThat(answer.size()).isEqualTo(new HashSet<>(answer).size());
+    }
+
+    @DisplayName("야구게임 정답 일치")
+    @Test
+    public void testAnswerIsCorrect() {
+        //given
+        List<Integer> answer = Arrays.asList(1, 2, 3);
+
+        //when
+        BaseBall game = new BaseBall(answer);
+
+        //then
+        assertThat(game.isAnswer(answer)).isEqualTo(true);
+    }
+
+    @DisplayName("야구게임 정답 불일치")
+    @Test
+    public void testAnswerIsWrong() {
+        //given
+        List<Integer> answer = Arrays.asList(1, 2, 3);
+
+        //when
+        List<Integer> notMatch = Arrays.asList(4, 5, 6);
+        List<Integer> ball3 = Arrays.asList(3, 1, 2);
+        List<Integer> ball2strike1 = Arrays.asList(1, 3, 2);
+
+        BaseBall game = new BaseBall(answer);
+        
+        //then
+        assertThat(game.isAnswer(notMatch)).isEqualTo(false);
+        assertThat(game.isAnswer(ball3)).isEqualTo(false);
+        assertThat(game.isAnswer(ball2strike1)).isEqualTo(false);
     }
 }
