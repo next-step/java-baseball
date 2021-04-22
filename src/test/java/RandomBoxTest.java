@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BaseballGameTest {
+public class RandomBoxTest {
     private List<Integer> randomBox;
     private List<Integer> player2NumberBox;
 
@@ -66,29 +66,28 @@ public class BaseballGameTest {
 
     @Test
     @DisplayName("player2(컴퓨터)에 숫자를 넣는다")
-    public void createPlayer2Number(){
+    public void createPlayer2NumberByRandom(){
         for(int i=0;i<3;i++){
-            player2NumberBox.add(randomBox.remove(0));
+            double randomValue = Math.random();
+            int e = (int)(randomValue * randomBox.size()-1);
+            player2NumberBox.add(randomBox.remove(e));
         }
 
         assertThat(randomBox.size()).isEqualTo(6);
+        assertThat(player2NumberBox.size()).isEqualTo(3);
 
         assertThat(player2NumberBox.get(0)).isInstanceOf(Integer.class);
         assertThat(player2NumberBox.get(0)).isNotZero();
-        assertThat(player2NumberBox.get(0)).isEqualTo(1);
 
         assertThat(player2NumberBox.get(1)).isInstanceOf(Integer.class);
         assertThat(player2NumberBox.get(1)).isNotZero();
-        assertThat(player2NumberBox.get(1)).isEqualTo(2);
 
         assertThat(player2NumberBox.get(2)).isInstanceOf(Integer.class);
         assertThat(player2NumberBox.get(2)).isNotZero();
-        assertThat(player2NumberBox.get(2)).isEqualTo(3);
 
         String player2Number = String.valueOf(player2NumberBox.get(0))
-                + String.valueOf(player2NumberBox.get(1))
-                + String.valueOf(player2NumberBox.get(2));
-        assertThat(player2Number).isEqualTo("123");
+                + player2NumberBox.get(1)
+                + player2NumberBox.get(2);
         assertThat(player2Number).isInstanceOf(String.class);
     }
 }
