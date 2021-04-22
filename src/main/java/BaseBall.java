@@ -15,6 +15,7 @@ public class BaseBall {
         boolean finish = false;
         String input;
         while (!finish) {
+            System.out.printf("insert numbers (3digits) :");
             input = s.nextLine();
             finish = check(input);
         }
@@ -25,7 +26,22 @@ public class BaseBall {
         for (int i = 0; i < 3; i++) {
             judge(input, result, i);
         }
+        showHint(result);
         return result[0] == 3;
+    }
+
+    private static void showHint(int[] result) {
+        StringBuilder sb = new StringBuilder();
+        if(result[0]!=0){
+            sb.append(String.format("%d strikes ",result[0]));
+        }
+        if(result[1]!=0){
+            sb.append(String.format("%d balls",result[1]));
+        }
+        if(result[0]==0&&result[1]==0){
+            sb.append("NOTHING");
+        }
+        System.out.println(sb.toString());
     }
 
     private static void judge(String input, int[] result, int i) {
