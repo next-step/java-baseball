@@ -9,11 +9,11 @@ public class IOManager {
         this.output = output;
     }
 
-    public Input input() {
+    public Input getInput() {
         return input;
     }
 
-    public Output output() {
+    public Output getOutput() {
         return output;
     }
 }

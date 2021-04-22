@@ -14,8 +14,8 @@ public class BaseballGame {
     private final NumbersGenerator numbersGenerator;
 
     public BaseballGame(IOManager ioManager, NumbersGenerator numbersGenerator) {
-        this.input = ioManager.input();
-        this.output = ioManager.output();
+        this.input = ioManager.getInput();
+        this.output = ioManager.getOutput();
         this.numbersGenerator = numbersGenerator;
     }
 
