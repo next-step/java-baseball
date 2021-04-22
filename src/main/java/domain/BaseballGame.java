@@ -6,6 +6,9 @@ import ui.Output;
 
 public class BaseballGame {
 
+    private static final String RESTART_COMMAND = "1";
+    private static final String END_COMMAND = "2";
+
     private final Input input;
     private final Output output;
     private final NumbersGenerator numbersGenerator;
@@ -25,7 +28,7 @@ public class BaseballGame {
     private void progress() {
 
         Numbers answer = new Numbers(numbersGenerator.makeNumbers());
-        CorrectAnswerChecker checker = new CorrectAnswerChecker(answer);
+        AnswerChecker checker = new AnswerChecker(answer);
         boolean isNotEnd;
 
         do {
@@ -46,7 +49,7 @@ public class BaseballGame {
         return null;
     }
 
-    private boolean checkNumbers(CorrectAnswerChecker checker, Numbers numbers) {
+    private boolean checkNumbers(AnswerChecker checker, Numbers numbers) {
 
         if (numbers == null) {
             return true;
@@ -76,6 +79,6 @@ public class BaseballGame {
     }
 
     private boolean isInvalidCommand(String command) {
-        return !"1".equals(command) && !"2".equals(command);
+        return !RESTART_COMMAND.equals(command) && !END_COMMAND.equals(command);
     }
 }

@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CorrectAnswerCheckerTest {
+class AnswerCheckerTest {
 
-    private static final CorrectAnswerChecker CORRECT_ANSWER_CHECKER =
-        new CorrectAnswerChecker(new Numbers(Arrays.asList(2, 5, 7)));
+    private static final AnswerChecker CORRECT_ANSWER_CHECKER =
+        new AnswerChecker(new Numbers(Arrays.asList(2, 5, 7)));
 
     @DisplayName("맞춘 숫자가 없는 경우 nothing 출력")
     @Test

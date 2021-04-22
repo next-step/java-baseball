@@ -1,12 +1,12 @@
 package domain;
 
-public class CorrectAnswerChecker {
+public class AnswerChecker {
 
     private static final int COUNT_OF_NUMBERS = 3;
 
     private final Numbers answer;
 
-    public CorrectAnswerChecker(Numbers answer) {
+    public AnswerChecker(Numbers answer) {
         this.answer = answer;
     }
 
