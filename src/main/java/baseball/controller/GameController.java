@@ -5,7 +5,10 @@ import baseball.random.Random;
 import baseball.view.input.Input;
 import baseball.view.output.Output;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+
+import static baseball.view.input.InputMessages.PLEASE_INPUT_NUMBERS;
 
 public class GameController {
     private final Input input;
@@ -25,6 +28,8 @@ public class GameController {
 
     public void start() {
         System.out.println("computer" + numbers);
+        final Numbers userNumbers = getNumbers();
+        System.out.println("user" + userNumbers);
     }
 
     public void reStart() {
@@ -33,6 +38,7 @@ public class GameController {
     }
 
     private Numbers getNumbers() {
+        output.print(PLEASE_INPUT_NUMBERS);
         final List<String> numbers = input.getNumbers();
         validate(numbers);
         return new Numbers(numbers);
@@ -40,6 +46,7 @@ public class GameController {
 
     private void validate(final List<String> numbers) {
         if (validateSize(numbers) || validateDuplicate(numbers)) {
+            output.printValiedateNumber(numberSize);
             getNumbers();
         }
     }

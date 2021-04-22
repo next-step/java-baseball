@@ -1,6 +1,8 @@
 package baseball.view.input;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +15,9 @@ public class ConsoleInput implements Input {
 
     @Override
     public List<String> getNumbers() {
-        return null;
+        final String numbers = scanner.next();
+        final String DELIMITER = "";
+        return new ArrayList(Arrays.asList(numbers.split(DELIMITER)));
     }
+
 }

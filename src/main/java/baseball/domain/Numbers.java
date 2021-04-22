@@ -15,7 +15,7 @@ public class Numbers {
     }
 
     private void validateNumbers(List<String> numbers) {
-        if(validateSize(numbers) || validateDuplicate(numbers)){
+        if (validateSize(numbers) || validateDuplicate(numbers)) {
             throw new IllegalArgumentException(PLEASE_INPUT_VALID_NUMBERS);
         }
     }
