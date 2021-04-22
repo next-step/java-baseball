@@ -1,7 +1,10 @@
 import domain.Number;
 import util.NumberUtil;
+import view.Input;
 
 public class BaseballGame {
+    private static final Input input = new Input();
+
     BaseballGame() {
     }
 
@@ -18,13 +21,14 @@ public class BaseballGame {
         boolean isSolved = false;
 
         do {
+            String inputNumber = input.threeNumber();
             isSolved = true;
         } while (!isSolved);
 
         return askContinueGame();
     }
 
-    public boolean askContinueGame() {
+    private boolean askContinueGame() {
         return false;
     }
 }
