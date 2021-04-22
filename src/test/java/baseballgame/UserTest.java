@@ -26,7 +26,7 @@ class UserTest {
         final String numberRegExpression = "(^[0-9]*$)";
 
         for (String input : inputs) {
-            assertFalse(Pattern.matches(input, numberRegExpression));
+            assertFalse(Pattern.matches(numberRegExpression, input));
         }
     }
 

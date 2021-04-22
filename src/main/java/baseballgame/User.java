@@ -32,7 +32,7 @@ public class User {
     }
 
     private void checkInputNumberType(String input) {
-        if (!Pattern.matches(input, numberRegExpression)) {
+        if (!Pattern.matches(numberRegExpression, input)) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.");
         }
     }
