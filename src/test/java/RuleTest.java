@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,39 +36,39 @@ class RuleTest {
     void judge_1strike_2ball() {
         int[] dealerList = new int[] {3, 4, 5};
         int[] playerList = new int[] {3, 5, 4};
-        Judje judje = Rule.judge(dealerList, playerList);
+        Judge judge = Rule.judge(dealerList, playerList);
 
-        assertEquals(1, judje.strike);
-        assertEquals(2, judje.ball);
+        assertEquals(1, judge.strike);
+        assertEquals(2, judge.ball);
     }
 
     @Test
     void judge_3strike() {
         int[] dealerList = new int[] {7, 4, 6};
         int[] playerList = new int[] {7, 4, 6};
-        Judje judje = Rule.judge(dealerList, playerList);
+        Judge judge = Rule.judge(dealerList, playerList);
 
-        assertEquals(3, judje.strike);
-        assertEquals(0, judje.ball);
+        assertEquals(3, judge.strike);
+        assertEquals(0, judge.ball);
     }
 
     @Test
     void judge_3ball() {
         int[] dealerList = new int[] {9, 4, 5};
         int[] playerList = new int[] {4, 5, 9};
-        Judje judje = Rule.judge(dealerList, playerList);
+        Judge judge = Rule.judge(dealerList, playerList);
 
-        assertEquals(0, judje.strike);
-        assertEquals(3, judje.ball);
+        assertEquals(0, judge.strike);
+        assertEquals(3, judge.ball);
     }
 
     @Test
     void judge_Nothing() {
         int[] dealerList = new int[] {6, 9, 8};
         int[] playerList = new int[] {3, 5, 4};
-        Judje judje = Rule.judge(dealerList, playerList);
+        Judge judge = Rule.judge(dealerList, playerList);
 
-        assertEquals(0, judje.strike);
-        assertEquals(0, judje.ball);
+        assertEquals(0, judge.strike);
+        assertEquals(0, judge.ball);
     }
 }

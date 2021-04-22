@@ -1,7 +1,7 @@
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
-public class Judje {
+public class Judge {
     public int strike;
     public int ball;
 
@@ -12,7 +12,7 @@ public class Judje {
         return StringEncoder.GetUTF8String(strike + " 스트라이크" + ball + "볼");
     }
 
-    public Judje() {
+    public Judge() {
         this.strike = 0;
         this.ball = 0;
     }
