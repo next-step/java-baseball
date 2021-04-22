@@ -30,6 +30,7 @@ public class Pitcher {
 			BaseballUtil.showMessage(BaseballUtil.getInputMessage(makeCount));
 			inputNums = this.scanner.nextLine();
 			continues = isContinuable(inputNums, validation);
+			makeCount++;
 		}
 		numbers.addAll(BaseballUtil.strToList(inputNums));
 		return inputNums;
