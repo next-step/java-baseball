@@ -109,7 +109,9 @@ public class RefereeImplTest {
     private GameStatus getGameStatus(int result) {
         if(result == 0) {
             return GameStatus.SUCCESS;
+        } else if(result == 1) {
+            return GameStatus.FAIL;
         }
-        return GameStatus.FAIL;
+        return GameStatus.READY;
     }
 }
