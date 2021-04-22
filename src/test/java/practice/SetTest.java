@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SetTest {
-    //given
+
     private Set<Integer> numbers;
 
     @BeforeEach
@@ -33,17 +33,17 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3}) // when
+    @ValueSource(ints = {1, 2, 3}) //given
     public void testContains(int number) {
-        //then
+        //when, then
         assertThat(numbers.contains(number)).isTrue();
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':') // when
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')  //given
     public void contains_ShouldReturnIfContainsTrueOrIfNotContainsFalse(String input, String expected) {
         Integer given = Integer.valueOf(input);
-        //then
+        //when, then
         assertThat(numbers.contains(given)).isEqualTo(Boolean.valueOf(expected));
     }
 }
