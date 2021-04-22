@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class BaseBall {
     private static final List<Integer> DEFAULT_RANGE = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -34,6 +31,24 @@ public class BaseBall {
         }
 
         return false;
+    }
+
+    public boolean finish(boolean isFinish) {
+        if (!isFinish) refresh();
+        return isFinish;
+    }
+
+    private boolean askFinish(Scanner scan) {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int userResponse = scan.nextInt();
+        if (userResponse == 1) {
+            return false;
+        }
+        return true;
+    }
+
+    private void refresh() {
+        answer = makeAnswer();
     }
 
     private String resultMessage(int strike, int ball) {

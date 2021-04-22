@@ -47,4 +47,18 @@ public class BaseBallTest {
         assertThat(game.isAnswer(ball3)).isEqualTo(false);
         assertThat(game.isAnswer(ball2strike1)).isEqualTo(false);
     }
+
+    @DisplayName("야구게임 재시작 시 새로운 정답 생성")
+    @Test
+    public void testFinish() {
+        //given
+        List<Integer> firstAnswer = Arrays.asList(0, 0, 0);
+
+        //when
+        BaseBall game = new BaseBall(firstAnswer);
+
+        //then
+        game.finish(false);
+        assertThat(game.isAnswer(firstAnswer)).isEqualTo(false);
+    }
 }
