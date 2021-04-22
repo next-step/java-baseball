@@ -1,0 +1,76 @@
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class RuleTest {
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void isValid_NullAndEmptyInput(int[] numList) {
+        assertFalse(Rule.isValid(numList));
+    }
+
+    @Test
+    void isValid_InvalidLengthInput() {
+        assertFalse(Rule.isValid(new int[] {1}));
+        assertFalse(Rule.isValid(new int[] {1, 2}));
+    }
+
+    @Test
+    void isValid_DuplicatedInput() {
+        assertFalse(Rule.isValid(new int[] {1, 1, 2}));
+        assertFalse(Rule.isValid(new int[] {1, 2, 1}));
+        assertFalse(Rule.isValid(new int[] {2, 1, 1}));
+        assertFalse(Rule.isValid(new int[] {1, 1, 1}));
+    }
+
+    @Test
+    void isValid_ValidInput() {
+        assertTrue(Rule.isValid(new int[] {4, 7, 8}));
+        assertTrue(Rule.isValid(new int[] {9, 7, 2}));
+    }
+
+    @Test
+    void judge_1strike_2ball() {
+        int[] dealerList = new int[] {3, 4, 5};
+        int[] playerList = new int[] {3, 5, 4};
+        Judje judje = Rule.judge(dealerList, playerList);
+
+        assertEquals(1, judje.strike);
+        assertEquals(2, judje.ball);
+    }
+
+    @Test
+    void judge_3strike() {
+        int[] dealerList = new int[] {7, 4, 6};
+        int[] playerList = new int[] {7, 4, 6};
+        Judje judje = Rule.judge(dealerList, playerList);
+
+        assertEquals(3, judje.strike);
+        assertEquals(0, judje.ball);
+    }
+
+    @Test
+    void judge_3ball() {
+        int[] dealerList = new int[] {9, 4, 5};
+        int[] playerList = new int[] {4, 5, 9};
+        Judje judje = Rule.judge(dealerList, playerList);
+
+        assertEquals(0, judje.strike);
+        assertEquals(3, judje.ball);
+    }
+
+    @Test
+    void judge_Nothing() {
+        int[] dealerList = new int[] {6, 9, 8};
+        int[] playerList = new int[] {3, 5, 4};
+        Judje judje = Rule.judge(dealerList, playerList);
+
+        assertEquals(0, judje.strike);
+        assertEquals(0, judje.ball);
+    }
+}
