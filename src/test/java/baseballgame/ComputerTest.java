@@ -65,4 +65,34 @@ class ComputerTest {
 
         assertEquals(count, randNumbers.size());
     }
+
+    @Test
+    @DisplayName("중복 숫자 만들어 지지 않는지 100번 테스트")
+    void checkDuplicatedNumber() {
+        final int minNumber = 1;
+        final int maxNumber = 9;
+        final int count = 3;
+        List<Integer> randNumbers = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < 100; i++) {
+            while (randNumbers.size() < count) {
+                int randNumber = random.nextInt(maxNumber) + minNumber;
+
+                if (randNumbers.contains(randNumber)) {
+                    continue;
+                }
+                randNumbers.add(randNumber);
+            }
+            int num1 = randNumbers.get(0);
+            int num2 = randNumbers.get(1);
+            int num3 = randNumbers.get(2);
+
+            assertNotEquals(num1, num2);
+            assertNotEquals(num2, num3);
+            assertNotEquals(num1, num3);
+
+            randNumbers.clear();
+        }
+    }
 }

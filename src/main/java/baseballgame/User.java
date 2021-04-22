@@ -10,7 +10,13 @@ public class User {
     final String numberRegExpression = "(^[0-9]*$)";
     List<Integer> selectNumbers = new ArrayList<>();
 
+    public List<Integer> getSelectNumbers() {
+        return selectNumbers;
+    }
+
     public void selectNumber() {
+        printMessage();
+        selectNumbers.clear();
         String[] inputs = inputNumber();
         checkInputNumberCount(inputs);
         for (int i = 0; i < numberCount; i++) {
@@ -18,6 +24,10 @@ public class User {
             checkDuplicateNumber(parseNumber(inputs[i]));
             selectNumbers.add(parseNumber(inputs[i]));
         }
+    }
+
+    private void printMessage() {
+        System.out.print("숫자를 입력해 주세요 : ");
     }
 
     private String[] inputNumber() {
@@ -47,3 +57,4 @@ public class User {
         return Integer.parseInt(number);
     }
 }
+
