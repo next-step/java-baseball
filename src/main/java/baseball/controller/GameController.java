@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.Numbers;
+import baseball.random.Random;
 import baseball.view.input.Input;
 import baseball.view.output.Output;
 
@@ -11,21 +12,23 @@ public class GameController {
     private final Output output;
     private final int numberSize;
     private final int ZERO = 0;
-    private Numbers randomNumbers;
+    private Random randomGenerator;
+    private Numbers numbers;
 
-    public GameController(final Input input, final Output output, final int numberSize) {
+    public GameController(final Input input, final Output output, final int numberSize, final Random randomGenerator) {
         this.input = input;
         this.output = output;
         this.numberSize = numberSize;
-        this.randomNumbers = getRandomNumbers();
+        this.randomGenerator = randomGenerator;
+        this.numbers = randomGenerator.getRandomNumber(numberSize);
     }
 
     public void start() {
-        System.out.println("computer" + randomNumbers);
+        System.out.println("computer" + numbers);
     }
 
     public void reStart() {
-        randomNumbers = getRandomNumbers();
+        numbers = randomGenerator.getRandomNumber(numberSize);
         start();
     }
 
@@ -47,21 +50,6 @@ public class GameController {
 
     private boolean validateDuplicate(List<String> numbers) {
         return new HashSet<>(numbers).size() != numberSize;
-    }
-
-    private Numbers getRandomNumbers() {
-        final List<String> sampleNumbers = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
-        Collections.shuffle(sampleNumbers);
-        final List<String> takenNumbers = take(sampleNumbers, numberSize);
-        return new Numbers(takenNumbers);
-    }
-
-    private List<String> take(final List<String> arr, final int limit) {
-        final List<String> arrayList = new ArrayList<>();
-        for (int i = ZERO; i < limit; i++) {
-            arrayList.add(arr.get(i));
-        }
-        return arrayList;
     }
 
 }
