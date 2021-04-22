@@ -8,6 +8,8 @@
 
 ## 기능 리스트
 * 상대편, Opponent 클래스 구현(난수발생)
-* 입출력기, InputAndOutPut 구현(UI 담당)
+* 입출력기, UserInterface 구현(UI 담당)
 * 심판, Referee 클래스 구현(스트라이크, 볼, 낫싱 판단)
 * 게임 진행자, GameManager 클래스 구현(게임 흐름 제어)
+* 구현체를 생성해주는 AppConfig 클래스 구현
+* 게임을 시작할 Player 클래스 구현
