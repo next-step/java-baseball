@@ -21,7 +21,7 @@ public class BaseballGame {
         boolean isSolved = false;
 
         do {
-            String inputNumber = input.threeNumber();
+            Number inputNumber = input.threeDigitNumber();
             isSolved = true;
         } while (!isSolved);
 
