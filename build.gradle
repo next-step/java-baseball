@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
@@ -8,11 +9,27 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    checkstyleRules
+}
+
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
     testCompile('org.assertj:assertj-core:3.19.0')
+
+    checkstyleRules 'com.github.ngeor:checkstyle-rules:3.3.0'
 }
 
 test {
     useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/naver-chestyle-rules.xml")
+    configProperties = ["suppressionFile" : "${rootDir}/naver-checkstyle-suppressions.xml"]
+    toolVersion = "8.24"
 }
