@@ -1,8 +1,10 @@
 package nextstep.study.baseball.domain;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import nextstep.study.baseball.util.BaseballUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,19 +12,21 @@ import org.junit.jupiter.api.Test;
 public class BatterTest {
 
 	@Test
-	@DisplayName("랜덤숫자 3개 생성하고 확인하기")
-	void generateRandomNumbers_checkLength() {
+	@DisplayName("1~9까지 랜덤숫자 생성하고 중복문자 있는지 확인하기")
+	void testGenerateRandomNumbers() {
+		// Given
+		int length = 9; //1~9까지 9자리 생성
 		Batter batter = new Batter();
-		List<Integer> numbers = batter.generateRandomNumbers(3);
 
-		//3자리 확인
-		assertThat(numbers.size()).isEqualTo(3);
+		// When
+		batter.generateRandomNumbers(length);
+		List<Integer> numbers = batter.getNumbers();
+		List<String> stringList = BaseballUtil.convertIntListToStringList(numbers);
+		String strNum = String.join("", stringList);
+		String strRemovedDupChar = BaseballUtil.removeDuplicateChar(strNum);
 
-		//숫자가 범위안에 있는지
-		for (Integer number : numbers) {
-			assertThat(number).isBetween(1, 9);
-		}
-
+		// Then
+		assertThat(strNum).isEqualTo(strRemovedDupChar);
 	}
 
 }
