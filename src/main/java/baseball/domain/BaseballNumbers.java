@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class BaseballNumbers {
@@ -20,6 +21,12 @@ public class BaseballNumbers {
         if (baseballNumbers.size() != SIZE) {
             throw new IllegalArgumentException("숫자는 " + SIZE + " 개로 이루어져야 합니다.");
         }
-        // TODO : 중복입력 검증
+        if (baseballNumbers.size() > calculateDistinctSize(baseballNumbers)) {
+            throw new IllegalArgumentException("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
+        }
+    }
+
+    private int calculateDistinctSize(List<BaseballNumber> baseballNumbers) {
+        return new HashSet<>(baseballNumbers).size();
     }
 }

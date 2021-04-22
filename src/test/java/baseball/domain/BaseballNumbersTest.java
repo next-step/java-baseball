@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -25,6 +26,21 @@ class BaseballNumbersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new BaseballNumbers(new ArrayList<>()))
                 .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
+    }
+
+    @Test
+    @DisplayName("숫자 중복입력 불가")
+    void create_DuplicateNumbers() {
+        // given
+        List<BaseballNumber> baseballNumbers = new ArrayList<>();
+        baseballNumbers.add(new BaseballNumber(1));
+        baseballNumbers.add(new BaseballNumber(1));
+        baseballNumbers.add(new BaseballNumber(2));
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BaseballNumbers(baseballNumbers))
+                .withMessageMatching("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
     }
 
 }
