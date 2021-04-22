@@ -12,8 +12,8 @@ public class StringTest {
     @Test
     @DisplayName("splitStringUsingComma 메서드에 Input으로 \"1,2\" 이 들어왔을 때, 정상적으로 Split 되는지 테스트 한다. (Contains 사용)")
     public void stringSplitOneCommaTwoUsingContainsTest() {
-        StringMethod spliter = new StringMethod();
-        List<String> listString = spliter.splitStringUsingComma("1,2");
+        StringMethod stringMethod = new StringMethod();
+        List<String> listString = stringMethod.splitStringUsingComma("1,2");
 
         assertThat(listString)
                 .contains("2", "1");
@@ -22,8 +22,8 @@ public class StringTest {
     @Test
     @DisplayName("splitStringUsingComma 메서드에 Input으로 \"1,2\" 이 들어왔을 때, 정상적으로 Split 되는지 테스트 한다. (ContainsExactly 사용)")
     public void stringSplitOneCommaTwoUsingContainsExactlyTest() {
-        StringMethod spliter = new StringMethod();
-        List<String> listString = spliter.splitStringUsingComma("1,2");
+        StringMethod stringMethod = new StringMethod();
+        List<String> listString = stringMethod.splitStringUsingComma("1,2");
 
         // 인덱스까지 맞아야함 Exactly
         assertThat(listString)
@@ -32,8 +32,8 @@ public class StringTest {
 
     @Test
     public void stringSplitOneCommaTest() {
-        StringMethod spliter = new StringMethod();
-        List<String> listString = spliter.splitStringUsingComma("1,");
+        StringMethod stringMethod = new StringMethod();
+        List<String> listString = stringMethod.splitStringUsingComma("1,");
 
         assertThat(listString)
                 .contains("1");
@@ -44,8 +44,8 @@ public class StringTest {
     @Test
     @DisplayName("Input으로 들어오는 String 외부에 괄호가 있으면 제거하여 Split하는 기능을 테스트 한다.")
     public void stringSplitWithParenthesesTest() {
-        StringMethod spliter = new StringMethod();
-        List<String> listString = spliter.splitStringUsingComma("(1,2)");
+        StringMethod stringMethod = new StringMethod();
+        List<String> listString = stringMethod.splitStringUsingComma("(1,2)");
 
         assertThat(listString)
                 .containsExactly("1", "2");
