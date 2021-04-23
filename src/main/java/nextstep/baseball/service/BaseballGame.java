@@ -50,10 +50,10 @@ public class BaseballGame {
     }
 
     private String resultPrint(Map<String, Integer> gameResult){
-        Integer strike = gameResult.get(BaseballEnum.STRIKE.getCode());
-        Integer ball = gameResult.get(BaseballEnum.BALL.getCode());
-        String strikeText = strike != null ? strike + " " + BaseballEnum.STRIKE.getName() : "";
-        String ballText = ball != null ? ball + " " + BaseballEnum.BALL.getName(): "";
+        Integer strikeCount = gameResult.get(BaseballEnum.STRIKE.getCode());
+        Integer ballCount = gameResult.get(BaseballEnum.BALL.getCode());
+        String strikeText = strikeCount != null ? strikeCount + " " + BaseballEnum.STRIKE.getName() : "";
+        String ballText = ballCount != null ? ballCount + " " + BaseballEnum.BALL.getName(): "";
 
         return (strikeText + " " + ballText).equals(" ") ? BaseballEnum.NOTHING.getName() : (strikeText + " " + ballText);
     }

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballGameNumberServiceImpl implements BaseballGameNumberService {
-    List<Integer> randomBox;
-
     @Override
     public List<Integer> inputUserNumber(String str) {
         List<Integer> result = new ArrayList<>();
@@ -23,18 +21,19 @@ public class BaseballGameNumberServiceImpl implements BaseballGameNumberService 
     }
 
     @Override
-    public void setRandomBox(){
-        randomBox = new ArrayList<>();
+    public List<Integer> getRandomBox(){
+        List<Integer> randomBox = new ArrayList<>();
         for(int i=1;i<10;i++){
             randomBox.add(i);
         }
+        return randomBox;
     }
 
     @Override
     public List<Integer> generateComputerNumber() {
-        setRandomBox();
-
+        List<Integer> randomBox = getRandomBox();
         List<Integer> result = new ArrayList<>();
+
         for(int i=0;i<3;i++){
             double randomValue = Math.random();
             int e = (int)(randomValue * randomBox.size()-1);

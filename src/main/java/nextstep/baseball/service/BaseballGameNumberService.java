@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface BaseballGameNumberService {
     List<Integer> inputUserNumber(String str);
-    void setRandomBox();
+    List<Integer> getRandomBox();
     List<Integer> generateComputerNumber();
 }
