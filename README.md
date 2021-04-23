@@ -7,6 +7,26 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ---
+## UseCase Diagram
+<details>
+  <summary>Click to Detail</summary>
+  <p>
+
+![UseCase Diagram](./docs/UseCaseDiagram.png)
+  </p>
+</details>
+
+## Sequence Diagram
+<details>
+  <summary>Click to Detail</summary>
+  <p>
+
+![Sequence Diagram](./docs/SequenceDiagram.png)
+  </p>
+</details>
+
+
+---
 ## TODO
 - [X] Computer choose 3 different numbers <br/>
   > [BaseballNumber (Builder Pattern)](./src/main/java/baseball/model/BaseballNumber.java)
