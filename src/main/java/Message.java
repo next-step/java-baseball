@@ -2,6 +2,7 @@ public class Message {
     private final String GET_INPUT = "숫자를 입력해 주세요 : ";
     private final String NOT_NUMBER = "숫자만 입력가능합니다.";
     private final String NOT_THREE_NUMBER = "숫자 3자리를 입력해주세요.";
+    private final String NOTHING = "낫싱";
     private final String GAME_OVER = "3개의 숫자를 모두 맞히셨습니다. 게임종료";
 
     /**
@@ -26,6 +27,13 @@ public class Message {
     }
 
     /**
+     * 아무것도 맞지 않을경우 메세지
+     */
+    public void nothing() {
+        System.out.println(this.NOTHING);
+    }
+
+    /**
      * 게임 종료 메세지
      */
     public void gameOver() {
@@ -47,8 +55,11 @@ public class Message {
             message += ball + " 볼";
         }
 
-        if (message.length() > 0) {
-            System.out.println(message);
+        if (message.length() == 0) {
+            this.nothing();
+            return;
         }
+
+        System.out.println(message);
     }
 }
