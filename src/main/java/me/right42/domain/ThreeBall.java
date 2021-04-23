@@ -1,8 +1,9 @@
 package me.right42.domain;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import me.right42.exception.BallNumberDuplicationException;
@@ -13,33 +14,41 @@ public class ThreeBall {
 
 	private static final int BALL_SIZE = 3;
 
-	public static ThreeBall createThreeBall(Collection<Integer> ballNumbers){
-		validateInputValue(ballNumbers);
+	private ThreeBall(String ballNumbers) {
+		validateValue(ballNumbers);
 
-		ThreeBall threeBall = new ThreeBall();
-		for (Integer ballNumber : ballNumbers) {
-			threeBall.balls.add(new BallNumber(ballNumber));
+		for (Integer ballNumber : parseValue(ballNumbers)) {
+			balls.add(new BallNumber(ballNumber));
 		}
 
-		validateThreeBall(threeBall);
-		return threeBall;
+		validateThreeBall();
+	}
+	public static ThreeBall createThreeBall(String ballNumbers){
+		return new ThreeBall(ballNumbers);
 	}
 
 	public Set<BallNumber> getBalls() {
 		return Collections.unmodifiableSet(this.balls);
 	}
 
-	private static void validateInputValue(Collection<Integer> ballNumbers) {
-		if (ballNumbers == null || ballNumbers.size() != BALL_SIZE) {
+	private List<Integer> parseValue(String value) {
+		List<Integer> ballNumbers = new ArrayList<>();
+		for (String ballNumber : value.split("")) {
+			ballNumbers.add(Integer.valueOf(ballNumber));
+		}
+
+		return ballNumbers;
+	}
+
+	private void validateValue(String value) {
+		if (value == null || value.length() != BALL_SIZE) {
 			throw new IllegalArgumentException("볼 사이즈는 3개입니다.");
 		}
 	}
 
-	private static void validateThreeBall(ThreeBall threeBall) {
-		if(threeBall.balls.size() != BALL_SIZE) {
+	private void validateThreeBall() {
+		if(this.balls.size() != BALL_SIZE) {
 			throw new BallNumberDuplicationException("볼 값은 중복불가 입니다.");
 		}
 	}
-
-
 }
