@@ -1,15 +1,16 @@
 package nextstep.study.baseball.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Scanner;
 import nextstep.study.baseball.util.BaseballUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("투수 테스트")
 @TestMethodOrder(MethodOrderer.DisplayName.class)

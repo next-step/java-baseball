@@ -1,11 +1,8 @@
 package nextstep.study.baseball.domain;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
 import nextstep.study.baseball.common.BaseConstants;
+
+import java.util.*;
 
 public class Batter {
 

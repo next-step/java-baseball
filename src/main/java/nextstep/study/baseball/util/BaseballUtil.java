@@ -1,11 +1,8 @@
 package nextstep.study.baseball.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 import nextstep.study.baseball.common.BaseConstants;
+
+import java.util.*;
 
 public class BaseballUtil {
 
@@ -74,5 +71,4 @@ public class BaseballUtil {
 		}
 		return Arrays.asList(intArray);
 	}
-
 }

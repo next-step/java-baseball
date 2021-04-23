@@ -1,17 +1,14 @@
 package nextstep.study.baseball.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import nextstep.study.baseball.common.BaseConstants;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
-import nextstep.study.baseball.common.BaseConstants;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("유틸클래스 테스트")
 @TestMethodOrder(MethodOrderer.DisplayName.class)

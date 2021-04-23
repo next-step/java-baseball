@@ -1,9 +1,10 @@
 package nextstep.study.baseball.domain;
 
+import nextstep.study.baseball.util.BaseballUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import nextstep.study.baseball.util.BaseballUtil;
 
 public class Pitcher {
 
