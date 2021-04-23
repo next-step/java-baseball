@@ -13,4 +13,10 @@ public class BallTest {
 
         assertThat(ball.getNumber()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("같은 번호의 공은 같은 공이다")
+    public void 같은_번호의_공은_같은_공이다() {
+        assertThat(Ball.of(3)).isEqualTo(Ball.of(3));
+    }
 }
