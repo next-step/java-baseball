@@ -1,6 +1,7 @@
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.assertEquals;
+import java.util.Arrays;
 
 public class RandomNumGeneratorTest {
 
@@ -41,4 +42,18 @@ public class RandomNumGeneratorTest {
 
     // 4.랜덤숫자생성기가 생성한 문자열은 원소가 문자열 내 각각 1개씩만 존재한다.
     // 5.랜덤숫자생성기가 생성한 문자열은 적어도 한 번은 바뀌어야 한다.
+    //유효성 검사 4. 생성되는 문자열이 랜덤인가
+    @Test
+    public void isStringValidatedIsRandomlyGenerated(){
+        int testCnt = 10;
+        String ballsArr [] =new String[testCnt];
+
+        for (int i=0; i<testCnt; i++)
+            ballsArr[i] = generator.generateRandomNum();
+
+        for (int i=0; i<testCnt; i++){
+            final String balls =ballsArr[i];
+            assertEquals(Arrays.stream(ballsArr).filter(s -> s.equals(balls)).count(), 1);
+        }
+    }
 }

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class RandomNumGenerator {
     private int maxLen;
     public RandomNumGenerator(){
@@ -9,8 +11,9 @@ public class RandomNumGenerator {
 
     public String generateRandomNum(){
         StringBuilder builder = new StringBuilder();
+        Random random = new Random();
         for (int i=0; i<maxLen; i++)
-            builder.append(i+1);
+            builder.append(random.nextInt(9) + 1);
         return builder.toString();
     }
 }
