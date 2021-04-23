@@ -15,6 +15,9 @@ public class BaseballGameCheckServiceImpl implements BaseballGameCheckService {
         }
 
         for (int i = 0; i < player1Number.size(); i++) {
+            if(i>2){
+                continue;
+            }
             result.computeIfPresent(checkStrikeBall(i, player1Number.get(i), player2Number), (String key, Integer value) -> ++value);
             result.putIfAbsent(checkStrikeBall(i, player1Number.get(i), player2Number), 1);
         }
