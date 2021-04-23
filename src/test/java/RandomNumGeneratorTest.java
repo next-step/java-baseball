@@ -21,6 +21,12 @@ public class RandomNumGeneratorTest {
     }
 
     // 2.랜덤숫자생성기가 생성한 문자열의 길이는 게임에서 정한 주어진 길이이다.
+    //유효성 검사 2. 게임에서 지정한 길이인가?
+    @Test
+    public void isStringIsValidatedIsLengthEqualsBaseballGamesMaxLenWhichIsGeneratedByRandomNumGenerator(){
+        String balls = generator.generateRandomNum();
+        assertEquals(balls.length(), BaseballGame.DEFAULT_LEN);
+    }
     // 3.랜덤숫자생성기가 생성한 문자열은 모두 1~9까지 숫자로 이루어져 있다.
     // 4.랜덤숫자생성기가 생성한 문자열은 원소가 문자열 내 각각 1개씩만 존재한다.
     // 5.랜덤숫자생성기가 생성한 문자열은 적어도 한 번은 바뀌어야 한다.

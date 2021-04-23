@@ -8,6 +8,9 @@ public class RandomNumGenerator {
     }
 
     public String generateRandomNum(){
-        return "";
+        StringBuilder builder = new StringBuilder();
+        for (int i=0; i<maxLen; i++)
+            builder.append(" ");
+        return builder.toString();
     }
 }
