@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class BaseBall {
     static int[] answer;
-    static boolean replay=true;
+    static boolean finish;
+
+    static boolean replay = true;
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
@@ -15,53 +17,74 @@ public class BaseBall {
     }
 
     private static void playGame(Scanner s) {
-        boolean finish = false;
-        String input;
         while (!finish) {
-            System.out.print("insert numbers (3digits) :");
-            input = s.nextLine();
-            finish = check(input);
+            System.out.print("숫자를 입력해주세요 : ");
+            check(s.nextLine());
         }
-        System.out.println("you matched all three balls! game over");
-        System.out.println("type 1 to replay, type anything to quit");
-        replay=Integer.parseInt(s.nextLine()) == 1;
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+        replayGame(s);
     }
 
-    private static boolean check(String input) {
-        int[] result = new int[2];
+    private static void replayGame(Scanner s) {
+        String input = s.nextLine();
+        while (!(input.equals("1") || input.equals("2"))) {
+            System.out.println("올바르지 않은 입력입니다.");
+            input = s.nextLine();
+        }
+        replay = Integer.parseInt(input) == 1;
+    }
+
+
+    private static void check(String input) {
+        if (!isInputValid(input)) {
+            System.out.println("올바르지 않은 입력입니다");
+            return;
+        }
+        Result result = new Result();
         for (int i = 0; i < 3; i++) {
             judge(input, result, i);
         }
         showHint(result);
-        return result[0] == 3;
+        finish = result.getStrikes() == 3;
     }
 
-    private static void showHint(int[] result) {
+    private static boolean isInputValid(String input) {
+        if (input.length() != 3) {
+            return false;
+        }
+        if (!Character.isDigit(input.charAt(0)) || !Character.isDigit(input.charAt(1)) || !Character.isDigit(input.charAt(2))) {
+            return false;
+        }
+        return true;
+    }
+
+    private static void showHint(Result result) {
         StringBuilder sb = new StringBuilder();
-        if (result[0] != 0) {
-            sb.append(String.format("%d strikes ", result[0]));
+        if (result.getStrikes() != 0) {
+            sb.append(String.format("%d 스트라이크 ", result.getStrikes()));
         }
-        if (result[1] != 0) {
-            sb.append(String.format("%d balls", result[1]));
+        if (result.getBalls() != 0) {
+            sb.append(String.format("%d 볼", result.getBalls()));
         }
-        if (result[0] == 0 && result[1] == 0) {
-            sb.append("NOTHING");
+        if (result.getStrikes() == 0 && result.getBalls() == 0) {
+            sb.append("낫싱");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
-    private static void judge(String input, int[] result, int i) {
+    private static void judge(String input, Result result, int i) {
         int value = Integer.parseInt(String.valueOf(input.charAt(i)));
-        if (answer[i] == value) {
-            result[0] += 1;
-            return;
+        if (isStrike(i, value)) {
+            result.setStrikes(result.getStrikes() + 1);
         }
-        if (isContain(value)) {
-            result[1] += 1;
+        if (isBall(i, value)) {
+            result.setBalls(result.getBalls() + 1);
         }
     }
 
     private static void init() {
+        finish = false;
         answer = new int[3];
         Random random = new Random(System.currentTimeMillis());
         int index = 0;
@@ -81,5 +104,13 @@ public class BaseBall {
 
     private static boolean isContain(int value) {
         return answer[0] == value || answer[1] == value || answer[2] == value;
+    }
+
+    private static boolean isStrike(int index, int value) {
+        return answer[index] == value;
+    }
+
+    private static boolean isBall(int index, int value) {
+        return isContain(value) && !isStrike(index, value);
     }
 }
