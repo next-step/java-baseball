@@ -4,6 +4,7 @@ import baseball.config.BaseballConfig;
 import baseball.model.BaseballNumber;
 import baseball.model.BaseballResult;
 
+// TODO: remove baseballNumber, BaseballResult dependency in Controller
 public abstract class BaseballControllerTemplate {
 
     public void run() {

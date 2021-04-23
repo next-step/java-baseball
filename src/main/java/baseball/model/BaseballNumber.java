@@ -3,6 +3,7 @@ package baseball.model;
 import baseball.exception.BaseballNumberFormatException;
 import lombok.Getter;
 
+// TODO: Random Number Generator (Strategy Pattern)
 @Getter
 public class BaseballNumber {
     public static final int DEFAULT_NUMBERS_SIZE = 3;
@@ -51,7 +52,6 @@ public class BaseballNumber {
 
         int numberTemp = number;
 
-        boolean[] isChecked = new boolean[this.radix];
         for (int i = this.size - 1; i > -1; i--) {
             numbers[i] = numberTemp % this.radix;
             numberTemp /= this.radix;
@@ -94,6 +94,7 @@ public class BaseballNumber {
         private int index;
         private int size;
         private int radix;
+        private boolean[] isChecked;
 
         private Builder() {
             this.index = 0;
@@ -119,10 +120,11 @@ public class BaseballNumber {
             }
 
             do {
-                this.number.numbers[index] = (int)(Math.random() * (this.number.radix - 1)) + 1;
-            } while(!number.checkValid(0, index + 1));
+                this.number.numbers[this.index] = (int) (Math.random() * (this.number.radix - 1)) + 1;
+//            } while(!number.checkValid(0, index + 1));
+            } while(this.number.numbers[this.index] == 0 || this.isChecked[this.number.numbers[this.index]]);
 
-            this.index++;
+            this.isChecked[this.number.numbers[this.index++]] = true;
             return this;
         }
 
@@ -142,6 +144,8 @@ public class BaseballNumber {
             if (this.number == null) {
                 this.number = new BaseballNumber(this.size, this.radix);
             }
+
+            this.isChecked = new boolean[this.number.radix];
 
             if (this.index < this.number.size) {
                 this.addAll();

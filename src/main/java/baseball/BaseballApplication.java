@@ -12,9 +12,9 @@ public class BaseballApplication {
     private static BaseballConfig config
             = BaseballConfig.builder()
                                 .size(3)
-                                .radix(10)
+                                .radix(16)
                                 .tryCount(0)
-                                .locale(Locale.ENGLISH)
+//                                .locale(Locale.ENGLISH)
                                 .build();
     private static BaseballView baseballView = new BaseballViewImpl(config);
     private static BaseballControllerTemplate baseballControllerTemplate = new BaseballController(baseballView);

@@ -25,6 +25,8 @@
   </p>
 </details>
 
+## Class Diagram
+<br/>
 
 ---
 ## TODO
@@ -41,8 +43,6 @@
   }
   ```
 - [X] Handling Exception BaseballNumberFormatException  
-- [ ] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
-
 - [X] Tell the baseBallResult of trial
   > [BaseballResult (Factory Pattern)](./src/main/java/baseball/model/BaseballResult.java)
   ```java
@@ -80,6 +80,8 @@
 - [X] Message Properties  
 - [ ] JUnit5, AssertJ Unit Test
 - [ ] Class Diagram, Activity Diagram
+- [ ] remove dependency between controller and model vo.
+- [ ] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
 
 ---
 ## Functionality Requirements
