@@ -8,18 +8,62 @@
 
 ---
 ## TODO
-- [ ] Computer choose 3 different numbers
-- [ ] Tell the baseBallResult of trial
-- [ ] If completed, ask "Restart: 1, Exit: 2"
-- [ ] Logic Layer / UI Layer Separation
+- [X] Computer choose 3 different numbers <br/>
+  > [BaseballNumber (Builder Pattern)](./src/main/java/baseball/model/BaseballNumber.java)
+  ```java
+  public class Main {
+    public static void main(String[] args) {
+      BaseballNumber answer = BaseballNumber.builder()
+                .size(size)
+                .radix(radix)
+                .build();
+    }
+  }
+  ```
+- [ ] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
+
+- [X] Tell the baseBallResult of trial
+  > [BaseballResult (Factory Pattern)](./src/main/java/baseball/model/BaseballResult.java)
+  ```java
+  public class Main {
+    public static void main(String[] args) {
+      BaseballResult trialResult = BaseballResult.calcResult(answer, trialBaseballNumber);
+    }
+  }
+  ```
+- [X] If completed, ask "Restart: 1, Exit: 2"
+- [X] Logic Layer / UI Layer Separation
+  - [BaseballApplication](./src/main/java/baseball/BaseballApplication.java)
+    ```java
+    public class BaseballApplication {
+    private static BaseballView baseballView = new BaseballViewImpl();
+    private static BaseballControllerTemplate baseballControllerTemplate = new BaseballController(baseballView);
+    private static BaseballConfig config = new BaseballConfig(3, 10, 0);    // size, radix, tryCount
+    
+        public static void main(String[] args) {
+            BaseballApplication.run(BaseballApplication.class, args);
+        }
+    
+        static public <T> void run(Class<T> clazz, String[] args) {
+            baseballControllerTemplate.run(config);
+        }
+    }
+    ```
+  - [BaseballControllerTemplate](./src/main/java/baseball/controller/BaseballControllerTemplate.java)
+    > Logical Controller (Template Pattern)
+  - [BaseballView](./src/main/java/baseball/view/BaseballView.java)
+    > View & I/O Component (Interface)
+  - [BaseballConfig](./src/main/java/baseball/config/BaseballConfig.java)
+    > Config Bean
+- [ ] Decorator Pattern or Bridge Pattern in View (InputStream, OutputStream)    
 - [ ] JUnit5, AssertJ Unit Test
 
 
 ---
 ## Functionality Requirements
-- [ ] Computer choose 3 different numbers
-- [ ] Tell the baseBallResult of trial
-- [ ] If completed, ask "Restart: 1, Exit: 2"
+- [X] Computer choose 3 different numbers
+- [X] Tell the baseBallResult of trial
+- [X] If completed, ask "Restart: 1, Exit: 2"
 
 ## Programming Requirements
 1. Interface Segregation Principle (Method Separation)
@@ -38,3 +82,5 @@
 ## Project Requirements
 - [https://github.com/next-step/java-baseball-precourse](https://github.com/next-step/java-baseball-precourse)
 - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)
+- [커밋 메시지 규약 정리 (the AngularJS commit conventions)](https://velog.io/@outstandingboy/Git-%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80-%EA%B7%9C%EC%95%BD-%EC%A0%95%EB%A6%AC-the-AngularJS-commit-conventions)
+
