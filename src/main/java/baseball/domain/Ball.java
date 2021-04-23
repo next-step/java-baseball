@@ -1,10 +1,12 @@
 package baseball.domain;
 
 public class Ball {
-    private static final Ball[] BALLS = new Ball[10];
+    private static final int MINIMUM_NUMBER = 1;
+    private static final int MAXIMUM_NUMBER = 9;
+    private static final Ball[] BALLS = new Ball[MAXIMUM_NUMBER + 1];
 
     static {
-        for(int i = 1; i<BALLS.length; i++) {
+        for(int i = MINIMUM_NUMBER; i<BALLS.length; i++) {
             BALLS[i] = new Ball(i);
         }
     }
@@ -20,8 +22,10 @@ public class Ball {
     }
 
     public static Ball of(int number) {
-        if(number < 1 || number >= 10) {
-            throw new IllegalArgumentException("공의 숫자는 1 이상 9 이하 입니다.");
+        if(number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
+            String exceptionMessage = String.format("공의 숫자는 %d 이상 %d 이하 입니다.", MINIMUM_NUMBER, MAXIMUM_NUMBER);
+
+            throw new IllegalArgumentException(exceptionMessage);
         }
 
         return BALLS[number];
