@@ -28,4 +28,16 @@ public class ScoreMatchTest {
         assertTrue(scoreMatch.compare(number));
         assertEquals(scoreMatch.getStrikeCount(), 3);
     }
+
+    @Test
+    @DisplayName("볼 테스트")
+    public void ballTest() {
+        Number number = new Number("156");
+        assertFalse(scoreMatch.compare(number));
+        assertEquals(scoreMatch.getBallCount(), 1);
+
+        number = new Number("352");
+        assertFalse(scoreMatch.compare(number));
+        assertEquals(scoreMatch.getBallCount(), 3);
+    }
 }
