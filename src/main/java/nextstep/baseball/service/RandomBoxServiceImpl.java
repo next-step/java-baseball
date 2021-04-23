@@ -7,17 +7,6 @@ public class RandomBoxServiceImpl implements RandomBoxService {
     List<Integer> randomBox;
 
     @Override
-    public List<Integer> inputUserNumber(String str) {
-        List<Integer> result = new ArrayList<>();
-        final String[] split = str.split("");
-
-        for(String i : split){
-            result.add(Integer.parseInt(i));
-        }
-        return result;
-    }
-
-    @Override
     public void setRandomBox(){
         randomBox = new ArrayList<>();
         for(int i=1;i<10;i++){
