@@ -1,8 +1,5 @@
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +9,12 @@ public class QuestionTest {
 	@BeforeEach
 	void setUp() {
 		question = new Question();
-		List<Integer> userQuestion = new ArrayList<>();
-		userQuestion.add(1);
-		userQuestion.add(2);
-		userQuestion.add(3);
-		question.setUserQuestion(userQuestion);
+		question.setUserQuestion(1, 2, 3);
 	}
 
 	@Test
 	void setUserQuestionTest() {
-		List<Integer> userQuestion = new ArrayList<>();
-		userQuestion.add(3);
-		userQuestion.add(2);
-		userQuestion.add(1);
-		question.setUserQuestion(userQuestion);
+		question.setUserQuestion(3, 2, 1);
 
 		assertThat(question.getUserQuestion().size()).isEqualTo(3);
 		assertThat(question.getUserQuestion().get(0)).isEqualTo(3);

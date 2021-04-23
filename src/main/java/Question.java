@@ -4,8 +4,11 @@ import java.util.List;
 public class Question {
 	private List<Integer> question;
 
-	public void setUserQuestion(List<Integer> userQuestion) {
-		//검증 필요
+	public void setUserQuestion(int first, int second, int last) {
+		List<Integer> userQuestion = new ArrayList<Integer>();
+		userQuestion.add(first);
+		userQuestion.add(second);
+		userQuestion.add(last);
 		this.question = userQuestion;
 	}
 
