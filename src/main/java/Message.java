@@ -19,4 +19,19 @@ public class Message {
     public void gameOver() {
         System.out.println(this.GAME_OVER);
     }
+
+    public void getResult(int strike, int ball) {
+        String message = "";
+        if (strike > 0) {
+            message += strike + " 스트라이크 ";
+        }
+
+        if (ball > 0) {
+            message += ball + " 볼";
+        }
+
+        if (message.length() > 0) {
+            System.out.println(message);
+        }
+    }
 }
