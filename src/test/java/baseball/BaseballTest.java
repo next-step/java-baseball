@@ -2,8 +2,11 @@ package baseball;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class BaseballTest {
@@ -32,5 +35,24 @@ public class BaseballTest {
         assertNotEquals(firstDigit, thirdDigit);
     }
 
+    @DisplayName("입력받는 baseball 정답 예측수가 유효한 숫자인지 테스트한다. (중복 수)")
+    @ParameterizedTest
+    @CsvSource(value = {"111:false", "999:false", "110:false", "555:false"}, delimiter = ':')
+    public void isValidBaseballInputNumberDigitTest(int input, boolean expected) {
+        assertEquals(baseball.isValidBaseballInputNumber(input), expected);
+    }
 
+    @DisplayName("입력받는 baseball 정답 예측수가 유효한 숫자인지 테스트한다. (0 포함 수)")
+    @ParameterizedTest
+    @CsvSource(value = {"200:false", "960:false", "201:false", "520:false"}, delimiter = ':')
+    public void isValidBaseballInputNumberWithZeroTest(int input, boolean expected) {
+        assertEquals(baseball.isValidBaseballInputNumber(input), expected);
+    }
+
+    @DisplayName("입력받는 baseball 정답 예측수가 유효한 숫자인지 테스트한다. (범위)")
+    @ParameterizedTest
+    @CsvSource(value = {"123:true", "987:true", "109:false", "1245:false", "13:false"}, delimiter = ':')
+    public void isValidBaseballInputNumberRangeTest(int input, boolean expected) {
+        assertEquals(baseball.isValidBaseballInputNumber(input), expected);
+    }
 }
