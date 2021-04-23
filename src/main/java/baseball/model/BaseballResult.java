@@ -57,7 +57,8 @@ public class BaseballResult {
         }
 
         for (int i = 0; i < this.size; i++) {
-            if (isChecked[right.getNumbers()[i]] && left.getNumbers()[i] != right.getNumbers()[i]) {
+            if (isChecked[right.getNumbers()[i]]
+                    && left.getNumbers()[i] != right.getNumbers()[i]) {
                 this.ball++;
             }
         }
