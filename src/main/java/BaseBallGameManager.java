@@ -14,7 +14,27 @@ public class BaseBallGameManager {
             String batterNumber = batter.getUserInput();
             // 심판 입장
             int strikeCount = referee.judgeGame(pitcherNumber, batterNumber);
+            end(strikeCount);
         }
+    }
+
+    private void end(int strikeCount) {
+        if (strikeCount == PlayGame.RANDOM_NUMBER_LENGTH) {
+            System.out.println(String.format("%d 개의 숫자를 모두 맞히셨습니다! 게임 종료", PlayGame.RANDOM_NUMBER_LENGTH));
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            String reGame = PlayGame.scanner.nextLine();
+            replay(reGame);
+        }
+    }
+
+    private void replay(String reGame) {
+        if ("1".equals(reGame)) {
+            pitcherNumber = getPitcherNumber();
+            playGame = true;
+            return;
+        }
+
+        playGame = false;
     }
 
     private String implode(Set<Integer> set) {
