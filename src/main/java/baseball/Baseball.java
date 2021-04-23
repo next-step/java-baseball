@@ -14,7 +14,7 @@ public class Baseball {
         int secondDigit = makeRandomIntRangeOneToNine();
         int thirdDigit = makeRandomIntRangeOneToNine();
 
-        if (isValidBaseballNumber(firstDigit, secondDigit, thirdDigit)) {
+        if (isValidBaseballNumberDigit(firstDigit, secondDigit, thirdDigit)) {
             return "" + firstDigit + secondDigit + thirdDigit;
         }
 
@@ -26,14 +26,8 @@ public class Baseball {
         return random.nextInt(8) + 1;
     }
 
-    private boolean isValidBaseballNumber(int firstDigit, int secondDigit, int thirdDigit) {
-        if (firstDigit == secondDigit
-                || firstDigit == thirdDigit
-                || secondDigit == thirdDigit) {
-            return false;
-        }
-
-        return true;
+    private boolean isValidBaseballNumberDigit(int firstDigit, int secondDigit, int thirdDigit) {
+        return (firstDigit != secondDigit && firstDigit != thirdDigit && secondDigit != thirdDigit);
     }
 
 }
