@@ -1,7 +1,7 @@
 package baseball.domain;
 
 public class Ball {
-    private static Ball[] BALLS = new Ball[10];
+    private static final Ball[] BALLS = new Ball[10];
 
     static {
         for(int i = 1; i<BALLS.length; i++) {
