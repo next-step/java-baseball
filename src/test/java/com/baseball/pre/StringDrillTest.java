@@ -59,7 +59,7 @@ class StringDrillTest {
 		int outedRangeIdx = textLength + 1;
 
 		assertThatThrownBy(() -> {
-			char resultTest = inputText.charAt(outedRangeIdx)
+			char resultTest = inputText.charAt(outedRangeIdx);
 		}).isInstanceOf(IndexOutOfBoundsException.class)
 			.hasMessageContaining("String index out of range");
 	}
