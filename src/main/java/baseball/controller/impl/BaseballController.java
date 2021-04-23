@@ -6,7 +6,7 @@ import baseball.model.BaseballResult;
 import baseball.view.BaseballView;
 
 public class BaseballController extends BaseballControllerTemplate {
-    private BaseballView baseballView;
+    private final BaseballView baseballView;
     private BaseballNumber answer;
 
     public BaseballController(BaseballView baseballView) {

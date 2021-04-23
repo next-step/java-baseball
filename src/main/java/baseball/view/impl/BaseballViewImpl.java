@@ -1,54 +1,37 @@
 package baseball.view.impl;
 
+import baseball.config.BaseballConfig;
 import baseball.model.BaseballResult;
 import baseball.view.BaseballView;
 
-import java.io.*;
-import java.util.Scanner;
-
 public class BaseballViewImpl extends BaseballView {
-    private Scanner scanner;
-
-    public BaseballViewImpl() {
-        this(System.in, System.out);
+    public BaseballViewImpl(BaseballConfig config) {
+        super(config);
     }
 
-    public BaseballViewImpl(InputStream inputStream, OutputStream outputStream) {
-        super(inputStream, outputStream);
-
-        System.setIn(inputStream);
-        System.setOut(new PrintStream(outputStream));
-        this.scanner = new Scanner(inputStream);
-    }
-
-    @Override
     public void printInputPrompt() {
-        System.out.println("숫자를 입력해주세요.");
+        this.printMessage("inputPrompt");
     }
 
-    @Override
-    public String readInputPrompt() {
-        return this.scanner.next();
-    }
-
-    @Override
     public void printBaseballResult(BaseballResult baseballResult) {
-        System.out.println(baseballResult);
+        // TODO: SingleTon & Builder (BaseballConfig)
+        this.print(baseballResult.toString(this.config));
     }
 
-    @Override
     public void printGameResult(BaseballResult baseballResult) {
         if (baseballResult.isComplete()) {
-            System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임 종료\n", baseballResult.getStrike());
+            this.printFormatMessage("successGameResultFormat", baseballResult.getStrike());
             return;
         }
 
-        System.out.printf("%d개의 숫자를 맞히셨습니다... 미션 실패... 게임 종료\n", baseballResult.getStrike());
+        this.printFormatMessage("failedGameResultFormat", baseballResult.getStrike());
     }
 
-    @Override
     public void printAskingReGame() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        this.printMessage("askingReGamePrompt");
     }
 
+    public String readInputPrompt() {
+        return this.read();
+    }
 }

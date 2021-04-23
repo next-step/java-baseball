@@ -1,8 +1,12 @@
 package baseball.model;
 
+import baseball.config.BaseballConfig;
+import baseball.constants.MessageKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ResourceBundle;
 
 @Data
 @AllArgsConstructor
@@ -13,6 +17,8 @@ public class BaseballResult {
     private boolean isComplete;
     private int size;
     private int radix;
+
+    private ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
     private BaseballNumber[] baseballNumbers;
 
@@ -37,6 +43,7 @@ public class BaseballResult {
 
         if (this.strike == this.size) {
             this.isComplete = true;
+            this.ball = 0;
             return;
         }
 
@@ -55,19 +62,25 @@ public class BaseballResult {
 
     @Override
     public String toString() {
+        // TODO: SingleTon & Builder (BaseballConfig)
+        BaseballConfig config = BaseballConfig.builder().build();
+        return toString(config);
+    }
+
+    public String toString(BaseballConfig config) {
         StringBuilder sb = new StringBuilder();
         if (this.strike == 0 && this.ball == 0) {
-            return "낫싱";
+            return config.getMessage(MessageKey.noStrikeNoBallResultFormat);
         }
 
         if (this.strike != 0 && this.ball != 0) {
-            return String.format("%d 스트라이크 %d 볼", this.strike, this.ball);
+            return String.format(config.getMessage(MessageKey.strikeAndBallResultFormat), this.strike, this.ball);
         }
 
         if (this.strike != 0) {
-            return String.format("%d 스트라이크", this.strike);
+            return String.format(config.getMessage(MessageKey.onlyStrikeResultFormat), this.strike);
         }
 
-        return String.format("%d 볼", this.ball);
+        return String.format(config.getMessage(MessageKey.onlyBallResultFormat), this.ball);
     }
 }

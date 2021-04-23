@@ -7,7 +7,7 @@ import baseball.model.BaseballResult;
 public abstract class BaseballControllerTemplate {
 
     public void run() {
-        this.run(new BaseballConfig());
+        this.run(BaseballConfig.builder().build());
     }
 
     public void run(BaseballConfig config) {
@@ -42,7 +42,7 @@ public abstract class BaseballControllerTemplate {
 
     public BaseballResult startGame(int tryCount) {
         if (tryCount <= 0) {
-            this.startGame();
+            return this.startGame();
         }
 
         BaseballResult result = null;

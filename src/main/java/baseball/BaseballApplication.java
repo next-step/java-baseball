@@ -6,10 +6,18 @@ import baseball.controller.impl.BaseballController;
 import baseball.view.BaseballView;
 import baseball.view.impl.BaseballViewImpl;
 
+import java.util.Locale;
+
 public class BaseballApplication {
-    private static BaseballView baseballView = new BaseballViewImpl();
+    private static BaseballConfig config
+            = BaseballConfig.builder()
+                                .size(3)
+                                .radix(10)
+                                .tryCount(0)
+                                .locale(Locale.KOREAN)
+                                .build();
+    private static BaseballView baseballView = new BaseballViewImpl(config);
     private static BaseballControllerTemplate baseballControllerTemplate = new BaseballController(baseballView);
-    private static BaseballConfig config = new BaseballConfig(3,16, 3);
 
     public static void main(String[] args) {
         BaseballApplication.run(BaseballApplication.class, args);
