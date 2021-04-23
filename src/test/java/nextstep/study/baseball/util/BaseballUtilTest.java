@@ -2,6 +2,8 @@ package nextstep.study.baseball.util;
 
 import nextstep.study.baseball.common.BaseConstants;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -122,6 +124,22 @@ public class BaseballUtilTest {
 			sb.append(String.valueOf(num));
 		}
 		assertThat(sb.toString()).isEqualTo(strNum);
+	}
+
+	@ParameterizedTest
+	@DisplayName("11. 입력된 숫자가 범위내의 character가 아닐때")
+	@ValueSource(strings = {"012", "1234"})
+	void testBetweenWrongStrNum(String str) {
+		boolean result = BaseballUtil.isBetweenStrNum(str);
+		assertThat(result).isFalse();
+	}
+
+	@ParameterizedTest
+	@DisplayName("12. 입력된 숫자가 범위내의 character 일때")
+	@ValueSource(strings = {"123", "942", "751"})
+	void testBetweenStrNum(String str) {
+		boolean result = BaseballUtil.isBetweenStrNum(str);
+		assertThat(result).isTrue();
 	}
 
 }

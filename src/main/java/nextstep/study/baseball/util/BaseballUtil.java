@@ -3,6 +3,8 @@ package nextstep.study.baseball.util;
 import nextstep.study.baseball.common.BaseConstants;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BaseballUtil {
 
@@ -38,7 +40,13 @@ public class BaseballUtil {
 
 	public static boolean validationNumber(String inputNums) {
 		String strRemovedDupChar = BaseballUtil.removeDuplicateChar(inputNums);
-		return (isNumeric(inputNums) && isLength(strRemovedDupChar, BaseConstants.INPUT_NUMBER_LENGTH));
+		return (isNumeric(inputNums) && isLength(strRemovedDupChar, BaseConstants.INPUT_NUMBER_LENGTH) && isBetweenStrNum(inputNums));
+	}
+
+	public static boolean isBetweenStrNum(String inputNums) {
+		Pattern p = Pattern.compile("[1-9]{3}");
+		Matcher m = p.matcher(inputNums);
+		return m.matches();
 	}
 
 	public static boolean isNumeric(String strNum) {
