@@ -1,38 +1,25 @@
 package baseball;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class BaseBallGame {
-    private String answer;
+    private final BaseBallRandomNumber randomNumber = new BaseBallRandomNumber();
 
-    public void start() {
-        initializeAnswer();
-        playUntilCorrect();
+    public void newGame() {
+        randomNumber.initialize();
     }
 
-    void initializeAnswer() {
-        List<String> list = Arrays.asList("0","1","2","3","4","5","6","7","8","9");
-        Collections.shuffle(list);
-
-        this.answer = String.join(list.get(0), list.get(1), list.get(2));
-    }
-
-    void playUntilCorrect() {
-        while (true) {
-            if (isCorrect(UserInterface.printGuideAndScanUserInput())) {
-                UserInterface.printGameComplete();
-                break;
-            }
+    public void startGame() {
+        String guess = "";
+        while (!randomNumber.isCorrect(guess)) {
+            guess = UserInterface.printGuideAndScanUserInput();
+            noticeStrikeCount(guess);
         }
+        UserInterface.printGameComplete();
     }
-
-    String getAnswer() {
-        return answer;
-    }
-
-    boolean isCorrect(String guess) {
-        return answer.equals(guess);
+    
+    private void noticeStrikeCount(String guess) {
+        int strike = randomNumber.getStrikeCount(guess);
+        if (strike > 0) {
+            UserInterface.printStrike(strike);
+        }
     }
 }

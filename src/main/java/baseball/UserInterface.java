@@ -18,6 +18,10 @@ public class UserInterface {
         return userInput;
     }
 
+    public static void printStrike(int count) {
+        System.out.printf("%d 스트라이크 ", count);
+    }
+
     public static void printGameComplete() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
     }
