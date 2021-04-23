@@ -1,12 +1,13 @@
 package nextstep.study.baseball.service;
 
-import java.util.Scanner;
 import nextstep.study.baseball.common.BaseConstants;
 import nextstep.study.baseball.domain.Batter;
 import nextstep.study.baseball.domain.Pitcher;
 import nextstep.study.baseball.domain.Referee;
 import nextstep.study.baseball.domain.RefreeDecision;
 import nextstep.study.baseball.util.BaseballUtil;
+
+import java.util.Scanner;
 
 public class BaseballService {
 
@@ -27,10 +28,22 @@ public class BaseballService {
 			RefreeDecision decision = referee.makeRefreeDecision(batter.getNumbers(), pitcher.getNumbers());
 			strikeCount = decision.getStrikeCount();
 
-			//TODO - 판정 결과 출력 포맷팅
-			System.out.println(decision);
+			this.showDecisionMessage(decision);
 		}
 		askFinish();
+	}
+
+	public void showDecisionMessage(RefreeDecision decision) {
+		if (decision.getStrikeCount() > 0) {
+			BaseballUtil.showMessage(String.format("%d 스트라이크 ", decision.getStrikeCount()));
+		}
+		if (decision.getBallCount() > 0) {
+			BaseballUtil.showMessage(String.format("%d 볼 ", decision.getBallCount()));
+		}
+		if (decision.getStrikeCount() == 0 && decision.getBallCount() == 0) {
+			BaseballUtil.showMessage("낫싱");
+		}
+		BaseballUtil.showMessage("\n");
 	}
 
 	public void askFinish() {

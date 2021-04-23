@@ -20,6 +20,6 @@ public class BaseConstants {
 	/**
 	 * 3스트라이크로 모두 맞췄을때 출력할 메세지
 	 */
-	public static final String MESSAGE_FINISH = "게임을 새로 시작하려면 1, 종료하려면 2 를 입력하세요.\n";
+	public static final String MESSAGE_FINISH = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2 를 입력하세요.\n";
 
 }
