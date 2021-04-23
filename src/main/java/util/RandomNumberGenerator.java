@@ -1,27 +1,37 @@
 package util;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class RandomNumberGenerator implements RandomGenerator {
     private final int MAX_SIZE = 3;
     private final int MAX_NUMBER = 9;
     private final int MIN_NUMBER = 1;
-    private final Set<Integer> numbers;
+    private final List<Integer> numbers;
     private final Random random;
 
     public RandomNumberGenerator() {
-        this.numbers = new HashSet<>();
+        this.numbers = new ArrayList<>();
         this.random = new Random();
     }
 
-    public Set<Integer> makeNumbersLessThanTen() {
+    public List<Integer> makeNumbersLessThanTen() {
         while (numbers.size() < MAX_SIZE) {
-            int num = random.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
-            numbers.add(num);
+            addNonDuplicateNumber();
         }
 
         return numbers;
+    }
+
+    private void addNonDuplicateNumber() {
+        int num = randomIntegerNumber();
+        if (!numbers.contains(num)) {
+            numbers.add(num);
+        }
+    }
+
+    private int randomIntegerNumber() {
+        return random.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
     }
 }

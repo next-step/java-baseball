@@ -1,20 +1,20 @@
 package util;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RandomNumberGeneratorStub implements RandomGenerator {
-    private final Set<Integer> numbers;
+    private final List<Integer> numbers = new ArrayList<>();
 
-    public RandomNumberGeneratorStub(int[] numberArray) {
-        numbers = new HashSet<>();
-        for (int num : numberArray) {
-            this.numbers.add(num);
+    public RandomNumberGeneratorStub(String input) {
+        char[] array = input.toCharArray();
+        for (char ch : array) {
+            numbers.add(ch - '0');
         }
     }
 
     @Override
-    public Set<Integer> makeNumbersLessThanTen() {
+    public List<Integer> makeNumbersLessThanTen() {
         return numbers;
     }
 }

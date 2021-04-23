@@ -1,7 +1,8 @@
 package util;
 
-import java.util.Set;
+
+import java.util.List;
 
 public interface RandomGenerator {
-    Set<Integer> makeNumbersLessThanTen();
+    List<Integer> makeNumbersLessThanTen();
 }
