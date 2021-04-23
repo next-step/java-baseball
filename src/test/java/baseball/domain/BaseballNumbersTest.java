@@ -15,7 +15,7 @@ class BaseballNumbersTest {
     void create_inputNull() {
         // given when then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(null))
+                .isThrownBy(() -> new BaseballNumbers(() -> null))
                 .withMessageMatching("숫자 정보를 입력해 주세요.");
     }
 
