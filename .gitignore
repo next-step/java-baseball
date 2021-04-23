@@ -19,3 +19,14 @@ bin/
 *.iws
 *.iml
 *.ipr
+
+*.c text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+
+# exception for visual studio project configuration
+*.sln text eol=crlf
+*.vs text eol=crlf
+*.csproj eol=crlf
+*.props eol=crlf
+*.filters eol=crlf
