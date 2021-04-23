@@ -6,9 +6,10 @@ import java.util.List;
 
 public class BaseBallGame {
     private final int MAX_STRIKE_COUNT = 3;
+    private final String INVALID_ARGUMENT_MESSAGE = "입력값은 중복되지 않은 세자리의 숫자여야 합니다.";
     private final List<Integer> numbers;
-    private int strikeCount = 0;
-    private int ballCount = 0;
+    private int strikeCount;
+    private int ballCount;
 
     public BaseBallGame(RandomGenerator randomGenerator) {
         this.numbers = randomGenerator.makeNumbersLessThanTen();
@@ -19,6 +20,10 @@ public class BaseBallGame {
     }
 
     public String guess(String str) {
+        if (!BaseBallInputValidator.isIsValid(str)) {
+            throw new IllegalArgumentException(INVALID_ARGUMENT_MESSAGE);
+        }
+        clearGameCount();
         int length = numbers.size();
         for (int index = 0; index < length; index++) {
             int input = str.charAt(index) - '0';
@@ -27,6 +32,11 @@ public class BaseBallGame {
         }
 
         return printMessage();
+    }
+
+    private void clearGameCount() {
+        strikeCount = 0;
+        ballCount = 0;
     }
 
     private void matchStrike(int input, int index) {
