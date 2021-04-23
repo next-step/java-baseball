@@ -21,7 +21,9 @@ public class BaseBallGame {
     public String guess(String str) {
         int length = numbers.size();
         for (int index = 0; index < length; index++) {
-            matchStrike(str.charAt(index) - '0', index);
+            int input = str.charAt(index) - '0';
+            matchStrike(input, index);
+            matchBall(input, index);
         }
 
         return printMessage();
@@ -33,16 +35,28 @@ public class BaseBallGame {
         }
     }
 
+    private void matchBall(int input, int index) {
+        if (!numbers.get(index).equals(input) && numbers.contains(input)) {
+            ballCount++;
+        }
+    }
+
     private String printMessage() {
-        String message = BaseBall.NOTHING.getValue();
-        if (strikeCount > 0) {
-            message = strikeCount + " " + BaseBall.STRIKE.getValue();
-        }
+        String strike = getStrikeMessage();
+        String ball = getBallMessage();
 
-        if (ballCount > 0) {
-            message = BaseBall.BALL.getValue();
-        }
+        return (strikeCount == 0 && ballCount == 0) ? BaseBall.NOTHING.getValue() : strike + ball;
+    }
 
-        return message;
+    private String getStrikeMessage() {
+        String result = strikeCount > 0 ? strikeCount + " " + BaseBall.STRIKE.getValue() : "";
+        if (strikeCount > 0 && ballCount > 0) {
+            result = result + " ";
+        }
+        return result;
+    }
+
+    private String getBallMessage() {
+        return ballCount > 0 ? ballCount + " " + BaseBall.BALL.getValue() : "";
     }
 }
