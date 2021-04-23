@@ -9,7 +9,6 @@ public class Baseball {
     /***
      * 베이스볼 게임의 정답을 랜덤 생성한다.
      * 이 때, 정답은 111~ 999 사이의 중복되는 수가 없는 3자리 수 이다.
-     * @return 베이스볼 게임의 정답(랜덤)
      */
     public String makeBaseballNumberString() {
         int firstDigit = makeRandomIntRangeOneToNine();
@@ -34,8 +33,6 @@ public class Baseball {
 
     /**
      * 입력으로 받은 정답 예측수가 베이스볼 게임에 유효한 숫자인지 여부를 판단한다.
-     * @param input
-     * @return boolean
      */
     public boolean isValidBaseballInputNumber(int input) {
         String inputString = Integer.toString(input);
