@@ -1,5 +1,6 @@
 package nextstep.baseball.service;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,11 @@ public class BaseballGameCheckServiceImpl implements BaseballGameCheckService {
     @Override
     public Map<String, Integer> getGameResult(List<Integer> player1Number, List<Integer> player2Number) {
         Map<String, Integer> result = new HashMap<>();
+        if(Arrays.equals(player1Number.toArray(), player2Number.toArray())){
+            result.put("strike",3);
+            return result;
+        }
+
         for (int i = 0; i < player1Number.size(); i++) {
             result.computeIfPresent(checkStrikeBall(i, player1Number.get(i), player2Number), (String key, Integer value) -> ++value);
             result.putIfAbsent(checkStrikeBall(i, player1Number.get(i), player2Number), 1);
