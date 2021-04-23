@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DisplayName("Computer Test")
 public class ComputerTest {
 
-    @DisplayName("init Computer Test")
-    @Test
-    public void initComputerTest(){
-        Computer computer = new Computer();
-        assertNotNull(computer);
-        assertNotNull(computer.getBallNumber());
-    }
+	@DisplayName("init Computer Test")
+	@Test
+	public void initComputerTest() {
+		Computer computer = new Computer();
+		assertNotNull(computer);
+		assertNotNull(computer.getBallNumber());
+	}
 
 }

@@ -2,13 +2,13 @@ package baseball.domain;
 
 public class Computer {
 
-    private BallNumber ballNumber;
+	private BallNumber ballNumber;
 
-    public Computer(){
-        this.ballNumber = new BallNumber();
-    }
+	public Computer() {
+		this.ballNumber = new BallNumber();
+	}
 
-    public BallNumber getBallNumber(){
-        return this.ballNumber;
-    }
+	public BallNumber getBallNumber() {
+		return this.ballNumber;
+	}
 }
