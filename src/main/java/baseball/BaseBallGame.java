@@ -20,11 +20,8 @@ public class BaseBallGame {
     }
 
     public String guess(String str) {
-        if (!BaseBallInputValidator.isIsValid(str)) {
-            throw new IllegalArgumentException(INVALID_ARGUMENT_MESSAGE);
-        }
-        clearGameCount();
-        int length = numbers.size();
+        checkArgument(str);
+        int length = str.length();
         for (int index = 0; index < length; index++) {
             int input = str.charAt(index) - '0';
             matchStrike(input, index);
@@ -32,11 +29,6 @@ public class BaseBallGame {
         }
 
         return printMessage();
-    }
-
-    private void clearGameCount() {
-        strikeCount = 0;
-        ballCount = 0;
     }
 
     private void matchStrike(int input, int index) {
@@ -51,6 +43,18 @@ public class BaseBallGame {
         }
     }
 
+    private void checkArgument(String str) {
+        if (!BaseBallInputValidator.isIsValid(str)) {
+            throw new IllegalArgumentException(INVALID_ARGUMENT_MESSAGE);
+        }
+        clearGameCount();
+    }
+
+    private void clearGameCount() {
+        strikeCount = 0;
+        ballCount = 0;
+    }
+
     private String printMessage() {
         String strike = getStrikeMessage();
         String ball = getBallMessage();
@@ -63,6 +67,7 @@ public class BaseBallGame {
         if (strikeCount > 0 && ballCount > 0) {
             result = result + " ";
         }
+
         return result;
     }
 

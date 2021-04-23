@@ -26,6 +26,6 @@ public class BaseBallInputValidator {
             uniqueChars.add(input.charAt(i));
         }
 
-        return uniqueChars.size() >= 3;
+        return uniqueChars.size() == 3;
     }
 }
