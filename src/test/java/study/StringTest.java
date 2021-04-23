@@ -15,7 +15,7 @@ public class StringTest {
     @DisplayName("요구사항 1 - split")
     @ParameterizedTest
     @CsvSource(value = {"1,2=1:2", "1,=1"}, delimiter = '=')
-    void splitTest(String data, String answer) {
+    void split(String data, String answer) {
         // given
         String[] split = data.split(",");
 
