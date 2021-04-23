@@ -9,12 +9,12 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomGeneratorTest {
+class RandomNumberGeneratorTest {
     private Set<Integer> numbers;
 
     @BeforeEach
     void setUp() {
-        numbers = new RandomGenerator().makeNumbersLessThanTen();
+        numbers = new RandomNumberGenerator().makeNumbersLessThanTen();
     }
 
     @DisplayName("1부터 9까지 랜덤 숫자 만들기 테스트")
