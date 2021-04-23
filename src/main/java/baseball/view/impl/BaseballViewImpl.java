@@ -3,17 +3,21 @@ package baseball.view.impl;
 import baseball.model.BaseballResult;
 import baseball.view.BaseballView;
 
-import java.io.InputStream;
+import java.io.*;
 import java.util.Scanner;
 
-public class BaseballViewImpl implements BaseballView {
+public class BaseballViewImpl extends BaseballView {
     private Scanner scanner;
 
     public BaseballViewImpl() {
-        this(System.in);
+        this(System.in, System.out);
     }
 
-    public BaseballViewImpl(InputStream inputStream) {
+    public BaseballViewImpl(InputStream inputStream, OutputStream outputStream) {
+        super(inputStream, outputStream);
+
+        System.setIn(inputStream);
+        System.setOut(new PrintStream(outputStream));
         this.scanner = new Scanner(inputStream);
     }
 

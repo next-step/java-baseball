@@ -20,6 +20,7 @@
     }
   }
   ```
+- [ ] Handling Exception BaseballNumberFormatException  
 - [ ] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
 
 - [X] Tell the baseBallResult of trial
@@ -55,7 +56,8 @@
     > View & I/O Component (Interface)
   - [BaseballConfig](./src/main/java/baseball/config/BaseballConfig.java)
     > Config Bean
-- [ ] Decorator Pattern or Bridge Pattern in View (InputStream, OutputStream)    
+- [X] Bridge Pattern in View (InputStream, OutputStream)
+- [ ] Message Properties (View)  
 - [ ] JUnit5, AssertJ Unit Test
 
 

@@ -2,15 +2,26 @@ package baseball.view;
 
 import baseball.model.BaseballResult;
 
-public interface BaseballView {
-    void printInputPrompt();
+import java.io.InputStream;
+import java.io.OutputStream;
 
-    String readInputPrompt();
+public abstract class BaseballView {
+    protected InputStream inputStream;
+    protected OutputStream outputStream;
 
-    void printBaseballResult(BaseballResult baseballResult);
+    public BaseballView(InputStream inputStream, OutputStream outputStream) {
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
+    }
 
-    void printGameResult(BaseballResult baseballResult);
+    abstract public void printInputPrompt();
 
-    void printAskingReGame();
+    abstract public void printBaseballResult(BaseballResult baseballResult);
+
+    abstract public void printGameResult(BaseballResult baseballResult);
+
+    abstract public void printAskingReGame();
+
+    abstract public String readInputPrompt();
 
 }
