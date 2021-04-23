@@ -23,7 +23,7 @@ public class BaseBall {
     public BaseBallDto.Result getUserResult(List<Integer> userAnswer) {
         int strike = getStrike(userAnswer);
         int ball = getBall(userAnswer) - strike;
-        boolean isAnswer = strike == DEFAULT_LENGTH;
+        boolean isAnswer = strike == this.answer.size();
 
         return new BaseBallDto.Result(isAnswer, strike, ball);
     }
