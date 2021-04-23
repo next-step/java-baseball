@@ -6,4 +6,8 @@ public class RandomNumGenerator {
     public RandomNumGenerator(int maxLen){
         this.maxLen = maxLen;
     }
+
+    public String generateRandomNum(){
+        return "";
+    }
 }
