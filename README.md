@@ -36,18 +36,18 @@
 
 ## 사전 작업
 * [x] IntelliJ에서 Junit test case 생성 
-* [ ] String 클래스 연습
+* [x] String 클래스 연습
     * [x] split() 테스트
         * [x] assertj > contains()
         * [x] assertj > containsExactly()
-    * [ ] substring() 테스트
-    * [ ] charAt() 테스트
-    * [ ] charAt() - OBE 테스트
-    * [ ] @DisplayName 활용 - 메소드 의도
-* [ ] SetCollection 테스트
-    * [ ] size() 테스트
-    * [ ] Junit ParameterizedTest 활용
-    * [ ] 입력 값이 다른 경우의 테스트
+    * [x] substring() 테스트
+    * [x] charAt() 테스트
+    * [x] charAt() - OBE 테스트
+    * [x] @DisplayName 활용 - 메소드 의도
+* [x] SetCollection 테스트
+    * [x] size() 테스트
+    * [x] Junit ParameterizedTest 활용
+    * [x] 입력 값이 다른 경우의 테스트
     
 ## 구현 기능 목록   
 * [ ] UI 시작
