@@ -19,10 +19,9 @@ public class BaseballGame {
                 System.out.println("3개의숫자를모두맞히셨습니다! 게임종료");
                 System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
 
-                if (input().equals("1")) {
-                    game();
+                if (input().equals("2")) {
+                    return;
                 }
-                return;
             }
         }
     }
