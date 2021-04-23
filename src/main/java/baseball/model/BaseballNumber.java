@@ -49,13 +49,16 @@ public class BaseballNumber {
     public BaseballNumber(int number, int size, int radix) {
         this(size, radix);
 
+        int numberTemp = number;
+
+        boolean[] isChecked = new boolean[this.radix];
         for (int i = this.size - 1; i > -1; i--) {
-            numbers[i] = number % this.radix;
-            number /= this.radix;
+            numbers[i] = numberTemp % this.radix;
+            numberTemp /= this.radix;
         }
 
         if (!checkValid()) {
-            throw new BaseballNumberFormatException(this);
+            throw new BaseballNumberFormatException(number);
         }
     }
 
@@ -66,7 +69,7 @@ public class BaseballNumber {
     private boolean checkValid(int startIndex, int endIndex) {
         boolean[] isChecked = new boolean[this.radix];
         for (int i = startIndex; i < endIndex; i++) {
-            if (isChecked[numbers[i]]) {
+            if (isChecked[numbers[i]] || numbers[i] == 0) {
                 return false;
             }
 

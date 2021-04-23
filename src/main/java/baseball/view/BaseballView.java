@@ -51,5 +51,8 @@ public abstract class BaseballView {
 
     abstract public void printAskingReGame();
 
+    abstract public void printException(Exception e);
+
     abstract public String readInputPrompt();
+
 }

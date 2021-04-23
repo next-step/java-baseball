@@ -14,7 +14,7 @@ public class BaseballApplication {
                                 .size(3)
                                 .radix(10)
                                 .tryCount(0)
-                                .locale(Locale.KOREAN)
+                                .locale(Locale.ENGLISH)
                                 .build();
     private static BaseballView baseballView = new BaseballViewImpl(config);
     private static BaseballControllerTemplate baseballControllerTemplate = new BaseballController(baseballView);

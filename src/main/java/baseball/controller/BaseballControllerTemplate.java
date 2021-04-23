@@ -61,17 +61,25 @@ public abstract class BaseballControllerTemplate {
     }
 
     public BaseballResult processGame() {
-        // 1. User Input Read
-        BaseballNumber baseballNumber = this.readInputBaseballNumber();
+        try {
+            // 1. User Input Read
+            BaseballNumber baseballNumber = this.readInputBaseballNumber();
 
-        // 2. Input, Answer Compare & Check
-        BaseballResult baseballResult = this.checkTrial(baseballNumber);
+            // 2. Input, Answer Compare & Check
+            BaseballResult baseballResult = this.checkTrial(baseballNumber);
 
-        // 3. Print Check Result
-        this.printBaseballResult(baseballResult);
+            // 3. Print Check Result
+            this.printBaseballResult(baseballResult);
 
-        // 4. Return Check Result
-        return baseballResult;
+            // 4. Return Check Result
+            return baseballResult;
+        } catch (RuntimeException e) {
+            // Print Exception
+            this.printExceptionInProcess(e);
+
+            // Return Failed Result
+            return BaseballResult.createFailedResult();
+        }
     }
 
     abstract public void initGame(int size, int radix);
@@ -83,6 +91,8 @@ public abstract class BaseballControllerTemplate {
     abstract public void printBaseballResult(BaseballResult baseballResult);
 
     abstract public void printGameResult(BaseballResult baseballResult);
+
+    abstract public void printExceptionInProcess(Exception e);
 
     abstract public boolean askReGame();
 

@@ -4,6 +4,7 @@ import lombok.Getter;
 
 public enum MessageKey {
     inputPrompt("inputPrompt"),
+    exceptionMessageFormat("exceptionMessageFormat"),
     successGameResultFormat("successGameResultFormat"),
     failedGameResultFormat("failedGameResultFormat"),
     askingReGamePrompt("askingReGamePrompt"),

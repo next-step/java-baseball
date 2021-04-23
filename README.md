@@ -40,7 +40,7 @@
     }
   }
   ```
-- [ ] Handling Exception BaseballNumberFormatException  
+- [X] Handling Exception BaseballNumberFormatException  
 - [ ] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
 
 - [X] Tell the baseBallResult of trial

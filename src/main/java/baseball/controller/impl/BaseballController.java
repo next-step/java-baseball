@@ -15,18 +15,18 @@ public class BaseballController extends BaseballControllerTemplate {
 
     @Override
     public void initGame(int size, int radix) {
-        answer = BaseballNumber.builder()
+        this.answer = BaseballNumber.builder()
                 .size(size)
                 .radix(radix)
                 .build();
-        System.out.println(answer);
+        System.out.println(this.answer);
     }
 
     @Override
     public BaseballNumber readInputBaseballNumber() {
-        baseballView.printInputPrompt();
+        this.baseballView.printInputPrompt();
 
-        String input = baseballView.readInputPrompt();
+        String input = this.baseballView.readInputPrompt();
 
         return new BaseballNumber(input, this.answer.getSize(), this.answer.getRadix());
     }
@@ -43,14 +43,19 @@ public class BaseballController extends BaseballControllerTemplate {
 
     @Override
     public void printGameResult(BaseballResult baseballResult) {
-        baseballView.printGameResult(baseballResult);
+        this.baseballView.printGameResult(baseballResult);
+    }
+
+    @Override
+    public void printExceptionInProcess(Exception e) {
+        this.baseballView.printException(e);
     }
 
     @Override
     public boolean askReGame() {
-        baseballView.printAskingReGame();
+        this.baseballView.printAskingReGame();
 
-        String input = baseballView.readInputPrompt().trim();
+        String input = this.baseballView.readInputPrompt().trim();
 
         return "1".equals(input);
     }

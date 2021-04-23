@@ -17,6 +17,7 @@ public class BaseballResult {
     private boolean isComplete;
     private int size;
     private int radix;
+    private Exception exception;
 
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
@@ -24,6 +25,14 @@ public class BaseballResult {
 
     public static BaseballResult calcResult(BaseballNumber left, BaseballNumber right) {
         return new BaseballResult(left, right);
+    }
+
+    public static BaseballResult createFailedResult() {
+        return new BaseballResult(false);
+    }
+
+    private BaseballResult(boolean isComplete) {
+        this.isComplete = false;
     }
 
     private BaseballResult(BaseballNumber left, BaseballNumber right) {

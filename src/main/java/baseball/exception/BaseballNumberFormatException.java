@@ -7,4 +7,11 @@ public class BaseballNumberFormatException extends RuntimeException {
         super("Invalid Baseball Number " + baseballNumber);
     }
 
+    public BaseballNumberFormatException(String input) {
+        super("Invalid Input Number " + input);
+    }
+
+    public BaseballNumberFormatException(int input) {
+        super("Invalid Input Number " + input);
+    }
 }

@@ -21,17 +21,20 @@ public class BaseballViewImpl extends BaseballView {
 
     public void printGameResult(BaseballResult baseballResult) {
         if (baseballResult.isComplete()) {
-//            this.printFormatMessage("successGameResultFormat", baseballResult.getStrike());
             this.printFormatMessage(MessageKey.successGameResultFormat.getKey(), baseballResult.getStrike());
             return;
         }
 
-//        this.printFormatMessage("failedGameResultFormat", baseballResult.getStrike());
           this.printFormatMessage(MessageKey.failedGameResultFormat.getKey(), baseballResult.getStrike());
     }
 
     public void printAskingReGame() {
         this.printMessage(MessageKey.askingReGamePrompt.getKey());
+    }
+
+    @Override
+    public void printException(Exception e) {
+        this.printFormatMessage(MessageKey.exceptionMessageFormat.getKey(), e);
     }
 
     public String readInputPrompt() {
