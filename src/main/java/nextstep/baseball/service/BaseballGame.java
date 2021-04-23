@@ -14,21 +14,20 @@ public class BaseballGame {
     }
 
     public void start(){
-        final String gameResult = game(baseballGameNumberService.generateComputerNumber());
         while(true) {
-            if (gameResult.equals("END")) {
+            if (game().equals("END")) {
                 System.out.println("더할래?");
                 if (input().equals("y")) {
-                    game(baseballGameNumberService.generateComputerNumber());
+                    game();
                 }
                 return;
             }
         }
     }
 
-    public String game(List<Integer> player2){
-        boolean status = true;
-        while(status) {
+    public String game(){
+        final List<Integer> player2 = baseballGameNumberService.generateComputerNumber();
+        while(true) {
             System.out.println("세자리 숫자를 입력해주세요");
             final List<Integer> player1 = baseballGameNumberService.inputUserNumber(input());
             final Map<String, Integer> gameResult = baseballGameCheckService.getGameResult(player1, player2);
@@ -36,7 +35,6 @@ public class BaseballGame {
             if(gameResult.get("strike") != null && gameResult.get("strike") == 3){
                 break;
             }
-
             System.out.println(player2);
             System.out.println(gameResult);
         }
