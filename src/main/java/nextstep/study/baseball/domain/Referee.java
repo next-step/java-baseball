@@ -47,5 +47,4 @@ public class Referee {
 		return DecisionType.BALL;
 	}
 
-
 }
