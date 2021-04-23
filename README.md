@@ -37,9 +37,9 @@
 ## 사전 작업
 * [x] IntelliJ에서 Junit test case 생성 
 * [ ] String 클래스 연습
-    * [ ] split() 테스트
-        * [ ] assertj > contains()
-        * [ ] assertj > containsExactly()
+    * [x] split() 테스트
+        * [x] assertj > contains()
+        * [x] assertj > containsExactly()
     * [ ] substring() 테스트
     * [ ] charAt() 테스트
     * [ ] charAt() - OBE 테스트
