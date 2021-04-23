@@ -1,6 +1,4 @@
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class GameMachine {
 
@@ -38,8 +36,9 @@ public class GameMachine {
         if (value < 1 || value > 9)
             throw new IllegalArgumentException("랜덤 값은 1 ~ 9까지 수여야 합니다");
     }
+
     private void isRandomValue(String value) {
-        String regExp="^[0-9]";
+        String regExp = "^[0-9]";
         if (!value.matches(regExp))
             throw new IllegalArgumentException("랜덤 값은 1 ~ 9까지 수여야 합니다");
     }
@@ -59,5 +58,22 @@ public class GameMachine {
             throw new IllegalStateException("중복된 값이 존재합니다");
 
         return true;
+    }
+
+    public int[] check(String[] inputs) {
+        int[] result = new int[RANDOM_VALUE_MAX_LENGTH];
+        List<Integer> randomList = new ArrayList<>(randomSet);
+
+        for (int i = 0; i < inputs.length; i++) {
+            int num = Integer.parseInt(inputs[i]);
+            int index = randomSet.contains(num) ? getIndexResult(randomList.get(i), num) : ResultStatus.NOTING.getIndex();
+            result[index]++;
+        }
+
+        return result;
+    }
+
+    private int getIndexResult(int random, int target) {
+        return (random == target) ? ResultStatus.STRIKE.getIndex() : ResultStatus.BALL.getIndex();
     }
 }
