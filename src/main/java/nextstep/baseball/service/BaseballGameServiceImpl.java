@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballGameServiceImpl implements BaseballGameService {
+    List<Integer> randomBox;
+
     @Override
     public List<Integer> inputUserNumber(String str) {
         List<Integer> result = new ArrayList<>();
@@ -11,6 +13,27 @@ public class BaseballGameServiceImpl implements BaseballGameService {
 
         for(String i : split){
             result.add(Integer.parseInt(i));
+        }
+        return result;
+    }
+
+    @Override
+    public void setRandomBox(){
+        randomBox = new ArrayList<>();
+        for(int i=1;i<10;i++){
+            randomBox.add(i);
+        }
+    }
+
+    @Override
+    public List<Integer> generateComputerNumber() {
+        setRandomBox();
+
+        List<Integer> result = new ArrayList<>();
+        for(int i=0;i<3;i++){
+            double randomValue = Math.random();
+            int e = (int)(randomValue * randomBox.size()-1);
+            result.add(randomBox.remove(e));
         }
         return result;
     }
