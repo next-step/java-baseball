@@ -1,5 +1,7 @@
 package nextstep.baseball.service;
 
+import nextstep.baseball.domain.BaseballEnum;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,7 +35,8 @@ public class BaseballGame {
             final List<Integer> player1 = baseballGameNumberService.inputUserNumber(input());
             final Map<String, Integer> gameResult = baseballGameCheckService.getGameResult(player1, player2);
 
-            if(gameResult.get("strike") != null && gameResult.get("strike") == 3){
+            Integer strike = gameResult.get(BaseballEnum.STRIKE.getCode());
+            if(strike != null && strike == 3){
                 break;
             }
             System.out.println(resultPrint(gameResult));
@@ -47,8 +50,11 @@ public class BaseballGame {
     }
 
     private String resultPrint(Map<String, Integer> gameResult){
-        String strike = gameResult.get("strike") != null ? gameResult.get("strike") + " 스트라이크" : "";
-        String ball = gameResult.get("ball") != null ? gameResult.get("ball") + " 볼" : "";
-        return (strike + " " + ball).equals(" ") ? "낫싱" : (strike + " " + ball);
+        Integer strike = gameResult.get(BaseballEnum.STRIKE.getCode());
+        Integer ball = gameResult.get(BaseballEnum.BALL.getCode());
+        String strikeText = strike != null ? strike + " " + BaseballEnum.STRIKE.getName() : "";
+        String ballText = ball != null ? ball + " " + BaseballEnum.BALL.getName(): "";
+
+        return (strikeText + " " + ballText).equals(" ") ? BaseballEnum.NOTHING.getName() : (strikeText + " " + ballText);
     }
 }

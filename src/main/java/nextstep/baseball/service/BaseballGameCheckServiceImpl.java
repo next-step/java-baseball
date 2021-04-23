@@ -1,5 +1,7 @@
 package nextstep.baseball.service;
 
+import nextstep.baseball.domain.BaseballEnum;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +12,7 @@ public class BaseballGameCheckServiceImpl implements BaseballGameCheckService {
     public Map<String, Integer> getGameResult(List<Integer> player1Number, List<Integer> player2Number) {
         Map<String, Integer> result = new HashMap<>();
         if(Arrays.equals(player1Number.toArray(), player2Number.toArray())){
-            result.put("strike",3);
+            result.put(BaseballEnum.STRIKE.getCode(),3);
             return result;
         }
 
@@ -26,13 +28,13 @@ public class BaseballGameCheckServiceImpl implements BaseballGameCheckService {
 
     private String checkStrikeBall(int idx, int num, List<Integer> computer){
         if(computer.get(idx) == num){
-            return "strike";
+            return BaseballEnum.STRIKE.getCode();
         }
 
         if(computer.contains(num)){
-            return "ball";
+            return BaseballEnum.BALL.getCode();
         }
 
-        return "nothing";
+        return BaseballEnum.NOTHING.getCode();
     }
 }

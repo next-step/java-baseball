@@ -1,3 +1,4 @@
+import nextstep.baseball.domain.BaseballEnum;
 import nextstep.baseball.service.BaseballGameNumberService;
 import nextstep.baseball.service.BaseballGameNumberServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,8 +74,8 @@ public class BaseballGameTest {
 
         Map<String, Integer> result = getGameResult(player1Number, player2Number);
 
-        String strike = result.get("strike") != null ? result.get("strike") + " 스트라이크" : "";
-        String ball = result.get("ball") != null ? result.get("ball") + " 볼" : "";
+        String strike = result.get(BaseballEnum.STRIKE.getCode()) != null ? result.get(BaseballEnum.STRIKE.getCode()) + " " + BaseballEnum.STRIKE.getName() : "";
+        String ball = result.get(BaseballEnum.BALL.getCode()) != null ? result.get(BaseballEnum.BALL.getCode()) + " " + BaseballEnum.BALL.getName(): "";
 
         System.out.println(strike + " " + ball);
         assertThat(result.size()).isGreaterThan(0);
@@ -94,13 +95,13 @@ public class BaseballGameTest {
 
     private String checkStrikeBall(int idx, int num, List<Integer> computer){
         if(computer.get(idx) == num){
-            return "strike";
+            return BaseballEnum.STRIKE.getCode();
         }
 
         if(computer.contains(num)){
-            return "ball";
+            return BaseballEnum.BALL.getCode();
         }
 
-        return "nothing";
+        return BaseballEnum.NOTHING.getCode();
     }
 }

@@ -15,7 +15,7 @@ public class BaseballGameNumberServiceImpl implements BaseballGameNumberService 
             try {
                 result.add(Integer.parseInt(i));
             }catch (java.lang.NumberFormatException e){
-                System.out.println("세자리 숫자를 입력하지 않으셨습니다~");
+                System.out.println("세자리 숫자를 초과했습니다. 뒷자리는 무효처리됩니다.");
                 break;
             }
         }
