@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * User
  * <p>
@@ -10,13 +8,11 @@ public class BaseBallBatter {
         boolean pass;
         String input;
         do {
-            System.out.println("숫자를 입력해주세요 : ");
+            System.out.print("숫자를 입력해주세요 : ");
             input = PlayGame.scanner.nextLine();
             pass = ValidationInputUtils.validInputNumber(input);
         } while (!pass);
 
         return input;
     }
-
-
 }
