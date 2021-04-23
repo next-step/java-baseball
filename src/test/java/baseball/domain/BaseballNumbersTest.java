@@ -20,11 +20,42 @@ class BaseballNumbersTest {
     }
 
     @Test
-    @DisplayName("빈 사이즈 리스트")
+    @DisplayName("빈 사이즈 리스트 입력")
     void create_inputEmpty() {
         // given when then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new BaseballNumbers(new ArrayList<>()))
+                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BaseballNumbers(ArrayList::new))
+                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
+    }
+
+    @Test
+    @DisplayName("숫자 사이즈 초과")
+    void create_greaterThanMaxSize() {
+        // given
+        List<BaseballNumber> baseballNumbers = new ArrayList<>();
+        baseballNumbers.add(new BaseballNumber(1));
+        baseballNumbers.add(new BaseballNumber(2));
+        baseballNumbers.add(new BaseballNumber(3));
+        baseballNumbers.add(new BaseballNumber(4));
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BaseballNumbers(baseballNumbers))
+                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BaseballNumbers(() -> {
+                    List<Integer> strategyResult = new ArrayList<>();
+                    strategyResult.add(1);
+                    strategyResult.add(2);
+                    strategyResult.add(3);
+                    strategyResult.add(4);
+                    return strategyResult;
+                }))
                 .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
     }
 
@@ -40,6 +71,16 @@ class BaseballNumbersTest {
         // when then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new BaseballNumbers(baseballNumbers))
+                .withMessageMatching("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BaseballNumbers(() -> {
+                    List<Integer> strategyResult = new ArrayList<>();
+                    strategyResult.add(1);
+                    strategyResult.add(1);
+                    strategyResult.add(2);
+                    return strategyResult;
+                }))
                 .withMessageMatching("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
     }
 
