@@ -12,6 +12,6 @@ public class ShuffleNumberGenerateStrategy implements NumberGenerateStrategy {
             baseballNumbers.add(i);
         }
         Collections.shuffle(baseballNumbers);
-        return baseballNumbers.subList(BaseballNumbers.MIN_INDEX, BaseballNumbers.MAX_INDEX);
+        return baseballNumbers.subList(BaseballNumbers.MIN_INDEX, BaseballNumbers.SIZE);
     }
 }

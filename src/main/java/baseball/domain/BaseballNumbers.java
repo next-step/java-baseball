@@ -6,9 +6,8 @@ import java.util.List;
 
 public class BaseballNumbers {
 
-    private static final int SIZE = 3;
+    public static final int SIZE = 3;
     public static final int MIN_INDEX = 0;
-    public static final int MAX_INDEX = SIZE - 1;
 
     private final List<BaseballNumber> baseballNumbers;
 
