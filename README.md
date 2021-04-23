@@ -77,9 +77,9 @@
   - [BaseballConfig](./src/main/java/baseball/config/BaseballConfig.java)
     > Config Bean
 - [X] Bridge Pattern in View (InputStream, OutputStream)
-- [ ] Message Properties (View)  
+- [X] Message Properties  
 - [ ] JUnit5, AssertJ Unit Test
-
+- [ ] Class Diagram, Activity Diagram
 
 ---
 ## Functionality Requirements

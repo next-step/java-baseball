@@ -1,6 +1,7 @@
 package baseball.view.impl;
 
 import baseball.config.BaseballConfig;
+import baseball.constants.MessageKey;
 import baseball.model.BaseballResult;
 import baseball.view.BaseballView;
 
@@ -10,7 +11,7 @@ public class BaseballViewImpl extends BaseballView {
     }
 
     public void printInputPrompt() {
-        this.printMessage("inputPrompt");
+        this.printMessage(MessageKey.inputPrompt.getKey());
     }
 
     public void printBaseballResult(BaseballResult baseballResult) {
@@ -20,15 +21,17 @@ public class BaseballViewImpl extends BaseballView {
 
     public void printGameResult(BaseballResult baseballResult) {
         if (baseballResult.isComplete()) {
-            this.printFormatMessage("successGameResultFormat", baseballResult.getStrike());
+//            this.printFormatMessage("successGameResultFormat", baseballResult.getStrike());
+            this.printFormatMessage(MessageKey.successGameResultFormat.getKey(), baseballResult.getStrike());
             return;
         }
 
-        this.printFormatMessage("failedGameResultFormat", baseballResult.getStrike());
+//        this.printFormatMessage("failedGameResultFormat", baseballResult.getStrike());
+          this.printFormatMessage(MessageKey.failedGameResultFormat.getKey(), baseballResult.getStrike());
     }
 
     public void printAskingReGame() {
-        this.printMessage("askingReGamePrompt");
+        this.printMessage(MessageKey.askingReGamePrompt.getKey());
     }
 
     public String readInputPrompt() {
