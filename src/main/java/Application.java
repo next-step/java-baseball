@@ -1,5 +1,5 @@
 public class Application {
     public static void main(String[] args) {
-        BaseBall.play();
+        BaseBallPlayer.play();
     }
 }

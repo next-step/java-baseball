@@ -26,7 +26,8 @@ public class BaseBallTest {
         BaseBall game = new BaseBall(answer);
 
         //then
-        assertThat(game.isAnswer(answer)).isEqualTo(true);
+        assertThat(game.getUserResult(answer).getIsAnswer()).isEqualTo(true);
+        assertThat(game.getUserResult(answer).getStrike()).isEqualTo(3);
     }
 
     @DisplayName("야구게임 정답 불일치")
@@ -41,11 +42,19 @@ public class BaseBallTest {
         List<Integer> ball2strike1 = Arrays.asList(1, 3, 2);
 
         BaseBall game = new BaseBall(answer);
-        
+
         //then
-        assertThat(game.isAnswer(notMatch)).isEqualTo(false);
-        assertThat(game.isAnswer(ball3)).isEqualTo(false);
-        assertThat(game.isAnswer(ball2strike1)).isEqualTo(false);
+        assertThat(game.getUserResult(notMatch).getIsAnswer()).isEqualTo(false);
+        assertThat(game.getUserResult(notMatch).getStrike()).isEqualTo(0);
+        assertThat(game.getUserResult(notMatch).getBall()).isEqualTo(0);
+
+        assertThat(game.getUserResult(ball3).getIsAnswer()).isEqualTo(false);
+        assertThat(game.getUserResult(ball3).getStrike()).isEqualTo(0);
+        assertThat(game.getUserResult(ball3).getBall()).isEqualTo(3);
+
+        assertThat(game.getUserResult(ball2strike1).getIsAnswer()).isEqualTo(false);
+        assertThat(game.getUserResult(ball2strike1).getStrike()).isEqualTo(1);
+        assertThat(game.getUserResult(ball2strike1).getBall()).isEqualTo(2);
     }
 
     @DisplayName("야구게임 재시작 시 새로운 정답 생성")
@@ -59,6 +68,6 @@ public class BaseBallTest {
 
         //then
         game.finish(false);
-        assertThat(game.isAnswer(firstAnswer)).isEqualTo(false);
+        assertThat(game.getUserResult(firstAnswer).getIsAnswer()).isEqualTo(false);
     }
 }
