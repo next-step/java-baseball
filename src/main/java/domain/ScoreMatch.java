@@ -11,15 +11,17 @@ public class ScoreMatch {
         this.strikeCount = 0;
     }
 
+    public int getStrikeCount() {
+        return strikeCount;
+    }
+
     public void clear() {
         strikeCount = 0;
     }
 
     public boolean compare(Number inputNumber) {
-        String inputNum = inputNumber.getNumber();
-
         clear();
-        countStrike(inputNum);
+        countStrike(inputNumber.getNumber());
 
         return strikeCount == 3;
     }
