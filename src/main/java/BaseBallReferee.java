@@ -29,17 +29,23 @@ public class BaseBallReferee {
             System.out.println("낫싱");
             return;
         }
-        if (this.strike == PlayGame.RANDOM_NUMBER_LENGTH) {
+
+        if (this.ball > 0 && this.strike > 0){
+            System.out.println(String.format("%d 스트라이크 %d 볼", this.strike, this.ball));
+            return;
+        }
+
+        if (this.ball == 0 || this.strike == PlayGame.RANDOM_NUMBER_LENGTH) {
             System.out.println(String.format("%d 스트라이크", this.strike));
             return;
         }
 
-        if (this.ball == PlayGame.RANDOM_NUMBER_LENGTH) {
+        if (this.strike == 0 || this.ball == PlayGame.RANDOM_NUMBER_LENGTH) {
             System.out.println(String.format("%d 볼", this.ball));
             return;
         }
 
-        System.out.println(String.format("%d 스트라이크 %d 볼", this.strike, this.ball));
+        System.out.println(String.format("%d 스트라이크 %d 볼 %d 낫싱", this.strike, this.ball, this.nothing));
     }
 
     private int countStrike(String pitcherNumber, String batterNumber) {
