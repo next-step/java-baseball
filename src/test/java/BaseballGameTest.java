@@ -69,6 +69,8 @@ public class BaseballGameTest {
     public void gameResult(){
         List<Integer> player1Number = randomBoxService.generateComputerNumber();
         List<Integer> player2Number = randomBoxService.generateComputerNumber();
+        player1Number.add(4);
+
         Map<String, Integer> result = getGameResult(player1Number, player2Number);
 
         String strike = result.get("strike") != null ? result.get("strike") + " 스트라이크" : "";
@@ -81,6 +83,9 @@ public class BaseballGameTest {
     private Map<String, Integer> getGameResult(List<Integer> player1Number, List<Integer> player2Number) {
         Map<String, Integer> result = new HashMap<>();
         for (int i = 0; i < player1Number.size(); i++) {
+            if(i>2){
+                continue;
+            }
             result.computeIfPresent(checkStrikeBall(i, player1Number.get(i), player2Number), (String key, Integer value) -> ++value);
             result.putIfAbsent(checkStrikeBall(i, player1Number.get(i), player2Number), 1);
         }
