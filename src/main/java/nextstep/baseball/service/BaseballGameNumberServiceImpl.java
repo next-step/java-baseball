@@ -3,7 +3,7 @@ package nextstep.baseball.service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseballGameServiceImpl implements BaseballGameService {
+public class BaseballGameNumberServiceImpl implements BaseballGameNumberService {
     List<Integer> randomBox;
 
     @Override
