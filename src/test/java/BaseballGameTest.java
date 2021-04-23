@@ -1,6 +1,5 @@
 import nextstep.baseball.service.RandomBoxService;
 import nextstep.baseball.service.RandomBoxServiceImpl;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,6 +21,22 @@ public class BaseballGameTest {
     @BeforeEach
     public void setRandomBoxService(){
         randomBoxService = new RandomBoxServiceImpl();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123"})
+    @DisplayName("숫자 입력이 제대로 들어왔는가")
+    public void inputUserNumber(String str){
+        List<Integer> result = new ArrayList<>();
+        final String[] split = str.split("");
+
+        for(String i : split){
+            result.add(Integer.parseInt(i));
+        }
+
+        assertThat(result.get(0)).isEqualTo(1);
+        assertThat(result.get(1)).isEqualTo(2);
+        assertThat(result.get(2)).isEqualTo(3);
     }
 
     @Test
@@ -51,7 +66,7 @@ public class BaseballGameTest {
 
     @Test
     @DisplayName("게임 결과 표시")
-    public void gameResult(String str){
+    public void gameResult(){
         List<Integer> player1Number = randomBoxService.createRandomNumber();
         List<Integer> player2Number = randomBoxService.createRandomNumber();
         Map<String, Integer> result = getGameResult(player1Number, player2Number);
@@ -60,8 +75,7 @@ public class BaseballGameTest {
         String ball = result.get("ball") != null ? result.get("ball") + " 볼" : "";
 
         System.out.println(strike + " " + ball);
-
-        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.size()).isGreaterThan(0);
     }
 
     private Map<String, Integer> getGameResult(List<Integer> player1Number, List<Integer> player2Number) {
