@@ -5,8 +5,6 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'checkstyle'
 
-
-
 version = '1.0.0'
 sourceCompatibility = 1.8
 
