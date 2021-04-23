@@ -1,8 +1,8 @@
 package baseball.domain;
+
 import baseball.exception.InvalidateBallNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -75,7 +75,7 @@ public class BallNumberTest {
 
     }
 
-    @DisplayName("BallNumber Constuctor(int arg) Invalidate BallNumber SizeError Test")
+    @DisplayName("BallNumber Constructor(int arg) Invalidate BallNumber SizeError Test")
     @ParameterizedTest
     @ValueSource(ints = {12, 1245, 12587, 5423, 92, 5716, 19245, 9157385})
     public void ballNumberInvalidateSizeErrorTest(int ballNumbers) {
@@ -84,7 +84,7 @@ public class BallNumberTest {
         });
     }
 
-    @DisplayName("BallNumber Constuctor(int arg) Invalidate BallNumber Value Test")
+    @DisplayName("BallNumber Constructor(int arg) Invalidate BallNumber Value Test")
     @ParameterizedTest
     @ValueSource(ints = {102, 130, 901, 930})
     public void ballNumberInvalidateValueTest(int ballNumbers) {
