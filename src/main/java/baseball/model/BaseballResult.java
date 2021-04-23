@@ -2,22 +2,17 @@ package baseball.model;
 
 import baseball.config.BaseballConfig;
 import baseball.constants.MessageKey;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 import java.util.ResourceBundle;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 public class BaseballResult {
     private int strike;
     private int ball;
     private boolean isComplete;
     private int size;
     private int radix;
-    private Exception exception;
 
     private ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 

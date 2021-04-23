@@ -9,6 +9,7 @@ public class BaseballNumber {
     public static final int DEFAULT_NUMBERS_SIZE = 3;
     public static final int DEFAULT_NUMBER_RADIX = 10;
     public static final int MAX_RADIX = 'z' - 'a' + 10;
+    public static final int MIN_RADIX = 2;
 
     private final int[] numbers;
     private final int size;
@@ -23,7 +24,7 @@ public class BaseballNumber {
             size = DEFAULT_NUMBERS_SIZE;
         }
 
-        if (radix <= 0 || radix > MAX_RADIX) {
+        if (radix < MIN_RADIX || radix > MAX_RADIX) {
             radix = DEFAULT_NUMBER_RADIX;
         }
 
