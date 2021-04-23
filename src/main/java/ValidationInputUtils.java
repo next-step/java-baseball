@@ -1,11 +1,19 @@
 public class ValidationInputUtils {
+    /**
+     * 입력 값이 숫자인 지 확인
+     * @param input 입력 값
+     * @return boolean 숫자 값 확인
+     */
     public static boolean validInputNumber(String input) {
-        boolean isNumeric = input.matches("[+-]?\\d*(\\.\\d+)?");
-        if (!isNumeric || input.length() != PlayGame.RANDOM_NUMBER_LENGTH) {
-            System.out.println(String.format("%d 자리의 숫자를 입력하세요.", PlayGame.RANDOM_NUMBER_LENGTH));
-            return false;
-        }
+        return input.matches("[+-]?\\d*(\\.\\d+)?");
+    }
 
-        return true;
+    /**
+     * 중복 입력 값이 있는 지 확인
+     * @param input 입력 값
+     * @return boolean 중복 입력 확인
+     */
+    public static boolean validInputDuplication(String input) {
+        return input.replaceAll("(.)(?=.*\\1)", "").length() >= input.length();
     }
 }
