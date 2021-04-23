@@ -1,5 +1,5 @@
-import nextstep.baseball.service.RandomBoxService;
-import nextstep.baseball.service.RandomBoxServiceImpl;
+import nextstep.baseball.service.BaseballGameNumberService;
+import nextstep.baseball.service.BaseballGameNumberServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class BaseballGameTest {
-    private RandomBoxService randomBoxService;
+    private BaseballGameNumberService randomBoxService;
 
     @Test
     public void nothing(){
@@ -20,7 +20,7 @@ public class BaseballGameTest {
 
     @BeforeEach
     public void setRandomBoxService(){
-        randomBoxService = new RandomBoxServiceImpl();
+        randomBoxService = new BaseballGameNumberServiceImpl();
     }
 
     @ParameterizedTest
@@ -43,7 +43,7 @@ public class BaseballGameTest {
     @DisplayName("player1와 상대방(com) 값이 같을경우")
     public void samePlayersNumber(){
         List<Integer> player1Number = new ArrayList<>();
-        List<Integer> player2Number = randomBoxService.createRandomNumber();
+        List<Integer> player2Number = randomBoxService.generateComputerNumber();
         player1Number.addAll(player2Number);
 
         assertThat(Arrays.equals(player1Number.toArray(), player2Number.toArray())).isTrue();
@@ -53,8 +53,8 @@ public class BaseballGameTest {
     @ValueSource(strings = {"strike","ball","nothing"})
     @DisplayName("player1과 상대방(com) 값이 다를경우")
     public void differentPlayersNumber(String str){
-        List<Integer> player1Number = randomBoxService.createRandomNumber();
-        List<Integer> player2Number = randomBoxService.createRandomNumber();
+        List<Integer> player1Number = randomBoxService.generateComputerNumber();
+        List<Integer> player2Number = randomBoxService.generateComputerNumber();
         List<String> result = new ArrayList<>();
 
         for(int i=0;i<player1Number.size();i++){
@@ -67,8 +67,8 @@ public class BaseballGameTest {
     @Test
     @DisplayName("게임 결과 표시")
     public void gameResult(){
-        List<Integer> player1Number = randomBoxService.createRandomNumber();
-        List<Integer> player2Number = randomBoxService.createRandomNumber();
+        List<Integer> player1Number = randomBoxService.generateComputerNumber();
+        List<Integer> player2Number = randomBoxService.generateComputerNumber();
         Map<String, Integer> result = getGameResult(player1Number, player2Number);
 
         String strike = result.get("strike") != null ? result.get("strike") + " 스트라이크" : "";
