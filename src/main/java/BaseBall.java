@@ -32,7 +32,10 @@ public class BaseBall {
     }
 
     public boolean finish(boolean isFinish) {
-        if (!isFinish) refresh();
+        if (!isFinish) {
+            refresh();
+        }
+
         return isFinish;
     }
 
@@ -44,7 +47,9 @@ public class BaseBall {
         int ball = 0;
 
         for (int i = 0; i < answer.size(); ++i) {
-            if (answer.contains(userAnswer.get(i))) ++ball;
+            if (answer.contains(userAnswer.get(i))) {
+                ++ball;
+            }
         }
 
         return ball;
@@ -54,7 +59,9 @@ public class BaseBall {
         int strike = 0;
 
         for (int i = 0; i < answer.size(); ++i) {
-            if (answer.get(i).equals(userAnswer.get(i))) ++strike;
+            if (answer.get(i).equals(userAnswer.get(i))) {
+                ++strike;
+            }
         }
 
         return strike;

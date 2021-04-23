@@ -12,7 +12,9 @@ public class BaseBallPlayer {
             List<Integer> userAnswer = askAnswer(scan);
             BaseBallDto.Result result = game.getUserResult(userAnswer);
             printResultMessage(result);
-            if (result.getIsAnswer()) isFinish = game.finish(askFinish(scan));
+            if (result.getIsAnswer()) {
+                isFinish = game.finish(askFinish(scan));
+            }
         }
         scan.close();
     }
@@ -40,11 +42,15 @@ public class BaseBallPlayer {
 
     private static void printResultMessage(BaseBallDto.Result result) {
         StringBuilder message = new StringBuilder();
-
-        if (result.getStrike() + result.getBall() < 1) message.append("낫싱");
-        if (result.getStrike() > 0) message.append(result.getStrike() + " 스트라이크 ");
-        if (result.getBall() > 0) message.append(result.getBall() + " 볼");
-
+        if (result.getStrike() + result.getBall() < 1) {
+            message.append("낫싱");
+        }
+        if (result.getStrike() > 0) {
+            message.append(result.getStrike() + " 스트라이크 ");
+        }
+        if (result.getBall() > 0) {
+            message.append(result.getBall() + " 볼");
+        }
         System.out.println(message.toString().trim());
         if (result.getIsAnswer()) {
             System.out.println(result.getStrike() + "개의 숫자를 모두 맞추셨습니다! 게임 종료");
