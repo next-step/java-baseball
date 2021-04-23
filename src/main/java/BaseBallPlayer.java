@@ -41,7 +41,7 @@ public class BaseBallPlayer {
     private static void printResultMessage(BaseBallDto.Result result) {
         StringBuilder message = new StringBuilder();
 
-        if (result.getStrike() + result.getBall() < 1) message.append("일치하는 숫자가 존재하지 않습니다.");
+        if (result.getStrike() + result.getBall() < 1) message.append("낫싱");
         if (result.getStrike() > 0) message.append(result.getStrike() + " 스트라이크 ");
         if (result.getBall() > 0) message.append(result.getBall() + " 볼");
 
