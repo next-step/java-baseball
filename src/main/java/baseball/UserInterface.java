@@ -1,20 +1,24 @@
 package baseball;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class UserInterface {
-    public static Scanner scanner = new Scanner(System.in);
+    private static final Pattern VALID_INPUT_PATTERN = Pattern.compile("[0-9]{3}");
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static String printGuideAndScanUserInput() {
         System.out.print("숫자를 입력해 주세요 : ");
-        return scanner.next();
+        String userInput = scanner.next();
+
+        if (!VALID_INPUT_PATTERN.matcher(userInput).matches()) {
+            return printGuideAndScanUserInput();
+        }
+
+        return userInput;
     }
 
-    public static void printInvalidInput(String input) {
-        System.out.printf("'%s'는 3자리 숫자가 아닙니다", input);
-    }
-
-    public static void printUserNumber(Number number) {
-        System.out.printf("'%s' 입력했습니다", number.getNumber());
+    public static void printGameComplete() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
     }
 }
