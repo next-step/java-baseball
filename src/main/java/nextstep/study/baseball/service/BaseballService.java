@@ -16,7 +16,8 @@ public class BaseballService {
 		batter.generateRandomNumbers();
 
 		//TODO - 테스트 후 제거
-		System.out.println(batter.getNumbers());
+		System.out.println("타자의 숫자 : " + batter.getNumbers());
+		System.out.println();
 
 		int strikeCount = 0;
 
