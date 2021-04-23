@@ -16,7 +16,7 @@
 ####*기능과 순서도가 혼재되어 있어서 차후에 정리 필요*
 ### 1. 숫자야구 게임 시작
 * 주요 객체 생성 : Game, OffensePlayer, DefensePlayer, Umpire
-* Game 객체의 start() 메소드 호출
+* Game 객체의 play() 메소드 호출
 
 ### 2. 세 자리수 정답숫자 생성 (수비수 : 컴퓨터)
 * Player - OffensePlayer

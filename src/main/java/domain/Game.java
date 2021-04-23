@@ -22,6 +22,8 @@ public class Game {
 		this.offensePlayer = new OffensePlayer();
 	}
 
+	public void play(){ }
+
 	public enum Status{
 		ONGOING(1),
 		FINISHED(0);
