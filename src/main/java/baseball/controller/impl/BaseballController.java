@@ -49,7 +49,9 @@ public class BaseballController extends BaseballControllerTemplate {
     @Override
     public boolean askReGame() {
         baseballView.printAskingReGame();
+
         String input = baseballView.readInputPrompt().trim();
+
         return "1".equals(input);
     }
 }

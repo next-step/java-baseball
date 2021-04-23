@@ -6,16 +6,6 @@ import baseball.model.BaseballResult;
 
 public abstract class BaseballControllerTemplate {
 
-    abstract public BaseballNumber readInputBaseballNumber();
-
-    abstract public BaseballResult checkTrial(BaseballNumber baseballNumber);
-
-    abstract public void printBaseballResult(BaseballResult baseballResult);
-
-    abstract public void printGameResult(BaseballResult baseballResult);
-
-    abstract public boolean askReGame();
-
     public void run() {
         this.run(new BaseballConfig());
     }
@@ -26,7 +16,7 @@ public abstract class BaseballControllerTemplate {
             this.initGame(config.getSize(), config.getRadix());
 
             // 2. Game Process Start
-            BaseballResult result = this.startGame(config.getCount());
+            BaseballResult result = this.startGame(config.getTryCount());
 
             // 3. Print Game Final Result
             this.printGameResult(result);
@@ -38,8 +28,6 @@ public abstract class BaseballControllerTemplate {
     public void initGame() {
         this.initGame(BaseballNumber.DEFAULT_NUMBERS_SIZE, BaseballNumber.DEFAULT_NUMBER_RADIX);
     }
-
-    abstract public void initGame(int size, int radix);
 
     public BaseballResult startGame() {
         // Infinite Loop
@@ -85,6 +73,18 @@ public abstract class BaseballControllerTemplate {
         // 4. Return Check Result
         return baseballResult;
     }
+
+    abstract public void initGame(int size, int radix);
+
+    abstract public BaseballNumber readInputBaseballNumber();
+
+    abstract public BaseballResult checkTrial(BaseballNumber baseballNumber);
+
+    abstract public void printBaseballResult(BaseballResult baseballResult);
+
+    abstract public void printGameResult(BaseballResult baseballResult);
+
+    abstract public boolean askReGame();
 
 
 }

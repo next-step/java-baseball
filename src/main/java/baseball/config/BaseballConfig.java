@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class BaseballConfig {
     private int size;
     private int radix;
-    private int count;
+    private int tryCount;
 
 }
