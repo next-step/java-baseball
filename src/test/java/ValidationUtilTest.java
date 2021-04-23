@@ -37,6 +37,16 @@ public class ValidationUtilTest {
     }
 
     @Test
+    @DisplayName("사용자가 입력한 숫자에 중복 숫자가 있을 경우")
+    void hasDuplicateNumber() {
+        String number = "011";
+        Assertions.assertFalse(validationUtil.isCorrectNumber(number));
+
+        number = "101";
+        Assertions.assertFalse(validationUtil.isCorrectNumber(number));
+    }
+
+    @Test
     @DisplayName("3자리 숫자 입력시의 테스트")
     void numberTest() {
         String number = "123";
