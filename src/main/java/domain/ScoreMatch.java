@@ -63,12 +63,12 @@ public class ScoreMatch {
     public void print() {
         StringBuilder sb = new StringBuilder();
 
-        if (strikeCount > 0) {
+        if (strikeCount > 0)
             sb.append(strikeCount).append(Score.STRIKE.getTitle()).append(" ");
-        }
-        if (ballCount > 0) {
+        if (ballCount > 0)
             sb.append(ballCount).append(Score.BALL.getTitle());
-        }
+        if (strikeCount == 0 && ballCount == 0)
+            sb.append(Score.NOTHING.getTitle());
 
         System.out.println(sb);
     }

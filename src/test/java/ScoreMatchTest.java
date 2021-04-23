@@ -40,4 +40,13 @@ public class ScoreMatchTest {
         assertFalse(scoreMatch.compare(number));
         assertEquals(scoreMatch.getBallCount(), 3);
     }
+
+    @Test
+    @DisplayName("나싱 테스트")
+    public void nothingTest() {
+        Number number = new Number("987");
+        assertFalse(scoreMatch.compare(number));
+        assertEquals(scoreMatch.getStrikeCount(), 0);
+        assertEquals(scoreMatch.getBallCount(), 0);
+    }
 }
