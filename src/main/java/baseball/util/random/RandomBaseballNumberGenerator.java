@@ -3,21 +3,21 @@ package baseball.util.random;
 import baseball.model.BaseballNumber;
 
 public class RandomBaseballNumberGenerator {
-    RandomNumberGenerator rng;
+    private RandomNumberGenerator rng;
 
     public RandomBaseballNumberGenerator() {
-        this.rng = radix -> (int)(Math.random() * (radix - 1) + 1);
+        this.rng = RandomNumberGenerator.getDefault();
     }
     public RandomBaseballNumberGenerator(RandomNumberGenerator rng) {
         this.rng = rng;
     }
 
-    int[] generateRandomBaseballNumberArray(int size, int radix) {
-        if (radix <= 1 || radix > BaseballNumber.MAX_RADIX) {
+    protected int[] generateRandomBaseballNumberArray(int size, int radix) {
+        if (radix < BaseballNumber.MIN_RADIX || radix > BaseballNumber.MAX_RADIX) {
             radix = BaseballNumber.DEFAULT_NUMBER_RADIX;
         }
 
-        if (size <= 0 || size >= radix) {
+        if (size < BaseballNumber.MIN_SIZE || size >= radix) {
             size = radix - 1;
         }
 
@@ -27,7 +27,7 @@ public class RandomBaseballNumberGenerator {
         for (int i = 0; i < size; i++) {
             int number = this.generateRandomBaseballNumber(radix);
 
-            if (isChecked[number]) {
+            if (number == 0 || isChecked[number]) {
                 i--;
                 continue;
             }
@@ -55,10 +55,6 @@ public class RandomBaseballNumberGenerator {
     }
 
     private int generateRandomBaseballNumber(int radix) {
-        int result = rng.generateRandomNumber(radix) % (radix - 1) + 1;
-        if (result <= 0 || result >= radix) {
-            throw new RuntimeException("....");
-        }
-        return result;
+        return (rng.generateRandomNumber(radix) % (radix - 1))+ 1;
     }
 }

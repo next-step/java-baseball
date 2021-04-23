@@ -1,6 +1,7 @@
 package baseball.model;
 
 import baseball.exception.BaseballNumberFormatException;
+import baseball.util.random.RandomNumberGenerator;
 import lombok.Getter;
 
 // TODO: Random Number Generator (Strategy Pattern)
@@ -10,6 +11,8 @@ public class BaseballNumber {
     public static final int DEFAULT_NUMBER_RADIX = 10;
     public static final int MAX_RADIX = 'z' - 'a' + 10;
     public static final int MIN_RADIX = 2;
+    public static final int MAX_SIZE = MAX_RADIX - 1;
+    public static final int MIN_SIZE = MIN_RADIX - 1;
 
     private final int[] numbers;
     private final int size;
@@ -87,12 +90,14 @@ public class BaseballNumber {
         private int size;
         private int radix;
         private boolean[] isChecked;
+        private RandomNumberGenerator rng;
 
         private Builder() {
             this.index = 0;
             this.size = 0;
             this.radix = 0;
             isChecked = new boolean[MAX_RADIX];
+            this.rng = RandomNumberGenerator.getDefault();
         }
 
         public Builder radix(int radix) {
@@ -103,6 +108,12 @@ public class BaseballNumber {
 
         public Builder size(int size) {
             this.size = size;
+
+            return this;
+        }
+
+        public Builder random(RandomNumberGenerator rng) {
+            this.rng = rng;
 
             return this;
         }
