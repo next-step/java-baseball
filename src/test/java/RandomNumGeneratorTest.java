@@ -27,7 +27,18 @@ public class RandomNumGeneratorTest {
         String balls = generator.generateRandomNum();
         assertEquals(balls.length(), BaseballGame.DEFAULT_LEN);
     }
+
     // 3.랜덤숫자생성기가 생성한 문자열은 모두 1~9까지 숫자로 이루어져 있다.
+    //유효성 검사 3. 문자열이 1~9까지의 숫자들로 이루어져 있는가
+    @Test
+    public void isStringValidatedAllLettersComposedNumber1To9(){
+        String balls = generator.generateRandomNum();
+        for (int i=0; i<balls.length(); i++){
+            int c = balls.charAt(i) - '0';
+            assertEquals( (c >= 1 && c <= 9), true );
+        }
+    }
+
     // 4.랜덤숫자생성기가 생성한 문자열은 원소가 문자열 내 각각 1개씩만 존재한다.
     // 5.랜덤숫자생성기가 생성한 문자열은 적어도 한 번은 바뀌어야 한다.
 }

@@ -10,7 +10,7 @@ public class RandomNumGenerator {
     public String generateRandomNum(){
         StringBuilder builder = new StringBuilder();
         for (int i=0; i<maxLen; i++)
-            builder.append(" ");
+            builder.append(i+1);
         return builder.toString();
     }
 }
