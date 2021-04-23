@@ -18,14 +18,10 @@ public class BaseballGame {
         while(true) {
             if (gameResult.equals("END")) {
                 System.out.println("더할래?");
-                Scanner sc = new Scanner(System.in);
-                String n = sc.next();
-
-                if (n.equals("n")) {
-                    return;
+                if (input().equals("y")) {
+                    game(baseballGameNumberService.generateComputerNumber());
                 }
-
-                game(baseballGameNumberService.generateComputerNumber());
+                return;
             }
         }
     }
@@ -34,11 +30,7 @@ public class BaseballGame {
         boolean status = true;
         while(status) {
             System.out.println("세자리 숫자를 입력해주세요");
-
-            Scanner sc = new Scanner(System.in);
-            String number = sc.next();
-
-            final List<Integer> player1 = baseballGameNumberService.inputUserNumber(number);
+            final List<Integer> player1 = baseballGameNumberService.inputUserNumber(input());
             final Map<String, Integer> gameResult = baseballGameCheckService.getGameResult(player1, player2);
 
             if(gameResult.get("strike") != null && gameResult.get("strike") == 3){
@@ -49,5 +41,10 @@ public class BaseballGame {
             System.out.println(gameResult);
         }
         return "END";
+    }
+
+    private String input(){
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
     }
 }

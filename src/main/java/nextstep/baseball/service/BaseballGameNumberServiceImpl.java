@@ -12,7 +12,12 @@ public class BaseballGameNumberServiceImpl implements BaseballGameNumberService 
         final String[] split = str.split("");
 
         for(String i : split){
-            result.add(Integer.parseInt(i));
+            try {
+                result.add(Integer.parseInt(i));
+            }catch (java.lang.NumberFormatException e){
+                System.out.println("세자리 숫자를 입력하지 않으셨습니다~");
+                break;
+            }
         }
         return result;
     }
