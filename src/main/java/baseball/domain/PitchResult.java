@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class PitchResult {
     private static final int STRIKE_COUNT = 3;
-    private static final int NO_COUNT = 0;
 
     private final int strikeCount;
     private final int ballCount;
@@ -27,6 +26,22 @@ public class PitchResult {
 
     public boolean isFinished() {
         return this.strikeCount == STRIKE_COUNT;
+    }
+
+    public boolean isExistsStrike() {
+        return false;
+    }
+
+    public boolean isExistsBall() {
+        return false;
+    }
+
+    public int strike() {
+        return this.strikeCount;
+    }
+
+    public int ball() {
+        return this.ballCount;
     }
 
     @Override
