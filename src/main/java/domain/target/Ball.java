@@ -7,7 +7,7 @@ public class Ball {
 	public static final int MIN_NUMBER_OF_BALL = 1;
 	private int number;
 
-	protected Ball(int number) {
+	public Ball(int number) {
 		validate(number);
 		this.number = number;
 	}

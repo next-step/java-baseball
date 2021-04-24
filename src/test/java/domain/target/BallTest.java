@@ -2,7 +2,6 @@ package domain.target;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,7 +14,7 @@ public class BallTest {
 	@DisplayName("BallGenerator 가 MIN ~ MAX 사이 수만 반환하는지 테스트")
 	public void ballGenerator_ShouldReturn_GreaterThanBallMin_LessThanBallMax() {
 		//given, when
-		int number = BallGenerator.generate().getNumber();
+		int number = BallGenerator.generateRandomBall().getNumber();
 
 		//then
 		assertThat(number)
