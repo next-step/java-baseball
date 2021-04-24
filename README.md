@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+<기능>
+1. 랜덤 함수를 생성한다.
+2. 사용자 입력 값 유효성을 체크할 수 있도록 한다.
+3. 랜덤 함수를 사용해서 야구 게임을 진행할 봇을 생성한다.
