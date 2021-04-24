@@ -14,15 +14,15 @@ public class Calculator {
         strike = getStrikes(random, input, strike, alreadyStrike);
         ball = getBalls(random, input, ball, alreadyStrike, ballStore);
 
-        return new Integer[]{strike,ball};
+        return new Integer[]{strike, ball};
     }
 
     private int getBalls(String random, String input, int ball, boolean[] alreadyStrike, HashSet<Character> ballStore) {
-        for(int i=0; i < random.length(); ++i) {
+        for (int i = 0; i < random.length(); ++i) {
             ballStore.add(random.charAt(i));
         }
 
-        for(int i=0; i< input.length(); ++i) {
+        for (int i = 0; i < input.length(); ++i) {
             char cur = input.charAt(i);
             ball = plusBall(ball, alreadyStrike, ballStore, cur);
         }
@@ -30,19 +30,19 @@ public class Calculator {
     }
 
     private int plusBall(int ball, boolean[] alreadyStrike, HashSet<Character> ballStore, char cur) {
-        if(ballStore.contains(cur) && !alreadyStrike[cur - '0']) ball++;
+        if (ballStore.contains(cur) && !alreadyStrike[cur - '0']) ball++;
         return ball;
     }
 
     private int getStrikes(String random, String input, int strike, boolean[] alreadyStrike) {
-        for(int i=0; i< input.length(); ++i) {
+        for (int i = 0; i < input.length(); ++i) {
             strike = plusStrike(random, input, strike, alreadyStrike, i);
         }
         return strike;
     }
 
     private int plusStrike(String random, String input, int strike, boolean[] alreadyStrike, int i) {
-        if(input.charAt(i) == random.charAt(i)) {
+        if (input.charAt(i) == random.charAt(i)) {
             alreadyStrike[input.charAt(i) - '0'] = true;
             strike++;
         }

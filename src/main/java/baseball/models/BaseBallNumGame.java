@@ -38,12 +38,12 @@ public class BaseBallNumGame {
             // TODO 지우기
             System.out.println("현재 랜덤 숫자는 : " + random + " 입니다");
 
-        } while(isDone != RESULT.EXIT);
+        } while (isDone != RESULT.EXIT);
     }
 
 
     private String randomShuffleIfRetry(String random) {
-        if(isDone == RESULT.RESTART) {
+        if (isDone == RESULT.RESTART) {
             isDone = RESULT.INITIALIZE;
             return randomNumGenerator.getThreeNumbers();
         }
@@ -51,7 +51,7 @@ public class BaseBallNumGame {
     }
 
     private void checkIfFinished(int strike) {
-        if(strike == 3) isFinished = true;
+        if (strike == 3) isFinished = true;
 
         if (isFinished) {
             printGenerator.Exited();

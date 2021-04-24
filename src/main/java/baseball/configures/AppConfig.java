@@ -22,7 +22,7 @@ public class AppConfig {
     }
 
     public BaseBallNumGame baseBallNumGame() {
-        return new BaseBallNumGame(randomNumGenerator(),printGenerator());
+        return new BaseBallNumGame(randomNumGenerator(), printGenerator());
     }
 
 }

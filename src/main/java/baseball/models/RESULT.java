@@ -17,9 +17,12 @@ public enum RESULT {
 
     public static RESULT valueOf(int value) {
         switch (value) {
-            case 1: return RESTART;
-            case 2: return EXIT;
-            default: throw new AssertionError("Unknown value: " + value);
+            case 1:
+                return RESTART;
+            case 2:
+                return EXIT;
+            default:
+                throw new AssertionError("Unknown value: " + value);
         }
     }
 

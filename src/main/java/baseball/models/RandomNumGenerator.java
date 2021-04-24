@@ -13,7 +13,7 @@ public class RandomNumGenerator {
             int choice = (int) (Math.random() * 9) + 1;
             getIfNotDuplicated(duplicatedNumCheck, random, choice);
 
-        } while(!checkIfDone(random));
+        } while (!checkIfDone(random));
 
         return random.toString();
     }
@@ -24,8 +24,9 @@ public class RandomNumGenerator {
             random.append(choice);
         }
     }
+
     private boolean checkIfDone(StringBuilder random) {
-        if(random.length() == 3) isDone = true;
+        if (random.length() == 3) isDone = true;
         return isDone;
     }
 }
