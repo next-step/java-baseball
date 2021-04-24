@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
     public static final Position NOT_FOUND = new Position();
 
-    private int position;
+    private int position = Integer.MIN_VALUE;
 
     private Position() {}
 
