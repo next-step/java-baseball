@@ -48,4 +48,10 @@ public class Umpire {
     public int getStrike() {
         return strike;
     }
+
+    public void askAnotherRound() {
+        initScore();
+        OutputMessage.printMessage(OutputMessage.Message.NOTICE_ANSWER);
+        OutputMessage.printMessage(OutputMessage.Message.ASK_NEXT_GAME);
+    }
 }

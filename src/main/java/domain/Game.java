@@ -34,6 +34,7 @@ public class Game {
 			Numbers guess = offensePlayer.makeGuess();
 			umpire.makeJudgement(answer, guess);
 		}
+		umpire.askAnotherRound();
 		//임의로 3스트라이크 맞으면 게임 중단
 		status = Status.FINISHED;
 	}
