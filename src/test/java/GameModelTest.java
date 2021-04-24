@@ -1,4 +1,5 @@
 import baseball.GameModel;
+import baseball.OutputProvider;
 import com.sun.tools.javac.util.Pair;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +17,7 @@ public class GameModelTest {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
         String actual = model.flushOutput();
 
-        assertThat(actual).isEqualTo(GameModel.REQUEST_INPUT);
+        assertThat(actual).isEqualTo(OutputProvider.REQUEST_INPUT);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class GameModelTest {
         model.input("456");
 
         String actual = model.flushOutput();
-        assertThat(actual).startsWith(GameModel.RESULT_NOTHING);
+        assertThat(actual).startsWith(OutputProvider.RESULT_NOTHING);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class GameModelTest {
             model.input(pair.fst);
 
             String actual = model.flushOutput();
-            assertThat(actual).contains(pair.snd + GameModel.RESULT_STRIKE);
+            assertThat(actual).contains(pair.snd + OutputProvider.RESULT_STRIKE);
         }
     }
 
@@ -60,7 +61,7 @@ public class GameModelTest {
         model.input(number);
 
         String actual = model.flushOutput();
-        assertThat(actual).contains(strike + GameModel.RESULT_STRIKE);
+        assertThat(actual).contains(strike + OutputProvider.RESULT_STRIKE);
     }
 
 
@@ -76,7 +77,7 @@ public class GameModelTest {
         model.input(number);
 
         String actual = model.flushOutput();
-        assertThat(actual).startsWith(ball + GameModel.RESULT_BALL);
+        assertThat(actual).startsWith(ball + OutputProvider.RESULT_BALL);
     }
 
     @Test
@@ -95,7 +96,7 @@ public class GameModelTest {
         model.input("123");
 
         String actual = model.flushOutput();
-        assertThat(actual).contains(GameModel.RESULT_COMPLETE);
+        assertThat(actual).contains(OutputProvider.RESULT_COMPLETE);
     }
 
     @Test
@@ -107,11 +108,24 @@ public class GameModelTest {
         model.input("1");
 
         String actual = model.flushOutput();
-        assertThat(actual).isEqualTo(GameModel.REQUEST_INPUT);
+        assertThat(actual).isEqualTo(OutputProvider.REQUEST_INPUT);
     }
 
     @Test
-    void isComplete_ShouldPrintInputWhenStartAgain() {
+    void generate_ShouldCallGenerateWhenStartAgain() {
+        NumberGeneratorStub stub = new NumberGeneratorStub("123");
+        GameModel model = new GameModel(stub);
+
+        model.input("123");
+        model.input("1");
+
+        int actual = stub.getGenerateCallCount();
+
+        assertThat(actual).isEqualTo(2);
+    }
+
+    @Test
+    void isComplete_ShouldCompleteWhenStop() {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
 
         model.input("123");
