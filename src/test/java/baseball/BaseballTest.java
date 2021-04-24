@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -55,18 +54,9 @@ public class BaseballTest {
 	}, delimiter=':')
 	void checkAnswer(String answer, String input, String message, Boolean isCorrectAnswer) {
 		Baseball baseball = new Baseball();
-		String[] answerNumberStrings = answer.split(",");
-		List<Integer> answerNumberList = new ArrayList<>();
-		for (String numberString : answerNumberStrings) {
-			answerNumberList.add(Integer.parseInt(numberString));
-		}
+		List<Integer> answerNumberList = Utils.stringToIntegerList(answer);
 		baseball.setAnswerNumbers(answerNumberList);
-
-		String[] inputNumberStrings = input.split(",");
-		List<Integer> inputNumberList = new ArrayList<>();
-		for (String numberString:inputNumberStrings) {
-			inputNumberList.add(Integer.parseInt(numberString));
-		}
+		List<Integer> inputNumberList = Utils.stringToIntegerList(input);
 		assertThat(baseball.checkAnswer(inputNumberList)).isEqualTo(isCorrectAnswer);
 		assertThat(message).isEqualTo(outputStreamCaptor.toString().trim());
 	}
