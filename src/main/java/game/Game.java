@@ -34,7 +34,7 @@ public class Game {
 		gameState.next(this);
 	}
 
-	public void exit() {
+	public void end() {
 		//do nothing
 	}
 

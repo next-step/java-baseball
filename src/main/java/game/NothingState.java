@@ -1,7 +1,12 @@
 package game;
 
+import ui.OutputManager;
+import ui.PrintOutputManager;
+
 public class NothingState implements GameState {
 
+	private final OutputManager outputManager = PrintOutputManager.getInstance();
+	
 	private static GameState gameState = new NothingState();
 
 	private NothingState() {
@@ -13,7 +18,9 @@ public class NothingState implements GameState {
 
 	@Override
 	public void next(Game game) {
-		
+		outputManager.print("낫싱"+"\n");
+		game.setGameState(RunningState.getInstance());
+		game.progress();
 	}
 
 }
