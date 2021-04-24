@@ -11,7 +11,7 @@ public class Game {
 	public Game(Player computer, Player user) {
 		this.computer = computer;
 		this.user = user;
-		this.gameState = InitGameState.getInstance();
+		this.gameState = InitState.getInstance();
 	}
 
 	public void setGameState(GameState gameState) {

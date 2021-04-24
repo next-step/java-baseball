@@ -1,10 +1,10 @@
 package game;
 
-public class InitGameState implements GameState {
+public class EndState implements GameState {
 
-	private static GameState gameState = new InitGameState();
+	private static GameState gameState = new EndState();
 
-	private InitGameState() {
+	private EndState() {
 	}
 
 	public static GameState getInstance() {
