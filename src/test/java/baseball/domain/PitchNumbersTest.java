@@ -2,6 +2,8 @@ package baseball.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +13,9 @@ public class PitchNumbersTest {
     void 생성_테스트() {
         // given
         PitchNumbers pitchNumbers = PitchNumbers.of("123");
+        PitchNumbers pitchNumbers2 = PitchNumbers.of(Arrays.asList(PitchNumber.of(1), PitchNumber.of(2), PitchNumber.of(3)));
         // when & then
-        assertThat(pitchNumbers).isEqualTo(PitchNumbers.of("123"));
+        assertThat(pitchNumbers).isEqualTo(pitchNumbers2);
     }
 
     @Test
