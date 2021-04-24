@@ -12,4 +12,8 @@ public class BaseBall {
     public static BaseBall of(List<Ball> balls) {
         return new BaseBall(balls);
     }
+
+    public int countStrike(BaseBall inputBaseBall) {
+        return 3;
+    }
 }

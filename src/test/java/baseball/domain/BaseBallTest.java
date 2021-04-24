@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.Arrays;
@@ -9,5 +10,12 @@ class BaseBallTest {
     @Test
     void create() {
         assertThatCode(() -> BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).doesNotThrowAnyException();
+    }
+
+    @Test
+    void countStrike() {
+        BaseBall baseBall = BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)));
+        BaseBall inputBaseBall = BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)));
+        assertThat(baseBall.countStrike(inputBaseBall)).isEqualTo(3);
     }
 }
