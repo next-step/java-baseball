@@ -16,4 +16,15 @@ public class GameRuleTest {
         assertThat(GameRule.of(source, dest))
                 .isEqualTo(GameRule.STRIKE);
     }
+
+    @Test
+    @DisplayName("같은 수가 전혀 없으면 포볼 또는 낫싱")
+    public void 같은_수가_전혀_없으면_포볼_또는_낫싱() {
+        Position source = new Position(1);
+        Position dest = Position.NOT_FOUND;
+
+
+        assertThat(GameRule.of(source, dest))
+                .isEqualTo(GameRule.MISSING);
+    }
 }
