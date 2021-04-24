@@ -5,6 +5,10 @@ public class Problem {
 		initNumber();
 	}
 
+	public Problem(String answer) {
+		this.answer = answer;
+	}
+
 	public void initNumber() {
 		StringBuilder builder = new StringBuilder();
 
