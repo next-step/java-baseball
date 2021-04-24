@@ -28,12 +28,20 @@ public class BaseBall implements Iterable<Ball> {
         return 0;
     }
 
+    public int countBall(BaseBall inputBaseBall) {
+        return balls.stream().mapToInt(inputBaseBall::countBall)
+            .sum();
+    }
+
+    private int countBall(Ball ball) {
+        if (balls.contains(ball)) {
+            return 1;
+        }
+        return 0;
+    }
+
     @Override
     public Iterator<Ball> iterator() {
         return balls.iterator();
-    }
-
-    public int countBall(BaseBall inputBaseBall) {
-        return 0;
     }
 }
