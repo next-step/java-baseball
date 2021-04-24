@@ -46,4 +46,19 @@ public class ValidationUtil {
         return number.length() != set.size();
     }
 
+    public boolean isCorrectContinueAnswer(String inputAnswer) {
+        if (!validateContinueAnswer(inputAnswer)) {
+            System.out.println(Error.CONTINUE_INPUT_ERROR.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateContinueAnswer(String inputAnswer) {
+        if ("1".equals(inputAnswer) || "2".equals(inputAnswer))
+            return true;
+
+        return false;
+    }
 }

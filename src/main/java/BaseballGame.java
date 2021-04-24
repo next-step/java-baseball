@@ -26,10 +26,6 @@ public class BaseballGame {
             isSolved = scoreMatch.compare(input.threeDigitNumber());
         } while (!isSolved);
 
-        return askContinueGame();
-    }
-
-    private boolean askContinueGame() {
-        return false;
+        return input.askContinueGame();
     }
 }

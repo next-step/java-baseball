@@ -22,4 +22,14 @@ public class Input {
 
         return new Number(inputNumber);
     }
+
+    public boolean askContinueGame() {
+        String inputAnswer;
+        do {
+            System.out.println(Notice.INPUT_GAME_AGAIN.getMessage());
+            inputAnswer = scanner.next();
+        } while (!validationUtil.isCorrectContinueAnswer(inputAnswer));
+
+        return "1".equals(inputAnswer);
+    }
 }
