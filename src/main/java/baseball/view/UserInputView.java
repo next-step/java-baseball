@@ -1,48 +1,39 @@
 package baseball.view;
 
-import java.util.LinkedHashSet;
+import baseball.type.ResultType;
+
 import java.util.Scanner;
-import java.util.Set;
 
 public class UserInputView {
 
-    private final static int CREATE_SIZE = 3;
-
-    public static Set<Integer> inputNumbers() throws IllegalArgumentException {
-        Set<Integer> numbers = new LinkedHashSet<>();
-
+    public static String inputNumbers() {
         Scanner sc = new Scanner(System.in);
         System.out.print("숫자를 입력해 주세요 : ");
-
-        return inputStrToSet(sc.nextLine());
+        return sc.nextLine();
     }
 
-    private static Set<Integer> inputStrToSet(String numbersStr) throws IllegalArgumentException {
-        Set<Integer> numbers = new LinkedHashSet<>();
-        validateSize(numbersStr);
-        for(int i=0; i<CREATE_SIZE; i++) {
-            validateNumber(numbersStr.charAt(i));
-            numbers.add(Integer.parseInt(String.valueOf(numbersStr.charAt(i))));
-        }
-        validateDiffNumber(numbers);
-        return numbers;
+    public static String inputRestart() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. : ");
+        return sc.nextLine();
     }
 
-    private static void validateSize(String numbersStr) throws IllegalArgumentException {
-        if(numbersStr.length() != CREATE_SIZE) {
-            throw new IllegalArgumentException("숫자1~9인 3자리 수 를 입력하세요.");
+    public static void resultConfirm(ResultType resultType) {
+        StringBuffer sb = new StringBuffer();
+        if(resultType.getStrikeCnt() > 0 && resultType.getStrikeCnt() < 3) {
+            sb.append(resultType.getStrikeCnt());
+            sb.append(" 스트라이크 ");
         }
-    }
 
-    private static void validateNumber(char ch) throws IllegalArgumentException {
-        if(!(ch >= '1' && ch <= '9')) {
-            throw new IllegalArgumentException("숫자1~9만 입력하세요.");
+        if(resultType.getBallCnt() > 0) {
+            sb.append(resultType.getBallCnt());
+            sb.append(" 볼");
         }
-    }
 
-    private static void validateDiffNumber(Set<Integer> numbers) throws IllegalArgumentException {
-        if(numbers.size() < 3) {
-            throw new IllegalArgumentException("서로 다른 수 를 입력하세요.");
+        if(resultType.getStrikeCnt() == 0 && resultType.getBallCnt() == 0) {
+            sb.append("낫싱");
         }
+
+        System.out.println(sb.toString());
     }
 }
