@@ -29,7 +29,6 @@ public class GameController {
     }
 
     public void start() {
-        System.out.println("computer" + randomNumbers);
         final Numbers userNumbers = getUserNumbers();
         final BaseballGame game = new BaseballGame(randomNumbers, userNumbers);
         play(game);
