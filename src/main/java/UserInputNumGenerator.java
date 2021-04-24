@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInputNumGenerator {
@@ -13,7 +14,8 @@ public class UserInputNumGenerator {
     }
 
     public boolean validate(String input) {
-        return isInputNotNull(input) && isInputLengthEqualsGamesLength(input) && isInputComposedOnlyOneToNine(input);
+        return isInputNotNull(input) && isInputLengthEqualsGamesLength(input)
+                && isInputComposedOnlyOneToNine(input) && isInputComposedAllDifferentNumbers(input);
     }
 
     private boolean isInputNotNull(String input){
@@ -35,4 +37,27 @@ public class UserInputNumGenerator {
 
         return true;
     }
+
+    private boolean isInputComposedAllDifferentNumbers(String input){
+        long cnt = 0;
+
+        for (int i=0; i<input.length(); i++)
+            cnt += countCharacterAtIndexOnInput(input, i);
+
+        return cnt == maxLen;
+    }
+
+    private long countCharacterAtIndexOnInput(String input, int idx){
+        final char c = input.charAt(idx);
+        long cnt = 0;
+        String ballsArr [] = input.split("");
+        for (int i=0; i<ballsArr.length; i++){
+            if(ballsArr[i].charAt(0) == c){
+                cnt ++;
+            }
+        }
+        return cnt;
+    }
+
+
 }

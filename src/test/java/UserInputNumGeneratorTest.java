@@ -40,4 +40,16 @@ public class UserInputNumGeneratorTest {
     }
 
     //유효성 검사 4. 문자열이 서로 다른 숫자로 이루어져 있는가
+    @Test
+    public void validateAllDifferentNumber(){
+        assertEquals(generator.validate("123"), true);
+        assertEquals(generator.validate("456"), true);
+        assertEquals(generator.validate("111"), false);
+        assertEquals(generator.validate("112"), false);
+        assertEquals(generator.validate("121"), false);
+        assertEquals(generator.validate("211"), false);
+        assertEquals(generator.validate("337"), false);
+        assertEquals(generator.validate("272"), false);
+        assertEquals(generator.validate("499"), false);
+    }
 }

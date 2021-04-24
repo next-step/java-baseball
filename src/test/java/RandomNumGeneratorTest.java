@@ -52,7 +52,7 @@ public class RandomNumGeneratorTest {
             ballsArr[i] = generator.generateRandomNum();
 
         for (int i=0; i<testCnt; i++){
-            final String balls =ballsArr[i];
+            final String balls = ballsArr[i];
             if(ballsArr[i].equals(balls)) {
                 int cnt = +1;
                 assertEquals(cnt, 1);
