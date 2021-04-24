@@ -13,7 +13,7 @@ public class UserInputNumGenerator {
     }
 
     public boolean validate(String input) {
-        return isInputNotNull(input) && isInputLengthEqualsGamesLength(input);
+        return isInputNotNull(input) && isInputLengthEqualsGamesLength(input) && isInputComposedOnlyOneToNine(input);
     }
 
     private boolean isInputNotNull(String input){
@@ -22,5 +22,17 @@ public class UserInputNumGenerator {
 
     private boolean isInputLengthEqualsGamesLength(String input){
         return input.length() == maxLen;
+    }
+
+    private boolean isInputComposedOnlyOneToNine(String input){
+
+        for (int i=0; i<input.length(); i++){
+            int c = input.charAt(i) - '0';
+
+            if( !(c >= 1 && c <= 9) )
+                return false;
+        }
+
+        return true;
     }
 }

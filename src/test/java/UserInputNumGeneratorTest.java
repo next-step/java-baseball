@@ -31,5 +31,13 @@ public class UserInputNumGeneratorTest {
     }
 
     //유효성 검사 3. 문자열이 1~9까지의 숫자들로 이루어져 있는가
+    @Test
+    public void validateIsOnlyComposed1to9(){
+        assertEquals(generator.validate("123"), true);
+        assertEquals(generator.validate("12a"), false);
+        assertEquals(generator.validate("ㄱ12"), false);
+        assertEquals(generator.validate("!12"), false);
+    }
+
     //유효성 검사 4. 문자열이 서로 다른 숫자로 이루어져 있는가
 }
