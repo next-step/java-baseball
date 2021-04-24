@@ -18,13 +18,9 @@ public class Numbers {
 	public void add(int digit) throws IndexOutOfBoundsException{
 		if(!canAddNewDigit()) throw new IndexOutOfBoundsException();
 
-		if(isBetweenRange(digit) && !hasDuplicateDigit(digit)){
+		if(isBetweenRange(digit)){
 			digits.add(digit);
 		}
-	}
-
-	private boolean hasDuplicateDigit(int digit) {
-		return digits.contains(digit);
 	}
 
 	private boolean canAddNewDigit() {
