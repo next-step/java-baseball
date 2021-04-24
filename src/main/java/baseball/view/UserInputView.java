@@ -8,16 +8,13 @@ public class UserInputView {
 
     private final static int CREATE_SIZE = 3;
 
-    public static Set<Integer> inputNumbers() {
+    public static Set<Integer> inputNumbers() throws IllegalArgumentException {
         Set<Integer> numbers = new LinkedHashSet<>();
-        try {
-            Scanner sc = new Scanner(System.in);
-            System.out.print("숫자를 입력해 주세요 : ");
-            numbers = inputStrToSet(sc.nextLine());
-        } catch (IllegalArgumentException e) {
-            numbers = inputNumbers();
-        }
-        return numbers;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("숫자를 입력해 주세요 : ");
+
+        return inputStrToSet(sc.nextLine());
     }
 
     private static Set<Integer> inputStrToSet(String numbersStr) throws IllegalArgumentException {
