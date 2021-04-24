@@ -45,6 +45,56 @@ class BaseballUtilsTest {
 	}
 
 	@Test
+	public void checkNumberTypeTest() {
+		// given
+		// when
+		// then
+		assertThatCode(() -> {
+				baseballUtils.checkNumberType("123");
+			}).doesNotThrowAnyException();
+
+		assertThatCode(() -> {
+				baseballUtils.checkNumberType("369");
+			}).doesNotThrowAnyException();
+
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNumberType("123a");
+			}).withMessageContaining("숫자만 입력해주세요!");
+
+
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNumberType("!2345");
+			}).withMessageContaining("숫자만 입력해주세요!");
+
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNumberType("한글테스트");
+			}).withMessageContaining("숫자만 입력해주세요!");
+	}
+
+	@Test
+	public void checkIncludeZeroTest(){
+		// given
+		// when
+		// then
+		assertThatCode(() -> {
+			baseballUtils.checkIncludeZero("123");
+		}).doesNotThrowAnyException();
+
+		assertThatCode(() -> {
+			baseballUtils.checkIncludeZero("369");
+		}).doesNotThrowAnyException();
+
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+			baseballUtils.checkIncludeZero("890");
+		}).withMessageContaining("0을 제외한 1부터 9까지 숫자를 입력해주세요!");
+
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+			baseballUtils.checkIncludeZero("017");
+		}).withMessageContaining("0을 제외한 1부터 9까지 숫자를 입력해주세요!");
+
+	}
+
+	@Test
 	public void isNotExistsDupNumbers() {
 		// gevin
 		// when
