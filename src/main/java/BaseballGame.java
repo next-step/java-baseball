@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 
 public class BaseballGame {
-	private final int numnCreateCnt = 3;
+	private final int numCreateCnt = 3;
 	public enum Status{
 		S("스트라이크"),
 		B("볼");
@@ -47,7 +47,7 @@ public class BaseballGame {
 	
 	public String createRandomNum() {
 		Set<Integer> distinctNumSet = new LinkedHashSet<>();
-		while(distinctNumSet.size() < numnCreateCnt) {
+		while(distinctNumSet.size() < numCreateCnt) {
 			distinctNumSet.add(new Random().nextInt(9) + 1);
 		}
 		return convertSetToStr(distinctNumSet);
@@ -72,15 +72,9 @@ public class BaseballGame {
 	}
 	
 	public void restartBaseballGame() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		String inputStr = new Scanner(System.in).next();
-		if ("1".equals(inputStr)) {
+		if ("1".equals(inputGameRestart())) {
 			startBaseballGame();
 		}
-		if ("2".equals(inputStr)) {
-			return;
-		}
-		restartBaseballGame();
 	}
 	
 	public String inputGameRestart() {
@@ -111,7 +105,7 @@ public class BaseballGame {
 	}
 	
 	public boolean checkPatternNum(String inputStr) {
-		Pattern numPattern = Pattern.compile("([1-9]{3})");
+		Pattern numPattern = Pattern.compile("([1-9]{"+numCreateCnt+"})");
 		Matcher matcher = numPattern.matcher(inputStr);
 		return matcher.matches();
 	}
@@ -146,12 +140,12 @@ public class BaseballGame {
 	}
 	
 	public boolean actGameResult(Map<String, Integer> returnMap) {
-		if (returnMap.getOrDefault("N", 0) == 3) {
+		if (returnMap.getOrDefault("N", 0) == numCreateCnt) {
 			System.out.println("낫싱");
 			return false;
 		}
 		printGameResultMap(returnMap);
-		if (returnMap.getOrDefault("S", 0) == 3) {
+		if (returnMap.getOrDefault("S", 0) == numCreateCnt) {
 			return true;
 		}
 		return false;
