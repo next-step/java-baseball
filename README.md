@@ -7,13 +7,27 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
-- Baseball class 구현
+- BallCount Class
+  - 멤버변수
+    - private int strike: 스트라이크 수
+    - private int ball: 볼 수
+  - 메소드
+    - public BallCount(): 디폴트 생성자
+    - public BallCount(int strike, int ball): strike, ball을 파라미터로 전달받는 생성자
+    - public void setStrike(int strike): strike 멤버 변수의 setter
+    - public int getStrike(): strike 멤버 변수의 getter
+    - public void setBall(int ball): ball 멤버 변수의 setter
+    - public int getBall(): : ball 멤버 변수의 getter
+    - public void add(BallCount ballCount): BallCount 인스턴스를 파라미터로 받아 스트라이크, 볼 수를 더함
+- Baseball Class 
   - 멤버변수
     - List<Integer> answerNumbers: 정답 숫자 리스트
   - 메소드
-    - public void makeAnswerNumbers(): 1부터 9까지 서로 다른 임의의 수 3개를 생성하는 메소드
-    - private void makeUniqueAnswerNumber(): 다른 숫자와 겹치지 않는 정답 숫자 1개를 생성하는 메소드
-    - public boolean checkAnswer(): 세자리 수를 입력받아 정답과 비교하여 스트라이크와 볼 개수를 출력하는 메소드
-- Main Class
-  - 대화형 입출력 기능 구현
+    - public void Baseball(): 생성자, 1부터 9까지 서로 다른 임의의 수 3개를 생성하고 BallCount를 리셋
+    - private void makeUniqueAnswerNumber(): 다른 숫자와 겹치지 않는 정답 숫자 1개를 생성
+    - void setAnswerNumbers(List<Integer> value): 정답을 임의로 설정 (default 제한자로 동일 페키지 내에서만 허용, For Test)
+    - public boolean checkAnswer(List<Integer> numbers): 세자리 수를 입력받아 정답과 비교하여 스트라이크와 볼 개수를 출력
+    - private BallCount getBallCountFromNumber(int number, int idx): 숫자와 인덱스를 입력받아 스트라이크, 볼을 판정하여 생성한 BallCount 인스턴스를 리턴
+    - public void printBallCount(): 현재 BallCount를 System.out으로 출력
+    - public static void main(String[] args): 숫자야구게임 대화영 입/출력
 
