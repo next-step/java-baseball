@@ -41,6 +41,11 @@ public class Baseball {
 				ballCount++;
 			}
 		}
+		printBallCount(strikeCount, ballCount);
+		return strikeCount == SIZE_OF_NUMBERS;
+	}
+
+	private void printBallCount(int strikeCount, int ballCount) {
 		String ballCountString = "";
 		if (strikeCount > 0 && ballCount > 0) {
 			ballCountString = String.format("%d 스트라이크 %d볼", strikeCount, ballCount);
@@ -52,6 +57,5 @@ public class Baseball {
 			ballCountString = "낫싱";
 		}
 		System.out.println(ballCountString);
-		return strikeCount == SIZE_OF_NUMBERS;
 	}
 }
