@@ -10,6 +10,7 @@ class BaseBallPitcher {
     public int[] getPitchingNumber() {
         int[] pitchingNumbers = new int[baseBallNumberLength];
 
+        System.out.print("숫자를 입력해주세요:");
         Scanner scanner = new Scanner(System.in);
         int pitchingNumber = scanner.nextInt();
         char[] pitchingChars = Integer.toString(pitchingNumber).toCharArray();
