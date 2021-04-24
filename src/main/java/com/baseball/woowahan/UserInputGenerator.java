@@ -8,7 +8,7 @@ public class UserInputGenerator {
 
 	public String start() {
 		String userInput = null;
-		System.out.println("===== 야구 게임을 시작합니다. 중복되지 않은 1~9 숫자를 3개 입력 하세요. (ex. 135) =====");
+		System.out.println(Message.INPUT.getMessage());
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			userInput = br.readLine();

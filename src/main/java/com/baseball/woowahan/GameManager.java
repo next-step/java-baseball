@@ -21,7 +21,7 @@ public class GameManager {
 	}
 
 	private void choiceRestart() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		System.out.println(Message.RESTART_OR_END.getMessage());
 		Scanner scanner = new Scanner(System.in);
 		if (scanner.nextInt() == 1) {
 			play();

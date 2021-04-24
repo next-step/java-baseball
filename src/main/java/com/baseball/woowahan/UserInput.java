@@ -18,7 +18,7 @@ public class UserInput {
 
 	private void printLogWhenInvalid(boolean validation) {
 		if (!validation) {
-			System.out.println("올바른 입력값이 아닙니다.");
+			System.out.println(Message.INVALID.getMessage());
 		}
 	}
 }

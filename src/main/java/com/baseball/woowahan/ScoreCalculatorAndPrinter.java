@@ -29,12 +29,13 @@ public class ScoreCalculatorAndPrinter {
 
 		StringBuilder stringBuilder = new StringBuilder();
 		if (strikeCount > 0) {
-			stringBuilder.append(strikeCount).append(" 스트라이크 ");
+			stringBuilder.append(strikeCount).append(" ").append(Message.STRIKE.getMessage()).append(" ");
 		}
 		if (ballCount > 0) {
-			stringBuilder.append(ballCount).append(" 볼");
+			stringBuilder.append(ballCount).append(" ").append(Message.BALL.getMessage());
 		}
-		System.out.println(Objects.equals(stringBuilder.length(), 0) ? "나싱" : stringBuilder.toString());
+		System.out.println(
+			Objects.equals(stringBuilder.length(), 0) ? Message.NOTHING.getMessage() : stringBuilder.toString());
 	}
 
 	private void checkStrike(String randomNumber, int index, String input) {
