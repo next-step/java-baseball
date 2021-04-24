@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +15,7 @@ public class Main {
             String input = scanner.nextLine();
 
             boolean checkInput = bbs.checkUnique3DigitString(input);
+            Map<String, Integer> resultMap = bbs.judgeBaseBall(goal, input);
         }
     }
 

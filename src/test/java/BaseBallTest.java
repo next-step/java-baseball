@@ -5,6 +5,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,4 +36,23 @@ class BaseBallTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "123:123:3:0",
+            "123:231:0:3",
+            "123:456:0:0",
+            "123:156:1:0",
+            "123:125:2:0",
+            "123:137:1:1"
+    }, delimiter = ':')
+    void judgeBaseBall(String goal, String source, Integer s, Integer b) {
+        Map<String, Integer> resultMap = bbs.judgeBaseBall(goal, source);
+        Integer strike = resultMap.get("STRIKE");
+        Integer ball = resultMap.get("BALL");
+
+        assertThat(strike).isEqualTo(s);
+        assertThat(ball).isEqualTo(b);
+    }
+
 }
