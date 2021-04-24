@@ -1,7 +1,13 @@
 public class GameConfig {
 	private int lengthDigit;
-	private int maxOptionNum;
 	private int minOptionNum;
+	private int maxOptionNum;
+
+	public GameConfig(int lengthDigit, int minOptionNum, int maxOptionNum ){
+		this.lengthDigit = lengthDigit;
+		this.minOptionNum = minOptionNum;
+		this.maxOptionNum = maxOptionNum;
+	}
 
 	public void setLengthDigit(int num){
 		this.lengthDigit = num;
