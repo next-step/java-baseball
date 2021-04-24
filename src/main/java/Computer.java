@@ -45,7 +45,7 @@ public class Computer {
 	public void setBallSet() {
 		Set<Integer> ballSet = new TreeSet<>();
 		int randomMin = 1;
-		int randomMax = 10;
+		int randomMax = 9;
 
 		while (ballSet.size() != this.getMaxBallSize()) {
 			ballSet.add(this.numberRandom(randomMin, randomMax));
