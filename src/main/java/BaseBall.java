@@ -4,64 +4,61 @@ import java.util.Map;
 public class BaseBall {
 
     public static final int DEFAULT_VALUE = 0;
-    public static final int NOT_CONTAIN_SIGNATURE = -1;
     public static final int MATCH_COUNT = 1;
 
-    private final String answer;
+    private final Number answer;
 
-    public BaseBall(String answer) {
-        if (answer.length() != 3) {
-            throw new IllegalArgumentException();
-        }
-
+    public BaseBall(Number answer) {
         this.answer = answer;
     }
 
-    public Map<Judgements, Integer> play(String input) {
-        if (input.length() != 3) {
-            throw new IllegalArgumentException();
-        }
-
-        int sizeOfInput = input.length();
-
+    public Map<Judgements, Integer> play(Number input) {
         Map<Judgements, Integer> hint = new HashMap<>();
 
-        addStrikeCounts(input, sizeOfInput, hint);
-        addBallCounts(input, sizeOfInput, hint);
+        addStrikeCounts(input, hint);
+        addBallCounts(input, hint);
 
         return hint;
     }
 
-    private void addBallCounts(String input, int sizeOfInput, Map<Judgements, Integer> hint) {
+    private void addBallCounts(Number input, Map<Judgements, Integer> hint) {
+        int sizeOfInput = getSizeOfInput(input);
+
         for (int index = 0; index < sizeOfInput; index++) {
             addBallCountWhenEqualsOnlyValue(input, hint, index);
         }
     }
 
-    private void addBallCountWhenEqualsOnlyValue(String input, Map<Judgements, Integer> hint, int index) {
-        if (haveValue(input, index) && !isStrike(input, index)) {
+    private void addBallCountWhenEqualsOnlyValue(Number input, Map<Judgements, Integer> hint, int index) {
+        if (isBall(input, index)) {
             putJudgement(hint, Judgements.BALL);
         }
     }
 
-    private boolean haveValue(String input, int index) {
-        return answer.indexOf(input.charAt(index)) != NOT_CONTAIN_SIGNATURE;
+    private boolean isBall(Number input, int index) {
+        return answer.haveValue(input, index) && !isStrike(input, index);
     }
 
-    private void addStrikeCounts(String input, int sizeOfInput, Map<Judgements, Integer> hint) {
+    private void addStrikeCounts(Number input, Map<Judgements, Integer> hint) {
+        int sizeOfInput = getSizeOfInput(input);
+
         for (int index = 0; index < sizeOfInput; index++) {
             addStrikeCountWhenEqualsValueAndPosition(input, hint, index);
         }
     }
 
-    private void addStrikeCountWhenEqualsValueAndPosition(String input, Map<Judgements, Integer> hint, int index) {
+    private int getSizeOfInput(Number input) {
+        return input.length();
+    }
+
+    private void addStrikeCountWhenEqualsValueAndPosition(Number input, Map<Judgements, Integer> hint, int index) {
         if (isStrike(input, index)) {
             putJudgement(hint, Judgements.STRIKE);
         }
     }
 
-    private boolean isStrike(String input, int index) {
-        return answer.charAt(index) == input.charAt(index);
+    private boolean isStrike(Number input, int index) {
+        return answer.isStrike(input, index);
     }
 
     private void putJudgement(Map<Judgements, Integer> hint, Judgements judgement) {
