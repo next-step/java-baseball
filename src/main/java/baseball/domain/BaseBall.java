@@ -1,7 +1,15 @@
 package baseball.domain;
 
-public class BaseBall {
-    public static void of(Ball of, Ball of1, Ball of2) {
+import java.util.List;
 
+public class BaseBall {
+    private final List<Ball> balls;
+
+    public BaseBall(List<Ball> balls) {
+        this.balls = balls;
+    }
+
+    public static BaseBall of(List<Ball> balls) {
+        return new BaseBall(balls);
     }
 }
