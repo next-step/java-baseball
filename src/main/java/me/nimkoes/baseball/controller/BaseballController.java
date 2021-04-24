@@ -48,6 +48,17 @@ public class BaseballController {
     }
 
     /*
+     * 입력받은 수의 ball 개수를 반환
+     */
+    private int getBallCount(String input) {
+        int ballCount = 0;
+        for (int i = 0; i < MainLauncher.LENGTH_OF_NUMBER; ++i) {
+            ballCount += checkBall(randomNumberRepository.getTargetNumber(), input, i);
+        }
+        return ballCount;
+    }
+
+    /*
      * 동일한 위치의 값이 같으면 strike 로 판단
      */
     private int checkStrike(String target, String input, int index) {
@@ -55,6 +66,21 @@ public class BaseballController {
             return 1;
         }
         return 0;
+    }
+
+    /*
+     * 중복 숫자는 존재하지 않기 때문에
+     * 검사 대상 위치의 값이 strike 인 경우 ball 이 아님
+     * strike 가 아닌 경우 다른 위치에서 값이 발견 되는지 확인하여 ball 인지 판단
+     */
+    private int checkBall(String target, String input, int index) {
+        if (checkStrike(target, input, index) == 1) {
+            return 0;
+        }
+        if (target.indexOf(input.charAt(index)) == -1) {
+            return 0;
+        }
+        return 1;
     }
 
 }
