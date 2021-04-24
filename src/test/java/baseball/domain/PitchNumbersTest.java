@@ -29,4 +29,24 @@ public class PitchNumbersTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> PitchNumbers.of("122"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> PitchNumbers.of("121"));
     }
+
+    @Test
+    void 스트라이크_카운트_테스트() {
+        // given
+        PitchNumbers pitchNumbers = PitchNumbers.of("123");
+        // when & then
+        assertThat(pitchNumbers.matchStrike(PitchNumbers.of("135"))).isEqualTo(1);
+        assertThat(pitchNumbers.matchStrike(PitchNumbers.of("125"))).isEqualTo(2);
+        assertThat(pitchNumbers.matchStrike(PitchNumbers.of("123"))).isEqualTo(3);
+    }
+
+    @Test
+    void 볼_카운트_테스트() {
+        // given
+        PitchNumbers pitchNumbers = PitchNumbers.of("123");
+        // when & then
+        assertThat(pitchNumbers.matchBall(PitchNumbers.of("541"))).isEqualTo(1);
+        assertThat(pitchNumbers.matchBall(PitchNumbers.of("315"))).isEqualTo(2);
+        assertThat(pitchNumbers.matchBall(PitchNumbers.of("312"))).isEqualTo(3);
+    }
 }

@@ -42,6 +42,14 @@ public class PitchNumbers {
         }
     }
 
+    public int matchStrike(PitchNumbers comparePitchNumbers) {
+        return 0;
+    }
+
+    public int matchBall(PitchNumbers comparePitchNumbers) {
+        return 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
