@@ -20,4 +20,10 @@ public class Balls {
 
         this.balls = balls;
     }
+
+    public Position findPositionByBall(Ball ball) {
+        int position = balls.indexOf(ball);
+
+        return new Position(position);
+    }
 }
