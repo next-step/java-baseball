@@ -24,7 +24,7 @@ public class DefensePlayer {
         Random random = new Random();
         int generatedNumber;
         do{
-            generatedNumber = random.nextInt(10);
+            generatedNumber = random.nextInt(Numbers.MAX_NUMBER)+1;
         }while(isDuplicated(generatedNumber));
 
         return generatedNumber;
