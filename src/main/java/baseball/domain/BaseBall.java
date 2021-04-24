@@ -50,4 +50,38 @@ public class BaseBall {
         "baseballNumbers=" + baseballNumbers +
         '}';
   }
+
+  public int getContainsCount(BaseBall playBall) {
+    int count = 0;
+    for (BaseballNumber number : playBall.baseballNumbers) {
+      count = checkContains(count, number);
+    }
+    return count;
+  }
+
+  private int checkContains(int count, BaseballNumber number) {
+    if (baseballNumbers.contains(number)) {
+      count++;
+    }
+    return count;
+  }
+
+  public int getStrikeCount(BaseBall playBall) {
+    int count = 0;
+    for (int i = 0; i < SIZE; i++) {
+      count = checkStrike(playBall, count, i);
+    }
+    return count;
+  }
+
+  private int checkStrike(BaseBall playBall, int count, int index) {
+    if (baseballNumbers.get(index).equals(playBall.baseballNumbers.get(index))) {
+      count++;
+    }
+    return count;
+  }
+
+  public int getBallCount(BaseBall playBall) {
+    return getContainsCount(playBall) - getStrikeCount(playBall);
+  }
 }
