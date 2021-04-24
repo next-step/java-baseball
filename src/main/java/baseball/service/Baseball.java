@@ -34,12 +34,15 @@ public class Baseball {
 	public void startGame() {
 		//숫자 생성
 		this.balls = generateAutoNumber();
-		//to_do: 입력값 받기
-		this.inputBalls = registerBallNumbers(inputString(Message.INPUT_NUMBER));
-		//to_do: 값 비교
-		valueCompare();
-		//to_do: 결과 도출
-		getGameScore();
+		while(true) {
+			//to_do: 입력값 받기
+			this.inputBalls = registerBallNumbers(inputString(Message.INPUT_NUMBER));
+			//to_do: 값 비교
+			valueCompare();
+			//to_do: 결과 도출
+			getGameScore();
+		if(clearBallCount()) break;
+		}
 		//to_do: 재시작,종료 제어
 		
 	}
@@ -57,6 +60,18 @@ public class Baseball {
 		if(strike == 3)
 			System.out.println(Message.INPUT_MSG_SUCCESS);
 		
+	}
+	
+	private boolean clearBallCount() {
+		boolean countinue = false;
+		
+		if(strike == 3) 
+			countinue = true;
+		
+		strike = 0;		
+		ball = 0;
+		
+		return countinue;
 	}
 	
 	public void valueCompare() {
