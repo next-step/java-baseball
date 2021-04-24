@@ -68,5 +68,6 @@ public class MainApplication {
     if (ball > 0) {
       System.out.print(ball + " 볼");
     }
+    System.out.println();
   }
 }
