@@ -4,16 +4,28 @@ public class NumberGenerator {
 
     private static Random random = new Random();
 
-    public static String generateNumber(int howManyDigit) {
+    public static String generateNumber() {
         String number = "";
-        for (int i = 0; i < howManyDigit; i++) {
-            String digit = String.valueOf((generateDigit()));
-            number = number.concat(digit);
+
+        while (number.length() < GameOptions.HOW_MANY_DIGIT) {
+            String singleDigit = generateDigit();
+            number = concatDigit(number, singleDigit);
         }
+
         return number;
     }
 
-    public static int generateDigit() {
-        return random.nextInt(9) + 1;
+    private static String concatDigit(String number, String singleDigit) {
+        if (!number.contains(singleDigit)) {
+            number = number.concat(singleDigit);
+        }
+
+        return number;
+    }
+
+    public static String generateDigit() {
+        int i = random.nextInt(9) + 1;
+
+        return String.valueOf(i);
     }
 }
