@@ -43,8 +43,6 @@ public class InputUserNumber {
 
         return userNumber.matches(NUMBER_PATTERN);
 
-
-
     }
 
 }

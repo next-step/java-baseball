@@ -10,23 +10,23 @@ public class CreateNumber {
     private final int MIN_NUMBER = 1;
     private final int MAX_NUMBER = 9;
 
-    public int generateRandomNumber() {
+    public String generateRandomNumber() {
         Random random = new Random();
-        return random.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
+        return String.valueOf(random.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER);
     }
 
-    public List<Integer> generateNumbers() {
-        List<Integer> numbers = new ArrayList<>();
+    public String generateNumbers() {
+        StringBuilder numbers = new StringBuilder();
+        while(numbers.length() < MAX_LENGTH) {
 
-        while(numbers.size() < MAX_LENGTH) {
-            int temp = generateRandomNumber();
+            String temp = generateRandomNumber();
 
-            if (!numbers.contains(temp)) {
-                numbers.add(temp);
+            if (numbers.indexOf(temp) == -1) {
+                numbers.append(temp);
             }
         }
 
-        return numbers;
+        return numbers.toString();
     }
 
 }
