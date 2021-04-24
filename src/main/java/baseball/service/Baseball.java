@@ -39,7 +39,23 @@ public class Baseball {
 		//to_do: 값 비교
 		valueCompare();
 		//to_do: 결과 도출
+		getGameScore();
 		//to_do: 재시작,종료 제어
+		
+	}
+	
+	private void getGameScore() {
+
+		if(strike > 0 && ball >0) 
+			System.out.println(strike+Message.INPUT_MSG_STRIKE+" "+ball+Message.INPUT_MSG_BALL);
+		if(strike > 0 && ball == 0)
+			System.out.println(strike+Message.INPUT_MSG_STRIKE);
+		if(strike == 0 && ball > 0)
+			System.out.println(ball+Message.INPUT_MSG_BALL);
+		if(strike == 0 && ball == 0)
+			System.out.println(Message.INPUT_MSG_NOTHING);
+		if(strike == 3)
+			System.out.println(Message.INPUT_MSG_SUCCESS);
 		
 	}
 	
