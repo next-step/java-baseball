@@ -18,7 +18,7 @@ public class Game {
         while (progress) {
             computer.selectNumber();
             progressGame();
-            progress = inputGameOverNumber();
+            progress = isGameStop();
             initComputerNumber();
         }
     }
@@ -29,20 +29,20 @@ public class Game {
             user.selectNumber();
             judgeGame();
             printCurrentProgressMessage();
-            progress = checkGameStop();
+            progress = isGameOver();
             initStrikeAndBall();
         }
     }
 
     private void judgeGame() {
         for (int i = 0; i < 3; i++) {
-            checkStrike(i);
-            checkBall(i);
+            increaseStrike(i);
+            increaseBall(i);
         }
         ball = ball - strike;
     }
 
-    private void checkStrike(int index) {
+    private void increaseStrike(int index) {
         int computerNumber = computer.getNumbers().get(index);
         int userNumber = user.getSelectNumbers().get(index);
         if (computerNumber == userNumber) {
@@ -50,7 +50,7 @@ public class Game {
         }
     }
 
-    private void checkBall(int index) {
+    private void increaseBall(int index) {
         if (computer.getNumbers().contains(user.getSelectNumbers().get(index))) {
             ball++;
         }
@@ -79,22 +79,26 @@ public class Game {
         System.out.println(stringBuilder);
     }
 
-    private boolean checkGameStop() {
+    private boolean isGameOver() {
         if (strike == 3) {
-            printGameStopMessage();
+            printGameOverMessage();
             return false;
         }
         return true;
     }
 
-    private void printGameStopMessage() {
+    private void printGameOverMessage() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
         System.out.println("게임을 새로 시작혀려면 1, 종료하려면 2를 입력하세요");
     }
 
-    private boolean inputGameOverNumber() {
+    private boolean isGameStop() {
+        int input = inputGameStopNumber();
+        return input == Const.GAME_STOP_VALUE;
+    }
+
+    private int inputGameStopNumber() {
         Scanner scan = new Scanner(System.in);
-        int input = scan.nextInt();
-        return input == 1;
+        return scan.nextInt();
     }
 }
