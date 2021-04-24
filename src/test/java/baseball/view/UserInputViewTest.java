@@ -15,7 +15,7 @@ class UserInputViewTest {
     private Set<Integer> numbers;
 
     @Test
-    @DisplayName("Input 문자열 삽입 테스트")
+    @DisplayName("Input 문자열 삽입 테서트")
     void userInput_str_insert_test() {
         String input = "12a";
         InputStream in = new ByteArrayInputStream(input.getBytes());
