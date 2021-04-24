@@ -1,7 +1,9 @@
+package baseball;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class BaseBallCatcher {
+class Catcher {
     final int MIN_NUM = 1;
     final int MAX_NUM = 10;
 
@@ -12,7 +14,7 @@ class BaseBallCatcher {
 
     List<Integer> standardNumbers;
 
-    BaseBallCatcher (int baseBallNumberLength) {
+    Catcher(int baseBallNumberLength) {
         standardNumbers = new ArrayList<>();
         this.baseBallNumberLength = baseBallNumberLength;
         setStandardNumbers();

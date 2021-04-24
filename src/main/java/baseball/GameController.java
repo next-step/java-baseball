@@ -1,14 +1,16 @@
+package baseball;
+
 import java.util.Scanner;
 
-public class BaseBallGameController {
+public class GameController {
     private final int BASEBALL_NUM_LENGTH = 3;
 
-    BaseBallCatcher catcher;
-    BaseBallPitcher pitcher;
+    Catcher catcher;
+    Pitcher pitcher;
 
-    BaseBallGameController() {
-        catcher = new BaseBallCatcher(BASEBALL_NUM_LENGTH);
-        pitcher = new BaseBallPitcher(BASEBALL_NUM_LENGTH);
+    GameController() {
+        catcher = new Catcher(BASEBALL_NUM_LENGTH);
+        pitcher = new Pitcher(BASEBALL_NUM_LENGTH);
     }
 
     public void start() {

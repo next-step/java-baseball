@@ -1,9 +1,11 @@
+package baseball;
+
 import java.util.Scanner;
 
-class BaseBallPitcher {
+class Pitcher {
     private int baseBallNumberLength;
 
-    BaseBallPitcher(int baseBallNumberLength) {
+    Pitcher(int baseBallNumberLength) {
         this.baseBallNumberLength = baseBallNumberLength;
     }
 
