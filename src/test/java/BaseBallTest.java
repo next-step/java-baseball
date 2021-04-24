@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 public class BaseBallTest {
@@ -45,5 +46,29 @@ public class BaseBallTest {
         Map<Judgements, Integer> hint = baseball.play(input);
 
         assertThat(hint.get(judgement)).isEqualTo(expectedCount);
+    }
+
+    @Test
+    @DisplayName("같은 수가 같은 자리에 1개 있고 다른 자리에 1개 있으면 1스트라이크 1볼이다.")
+    void OneStrikeAndOneBall() {
+        BaseBall baseball = new BaseBall("123");
+        Map<Judgements, Integer> hint = baseball.play("137");
+
+        assertAll(
+                () -> assertThat(hint.get(Judgements.BALL)).isEqualTo(1),
+                () -> assertThat(hint.get(Judgements.STRIKE)).isEqualTo(1)
+        );
+    }
+
+    @Test
+    @DisplayName("같은 수가 같은 자리에 2개 있고 다른 자리에 1개 있으면 1스트라이크 2볼이다.")
+    void OneStrikeAndTwoBall() {
+        BaseBall baseball = new BaseBall("123");
+        Map<Judgements, Integer> hint = baseball.play("132");
+
+        assertAll(
+                () -> assertThat(hint.get(Judgements.BALL)).isEqualTo(2),
+                () -> assertThat(hint.get(Judgements.STRIKE)).isEqualTo(1)
+        );
     }
 }
