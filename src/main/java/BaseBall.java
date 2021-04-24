@@ -17,6 +17,16 @@ public class BaseBall {
         return input.matches("\\d{3}") && unique.size() == 3;
     }
 
+    public void printMsg(Map<String, Integer> map) {
+        Integer strike = map.get("STRIKE");
+        Integer ball = map.get("BALL");
+        StringBuilder msg = new StringBuilder();
+        msg.append(strike == 0 ? "" : strike + " 스트라이크 ");
+        msg.append(ball == 0 ? "" : ball + " 볼 ");
+        msg.append(strike == 0 && ball == 0 ? "낫싱" : "");
+        System.out.println(msg.toString());
+    }
+
     public Map<String, Integer> judgeBaseBall(String goal, String source) {
         int strike = checkStrike(goal, source);
         int ball = checkBall(goal, source);
@@ -51,4 +61,5 @@ public class BaseBall {
         int index = goal.indexOf(source);
         return index >= 0 && index != i ? 1 : 0;
     }
+
 }

@@ -16,6 +16,7 @@ public class Main {
 
             boolean checkInput = bbs.checkUnique3DigitString(input);
             Map<String, Integer> resultMap = bbs.judgeBaseBall(goal, input);
+            bbs.printMsg(resultMap);
         }
     }
 
