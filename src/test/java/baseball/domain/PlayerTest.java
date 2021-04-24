@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class PlayerTest {
     private Player player;
@@ -21,11 +23,12 @@ public class PlayerTest {
         assertThat(player).isEqualTo(Player.of(pitchNumbers));
     }
 
-    @Test
-    void 게임_진행_테스트() {
+    @ParameterizedTest()
+    @CsvSource(value = {"123:true", "126:false", "456:false"}, delimiter = ':')
+    void 게임_진행_테스트(String input, boolean expected) {
         // when
-        player.play("123");
+        player.play(input);
         // then
-        assertThat(player.isFinished()).isTrue();
+        assertThat(player.isFinished()).isEqualTo(expected);
     }
 }
