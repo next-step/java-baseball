@@ -6,15 +6,26 @@ import java.util.Set;
 
 import me.nimkoes.baseball.MainLauncher;
 import me.nimkoes.baseball.model.RandomNumberRepository;
+import me.nimkoes.baseball.view.PlayerInterface;
 
 
 public class BaseballController {
 
+    private final PlayerInterface playerInterface;
     private final RandomNumberRepository randomNumberRepository;
 
-
-    public BaseballController() {
+    public BaseballController(PlayerInterface playerInterface) {
+        this.playerInterface = playerInterface;
         this.randomNumberRepository = RandomNumberRepository.getInstance();
+    }
+
+    private void playBall() {
+
+        String userInput = playerInterface.inputNumber();  // 사용자 입력
+        int strikeCount = getStrikeCount(userInput);       // strike 계산
+        int ballCount = getBallCount(userInput);           // ball 계산
+
+        playerInterface.printCountMessage(strikeCount, ballCount);  // 비교 결과 출력
     }
 
     /*
