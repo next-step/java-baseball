@@ -26,6 +26,10 @@ public class GameRules {
         return countOfRule.get(GameRule.BALL);
     }
 
+    public int countOfMissing() {
+        return countOfRule.get(GameRule.MISSING);
+    }
+
     private void increase(GameRule gameRule) {
         Integer count = countOfRule.get(gameRule);
 

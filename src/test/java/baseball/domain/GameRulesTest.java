@@ -28,4 +28,14 @@ public class GameRulesTest {
         assertThat(gameRules.countOfBall())
                 .isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("미싱 개수를 갖는다.")
+    public void 미싱_개수를_갖는다() {
+        List<GameRule> gameRuleList = Arrays.asList(GameRule.MISSING);
+        GameRules gameRules = new GameRules(gameRuleList);
+
+        assertThat(gameRules.countOfMissing())
+                .isEqualTo(1);
+    }
 }
