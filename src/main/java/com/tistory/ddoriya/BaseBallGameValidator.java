@@ -13,25 +13,29 @@ import java.util.Set;
  * @author 이상준
  */
 public class BaseBallGameValidator {
-	public static boolean isUserNumberValid(String str) {
-		return isSizeValid(str) && isNumberValid(str);
+	//유저의 Input값을 체크.
+	public static boolean isUserNumberValid(String input) {
+		return isSizeValid(input) && isNumberValid(input);
 	}
 
-	public static boolean isSizeValid(String str) {
+	//유저의 Input값의 사이즈를 체크
+	public static boolean isSizeValid(String input) {
 		Set<Character> setTemp = new HashSet<>();
 
-		for (Character character : str.toCharArray()) {
+		for (Character character : input.toCharArray()) {
 			setTemp.add(character);
 		}
-		return setTemp.size() == GameRule.MAX_SIZE && str.length() == GameRule.MAX_SIZE;
+		return setTemp.size() == GameRule.MAX_SIZE && input.length() == GameRule.MAX_SIZE;
 	}
 
-	public static boolean isNumberValid(String str) {
+	//input의 숫자인지 체크
+	public static boolean isNumberValid(String input) {
 		String regExp = "^[1-9]+$";
-		return str.matches(regExp);
+		return input.matches(regExp);
 	}
 
-	public static boolean isInputValid(String str) {
-		return "1".equals(str) || "2".equals(str);
+	//input의 1, 2값을 체크
+	public static boolean isInputGameStatusValid(String input) {
+		return "1".equals(input) || "2".equals(input);
 	}
 }

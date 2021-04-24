@@ -28,6 +28,7 @@ public class BaseBallGameService {
 		this.computerNumbers = computerNumbers;
 	}
 
+	//게임을 실행.
 	public void executeGame(String input) {
 		if (!BaseBallGameValidator.isUserNumberValid(input)) {
 			throw new NumberFormatException("입력값 형식이 다릅니다.");
@@ -37,10 +38,12 @@ public class BaseBallGameService {
 		turn(input);
 	}
 
+	//게임 완료 여부를 체크.
 	public boolean isGameCompleted() {
 		return strikeCount == GameRule.MAX_STRIKE_COUNT;
 	}
 
+	//게임 메시지를 전달.
 	public String getGameMessage() {
 		String strikeMessage = strikeCount > 0 ? String.format("%d %s", strikeCount, GameType.STRIKE.getType()) : "";
 		String ballMessage = ballCount > 0 ? String.format("%d %s", ballCount, GameType.BALL.getType()) : "";
@@ -48,6 +51,7 @@ public class BaseBallGameService {
 		return strikeCount + ballCount > 0 ? String.format("%s%s", strikeMessage, ballMessage) : GameType.NOTHING.getType();
 	}
 
+	//게임의 진행되는 Turn
 	private void turn(String input) {
 		for (int i = 0; i < input.length(); i++) {
 			int number = input.charAt(i) - '0';
@@ -59,6 +63,7 @@ public class BaseBallGameService {
 		}
 	}
 
+	//컴퓨터의 Numbers 입력
 	private List<Integer> getComputerNumbers() {
 		List<Integer> computerNumbers = new ArrayList<>();
 
@@ -72,11 +77,13 @@ public class BaseBallGameService {
 		return computerNumbers;
 	}
 
+	//상태 초기화.
 	private void initStatus() {
 		strikeCount = 0;
 		ballCount = 0;
 	}
 
+	//랜덤수를 전달.
 	private int getRandomNumber() {
 		return random.nextInt(GameRule.MAX_NUMBER) + 1;
 	}

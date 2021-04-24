@@ -73,7 +73,7 @@ public class BaseBallGameTest {
 	@CsvSource(value = {"1:true", "2:true", "3:false"}, delimiter = ':')
 	@DisplayName("게임진행시 1,2 일경우 넘어갈수있도록 그외 다른값이 나오면 false 테스트")
 	public void gameStartInputValidTest(String input, boolean expected) {
-		assertThat(BaseBallGameValidator.isInputValid(input)).isEqualTo(expected);
+		assertThat(BaseBallGameValidator.isInputGameStatusValid(input)).isEqualTo(expected);
 	}
 
 	@ParameterizedTest

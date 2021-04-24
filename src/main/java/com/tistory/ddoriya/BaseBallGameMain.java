@@ -17,7 +17,7 @@ public class BaseBallGameMain {
 
 		while (true) {
 			String input = scanner.nextLine();
-			if (!BaseBallGameValidator.isInputValid(input)) {
+			if (!BaseBallGameValidator.isInputGameStatusValid(input)) {
 				System.out.println("형식이 잘못되었습니다. 다시입력해주세요.");
 				continue;
 			}
