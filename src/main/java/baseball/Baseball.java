@@ -12,13 +12,17 @@ public class Baseball {
 
 	public void makeAnswerNumbers() {
 		answerNumbers = new ArrayList<>();
-		Random rand = new Random();
 		while (answerNumbers.size() < SIZE_OF_NUMBERS) {
-			int number = rand.nextInt(MAX_NUMBER) + MIN_NUMBER;
-			if (answerNumbers.contains(number)) {
-				continue;
-			}
-			answerNumbers.add(number);
+			makeUniqueAnswerNumber();
 		}
+	}
+
+	private void makeUniqueAnswerNumber() {
+		Random rand = new Random();
+		int number = rand.nextInt(MAX_NUMBER) + MIN_NUMBER;
+		if (answerNumbers.contains(number)) {
+			return;
+		}
+		answerNumbers.add(number);
 	}
 }
