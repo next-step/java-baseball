@@ -22,6 +22,10 @@ public class Ball {
         return of(oneDigitNumber.value());
     }
 
+    public static void of(String s) {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
