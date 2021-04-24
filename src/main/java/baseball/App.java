@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        GameModel model = new GameModel();
+        GameModel model = new GameModel(new NumberGenerator());
         Scanner scanner = new Scanner(System.in);
         runLoop(model, scanner);
     }
