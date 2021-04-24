@@ -9,4 +9,8 @@ public class RandomGenerator {
     public RandomGenerator(int maxLen){
         this.maxLen = maxLen;
     }
+
+    public String generateBalls() {
+        return "123";
+    }
 }
