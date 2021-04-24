@@ -25,4 +25,33 @@ public class Baseball {
 		}
 		answerNumbers.add(number);
 	}
+
+	void setAnswerNumbers(List<Integer> value) {
+		answerNumbers = value;
+	}
+
+	public boolean checkAnswer(List<Integer> numbers) {
+		int strikeCount = 0;
+		int ballCount = 0;
+		for (int i = 0; i < numbers.size(); i++) {
+			int number = numbers.get(i);
+			if (answerNumbers.contains(number) && answerNumbers.get(i) == number) {
+				strikeCount++;
+			} else if (answerNumbers.contains(number) && answerNumbers.get(i) != number) {
+				ballCount++;
+			}
+		}
+		String ballCountString = "";
+		if (strikeCount > 0 && ballCount > 0) {
+			ballCountString = String.format("%d 스트라이크 %d볼", strikeCount, ballCount);
+		} else if (strikeCount > 0 && ballCount == 0) {
+			ballCountString = String.format("%d 스트라이크", strikeCount);
+		} else if (strikeCount == 0 && ballCount > 0) {
+			ballCountString = String.format("%d볼", ballCount);
+		} else if (strikeCount == 0 && ballCount == 0) {
+			ballCountString = "낫싱";
+		}
+		System.out.println(ballCountString);
+		return strikeCount == SIZE_OF_NUMBERS;
+	}
 }
