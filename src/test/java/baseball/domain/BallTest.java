@@ -19,4 +19,9 @@ class BallTest {
             .hasMessageMatching("숫자는 0~9 사이어야 합니다.")
             .isInstanceOf(NoAllowNumber.class);
     }
+
+    @Test
+    void createRandomBall() {
+        assertThatCode(Ball::ofRandom).doesNotThrowAnyException();
+    }
 }

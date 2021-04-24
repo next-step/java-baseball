@@ -15,4 +15,7 @@ public class Ball {
         }
         return new Ball(number);
     }
+
+    public static void ofRandom() {
+    }
 }
