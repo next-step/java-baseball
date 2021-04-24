@@ -71,13 +71,13 @@ public class Baseball {
         int count = 0;
 
         for (int i = 0; i < baseballNumber.length(); ++i) {
-            count += checkStrike(baseballNumber.charAt(i), predictionNumber.charAt(i));
+            count += countIfStrike(baseballNumber.charAt(i), predictionNumber.charAt(i));
         }
 
         return count;
     }
 
-    private int checkStrike(char baseballChar, char predictionChar) {
+    private int countIfStrike(char baseballChar, char predictionChar) {
         return baseballChar == predictionChar ? 1 : 0;
     }
 
