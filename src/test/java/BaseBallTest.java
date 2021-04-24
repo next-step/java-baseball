@@ -25,8 +25,22 @@ public class BaseBallTest {
                 "123, 129, STRIKE, 2",
                 "123, 123, STRIKE, 3",
     })
-    @DisplayName("같은 수가 같은 자리에 1개 있으면 1스트라이크이다.")
-    void oneStrike(String answer, String input, Judgements judgement, int expectedCount) {
+    @DisplayName("같은 자리에 같은 수가 있는 개수만큼 STRIKE를 가진다.")
+    void strike(String answer, String input, Judgements judgement, int expectedCount) {
+        BaseBall baseball = new BaseBall(answer);
+        Map<Judgements, Integer> hint = baseball.play(input);
+
+        assertThat(hint.get(judgement)).isEqualTo(expectedCount);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "123, 419, BALL, 1",
+            "123, 219, BALL, 2",
+            "123, 312, BALL, 3",
+    })
+    @DisplayName("다른 자리에 같은 숫자를 가진 개수만큼 BALL을 가진다.")
+    void ball(String answer, String input, Judgements judgement, int expectedCount) {
         BaseBall baseball = new BaseBall(answer);
         Map<Judgements, Integer> hint = baseball.play(input);
 
