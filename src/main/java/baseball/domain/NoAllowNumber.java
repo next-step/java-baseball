@@ -1,4 +1,7 @@
 package baseball.domain;
 
-public class NoAllowNumber {
+public class NoAllowNumber extends IllegalArgumentException {
+    public NoAllowNumber(String message) {
+        super(message);
+    }
 }
