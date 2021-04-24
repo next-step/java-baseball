@@ -13,9 +13,14 @@ public class UserInputNumGenerator {
     }
 
     public boolean validate(String input) {
-        return isInputNotNull(input);
+        return isInputNotNull(input) && isInputLengthEqualsGamesLength(input);
     }
+
     private boolean isInputNotNull(String input){
         return input != null;
+    }
+
+    private boolean isInputLengthEqualsGamesLength(String input){
+        return input.length() == maxLen;
     }
 }
