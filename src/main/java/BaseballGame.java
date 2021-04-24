@@ -1,15 +1,23 @@
 public class BaseballGame {
 	private GameConfig gameConfig;
+	private boolean willContinue = false;
 
 	public BaseballGame(GameConfig gameConfig){
 		this.gameConfig = gameConfig;
 	}
 
 	public void start(){
-		//TODO: 게임진행
+		do {
+			//TODO: 게임진행
+			setWillContinue(InputDispatcher.askContinue());
+		} while (getWillContinue());
+	}
 
-		//TODO: 게임종료 묻기
+	public void setWillContinue(boolean willContinue) {
+		this.willContinue = willContinue;
+	}
 
-		//TODO: 다시실행 or 종료
+	public boolean getWillContinue(){
+		return this.willContinue;
 	}
 }
