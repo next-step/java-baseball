@@ -20,7 +20,6 @@ public class BaseBallNumGame {
 
     public void play() {
 
-        //getRandomNumber();
         String random = randomNumGenerator.getThreeNumbers();
         do {
 

@@ -15,7 +15,7 @@ class NumValidCheckerTest {
 
     @Test
     @DisplayName("숫자가 오지 않을때 IllegalArgumentException 나는 테스트")
-    void noDuplicateCheck() {
+    void onlyNumberCheck() {
 
         String input = "abc";
 
