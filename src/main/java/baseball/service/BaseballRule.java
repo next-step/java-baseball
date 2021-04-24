@@ -8,12 +8,10 @@ public class BaseballRule {
 	private BallNumber playerBallNumber;
 	private BallNumber computerBallNumber;
 	private BaseballResult baseballResult;
-	private int ballSize;
 
 	public BaseballRule(BallNumber playerBallNumber, BallNumber computerBallNumber) {
 		this.playerBallNumber = playerBallNumber;
 		this.computerBallNumber = computerBallNumber;
-		this.ballSize = BallNumber.MAX_SIZE;
 		compareBallNumbers();
 	}
 
@@ -25,7 +23,7 @@ public class BaseballRule {
 	private void compareBallNumbers() {
 		BaseballResult baseballResult = new BaseballResult();
 		int playerIndex = 0;
-		while (playerIndex < this.ballSize) {
+		while (playerIndex < BallNumber.MIN_SIZE) {
 			checkStrike(baseballResult, playerIndex);
 			checkBall(baseballResult, playerIndex);
 			playerIndex++;
@@ -52,7 +50,7 @@ public class BaseballRule {
 	private int getFrontComputerIndexByPlayerIndex(int playerIndex) {
 		int frontComputerIndex = playerIndex;
 		frontComputerIndex++;
-		if (frontComputerIndex == this.ballSize)
+		if (frontComputerIndex == BallNumber.MAX_SIZE)
 			frontComputerIndex = 0;
 		return frontComputerIndex;
 	}
