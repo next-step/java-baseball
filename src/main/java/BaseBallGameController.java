@@ -11,8 +11,8 @@ public class BaseBallGameController {
 
     public void start() {
         do {
-             catcher.setScore(pitcher.getPitchingNumber());
-             catcher.printScore();
+            catcher.setScore(pitcher.getPitchingNumber());
+            catcher.printScore();
         } while(continues());
     }
 

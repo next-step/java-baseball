@@ -1,47 +1,59 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class BaseBallCatcher {
-    private int[] baseBallNumbers;
+    final int MIN_NUM = 1;
+    final int MAX_NUM = 10;
+
     private int[] pitchingNumbers;
     private int baseBallNumberLength;
     int strikeCount;
     int ballCount;
 
+    List<Integer> standardNumbers;
+
     BaseBallCatcher (int baseBallNumberLength) {
+        standardNumbers = new ArrayList<>();
         this.baseBallNumberLength = baseBallNumberLength;
-        baseBallNumbers = new int[this.baseBallNumberLength];
-        setBaseBallNumber();
+        setStandardNumbers();
     }
 
-    private void setBaseBallNumber() {
-        final int MIN_NUM = 1;
-        final int MAX_NUM = 10;
-
-        for (int i = 0; i < baseBallNumbers.length; i++) {
-            baseBallNumbers[i] = (int) ((Math.random() * (MAX_NUM - MIN_NUM)) + MIN_NUM);
+    private void setStandardNumbers() {
+        while (standardNumbers.size() < baseBallNumberLength) {
+            addStandardNumber((int) ((Math.random() * (MAX_NUM - MIN_NUM)) + MIN_NUM));
         }
+    }
+
+    private void addStandardNumber(int randomNumber) {
+        if (standardNumbers.contains(randomNumber)) {
+            return;
+        }
+
+        standardNumbers.add(randomNumber);
     }
 
     public void setScore(int[] pitchingNumbers) {
         for (int i = 0; i < baseBallNumberLength; i++) {
-            calStrikeCount(pitchingNumbers[i], baseBallNumbers[i]);
-            calBallCount(pitchingNumbers, baseBallNumbers, i);
+            calStrikeCount(pitchingNumbers[i], standardNumbers.get(i));
+            calBallCount(pitchingNumbers, standardNumbers, i);
         }
     }
 
-    public void calStrikeCount(int pitchingNumber, int baseBallNumber) {
-        if (pitchingNumber == baseBallNumber) {
+    public void calStrikeCount(int pitchingNumber, int standardNumber) {
+        if (pitchingNumber == standardNumber) {
             strikeCount++;
         }
     }
 
-    private void calBallCount(int[] pitchingNumbers, int[] baseBallNumbers, int pitchingIdx) {
+    private void calBallCount(int[] pitchingNumbers, List<Integer> standardNumbers, int pitchingIdx) {
         for (int i = 0; i < baseBallNumberLength; i++) {
-            calBallCountByIdx(pitchingNumbers, baseBallNumbers, pitchingIdx, i);
+            calBallCountByIdx(pitchingNumbers, standardNumbers, pitchingIdx, i);
 
         }
     }
 
-    private void calBallCountByIdx(int[] pitchingNumbers, int[] baseBallNumbers, int pitchingIdx, int baseBallIdx) {
-        if (pitchingIdx != baseBallIdx && pitchingNumbers[pitchingIdx] == baseBallNumbers[baseBallIdx]) {
+    private void calBallCountByIdx(int[] pitchingNumbers, List<Integer> standardNumbers, int pitchingIdx, int baseBallIdx) {
+        if (pitchingIdx != baseBallIdx && pitchingNumbers[pitchingIdx] == standardNumbers.get(baseBallIdx)) {
             ballCount++;
         }
     }
