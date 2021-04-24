@@ -34,4 +34,13 @@ public class BaseBallTest {
 
         assertThat(hint.get(Judgements.STRIKE)).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("같은 수가 같은 자리에 3개 있으면 3스트라이크이다.")
+    void threeStrike() {
+        BaseBall baseball = new BaseBall("123");
+        Map<Judgements, Integer> hint = baseball.play("123");
+
+        assertThat(hint.get(Judgements.STRIKE)).isEqualTo(3);
+    }
 }
