@@ -43,4 +43,12 @@ public class BallCalculatorTest {
         int index = 3;
         assertBallsWhenFirstIsFixed("123", inputs, index);
     }
+
+    @Test
+    public void isCountedBallsFinal(){
+        Assertions.assertEquals(ballCalculator.getBallsCnt("723", "945"), 0);
+        Assertions.assertEquals(ballCalculator.getBallsCnt("631", "962"), 1);
+        Assertions.assertEquals(ballCalculator.getBallsCnt("163", "618"), 2);
+        Assertions.assertEquals(ballCalculator.getBallsCnt("672", "726"), 3);
+    }
 }
