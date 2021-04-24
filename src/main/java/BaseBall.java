@@ -10,16 +10,23 @@ public class BaseBall {
     private final String answer;
 
     public BaseBall(String answer) {
+        if (answer.length() != 3) {
+            throw new IllegalArgumentException();
+        }
+
         this.answer = answer;
     }
 
     public Map<Judgements, Integer> play(String input) {
+        if (input.length() != 3) {
+            throw new IllegalArgumentException();
+        }
+
         int sizeOfInput = input.length();
 
         Map<Judgements, Integer> hint = new HashMap<>();
 
         addStrikeCounts(input, sizeOfInput, hint);
-
         addBallCounts(input, sizeOfInput, hint);
 
         return hint;
