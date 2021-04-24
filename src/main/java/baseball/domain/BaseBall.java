@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,5 +30,24 @@ public class BaseBall {
     if (baseballNumbers.size() != 3) {
       throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);
     }
+  }
+
+  public static BaseBall createBaseball(BaseballStrategy strategy) {
+    return new BaseBall(strategy.createNumbers(SIZE));
+  }
+
+  public static BaseBall createPlayBall(List<Integer> numbers) {
+    List<BaseballNumber> baseballNumbers = new ArrayList<>();
+    for (Integer number : numbers) {
+      baseballNumbers.add(new BaseballNumber(number));
+    }
+    return new BaseBall(baseballNumbers);
+  }
+
+  @Override
+  public String toString() {
+    return "BaseBall{" +
+        "baseballNumbers=" + baseballNumbers +
+        '}';
   }
 }
