@@ -9,7 +9,16 @@ public class BallCalculator {
         this.maxLen = maxLen;
     }
 
+    public int chkBall(String s1, String s2, int index) {
+        return !(s1.charAt(index) == s2.charAt(index)) && s1.contains(s2.charAt(index) + "") ? 1 : 0;
+    }
+
     public int getBallsCnt(String generated, String input) {
-        return 0;
+        int cnt = 0;
+
+        for(int i=0;i<maxLen;i++)
+            cnt += chkBall(generated, input, i);
+
+        return cnt;
     }
 }
