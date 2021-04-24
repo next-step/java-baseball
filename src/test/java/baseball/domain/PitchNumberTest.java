@@ -17,6 +17,7 @@ public class PitchNumberTest {
     @Test
     void 유효성_테스트() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> PitchNumber.of(10));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> PitchNumber.of("10"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> PitchNumber.of(-1));
     }
 }
