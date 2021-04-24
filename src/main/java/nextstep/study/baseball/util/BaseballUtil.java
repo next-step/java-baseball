@@ -49,16 +49,12 @@ public class BaseballUtil {
 		return m.matches();
 	}
 
-	public static boolean isNumeric(String strNum) {
-		if (strNum == null) {
+	public static boolean isNumeric(String str) {
+		if (str == null || str.length() == 0) {
 			return false;
 		}
-		try {
-			Integer num = Integer.parseInt(strNum);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-		return true;
+		String regex = "[0-9]+";
+		return str.matches(regex);
 	}
 
 	public static boolean isLength(String strNum, int length) {
