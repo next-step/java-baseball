@@ -55,4 +55,11 @@ public class BaseballTest {
     public void isValidBaseballInputNumberRangeTest(int input, boolean expected) {
         assertEquals(baseball.isValidBaseballInputNumber(input), expected);
     }
+
+    @DisplayName("정답,예측수,기대되는스트라이크개수 를 입력하여 베이스볼 게임 스트라이크 개수를 세는 메소드를 테스트 한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"965,123,0", "456,456,3", "456,953,1", "693,492,1", "196,598,1", "356,956,2"}, delimiter = ',')
+    public void countStrikesTest(String baseballNumberString, String predictionNumberString, int expected) {
+        assertEquals(baseball.countStrikes(baseballNumberString, predictionNumberString), expected);
+    }
 }
