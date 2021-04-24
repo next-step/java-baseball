@@ -22,8 +22,8 @@ public class Ball {
         return of(oneDigitNumber.value());
     }
 
-    public static void of(String s) {
-
+    public static Ball of(String number) {
+        return of(Integer.parseInt(number));
     }
 
     @Override

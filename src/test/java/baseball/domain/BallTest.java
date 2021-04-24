@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 class BallTest {
     @Test
     void create() {
-        assertThatCode(() -> Ball.of(0)).doesNotThrowAnyException();
-        assertThatCode(() -> Ball.of("0")).doesNotThrowAnyException();
+        assertThat(Ball.of(0)).isEqualTo(Ball.of("0"));
     }
 
     @Test
