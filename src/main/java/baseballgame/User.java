@@ -55,4 +55,3 @@ public class User {
         return Integer.parseInt(number);
     }
 }
-

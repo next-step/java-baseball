@@ -45,6 +45,5 @@ class UserTest {
             numbers.add(number);
             assertTrue(numbers.contains(Integer.parseInt(input)));
         }
-
     }
 }

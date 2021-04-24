@@ -9,9 +9,8 @@ import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
-
 class ComputerTest {
+
     @Test
     @DisplayName("범위 밖의 랜덤 숫자 생성")
     void generateInvalidRandNumber() {
