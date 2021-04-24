@@ -5,7 +5,6 @@ public class Player {
 	private int[] numbers;
 
 	public Player() {
-
 	}
 
 	public void setNumbers(int[] numbers) {

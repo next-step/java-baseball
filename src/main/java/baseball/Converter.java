@@ -3,7 +3,6 @@ package baseball;
 public class Converter {
 
 	public Converter() {
-
 	}
 
 	public boolean isThreeDigits(String raw) {

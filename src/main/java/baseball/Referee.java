@@ -3,7 +3,6 @@ package baseball;
 public class Referee {
 
 	public Referee() {
-
 	}
 
 	private int isSame(int left, int right) {
