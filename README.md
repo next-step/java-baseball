@@ -7,7 +7,12 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
-- 1부터 9까지 서로 다른 임의의 수 3개를 선택하는 기능
-- 숫자 두 개를 입력 받아 스트라이크, 볼을 판정 하는 기능
-- 세자리 수 두 쌍을 입력 받아 스트라이크와 볼 개수를 리턴하는 기능
-- 대화형 입출력 기능
+- Baseball class 구현
+  - 멤버변수
+    - private List<Integer> answerNumbers: 정답 숫자 리스트
+  - 메소드
+    - private void makeAnswerNumbers(): 1부터 9까지 서로 다른 임의의 수 3개를 생성하는 메소드
+    - public boolean checkAnswer(): 세자리 수를 입력받아 정답과 비교하여 스트라이크와 볼 개수를 출력하는 메소드
+- Main Class
+  - 대화형 입출력 기능 구현
+
