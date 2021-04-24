@@ -30,7 +30,6 @@ public class BaseballTest {
 	@Test
 	void makeAnswerNumbers() {
 		Baseball baseball = new Baseball();
-		baseball.makeAnswerNumbers();
 		List<Integer> answerNumbers = baseball.answerNumbers;
 		assertThat(answerNumbers).hasSize(3);
 
@@ -44,20 +43,39 @@ public class BaseballTest {
 
 	@ParameterizedTest
 	@CsvSource(value={
-		"1,2,3:1,2,3:3 스트라이크:true",
-		"1,2,3:1,3,2:1 스트라이크 2볼:false",
-		"1,2,3:2,1,3:1 스트라이크 2볼:false",
-		"1,2,3:2,3,1:3볼:false",
-		"1,2,3:3,1,2:3볼:false",
-		"1,2,3:3,2,1:1 스트라이크 2볼:false",
-		"1,2,3:4,5,6:낫싱:false"
+		"1,2,3:1,2,3:true",
+		"1,2,3:1,3,2:false",
+		"1,2,3:2,1,3:false",
+		"1,2,3:2,3,1:false",
+		"1,2,3:3,1,2:false",
+		"1,2,3:3,2,1:false",
+		"1,2,3:4,5,6:false"
 	}, delimiter=':')
-	void checkAnswer(String answer, String input, String message, Boolean isCorrectAnswer) {
+	void checkAnswer(String answer, String input, Boolean isCorrectAnswer) {
 		Baseball baseball = new Baseball();
 		List<Integer> answerNumberList = Utils.stringToIntegerList(answer);
 		baseball.setAnswerNumbers(answerNumberList);
 		List<Integer> inputNumberList = Utils.stringToIntegerList(input);
 		assertThat(baseball.checkAnswer(inputNumberList)).isEqualTo(isCorrectAnswer);
+	}
+
+	@ParameterizedTest
+	@CsvSource(value={
+		"1,2,3:1,2,3:3 스트라이크",
+		"1,2,3:1,3,2:1 스트라이크 2볼",
+		"1,2,3:2,1,3:1 스트라이크 2볼",
+		"1,2,3:2,3,1:3볼",
+		"1,2,3:3,1,2:3볼",
+		"1,2,3:3,2,1:1 스트라이크 2볼",
+		"1,2,3:4,5,6:낫싱"
+	}, delimiter=':')
+	void printBallCount(String answer, String input, String message) {
+		Baseball baseball = new Baseball();
+		List<Integer> answerNumberList = Utils.stringToIntegerList(answer);
+		baseball.setAnswerNumbers(answerNumberList);
+		List<Integer> inputNumberList = Utils.stringToIntegerList(input);
+		baseball.checkAnswer(inputNumberList);
+		baseball.printBallCount();
 		assertThat(message).isEqualTo(outputStreamCaptor.toString().trim());
 	}
 }

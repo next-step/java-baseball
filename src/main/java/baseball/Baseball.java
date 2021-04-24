@@ -8,9 +8,11 @@ public class Baseball {
 	private static final int MIN_NUMBER = 1;
 	private static final int MAX_NUMBER = 9;
 	private static final int SIZE_OF_NUMBERS = 3;
+	private BallCount ballCount;
 	List<Integer> answerNumbers;
 
-	public void makeAnswerNumbers() {
+	public Baseball() {
+		ballCount = new BallCount();
 		answerNumbers = new ArrayList<>();
 		while (answerNumbers.size() < SIZE_OF_NUMBERS) {
 			makeUniqueAnswerNumber();
@@ -31,12 +33,11 @@ public class Baseball {
 	}
 
 	public boolean checkAnswer(List<Integer> numbers) {
-		BallCount ballCount = new BallCount();
+		ballCount = new BallCount();
 		for (int i = 0; i < numbers.size(); i++) {
 			int number = numbers.get(i);
 			ballCount.add(getBallCountFromNumber(number, i));
 		}
-		printBallCount(ballCount);
 		return ballCount.getStrike() == SIZE_OF_NUMBERS;
 	}
 
@@ -50,7 +51,7 @@ public class Baseball {
 		return ballCount;
 	}
 
-	private void printBallCount(BallCount ballCount) {
+	public void printBallCount() {
 		int strike = ballCount.getStrike();
 		int ball = ballCount.getBall();
 		String ballCountString = "낫싱";
