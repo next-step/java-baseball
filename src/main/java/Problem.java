@@ -1,3 +1,6 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class Problem {
 	private String answer;
 
@@ -18,6 +21,18 @@ public class Problem {
 		}
 
 		this.answer = builder.toString();
+	}
+
+	public Map<Result, Integer> getResultMap(String input) {
+		Map<Result, Integer> resultMap = new LinkedHashMap<>();
+
+		for (int i = 0; i < 3; i++) {
+			Result result = getResult(input, i);
+			resultMap.putIfAbsent(result, 1);
+			resultMap.computeIfPresent(result, (k, v) -> v + 1);
+		}
+
+		return resultMap;
 	}
 
 	private Result getResult(String input, int index) {
