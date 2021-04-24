@@ -11,7 +11,7 @@ public class Injection {
         return new BaseballGameCheckServiceImpl();
     }
 
-    public static BaseballGame provideBaseballGame(){
-        return new BaseballGame(provideBaseballNumberService(), provideBaseballGameCheckService());
+    public static Baseball provideBaseballGame(){
+        return new Baseball(provideBaseballNumberService(), provideBaseballGameCheckService());
     }
 }

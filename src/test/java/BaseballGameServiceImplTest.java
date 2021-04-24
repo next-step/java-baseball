@@ -1,4 +1,4 @@
-import nextstep.baseball.domain.BaseballEnum;
+import nextstep.baseball.domain.BaseballStatEnum;
 import nextstep.baseball.service.BaseballGameNumberService;
 import nextstep.baseball.service.BaseballGameNumberServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +11,7 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BaseballGameTest {
+public class BaseballGameServiceImplTest {
     private BaseballGameNumberService randomBoxService;
 
     @Test
@@ -93,31 +93,31 @@ public class BaseballGameTest {
 
     private String checkStrikeBall(int idx, int num, List<Integer> computer){
         if(computer.get(idx) == num){
-            return BaseballEnum.STRIKE.getCode();
+            return BaseballStatEnum.STRIKE.getCode();
         }
 
         if(computer.contains(num)){
-            return BaseballEnum.BALL.getCode();
+            return BaseballStatEnum.BALL.getCode();
         }
 
-        return BaseballEnum.NOTHING.getCode();
+        return BaseballStatEnum.NOTHING.getCode();
     }
 
     private StringBuffer resultPrint(Map<String, Integer> result){
         StringBuffer stringBuffer = new StringBuffer();
 
-        if(result.get(BaseballEnum.STRIKE.getCode()) != null){
-            stringBuffer.append(result.get(BaseballEnum.STRIKE.getCode()));
-            stringBuffer.append(BaseballEnum.STRIKE.getName());
+        if(result.get(BaseballStatEnum.STRIKE.getCode()) != null){
+            stringBuffer.append(result.get(BaseballStatEnum.STRIKE.getCode()));
+            stringBuffer.append(BaseballStatEnum.STRIKE.getName());
         }
 
-        if(result.get(BaseballEnum.BALL.getCode()) != null){
-            stringBuffer.append(result.get(BaseballEnum.BALL.getCode()));
-            stringBuffer.append(BaseballEnum.BALL.getName());
+        if(result.get(BaseballStatEnum.BALL.getCode()) != null){
+            stringBuffer.append(result.get(BaseballStatEnum.BALL.getCode()));
+            stringBuffer.append(BaseballStatEnum.BALL.getName());
         }
 
         if(stringBuffer.length() == 0){
-            stringBuffer.append(result.get(BaseballEnum.NOTHING.getCode()));
+            stringBuffer.append(BaseballStatEnum.NOTHING.getName());
         }
         return stringBuffer;
     }
