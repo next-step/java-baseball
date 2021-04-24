@@ -1,9 +1,6 @@
 package baseball.domain;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Balls {
     private final List<Ball> balls;
@@ -19,6 +16,20 @@ public class Balls {
         }
 
         this.balls = balls;
+    }
+
+    public GameRules match(Balls destBalls) {
+        List<GameRule> gameRules = new ArrayList<>();
+        for(int i = 0; i<balls.size(); i++) {
+            Ball ball = balls.get(i);
+
+            Position ballPosition = new Position(i);
+            Position destBallPosition = destBalls.findPositionByBall(ball);
+
+            gameRules.add(GameRule.of(ballPosition, destBallPosition));
+        }
+
+        return new GameRules(gameRules);
     }
 
     public Position findPositionByBall(Ball ball) {
