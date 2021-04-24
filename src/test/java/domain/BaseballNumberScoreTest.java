@@ -18,12 +18,12 @@ class BaseballNumberScoreTest {
 
     @BeforeEach
     void setDefaultBaseballNumbers() {
-        baseballNumbers = makeNormalBaseballNumber(1,2,3);
-        threeStrikeBaseballNumbers = makeNormalBaseballNumber(1,2,3);
+        baseballNumbers = makeNormalBaseballNumber(1, 2, 3);
+        threeStrikeBaseballNumbers = makeNormalBaseballNumber(1, 2, 3);
     }
 
     private BaseballNumbers makeNormalBaseballNumber(int number1, int number2, int number3) {
-        List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1,number2,number3));
+        List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2, number3));
         return new BaseballNumbers(initNumbers);
     }
 
@@ -42,7 +42,7 @@ class BaseballNumberScoreTest {
     @Test
     void oneStrikeTwoBallJudgeTest() {
         BaseballNumberScore baseballNumberScore = new BaseballNumberScore(baseballNumbers);
-        BaseballResult result = baseballNumberScore.judge(makeNormalBaseballNumber(3,2,1));
+        BaseballResult result = baseballNumberScore.judge(makeNormalBaseballNumber(3, 2, 1));
 
         assertThat(result.getBallCount()).isEqualTo(2);
         assertThat(result.getStrikeCount()).isEqualTo(1);
@@ -53,7 +53,7 @@ class BaseballNumberScoreTest {
     @Test
     void threeBallJudgeTest() {
         BaseballNumberScore baseballNumberScore = new BaseballNumberScore(baseballNumbers);
-        BaseballResult result = baseballNumberScore.judge(makeNormalBaseballNumber(3,1,2));
+        BaseballResult result = baseballNumberScore.judge(makeNormalBaseballNumber(3, 1, 2));
 
         assertThat(result.getBallCount()).isEqualTo(3);
         assertThat(result.getStrikeCount()).isEqualTo(0);
@@ -64,12 +64,11 @@ class BaseballNumberScoreTest {
     @Test
     void foulJudgeTest() {
         BaseballNumberScore baseballNumberScore = new BaseballNumberScore(baseballNumbers);
-        BaseballResult result = baseballNumberScore.judge(makeNormalBaseballNumber(4,5,6));
+        BaseballResult result = baseballNumberScore.judge(makeNormalBaseballNumber(4, 5, 6));
 
         assertThat(result.getBallCount()).isEqualTo(0);
         assertThat(result.getStrikeCount()).isEqualTo(0);
         assertTrue(result.isFoul());
         assertFalse(result.isEndGame());
     }
-
 }

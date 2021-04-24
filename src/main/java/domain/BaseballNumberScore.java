@@ -12,7 +12,7 @@ public class BaseballNumberScore {
     public BaseballResult judge(BaseballNumbers playerScore) {
         BaseballResult baseballResult = new BaseballResult();
 
-        for(int i = 1; i < 4; i++) {
+        for (int i = 1; i < 4; i++) {
             Pitching pitching = new Pitching(i, playerScore.numberOfRound(i));
             comparePitching(baseballResult, pitching);
         }
@@ -22,13 +22,13 @@ public class BaseballNumberScore {
 
     private void comparePitching(BaseballResult baseballResult, Pitching pitching) {
 
-        if(numbers.contains(pitching.pitching())) {
+        if (numbers.contains(pitching.pitching())) {
             pitchingJudge(baseballResult, pitching);
         }
     }
 
     private void pitchingJudge(BaseballResult baseballResult, Pitching pitching) {
-        if(numbers.isSameIndex(pitching)) {
+        if (numbers.isSameIndex(pitching)) {
             baseballResult.strike();
             return;
         }

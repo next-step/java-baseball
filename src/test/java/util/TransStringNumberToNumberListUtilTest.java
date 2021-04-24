@@ -18,7 +18,7 @@ class TransStringNumberToNumberListUtilTest {
         List<Integer> numbers = TransStringNumberToNumberListUtil.toNumberList(numberString);
 
         assertThat(numbers).hasSize(3);
-        assertThat(numbers).containsExactly(1,2,3);
+        assertThat(numbers).containsExactly(1, 2, 3);
     }
 
     @DisplayName("입력받은 숫자 문자열이 숫자가 아닌경우 예외 테스트")

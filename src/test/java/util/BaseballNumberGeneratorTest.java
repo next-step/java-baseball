@@ -21,5 +21,4 @@ class BaseballNumberGeneratorTest {
         assertThat(numberSet).hasSize(3);
         assertThat(BaseballNumberGenerator.generator()).hasSize(3);
     }
-
 }

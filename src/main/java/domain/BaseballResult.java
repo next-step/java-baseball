@@ -17,7 +17,7 @@ public class BaseballResult {
     public void strike() {
         this.strikeCount++;
 
-        if(strikeCount > 2) {
+        if (strikeCount > 2) {
             isWin = true;
         }
     }
@@ -39,7 +39,7 @@ public class BaseballResult {
     }
 
     public String resultScreen() {
-        if(isFoul()) {
+        if (isFoul()) {
             return MESSAGE_NOTHING;
         }
         return makeResultMessage();
@@ -47,11 +47,11 @@ public class BaseballResult {
 
     private String makeResultMessage() {
         StringBuilder sb = new StringBuilder();
-        if(strikeCount > 0) {
+        if (strikeCount > 0) {
             sb.append(strikeCount).append(MESSAGE_STRIKE);
         }
 
-        if(ballCount > 0) {
+        if (ballCount > 0) {
             sb.append(ballCount).append(MESSAGE_BALL);
         }
 

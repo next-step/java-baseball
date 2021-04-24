@@ -12,7 +12,7 @@ public class BaseballNumbers {
     public BaseballNumbers(List<Integer> numbers) {
         this.numbers = numbers;
 
-        if(numbers.size() != BASEBALL_NUMBER_SIZE) {
+        if (numbers.size() != BASEBALL_NUMBER_SIZE) {
             throw new IllegalArgumentException(INVALID_BASEBALL_NUMBER_SIZE);
         }
     }
