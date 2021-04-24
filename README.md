@@ -5,3 +5,15 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 구현 목록
+* InputView
+    * 목표 숫자입력
+    * 체크 숫자 입력
+    * 재시작 및 종료 
+* 숫자 생성
+* 볼체크
+* 스트라이크 체크
+* 결과
+* ResultView
+    * 결과 출력
