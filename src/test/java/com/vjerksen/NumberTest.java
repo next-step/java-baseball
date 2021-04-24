@@ -15,4 +15,12 @@ class NumberTest {
 
         assertThat(number1.getRandomNumber()).isNotEqualTo(number2.getRandomNumber());
     }
+
+    @DisplayName(value = "숫자 입력받기")
+    @Test
+    public void getInputNumberTest() throws Exception {
+        Number number1 = new Number();
+
+        assertThat(number1.getInputNumber()).isEqualTo("123");
+    }
 }

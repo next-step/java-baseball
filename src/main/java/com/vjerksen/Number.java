@@ -1,6 +1,7 @@
 package com.vjerksen;
 
-import java.lang.Math.*;
+import java.lang.*;
+import java.util.Scanner;
 
 public class Number {
 
@@ -15,5 +16,10 @@ public class Number {
         }
 
         return randStringNum;
+    }
+
+    public String getInputNumber() {
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
     }
 }
