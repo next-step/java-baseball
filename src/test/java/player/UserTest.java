@@ -18,7 +18,7 @@ public class UserTest {
 	@Test
 	@DisplayName("baseballNumbers이 발생하였는지 테스트(UI로직: 단위테스트 제외)")
 	public void generateNumbers() {
-		user.generateNumbers();
+		//user.generateNumbers();
 		//assertThat(user.getNumbers()).isExactlyInstanceOf(BaseballNumbers.class).isNotNull();
 	}
 }
