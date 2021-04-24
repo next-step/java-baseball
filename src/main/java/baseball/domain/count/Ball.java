@@ -7,6 +7,7 @@ public class Ball implements Count {
 
     @Override
     public int count(Numbers randomNumbers, Numbers userNumbers) {
+        count = 0;
         for (int i = 0; i < randomNumbers.size(); i++) {
             check(randomNumbers, userNumbers, i);
         }
