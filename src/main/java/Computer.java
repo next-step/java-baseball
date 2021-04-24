@@ -61,12 +61,14 @@ public class Computer {
 
 	private void ballRuleCheck(char ball, int index) {
 		final String strBall = this.getBall();
-		if (strBall.indexOf(ball) != -1 && strBall.indexOf(ball) == index) {
+		if (strBall.indexOf(ball) != -1 && strBall.indexOf(ball) != index) {
 			this.ballCount++;
 		}
 	}
 
 	public boolean result(String input) {
+		this.strikeCount = 0;
+		this.ballCount = 0;
 		int index = 0;
 		for (char c : input.toCharArray()) {
 			this.strikeRuleCheck(c, index);
