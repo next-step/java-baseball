@@ -18,10 +18,22 @@ public class BallCalculatorTest {
         Assertions.assertEquals(ballCalculator.getBallsCnt(test123,"456"),0);
     }
 
+    private void assertBallsWhenFirstIsFixed(String generated, String[] inputs, int ballsCnt) {
+        for (String input : inputs)
+            Assertions.assertEquals(ballCalculator.getBallsCnt(generated, input), ballsCnt);
+    }
+
     @Test
-    public void isCounted1Ball() {
-        Assertions.assertEquals(ballCalculator.getBallsCnt(test123,"472"),1);
-        Assertions.assertEquals(ballCalculator.getBallsCnt(test123,"639"),1);
-        Assertions.assertEquals(ballCalculator.getBallsCnt(test123,"516"),1);
+    public void isCountedOneBallWhenFirstIsFixed(){
+        String[] inputs = {"472", "639", "516"};
+        int index = 1;
+        assertBallsWhenFirstIsFixed("123", inputs, index);
+    }
+
+    @Test
+    public void isCountedTwoBallsWhenFirstIsFixed(){
+        String [] inputs = {"372","631", "216"};
+        int index = 2;
+        assertBallsWhenFirstIsFixed("123", inputs, index);
     }
 }
