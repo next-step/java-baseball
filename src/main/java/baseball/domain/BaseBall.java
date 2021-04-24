@@ -1,8 +1,10 @@
 package baseball.domain;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.IntStream;
 
-public class BaseBall {
+public class BaseBall implements Iterable<Ball> {
     private final List<Ball> balls;
 
     public BaseBall(List<Ball> balls) {
@@ -14,6 +16,20 @@ public class BaseBall {
     }
 
     public int countStrike(BaseBall inputBaseBall) {
-        return 3;
+        return IntStream.range(0, balls.size())
+            .map(i -> inputBaseBall.countStrike(i, balls.get(i)))
+            .sum();
+    }
+
+    private int countStrike(int index, Ball ball) {
+        if (balls.get(index).equals(ball)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public Iterator<Ball> iterator() {
+        return balls.iterator();
     }
 }
