@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import constant.BaseballGameCondition;
+
 public class NumberGeneratorTest {
 
 	private NumberGenerator numberGenerator;
@@ -21,7 +23,7 @@ public class NumberGeneratorTest {
 	@DisplayName("숫자 야구 생성 테스트 - 생성  자리 수 ")
 	void testGenerateNumberSize() {
 		List<Integer>  baseballNumbers = this.numberGenerator.generateBaseballNumbers().getNumbers();
-		assertThat(baseballNumbers).hasSize(NumberGenerator.BALL_NUMBER_LENGTH);
+		assertThat(baseballNumbers).hasSize(BaseballGameCondition.BALL_NUMBER_LENGTH);
 	}
 
 	@Test
@@ -29,8 +31,8 @@ public class NumberGeneratorTest {
 	void testGenerateNumbersInterval() {
 		List<Integer>  baseballNumbers = this.numberGenerator.generateBaseballNumbers().getNumbers();
 		for(int baseballNumber : baseballNumbers) {
-			assertThat(baseballNumber).isGreaterThanOrEqualTo(NumberGenerator.GENERATE_NUMBER_MIN)
-				.isLessThan(NumberGenerator.GENERATE_NUMBER_MIN + NumberGenerator.GENERATE_NUMBER_LENGTH);
+			assertThat(baseballNumber).isGreaterThanOrEqualTo(BaseballGameCondition.GENERATE_NUMBER_MIN)
+				.isLessThan(BaseballGameCondition.GENERATE_NUMBER_MIN + BaseballGameCondition.GENERATE_NUMBER_LENGTH);
 		}
 	}
 

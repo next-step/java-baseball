@@ -2,12 +2,10 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
+import constant.BaseballGameCondition;
 import data.BaseballNumbers;
 
 public class NumberGenerator {
-	public static final int GENERATE_NUMBER_LENGTH = 9;
-	public static final int GENERATE_NUMBER_MIN = 1;
-	public static final int BALL_NUMBER_LENGTH = 3;
 
 	private Random random;
 
@@ -17,8 +15,8 @@ public class NumberGenerator {
 
 	public BaseballNumbers generateBaseballNumbers() {
 		Set<Integer> numberSet = new LinkedHashSet<>(); //순서 보장
-		while(numberSet.size() < BALL_NUMBER_LENGTH) {
-			numberSet.add(random.nextInt(GENERATE_NUMBER_LENGTH) + GENERATE_NUMBER_MIN);
+		while(numberSet.size() < BaseballGameCondition.BALL_NUMBER_LENGTH) {
+			numberSet.add(random.nextInt(BaseballGameCondition.GENERATE_NUMBER_LENGTH) + BaseballGameCondition.GENERATE_NUMBER_MIN);
 		}
 		return new BaseballNumbers(numberSet);
 	}
