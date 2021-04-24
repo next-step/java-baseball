@@ -2,43 +2,42 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
 
+    private String str;
 
-    @Test
     @DisplayName("1,2의 값이 있을 때 배열로 반환 되는지 테스트")
+    @Test
     public void stringSplitTest() {
-
-        String str = "1,2";
+        str = "1,2";
         assertThat(str.split(",")).contains("1","2");
 
     }
 
-    @Test
     @DisplayName("1,의 값이 있을 때 배열로 반환 되는지 테스트")
+    @Test
     public void stringSplit2Test() {
-
-        String target = "1,";
-        assertThat(target.split(",")).containsExactly("1");
+        str = "1,";
+        assertThat(str.split(",")).containsExactly("1");
 
     }
 
-    @Test
     @DisplayName("(1,2)의 값이 있을때 () 제거하고 1,2를 반환 되는지 테스트")
+    @Test
     public void stringSubStringTest() {
-
-        String target = "(1,2)";
-        String subStr = target.substring(target.indexOf("(") + 1, target.indexOf(")"));
+        str = "(1,2)";
+        String subStr = str.substring(str.indexOf("(") + 1, str.indexOf(")"));
         assertThat(subStr).isEqualTo("1,2");
     }
 
-    @Test
     @DisplayName("abc의 값이 있을 때, charAt()을 사용하여, 특정 문자의 위치 반환 테스트")
+    @Test
     public void stringChatAtTest() {
-        String str = "abc";
+        str = "abc";
         char[] charArray = str.toCharArray();
 
         for(int i=0; i < charArray.length; i++) {
@@ -47,16 +46,32 @@ public class StringTest {
 
     }
 
-    @Test
     @DisplayName("StringIndexOutOfBoundsException 테스트")
+    @Test
     public void stringIndexOutOfBoundsExceptionTest() {
-        String str = "abc";
+        str = "abc";
+        int index = 10;
+
+        assertThatThrownBy(() -> {
+            str.charAt(index);
+        }).isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("%d", index);
+
+    }
+
+    @DisplayName("StringIndexOutOfBoundsException 테스트")
+    @Test
+    public void stringIndexOutOfBoundsExceptionTest2() {
+        str = "abc";
+        int index = 10;
 
         assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> {
-                    str.charAt(4);
-                }).withMessageMatching("Index: 4, Size: 3");
+                    str.charAt(index);
+                }).withMessageContaining("%d", index);
 
     }
+
+
 
 }

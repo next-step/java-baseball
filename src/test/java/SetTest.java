@@ -23,8 +23,8 @@ public class SetTest {
         numbers.add(3);
     }
 
-    @Test
     @DisplayName("Set의 사이즈 확인 테스트")
+    @Test
     public void setSizeTest() {
         assertThat(numbers.size()).isEqualTo(3);
     }
@@ -38,7 +38,7 @@ public class SetTest {
 
     }
 
-    @DisplayName("contains 메소드 결과 값이 true인 경우만 테스트 가능하다. 입력 값에 따라 결과값이 다른 경우에 대한 테스트")
+    @DisplayName("입력 값에 따라 결과값이 다른 경우에 대한 테스트")
     @ParameterizedTest
     @CsvSource(value = {"1 : true", "2 : true", "3 : true", "4 : false", "5 : false"}, delimiter = ':')
     public void numberContainsTrueFalseTest(int inputNum, boolean expected) {
