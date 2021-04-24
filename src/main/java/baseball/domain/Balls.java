@@ -18,7 +18,7 @@ public class Balls {
 		}
 	}
 	
-	public List<Ball> getBalls(){
-		return balls;
+	public List<Ball> getBalls(){		
+		return this.balls;
 	}
 }

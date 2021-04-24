@@ -3,16 +3,22 @@ package baseball.service;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Random;
+import java.util.Scanner;
 
 import baseball.domain.Balls;
+import baseball.util.Message;
 
 public class Baseball {
 	
 	public Balls balls;
+	
+	public Balls inputBalls;
 	//숫자설정시 한자리에 허용하는 최대 값
 	private static final int BALL_MAX_VALUE = 9;
 	//숫자설정시 한자리에 허용하는 최소 값
 	private static final int BALL_MIN_VALUE = 1;
+	
+	private final Scanner scanner = new Scanner(System.in);
 	
 	public Baseball(){		
 	}
@@ -21,6 +27,7 @@ public class Baseball {
 		//숫자 생성
 		this.balls = generateAutoNumber();
 		//to_do: 입력값 받기
+		this.inputBalls = registerBallNumbers(inputString(Message.INPUT_NUMBER));		
 		//to_do: 값 비교
 		//to_do: 결과 도출
 		//to_do: 재시작,종료 제어
@@ -45,8 +52,16 @@ public class Baseball {
 		while(it.hasNext()){
 			ballBuilder.append((String) it.next());
 		}
-		System.err.println(ballBuilder.toString());
+		//System.err.println(ballBuilder.toString());
 		return ballBuilder.toString();
 	}
+	
+	public String inputString(String message) {
+        System.out.println(message);
+        return scanner.next();
+    }
 
+	public Balls registerBallNumbers(String inputString) {
+		return new Balls(inputString);
+	}
 }
