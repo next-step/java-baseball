@@ -12,7 +12,7 @@ public class App {
     private static void runLoop(GameModel model, Scanner scanner) {
         while (model.isComplete() == false) {
             System.out.print(model.flushOutput());
-            scanner.nextLine();
+            model.input(scanner.nextLine());
         }
     }
 }

@@ -24,7 +24,7 @@ public class GameModelTest {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
         model.flushOutput();
 
-        model.guess("456");
+        model.input("456");
 
         String actual = model.flushOutput();
         assertThat(actual).startsWith(GameModel.RESULT_NOTHING);
@@ -41,7 +41,7 @@ public class GameModelTest {
             GameModel model = new GameModel(new NumberGeneratorStub("123"));
             model.flushOutput();
 
-            model.guess(pair.fst);
+            model.input(pair.fst);
 
             String actual = model.flushOutput();
             assertThat(actual).contains(pair.snd + GameModel.RESULT_STRIKE);
@@ -57,7 +57,7 @@ public class GameModelTest {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
         model.flushOutput();
 
-        model.guess(number);
+        model.input(number);
 
         String actual = model.flushOutput();
         assertThat(actual).contains(strike + GameModel.RESULT_STRIKE);
@@ -73,9 +73,52 @@ public class GameModelTest {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
         model.flushOutput();
 
-        model.guess(number);
+        model.input(number);
 
         String actual = model.flushOutput();
         assertThat(actual).startsWith(ball + GameModel.RESULT_BALL);
+    }
+
+    @Test
+    void isComplete_ShouldFalseWhenStartGame() {
+        GameModel model = new GameModel(new NumberGeneratorStub("123"));
+        boolean actual = model.isComplete();
+
+        assertThat(actual).isFalse();
+    }
+
+    @Test
+    void flushOutput_ShouldPrintComplete() {
+        GameModel model = new GameModel(new NumberGeneratorStub("123"));
+        model.flushOutput();
+
+        model.input("123");
+
+        String actual = model.flushOutput();
+        assertThat(actual).contains(GameModel.RESULT_COMPLETE);
+    }
+
+    @Test
+    void flushOutput_ShouldPrintInputWhenStartAgain() {
+        GameModel model = new GameModel(new NumberGeneratorStub("123"));
+
+        model.input("123");
+        model.flushOutput();
+        model.input("1");
+
+        String actual = model.flushOutput();
+        assertThat(actual).isEqualTo(GameModel.REQUEST_INPUT);
+    }
+
+    @Test
+    void isComplete_ShouldPrintInputWhenStartAgain() {
+        GameModel model = new GameModel(new NumberGeneratorStub("123"));
+
+        model.input("123");
+        model.input("2");
+
+        boolean actual = model.isComplete();
+
+        assertThat(actual).isTrue();
     }
 }
