@@ -29,4 +29,12 @@ public class OffensePlayer {
         return input;
     }
 
+    public int decideWhetherContinueGame() {
+        int code = -1;
+        while(code == -1){
+            code = inputMessage.getDecisionCode();
+        }
+        return code;
+
+    }
 }

@@ -39,6 +39,7 @@ public class OutputMessage {
 		NOTICE_ERROR_NULL("빈값입니다. 숫자를 입력해주세요 : "),
 		NOTICE_ERROR_SIZE("반드시 세 자리 숫자를 입력해주세요 : "),
 		NOTICE_ERROR_INVALID_VALUE("유효하지 않은 값이 포함되어 있습니다. 1부터 9사이의 숫자만을 입력해주세요 : "),
+		NOTICE_ERROR_INVALID_STATUS_CODE("1과 2중에서만 입력해주세요 : "),
 
 		STRIKE("스트라이크"),
 		BALL("볼"),

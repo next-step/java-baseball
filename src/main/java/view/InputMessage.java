@@ -50,4 +50,24 @@ public class InputMessage {
 		return input.length ==0;
 	}
 
+	public int getDecisionCode() {
+		char[] code = scanner.nextLine().toCharArray();
+		if(isNull(code)) {
+			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_NULL);
+			return -1;
+		}
+		if(!isValidCode(code)){
+			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_INVALID_STATUS_CODE);
+			return -1;
+		}
+		return Character.getNumericValue(code[0]);
+
+	}
+	private boolean isValidCode(char[] code) {
+		boolean hasValidCode = false;
+		int codeNumericValue = Character.getNumericValue(code[0]);
+		if(code.length ==1 && (codeNumericValue == 1 || codeNumericValue == 2)) hasValidCode = true;
+		return hasValidCode;
+
+	}
 }
