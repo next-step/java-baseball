@@ -7,48 +7,56 @@ public class BaseBall {
     }
 
     public JudgementCountPair play(Number input) {
-        JudgementCountPair judgementCount = new JudgementCountPair();
+        JudgementCountPair hint = new JudgementCountPair();
 
-        addStrikeCounts(input, judgementCount);
-        addBallCounts(input, judgementCount);
+        hint = addStrikeCounts(input, hint);
+        hint = addBallCounts(input, hint);
 
-        return judgementCount;
+        return hint;
     }
 
-    private void addBallCounts(Number input, JudgementCountPair hint) {
+    private JudgementCountPair addBallCounts(Number input, JudgementCountPair hint) {
         int sizeOfInput = getSizeOfInput(input);
 
         for (int index = 0; index < sizeOfInput; index++) {
-            addBallCountWhenEqualsOnlyValue(input, hint, index);
+            hint = addBallCountWhenEqualsOnlyValue(input, hint, index);
         }
+
+        return hint;
     }
 
-    private void addBallCountWhenEqualsOnlyValue(Number input, JudgementCountPair hint, int index) {
+    private JudgementCountPair addBallCountWhenEqualsOnlyValue(Number input, JudgementCountPair hint, int index) {
         if (isBall(input, index)) {
-            hint.putJudgement(Judgements.BALL);
+            return hint.createAddedMatchCount(Judgements.BALL);
         }
+
+        return hint;
     }
 
     private boolean isBall(Number input, int index) {
         return answer.haveValue(input, index) && !isStrike(input, index);
     }
 
-    private void addStrikeCounts(Number input, JudgementCountPair hint) {
+    private JudgementCountPair addStrikeCounts(Number input, JudgementCountPair hint) {
         int sizeOfInput = getSizeOfInput(input);
 
         for (int index = 0; index < sizeOfInput; index++) {
-            addStrikeCountWhenEqualsValueAndPosition(input, hint, index);
+            hint = addStrikeCountWhenEqualsValueAndPosition(input, hint, index);
         }
+
+        return hint;
     }
 
     private int getSizeOfInput(Number input) {
         return input.length();
     }
 
-    private void addStrikeCountWhenEqualsValueAndPosition(Number input, JudgementCountPair hint, int index) {
+    private JudgementCountPair addStrikeCountWhenEqualsValueAndPosition(Number input, JudgementCountPair hint, int index) {
         if (isStrike(input, index)) {
-            hint.putJudgement(Judgements.STRIKE);
+            return hint.createAddedMatchCount(Judgements.STRIKE);
         }
+
+        return hint;
     }
 
     private boolean isStrike(Number input, int index) {

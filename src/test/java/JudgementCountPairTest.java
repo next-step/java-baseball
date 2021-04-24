@@ -14,7 +14,8 @@ class JudgementCountPairTest {
     @DisplayName("판정 개수를 한개 증가시킨다.")
     void putJudgement(Judgements judgement, int expectedCount) {
         JudgementCountPair pair = new JudgementCountPair();
-        JudgementCountPair addedPair = pair.putJudgement(judgement);
+
+        JudgementCountPair addedPair = pair.createAddedMatchCount(judgement);
 
         assertThat(addedPair.get(judgement)).isEqualTo(expectedCount);
     }

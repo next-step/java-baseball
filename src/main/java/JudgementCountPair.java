@@ -12,9 +12,15 @@ public class JudgementCountPair {
         this.judgementCounts = new HashMap<>();
     }
 
-    public JudgementCountPair putJudgement(Judgements judgement) {
-        judgementCounts.put(judgement, addMatchCount(judgement));
-        return this;
+    public JudgementCountPair(Map<Judgements, Integer> judgementCounts) {
+        this.judgementCounts = judgementCounts;
+    }
+
+    public JudgementCountPair createAddedMatchCount(Judgements judgement) {
+        Map<Judgements, Integer> mutablePair = new HashMap<>(judgementCounts);
+        mutablePair.put(judgement, addMatchCount(judgement));
+
+        return new JudgementCountPair(Map.copyOf(mutablePair));
     }
 
     private int addMatchCount(Judgements judgement) {
