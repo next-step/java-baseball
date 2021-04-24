@@ -25,7 +25,8 @@ public enum ProgressType {
     }
 
     public static ProgressType of(int key) {
-        return progressMap.get(key);
+        return Optional.ofNullable(progressMap.get(key))
+            .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 입력값입니다."));
     }
 
     public boolean progress() {
