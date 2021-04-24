@@ -1,6 +1,9 @@
 package baseball.view.output;
 
+import baseball.domain.BaseballEnum;
 import baseball.domain.BaseballResult;
+
+import java.util.Map;
 
 import static baseball.view.input.InputMessages.PLEASE_INPUT_VALID_NUMBERS;
 import static baseball.view.output.OutputMessages.*;
@@ -24,11 +27,21 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void printResult(BaseballResult result) {
-        if(result.isNothing()){
+        if (result.isNothing()) {
             System.out.println(NOTHING);
             return;
         }
-        System.out.println(result.getResult());
+        System.out.println(formatResult(result.getBaseballCounts()));
+    }
+
+    private String formatResult(Map<BaseballEnum, Integer> result) {
+        return result.get(BaseballEnum.STRIKE) +
+                " " +
+                BaseballEnum.STRIKE.getMessage() +
+                " " +
+                result.get(BaseballEnum.BALL) +
+                " " +
+                BaseballEnum.BALL.getMessage();
     }
 
 }
