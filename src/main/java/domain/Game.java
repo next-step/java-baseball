@@ -22,7 +22,9 @@ public class Game {
 		this.offensePlayer = new OffensePlayer();
 	}
 
-	public void play(){ }
+	public void play(){
+		Numbers answer = defensePlayer.decideAnswerNumber();
+	}
 
 	public enum Status{
 		ONGOING(1),

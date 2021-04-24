@@ -3,6 +3,7 @@ package domainTest;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
+import domain.DefensePlayer;
 import domain.Game;
 
 public class GameTest {
@@ -29,4 +30,16 @@ public class GameTest {
 	}
 
 
+	@Test
+	void checkWhetherAnswerIsCreatedAfterPlayStarts(){
+		//Given
+		Game game = new Game();
+		DefensePlayer defensePlayer = game.getDefensePlayer();
+
+		//When
+		game.play();
+
+		//Then
+		assertThat(defensePlayer.getAnswer().getDigits().size()).isEqualTo(3);
+	}
 }
