@@ -15,10 +15,8 @@ class ComputerTest {
     @Test
     @DisplayName("범위 밖의 랜덤 숫자 생성")
     void generateInvalidRandNumber() {
-        final int minNumber = 1;
-        final int maxNumber = 9;
         Random random = new Random();
-        int randNumber = random.nextInt(maxNumber) + minNumber;
+        int randNumber = random.nextInt(Const.MAX_NUMBER) + Const.MIN_NUMBER;
 
         assertFalse(randNumber >= 10);
     }
@@ -26,58 +24,49 @@ class ComputerTest {
     @Test
     @DisplayName("랜덤 숫자 생성")
     void generateValidRandNumber() {
-        final int minNumber = 1;
-        final int maxNumber = 9;
         Random random = new Random();
-        int randNumber = random.nextInt(maxNumber) + minNumber;
+        int randNumber = random.nextInt(Const.MAX_NUMBER) + Const.MIN_NUMBER;
 
         assertNotEquals(0, randNumber);
-        assertTrue(randNumber <= maxNumber);
+        assertTrue(randNumber <= Const.MAX_NUMBER);
     }
 
     @Test
     @DisplayName("랜덤 숫자 100번 생성")
     void generateRandNumbers() {
-        final int minNumber = 1;
-        final int maxNumber = 9;
         Random random = new Random();
 
         for (int i = 0; i < 100; i++) {
-            int randNumber = random.nextInt(maxNumber) + minNumber;
-            assertTrue(randNumber >= minNumber);
-            assertTrue(randNumber <= maxNumber);
+            int randNumber = random.nextInt(Const.MAX_NUMBER) + Const.MIN_NUMBER;
+            assertTrue(randNumber >= Const.MIN_NUMBER);
+            assertTrue(randNumber <= Const.MAX_NUMBER);
         }
     }
 
     @Test
     @DisplayName("랜덤 숫자 3개 생성")
     void checkRandNumberCount() {
-        final int minNumber = 1;
-        final int maxNumber = 9;
-        final int count = 3;
         List<Integer> randNumbers = new ArrayList<>();
         Random random = new Random();
 
-        while (randNumbers.size() < count) {
-            int randNumber = random.nextInt(maxNumber) + minNumber;
+        while (randNumbers.size() < Const.NUMBER_COUNT) {
+            int randNumber = random.nextInt(Const.MAX_NUMBER) + Const.MIN_NUMBER;
+
             randNumbers.add(randNumber);
         }
 
-        assertEquals(count, randNumbers.size());
+        assertEquals(Const.NUMBER_COUNT, randNumbers.size());
     }
 
     @Test
     @DisplayName("중복 숫자 만들어 지지 않는지 100번 테스트")
     void checkDuplicatedNumber() {
-        final int minNumber = 1;
-        final int maxNumber = 9;
-        final int count = 3;
         List<Integer> randNumbers = new ArrayList<>();
         Random random = new Random();
 
         for (int i = 0; i < 100; i++) {
-            while (randNumbers.size() < count) {
-                int randNumber = random.nextInt(maxNumber) + minNumber;
+            while (randNumbers.size() < Const.NUMBER_COUNT) {
+                int randNumber = random.nextInt(Const.MAX_NUMBER) + Const.MIN_NUMBER;
 
                 if (randNumbers.contains(randNumber)) {
                     continue;

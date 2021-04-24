@@ -24,7 +24,6 @@ class GameTest {
     @Test
     @DisplayName("모두 맞추지 못한 경우")
     void checkNothing() {
-        final int count = 3;
         int strike = 0;
         int ball = 0;
 
@@ -36,7 +35,7 @@ class GameTest {
         userNumbers.add(5);
         userNumbers.add(6);
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
             int computerNumber = computerNumbers.get(i);
             int userNumber = userNumbers.get(i);
 
@@ -56,7 +55,6 @@ class GameTest {
     @Test
     @DisplayName("모두 스트라이크인 경우")
     void checkStrikeCount() {
-        final int count = 3;
         int strike = 0;
 
         computerNumbers.add(1);
@@ -67,7 +65,7 @@ class GameTest {
         userNumbers.add(2);
         userNumbers.add(3);
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
             int computerNumber = computerNumbers.get(i);
             int userNumber = userNumbers.get(i);
 
@@ -82,7 +80,6 @@ class GameTest {
     @Test
     @DisplayName("1스트라이크 2볼인 경우")
     void checkStrikeAndBall() {
-        final int count = 3;
         int strike = 0;
         int ball = 0;
 
@@ -94,7 +91,7 @@ class GameTest {
         userNumbers.add(3);
         userNumbers.add(2);
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
             int computerNumber = computerNumbers.get(i);
             int userNumber = userNumbers.get(i);
 

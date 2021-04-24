@@ -5,15 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Computer {
-    private final int minNumber = 1;
-    private final int maxNumber = 9;
-    private final int numberCount = 3;
-
-    private List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> numbers = new ArrayList<>();
 
     public void selectNumber() {
         initSelectedNumber();
-        while(numbers.size() < numberCount) {
+        while(numbers.size() < Const.NUMBER_COUNT) {
             addNumber(generateRandNumber());
         }
     }
@@ -28,7 +24,7 @@ public class Computer {
 
     private int generateRandNumber() {
         Random random = new Random();
-        return random.nextInt(maxNumber) + minNumber;
+        return random.nextInt(Const.MAX_NUMBER) + Const.MIN_NUMBER;
     }
 
     private void addNumber(int number) {

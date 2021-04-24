@@ -14,9 +14,8 @@ class UserTest {
     @Test
     @DisplayName("선택한 숫자 개수가 다른 경우")
     void selectInvalidNumber() {
-        final int numberCount = 3;
         String[] input = "1234".split("");
-        assertNotEquals(numberCount, input.length);
+        assertNotEquals(Const.NUMBER_COUNT, input.length);
     }
 
     @Test
@@ -33,9 +32,8 @@ class UserTest {
     @Test
     @DisplayName("선택한 숫자를 리스트에 담기")
     void inputNumberToList() {
-        final int numberCount = 3;
         String[] input = "1234".split("");
-        assertNotEquals(numberCount, input.length);
+        assertNotEquals(Const.NUMBER_COUNT, input.length);
     }
 
     @Test

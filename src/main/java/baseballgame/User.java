@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class User {
-    final int numberCount = 3;
     final String numberRegExpression = "(^[0-9]*$)";
     List<Integer> selectNumbers = new ArrayList<>();
 
@@ -19,7 +18,7 @@ public class User {
         selectNumbers.clear();
         String[] inputs = inputNumber();
         checkInputNumberCount(inputs);
-        for (int i = 0; i < numberCount; i++) {
+        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
             checkInputNumberType(inputs[i]);
             checkDuplicateNumber(parseNumber(inputs[i]));
             selectNumbers.add(parseNumber(inputs[i]));
@@ -36,8 +35,8 @@ public class User {
     }
 
     private void checkInputNumberCount(String[] inputs) {
-        if (inputs.length != numberCount) {
-            throw new IllegalArgumentException(numberCount + "개의 숫자를 입력하세요.");
+        if (inputs.length != Const.NUMBER_COUNT) {
+            throw new IllegalArgumentException(Const.NUMBER_COUNT + "개의 숫자를 입력하세요.");
         }
     }
 
