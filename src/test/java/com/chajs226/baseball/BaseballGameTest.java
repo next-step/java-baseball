@@ -1,16 +1,10 @@
 package com.chajs226.baseball;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import com.chajs226.baseball.BaseballGame;
 
 class BaseballGameTest {
 
@@ -32,7 +26,7 @@ class BaseballGameTest {
 		baseNumbers.add("9");
 				
 		//When
-		final String baseballNumbers = baseballGame.makeRamdomNumbers();
+		final String baseballNumbers = baseballGame.makeRandomNumbers();
 		
 		baseNumbers.remove(baseballNumbers.split("")[0]);
 		baseNumbers.remove(baseballNumbers.split("")[1]);
