@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+## 기능 목록
+* 임의의 서로 다른 세 자리 수 생성
+* 입력 받은 숫자에 대해 결과 출력
+* 정답일 때 게임 재시작 또는 종료 구현
