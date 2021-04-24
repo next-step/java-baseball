@@ -6,7 +6,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 import baseball.domain.Balls;
+import baseball.util.Exception;
 import baseball.util.Message;
+import baseball.util.Validation;
 
 public class Baseball {
 	
@@ -17,6 +19,12 @@ public class Baseball {
 	private static final int BALL_MAX_VALUE = 9;
 	//숫자설정시 한자리에 허용하는 최소 값
 	private static final int BALL_MIN_VALUE = 1;
+	//입력자리수
+	private static final int BALL_STATUS_LENGTH = 3;
+	
+	public int strike = 0;
+	
+	public int ball = 0;
 	
 	private final Scanner scanner = new Scanner(System.in);
 	
@@ -27,12 +35,33 @@ public class Baseball {
 		//숫자 생성
 		this.balls = generateAutoNumber();
 		//to_do: 입력값 받기
-		this.inputBalls = registerBallNumbers(inputString(Message.INPUT_NUMBER));		
+		this.inputBalls = registerBallNumbers(inputString(Message.INPUT_NUMBER));
 		//to_do: 값 비교
+		valueCompare();
 		//to_do: 결과 도출
 		//to_do: 재시작,종료 제어
+		
 	}
 	
+	public void valueCompare() {
+		
+		for(int idx=0; idx<balls.getBalls().size(); idx++) {
+			isStricke(balls.getBalls().get(idx).getBall(), idx);
+		}
+	}
+
+	private void isStricke(String ballVal, int compareIdx) {
+		for(int idx=0; idx<inputBalls.getBalls().size(); idx++) {
+
+			if(inputBalls.getBalls().get(idx).getBall().equals(ballVal) && idx == compareIdx) {
+				strike++;
+			}
+			if(inputBalls.getBalls().get(idx).getBall().equals(ballVal) && idx != compareIdx) {
+				ball++;
+			}
+		}
+	}
+
 	public Balls generateAutoNumber() {
 		//중복을 제거하면서 3자리 숫자를 담기위해 LinkedHashSet을 사용.
 		LinkedHashSet<String> ballTemp = new LinkedHashSet<>();
@@ -52,7 +81,7 @@ public class Baseball {
 		while(it.hasNext()){
 			ballBuilder.append((String) it.next());
 		}
-		//System.err.println(ballBuilder.toString());
+		
 		return ballBuilder.toString();
 	}
 	
@@ -62,6 +91,13 @@ public class Baseball {
     }
 
 	public Balls registerBallNumbers(String inputString) {
+		if(Validation.nullCheckString(inputString)) {
+            Exception.nullPointerException(Message.INPUT_MSG_NULL);
+        }
+
+		if(inputString.length() != BALL_STATUS_LENGTH) {
+			Exception.illegalArgumentException(Message.INPUT_MSG_LENTH_LIMIT);
+		}
 		return new Balls(inputString);
 	}
 }
