@@ -8,4 +8,8 @@ public class StrikeCalculator {
     public StrikeCalculator(int maxLen) {
         this.maxLen = maxLen;
     }
+
+    public int getStrikesCnt(String generated, String input) {
+        return 3;
+    }
 }
