@@ -55,8 +55,8 @@ public class Baseball {
         return sc.next();
     }
 
-    public String message(String str){
-        return str;
+    public void message(String str){
+        System.out.println(str);
     }
 
     private void reStart(String flag){
