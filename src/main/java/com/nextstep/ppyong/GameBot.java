@@ -1,29 +1,31 @@
-package com.nextstep;
+package com.nextstep.ppyong;
 
+import com.nextstep.ppyong.service.CheckMatchNumberService;
+import com.nextstep.ppyong.validator.Validator;
+import java.util.List;
 import java.util.Scanner;
-import com.nextstep.utils.ClientInputValidator;
-import com.nextstep.utils.RandomNumberUtil;
+import com.nextstep.ppyong.utils.RandomNumberUtil;
 
 public class GameBot {
     private static final int MAX_NUMBER_SIZE = 3;
     private static final String REPLAY_NUMBER = "1";
     private static final String STOP_NUMBER = "2";
 
-    private String botRandomNumber;
     private Scanner scanner;
     private RandomNumberUtil randomNumberUtil;
-    private ClientInputValidator clientInputValidator;
+    private CheckMatchNumberService checkMatchNumberService;
+    private List<Validator> validatorList;
 
-    public GameBot() {
+    public GameBot(List<Validator> validatorList) {
         scanner = new Scanner(System.in);
         randomNumberUtil = new RandomNumberUtil(MAX_NUMBER_SIZE);
+        this.validatorList = validatorList;
     }
 
     public void run() {
         boolean continued = true;
         while(continued) {
-            botRandomNumber = randomNumberUtil.createRandomNumber();
-            clientInputValidator = new ClientInputValidator(botRandomNumber);
+            checkMatchNumberService = new CheckMatchNumberService(randomNumberUtil.createRandomNumber());
             inputNumber();
             continued = !isQuit();
         }
@@ -45,7 +47,25 @@ public class GameBot {
             System.out.print("숫자를 입력해주세요: ");
             String input = scanner.nextLine();
 
-            continued = !clientInputValidator.checkValidNumber(input);
+            continued = !valid(input);
         }
+    }
+
+    private boolean valid(String input) {
+        try{
+            for(Validator validator : validatorList) {
+                validator.valid(input);
+            }
+            checkMatchNumberService.valid(input);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        if(input.length() != MAX_NUMBER_SIZE) {
+            System.out.println("유효한 숫자가 아닙니다. 1-9의 '3자리' 정수를 입력해주세요.");
+            return false;
+        }
+        return true;
     }
 }
