@@ -2,6 +2,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Problem {
+
 	private String answer;
 
 	public Problem() {
@@ -26,9 +27,9 @@ public class Problem {
 	public Map<Result, Integer> getResultMap(String input) {
 		Map<Result, Integer> resultMap = new LinkedHashMap<>();
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < input.length(); i++) {
 			Result result = getResult(input, i);
-			resultMap.putIfAbsent(result, 1);
+			resultMap.putIfAbsent(result, 0);
 			resultMap.computeIfPresent(result, (k, v) -> v + 1);
 		}
 
