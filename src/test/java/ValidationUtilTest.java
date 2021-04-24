@@ -55,4 +55,21 @@ public class ValidationUtilTest {
         number = "789";
         Assertions.assertTrue(validationUtil.isCorrectNumber(number));
     }
+
+    @Test
+    @DisplayName("게임 진행 여부 입력 문자가 1과 2가 아닐 경우")
+    void continueWrongInputTest() {
+        String answer = "#";
+        Assertions.assertFalse(validationUtil.isCorrectContinueAnswer(answer));
+    }
+
+    @Test
+    @DisplayName("게임 진행 여부의 입력이 정상적으로 들어왔을 경우")
+    void continueCorrectInputTest() {
+        String answer = "1";
+        Assertions.assertTrue(validationUtil.isCorrectContinueAnswer(answer));
+
+        answer = "2";
+        Assertions.assertTrue(validationUtil.isCorrectContinueAnswer(answer));
+    }
 }
