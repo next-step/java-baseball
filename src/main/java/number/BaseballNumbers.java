@@ -1,7 +1,9 @@
 package number;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 
 public class BaseballNumbers {
@@ -46,26 +48,6 @@ public class BaseballNumbers {
 
 	public Integer get(int index) {
 		return baseballNumbers.get(index);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (baseballNumbers == obj) {
-			return true;
-		}
-
-		if (obj == null || baseballNumbers.getClass() != obj.getClass()) {
-			return false;
-		}
-
-		final List<Integer> compareBaseballNumbers = (List<Integer>) obj;
-
-		return baseballNumbers.equals(compareBaseballNumbers);
-	}
-
-	@Override
-	public int hashCode() {
-		return baseballNumbers.hashCode();
 	}
 
 	@Override
