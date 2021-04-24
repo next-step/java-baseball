@@ -6,10 +6,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import me.nimkoes.baseball.view.CommandLine;
+
 class BaseballControllerTest {
+
+    BaseballController baseballController;
+
+    @BeforeEach
+    void setUp() {
+        baseballController = new BaseballController(CommandLine.getInstance());
+    }
 
     @Test
     @DisplayName("난수 생성 기능 테스트")
@@ -18,13 +28,11 @@ class BaseballControllerTest {
         try {
 
             // given
-            String generatedValue = "";
-            BaseballController baseballController = new BaseballController();
-            Method testPrivateMethod = baseballController.getClass().getDeclaredMethod("generateRandomNumber");
+            Method testPrivateMethod = BaseballController.class.getDeclaredMethod("generateRandomNumber");
             testPrivateMethod.setAccessible(true);
 
             // when
-            generatedValue = (String) testPrivateMethod.invoke(baseballController);
+            String generatedValue = (String) testPrivateMethod.invoke(baseballController);
 
             // then
             assertThat(generatedValue)
