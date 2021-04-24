@@ -8,10 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Numbers {
-	private static final int LENGTH = 3;
+	public static final int LENGTH = 3;
 	private static final int LOWER_BOUND = 1;
-	private static final int UPPER_BOUND = 9;
-	private static final int NUMBER_RADIX = 10;
+	public static final int UPPER_BOUND = 9;
+	public static final int NUMBER_RADIX = 10;
 
 	private final List<Integer> numbers;
 
@@ -57,6 +57,10 @@ public class Numbers {
 			inputNumbers.add(Character.digit(c, NUMBER_RADIX));
 		}
 		return new Numbers(inputNumbers);
+	}
+
+	public static Numbers of(Set<Integer> inputSet) {
+		return new Numbers(new ArrayList<>(inputSet));
 	}
 
 	@Override
