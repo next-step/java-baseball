@@ -16,6 +16,7 @@ public class MainApplication {
 
       // strike 비교
       int strike = mainApplication.validateStrike(randomNumber, inputNumber);
+      int ball = mainApplication.validateBall(randomNumber, inputNumber);
     }
   }
 
@@ -34,17 +35,28 @@ public class MainApplication {
     return randomNumber.toString();
   }
 
-  // 스트라이크 비교
+  // Strike 확인
   private int validateStrike(String randomNumber, String inputNumber) {
     int strike = 0;
-    char[] randomNumberOfChars = randomNumber.toCharArray();
-    char[] inputNumberOfChars = inputNumber.toCharArray();
-    for (int i = 0; i < inputNumberOfChars.length; i++) {
-      if (randomNumberOfChars[i] == inputNumberOfChars[i]) {
+    for (int i = 0; i < randomNumber.length(); i++) {
+      if (randomNumber.charAt(i) == inputNumber.charAt(i)) {
         strike++;
       }
     }
 
     return strike;
+  }
+
+  // Ball 확인
+  private int validateBall(String randomNumber, String inputNumber) {
+    int ball = 0;
+    for (int i = 0; i < randomNumber.length(); i++) {
+      if (randomNumber.charAt(i) != inputNumber.charAt(i)
+          && randomNumber.contains(String.valueOf(inputNumber.charAt(i)))) {
+        ball++;
+      }
+    }
+
+    return ball;
   }
 }
