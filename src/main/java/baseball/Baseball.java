@@ -31,30 +31,31 @@ public class Baseball {
 	}
 
 	public boolean checkAnswer(List<Integer> numbers) {
-		int strikeCount = 0;
-		int ballCount = 0;
+		int strike = 0;
+		int ball = 0;
 		for (int i = 0; i < numbers.size(); i++) {
 			int number = numbers.get(i);
 			if (answerNumbers.contains(number) && answerNumbers.get(i) == number) {
-				strikeCount++;
+				strike++;
 			} else if (answerNumbers.contains(number) && answerNumbers.get(i) != number) {
-				ballCount++;
+				ball++;
 			}
 		}
-		printBallCount(strikeCount, ballCount);
-		return strikeCount == SIZE_OF_NUMBERS;
+		BallCount ballCount = new BallCount(strike, ball);
+		printBallCount(ballCount);
+		return strike == SIZE_OF_NUMBERS;
 	}
 
-	private void printBallCount(int strikeCount, int ballCount) {
-		String ballCountString = "";
-		if (strikeCount > 0 && ballCount > 0) {
-			ballCountString = String.format("%d 스트라이크 %d볼", strikeCount, ballCount);
-		} else if (strikeCount > 0 && ballCount == 0) {
-			ballCountString = String.format("%d 스트라이크", strikeCount);
-		} else if (strikeCount == 0 && ballCount > 0) {
-			ballCountString = String.format("%d볼", ballCount);
-		} else if (strikeCount == 0 && ballCount == 0) {
-			ballCountString = "낫싱";
+	private void printBallCount(BallCount ballCount) {
+		int strike = ballCount.getStrike();
+		int ball = ballCount.getBall();
+		String ballCountString = "낫싱";
+		if (strike > 0 && ball > 0) {
+			ballCountString = String.format("%d 스트라이크 %d볼", strike, ball);
+		} else if (strike > 0 && ball == 0) {
+			ballCountString = String.format("%d 스트라이크", strike);
+		} else if (strike == 0 && ball > 0) {
+			ballCountString = String.format("%d볼", ball);
 		}
 		System.out.println(ballCountString);
 	}
