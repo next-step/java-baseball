@@ -13,7 +13,7 @@ public class BaseballRule {
 	public BaseballRule(BallNumber playerBallNumber, BallNumber computerBallNumber) {
 		this.playerBallNumber = playerBallNumber;
 		this.computerBallNumber = computerBallNumber;
-		this.ballSize = BallNumber.SIZE;
+		this.ballSize = BallNumber.MAX_SIZE;
 		compareBallNumbers();
 	}
 
@@ -40,12 +40,27 @@ public class BaseballRule {
 	}
 
 	private BaseballResult checkBall(BaseballResult baseballResult, int playerIndex) {
-		int computerIndex = playerIndex;
-		computerIndex++;
-		if(computerIndex == this.ballSize)
-			computerIndex = 0;
-		if(this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(computerIndex) )
+		int frontComputerIndex = getFrontComputerIndexByPlayerIndex(playerIndex);
+		int backComputerIndex = getBackComputerIndexByPlayerIndex(playerIndex);
+		if (this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(frontComputerIndex))
+			baseballResult.addBallCount();
+		if (this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(backComputerIndex) && backComputerIndex >= BallNumber.MIN_SIZE)
 			baseballResult.addBallCount();
 		return baseballResult;
 	}
+
+	private int getFrontComputerIndexByPlayerIndex(int playerIndex) {
+		int frontComputerIndex = playerIndex;
+		frontComputerIndex++;
+		if (frontComputerIndex == this.ballSize)
+			frontComputerIndex = 0;
+		return frontComputerIndex;
+	}
+
+	private int getBackComputerIndexByPlayerIndex(int playerIndex) {
+		int backComputerComputerIndex = playerIndex;
+		backComputerComputerIndex--;
+		return backComputerComputerIndex;
+	}
+
 }

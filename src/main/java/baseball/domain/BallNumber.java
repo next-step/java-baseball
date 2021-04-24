@@ -8,7 +8,8 @@ import java.util.*;
 
 public class BallNumber {
 
-	public final static int SIZE = 3;
+	public final static int MAX_SIZE = 3;
+	public final static int MIN_SIZE = 0;
 	public final static int MAX_VALUE = 9;
 	public final static int MIN_VALUE = 1;
 
@@ -17,7 +18,7 @@ public class BallNumber {
 	public BallNumber() {
 		this.numbers = new LinkedHashSet<>();
 		Random random = new Random();
-		while (this.numbers.size() != SIZE)
+		while (this.numbers.size() != MAX_SIZE)
 			this.numbers.add(random.nextInt(MAX_VALUE) + 1);
 	}
 
@@ -41,7 +42,7 @@ public class BallNumber {
 	}
 
 	private void sizeValidate() {
-		if (this.numbers.size() != SIZE)
+		if (this.numbers.size() != MAX_SIZE)
 			throw new InvalidateBallNumberSizeError("Size : " + this.numbers.size());
 	}
 
