@@ -41,5 +41,9 @@ public class BaseballGroup {
     public int baseballValueSize(){
         return baseballValues.size();
     }
+
+    public List<Baseball> getBaseballList(){
+        return baseballValues;
+    }
 }
 
