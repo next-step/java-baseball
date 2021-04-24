@@ -12,11 +12,17 @@ public class RandomGenerator {
         this.maxLen = maxLen;
     }
 
+    public void isAvailableUnique(StringBuilder builder, String appendStr) {
+        if(!builder.toString().contains(appendStr))
+            builder.append(appendStr);
+    }
     public String generateBalls() {
         StringBuilder builder = new StringBuilder();
         Random random = new Random();
-        for (int i=0; i<maxLen; i++)
-            builder.append(random.nextInt(9) + 1);
+        while(builder.length() != BaseballGame.DEFAULT_LEN) {
+            int randomNum = random.nextInt(9) + 1;
+            isAvailableUnique(builder, randomNum + "");
+        }
         return builder.toString();
     }
 }

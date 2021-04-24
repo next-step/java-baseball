@@ -23,12 +23,12 @@ public class RandomGeneratorTest {
     public void isValidatedDigit() {
         for (int i=0; i<randomBalls.length(); i++) {
             int num = randomBalls.charAt(i) - '0';
-            Assertions.assertEquals(Pattern.matches("^[1-9]", randomBalls.charAt(i) + ""), true );
+            Assertions.assertTrue(Pattern.matches("^[1-9]", randomBalls.charAt(i) + ""));
         }
     }
 
     public boolean compareBalls(String s1, String s2) {
-        return s1.equals(s2) ? true : false;
+        return s1.equals(s2);
     }
 
     public boolean containBalls(String[] containArr, String findValue, int index) {
@@ -36,7 +36,7 @@ public class RandomGeneratorTest {
         boolean isContained = false;
 
         for(int i=0;i<index;i++)
-            isContained = compareBalls(containArr[i],findValue);
+            isContained = isContained ? true : compareBalls(containArr[i],findValue);
 
         return isContained;
     }
@@ -48,7 +48,24 @@ public class RandomGeneratorTest {
 
         for (int i=0; i<testCnt; i++) {
             ballsArr[i] = randomGenerator.generateBalls();
-            Assertions.assertEquals(containBalls(ballsArr, ballsArr[i], i), false);
+            Assertions.assertFalse(containBalls(ballsArr, ballsArr[i], i));
         }
+    }
+
+    public int getStrNumber(String str, char c) {
+        int cnt = 0;
+
+        for(int i=0;i<str.length();i++)
+            cnt += str.charAt(i) == c ? 1 : 0;
+
+        return cnt;
+    }
+
+    @Test
+    public void isValidatedUnique() {
+
+        for(int i=0;i<randomBalls.length();i++)
+            Assertions.assertEquals(getStrNumber(randomBalls, randomBalls.charAt(i)), 1);
+
     }
 }
