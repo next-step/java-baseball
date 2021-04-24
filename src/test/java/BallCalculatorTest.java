@@ -36,4 +36,11 @@ public class BallCalculatorTest {
         int index = 2;
         assertBallsWhenFirstIsFixed("123", inputs, index);
     }
+
+    @Test
+    public void isCountedThreeBallsWhenFirstIsFixed(){
+        String [] inputs = { "231", "312" };
+        int index = 3;
+        assertBallsWhenFirstIsFixed("123", inputs, index);
+    }
 }
