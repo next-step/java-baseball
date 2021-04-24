@@ -9,21 +9,6 @@ public class RefereeTest {
 	Referee referee = new Referee();
 
 	@Test
-	void answer() {
-		int[] arr = {1, 2, 3};
-		assertThat(referee.isAnswer(arr, arr)).isTrue();
-	}
-
-	@Test
-	void notAnswer() {
-		int[] arr = {1, 2, 3};
-
-		assertThat(referee.isAnswer(arr, new int[] {1, 3, 2})).isFalse();
-		assertThat(referee.isAnswer(arr, new int[] {3, 2, 1})).isFalse();
-		assertThat(referee.isAnswer(arr, new int[] {1, 2, -1})).isFalse();
-	}
-
-	@Test
 	void strike() {
 		int[] arr = {1, 2, 3};
 
@@ -56,6 +41,22 @@ public class RefereeTest {
 
 		assertThat(referee.countBall(arr, new int[] {3, 1, 2})).isEqualTo(3);
 		assertThat(referee.countBall(arr, new int[] {2, 3, 1})).isEqualTo(3);
+	}
+
+	@Test
+	void answer() {
+		int[] arr = {1, 2, 3};
+		assertThat(referee.isAnswer(referee.countStrikes(arr, new int[] {1, 2, 3}))).isTrue();
+
+	}
+
+	@Test
+	void notAnswer() {
+		int[] arr = {1, 2, 3};
+
+		assertThat(referee.isAnswer(referee.countStrikes(arr, new int[] {1, 3, 2}))).isFalse();
+		assertThat(referee.isAnswer(referee.countStrikes(arr, new int[] {3, 2, 1}))).isFalse();
+		assertThat(referee.isAnswer(referee.countStrikes(arr, new int[] {1, 2, -1}))).isFalse();
 	}
 
 	@Test

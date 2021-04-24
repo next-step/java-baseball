@@ -6,10 +6,6 @@ public class Referee {
 
 	}
 
-	public boolean isAnswer(int[] player, int[] opponent) {
-		return player == opponent;
-	}
-
 	private int isSame(int left, int right) {
 		return left == right ? 1 : 0;
 	}
@@ -34,6 +30,10 @@ public class Referee {
 		}
 
 		return count;
+	}
+
+	public boolean isAnswer(int strikes) {
+		return strikes == 3;
 	}
 
 	public boolean isNothing(int strikes, int ball) {
