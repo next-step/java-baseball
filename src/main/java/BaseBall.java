@@ -2,6 +2,12 @@ import java.util.*;
 
 public class BaseBall {
 
+    /**
+     * 1~9의 숫자중 임의의 숫자 3개를 문자로 내보낸다.
+     * 1~9가 담긴 리스트에서 랜덤으로 섞은수(shuffle) 앞의 3개를 뽑는다.
+     *
+     * @return 3자리 임의 숫자(문자)
+     */
     public String unique3DigitString() {
         Integer[] arrNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
@@ -11,12 +17,23 @@ public class BaseBall {
         return numbers.get(0) + "" + numbers.get(1) + "" + numbers.get(2);
     }
 
+    /**
+     * 파라미터로 받은 문자가 서로 다른 3자리 숫자 인지 검증한다.
+     * 정규표현식 "\\d{3}" 을 만족해야 하며, 문자의 낮개를 set 에 넣었을때 갯수가 3개여야한다.
+     *
+     * @param input
+     * @return
+     */
     public boolean checkUnique3DigitString(String input) {
         Set<String> unique = new HashSet<>(Arrays.asList(input.split("")));
 
         return input.matches("\\d{3}") && unique.size() == 3;
     }
 
+    /**
+     * Map 안의 값을 기준으로 결과 메세지를 보여준다
+     * @param map
+     */
     public void printMsg(Map<String, Integer> map) {
         Integer strike = map.get("STRIKE");
         Integer ball = map.get("BALL");
@@ -27,6 +44,12 @@ public class BaseBall {
         System.out.println(msg.toString());
     }
 
+    /**
+     * goal(목표) 수와 source(입력) 수를 가지고 야구게임을 판단한다
+     * @param goal
+     * @param source
+     * @return Map
+     */
     public Map<String, Integer> judgeBaseBall(String goal, String source) {
         int strike = checkStrike(goal, source);
         int ball = checkBall(goal, source);
