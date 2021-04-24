@@ -8,6 +8,10 @@ public class BaseBallGame {
         this.gameNumber = createBallGameNumber();
     }
 
+    public String[] getGameNumber() {
+        return gameNumber;
+    }
+
     private String generateRandomNumber() {
         return String.valueOf((int) (Math.random() * 9 + 1));
     }
