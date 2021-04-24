@@ -24,6 +24,10 @@ public class BaseBallGameService {
 		this.computerNumbers = getComputerNumbers();
 	}
 
+	public BaseBallGameService(List<Integer> computerNumbers) {
+		this.computerNumbers = computerNumbers;
+	}
+
 	public void executeGame(String input) {
 		if (!BaseBallGameValidator.isUserNumberValid(input)) {
 			throw new NumberFormatException("입력값 형식이 다릅니다.");
