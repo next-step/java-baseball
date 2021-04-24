@@ -21,7 +21,7 @@ public class BaseballGame {
 
 	public void startBaseballGame() {
 		String rNumStr = createRandomNum();
-		userGameStart(rNumStr);
+		startUserGame(rNumStr);
 	}
 	
 	public String createRandomNum() {
@@ -40,7 +40,7 @@ public class BaseballGame {
 		return returnStrBd.toString();
 	}
 	
-	public void userGameStart(String rNumStr) {
+	public void startUserGame(String rNumStr) {
 		String userInputStr = inputGameNumber();
 		System.out.println(userInputStr);
 	}
