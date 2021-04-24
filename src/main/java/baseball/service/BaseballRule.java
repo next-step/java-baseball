@@ -19,43 +19,50 @@ public class BaseballRule {
 		return this.baseballResult;
 	}
 
-	//todo: indent < 2 줄여야 합니다. refactoring 필요
 	private void compareBallNumbers() {
-		BaseballResult baseballResult = new BaseballResult();
-		int playerIndex = 0;
-		while (playerIndex < BallNumber.MIN_SIZE) {
-			checkStrike(baseballResult, playerIndex);
-			checkBall(baseballResult, playerIndex);
+		this.baseballResult = new BaseballResult();
+		int playerIndex = BallNumber.MIN_SIZE;
+		while (playerIndex < BallNumber.MAX_SIZE) {
+			checkStrike(playerIndex);
+			checkBall(playerIndex);
 			playerIndex++;
 		}
-		this.baseballResult = baseballResult;
 	}
 
-	private BaseballResult checkStrike(BaseballResult baseballResult, int playerIndex) {
+	private BaseballResult checkStrike(int playerIndex) {
 		if (this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(playerIndex))
-			baseballResult.addStrikeCount();
-		return baseballResult;
+			this.baseballResult.addStrikeCount();
+		return this.baseballResult;
 	}
 
-	private BaseballResult checkBall(BaseballResult baseballResult, int playerIndex) {
-		int frontComputerIndex = getFrontComputerIndexByPlayerIndex(playerIndex);
-		int backComputerIndex = getBackComputerIndexByPlayerIndex(playerIndex);
+	private BaseballResult checkBall(int playerIndex) {
+		checkBallFrontNumber(playerIndex);
+		if(playerIndex > BallNumber.MIN_SIZE)
+			checkBallBackNumber(playerIndex);
+		return this.baseballResult;
+	}
+
+	private void checkBallFrontNumber(int playerIndex) {
+		int frontComputerIndex = getFrontComputerIndex(playerIndex);
 		if (this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(frontComputerIndex))
-			baseballResult.addBallCount();
-		if (this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(backComputerIndex) && backComputerIndex >= BallNumber.MIN_SIZE)
-			baseballResult.addBallCount();
-		return baseballResult;
+			this.baseballResult.addBallCount();
 	}
 
-	private int getFrontComputerIndexByPlayerIndex(int playerIndex) {
+	private void checkBallBackNumber(int playerIndex) {
+		int backComputerIndex = getBackComputerIndex(playerIndex);
+		if (this.playerBallNumber.getNumberByIndex(playerIndex) == this.computerBallNumber.getNumberByIndex(backComputerIndex))
+			this.baseballResult.addBallCount();
+	}
+
+	private int getFrontComputerIndex(int playerIndex) {
 		int frontComputerIndex = playerIndex;
 		frontComputerIndex++;
 		if (frontComputerIndex == BallNumber.MAX_SIZE)
-			frontComputerIndex = 0;
+			frontComputerIndex = BallNumber.MIN_SIZE;
 		return frontComputerIndex;
 	}
 
-	private int getBackComputerIndexByPlayerIndex(int playerIndex) {
+	private int getBackComputerIndex(int playerIndex) {
 		int backComputerComputerIndex = playerIndex;
 		backComputerComputerIndex--;
 		return backComputerComputerIndex;
