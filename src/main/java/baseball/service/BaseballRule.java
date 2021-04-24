@@ -25,7 +25,7 @@ public class BaseballRule {
 	private void compareBallNumbers() {
 		BaseballResult baseballResult = new BaseballResult();
 		int index = 0;
-		while (index < this.ballSize){
+		while (index < this.ballSize) {
 			checkStrike(baseballResult, index);
 			checkBall(baseballResult, index);
 			index++;
@@ -34,7 +34,7 @@ public class BaseballRule {
 	}
 
 	private BaseballResult checkStrike(BaseballResult baseballResult, int index) {
-		if(this.playerBallNumber.getNumberByIndex(index) == this.computerBallNumber.getNumberByIndex(index))
+		if (this.playerBallNumber.getNumberByIndex(index) == this.computerBallNumber.getNumberByIndex(index))
 			baseballResult.addStrikeCount();
 		return baseballResult;
 	}
