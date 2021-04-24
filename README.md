@@ -5,3 +5,6 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능
+1. Junit String 관련 테스트 코드 작성.
