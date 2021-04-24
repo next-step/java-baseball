@@ -14,9 +14,9 @@ public class MainApplication {
       System.out.print("숫자를 입력해주세요 : ");
       String inputNumber = scanner.nextLine();
 
-      // strike 비교
       int strike = mainApplication.validateStrike(randomNumber, inputNumber);
       int ball = mainApplication.validateBall(randomNumber, inputNumber);
+      mainApplication.printResult(strike, ball);
     }
   }
 
@@ -58,5 +58,15 @@ public class MainApplication {
     }
 
     return ball;
+  }
+
+  // 결과 출력
+  private void printResult(int strike, int ball) {
+    if (strike > 0) {
+      System.out.print(strike + " 스트라이크 ");
+    }
+    if (ball > 0) {
+      System.out.print(ball + " 볼");
+    }
   }
 }
