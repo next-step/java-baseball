@@ -1,8 +1,8 @@
-package ppyong.nextstep;
+package com.nextstep;
 
 import java.util.Scanner;
-import ppyong.nextstep.utils.ClientInputValidator;
-import ppyong.nextstep.utils.RandomNumberUtil;
+import com.nextstep.utils.ClientInputValidator;
+import com.nextstep.utils.RandomNumberUtil;
 
 public class GameBot {
     private static final int MAX_NUMBER_SIZE = 3;

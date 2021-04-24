@@ -1,4 +1,4 @@
-package ppyong.nextstep;
+package com.nextstep;
 
 public class Main {
 

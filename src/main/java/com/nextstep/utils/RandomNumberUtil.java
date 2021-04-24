@@ -1,4 +1,4 @@
-package ppyong.nextstep.utils;
+package com.nextstep.utils;
 
 import java.util.Random;
 
