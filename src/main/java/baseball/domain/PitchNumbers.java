@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -43,11 +44,29 @@ public class PitchNumbers {
     }
 
     public int matchStrike(PitchNumbers comparePitchNumbers) {
-        return 0;
+        Iterator<PitchNumber> baseIterator = pitchNumbers.iterator();
+        Iterator<PitchNumber> compareIterator = comparePitchNumbers.pitchNumbers.iterator();
+
+        int count = 0;
+        while (compareIterator.hasNext() && baseIterator.hasNext()) {
+            count = baseIterator.next().equals(compareIterator.next()) ? count + 1 : count;
+        }
+        return count;
     }
 
     public int matchBall(PitchNumbers comparePitchNumbers) {
-        return 0;
+        Iterator<PitchNumber> baseIterator = pitchNumbers.iterator();
+        Iterator<PitchNumber> compareIterator = comparePitchNumbers.pitchNumbers.iterator();
+
+        int count = 0;
+        while (compareIterator.hasNext() && baseIterator.hasNext()) {
+            PitchNumber pitchNumber = compareIterator.next();
+            count = !baseIterator.next().equals(pitchNumber)
+                && pitchNumbers.contains(pitchNumber)
+                ? count + 1
+                : count;
+        }
+        return count;
     }
 
     @Override
