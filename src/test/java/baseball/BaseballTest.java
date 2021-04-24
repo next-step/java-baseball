@@ -53,9 +53,9 @@ public class BaseballTest {
 	}, delimiter=':')
 	void checkAnswer(String answer, String input, Boolean isCorrectAnswer) {
 		Baseball baseball = new Baseball();
-		List<Integer> answerNumberList = Utils.stringToIntegerList(answer);
+		List<Integer> answerNumberList = Utils.stringToIntegerListWithDelimiter(answer);
 		baseball.setAnswerNumbers(answerNumberList);
-		List<Integer> inputNumberList = Utils.stringToIntegerList(input);
+		List<Integer> inputNumberList = Utils.stringToIntegerListWithDelimiter(input);
 		assertThat(baseball.checkAnswer(inputNumberList)).isEqualTo(isCorrectAnswer);
 	}
 
@@ -71,9 +71,9 @@ public class BaseballTest {
 	}, delimiter=':')
 	void printBallCount(String answer, String input, String message) {
 		Baseball baseball = new Baseball();
-		List<Integer> answerNumberList = Utils.stringToIntegerList(answer);
+		List<Integer> answerNumberList = Utils.stringToIntegerListWithDelimiter(answer);
 		baseball.setAnswerNumbers(answerNumberList);
-		List<Integer> inputNumberList = Utils.stringToIntegerList(input);
+		List<Integer> inputNumberList = Utils.stringToIntegerListWithDelimiter(input);
 		baseball.checkAnswer(inputNumberList);
 		baseball.printBallCount();
 		assertThat(message).isEqualTo(outputStreamCaptor.toString().trim());

@@ -30,4 +30,7 @@
     - private BallCount getBallCountFromNumber(int number, int idx): 숫자와 인덱스를 입력받아 스트라이크, 볼을 판정하여 생성한 BallCount 인스턴스를 리턴
     - public void printBallCount(): 현재 BallCount를 System.out으로 출력
     - public static void main(String[] args): 숫자야구게임 대화영 입/출력
+- Utils Class
+  - public static List<Integer> stringToIntegerListWithDelimiter(String input): delimiter 가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴 (default delimiter: ",")
+  - public static List<Integer> stringToIntegerListWithDelimiter(String input, String delimiter) delimiter가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴
 
