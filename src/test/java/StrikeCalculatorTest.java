@@ -12,8 +12,16 @@ public class StrikeCalculatorTest {
     }
 
     @Test
-    public void isStrikedWhen123And123() {
+    public void isCounted3StrikeWhen123And123() {
         String test123 = "123";
         Assertions.assertEquals(strikeCalculator.getStrikesCnt(test123,test123),3);
+    }
+
+    @Test
+    public void isCounted1Strike() {
+        String test123 = "123";
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt(test123,"174"),1);
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt(test123,"825"),1);
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt(test123,"573"),1);
     }
 }

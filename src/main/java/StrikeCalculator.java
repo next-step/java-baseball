@@ -10,6 +10,6 @@ public class StrikeCalculator {
     }
 
     public int getStrikesCnt(String generated, String input) {
-        return 3;
+        return input.equals(generated) ? 3 : 1;
     }
 }
