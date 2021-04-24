@@ -6,8 +6,8 @@ public class Discrimination {
     private int ballCount = 0;
 
     private StringBuilder systemNumbers;
-
     static CreateNumber createNumber;
+
 
 
     public int getStrikeCount(String systemNumber, String userNumber, int index) {
@@ -17,6 +17,14 @@ public class Discrimination {
         }
 
         return strikeCount;
+    }
+
+    public int getBallCount(String SystemNumber, String userNumber, int index) {
+        if(SystemNumber.indexOf(userNumber) > -1 && SystemNumber.indexOf(userNumber) != index) {
+            ballCount++;
+        }
+
+        return ballCount;
     }
 
     public void getSystemNumber() {
