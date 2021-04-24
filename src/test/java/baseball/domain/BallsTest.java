@@ -30,4 +30,13 @@ public class BallsTest {
         assertThat(balls.findPositionByBall(Ball.of(3)))
                 .isEqualTo(new Position(2));
     }
+
+    @Test
+    @DisplayName("공들 안에 찾고자 하는 공이 없으면, NOT_FOUND을 반환한다")
+    public void 공들_안에_찾고자_하는_공이_없으면_NOT_FOUND을_반환한다() {
+        Balls balls = new Balls(Ball.of(1), Ball.of(2), Ball.of(3));
+
+        assertThat(balls.findPositionByBall(Ball.of(4)))
+                .isEqualTo(Position.NOT_FOUND);
+    }
 }

@@ -24,6 +24,10 @@ public class Balls {
     public Position findPositionByBall(Ball ball) {
         int position = balls.indexOf(ball);
 
+        if(position == -1) {
+            return Position.NOT_FOUND;
+        }
+
         return new Position(position);
     }
 }
