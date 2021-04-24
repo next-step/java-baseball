@@ -6,7 +6,8 @@ public enum Message {
 	BALL("볼"),
 	NOTHING("나싱"),
 	INVALID("올바른 입력 값이 아닙니다."),
-	RESTART_OR_END("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+	RESTART_OR_END("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."),
+	COMPLETE("3개의 숫자를 모두 맞히였습니다! 게임종료");
 
 	private String message;
 
