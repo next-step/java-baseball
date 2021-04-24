@@ -10,7 +10,6 @@ public class ValidationUtil {
 
     public boolean isCorrectNumber(String number) {
         if (!validateNumber(number)) {
-            System.out.println(Error.INPUT_ERROR.getMessage());
             return false;
         }
 
@@ -18,12 +17,17 @@ public class ValidationUtil {
     }
 
     private boolean validateNumber(String number) {
-        if (isNotNumber(number))
+        try {
+            if (isNotNumber(number))
+                throw new IllegalArgumentException(Error.CONTAIN_ZERO_OR_WORD.getMessage());
+            if (isNotCorrectDigits(number))
+                throw new IllegalArgumentException(Error.DIGIT_LENGTH.getMessage());
+            if (isDuplicateNumber(number))
+                throw new IllegalArgumentException(Error.DUPLICATE_NUMBER.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
-        if (isNotCorrectDigits(number))
-            return false;
-        if (isDuplicateNumber(number))
-            return false;
+        }
 
         return true;
     }
@@ -48,7 +52,6 @@ public class ValidationUtil {
 
     public boolean isCorrectContinueAnswer(String inputAnswer) {
         if (!validateContinueAnswer(inputAnswer)) {
-            System.out.println(Error.CONTINUE_INPUT_ERROR.getMessage());
             return false;
         }
 
@@ -56,9 +59,14 @@ public class ValidationUtil {
     }
 
     private boolean validateContinueAnswer(String inputAnswer) {
-        if ("1".equals(inputAnswer) || "2".equals(inputAnswer))
-            return true;
+        try {
+            if (!("1".equals(inputAnswer) || "2".equals(inputAnswer)))
+                throw new IllegalArgumentException(Error.WRONG_INPUT.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
 
-        return false;
+        return true;
     }
 }
