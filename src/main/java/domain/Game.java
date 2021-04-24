@@ -24,6 +24,11 @@ public class Game {
 
 	public void play(){
 		Numbers answer = defensePlayer.decideAnswerNumber();
+		while(status == Status.ONGOING){
+			umpire.requestInput();
+			offensePlayer.makeGuess();
+		}
+
 	}
 
 	public enum Status{
