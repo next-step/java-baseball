@@ -15,11 +15,11 @@ public class PrintGenerator {
     }
 
     public String inputNumbers() {
-        System.out.print("숫자를 입력해주세요:");
+        System.out.print("숫자를 입력해 주세요:");
         String input = fs.next();
 
         numValidChecker.isNumber(input);
-        numValidChecker.isThreesize(input);
+        numValidChecker.isThreeSize(input);
         return input;
     }
 

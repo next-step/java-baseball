@@ -29,21 +29,21 @@ public class Calculator {
         return ball;
     }
 
-    private int plusBall(int ball, boolean[] alreadyStriked, HashSet<Character> ballStore, char cur) {
-        if(ballStore.contains(cur) && !alreadyStriked[cur - '0']) ball++;
+    private int plusBall(int ball, boolean[] alreadyStrike, HashSet<Character> ballStore, char cur) {
+        if(ballStore.contains(cur) && !alreadyStrike[cur - '0']) ball++;
         return ball;
     }
 
-    private int getStrikes(String random, String input, int strike, boolean[] alreadyStriked) {
+    private int getStrikes(String random, String input, int strike, boolean[] alreadyStrike) {
         for(int i=0; i< input.length(); ++i) {
-            strike = plusStrike(random, input, strike, alreadyStriked, i);
+            strike = plusStrike(random, input, strike, alreadyStrike, i);
         }
         return strike;
     }
 
-    private int plusStrike(String random, String input, int strike, boolean[] alreadyStriked, int i) {
+    private int plusStrike(String random, String input, int strike, boolean[] alreadyStrike, int i) {
         if(input.charAt(i) == random.charAt(i)) {
-            alreadyStriked[input.charAt(i) - '0'] = true;
+            alreadyStrike[input.charAt(i) - '0'] = true;
             strike++;
         }
         return strike;

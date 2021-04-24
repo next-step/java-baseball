@@ -17,7 +17,7 @@ public class NumValidChecker {
         return isNumber;
     }
 
-    public void isThreesize(String input) {
+    public void isThreeSize(String input) {
         if(input.length() != 3) throw new IllegalArgumentException("세자리 숫자만 입력해 주세요.");
     }
 }
