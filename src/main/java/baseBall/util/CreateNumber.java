@@ -1,7 +1,5 @@
 package baseBall.util;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class CreateNumber {
@@ -15,7 +13,7 @@ public class CreateNumber {
         return String.valueOf(random.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER);
     }
 
-    public String generateNumbers() {
+    public StringBuilder generateNumbers() {
         StringBuilder numbers = new StringBuilder();
         while(numbers.length() < MAX_LENGTH) {
 
@@ -26,7 +24,7 @@ public class CreateNumber {
             }
         }
 
-        return numbers.toString();
+        return numbers;
     }
 
 }
