@@ -8,4 +8,8 @@ public class BallCalculator {
     public BallCalculator(int maxLen) {
         this.maxLen = maxLen;
     }
+
+    public int getBallsCnt(String generated, String input) {
+        return 0;
+    }
 }
