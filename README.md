@@ -5,3 +5,17 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+# 구현할 기능 목록
+
+- [ ] Computer
+  - [ ] 서로 다른 임의의수 3개를 선택
+  - [ ] Player 가 예측한 숫자가 정답인지 확인
+  - [ ] Player 가 예측한 숫자로 스트라이크, 볼을 판단
+- [ ] Player
+  - [ ] 사용자의 입력을 받아서 숫자 예측값을 반환
+- [ ] Game
+  - [ ] 게임 시작
+  - [ ] 게임 재시작
+  - [ ] 게임 종료
+  
