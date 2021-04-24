@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,14 +51,29 @@ class ProblemTest {
 			new Object[] {"123", "400", 0, Result.NONE}
 		};
 	}
-	
-	@Test
-	public void getResultMap() throws Exception {
+
+	@ParameterizedTest
+	@DisplayName("사용자 입력 전체의 투구결과 확인")
+	@MethodSource("parametersForGetResultMap")
+	public void getResultMap(String answer, String input, Integer strike, Integer ball, Integer none) throws Exception {
 	    // given
+		Problem problem = new Problem(answer);
 
 	    // when
-	    
+		Map<Result, Integer> resultMap = problem.getResultMap(input);
+
 	    // then
+		assertEquals(strike, resultMap.get(Result.STRIKE));
+		assertEquals(ball, resultMap.get(Result.BALL));
+		assertEquals(none, resultMap.get(Result.NONE));
+	}
+
+	private static Object[] parametersForGetResultMap() {
+		return new Object[] {
+			new Object[] {"123", "123", 3, null, null},
+			new Object[] {"123", "132", 1, 2, null},
+			new Object[] {"123", "456", null, null, 3}
+		};
 	}
 	
 	@Test
