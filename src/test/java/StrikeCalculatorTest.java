@@ -32,4 +32,12 @@ public class StrikeCalculatorTest {
         assertStrikeWhenFirstIsFixed(test123, inputs, 2);
     }
 
+    @Test public void isCountedStikeFinal() {
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt("127", "134"), 1);
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt("958", "357"), 1);
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt("734", "134"), 2);
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt("274", "278"), 2);
+        Assertions.assertEquals(strikeCalculator.getStrikesCnt("276", "276"), 3);
+    }
+
 }
