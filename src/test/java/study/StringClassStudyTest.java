@@ -46,8 +46,10 @@ class StringClassStudyTest {
 		// when
 		int rightBrace = given.indexOf("(");
 		int leftBrace = given.indexOf(")");
-		final String substring = given.substring(rightBrace).substring(leftBrace);
+
+		final String substring = given.substring(rightBrace+1,leftBrace);
 		// than
+		System.out.println(">> "+substring);
 		assertThat(substring)
 				.isNotEmpty()
 				.contains("1,2");
