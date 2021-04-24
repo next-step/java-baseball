@@ -11,11 +11,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (going) {
-            System.out.println("goal: "+ goal);
             System.out.print("숫자를 입력해주세요: ");
             String input = scanner.nextLine();
 
-            boolean checkInput = bbs.checkUnique3DigitString(input);
             Map<String, Integer> resultMap = bbs.judgeBaseBall(goal, input);
             bbs.printMsg(resultMap);
 

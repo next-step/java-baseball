@@ -21,19 +21,6 @@ public class BaseBall {
     }
 
     /**
-     * 파라미터로 받은 문자가 서로 다른 3자리 숫자 인지 검증한다.
-     * 정규표현식 "\\d{3}" 을 만족해야 하며, 문자의 낮개를 set 에 넣었을때 갯수가 3개여야한다.
-     *
-     * @param input
-     * @return
-     */
-    public boolean checkUnique3DigitString(String input) {
-        Set<String> unique = new HashSet<>(Arrays.asList(input.split("")));
-
-        return input.matches("\\d{3}") && unique.size() == 3;
-    }
-
-    /**
      * Map 안의 값을 기준으로 결과 메세지를 보여준다
      *
      * @param map

@@ -30,14 +30,6 @@ class BaseBallTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"123:true", "1234:false", "ded:false", "ddd:false"}, delimiter = ':')
-    void checkUnique3DigitStringTest(String target, boolean expected) {
-        boolean actual = bbs.checkUnique3DigitString(target);
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
     @CsvSource(value = {
             "123:123:3:0",
             "123:231:0:3",
