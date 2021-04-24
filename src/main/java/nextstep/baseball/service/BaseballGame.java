@@ -39,7 +39,7 @@ public class BaseballGame {
             if(strike != null && strike == 3){
                 break;
             }
-            System.out.println(resultPrint(gameResult));
+            System.out.println(baseballGameCheckService.resultPrint(gameResult));
         }
         return "END";
     }
@@ -47,14 +47,5 @@ public class BaseballGame {
     private String input(){
         Scanner sc = new Scanner(System.in);
         return sc.next();
-    }
-
-    private String resultPrint(Map<String, Integer> gameResult){
-        Integer strikeCount = gameResult.get(BaseballEnum.STRIKE.getCode());
-        Integer ballCount = gameResult.get(BaseballEnum.BALL.getCode());
-        String strikeText = strikeCount != null ? strikeCount + " " + BaseballEnum.STRIKE.getName() : "";
-        String ballText = ballCount != null ? ballCount + " " + BaseballEnum.BALL.getName(): "";
-
-        return (strikeText + " " + ballText).equals(" ") ? BaseballEnum.NOTHING.getName() : (strikeText + " " + ballText);
     }
 }

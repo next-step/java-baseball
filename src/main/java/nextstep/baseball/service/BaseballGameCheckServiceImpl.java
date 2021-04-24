@@ -37,4 +37,24 @@ public class BaseballGameCheckServiceImpl implements BaseballGameCheckService {
 
         return BaseballEnum.NOTHING.getCode();
     }
+
+    @Override
+    public StringBuffer resultPrint(Map<String, Integer> result){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        if(result.get(BaseballEnum.STRIKE.getCode()) != null){
+            stringBuffer.append(result.get(BaseballEnum.STRIKE.getCode()));
+            stringBuffer.append(BaseballEnum.STRIKE.getName());
+        }
+
+        if(result.get(BaseballEnum.BALL.getCode()) != null){
+            stringBuffer.append(result.get(BaseballEnum.BALL.getCode()));
+            stringBuffer.append(BaseballEnum.BALL.getName());
+        }
+
+        if(stringBuffer.length() == 0){
+            stringBuffer.append(result.get(BaseballEnum.NOTHING.getCode()));
+        }
+        return stringBuffer;
+    }
 }

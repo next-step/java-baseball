@@ -74,10 +74,8 @@ public class BaseballGameTest {
 
         Map<String, Integer> result = getGameResult(player1Number, player2Number);
 
-        String strike = result.get(BaseballEnum.STRIKE.getCode()) != null ? result.get(BaseballEnum.STRIKE.getCode()) + " " + BaseballEnum.STRIKE.getName() : "";
-        String ball = result.get(BaseballEnum.BALL.getCode()) != null ? result.get(BaseballEnum.BALL.getCode()) + " " + BaseballEnum.BALL.getName(): "";
 
-        System.out.println(strike + " " + ball);
+        System.out.println(resultPrint(result));
         assertThat(result.size()).isGreaterThan(0);
     }
 
@@ -103,5 +101,24 @@ public class BaseballGameTest {
         }
 
         return BaseballEnum.NOTHING.getCode();
+    }
+
+    private StringBuffer resultPrint(Map<String, Integer> result){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        if(result.get(BaseballEnum.STRIKE.getCode()) != null){
+            stringBuffer.append(result.get(BaseballEnum.STRIKE.getCode()));
+            stringBuffer.append(BaseballEnum.STRIKE.getName());
+        }
+
+        if(result.get(BaseballEnum.BALL.getCode()) != null){
+            stringBuffer.append(result.get(BaseballEnum.BALL.getCode()));
+            stringBuffer.append(BaseballEnum.BALL.getName());
+        }
+
+        if(stringBuffer.length() == 0){
+            stringBuffer.append(result.get(BaseballEnum.NOTHING.getCode()));
+        }
+        return stringBuffer;
     }
 }
