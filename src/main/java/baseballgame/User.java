@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class User {
-    final String numberRegExpression = "(^[0-9]*$)";
     List<Integer> selectNumbers = new ArrayList<>();
 
     public List<Integer> getSelectNumbers() {
@@ -41,7 +40,7 @@ public class User {
     }
 
     private void checkInputNumberType(String input) {
-        if (!Pattern.matches(numberRegExpression, input)) {
+        if (!Pattern.matches(Const.NUMBER_REGULAR_EXPRESSION, input)) {
             throw new IllegalArgumentException("숫자를 입력해야 합니다.");
         }
     }

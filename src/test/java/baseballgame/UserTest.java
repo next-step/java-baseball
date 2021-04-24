@@ -22,10 +22,8 @@ class UserTest {
     @DisplayName("숫자가 아닌 문자를 입력했을 경우")
     void inputString() {
         String[] inputs = "java".split("");
-        final String numberRegExpression = "(^[0-9]*$)";
-
         for (String input : inputs) {
-            assertFalse(Pattern.matches(numberRegExpression, input));
+            assertFalse(Pattern.matches(Const.NUMBER_REGULAR_EXPRESSION, input));
         }
     }
 
