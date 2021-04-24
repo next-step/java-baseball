@@ -8,6 +8,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.hoomin.game.baseball.enums.GameOption;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseBallGameTest {
 	private BaseBallGame baseBallGame;
@@ -18,22 +20,21 @@ public class BaseBallGameTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = {1})
-	public void isOnGoing_InputGameOption_ReturnTrue(int input) {
-		assertTrue(baseBallGame.isOnGoing(input));
+	@ValueSource(strings = {"RESTART"})
+	public void isOnGoing_InputGameOption_ReturnTrue(String input) {
+		assertTrue(GameOption.valueOf(input).isOnGoing());
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = {2})
-	public void isOnGoing_InputGameOption_ReturnFalse(int input) {
-		assertFalse(baseBallGame.isOnGoing(input));
+	@ValueSource(strings = {"QUIT"})
+	public void isOnGoing_InputGameOption_ReturnFalse(String input) {
+		assertFalse(GameOption.valueOf(input).isOnGoing());
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = {3, -1})
-	public void isOnGoing_InputGameOption_IllegalArgumentExceptionThrown(int input) {
-		assertThatThrownBy(() -> baseBallGame.isOnGoing(input))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage("1또는 2를 입력해야 합니다.");
+	@ValueSource(strings = {"TEST"})
+	public void isOnGoing_InputGameOption_IllegalArgumentExceptionThrown(String input) {
+		assertThatThrownBy(() -> GameOption.valueOf(input).isOnGoing())
+			.isInstanceOf(IllegalArgumentException.class);
 	}
 }

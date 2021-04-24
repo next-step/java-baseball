@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.hoomin.game.baseball.domain.Numbers;
+import com.hoomin.game.baseball.enums.GameOption;
 
 /**
  * 비즈니스 로직 없이 입력을 담당한다.
@@ -12,9 +13,9 @@ import com.hoomin.game.baseball.domain.Numbers;
 public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static int getGameOption() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		return Integer.parseInt(scanner.nextLine());
+	public static GameOption getGameOption() {
+		System.out.println("게임을 새로 시작하려면 'RESTART', 종료하려면 'QUIT'를 입력하세요.");
+		return GameOption.valueOf(scanner.nextLine().toUpperCase());
 	}
 
 	public static Numbers getNumbers() {
