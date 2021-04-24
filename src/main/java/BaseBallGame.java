@@ -18,6 +18,9 @@ public class BaseBallGame {
             if (!isValidLength(inputNumbers)) {
                 System.out.println("유효하지 않은 입력길이 입니다.");
             }
+            if (!isValidFormat(inputNumbers)) {
+                System.out.println("유효하지 않은 입력형식 입니다.");
+            }
         }
     }
 
@@ -34,6 +37,25 @@ public class BaseBallGame {
         if (inputNumbers == null || inputNumbers.length() != 3) {
             return false;
         }
+        return true;
+    }
+
+    private boolean isValidFormat(String inputNumbers) {
+        int inputNumbersLength = inputNumbers.length();
+
+        for (int i = 0; i < inputNumbersLength; i++) {
+            String s = inputNumbers.substring(i, i+1);
+            int number;
+            try {
+                number = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+            if (number < 1 || number > 9) {
+                return false;
+            }
+        }
+
         return true;
     }
 }

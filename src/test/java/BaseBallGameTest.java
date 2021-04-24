@@ -34,4 +34,13 @@ public class BaseBallGameTest {
         assertThat(nums.length() != 3).isTrue();
     }
 
+    @Test
+    @DisplayName("형식 검증 테스트")
+    public void isValidFormat() {
+        String inputVal1 = "#12";
+        String inputVal2 = "106";
+
+        assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() -> Integer.parseInt(inputVal1));
+        assertThat(inputVal2).contains("0");
+    }
 }
