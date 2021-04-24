@@ -11,12 +11,12 @@ public class BaseBallGameController {
 
     public void start() {
         do {
-             catcher.setPitchingNumber(pitcher.getPitchingNumber());
+             catcher.setScore(pitcher.getPitchingNumber());
              catcher.printScore();
-        } while(isContinueGame());
+        } while(continues());
     }
 
-    private boolean isContinueGame() {
+    private boolean continues() {
         if (catcher.is3Strike() && wantsEnd()) {
             return false;
         }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class BaseBallPitcher {
     private int baseBallNumberLength;
 
@@ -6,8 +8,16 @@ class BaseBallPitcher {
     }
 
     public int[] getPitchingNumber() {
-        int[] pitchingNumber = new int[baseBallNumberLength];
+        int[] pitchingNumbers = new int[baseBallNumberLength];
 
-        return pitchingNumber;
+        Scanner scanner = new Scanner(System.in);
+        int pitchingNumber = scanner.nextInt();
+        char[] pitchingChars = Integer.toString(pitchingNumber).toCharArray();
+
+        for (char pitchingChar : pitchingChars) {
+            Character.getNumericValue(pitchingChar);
+        }
+
+        return pitchingNumbers;
     }
 }
