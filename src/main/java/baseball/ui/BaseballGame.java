@@ -1,7 +1,10 @@
 package baseball.service;
 
-public class BaseballGameManger {
+public class BaseballGame {
 
+	public static void main(String[] args){
+
+	}
 	public void start() {
 
 	}
