@@ -10,7 +10,7 @@ class RandomGeneratorTest {
 
     @DisplayName("RandomGenerator getRandomNumber는 shuffle한 Numbers를 반환한다")
     @Test
-    void getRandomNumberTest(){
+    void getRandomNumberTest() {
         final Random testRandomGenerator = new RandomGenerator();
         final Numbers randomNumber = testRandomGenerator.getRandomNumber(3);
         assertThat(randomNumber.getNumbers()).doesNotContainSequence("1", "2", "3");

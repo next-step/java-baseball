@@ -7,8 +7,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BaseballGameTest {
-    private BaseballGame baseballGame;
     private final Numbers randomNumbers = new Numbers("1", "2", "3");
+    private BaseballGame baseballGame;
 
     @Test
     void strike3() {
