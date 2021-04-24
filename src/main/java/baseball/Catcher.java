@@ -39,6 +39,9 @@ class Catcher {
     }
 
     public void setScore(int[] pitchingNumbers) {
+        strikeCount = 0;
+        ballCount = 0;
+
         for (int i = 0; i < baseBallNumberLength; i++) {
             calStrikeCount(pitchingNumbers[i], standardNumbers.get(i));
             calBallCount(pitchingNumbers, standardNumbers, i);

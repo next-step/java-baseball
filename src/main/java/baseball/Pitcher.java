@@ -17,8 +17,8 @@ class Pitcher {
         int pitchingNumber = scanner.nextInt();
         char[] pitchingChars = Integer.toString(pitchingNumber).toCharArray();
 
-        for (char pitchingChar : pitchingChars) {
-            Character.getNumericValue(pitchingChar);
+        for (int i = 0; i < baseBallNumberLength; i++) {
+            pitchingNumbers[i] = Character.getNumericValue(pitchingChars[i]);
         }
 
         return pitchingNumbers;

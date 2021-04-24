@@ -34,7 +34,7 @@ public class GameController {
         Scanner sc = new Scanner(System.in);
         int answer = sc.nextInt();
 
-        if (answer == 1) {
+        if (answer == 2) {
             return true;
         }
 
