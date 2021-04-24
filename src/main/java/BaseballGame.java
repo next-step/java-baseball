@@ -8,20 +8,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class BaseballGameGo {
+public class BaseballGame {
 	private final int numnCreateCnt = 3;
-	BaseballGameGo(){
+	BaseballGame(){
 		
 	}
 	
 	public static void main(String[] args) {
-		BaseballGameGo bg = new BaseballGameGo();
+		BaseballGame bg = new BaseballGame();
 		bg.startBaseballGame();
 	}
 
 	public void startBaseballGame() {
 		String rNumStr = createRandomNum();
-//		System.out.println(rNumStr);
+		System.out.println(rNumStr);
 	}
 	
 	public String createRandomNum() {
