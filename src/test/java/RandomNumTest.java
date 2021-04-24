@@ -1,4 +1,6 @@
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
@@ -6,7 +8,6 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 public class RandomNumTest {
 	private Set<Integer> distinctNumSet;
 	private String testNumStr;

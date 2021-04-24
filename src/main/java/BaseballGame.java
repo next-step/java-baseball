@@ -64,7 +64,6 @@ public class BaseballGame {
 	public void startUserGame(String rNumStr) {
 		String userInputStr = inputGameNumber();
 		Map<String, Integer> returnMap = compareNums(rNumStr, userInputStr);
-		System.out.println(returnMap);
 	}
 	
 	public String inputGameNumber() {
