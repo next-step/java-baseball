@@ -53,7 +53,10 @@ public class RandomNumGeneratorTest {
 
         for (int i=0; i<testCnt; i++){
             final String balls =ballsArr[i];
-            assertEquals(Arrays.stream(ballsArr).filter(s -> s.equals(balls)).count(), 1);
+            if(ballsArr[i].equals(balls)) {
+                int cnt = +1;
+                assertEquals(cnt, 1);
+            }
         }
     }
 }
