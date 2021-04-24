@@ -16,19 +16,19 @@ public class BaseballRefereeTest {
     private BaseballReferee baseballReferee;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.baseballReferee = new BaseballReferee();
     }
 
     @ParameterizedTest
     @CsvSource(value = {"123,STRIKE", "312,BALL", "456,NOTHING"})
     @DisplayName("결과 판정 - 플레이어가 입력한 숫자값 3개가 모두 같은 결과일 경우")
-    void decide_succeed(String playerInput, Decision expected){
+    void decide_succeed(String playerInput, Decision expected) {
         // given
         String computerInput = "123";
 
         // when
-        List<Decision> decisions = this.baseballReferee.decide(playerInput, computerInput);
+        List<Decision> decisions = this.baseballReferee.decide(playerInput.toCharArray(), computerInput);
 
         // then
         Assertions.assertThat(decisions.size()).isEqualTo(3);
@@ -37,13 +37,13 @@ public class BaseballRefereeTest {
 
     @Test
     @DisplayName("결과 판정 - 사용자가 134를 던지고 컴퓨터가 123을 던졌을 경우")
-    void decide_succeed(){
+    void decide_succeed() {
         // given
         String playerInput = "134";
         String computerInput = "123";
 
         // when
-        List<Decision> decisions = this.baseballReferee.decide(playerInput, computerInput);
+        List<Decision> decisions = this.baseballReferee.decide(playerInput.toCharArray(), computerInput);
 
         // then
         Assertions.assertThat(decisions.size()).isEqualTo(3);
