@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+* 컴퓨터가 임의의 수 3개를 선택하는 기능
+* 숫자를 입력받는 기능
+* 정답 여부를 판별하는 기능
+* 스트라이크를 판별하는 기능
+* 볼을 판별하는 기능
