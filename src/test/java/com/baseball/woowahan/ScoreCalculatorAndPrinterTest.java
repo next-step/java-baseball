@@ -49,7 +49,7 @@ class ScoreCalculatorAndPrinterTest {
 	public void calculate(String inputNumber, String randomNumber) {
 
 		String[] inputNumbers = inputNumber.split("");
-		for (int i = 0; i < UserInput.GAME_LENGTH; i++) {
+		for (int i = 0; i < GameManager.GAME_LENGTH; i++) {
 			checkStrike(randomNumber, i, inputNumbers[i]);
 			checkBall(randomNumber, i, inputNumbers[i]);
 		}

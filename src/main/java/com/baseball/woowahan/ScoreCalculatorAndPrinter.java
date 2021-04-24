@@ -14,7 +14,7 @@ public class ScoreCalculatorAndPrinter {
 	public void calculate(String inputNumber, String randomNumber) {
 		initCounts();
 		String[] inputNumbers = inputNumber.split("");
-		for (int i = 0; i < UserInput.GAME_LENGTH; i++) {
+		for (int i = 0; i < GameManager.GAME_LENGTH; i++) {
 			checkStrike(randomNumber, i, inputNumbers[i]);
 			checkBall(randomNumber, i, inputNumbers[i]);
 		}
@@ -22,11 +22,10 @@ public class ScoreCalculatorAndPrinter {
 	}
 
 	public boolean isCompleted() {
-		return Objects.equals(strikeCount, UserInput.GAME_LENGTH);
+		return Objects.equals(strikeCount, GameManager.GAME_LENGTH);
 	}
 
 	private void printMessage() {
-
 		StringBuilder stringBuilder = new StringBuilder();
 		if (strikeCount > 0) {
 			stringBuilder.append(strikeCount).append(" ").append(Message.STRIKE.getMessage()).append(" ");
@@ -39,14 +38,12 @@ public class ScoreCalculatorAndPrinter {
 	}
 
 	private void checkStrike(String randomNumber, int index, String input) {
-
 		if (Objects.equals(index, randomNumber.indexOf(input))) {
 			strikeCount++;
 		}
 	}
 
 	private void checkBall(String randomNumber, int index, String input) {
-
 		if (!Objects.equals(index, randomNumber.indexOf(input)) && randomNumber.contains(input)) {
 			ballCount++;
 		}

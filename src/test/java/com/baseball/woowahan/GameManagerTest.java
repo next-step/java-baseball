@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class UserInputGeneratorTest {
+class GameManagerTest {
 	@Test
 	void isGameLength_Three() {
-		assertThat(UserInput.GAME_LENGTH).isEqualTo(3);
+		assertThat(GameManager.GAME_LENGTH).isEqualTo(3);
 	}
 
 }

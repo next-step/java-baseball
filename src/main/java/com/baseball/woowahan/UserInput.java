@@ -1,16 +1,22 @@
 package com.baseball.woowahan;
 
-public class UserInput {
-	public static final int GAME_LENGTH = 3;
+import java.io.IOException;
 
-	public String start() {
+public class UserInput {
+	private UserInputGenerator userInputGenerator;
+	private UserInputValidator userInputValidator;
+
+	public UserInput(UserInputGenerator userInputGenerator, UserInputValidator userInputValidator) {
+		this.userInputGenerator = userInputGenerator;
+		this.userInputValidator = userInputValidator;
+	}
+
+	public String returnInputNumber() throws IOException {
 		boolean validation = false;
 		String input = "";
-		UserInputGenerator userInputGenerator = new UserInputGenerator();
-		UserInputValidator userInputValidator = new UserInputValidator();
 		while (!validation) {
-			input = userInputGenerator.start();
-			validation = userInputValidator.validate(input);
+			input = userInputGenerator.enterInput();
+			validation = userInputValidator.isValid(input);
 			printLogWhenInvalid(validation);
 		}
 		return input;

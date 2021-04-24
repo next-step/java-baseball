@@ -17,7 +17,7 @@ public class RandomGenerator {
 		initAllNumbers();
 		Random random = new Random();
 		StringBuilder stringBuilder = new StringBuilder();
-		while (stringBuilder.length() < UserInput.GAME_LENGTH) {
+		while (stringBuilder.length() < GameManager.GAME_LENGTH) {
 			int number = random.nextInt(allNumbers.size());
 			stringBuilder.append(allNumbers.get(number));
 			allNumbers.remove(number);

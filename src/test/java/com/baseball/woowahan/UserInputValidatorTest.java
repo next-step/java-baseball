@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class UserInputValidatorTest {
 	private UserInputValidator userInputValidator = new UserInputValidator();
-	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", UserInput.GAME_LENGTH, "}$");
+	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", GameManager.GAME_LENGTH, "}$");
 
 	@Test
 	@DisplayName("null 입력")
@@ -43,13 +43,13 @@ class UserInputValidatorTest {
 	@ValueSource(strings = {"가가1", "133", "노 1", "90213", "012"})
 	@DisplayName("null, 서로다른 3개 숫자조건 만족실패")
 	void validation_False_Test(String input) {
-		assertThat(userInputValidator.validate(input)).isFalse();
+		assertThat(userInputValidator.isValid(input)).isFalse();
 	}
 
 	@Test
 	@DisplayName("null, 서로다른 3개 숫자조건 만족성공")
 	void validation_True_Test() {
-		assertThat(userInputValidator.validate("597")).isTrue();
+		assertThat(userInputValidator.isValid("597")).isTrue();
 	}
 
 	private boolean isNotNull(String input) {
@@ -59,7 +59,7 @@ class UserInputValidatorTest {
 	private boolean isGameLengthAndAllOtherNumbers(String input) {
 		Set<String> set = new HashSet<>();
 		set.addAll(Arrays.asList(input.split("")));
-		return input.matches(NUMBER_PATTERN) && Objects.equals(UserInput.GAME_LENGTH, set.size());
+		return input.matches(NUMBER_PATTERN) && Objects.equals(GameManager.GAME_LENGTH, set.size());
 	}
 
 }

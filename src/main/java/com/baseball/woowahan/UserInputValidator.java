@@ -8,9 +8,9 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 class UserInputValidator {
-	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", UserInput.GAME_LENGTH, "}$");
+	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", GameManager.GAME_LENGTH, "}$");
 
-	public boolean validate(String input) {
+	public boolean isValid(String input) {
 		return isNotNull(input) && isGameLengthAndAllOtherNumbers(input);
 	}
 
@@ -21,7 +21,7 @@ class UserInputValidator {
 	private boolean isGameLengthAndAllOtherNumbers(String input) {
 		Set<String> set = new HashSet<>();
 		set.addAll(Arrays.asList(input.split("")));
-		return input.matches(NUMBER_PATTERN) && Objects.equals(UserInput.GAME_LENGTH, set.size());
+		return input.matches(NUMBER_PATTERN) && Objects.equals(GameManager.GAME_LENGTH, set.size());
 	}
 
 }
