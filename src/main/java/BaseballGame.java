@@ -10,6 +10,27 @@ import java.util.regex.Pattern;
 
 public class BaseballGame {
 	private final int numnCreateCnt = 3;
+	public enum Status{
+		S("스트라이크"),
+		B("볼");
+		
+		private String status; 
+		
+		Status(String status){
+			this.status = status;
+		}
+		
+		public static String findStatus(String arg) {
+			for(Status st : Status.values()) {
+				if(st.name().equals(arg)) {
+					return st.status;
+				}
+			}
+			return "";
+		}
+		
+	}
+	
 	BaseballGame(){
 		
 	}
