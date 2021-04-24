@@ -21,16 +21,12 @@ public class ScoreMatch {
         return ballCount;
     }
 
-    public void clear() {
-        strikeCount = 0;
-        ballCount = 0;
-    }
-
     public boolean compare(Number inputNumber) {
         clear();
         countStrike(inputNumber.getNumber());
         countBall(inputNumber.getNumber());
 
+        printResult();
         return strikeCount == 3;
     }
 
@@ -60,7 +56,12 @@ public class ScoreMatch {
         }
     }
 
-    public void print() {
+    public void clear() {
+        strikeCount = 0;
+        ballCount = 0;
+    }
+
+    public void printResult() {
         StringBuilder sb = new StringBuilder();
 
         if (strikeCount > 0)
