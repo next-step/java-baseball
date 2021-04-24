@@ -3,6 +3,18 @@ import java.util.TreeSet;
 
 public class Computer {
 
+	private int strikeCount = 0;
+	private int ballCount = 0;
+	private String ball = "";
+
+	public int getStrikeCount() {
+		return strikeCount;
+	}
+
+	public int getBallCount() {
+		return ballCount;
+	}
+
 	private Set<Integer> ballSet = new TreeSet<>();
 
 	private int numberRandom(int min, int max) {
@@ -13,8 +25,21 @@ public class Computer {
 		return 3;
 	}
 
-	public Set<Integer> getBallSet() {
+	private Set<Integer> getBallSet() {
 		return ballSet;
+	}
+
+	public String getBall() {
+		if (ball != null && !"".equals(ball.trim())) {
+			return ball;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (Integer i : this.getBallSet()) {
+			sb.append(i);
+		}
+		ball = sb.toString();
+		return ball;
 	}
 
 	public void setBallSet() {
@@ -26,5 +51,29 @@ public class Computer {
 			ballSet.add(this.numberRandom(randomMin, randomMax));
 		}
 		this.ballSet = ballSet;
+	}
+
+	private void strikeRuleCheck(char ball, int index) {
+		if (this.getBall().indexOf(ball) == index) {
+			this.strikeCount++;
+		}
+	}
+
+	private void ballRuleCheck(char ball, int index) {
+		final String strBall = this.getBall();
+		if (strBall.indexOf(ball) != -1 && strBall.indexOf(ball) == index) {
+			this.ballCount++;
+		}
+	}
+
+	public boolean result(String input) {
+		int index = 0;
+		for (char c : input.toCharArray()) {
+			this.strikeRuleCheck(c, index);
+			this.ballRuleCheck(c, index);
+			index++;
+		}
+
+		return this.getStrikeCount() == this.getMaxBallSize();
 	}
 }
