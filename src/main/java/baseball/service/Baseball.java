@@ -44,7 +44,19 @@ public class Baseball {
 		if(clearBallCount()) break;
 		}
 		//to_do: 재시작,종료 제어
-		
+		checkRestart(inputString(Message.INPUT_MSG_COUNTINUE));
+	}
+	
+	private void checkRestart(String string) {
+		if("1".equals(string))
+			startGame();
+			
+		if("2".equals(string))
+			endGame();
+	}
+
+	private void endGame() {
+		System.out.println(Message.INPUT_MSG_END_GAME);
 	}
 	
 	private void getGameScore() {
