@@ -43,4 +43,10 @@ public class BaseBallGameTest {
         assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() -> Integer.parseInt(inputVal1));
         assertThat(inputVal2).contains("0");
     }
+
+    @Test
+    @DisplayName("야구 게임 종료")
+    public void end() {
+
+    }
 }
