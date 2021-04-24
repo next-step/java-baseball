@@ -52,4 +52,9 @@ public class UserInputNumGeneratorTest {
         assertEquals(generator.validate("272"), false);
         assertEquals(generator.validate("499"), false);
     }
+
+    @Test
+    public void generatorCanBeGenerateNum(){
+        generator.generateNum();
+    }
 }

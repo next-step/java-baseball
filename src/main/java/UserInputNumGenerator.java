@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInputNumGenerator {
@@ -57,6 +56,17 @@ public class UserInputNumGenerator {
             }
         }
         return cnt;
+    }
+
+    public String generateNum() {
+        while (true){
+            System.out.println("숫자를 입력해주세요 ex)123 :");
+            String numbers = sc.next();
+
+            if (validate(numbers))
+                return numbers;
+            System.out.println("숫자열이 유효하지 않습니다. 다시 입력해주세요");
+        }
     }
 
 
