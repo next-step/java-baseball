@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class BaseBall {
 
@@ -14,4 +11,10 @@ public class BaseBall {
         return numbers.get(0) + "" + numbers.get(1) + "" + numbers.get(2);
     }
 
+
+    public boolean checkUnique3DigitString(String input) {
+        Set<String> unique = new HashSet<>(Arrays.asList(input.split("")));
+
+        return input.matches("\\d{3}") && unique.size() == 3;
+    }
 }
