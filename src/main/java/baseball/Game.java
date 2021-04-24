@@ -17,17 +17,25 @@ public class Game {
 		}
 	}
 
+	// Game Logic
 	public static boolean menu() {
 		System.out.println("\n게임을 시작하겠습니까? (Y/n):");
 		String select = scanner.nextLine();
 		return !select.equals("n");
 	}
 
-	public static void scanLine() {
-		System.out.println("\n세자리 숫자를 입력하세요:");
-		raw = scanner.nextLine();
+	// Game Logic
+	public static void game() {
+		Opponent opponent = new Opponent();
+
+		System.out.printf("정답: %d%d%d\n", opponent.getNumbers()[0], opponent.getNumbers()[1], opponent.getNumbers()[2]);
+
+		do {
+			scanLine();
+		} while (inning(player, opponent));
 	}
 
+	// Game Logic
 	public static boolean inning(Player player, Opponent opponent) {
 		if (isThreeDigits()) {
 			player.setNumbers(converter.toArray(converter.toNumber(raw)));
@@ -36,6 +44,13 @@ public class Game {
 		return true;
 	}
 
+	// TODO: go to Input Manager UI
+	public static void scanLine() {
+		System.out.println("\n세자리 숫자를 입력하세요:");
+		raw = scanner.nextLine();
+	}
+
+	// TODO: go to Input Manager UI
 	public static boolean isThreeDigits() {
 		if (!converter.isThreeDigits(raw)) {
 			System.out.println("세자리 숫자가 아닙니다.");
@@ -44,6 +59,7 @@ public class Game {
 		return true;
 	}
 
+	// TODO: go to Referee UI
 	public static boolean decision(Player player, Opponent opponent) {
 		int strikes = referee.countStrikes(player.getNumbers(), opponent.getNumbers());
 		int balls = referee.countBall(player.getNumbers(), opponent.getNumbers());
@@ -69,18 +85,6 @@ public class Game {
 
 		System.out.println();
 		return true;
-	}
-
-	public static boolean game() {
-		Opponent opponent = new Opponent();
-
-		System.out.printf("정답: %d%d%d\n", opponent.getNumbers()[0], opponent.getNumbers()[1], opponent.getNumbers()[2]);
-
-		do {
-			scanLine();
-		} while (inning(player, opponent));
-
-		return false;
 	}
 
 }

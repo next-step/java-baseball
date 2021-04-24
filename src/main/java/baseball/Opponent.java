@@ -1,5 +1,6 @@
 package baseball;
 
+// TODO: Add Interface
 public class Opponent {
 
 	private int[] numbers;

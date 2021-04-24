@@ -6,6 +6,7 @@ import java.util.List;
 
 public final class Deck {
 
+	// TODO: constant
 	public final int begin = 1;
 	public final int end = 10;
 
