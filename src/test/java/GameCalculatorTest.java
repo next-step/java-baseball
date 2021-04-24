@@ -14,4 +14,13 @@ public class GameCalculatorTest {
     public void isCalculated3StrikeAnd0Ball() {
         Assertions.assertArrayEquals(gameCalculator.calculateResult("123","123"), new int[]{3,0});
     }
+
+    @Test
+    public void isCalculatedStrikesAndBallsFinal() {
+        Assertions.assertArrayEquals(gameCalculator.calculateResult("123","456"), new int[]{0,0});
+        Assertions.assertArrayEquals(gameCalculator.calculateResult("231","123"), new int[]{0,3});
+        Assertions.assertArrayEquals(gameCalculator.calculateResult("537","832"), new int[]{1,0});
+        Assertions.assertArrayEquals(gameCalculator.calculateResult("713","712"), new int[]{2,0});
+        Assertions.assertArrayEquals(gameCalculator.calculateResult("543","753"), new int[]{1,1});
+    }
 }
