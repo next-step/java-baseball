@@ -71,4 +71,22 @@ class RuleTest {
         assertEquals(0, judge.strike);
         assertEquals(0, judge.ball);
     }
+
+    @Test
+    void doesWin() {
+        int[] dealerList = new int[] {3, 6, 9};
+        int[] playerList = new int[] {3, 6, 9};
+
+        Judge judge = Rule.judge(dealerList, playerList);
+        assertTrue(Rule.doesWin(judge));
+    }
+
+    @Test
+    void doesLose() {
+        int[] dealerList = new int[] {3, 9, 6};
+        int[] playerList = new int[] {3, 6, 9};
+
+        Judge judge = Rule.judge(dealerList, playerList);
+        assertFalse(Rule.doesWin(judge));
+    }
 }

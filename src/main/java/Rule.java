@@ -7,6 +7,10 @@ public class Rule {
         return ((numList[0] != numList[1]) && (numList[1] != numList[2]) && (numList[2] != numList[0]));
     }
 
+    public static boolean doesWin(Judge judge) {
+        return (judge.strike == 3);
+    }
+
     public static Judge judge(int[] dealerList, int[] playerList) {
         if (!isValid(dealerList)) return null;
         if (!isValid(playerList)) return null;
