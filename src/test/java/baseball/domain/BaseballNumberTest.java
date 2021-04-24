@@ -19,7 +19,7 @@ class BaseballNumberTest {
 
   @ParameterizedTest
   @ValueSource(ints = {-1, 10})
-  @DisplayName("0~9 가 아닌 BaseballNumber 를 생성 시, illegalArgumentException 발생")
+  @DisplayName("0~9 가 아닌 BaseballNumber 를 생성 시, illegalArgumentsException 발생")
   void createNumber_fail(int number) {
     assertThatIllegalArgumentException()
         .isThrownBy(() -> new BaseballNumber(number))
