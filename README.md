@@ -7,10 +7,13 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
-* Computer
-  * 3자리의 수 생성(1부터 9까지 서로 다른 숫자)
-  * 스트라이크, 볼, 낫싱 판별
-* Player
-  * 3자리 수 제시
-* Game
-  * 게임 (재)시작 및 종료
+
+### Computer
+* 3자리의 수 생성(1부터 9까지 서로 다른 숫자)
+* 스트라이크, 볼, 낫싱 판별
+
+### Player
+* 3자리 수 제시
+
+### Game
+* 게임 (재)시작 및 종료
