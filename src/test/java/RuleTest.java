@@ -13,13 +13,13 @@ class RuleTest {
     }
 
     @Test
-    void isValid_InvalidLengthInput() {
+    void isValidWithInvalidLengthInput() {
         assertFalse(Rule.isValid(new int[] {1}));
         assertFalse(Rule.isValid(new int[] {1, 2}));
     }
 
     @Test
-    void isValid_DuplicatedInput() {
+    void isValidWithDuplicatedInput() {
         assertFalse(Rule.isValid(new int[] {1, 1, 2}));
         assertFalse(Rule.isValid(new int[] {1, 2, 1}));
         assertFalse(Rule.isValid(new int[] {2, 1, 1}));
@@ -27,13 +27,13 @@ class RuleTest {
     }
 
     @Test
-    void isValid_ValidInput() {
+    void isValidWithValidInput() {
         assertTrue(Rule.isValid(new int[] {4, 7, 8}));
         assertTrue(Rule.isValid(new int[] {9, 7, 2}));
     }
 
     @Test
-    void judge_1strike_2ball() {
+    void judge1Strike2Ball() {
         int[] dealerList = new int[] {3, 4, 5};
         int[] playerList = new int[] {3, 5, 4};
         Judge judge = Rule.judge(dealerList, playerList);
@@ -43,7 +43,7 @@ class RuleTest {
     }
 
     @Test
-    void judge_3strike() {
+    void judge3Strike() {
         int[] dealerList = new int[] {7, 4, 6};
         int[] playerList = new int[] {7, 4, 6};
         Judge judge = Rule.judge(dealerList, playerList);
@@ -53,7 +53,7 @@ class RuleTest {
     }
 
     @Test
-    void judge_3ball() {
+    void judge3Ball() {
         int[] dealerList = new int[] {9, 4, 5};
         int[] playerList = new int[] {4, 5, 9};
         Judge judge = Rule.judge(dealerList, playerList);
@@ -63,7 +63,7 @@ class RuleTest {
     }
 
     @Test
-    void judge_Nothing() {
+    void judgeNothing() {
         int[] dealerList = new int[] {6, 9, 8};
         int[] playerList = new int[] {3, 5, 4};
         Judge judge = Rule.judge(dealerList, playerList);
