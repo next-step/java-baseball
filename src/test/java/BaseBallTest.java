@@ -55,4 +55,22 @@ class BaseBallTest {
         assertThat(ball).isEqualTo(b);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"0:false", "1:false", "2:false", "3:true"}, delimiter = ':')
+    void judgeFinishTest(Integer strike, boolean expected) {
+        boolean actual = bbs.judgeFinish(strike);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void resetGoal() {
+        String goal = bbs.unique3DigitString();
+        String restartGoal = bbs.resetGoal(true, goal);
+        assertThat(goal).isNotEqualTo(restartGoal);
+
+        String notRestartGoal = bbs.resetGoal(false, goal);
+        assertThat(goal).isEqualTo(notRestartGoal);
+    }
+
 }
