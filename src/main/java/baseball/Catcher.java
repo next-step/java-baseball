@@ -20,6 +20,10 @@ class Catcher {
         setStandardNumbers();
     }
 
+    public void setStandardNumbers(List<Integer> standardNumbers) {
+        this.standardNumbers = standardNumbers;
+    }
+
     private void setStandardNumbers() {
         while (standardNumbers.size() < baseBallNumberLength) {
             addStandardNumber((int) ((Math.random() * (MAX_NUM - MIN_NUM)) + MIN_NUM));

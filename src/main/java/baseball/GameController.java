@@ -3,12 +3,12 @@ package baseball;
 import java.util.Scanner;
 
 public class GameController {
-    private final int BASEBALL_NUM_LENGTH = 3;
+    public static final int BASEBALL_NUM_LENGTH = 3;
 
     Catcher catcher;
     Pitcher pitcher;
 
-    GameController() {
+    public GameController() {
         catcher = new Catcher(BASEBALL_NUM_LENGTH);
         pitcher = new Pitcher(BASEBALL_NUM_LENGTH);
     }
