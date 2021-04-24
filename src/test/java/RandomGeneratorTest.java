@@ -26,4 +26,29 @@ public class RandomGeneratorTest {
             Assertions.assertEquals(Pattern.matches("^[1-9]", randomBalls.charAt(i) + ""), true );
         }
     }
+
+    public boolean compareBalls(String s1, String s2) {
+        return s1.equals(s2) ? true : false;
+    }
+
+    public boolean containBalls(String[] containArr, String findValue, int index) {
+
+        boolean isContained = false;
+
+        for(int i=0;i<index;i++)
+            isContained = compareBalls(containArr[i],findValue);
+
+        return isContained;
+    }
+
+    @Test
+    public void isValidatedRandomlyGenerated() {
+        int testCnt = 5;
+        String ballsArr [] =new String[testCnt];
+
+        for (int i=0; i<testCnt; i++) {
+            ballsArr[i] = randomGenerator.generateBalls();
+            Assertions.assertEquals(containBalls(ballsArr, ballsArr[i], i), false);
+        }
+    }
 }
