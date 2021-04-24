@@ -5,5 +5,4 @@ import java.util.Map;
 
 public interface BaseballGameCheckService {
     Map<String, Integer> getGameResult(List<Integer> player1Number, List<Integer> player2Number);
-    StringBuffer resultPrint(Map<String, Integer> result);
 }

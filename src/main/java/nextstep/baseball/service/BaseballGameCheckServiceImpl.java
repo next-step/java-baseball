@@ -38,23 +38,5 @@ public class BaseballGameCheckServiceImpl implements BaseballGameCheckService {
         return BaseballStatEnum.NOTHING.getCode();
     }
 
-    @Override
-    public StringBuffer resultPrint(Map<String, Integer> result){
-        StringBuffer stringBuffer = new StringBuffer();
 
-        if(result.get(BaseballStatEnum.STRIKE.getCode()) != null){
-            stringBuffer.append(result.get(BaseballStatEnum.STRIKE.getCode()));
-            stringBuffer.append(BaseballStatEnum.STRIKE.getName());
-        }
-
-        if(result.get(BaseballStatEnum.BALL.getCode()) != null){
-            stringBuffer.append(result.get(BaseballStatEnum.BALL.getCode()));
-            stringBuffer.append(BaseballStatEnum.BALL.getName());
-        }
-
-        if(stringBuffer.length() == 0){
-            stringBuffer.append(BaseballStatEnum.NOTHING.getName());
-        }
-        return stringBuffer;
-    }
 }

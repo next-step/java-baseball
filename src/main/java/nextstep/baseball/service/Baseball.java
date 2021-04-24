@@ -38,16 +38,13 @@ public class Baseball {
             if(isOut(gameResult.get(BaseballStatEnum.STRIKE.getCode()))){
                 break;
             }
-            System.out.println(baseballGameCheckService.resultPrint(gameResult));
+            resultPrint(gameResult);
         }
         return END;
     }
 
-    public boolean isOut(Integer strike){
-        if(strike != null && strike == 3){
-            return true;
-        }
-        return false;
+    public void message(String str){
+        System.out.println(str);
     }
 
     public String input(){
@@ -55,8 +52,11 @@ public class Baseball {
         return sc.next();
     }
 
-    public void message(String str){
-        System.out.println(str);
+    public boolean isOut(Integer strike){
+        if(strike != null && strike == 3){
+            return true;
+        }
+        return false;
     }
 
     private void reStart(String flag){
@@ -68,5 +68,25 @@ public class Baseball {
         if(flag.equals(STOP)){
             return;
         }
+    }
+
+    public void resultPrint(Map<String, Integer> result){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        if(result.get(BaseballStatEnum.STRIKE.getCode()) != null){
+            stringBuffer.append(result.get(BaseballStatEnum.STRIKE.getCode()));
+            stringBuffer.append(BaseballStatEnum.STRIKE.getName());
+        }
+
+        if(result.get(BaseballStatEnum.BALL.getCode()) != null){
+            stringBuffer.append(result.get(BaseballStatEnum.BALL.getCode()));
+            stringBuffer.append(BaseballStatEnum.BALL.getName());
+        }
+
+        if(stringBuffer.length() == 0){
+            stringBuffer.append(BaseballStatEnum.NOTHING.getName());
+        }
+
+        System.out.println(stringBuffer);
     }
 }
