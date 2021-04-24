@@ -16,5 +16,5 @@ public class Main {
         GameBot gameBot = new GameBot(validatorList);
         gameBot.run();
     }
-
 }
+

@@ -1,10 +1,10 @@
 package com.nextstep.ppyong;
 
 import com.nextstep.ppyong.service.CheckMatchNumberService;
+import com.nextstep.ppyong.utils.RandomNumberUtil;
 import com.nextstep.ppyong.validator.Validator;
 import java.util.List;
 import java.util.Scanner;
-import com.nextstep.ppyong.utils.RandomNumberUtil;
 
 public class GameBot {
     private static final int MAX_NUMBER_SIZE = 3;
@@ -31,7 +31,7 @@ public class GameBot {
         }
     }
 
-    public boolean isQuit() {
+    private boolean isQuit() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 
@@ -47,18 +47,15 @@ public class GameBot {
             System.out.print("숫자를 입력해주세요: ");
             String input = scanner.nextLine();
 
-            continued = !valid(input);
+            continued = !checkMatchNumber(input);
         }
     }
 
-    private boolean valid(String input) {
+    private boolean checkMatchNumber(String input) {
         try{
-            for(Validator validator : validatorList) {
-                validator.valid(input);
-            }
-            checkMatchNumberService.valid(input);
+            valid(input);
         }catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return false;
         }
 
@@ -68,4 +65,12 @@ public class GameBot {
         }
         return true;
     }
+
+    private void valid(String input) {
+        for(Validator validator : validatorList) {
+            validator.valid(input);
+        }
+        checkMatchNumberService.valid(input);
+    }
 }
+
