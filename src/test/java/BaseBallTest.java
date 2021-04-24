@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Map;
 
@@ -17,30 +19,17 @@ public class BaseBallTest {
         assertThat(play).isEmpty();
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+                "123, 189, STRIKE, 1",
+                "123, 129, STRIKE, 2",
+                "123, 123, STRIKE, 3",
+    })
     @DisplayName("같은 수가 같은 자리에 1개 있으면 1스트라이크이다.")
-    void oneStrike() {
-        BaseBall baseball = new BaseBall("123");
-        Map<Judgements, Integer> hint = baseball.play("189");
+    void oneStrike(String answer, String input, Judgements judgement, int expectedCount) {
+        BaseBall baseball = new BaseBall(answer);
+        Map<Judgements, Integer> hint = baseball.play(input);
 
-        assertThat(hint.get(Judgements.STRIKE)).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("같은 수가 같은 자리에 2개 있으면 2스트라이크이다.")
-    void twoStrike() {
-        BaseBall baseball = new BaseBall("123");
-        Map<Judgements, Integer> hint = baseball.play("129");
-
-        assertThat(hint.get(Judgements.STRIKE)).isEqualTo(2);
-    }
-
-    @Test
-    @DisplayName("같은 수가 같은 자리에 3개 있으면 3스트라이크이다.")
-    void threeStrike() {
-        BaseBall baseball = new BaseBall("123");
-        Map<Judgements, Integer> hint = baseball.play("123");
-
-        assertThat(hint.get(Judgements.STRIKE)).isEqualTo(3);
+        assertThat(hint.get(judgement)).isEqualTo(expectedCount);
     }
 }
