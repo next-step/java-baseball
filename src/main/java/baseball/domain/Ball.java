@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import java.util.Objects;
+
 public class Ball {
     public static final int MIN_NUMBER = 0;
     public static final int MAX_NUMBER = 9;
@@ -18,5 +20,22 @@ public class Ball {
 
     public static Ball of(OneDigitNumber oneDigitNumber) {
         return of(oneDigitNumber.value());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Ball)) {
+            return false;
+        }
+        Ball ball = (Ball) o;
+        return number == ball.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

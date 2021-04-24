@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -23,5 +24,10 @@ class BallTest {
     @Test
     void createRandomBall() {
         assertThatCode(() -> Ball.of(new RandomNumber())).doesNotThrowAnyException();
+    }
+
+    @Test
+    void equals() {
+        assertThat(Ball.of(0)).isEqualTo(Ball.of(new ZeroNumber()));
     }
 }
