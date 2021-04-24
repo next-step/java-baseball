@@ -12,6 +12,6 @@ public enum GameRule {
             return MISSING;
         }
 
-        return null;
+        return BALL;
     }
 }

@@ -27,4 +27,15 @@ public class GameRuleTest {
         assertThat(GameRule.of(source, dest))
                 .isEqualTo(GameRule.MISSING);
     }
+
+    @Test
+    @DisplayName("같은 수가 다른자리에 있으면 볼")
+    public void 같은_수가_다른자리에_있으면_볼() {
+        Position source = new Position(1);
+        Position dest = new Position(2);
+
+
+        assertThat(GameRule.of(source, dest))
+                .isEqualTo(GameRule.BALL);
+    }
 }
