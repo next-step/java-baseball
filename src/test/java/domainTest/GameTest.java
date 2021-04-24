@@ -3,8 +3,9 @@ package domainTest;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
-import domain.DefensePlayer;
-import domain.Game;
+import domain.game.GameStatus;
+import domain.participants.DefensePlayer;
+import domain.game.Game;
 
 public class GameTest {
 
@@ -25,7 +26,7 @@ public class GameTest {
 		Game game = new Game();
 
 		//Then
-		assertThat(game.getStatus()).isEqualTo(Game.Status.ONGOING);
+		assertThat(game.getStatus()).isEqualTo(GameStatus.ONGOING);
 
 	}
 

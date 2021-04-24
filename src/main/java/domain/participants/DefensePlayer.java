@@ -1,6 +1,8 @@
-package domain;
+package domain.participants;
 
 import java.util.Random;
+
+import domain.Numbers;
 
 public class DefensePlayer {
 

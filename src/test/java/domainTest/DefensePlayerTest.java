@@ -3,7 +3,7 @@ package domainTest;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
-import domain.DefensePlayer;
+import domain.participants.DefensePlayer;
 import domain.Numbers;
 
 public class DefensePlayerTest {

@@ -13,15 +13,15 @@ public class InputMessage {
 	public char[] getInput(){
 		char[] input = scanner.nextLine().toCharArray();
 		if(isNull(input)) {
-			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_NULL);
+			OutputMessage.printMessage(Message.NOTICE_ERROR_NULL);
 			return null;
 		}
 		if(!hasValidLength(input, Numbers.MAX_SIZE)) {
-			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_SIZE);
+			OutputMessage.printMessage(Message.NOTICE_ERROR_SIZE);
 			return null;
 		}
 		if(!isAllValidNumber(input)) {
-			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_INVALID_VALUE);
+			OutputMessage.printMessage(Message.NOTICE_ERROR_INVALID_VALUE);
 			return null;
 		}
 
@@ -53,11 +53,11 @@ public class InputMessage {
 	public int getDecisionCode() {
 		char[] code = scanner.nextLine().toCharArray();
 		if(isNull(code)) {
-			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_NULL);
+			OutputMessage.printMessage(Message.NOTICE_ERROR_NULL);
 			return -1;
 		}
 		if(!isValidCode(code)){
-			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_INVALID_STATUS_CODE);
+			OutputMessage.printMessage(Message.NOTICE_ERROR_INVALID_STATUS_CODE);
 			return -1;
 		}
 		return Character.getNumericValue(code[0]);

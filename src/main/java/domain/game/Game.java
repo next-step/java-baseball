@@ -1,7 +1,9 @@
-package domain;
+package domain.game;
 
-import java.util.ArrayList;
-import java.util.List;
+import domain.Numbers;
+import domain.participants.DefensePlayer;
+import domain.participants.OffensePlayer;
+import domain.participants.Umpire;
 
 public class Game {
 
@@ -9,14 +11,14 @@ public class Game {
 	private DefensePlayer defensePlayer;
 	private OffensePlayer offensePlayer;
 
-	private Status status;
+	private GameStatus status;
 
 	public Game(){
 		createParticipants();
-		setGameStatus(Status.ONGOING);
+		setGameStatus(GameStatus.ONGOING);
 	}
 
-	public void setGameStatus(Status ongoing) {
+	public void setGameStatus(GameStatus ongoing) {
 		this.status = ongoing;
 	}
 
@@ -35,26 +37,11 @@ public class Game {
 			umpire.makeJudgement(answer, guess);
 		}
 		umpire.askAnotherRound();
-		if(offensePlayer.decideWhetherContinueGame() != Status.ONGOING.getCode()){
-			status = Status.FINISHED;
+		if(offensePlayer.decideWhetherContinueGame() != GameStatus.ONGOING.getCode()){
+			status = GameStatus.FINISHED;
 		}
 
 	}
-
-	public enum Status{
-		ONGOING(1),
-		FINISHED(2);
-
-		private int code;
-
-		Status(int code){
-			this.code = code;
-		}
-		public int getCode() {
-			return code;
-		}
-	}
-
 
 	public Umpire getUmpire(){
 		return this.umpire;
@@ -68,7 +55,7 @@ public class Game {
 		return this.offensePlayer;
 	}
 
-	public Status getStatus() {
+	public GameStatus getStatus() {
 		return this.status;
 	}
 }

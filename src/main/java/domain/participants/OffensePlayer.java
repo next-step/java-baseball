@@ -1,5 +1,6 @@
-package domain;
+package domain.participants;
 
+import domain.Numbers;
 import view.InputMessage;
 
 public class OffensePlayer {

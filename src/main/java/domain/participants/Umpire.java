@@ -1,5 +1,7 @@
-package domain;
+package domain.participants;
 
+import domain.Numbers;
+import view.Message;
 import view.OutputMessage;
 
 public class Umpire {
@@ -10,7 +12,7 @@ public class Umpire {
     public Umpire() { }
 
     public void requestInput() {
-        OutputMessage.printMessage(OutputMessage.Message.REQUEST_INPUT);
+        OutputMessage.printMessage(Message.REQUEST_INPUT);
     }
 
     public void makeJudgement(Numbers answer, Numbers guess) {
@@ -51,7 +53,7 @@ public class Umpire {
 
     public void askAnotherRound() {
         initScore();
-        OutputMessage.printMessage(OutputMessage.Message.NOTICE_ANSWER);
-        OutputMessage.printMessage(OutputMessage.Message.ASK_NEXT_GAME);
+        OutputMessage.printMessage(Message.NOTICE_ANSWER);
+        OutputMessage.printMessage(Message.ASK_NEXT_GAME);
     }
 }
