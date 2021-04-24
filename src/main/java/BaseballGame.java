@@ -85,6 +85,7 @@ public class BaseballGame {
 		}
 		return inputGameRestart();
 	}
+	
 	public String inputGameNumber() {
 		System.out.println("숫자를 입력해주세요 : ");
 		String inputStr = new Scanner(System.in).next();
