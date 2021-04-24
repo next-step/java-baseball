@@ -6,12 +6,8 @@ public class JavaBaseballPrecourse {
 
 		System.out.println("hello");
 		try (Scanner scan = new Scanner(System.in)) {
-			// while(true) {
 			System.out.println("입력하신 내용은 : " + scan.nextLine());
 			System.out.println("입력하신 내용2는 : " + scan.nextLine());
-			scan.close();
-			//     break;
-			// }
 		}
 
 	}
