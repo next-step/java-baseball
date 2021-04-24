@@ -29,4 +29,9 @@ public class BallCount {
 	public int getBall() {
 		return this.ball;
 	}
+
+	public void add(BallCount ballCount) {
+		this.strike += ballCount.getStrike();
+		this.ball += ballCount.getBall();
+	}
 }

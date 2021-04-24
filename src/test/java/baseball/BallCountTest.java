@@ -41,4 +41,16 @@ public class BallCountTest {
 		BallCount ballCount = new BallCount(1, 2);
 		assertThat(ballCount.getBall()).isEqualTo(2);
 	}
+
+	@Test
+	void add() {
+		BallCount ballCount = new BallCount();
+		assertThat(ballCount).extracting("strike", "ball").containsExactly(0, 0);
+		ballCount.add(new BallCount(1, 0));
+		assertThat(ballCount).extracting("strike", "ball").containsExactly(1, 0);
+		ballCount.add(new BallCount(1, 0));
+		assertThat(ballCount).extracting("strike", "ball").containsExactly(2, 0);
+		ballCount.add(new BallCount(0, 1));
+		assertThat(ballCount).extracting("strike", "ball").containsExactly(2, 1);
+	}
 }
