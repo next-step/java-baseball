@@ -24,4 +24,15 @@ class BaseBallTest {
 
         assertThat(baseBall.countStrike(inputBaseBall)).isEqualTo(strikeCount);
     }
+
+    @ParameterizedTest
+    @CsvSource({"1, 2, 3, 3, 1, 2, 3"
+        , "1, 2, 3, 4, 1, 2, 2", "1, 2, 3, 2, 3, 4, 2", "1, 2, 3, 3, 4, 1, 2"
+        , "1, 2, 3, 4, 1, 5, 1", "1, 2, 3, 4, 5, 6, 0"})
+    void countBall(int number1, int number2, int number3, int input1, int input2, int input3, int strikeCount) {
+        BaseBall baseBall = BaseBall.of(Arrays.asList(Ball.of(number1), Ball.of(number2), Ball.of(number3)));
+        BaseBall inputBaseBall = BaseBall.of(Arrays.asList(Ball.of(input1), Ball.of(input2), Ball.of(input3)));
+
+        assertThat(baseBall.countBall(inputBaseBall)).isEqualTo(strikeCount);
+    }
 }

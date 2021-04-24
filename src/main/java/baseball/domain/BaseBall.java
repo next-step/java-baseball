@@ -32,4 +32,8 @@ public class BaseBall implements Iterable<Ball> {
     public Iterator<Ball> iterator() {
         return balls.iterator();
     }
+
+    public int countBall(BaseBall inputBaseBall) {
+        return 0;
+    }
 }
