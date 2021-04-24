@@ -3,8 +3,10 @@ package baseball;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import static baseball.BaseBallRandomNumber.RANDOM_NUMBER_LENGTH;
+
 public class UserInterface {
-    private static final Pattern VALID_INPUT_PATTERN = Pattern.compile("[0-9]{3}");
+    private static final Pattern VALID_INPUT_PATTERN = Pattern.compile(String.format("[0-9]{%d}", RANDOM_NUMBER_LENGTH));
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String printGuideAndScanUserInput() {
@@ -18,8 +20,22 @@ public class UserInterface {
         return userInput;
     }
 
-    public static void printStrike(int count) {
-        System.out.printf("%d 스트라이크 ", count);
+    public static void printGuessResult(BaseBallGuessResult guessResult) {
+        printStrike(guessResult.getStrike());
+        printBall(guessResult.getBall());
+        System.out.println();
+    }
+
+    public static void printStrike(int strike) {
+        if (strike > 0) {
+            System.out.printf("%d 스트라이크 ", strike);
+        }
+    }
+
+    public static void printBall(int ball) {
+        if (ball > 0) {
+            System.out.printf("%d 볼", ball);
+        }
     }
 
     public static void printGameComplete() {
