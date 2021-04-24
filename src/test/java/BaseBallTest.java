@@ -23,6 +23,6 @@ public class BaseBallTest {
         BaseBall baseball = new BaseBall("123");
         Map<Character, Integer> hint = baseball.play("189");
 
-        assertThat(hint.get('S')).isEqualTo(1);
+        assertThat(hint.get(BaseBall.STRIKE_KEY)).isEqualTo(1);
     }
 }
