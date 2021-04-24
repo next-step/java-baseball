@@ -15,24 +15,32 @@ class BaseballUtilsTest {
 		final String answer = baseballUtils.cerateAnswer();
 
 		// then
-		assertThat(baseballUtils.isEqualLength3(answer)).isTrue();
-		assertThat(baseballUtils.isNotExistsDupNumbers(answer)).isTrue();
+		assertThatCode(() -> {
+			baseballUtils.checkEqualLength3(answer);
+		}).doesNotThrowAnyException();
+		assertThatCode(() -> {
+			baseballUtils.checkNotExistsDupNumbers(answer);
+		}).doesNotThrowAnyException();
 	}
 
 	@Test
 	public void isEqualLength3Test() {
 		// gevin
 		// when
-		String testStr1 = "123";
-		String testStr2 = "12";
-		String testStr3 = "1234";
-		String testStr4 = null;
 
 		// then
-		assertThat(baseballUtils.isEqualLength3(testStr1)).isTrue();
-		assertThat(baseballUtils.isEqualLength3(testStr2)).isFalse();
-		assertThat(baseballUtils.isEqualLength3(testStr3)).isFalse();
-		assertThat(baseballUtils.isEqualLength3(testStr4)).isFalse();
+		assertThatCode(() -> {
+				baseballUtils.checkEqualLength3("123");
+			}).doesNotThrowAnyException();
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkEqualLength3("12");
+			}).withMessageContaining("3자리 숫자를 입력해주세요!");
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkEqualLength3("1234");
+			}).withMessageContaining("3자리 숫자를 입력해주세요!");
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkEqualLength3(null);
+			}).withMessageContaining("3자리 숫자를 입력해주세요!");
 
 	}
 
@@ -40,20 +48,27 @@ class BaseballUtilsTest {
 	public void isNotExistsDupNumbers() {
 		// gevin
 		// when
-		String testStr1 = "123";
-		String testStr2 = "112";
-		String testStr3 = "122";
-		String testStr4 = "353";
-		String testStr5 = "1231";
-		String testStr6 = "1234";
 
 		// then
-		assertThat(baseballUtils.isNotExistsDupNumbers(testStr1)).isTrue();
-		assertThat(baseballUtils.isNotExistsDupNumbers(testStr2)).isFalse();
-		assertThat(baseballUtils.isNotExistsDupNumbers(testStr3)).isFalse();
-		assertThat(baseballUtils.isNotExistsDupNumbers(testStr4)).isFalse();
-		assertThat(baseballUtils.isNotExistsDupNumbers(testStr5)).isFalse();
-		assertThat(baseballUtils.isNotExistsDupNumbers(testStr6)).isTrue();
+		assertThatCode(() -> {
+				baseballUtils.checkNotExistsDupNumbers("123");
+			}).doesNotThrowAnyException();
+
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNotExistsDupNumbers("112");
+			}).withMessageContaining("중복되는 숫자 없이 입력해주세요!");
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNotExistsDupNumbers("122");
+			}).withMessageContaining("중복되는 숫자 없이 입력해주세요!");
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNotExistsDupNumbers("353");
+			}).withMessageContaining("중복되는 숫자 없이 입력해주세요!");
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.checkNotExistsDupNumbers("1231");
+			}).withMessageContaining("중복되는 숫자 없이 입력해주세요!");
+		assertThatCode(() -> {
+				baseballUtils.checkNotExistsDupNumbers("1234");
+			}).doesNotThrowAnyException();
 	}
 
 }

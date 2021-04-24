@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 class BaseballGameTest {
 
-	BaseballGame baseballGame = new BaseballGame();
+	BaseballConsole console = new BaseballConsole();
+	BaseballGame baseballGame = new BaseballGame(console);
 	BaseballUtils baseballUtils = new BaseballUtils();
 
 	@Test
@@ -16,8 +17,12 @@ class BaseballGameTest {
 		String answer = baseballGame.getAnswer();
 
 		// then
-		assertThat(baseballUtils.isEqualLength3(answer)).isTrue();
-		assertThat(baseballUtils.isNotExistsDupNumbers(answer)).isTrue();
+		assertThatCode(() -> {
+			baseballUtils.checkEqualLength3(answer);
+		}).doesNotThrowAnyException();
+		assertThatCode(() -> {
+			baseballUtils.checkNotExistsDupNumbers(answer);
+		}).doesNotThrowAnyException();
 
 	}
 

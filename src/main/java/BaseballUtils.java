@@ -14,17 +14,20 @@ public class BaseballUtils {
 		return answer;
 	}
 
-	public boolean isEqualLength3(final String strValue) {
-		return strValue != null && (strValue.length() == 3);
+	public void checkEqualLength3(final String strValue) {
+		if (strValue == null || (strValue.length() != 3)) {
+			throw new IllegalArgumentException("3자리 숫자를 입력해주세요!");
+		}
 	}
 
-	public boolean isNotExistsDupNumbers(final String strValue) {
+	public void checkNotExistsDupNumbers(final String strValue) {
 		int strLength = strValue.length();
-
-		return scanDupNumber(strValue, strLength);
+		if (!isNotExistsDupNumbers(strValue, strLength)) {
+			throw new IllegalArgumentException("중복되는 숫자 없이 입력해주세요!");
+		}
 	}
 
-	private boolean scanDupNumber(final String strValue, final int strLength) {
+	private boolean isNotExistsDupNumbers(final String strValue, final int strLength) {
 		for (int i = 0; i < strLength - 1; i++) {
 			if (findDupNumber(strValue, i))
 				return false;
