@@ -42,7 +42,7 @@ public class BaseballGame {
 	
 	public void startUserGame(String rNumStr) {
 		String userInputStr = inputGameNumber();
-		System.out.println(userInputStr);
+		Map<String, Integer> returnMap = compareNums(rNumStr, userInputStr);
 	}
 	
 	public String inputGameNumber() {
@@ -76,5 +76,26 @@ public class BaseballGame {
 			distinctCharSet.add(a);
 		}
 		return distinctCharSet;
+	}
+	
+	public HashMap<String, Integer> compareNums(String rNum, String uNum){
+		Map<String, Integer> returnMap = new HashMap<>();
+		char[] uNumChar = uNum.toCharArray();
+		for (int i = 0; i < uNumChar.length; i++) {
+			String resStr = getResultChar(rNum.indexOf(uNumChar[i]), i);
+			int cnt = returnMap.getOrDefault(resStr, 0);
+			returnMap.put(resStr, cnt + 1);
+		}
+		return (HashMap<String, Integer>) returnMap;
+	}
+	
+	public String getResultChar(int rIndex, int uIndex) {
+		if(rIndex == uIndex) {
+			return "S";
+		}
+		if(rIndex > -1) {
+			return "B";
+		}
+		return "N";
 	}
 }
