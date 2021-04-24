@@ -1,10 +1,14 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
 	private Umpire umpire;
 	private DefensePlayer defensePlayer;
 	private OffensePlayer offensePlayer;
+
 	private Status status;
 
 	public Game(){
@@ -12,7 +16,7 @@ public class Game {
 		setGameStatus(Status.ONGOING);
 	}
 
-	private void setGameStatus(Status ongoing) {
+	public void setGameStatus(Status ongoing) {
 		this.status = ongoing;
 	}
 
@@ -24,21 +28,27 @@ public class Game {
 
 	public void play(){
 		Numbers answer = defensePlayer.decideAnswerNumber();
-		while(status == Status.ONGOING){
+		System.out.println(answer.getDigits().toString());
+		while (umpire.getStrike() != Numbers.MAX_SIZE){
 			umpire.requestInput();
-			offensePlayer.makeGuess();
+			Numbers guess = offensePlayer.makeGuess();
+			umpire.makeJudgement(answer, guess);
 		}
-
+		//임의로 3스트라이크 맞으면 게임 중단
+		status = Status.FINISHED;
 	}
 
 	public enum Status{
 		ONGOING(1),
-		FINISHED(0);
+		FINISHED(2);
 
-		private int status;
+		private int code;
 
-		Status(int status){
-			this.status = status;
+		Status(int code){
+			this.code = code;
+		}
+		public int getCode() {
+			return code;
 		}
 	}
 

@@ -6,6 +6,7 @@ public class OffensePlayer {
 
     private Numbers guessNumbers;
     private InputMessage inputMessage;
+
     public OffensePlayer(){
         inputMessage = new InputMessage();
     }
@@ -27,4 +28,5 @@ public class OffensePlayer {
         }
         return input;
     }
+
 }

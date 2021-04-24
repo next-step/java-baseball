@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Scanner;
-
 import domain.Numbers;
 
 public class InputMessage {
@@ -17,7 +16,7 @@ public class InputMessage {
 			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_NULL);
 			return null;
 		}
-		if(!hasThreeDigits(input)) {
+		if(!hasValidLength(input, Numbers.MAX_SIZE)) {
 			OutputMessage.printMessage(OutputMessage.Message.NOTICE_ERROR_SIZE);
 			return null;
 		}
@@ -43,11 +42,12 @@ public class InputMessage {
 		return number>=Numbers.MIN_NUMBER && number<=Numbers.MAX_NUMBER;
 	}
 
-	private boolean hasThreeDigits(char[] input) {
-		return input.length == Numbers.MAX_SIZE;
+	private boolean hasValidLength(char[] input, int maxSize) {
+		return input.length == maxSize;
 	}
 
 	private boolean isNull(char[] input) {
 		return input.length ==0;
 	}
+
 }

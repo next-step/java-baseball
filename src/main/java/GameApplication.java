@@ -1,5 +1,4 @@
 import domain.Game;
-import domain.OffensePlayer;
 
 public class GameApplication {
 
