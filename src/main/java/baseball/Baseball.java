@@ -31,19 +31,23 @@ public class Baseball {
 	}
 
 	public boolean checkAnswer(List<Integer> numbers) {
-		int strike = 0;
-		int ball = 0;
+		BallCount ballCount = new BallCount();
 		for (int i = 0; i < numbers.size(); i++) {
 			int number = numbers.get(i);
-			if (answerNumbers.contains(number) && answerNumbers.get(i) == number) {
-				strike++;
-			} else if (answerNumbers.contains(number) && answerNumbers.get(i) != number) {
-				ball++;
-			}
+			ballCount.add(getBallCountFromNumber(number, i));
 		}
-		BallCount ballCount = new BallCount(strike, ball);
 		printBallCount(ballCount);
-		return strike == SIZE_OF_NUMBERS;
+		return ballCount.getStrike() == SIZE_OF_NUMBERS;
+	}
+
+	private BallCount getBallCountFromNumber(int number, int idx) {
+		BallCount ballCount = new BallCount();
+		if (answerNumbers.contains(number) && answerNumbers.get(idx) == number) {
+			ballCount.setStrike(ballCount.getStrike() + 1);
+		} else if (answerNumbers.contains(number) && answerNumbers.get(idx) != number) {
+			ballCount.setBall(ballCount.getBall() + 1);
+		}
+		return ballCount;
 	}
 
 	private void printBallCount(BallCount ballCount) {
