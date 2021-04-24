@@ -13,6 +13,9 @@ public class UserInputNumGenerator {
     }
 
     public boolean validate(String input) {
-        return true;
+        return isInputNotNull(input);
+    }
+    private boolean isInputNotNull(String input){
+        return input != null;
     }
 }
