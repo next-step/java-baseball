@@ -22,6 +22,6 @@ class BallTest {
 
     @Test
     void createRandomBall() {
-        assertThatCode(Ball::ofRandom).doesNotThrowAnyException();
+        assertThatCode(() -> Ball.of(new RandomNumber())).doesNotThrowAnyException();
     }
 }
