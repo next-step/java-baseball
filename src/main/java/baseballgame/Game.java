@@ -28,7 +28,9 @@ public class Game {
         while (progress) {
             user.selectNumber();
             judgeGame();
-            printCurrentProgressMessage();
+            printStrike();
+            printBall();
+            printNothing();
             progress = isGameOver();
             initStrikeAndBall();
         }
@@ -65,18 +67,27 @@ public class Game {
         computer.selectNumber();
     }
 
-    private void printCurrentProgressMessage() {
-        StringBuilder stringBuilder = new StringBuilder();
+    private void printStrike() {
         if (strike > 0) {
-            stringBuilder.append(strike).append(" 스트라이크 ");
+            System.out.println(strike + " 스트라이크 ");
         }
+    }
+
+    private void printBall() {
         if (ball > 0) {
-            stringBuilder.append(ball).append("볼");
+            System.out.println(ball + "볼");
         }
+    }
+
+    private void printNothing() {
         if (strike == 0 && ball == 0) {
-            stringBuilder.append("낫싱");
+            System.out.println("낫싱");
         }
-        System.out.println(stringBuilder);
+    }
+
+    private void printGameOverMessage() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+        System.out.println("게임을 새로 시작혀려면 1, 종료하려면 2를 입력하세요");
     }
 
     private boolean isGameOver() {
@@ -85,11 +96,6 @@ public class Game {
             return false;
         }
         return true;
-    }
-
-    private void printGameOverMessage() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-        System.out.println("게임을 새로 시작혀려면 1, 종료하려면 2를 입력하세요");
     }
 
     private boolean isGameStop() {
