@@ -1,3 +1,3 @@
 public enum Result {
-	STRIKE, BALL
+	STRIKE, BALL, NONE
 }

@@ -15,4 +15,16 @@ public class Problem {
 
 		this.answer = builder.toString();
 	}
+
+	private Result getResult(String input, int index) {
+		if (answer.charAt(index) == input.charAt(index)) {
+			return Result.STRIKE;
+		}
+
+		if (answer.contains(String.valueOf(input.charAt(index)))) {
+			return Result.BALL;
+		}
+
+		return Result.NONE;
+	}
 }
