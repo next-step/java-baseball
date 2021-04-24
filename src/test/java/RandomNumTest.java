@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class RandomNumTest {
@@ -22,6 +23,7 @@ public class RandomNumTest {
 	}
 	
 	@Test
+	@DisplayName("난수 생성(중복제외)")
 	void createRandomNum() {
 		Set<Integer> testDisSet = new LinkedHashSet<>();
 		while(testDisSet.size() < numnCreateCnt) {
@@ -31,6 +33,7 @@ public class RandomNumTest {
 	}
 	
 	@Test
+	@DisplayName("난수Set 분자열 변환")
 	void convertSetToStr() {
 		StringBuilder returnStrBd = new StringBuilder();
 		for (Integer num : distinctNumSet) {
