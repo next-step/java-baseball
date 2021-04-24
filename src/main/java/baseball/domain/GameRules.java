@@ -22,6 +22,10 @@ public class GameRules {
         return countOfRule.get(GameRule.STRIKE);
     }
 
+    public int countOfBall() {
+        return countOfRule.get(GameRule.BALL);
+    }
+
     private void increase(GameRule gameRule) {
         Integer count = countOfRule.get(gameRule);
 

@@ -18,4 +18,14 @@ public class GameRulesTest {
         assertThat(gameRules.countOfStrike())
                 .isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("볼 개수를 갖는다.")
+    public void 볼_개수를_갖는다() {
+        List<GameRule> gameRuleList = Arrays.asList(GameRule.BALL, GameRule.BALL, GameRule.BALL);
+        GameRules gameRules = new GameRules(gameRuleList);
+
+        assertThat(gameRules.countOfBall())
+                .isEqualTo(3);
+    }
 }
