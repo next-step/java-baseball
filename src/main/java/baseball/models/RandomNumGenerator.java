@@ -1,24 +1,32 @@
 package baseball.models;
 
+import java.util.Arrays;
+
 public class RandomNumGenerator {
 
     private static boolean isDone;
+    private final boolean[] duplicatedNumCheck = new boolean[10];
+    private StringBuilder random;
 
     String getThreeNumbers() {
-        isDone = false;
-        boolean[] duplicatedNumCheck = new boolean[10];
-        StringBuilder random = new StringBuilder();
+        init();
 
         do {
             int choice = (int) (Math.random() * 9) + 1;
-            getIfNotDuplicated(duplicatedNumCheck, random, choice);
+            getIfNotDuplicated(choice);
 
         } while (!checkIfDone(random));
 
         return random.toString();
     }
 
-    private void getIfNotDuplicated(boolean[] duplicatedNumCheck, StringBuilder random, int choice) {
+    private void init() {
+        isDone = false;
+        Arrays.fill(duplicatedNumCheck, false);
+        random = new StringBuilder();
+    }
+
+    private void getIfNotDuplicated(int choice) {
         if (!duplicatedNumCheck[choice]) {
             duplicatedNumCheck[choice] = true;
             random.append(choice);

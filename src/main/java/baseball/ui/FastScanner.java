@@ -11,6 +11,7 @@ public class FastScanner {
     private StringTokenizer st = new StringTokenizer("");
 
     private static FastScanner fs = new FastScanner();
+
     private FastScanner() {
     }
 
@@ -21,7 +22,7 @@ public class FastScanner {
     public String next() {
         while (!st.hasMoreTokens())
             try {
-                st=new StringTokenizer(br.readLine());
+                st = new StringTokenizer(br.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -31,11 +32,13 @@ public class FastScanner {
     public int nextInt() {
         return Integer.parseInt(next());
     }
+
     public int[] readArray(int n) {
-        int[] a=new int[n];
-        for (int i=0; i<n; i++) a[i]=nextInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = nextInt();
         return a;
     }
+
     public long nextLong() {
         return Long.parseLong(next());
     }

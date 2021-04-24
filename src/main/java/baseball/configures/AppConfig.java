@@ -5,19 +5,19 @@ import baseball.models.*;
 public class AppConfig {
 
 
-    Calculator calculator() {
+    public Calculator calculator() {
         return new Calculator();
     }
 
-    RandomNumGenerator randomNumGenerator() {
+    public RandomNumGenerator randomNumGenerator() {
         return new RandomNumGenerator();
     }
 
-    NumValidChecker numValidChecker() {
+    public NumValidChecker numValidChecker() {
         return new NumValidChecker();
     }
 
-    PrintGenerator printGenerator() {
+    public PrintGenerator printGenerator() {
         return new PrintGenerator(numValidChecker(), calculator());
     }
 
