@@ -37,8 +37,7 @@ public class BaseballRule {
 
 	private BaseballResult checkBall(int playerIndex) {
 		checkBallFrontNumber(playerIndex);
-		if(playerIndex > BallNumber.MIN_SIZE)
-			checkBallBackNumber(playerIndex);
+		checkBallBackNumber(playerIndex);
 		return this.baseballResult;
 	}
 
@@ -65,6 +64,8 @@ public class BaseballRule {
 	private int getBackComputerIndex(int playerIndex) {
 		int backComputerComputerIndex = playerIndex;
 		backComputerComputerIndex--;
+		if (backComputerComputerIndex < BallNumber.MIN_SIZE)
+			backComputerComputerIndex = BallNumber.MAX_SIZE - 1;
 		return backComputerComputerIndex;
 	}
 
