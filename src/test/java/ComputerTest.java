@@ -15,7 +15,7 @@ public class ComputerTest {
 	@Test
 	void setNumberLimitTest() {
 		computer.setBallSet();
-		for(int i = 0; i < 1000; i ++) {
+		for (int i = 0; i < 1000; i++) {
 			assertTrue(computer.getBall().length() < 4);
 		}
 	}
@@ -26,8 +26,8 @@ public class ComputerTest {
 		String input = "123";
 		Computer computer = new Computer();
 		computer.setBallSet();
-		if(computer.result(input) && computer.getStrikeCount() == 0 && computer.getBallCount() == 0) {
-				System.out.println("낫싱");
+		if (computer.result(input) && computer.getStrikeCount() == 0 && computer.getBallCount() == 0) {
+			System.out.println("낫싱");
 		} else {
 			System.out.println(computer.getStrikeCount() + "스트라이크" + computer.getBallCount() + "볼");
 		}
