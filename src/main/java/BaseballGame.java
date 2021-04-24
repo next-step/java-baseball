@@ -64,8 +64,33 @@ public class BaseballGame {
 	public void startUserGame(String rNumStr) {
 		String userInputStr = inputGameNumber();
 		Map<String, Integer> returnMap = compareNums(rNumStr, userInputStr);
+		if (actGameResult(returnMap)) {
+			restartBaseballGame();
+			return;
+		}
+		startUserGame(rNumStr);
 	}
 	
+	public void restartBaseballGame() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		String inputStr = new Scanner(System.in).next();
+		if ("1".equals(inputStr)) {
+			startBaseballGame();
+		}
+		if ("2".equals(inputStr)) {
+			return;
+		}
+		restartBaseballGame();
+	}
+	
+	public String inputGameRestart() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		String inputStr = new Scanner(System.in).next();
+		if ("1".equals(inputStr) || "2".equals(inputStr)) {
+			return inputStr;
+		}
+		return inputGameRestart();
+	}
 	public String inputGameNumber() {
 		System.out.println("숫자를 입력해주세요 : ");
 		String inputStr = new Scanner(System.in).next();
@@ -119,4 +144,27 @@ public class BaseballGame {
 		}
 		return "N";
 	}
+	
+	public boolean actGameResult(Map<String, Integer> returnMap) {
+		if (returnMap.getOrDefault("N", 0) == 3) {
+			System.out.println("낫싱");
+			return false;
+		}
+		printGameResultMap(returnMap);
+		if (returnMap.getOrDefault("S", 0) == 3) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void printGameResultMap(Map<String, Integer> returnMap) {
+		StringBuilder printStrBd = new StringBuilder();
+		for (String key : returnMap.keySet()) {
+			if ("N".equals(key)) {
+				continue;
+			}
+			printStrBd.append(returnMap.get(key) + Status.findStatus(key) + " ");
+		}
+		System.out.println(printStrBd.toString());
+	}	
 }
