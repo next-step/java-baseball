@@ -26,4 +26,12 @@ public class BaseBallGameTest {
                 && (num3 > 0 && num3 < 10)).isTrue();
     }
 
+    @Test
+    @DisplayName("길이 검증 테스트")
+    public void isValidLength() {
+        String nums = "1234";
+
+        assertThat(nums.length() != 3).isTrue();
+    }
+
 }
