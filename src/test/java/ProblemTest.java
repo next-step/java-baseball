@@ -1,9 +1,13 @@
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class ProblemTest {
 	
@@ -22,23 +26,29 @@ class ProblemTest {
 	    // then
 		assertThat(answer).doesNotContain("0");
 	}
-	
-	@Test
-	public void exist() throws Exception {
+
+	@ParameterizedTest
+	@DisplayName("사용자 입력 첫번째 숫자의 투구결과 확인")
+	@MethodSource("parametersForGetResult")
+	public void getResult(String answer, String input, int index, Result expected) throws Exception {
 	    // given
+		Problem problem = new Problem(answer);
+		Method method = problem.getClass().getDeclaredMethod("getResult", String.class, int.class);
+		method.setAccessible(true);
 
 	    // when
-	    
-	    // then
+		Result result = (Result)method.invoke(problem, input, index);
+
+		// then
+		assertEquals(expected, result);
 	}
-	
-	@Test
-	public void match() throws Exception {
-	    // given
 
-	    // when
-	    
-	    // then
+	private static Object[] parametersForGetResult() {
+		return new Object[] {
+			new Object[] {"123", "100", 0, Result.STRIKE},
+			new Object[] {"123", "200", 0, Result.BALL},
+			new Object[] {"123", "400", 0, Result.NONE}
+		};
 	}
 	
 	@Test
