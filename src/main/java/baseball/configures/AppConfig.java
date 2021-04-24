@@ -1,4 +1,6 @@
-package baseball;
+package baseball.configures;
+
+import baseball.models.*;
 
 public class AppConfig {
 
@@ -19,7 +21,7 @@ public class AppConfig {
         return new PrintGenerator(numValidChecker(), calculator());
     }
 
-    BaseBallNumGame baseBallNumGame() {
+    public BaseBallNumGame baseBallNumGame() {
         return new BaseBallNumGame(randomNumGenerator(),printGenerator());
     }
 

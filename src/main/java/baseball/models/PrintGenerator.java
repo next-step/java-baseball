@@ -1,4 +1,4 @@
-package baseball;
+package baseball.models;
 
 import baseball.ui.FastScanner;
 

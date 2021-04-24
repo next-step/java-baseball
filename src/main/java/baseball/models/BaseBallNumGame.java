@@ -1,4 +1,4 @@
-package baseball;
+package baseball.models;
 
 import baseball.ui.FastScanner;
 
@@ -13,12 +13,12 @@ public class BaseBallNumGame {
     private final PrintGenerator printGenerator;
 
 
-    protected BaseBallNumGame(RandomNumGenerator randomNumGenerator, PrintGenerator printGenerator) {
+    public BaseBallNumGame(RandomNumGenerator randomNumGenerator, PrintGenerator printGenerator) {
         this.randomNumGenerator = randomNumGenerator;
         this.printGenerator = printGenerator;
     }
 
-    void play() {
+    public void play() {
 
         //getRandomNumber();
         String random = randomNumGenerator.getThreeNumbers();

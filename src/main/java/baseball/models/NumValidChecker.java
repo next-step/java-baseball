@@ -1,4 +1,4 @@
-package baseball;
+package baseball.models;
 
 public class NumValidChecker {
 
