@@ -3,18 +3,26 @@ package com.baseball.woowahan;
 import java.util.Objects;
 
 public class ScoreCalculatorAndPrinter {
-	private int strikeCount = 0;
-	private int ballCount = 0;
+	private int strikeCount;
+	private int ballCount;
 
-	public int calculate(String inputNumber, String randomNumber) {
+	public ScoreCalculatorAndPrinter() {
+		this.strikeCount = 0;
+		this.ballCount = 0;
+	}
 
+	public void calculate(String inputNumber, String randomNumber) {
+		initCounts();
 		String[] inputNumbers = inputNumber.split("");
 		for (int i = 0; i < UserInput.GAME_LENGTH; i++) {
 			checkStrike(randomNumber, i, inputNumbers[i]);
 			checkBall(randomNumber, i, inputNumbers[i]);
 		}
 		printMessage();
-		return strikeCount;
+	}
+
+	public boolean isCompleted() {
+		return Objects.equals(strikeCount, UserInput.GAME_LENGTH);
 	}
 
 	private void printMessage() {
@@ -41,6 +49,11 @@ public class ScoreCalculatorAndPrinter {
 		if (!Objects.equals(index, randomNumber.indexOf(input)) && randomNumber.contains(input)) {
 			ballCount++;
 		}
+	}
+
+	private void initCounts() {
+		strikeCount = 0;
+		ballCount = 0;
 	}
 
 }

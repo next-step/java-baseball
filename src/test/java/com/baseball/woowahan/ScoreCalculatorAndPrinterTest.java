@@ -17,9 +17,9 @@ class ScoreCalculatorAndPrinterTest {
 
 	@BeforeEach
 	void init() {
-		strikeCount = 0;
-		ballCount = 0;
-		message = "";
+		this.strikeCount = 0;
+		this.ballCount = 0;
+		this.message = "";
 	}
 
 	@DisplayName("문자열 1개 스트라이크 여부")
