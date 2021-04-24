@@ -17,8 +17,7 @@ public class Problem {
 		StringBuilder builder = new StringBuilder();
 
 		for (int i = 0; i < 3; i++) {
-			int randomNumber = (int)(Math.random() * 9 + 1);
-			builder.append(randomNumber);
+			builder.append(getRandomNumber(builder));
 		}
 
 		this.answer = builder.toString();
@@ -46,5 +45,15 @@ public class Problem {
 		}
 
 		return Result.NONE;
+	}
+
+	private int getRandomNumber(StringBuilder builder) {
+		int number;
+
+		do {
+			number = (int)(Math.random() * 9 + 1);
+		} while (builder.indexOf(String.valueOf(number)) > 0);
+
+		return number;
 	}
 }
