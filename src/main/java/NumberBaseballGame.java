@@ -62,6 +62,34 @@ public class NumberBaseballGame {
         @Return 게임 지속여부
      */
     public static boolean printResult(int random, int input) {
+        if (Integer.toString(input).indexOf('0') > -1) {
+            System.out.println("0은 포함 할 수 없습니다.");
+            return true;
+        }
+        if (input > 999) {
+            System.out.println("3자리까지 입력 가능합니다.");
+            return true;
+        }
+
+        int strike = countStrike(random, input);
+        int ball = countBall(random, input);
+
+        if (strike == 0 && ball == 0) {
+            System.out.println("낫싱");
+            return true;
+        }
+        if (strike == 3) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+            return false;
+        }
+        if (strike > 0) {
+            System.out.print(strike + "스트라이크 ");
+        }
+        if (ball > 0) {
+            System.out.print(ball + "볼");
+        }
+
+        System.out.println();
 
         return true;
     }
