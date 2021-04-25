@@ -1,6 +1,6 @@
 package baseball.exception;
 
-public class BaseballNumberInvalidRangeException extends RuntimeException{
+public class BaseballNumberInvalidRangeException extends RuntimeException {
     public BaseballNumberInvalidRangeException() {
         super("야구게임에 유효하지 않은 숫자 범위 입니다.");
     }
