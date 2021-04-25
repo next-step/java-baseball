@@ -14,7 +14,7 @@ import io.github.sejoung.baseball.constants.GameMessage;
 import io.github.sejoung.baseball.constants.PlayMessage;
 import io.github.sejoung.baseball.constants.ValidatorMessage;
 
-class BaseBallGameTest extends BaseBallGameParameterized{
+class BaseBallGameTest extends BaseBallGameParameterized {
 
 	private final static String NEW_LINE = System.lineSeparator();
 
@@ -56,7 +56,7 @@ class BaseBallGameTest extends BaseBallGameParameterized{
 		assertThat(actual).isEqualTo(ValidatorMessage.NUMBER + NEW_LINE + GameMessage.INPUT);
 	}
 
-	@ParameterizedTest(name = "{index} 플레이어가 입력한 숫자가 컴퓨터 숫자를 모두 맞춤 메시지 확인  => {0}, {1}")
+	@ParameterizedTest(name = "{index} 플레이어가 입력한 숫자가 컴퓨터 숫자를 모두 맞춤 메시지 확인 => numbers = {0}, input = {1}")
 	@MethodSource("generateThreeStrikeArgumentsStream")
 	void playerInputNumberThreeStrikeMessageTest(List<Integer> numbers, String input) {
 		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(numbers));
@@ -67,7 +67,7 @@ class BaseBallGameTest extends BaseBallGameParameterized{
 			PlayMessage.getStrike(3) + NEW_LINE + GameMessage.SUCCESS + NEW_LINE + GameMessage.RESTART);
 	}
 
-	@ParameterizedTest(name = "{index} 게임 재시작 확인 => {0}, {1}")
+	@ParameterizedTest(name = "{index} 게임 재시작 확인 => numbers = {0}, input = {1}")
 	@MethodSource("generateThreeStrikeArgumentsStream")
 	void gameRestartTest(List<Integer> numbers, String input) {
 		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(numbers));
@@ -79,16 +79,25 @@ class BaseBallGameTest extends BaseBallGameParameterized{
 		assertThat(actual).isEqualTo(GameMessage.INPUT);
 	}
 
-	@DisplayName("게임 종료 확인")
-	@Test
-	void gameEndTest() {
-		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(Arrays.asList(1, 2, 3)));
+	@ParameterizedTest(name = "{index} 게임 종료 확인 => numbers = {0}, input = {1}")
+	@MethodSource("generateThreeStrikeArgumentsStream")
+	void gameEndTest(List<Integer> numbers, String input) {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(numbers));
 		game.flushOutput();
-		game.processInput("123");
+		game.processInput(input);
 		game.flushOutput();
 		game.processInput("2");
 		assertThat(game.isCompleted()).isTrue();
 	}
 
+	@DisplayName("플레이어가 입력한 값이 틀리면 낫싱 메시지 출력")
+	@Test
+	void nothingMessageTest() {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(Arrays.asList(1, 2, 3)));
+		game.flushOutput();
+		game.processInput("456");
+		String actual = game.flushOutput();
+		assertThat(actual).isEqualTo(PlayMessage.NOTHING);
+	}
 
 }

@@ -19,7 +19,7 @@
 * [x] 플레이어가 입력한 숫자가 컴퓨터 숫자를 모두 맞춤 메시지 확인
 * [x] 게임 재시작 확인
 * [x] 게임 종료 확인
-
+* [x] 플레이어가 입력한 값이 틀리면 낫싱 메시지 출력
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)

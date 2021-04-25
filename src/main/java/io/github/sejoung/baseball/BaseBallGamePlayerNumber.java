@@ -25,6 +25,15 @@ public class BaseBallGamePlayerNumber {
 
 	public void check() {
 		threeStrikeCheck();
+		makeMessage();
+	}
+
+
+	private void makeMessage() {
+		if (strikeCount == 0 && ballCount == 0) {
+			output.printMessages(NOTHING);
+		}
+
 	}
 
 	private void threeStrikeCheck() {
