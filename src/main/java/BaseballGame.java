@@ -1,8 +1,8 @@
 public class BaseballGame {
-    private RandomNumGenerator systemGenerator;
-    private UserInputNumGenerator userGenerator;
-    private BaseballGameResultCalculator calculator;
-    private BaseballGameResultPrinter printer;
+    private static RandomNumGenerator systemGenerator;
+    private static UserInputNumGenerator userGenerator;
+    private static BaseballGameResultCalculator calculator;
+    private static BaseballGameResultPrinter printer;
 
     public static final int DEFAULT_LEN = 3;
 
@@ -20,7 +20,7 @@ public class BaseballGame {
         printer = new BaseballGameResultPrinter();
     }
 
-    public void run(){
+    public static void run(){
         String systemBalls = systemGenerator.generateRandomNum();
         int [] res;
 
@@ -30,16 +30,20 @@ public class BaseballGame {
             printer.print(res);
         }while(!isGameClear(res));
 
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("3개의 숫자를 모두 맞히셨습니다");
     }
 
-    private boolean isGameClear(int[] result) {
+    private static boolean isGameClear(int[] result) {
         int strikesCnt = result[0];
         return strikesCnt == 3;
     }
 
     public static void main(String[] args) {
         BaseballGame basballgame = new BaseballGame(DEFAULT_LEN);
-        basballgame.run();
+        do {
+            basballgame.run();
+        }while(UserInputNumGenerator.playAgain());
+
+        System.out.println("게임 종료");
     }
 }

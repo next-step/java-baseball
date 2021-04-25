@@ -69,5 +69,13 @@ public class UserInputNumGenerator {
         }
     }
 
+    public static boolean playAgain() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2 입력하세요.");
 
+        String selectNum = sc.next();
+        if(UserSelectOption.selectOption(selectNum)){
+           return true;
+        }
+        return false;
+    }
 }
