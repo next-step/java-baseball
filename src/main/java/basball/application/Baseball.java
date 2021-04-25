@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Baseball {
 
-    List<Integer> questionSet;
+    public List<Integer> questionSet;
 
     private static final NumberFactory factory = new NumberFactory();
     private static final Validator validator = new Validator();
@@ -48,7 +48,9 @@ public class Baseball {
     }
 
     private int CountingStrike(int correctValue, int value, int correctPosition, int position) {
-        if (correctValue == value && correctPosition == position) return 1;
+        if (correctValue == value && correctPosition == position) {
+            return 1;
+        }
         return 0;
     }
 
@@ -61,7 +63,9 @@ public class Baseball {
     }
 
     private int CountingBall(int correctValue, int value, int correctPosition, int position) {
-        if (correctValue == value && correctPosition != position) return 1;
+        if (correctValue == value && correctPosition != position) {
+            return 1;
+        }
         return 0;
     }
 
