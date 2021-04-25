@@ -4,6 +4,8 @@ import java.util.*;
 
 public class CountScore {
 
+  private static final Integer STRIKE_SCORE_CAN_GAME_OVER = 3;
+
   private final Map<Count, Integer> countAndScore;
   public CountScore(List<Count> countsOfExpectInning) {
     Map<Count, Integer> countCollected = new EnumMap<>(Count.class);
@@ -17,6 +19,10 @@ public class CountScore {
     if(countScoreMap.computeIfPresent(countOfExpect, (count, integer) -> ++integer) == null) {
       countScoreMap.put(countOfExpect, 1);
     }
+  }
+
+  public boolean isGameOverScore() {
+    return STRIKE_SCORE_CAN_GAME_OVER.equals(countAndScore.get(Count.STRIKE));
   }
 
   @Override

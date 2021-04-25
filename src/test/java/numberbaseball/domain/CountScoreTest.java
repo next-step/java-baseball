@@ -20,11 +20,26 @@ class CountScoreTest {
     assertThat(new CountScore(given)).isEqualTo(new CountScore(given));
   }
 
+  @DisplayName("게임 종료 여부 테스트")
+  @MethodSource("provideCountListAndGameOverFlag")
+  @ParameterizedTest
+  void constructionTest(List<Count> given, boolean gameOverFlag) {
+    assertThat(new CountScore(given).isGameOverScore()).isEqualTo(gameOverFlag);
+  }
+
   static Stream<Arguments> provideCountList() {
     return Stream.of(
         Arguments.of(List.of(STRIKE, STRIKE, STRIKE)),
         Arguments.of(List.of(STRIKE, BALL, NOTHING)),
         Arguments.of(List.of(NOTHING, BALL, NOTHING))
+    );
+  }
+
+  static Stream<Arguments> provideCountListAndGameOverFlag() {
+    return Stream.of(
+        Arguments.of(List.of(STRIKE, STRIKE, STRIKE), true),
+        Arguments.of(List.of(STRIKE, BALL, NOTHING), false),
+        Arguments.of(List.of(NOTHING, BALL, NOTHING), false)
     );
   }
 
