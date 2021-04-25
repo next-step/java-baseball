@@ -1,5 +1,6 @@
 package service;
 
+import model.Score;
 import support.ConvertUtils;
 
 import java.util.Random;
@@ -9,12 +10,14 @@ public class GameService {
     private RuleService ruleService = new RuleService();
 
     public void initGame(int len) {
+        Score score = new Score();
         int[] botNumber = generateBotNumber(len);
-        System.out.println("[debug] bot number : "+ConvertUtils.convertArrayToInt(botNumber)); //TODO: Remove this line
 
-        int[] userNumber = getUserNumber(len);
-        System.out.println("[debug] user number : "+ConvertUtils.convertArrayToInt(userNumber)); //TODO: Remove this line
-        //TODO: Check the result
+        while (score.getStrike() != len) {
+            score = ruleService.checkScore(botNumber, getUserNumber(len));
+            System.out.println(score.toString());
+        }
+        System.out.println(len +"자리 숫자를 모두 맞히셨습니다!");
     }
 
     int[] generateBotNumber(int len) {

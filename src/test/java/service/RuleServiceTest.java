@@ -63,4 +63,18 @@ class RuleServiceTest {
         assertThat(ruleService.countBall(BOT_NUMBER, new int[]{5, 1, 2})).isEqualTo(3);
         assertThat(ruleService.countBall(BOT_NUMBER, new int[]{5, 2, 1})).isEqualTo(3);
     }
+
+    @DisplayName("Score should be printed correctly")
+    @Test
+    void testCheckResult() {
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{1, 2, 5}).toString().contains("3 strike")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{1, 2, 9}).toString().contains("2 strike")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{1, 5, 2}).toString().contains("1 strike, 2 ball")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{1, 5, 9}).toString().contains("1 strike, 1 ball")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{1, 6, 7}).toString().contains("1 strike")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{2, 5, 1}).toString().contains("3 ball")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{2, 9, 1}).toString().contains("2 ball")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{2, 9, 7}).toString().contains("1 ball")).isTrue();
+        assertThat(ruleService.checkScore(BOT_NUMBER, new int[]{6, 7, 8}).toString().contains("nothing")).isTrue();
+    }
 }

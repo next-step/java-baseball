@@ -1,6 +1,19 @@
 package service;
 
+import model.Score;
+
 class RuleService {
+
+    Score checkScore(int[] botNumber, int[] userNumber) {
+        Score score = new Score();
+
+        int strike = countStrike(botNumber, userNumber);
+        int ball = countBall(botNumber, userNumber);
+
+        score.setStrike(strike);
+        score.setBall(ball - strike);
+        return score;
+    }
 
     int countStrike(int[] botNumber, int[] userNumber) {
         int count = 0;
