@@ -2,17 +2,15 @@ package service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Arrays;
+import support.ConvertUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameServiceTest {
     private GameService gameService = new GameService();
+    private static final int LEN = 3;
 
     @BeforeEach
     void setUp() {
@@ -25,6 +23,21 @@ class GameServiceTest {
     void testGenerateBotNumber(int len) {
         int[] result = gameService.generateBotNumber(len);
         assertThat(result).hasSize(len);
-        System.out.println(Arrays.toString(result));
+        System.out.println(ConvertUtils.convertArrayToInt(result));
     }
+
+    @DisplayName("isValidInput should return true")
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "111", "456"})
+    void testIsValidInputReturnTrue(String input) {
+        assertThat(gameService.isValidInput(input, LEN)).isTrue();
+    }
+
+    @DisplayName("isValidInput should return false")
+    @ParameterizedTest
+    @ValueSource(strings = {"12", "1234", "abc"})
+    void testIsValidInputReturnFalse(String input) {
+        assertThat(gameService.isValidInput(input, LEN)).isFalse();
+    }
+
 }
