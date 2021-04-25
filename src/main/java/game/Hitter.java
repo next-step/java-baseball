@@ -24,7 +24,6 @@ public class Hitter {
             randomNumberSet.add(random.nextInt(ConstantUtil.RANDOM_NUMBER_MAX - ConstantUtil.RANDOM_NUMBER_MIN) + ConstantUtil.RANDOM_NUMBER_MIN);
         }
 
-        System.out.println("정답: " + randomNumberSet);
         return new ArrayList<>(randomNumberSet);
     }
 }

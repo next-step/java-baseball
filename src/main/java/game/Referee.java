@@ -1,7 +1,7 @@
 package game;
 
 public class Referee {
-    private GameResult gameResult;
+    private final GameResult gameResult;
 
     public Referee() {
         this.gameResult = new GameResult();
