@@ -6,11 +6,7 @@ public class Converter {
 	}
 
 	public boolean isThreeDigits(String raw) {
-		if (raw.length() != 3 || !isNumber(raw)) {
-			return false;
-		}
-
-		return toNumber(raw) > 99;
+		return raw.length() == 3 && isNumber(raw) && toNumber(raw) > 99;
 	}
 
 	public int toNumber(String raw) {
