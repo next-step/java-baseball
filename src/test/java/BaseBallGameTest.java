@@ -25,13 +25,22 @@ public class BaseBallGameTest {
     @DisplayName("세 자리 숫자 생성 테스트")
     public void generateThreeNumbers() {
         Random random = new Random();
-        int num1 = random.nextInt(9) + 1;
-        int num2 = random.nextInt(9) + 1;
-        int num3 = random.nextInt(9) + 1;
-
+        int num1 = 0;
+        int num2 = 0;
+        int num3 = 0;
+        while (num1 == num2 || num1 == num3 || num2 == num3) {
+            num1 = random.nextInt(9) + 1;
+            num2 = random.nextInt(9) + 1;
+            num3 = random.nextInt(9) + 1;
+        }
+        assertThat(String.valueOf(num1) + num2 + num3).isInstanceOf(String.class);
+        assertThat(String.valueOf(num1) + num2 + num3).hasSize(3);
         assertThat((num1 > 0 && num1 < 10)
                 && (num2 > 0 && num2 < 10)
                 && (num3 > 0 && num3 < 10)).isTrue();
+        assertThat((num1 != num2)
+                && (num1 != num3)
+                && (num2 != num3)).isTrue();
     }
 
     @Test

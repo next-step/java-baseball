@@ -12,14 +12,13 @@ public class BaseBallGame {
         while (endValue == 1) {
             endValue = playGame();
         }
-        System.out.println("야구 게임 종료");
     }
 
     private int playGame() {
-        System.out.println("야구 게임 시작");
         String threeNumbers = generateThreeNumbers();
         Scanner scanner = new Scanner(System.in);
         while (true) {
+            System.out.print("숫자를 입력해주세요: ");
             String inputNumbers = scanner.next();
             if (!isValidInputValue(inputNumbers)) {
                 continue;
@@ -34,11 +33,16 @@ public class BaseBallGame {
 
     private String generateThreeNumbers() {
         Random random = new Random();
-        String num1 = String.valueOf(random.nextInt(9) + 1);
-        String num2 = String.valueOf(random.nextInt(9) + 1);
-        String num3 = String.valueOf(random.nextInt(9) + 1);
+        int num1 = 0;
+        int num2 = 0;
+        int num3 = 0;
+        while (num1 == num2 || num1 == num3 || num2 == num3) {
+            num1 = random.nextInt(9) + 1;
+            num2 = random.nextInt(9) + 1;
+            num3 = random.nextInt(9) + 1;
+        }
 
-        return num1+num2+num3;
+        return String.valueOf(num1) + num2 + num3;
     }
 
     private boolean isValidInputValue(String inputNumbers) {
