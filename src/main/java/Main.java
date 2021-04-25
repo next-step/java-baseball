@@ -1,8 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        BaseballBoard baseballBoard = new BaseballBoard();
-        while(baseballBoard.isContinuing()){
-            InputProcessor.putNumbers();
+        BaseballGame baseballGame = new BaseballGame();
+
+        while(baseballGame.continuing()){
+            baseballGame.generateBaseBallNumber();
+            baseballGame.putNumbers();
+
+
 
         }
     }
