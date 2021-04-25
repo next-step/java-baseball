@@ -57,7 +57,7 @@ public class Umpire {
 
     public void askAnotherRound() {
         initScore();
-        OutputMessage.printMessage(Message.NOTICE_ANSWER);
+        OutputMessage.printMessage(Numbers.MAX_SIZE,Message.NOTICE_ANSWER);
         OutputMessage.printMessage(Message.ASK_NEXT_GAME);
     }
 }

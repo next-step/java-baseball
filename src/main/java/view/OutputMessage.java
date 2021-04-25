@@ -11,6 +11,10 @@ public class OutputMessage {
 		System.out.print(message.getText());
 	}
 
+	public static void printMessage(int size, Message message){
+		System.out.println(size+message.getText());
+	}
+
 	public static void printResult(int strike, int ball){
 		StringBuilder result = new StringBuilder();
 		buildStrikeResult(strike, result);

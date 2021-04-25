@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Numbers {
 
-	public static final int MAX_SIZE = 3;
+	public static final int MAX_SIZE = 4;
 	public static final int MIN_NUMBER = 1;
 	public static final int MAX_NUMBER = 9;
 
