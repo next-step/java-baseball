@@ -8,6 +8,19 @@ public class Results {
     private int numberOfBall;
     private int numberOfNothing;
 
+    private static final int MAX_RESULT_COUNT = 3;
+    private static final int MIN_RESULT_COUNT = 0;
+
+    private static final String ALL_STRIKE_MESSAGE = "\n3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+    private static final String RESULT_EMPTY_ERROR_MESSAGE = "결과 값이 존재하지 않습니다.";
+    private static final String RESULT_COUNT_ERROR_MESSAGE = "결과 수가 부족합니다.";
+
+    private static final String STRIKE_MESSAGE = "스트라이크";
+    private static final String BALL_MESSAGE = "볼";
+    private static final String NOTHING_MESSAGE = "낫싱";
+    private static final String DELIMITER = " ";
+
+
     private Results(List<Result> results) {
         validateResults(results);
         makeStatistics(results);
@@ -26,34 +39,34 @@ public class Results {
     }
 
     public String createResultMessage() {
-        StringJoiner joiner = new StringJoiner(" ");
+        StringJoiner joiner = new StringJoiner(DELIMITER);
         strikeResult(joiner);
         ballResult(joiner);
-        return joiner.toString().isEmpty() ? "낫싱" : joiner.toString();
+        return joiner.toString().isEmpty() ? NOTHING_MESSAGE : joiner.toString();
     }
 
     private void strikeResult(StringJoiner joiner) {
-        if (numberOfStrike > 0) {
-            joiner.add(Integer.toString(numberOfStrike)).add("스트라이크");
+        if (numberOfStrike > MIN_RESULT_COUNT) {
+            joiner.add(Integer.toString(numberOfStrike)).add(STRIKE_MESSAGE);
         }
-        if (numberOfStrike == 3) {
-            joiner.add("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        if (numberOfStrike == MAX_RESULT_COUNT) {
+            joiner.add(ALL_STRIKE_MESSAGE);
         }
     }
 
     private void ballResult(StringJoiner joiner) {
-        if (numberOfBall > 0) {
-            joiner.add(Integer.toString(numberOfBall)).add("볼");
+        if (numberOfBall > MIN_RESULT_COUNT) {
+            joiner.add(Integer.toString(numberOfBall)).add(BALL_MESSAGE);
         }
     }
 
     private void validateResults(List<Result> results) {
         if (results == null || results.isEmpty() || results.contains(null)) {
-            throw new IllegalArgumentException("결과 값이 존재하지 않습니다.");
+            throw new IllegalArgumentException(RESULT_EMPTY_ERROR_MESSAGE);
         }
 
-        if (results.size() < 3) {
-            throw new IllegalArgumentException("");
+        if (results.size() < MAX_RESULT_COUNT) {
+            throw new IllegalArgumentException(RESULT_COUNT_ERROR_MESSAGE);
         }
     }
 

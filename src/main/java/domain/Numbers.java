@@ -12,6 +12,10 @@ public class Numbers {
     private final List<Number> numbers;
     private final Set<Number> numberSet;
 
+    private static final int NUMBER_LENGTH = 3;
+    private static final String NUMBER_LENGTH_ERROR_MESSAGE = "숫자는 3자리 수여야 합니다.";
+    private static final String NUMBER_DUPLICATE_ERROR_MESSAGE = "숫자는 서로 다른 수여야 합니다.";
+
     private Numbers(List<Number> numbers) {
         validateNumbers(numbers);
         this.numbers = numbers;
@@ -50,12 +54,12 @@ public class Numbers {
     }
 
     private void validateNumbers(List<Number> numbers) {
-        if (numbers == null || numbers.size() != 3) {
-            throw new IllegalArgumentException("숫자는 3자리 수여야 합니다.");
+        if (numbers == null || numbers.size() != NUMBER_LENGTH) {
+            throw new IllegalArgumentException(NUMBER_LENGTH_ERROR_MESSAGE);
         }
 
-        if (createNotDuplicatedNumbers(numbers).size() < 3) {
-            throw new IllegalArgumentException("숫자는 서로 다른 수여야 합니다.");
+        if (createNotDuplicatedNumbers(numbers).size() < NUMBER_LENGTH) {
+            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
 

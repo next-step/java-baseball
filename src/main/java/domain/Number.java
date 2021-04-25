@@ -8,6 +8,11 @@ public class Number {
     private final int number;
     private final int position;
 
+    private static final int MAXIMUM_NUMBER = 9;
+    private static final int MINIMUM_NUMBER = 1;
+
+    private static final String NUMBER_BOUNDARY_ERROR_MESSAGE = "숫자는 1 ~ 9 사이의 수여야 합니다.";
+
     private Number(int number, int position) {
         validationCheck(number);
         this.number = number;
@@ -27,8 +32,8 @@ public class Number {
     }
 
     private void validationCheck(int number) {
-        if (number > 9 || number < 1) {
-            throw new IllegalArgumentException("숫자는 1 ~ 9 사이의 수여야 합니다.");
+        if (number > MAXIMUM_NUMBER || number < MINIMUM_NUMBER) {
+            throw new IllegalArgumentException(NUMBER_BOUNDARY_ERROR_MESSAGE);
         }
     }
 
