@@ -2,12 +2,14 @@ package baseball;
 
 import java.util.List;
 
+import static baseball.constant.Constant.NUMBERS_LIMIT;
+
 public class Numbers {
     private final List<Integer> gameNumbers;
 
     public Numbers(List<Integer> gameNumbers) {
-        if (gameNumbers.size() != 3) {
-            throw new IllegalArgumentException("게임숫자는 3개이어야 합니다.");
+        if (gameNumbers.size() != NUMBERS_LIMIT) {
+            throw new IllegalArgumentException("게임숫자는 " + NUMBERS_LIMIT + "개이어야 합니다.");
         }
         this.gameNumbers = gameNumbers;
     }
