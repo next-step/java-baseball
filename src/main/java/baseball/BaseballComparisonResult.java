@@ -10,16 +10,20 @@ public class BaseballComparisonResult {
         this.ballCount = ballCount;
     }
 
+    public boolean strikeAll() {
+        return strikeCount == 3;
+    }
+
     public boolean hasStrikeCount() {
-        return strikeCount > 0 ? true : false;
+        return strikeCount > 0;
     }
 
     public boolean hasBallCount() {
-        return ballCount > 0 ? true : false;
+        return ballCount > 0;
     }
 
     public boolean hasBothCount() {
-        return strikeCount > 0 && ballCount > 0 ? true : false;
+        return strikeCount > 0 && ballCount > 0;
     }
 
 }

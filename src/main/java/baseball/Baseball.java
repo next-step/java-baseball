@@ -104,32 +104,41 @@ public class Baseball {
      * Baseball 정답수와 예측수를 비교 판단한 결과로 출력할 문장을 만들어낸다.
      */
     public String makeComparisonResultString(BaseballComparisonResult comparisonResult) {
-        int strike = comparisonResult.strikeCount;
-        int ball = comparisonResult.ballCount;
+        if (comparisonResult.hasStrikeCount() || comparisonResult.hasBallCount()) {
+            return hasSomethingCase(comparisonResult);
+        }
 
+        return "낫싱";
+    }
+
+    private String hasSomethingCase(BaseballComparisonResult comparisonResult) {
         StringBuffer sb = new StringBuffer("");
 
-        if (!comparisonResult.hasStrikeCount() && !comparisonResult.hasBallCount()) {
-            return "낫싱";
-        }
-
-        if (comparisonResult.hasStrikeCount()) {
-            sb.append(strike + " 스트라이크");
-        }
-
+        sb.append(makeStrikeCountString(comparisonResult.strikeCount));
         if (comparisonResult.hasBothCount()) {
             sb.append(" ");
         }
+        sb.append(makeBallCountString(comparisonResult.ballCount));
 
-        if (comparisonResult.hasBallCount()) {
-            sb.append(ball + " 볼");
-        }
-
-        if (strike == 3) {
+        if (comparisonResult.strikeAll()) {
             sb.append("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             sb.append("\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         }
 
         return sb.toString();
+    }
+
+    private String makeStrikeCountString(int strikeCount) {
+        if (strikeCount > 0) {
+            return strikeCount + " 스트라이크";
+        }
+        return "";
+    }
+
+    private String makeBallCountString(int ballCount) {
+        if (ballCount > 0) {
+            return ballCount + " 볼";
+        }
+        return "";
     }
 }
