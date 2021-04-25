@@ -3,6 +3,7 @@ package baseball.view;
 import baseball.application.BaseballService;
 import baseball.domain.BaseballNumbers;
 import baseball.domain.Score;
+import baseball.domain.ScoreStatus;
 
 import java.util.Scanner;
 
@@ -29,8 +30,9 @@ public class BaseballView {
         boolean isContinued = true;
         while (isContinued){
             String playerInput = enterPlayerInput();
-            Score score = baseballService.scorePlayerInput(playerInput);
-            isContinued = false;
+            Score score = baseballService.scorePlayerInput(answer, playerInput);
+            printScore(score);
+            isContinued = ! score.isPassed();
         }
     }
 
@@ -38,4 +40,12 @@ public class BaseballView {
         System.out.print(MESSAGE_ENTER_NUMERIC);
         return sc.next();
     }
+
+    private void printScore(Score score) {
+        if (! score.getScoreStatus().equals(ScoreStatus.ERROR)) {
+            System.out.println(score.getJudgeMessage());
+        }
+    }
+
+
 }

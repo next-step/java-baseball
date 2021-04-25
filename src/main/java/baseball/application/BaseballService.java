@@ -16,13 +16,17 @@ public class BaseballService {
         return this.baseballNumberFactory.generateNumbers();
     }
 
-    public Score scorePlayerInput(String playerInput) {
+    public Score scorePlayerInput(BaseballNumbers answer, String playerInput) {
+        Score score = new Score();
+
         try {
             BaseballNumbers playerBaseballNumber = new BaseballNumbers(playerInput);
+            score = Score.measureScore(answer, playerBaseballNumber);
         } catch (BaseballException e) {
             System.out.println(e.getMessage());
+            score = Score.createErrorStateScore();
         }
 
-        return null; // TODO 기능 미구현으로 NULL 반환
+        return score;
     }
 }
