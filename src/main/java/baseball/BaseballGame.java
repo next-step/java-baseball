@@ -35,8 +35,32 @@ public class BaseballGame {
 		int[] computerBalls = computer.selectComputerBalls(BALL_COUNT);
 		System.out.println("Computer: " + Arrays.toString(computerBalls));
 		User user = new User();
-		int[] userBalls = user.selectUserBalls(BALL_COUNT, inputUserBalls());
-		System.out.println("User: " + Arrays.toString(userBalls));
+		boolean isWin = false;
+		while (!isWin) {
+			int[] userBalls = user.selectUserBalls(BALL_COUNT, inputUserBalls());
+			System.out.println("User: " + Arrays.toString(userBalls));
+			isWin = match(computerBalls, userBalls);
+		}
+	}
+
+	private boolean match(int[] computerBalls, int[] userBalls) {
+		int strike = 0, ball = 0;
+		for (int i = 0; i < BALL_COUNT; ++i) {
+			strike += tryStrike(computerBalls, userBalls, i);
+			ball   += tryBall(computerBalls, userBalls, i);
+		}
+		return strike == BALL_COUNT;
+	}
+
+	private int tryStrike(int[] computerBalls, int[] userBalls, int idx) {
+		return computerBalls[idx] == userBalls[idx] ? 1 : 0;
+	}
+
+	private int tryBall(int[] computerBalls, int[] userBalls, int idx) {
+		if (tryStrike(computerBalls, userBalls, idx) == 1) {
+			return 0;
+		}
+		return Arrays.binarySearch(computerBalls, userBalls[idx]) >= 0 ? 1 : 0;
 	}
 
 	private static GameStatus selectRestartOrExit() {
