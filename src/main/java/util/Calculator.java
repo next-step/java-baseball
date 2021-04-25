@@ -20,6 +20,23 @@ public class Calculator {
         return ballCount + "볼";
     }
 
-  
+    public int getStrikeCount(char player, char computer){
+        if(player == computer) return 1;
+        return 0;
+    }
+
+    public String getStrikeString(int strikeCount){
+        if(strikeCount == 0) return "";
+        return strikeCount + "스트라이크 ";
+    }
+
+    public String getCalculatorResult(String player, String computer){
+        initCount();
+        for(int i=0;i<3;i++) {
+            ballCount += getBallCount(player.charAt(i), i, computer);
+            strikeCount += getStrikeCount(player.charAt(i), computer.charAt(i));
+        }
+
+    }
 
 }
