@@ -133,7 +133,6 @@ public class Baseball {
 
 	public String getResultMessage() {
 		String message;
-
 		message = strikeCounts > 0 ? String.format("%d %s", strikeCounts, BaseballResultType.STRIKE.getValue()) : "";
 		message += ballCounts > 0 ? String.format("%d %s", ballCounts, BaseballResultType.BALL.getValue()) : "";
 		message += strikeCounts + ballCounts == 0 ? String.format("%s", BaseballResultType.NOTHING.getValue()) : "";
