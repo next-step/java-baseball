@@ -32,7 +32,7 @@ public class Numbers {
     private int ballNumber(List<Integer> userNumbers, Integer quizNumber) {
         int ballNumber = 0;
         int userNumberIndex = userNumbers.indexOf(quizNumber);
-        if (userNumberIndex != -1) {
+        if (userNumberIndex != -1 && !quizNumbers.get(userNumberIndex).equals(quizNumber)) {
             ballNumber++;
         }
         return ballNumber;

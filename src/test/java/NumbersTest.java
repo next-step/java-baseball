@@ -29,8 +29,12 @@ class NumbersTest {
     @DisplayName("볼 확인")
     void ball() {
         assertThat(numbers.ball(Arrays.asList(1, 2, 3))).isEqualTo(0);
-        assertThat(numbers.ball(Arrays.asList(1, 2, 4))).isEqualTo(1);
+        assertThat(numbers.ball(Arrays.asList(1, 2, 4))).isEqualTo(0);
         assertThat(numbers.ball(Arrays.asList(5, 6, 7))).isEqualTo(0);
+        assertThat(numbers.ball(Arrays.asList(3, 1, 2))).isEqualTo(3);
+        assertThat(numbers.ball(Arrays.asList(3, 2, 1))).isEqualTo(2);
+        assertThat(numbers.ball(Arrays.asList(2, 1, 3))).isEqualTo(2);
+        assertThat(numbers.ball(Arrays.asList(2, 3, 1))).isEqualTo(3);
     }
 
     @Test
