@@ -5,23 +5,23 @@ import java.util.List;
 
 public class BaseBallNumberInfo {
 
-    private List<Integer> baseBallRandomNumber;
+    private List<Integer> baseBallRandomNumberList;
 
     public BaseBallNumberInfo(){
-        baseBallRandomNumber = new ArrayList<>();
+        baseBallRandomNumberList = new ArrayList<>();
     }
 
     public List<Integer> getBaseBallRandomNumberList(){
-        return baseBallRandomNumber;
+        return baseBallRandomNumberList;
     }
 
     public void setBaseBallPositionNumber(int randomNumber){
-        baseBallRandomNumber.add(randomNumber);
+        baseBallRandomNumberList.add(randomNumber);
     }
 
     public int getBaseBallPositionNumber(int position){
 
-        return baseBallRandomNumber.get(position);
+        return baseBallRandomNumberList.get(position);
     }
 
 }
