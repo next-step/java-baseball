@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
@@ -12,6 +13,11 @@ class BaseBallTest {
     @Test
     void equals() {
         assertThat(BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).isEqualTo(BaseBall.of("159"));
+    }
+
+    @Test
+    void createRandom() {
+        assertThatCode(() -> BaseBall.ofRandom(new RandomNumber())).doesNotThrowAnyException();
     }
 
     @Test
