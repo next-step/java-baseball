@@ -1,5 +1,6 @@
 package utils;
 
+import static enumType.ErrorType.ERROR_1010_INPUT_LENGTH_ERROR;
 
 public class ValidationUtil {
 
@@ -71,5 +72,20 @@ public class ValidationUtil {
         
         return sameNumberCnt;
     }
-
+    
+    
+    /**
+     * @author      : jeeyong.park 
+     * @date        : 2021.04.25
+     * @description : 사용자 입력값의 유효성을 검사한다. 
+     */
+    public void playerInputValidation(int inputNumber) {
+        
+        // 입력값이 3자리인지 검증
+        if((int)(Math.log10(inputNumber)+1) != 3) {
+            throw new IllegalArgumentException(ERROR_1010_INPUT_LENGTH_ERROR.getErrorMessage());
+        }
+        
+    }
+    
 }
