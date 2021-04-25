@@ -1,13 +1,13 @@
 package baseball.models;
 
-public enum RESULT {
+public enum Result {
 
     INITIALIZE(0), RESTART(1), EXIT(2);
 
     private final int value;
 
 
-    RESULT(int value) {
+    Result(int value) {
         this.value = value;
     }
 
@@ -15,7 +15,7 @@ public enum RESULT {
         return value;
     }
 
-    public static RESULT valueOf(int value) {
+    public static Result valueOf(int value) {
         switch (value) {
             case 1:
                 return RESTART;

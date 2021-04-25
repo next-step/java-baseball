@@ -6,7 +6,7 @@ public class BaseBallNumGame {
 
 
     private boolean isFinished;
-    private RESULT isDone = RESULT.INITIALIZE;
+    private Result isDone = Result.INITIALIZE;
     private final FastScanner fs = FastScanner.of();
 
     private final RandomNumGenerator randomNumGenerator;
@@ -22,28 +22,18 @@ public class BaseBallNumGame {
 
         String random = randomNumGenerator.getThreeNumbers();
         do {
-
-
-            // TODO 지우기
-            System.out.println("현재 랜덤 숫자는 : " + random + " 입니다");
-
             String input = printGenerator.inputNumbers();
             Integer[] results = printGenerator.printAndGetStrikeOrBall(random, input);
 
             checkIfFinished(results[0]);
-
             random = randomShuffleIfRetry(random);
-
-            // TODO 지우기
-            System.out.println("현재 랜덤 숫자는 : " + random + " 입니다");
-
-        } while (isDone != RESULT.EXIT);
+        } while (isDone != Result.EXIT);
     }
 
 
     private String randomShuffleIfRetry(String random) {
-        if (isDone == RESULT.RESTART) {
-            isDone = RESULT.INITIALIZE;
+        if (isDone == Result.RESTART) {
+            isDone = Result.INITIALIZE;
             return randomNumGenerator.getThreeNumbers();
         }
         return random;
@@ -55,7 +45,7 @@ public class BaseBallNumGame {
         if (isFinished) {
             printGenerator.Exited();
             isFinished = false;
-            isDone = RESULT.valueOf(fs.nextInt());
+            isDone = Result.valueOf(fs.nextInt());
         }
     }
 

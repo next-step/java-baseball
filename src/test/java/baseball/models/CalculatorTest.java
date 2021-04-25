@@ -5,10 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Calendar;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class CalculatorTest {
 
     AppConfig appConfig = new AppConfig();
@@ -32,7 +28,7 @@ class CalculatorTest {
     @Test
     @DisplayName("3볼 성공 테스트")
     void ball3Success() {
-        String random ="123";
+        String random = "123";
         String input = "312";
 
         Integer[] strikeAndBall = calculator.calculateStrikesBallsOrNothing(random, input);
@@ -46,7 +42,7 @@ class CalculatorTest {
     @Test
     @DisplayName("2 볼 성공 테스트")
     void Ball2Success() {
-        String random ="123";
+        String random = "123";
         String input = "251";
 
         Integer[] strikeAndBall = calculator.calculateStrikesBallsOrNothing(random, input);
@@ -60,7 +56,7 @@ class CalculatorTest {
     @Test
     @DisplayName("1 볼 성공 테스트")
     void Ball1Success() {
-        String random ="123";
+        String random = "123";
         String input = "451";
 
         Integer[] strikeAndBall = calculator.calculateStrikesBallsOrNothing(random, input);
@@ -75,7 +71,7 @@ class CalculatorTest {
     @Test
     @DisplayName("1 스트라이크 2볼 성공 테스트")
     void strike1ball2Success() {
-        String random ="123";
+        String random = "123";
         String input = "132";
 
         Integer[] strikeAndBall = calculator.calculateStrikesBallsOrNothing(random, input);
@@ -89,7 +85,7 @@ class CalculatorTest {
     @Test
     @DisplayName("2 스트라이크 성공 테스트")
     void strike2Ball1Success() {
-        String random ="123";
+        String random = "123";
         String input = "124";
 
         Integer[] strikeAndBall = calculator.calculateStrikesBallsOrNothing(random, input);
@@ -104,7 +100,7 @@ class CalculatorTest {
     @Test
     @DisplayName("낫씽 성공 테스트")
     void nothingSuccess() {
-        String random ="123";
+        String random = "123";
         String input = "456";
 
         Integer[] strikeAndBall = calculator.calculateStrikesBallsOrNothing(random, input);
