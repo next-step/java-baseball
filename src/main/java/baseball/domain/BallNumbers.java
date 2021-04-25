@@ -1,9 +1,6 @@
 package baseball.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class BallNumbers {
     public static final int NUMBERS_INIT_INDEX = 0;
@@ -27,9 +24,13 @@ public class BallNumbers {
         }
     }
 
-    private void validateDuplicate(String numbers) {
+    private String[] splitNumbers(String numbers) {
         String[] splited = numbers.split("");
-        Set<BallNumber> validateSet = makeValidateSet(splited);
+        return splited;
+    }
+
+    private void validateDuplicate(String numbers) {
+        Set<BallNumber> validateSet = makeValidateSet(splitNumbers(numbers));
         if (validateSet.size() != NUMBERS_LIMIT_SIZE) {
             throw new IllegalArgumentException("숫자는 중복되지 않은 3자리 숫자여야 합니다.");
         }
@@ -44,11 +45,34 @@ public class BallNumbers {
     }
 
     private List<BallNumber> convertToList(String numbers) {
-        return null;
+        String[] strings = splitNumbers(numbers);
+        List<BallNumber> converted = new ArrayList<>();
+        for (String number : strings) {
+            converted.add(new BallNumber(number));
+        }
+        return converted;
     }
 
     public List<BallNumber> getNumbers() {
         return numbers;
+    }
+
+    public boolean hasContains(BallNumbers ballNumbers) {
+        List<BallNumber> retains = new ArrayList<>(ballNumbers.numbers);
+        retains.retainAll(numbers);
+        return retains.size() > 0;
+    }
+
+    public int size() {
+        return numbers.size();
+    }
+
+    public boolean contains(BallNumbers ballNumbers, int index) {
+        return numbers.contains(ballNumbers.numbers.get(index));
+    }
+
+    public BallNumber getIndexNumber(int index) {
+        return numbers.get(index);
     }
 
     @Override
