@@ -25,6 +25,6 @@ class BallNumberTest {
         assertThatThrownBy(() -> {
             new BallNumber(number);
         }).isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("숫자값은 1보다 작거나 9보다 클 수 없습니다.");
+                .hasMessage("숫자값은 1보다 작거나 9보다 클 수 없습니다.");
     }
 }
