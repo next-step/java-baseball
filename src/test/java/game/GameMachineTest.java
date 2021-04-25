@@ -1,3 +1,6 @@
+package game;
+
+import game.GameMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GameMachineTest {
 
     @Test
-    @DisplayName("GameMachine 생성")
+    @DisplayName("game.GameMachine 생성")
     void createGameMachineTest() {
         GameMachine gameMachine = GameMachine.of();
         assertThat(gameMachine).isNotNull();

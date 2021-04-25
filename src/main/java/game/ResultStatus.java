@@ -1,3 +1,5 @@
+package game;
+
 public enum ResultStatus {
     STRIKE(0, "스트라이크"), BALL(1, "볼"), NOTING(2, "낫싱");
 
