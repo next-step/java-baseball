@@ -2,6 +2,7 @@ package view;
 
 import java.util.Scanner;
 import domain.Numbers;
+import domain.game.GameStatus;
 
 public class InputMessage {
 	private Scanner scanner;
@@ -47,7 +48,7 @@ public class InputMessage {
 	}
 
 	private boolean isNull(char[] input) {
-		return input.length ==0;
+		return input.length == 0;
 	}
 
 	public int getDecisionCode() {
@@ -66,7 +67,10 @@ public class InputMessage {
 	private boolean isValidCode(char[] code) {
 		boolean hasValidCode = false;
 		int codeNumericValue = Character.getNumericValue(code[0]);
-		if(code.length ==1 && (codeNumericValue == 1 || codeNumericValue == 2)) hasValidCode = true;
+		if(code.length ==1 &&
+			(codeNumericValue == GameStatus.ONGOING.getCode() || codeNumericValue == GameStatus.FINISHED.getCode())) {
+			hasValidCode = true;
+		}
 		return hasValidCode;
 
 	}
