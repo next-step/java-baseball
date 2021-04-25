@@ -13,22 +13,15 @@ public class Game {
 
 		List<Integer> computerNumber = computer.generate();
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 		Score score = new Score();
-
 		while (!referee.isEnd(score)) {
 			score = new Score();
 			System.out.print("숫자를 입력해주세요 : ");
 
-			String userNumber = br.readLine();
+			String userNumber = inputValue();
 
 			throwBall(score, referee, computerNumber, userNumber);
-
-			System.out.println(score);
 		}
-
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
 
 	public void throwBall(Score score, Referee referee, List<Integer> computerNumber, String userNumber) {
@@ -36,5 +29,17 @@ public class Game {
 		for (int i = 0; i < strArr.length; i++) {
 			referee.check(score, computerNumber, Integer.parseInt(strArr[i]), i);
 		}
+		System.out.println(score);
+	}
+
+	public String inputValue() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		return br.readLine();
+	}
+
+	public boolean gameRepeat() throws IOException {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		return inputValue().equals("1");
 	}
 }
