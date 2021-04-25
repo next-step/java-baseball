@@ -1,5 +1,7 @@
 package util;
 
+import view.GameView;
+
 public class GameManager {
 	private static GameManager gameManager = null;
 
@@ -20,4 +22,7 @@ public class GameManager {
 		return this.answer;
 	}
 
+	public void gameStart() {
+		GameView.inputNumberView();
+	}
 }
