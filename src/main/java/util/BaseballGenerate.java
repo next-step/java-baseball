@@ -27,7 +27,7 @@ public class BaseballGenerate {
     }
 
 
-    private static Baseball createBaseballValue(Long numberValue){
+    public static Baseball createBaseballValue(Long numberValue){
         return new Baseball(numberValue);
     }
 }
