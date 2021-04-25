@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.exception.BaseballNumbersHasDuplicationException;
+import baseball.exception.BaseballNumbersHasInvalidLength;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -28,7 +29,7 @@ class BaseballNumbersTest {
 
         // then
         assertThat(baseballNumbers.getSize()).isEqualTo(3);
-        assertThat(baseballNumbers.getValue()).containsExactly((BaseballNumber) inputValues);
+        assertThat(baseballNumbers.getValue()).containsAll((Iterable<? extends BaseballNumber>) inputValues);
     }
 
     @ParameterizedTest(name = "중복 존재시 예외발생 테스트")
@@ -42,6 +43,20 @@ class BaseballNumbersTest {
 
         // when + then
         assertThatThrownBy(() -> new BaseballNumbers(inputValues)).isInstanceOf(BaseballNumbersHasDuplicationException.class);
+    }
+
+    @ParameterizedTest(name = "3자리가 아닌 야구게임 숫자 입력시 예외발생 테스트")
+    @CsvSource({
+            "1, 2, 3, 4"
+    })
+    void 중복_존재시_예외발생_테스트(int input1, int input2, int input3, int input4) {
+        // given
+        List<BaseballNumber> inputValues1 = Arrays.asList(new BaseballNumber(input1), new BaseballNumber(input2));
+        List<BaseballNumber> inputValues2 = Arrays.asList(new BaseballNumber(input1), new BaseballNumber(input2), new BaseballNumber(input3), new BaseballNumber(input4));
+
+        // when + then
+        assertThatThrownBy(() -> new BaseballNumbers(inputValues1)).isInstanceOf(BaseballNumbersHasInvalidLength.class);
+        assertThatThrownBy(() -> new BaseballNumbers(inputValues2)).isInstanceOf(BaseballNumbersHasInvalidLength.class);
     }
 
 }

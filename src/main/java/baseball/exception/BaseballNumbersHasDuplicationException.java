@@ -2,7 +2,7 @@ package baseball.exception;
 
 public class BaseballNumbersHasDuplicationException extends RuntimeException {
     public BaseballNumbersHasDuplicationException() {
-        super("야구게임 숫자 모음에는 중복이 존재할 수 없습니다.");
+        super("야구게임 숫자 모음은 중복된 수를 가질 수 없습니다.");
     }
 
     public BaseballNumbersHasDuplicationException(String message) {
