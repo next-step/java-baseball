@@ -42,7 +42,6 @@ public class BaseballGame {
 
     //게임 진행 로직
     private boolean progressGame(int[] computerGameNumber) {
-        System.out.println(Arrays.toString(computerGameNumber));
         String input = gameView.getUserNumber().trim();
         boolean isValid = checkNumberValid(input);
 
