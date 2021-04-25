@@ -64,6 +64,6 @@ class GameNumbersTest {
     private void assertNumbersThrowIllegalArgumentException(String numbers, String message) {
         assertThatExceptionOfType(BaseBallGameFailureException.class)
                 .isThrownBy(() -> GameNumbers.of(numbers))
-                .withMessageContainingAll(message);
+                .withMessageContaining(message);
     }
 }
