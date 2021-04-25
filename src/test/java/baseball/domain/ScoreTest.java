@@ -17,10 +17,10 @@ class ScoreTest {
     @ValueSource(strings = {"123", "423", "836"})
     void testPassingCase(String arg) {
         // Given
-        BaseballNumbers sameBaseballNumbers = new BaseballNumbers(arg);
+        BaseballNumbers commonBaseballNumbers = new BaseballNumbers(arg);
 
         // When
-        Score score = Score.measureScore(sameBaseballNumbers, sameBaseballNumbers);
+        Score score = Score.measureScore(commonBaseballNumbers, commonBaseballNumbers);
 
         // Then
         assertTrue(score.isPassed());
@@ -31,10 +31,10 @@ class ScoreTest {
     @ValueSource(strings = {"123", "423", "836"})
     void testPassingMessage(String arg) {
         // Given
-        BaseballNumbers sameBaseballNumbers = new BaseballNumbers(arg);
+        BaseballNumbers commonBaseballNumbers = new BaseballNumbers(arg);
 
         // When
-        Score score = Score.measureScore(sameBaseballNumbers, sameBaseballNumbers);
+        Score score = Score.measureScore(commonBaseballNumbers, commonBaseballNumbers);
 
         // Then
         assertEquals(format("%d개의 숫자를 모두 맞히셨습니다! 게임종료", RANDOM_NUMBER_COUNT), score.getJudgeMessage());
@@ -47,7 +47,7 @@ class ScoreTest {
         // Given
         String[] argArray = arg.split(",");
         BaseballNumbers answer = new BaseballNumbers(argArray[0]);
-        BaseballNumbers playerInput = new BaseballNumbers(argArray[01]);
+        BaseballNumbers playerInput = new BaseballNumbers(argArray[1]);
 
         // When
         Score score = Score.measureScore(answer, playerInput);
@@ -63,7 +63,7 @@ class ScoreTest {
         // Given
         String[] argArray = arg.split(",");
         BaseballNumbers answer = new BaseballNumbers(argArray[0]);
-        BaseballNumbers playerInput = new BaseballNumbers(argArray[01]);
+        BaseballNumbers playerInput = new BaseballNumbers(argArray[1]);
 
         // When
         Score score = Score.measureScore(answer, playerInput);
@@ -79,7 +79,7 @@ class ScoreTest {
         // Given
         String[] argArray = arg.split(",");
         BaseballNumbers answer = new BaseballNumbers(argArray[0]);
-        BaseballNumbers playerInput = new BaseballNumbers(argArray[01]);
+        BaseballNumbers playerInput = new BaseballNumbers(argArray[1]);
 
         // When
         Score score = Score.measureScore(answer, playerInput);
@@ -95,7 +95,7 @@ class ScoreTest {
         // Given
         String[] argArray = arg.split(",");
         BaseballNumbers answer = new BaseballNumbers(argArray[0]);
-        BaseballNumbers playerInput = new BaseballNumbers(argArray[01]);
+        BaseballNumbers playerInput = new BaseballNumbers(argArray[1]);
 
         // When
         Score score = Score.measureScore(answer, playerInput);
@@ -111,7 +111,7 @@ class ScoreTest {
         // Given
         String[] argArray = arg.split(",");
         BaseballNumbers answer = new BaseballNumbers(argArray[0]);
-        BaseballNumbers playerInput = new BaseballNumbers(argArray[01]);
+        BaseballNumbers playerInput = new BaseballNumbers(argArray[1]);
 
         // When
         Score score = Score.measureScore(answer, playerInput);
