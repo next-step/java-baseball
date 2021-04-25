@@ -12,4 +12,20 @@ class GameTest {
         }
     }
 
+    @Test
+    void all_strike() {
+        Game game = new Game(123);
+        Score score = game.play(123);
+        assertThat(score.getStrike()).isEqualTo(3);
+        assertThat(score.getBall()).isEqualTo(0);
+    }
+
+    @Test
+    void one_strike() {
+        Game game = new Game(123);
+        Score score = game.play(145);
+        assertThat(score.getStrike()).isEqualTo(1);
+        assertThat(score.getBall()).isEqualTo(0);
+    }
+
 }
