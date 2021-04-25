@@ -36,7 +36,9 @@ public class Calculator {
             ballCount += getBallCount(player.charAt(i), i, computer);
             strikeCount += getStrikeCount(player.charAt(i), computer.charAt(i));
         }
-
+        if(strikeCount == 3) return "3개의 숫자를 모두 맞히셨습니다 ! 게임 종료";
+        if(ballCount == 0 && strikeCount == 0) return "낫씽 ( 아웃 )";
+        return getStrikeString(strikeCount) + getBallString(ballCount);
     }
 
 }
