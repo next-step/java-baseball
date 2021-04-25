@@ -1,15 +1,15 @@
 package game;
 
 import player.Player;
+import player.PlayerFactory;
 
 public class Game {
-	private Player computer;
+	private final Player computer = new PlayerFactory().computer();
 	private Player user;
 
 	private GameState gameState;
 
-	public Game(Player computer, Player user) {
-		this.computer = computer;
+	public Game(Player user) {
 		this.user = user;
 		this.gameState = InitState.getInstance();
 	}
@@ -29,13 +29,13 @@ public class Game {
 	public void start() {
 		progress();
 	}
-	
+
 	public void progress() {
 		gameState.next(this);
 	}
 
 	public void end() {
-		//do nothing
+		// do nothing
 	}
 
 }
