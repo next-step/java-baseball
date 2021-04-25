@@ -37,7 +37,7 @@ public class Game {
     }
 
     private void judgeGame() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
             increaseStrike(i);
             increaseBall(i);
         }
@@ -69,29 +69,29 @@ public class Game {
 
     private void printStrike() {
         if (strike > 0) {
-            System.out.println(strike + " 스트라이크 ");
+            printMessage(strike + GameMessageEnum.STRIKE.getMessage());
         }
     }
 
     private void printBall() {
         if (ball > 0) {
-            System.out.println(ball + "볼");
+            printMessage(ball + GameMessageEnum.BALL.getMessage());
         }
     }
 
     private void printNothing() {
         if (strike == 0 && ball == 0) {
-            System.out.println("낫싱");
+            printMessage(GameMessageEnum.NOTHING.getMessage());
         }
     }
 
     private void printGameOverMessage() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-        System.out.println("게임을 새로 시작혀려면 1, 종료하려면 2를 입력하세요");
+        printMessage(GameMessageEnum.GAME_OVER.getMessage());
+        printMessage(GameMessageEnum.NEW_GAME.getMessage());
     }
 
     private boolean isGameOver() {
-        if (strike == 3) {
+        if (strike == Const.NUMBER_COUNT) {
             printGameOverMessage();
             return false;
         }
@@ -106,5 +106,9 @@ public class Game {
     private int inputGameStopNumber() {
         Scanner scan = new Scanner(System.in);
         return scan.nextInt();
+    }
+
+    private void printMessage(String message) {
+        System.out.println(message);
     }
 }

@@ -13,7 +13,7 @@ public class User {
     }
 
     public void selectNumber() {
-        printMessage();
+        printStartMessage();
         selectNumbers.clear();
         String[] inputs = inputNumber();
         checkInputNumberCount(inputs);
@@ -24,8 +24,8 @@ public class User {
         }
     }
 
-    private void printMessage() {
-        System.out.print("숫자를 입력해 주세요 : ");
+    private void printStartMessage() {
+        System.out.print(GameMessageEnum.INPUT_NUMBER.getMessage());
     }
 
     private String[] inputNumber() {
@@ -35,19 +35,19 @@ public class User {
 
     private void checkInputNumberCount(String[] inputs) {
         if (inputs.length != Const.NUMBER_COUNT) {
-            throw new IllegalArgumentException(Const.NUMBER_COUNT + "개의 숫자를 입력하세요.");
+            throw new IllegalArgumentException(Const.NUMBER_COUNT + ErrorMessageEnum.ERROR_INVALID_LENGTH.getMessage());
         }
     }
 
     private void checkInputNumberType(String input) {
         if (!Pattern.matches(Const.NUMBER_REGULAR_EXPRESSION, input)) {
-            throw new IllegalArgumentException("숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessageEnum.ERROR_INVALID_NUMBER.getMessage());
         }
     }
 
     private void checkDuplicateNumber(int input) {
         if (selectNumbers.contains(input)) {
-            throw new IllegalArgumentException("중복되는 숫자는 넣을 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessageEnum.ERROR_DUPLICATE_NUMBER.getMessage());
         }
     }
 
