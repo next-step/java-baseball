@@ -29,4 +29,11 @@ public class BaseBallGameParameterized {
 		listOfArguments.add(Arguments.of(Arrays.asList(4, 5, 6), "489", 1));
 		return listOfArguments.stream();
 	}
+
+	protected static Stream<Arguments> generateStrikeAndBallArgumentsStream() {
+		List<Arguments> listOfArguments = new LinkedList<>();
+		listOfArguments.add(Arguments.of(Arrays.asList(4, 5, 6), "485", 1, 1));
+		listOfArguments.add(Arguments.of(Arrays.asList(4, 5, 6), "465", 1, 2));
+		return listOfArguments.stream();
+	}
 }
