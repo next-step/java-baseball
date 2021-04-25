@@ -1,12 +1,11 @@
 import baseball.AbnormalInputException;
 import baseball.GameModel;
-import baseball.InputValidator;
 import baseball.OutputProvider;
 import com.sun.tools.javac.util.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,11 +52,8 @@ public class GameModelTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"156,1", "423,2", "123,3"})
-    void flushOutput_ShouldPrintStrikesUsingParameter(String param) {
-        String[] numberAndStrike = param.split(",");
-        String number = numberAndStrike[0];
-        String strike = numberAndStrike[1];
+    @CsvSource(value = {"156,1", "423,2", "123,3"}, delimiter = ',')
+    void flushOutput_ShouldPrintStrikesUsingParameter(String number, String strike) {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
         model.flushOutput();
 
@@ -69,11 +65,8 @@ public class GameModelTest {
 
 
     @ParameterizedTest
-    @ValueSource(strings = {"451,1", "314,2", "312,3"})
-    void flushOutput_ShouldPrintBalls(String param) {
-        String[] numberAndBall = param.split(",");
-        String number = numberAndBall[0];
-        String ball = numberAndBall[1];
+    @CsvSource(value = {"451,1", "314,2", "312,3"}, delimiter = ',')
+    void flushOutput_ShouldPrintBalls(String number, String ball) {
         GameModel model = new GameModel(new NumberGeneratorStub("123"));
         model.flushOutput();
 
