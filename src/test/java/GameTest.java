@@ -71,4 +71,28 @@ public class GameTest {
 		fieldBallCnt.setAccessible(true);
 		assertThat(fieldBallCnt.get(game)).isEqualTo(expectedBallCnt);
 	}
+
+	@DisplayName("3 스트라이크 여부 기능 정상작동 테스트")
+	@ParameterizedTest(name = "{index} - {0} 스트라이크 {1} 볼 --> {2}")
+	@CsvSource(value = {"1:0:false", "2:0:false", "3:0:true", "0:1:false", "0:2:false", "0:3:false", "1:1:false",
+		"1:2:false", "0:0:false"}, delimiter = ':')
+	public void isThreeStrikeTest(int strikeCnt, int ballCnt, boolean expected) throws
+		NoSuchFieldException,
+		IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+		// given
+		Field fieldStrikeCnt = game.getClass().getDeclaredField("strikeCnt");
+		fieldStrikeCnt.setAccessible(true);
+		fieldStrikeCnt.set(game, strikeCnt);
+
+		Field fieldBallCnt = game.getClass().getDeclaredField("ballCnt");
+		fieldBallCnt.setAccessible(true);
+		fieldBallCnt.set(game, ballCnt);
+
+		// when
+		Method method = game.getClass().getDeclaredMethod("isThreeStrike");
+		method.setAccessible(true);
+
+		// then
+		assertThat(method.invoke(game)).isEqualTo(expected);
+	}
 }
