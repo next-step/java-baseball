@@ -54,4 +54,8 @@ public class NumberBaseBallResult {
 		}
 		return Strings.EMPTY;
 	}
+
+	public boolean isThreeStrike() {
+		return this.strike == 3;
+	}
 }
