@@ -1,4 +1,6 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,8 +28,15 @@ class GameTest {
     }
 
     @Test
-    void one_strike() {
+    void some_strike() {
         assertPlay(game.play(145), 1, 0);
+        assertPlay(game.play(125), 2, 0);
+    }
+
+    @Disabled
+    @Test
+    void nothing() {
+        assertPlay(game.play(456), 0, 4);
     }
 
     private void assertPlay(Score score, int strike, int ball) {

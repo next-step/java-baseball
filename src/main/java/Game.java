@@ -19,12 +19,24 @@ public class Game {
 
     public Score play(int number) {
         int strike = 0;
-        if (number / 100 == opponent / 100)
+        if (match(number, 3))
             strike++;
-        if (number / 10 % 10 ==  opponent / 10 % 10)
+        if (match(number, 2))
             strike++;
-        if (number % 10 == opponent % 10)
+        if (match(number, 1))
             strike++;
         return new Score(strike, 0);
     }
+
+    private boolean match(int number, int pos) {
+        if (pos == 3) {
+            return number / 100 == opponent / 100;
+        } else if (pos == 2) {
+            return number / 10 % 10 ==  opponent / 10 % 10;
+        } else if (pos == 1) {
+           return number % 10 == opponent % 10;
+        }
+        throw new IllegalPositionException();
+    }
+
 }
