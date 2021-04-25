@@ -13,7 +13,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import baseball.game.constants.ErrorMessage;
-import baseball.game.constants.GameStatusType;
 import baseball.game.exception.NotAllowedLengthException;
 
 /**
