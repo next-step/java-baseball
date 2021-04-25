@@ -18,8 +18,8 @@ public class Game {
 		setGameStatus(GameStatus.ONGOING);
 	}
 
-	public void setGameStatus(GameStatus ongoing) {
-		this.status = ongoing;
+	public void setGameStatus(GameStatus status) {
+		this.status = status;
 	}
 
 	private void createParticipants() {
