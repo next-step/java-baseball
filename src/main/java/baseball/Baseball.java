@@ -76,7 +76,7 @@ public class Baseball {
 		boolean isCorrectAnswer;
 		System.out.print("숫자를 입력해주세요: ");
 		String input = ScannerUtil.getInstance().next();
-		isCorrectAnswer = checkAnswer(Utils.stringToIntegerList(input));
+		isCorrectAnswer = checkAnswer(StringUtil.stringToIntegerList(input));
 		printBallCount();
 		if (isCorrectAnswer) {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");

@@ -3,7 +3,7 @@ package baseball;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Utils {
+public class StringUtil {
 
 	public static List<Integer> stringToIntegerList(String input) {
 		List<Integer> integerList = new ArrayList<>();
