@@ -44,18 +44,8 @@ public class Baseball {
 	}
 
 	public void execute() {
-		if (strikeCounts == BaseBallGameConfig.MAX_STRIKE_COUNT) {
-			gameStatusType = GameStatusType.PAUSE;
-		}
-
 		initCount();
-
-		if (GameStatusType.PAUSE.equals(gameStatusType)) {
-			System.out.println(Message.SUCCESS_MESSAGE.getMessage().replace("n", String.valueOf(strikeCounts)));
-			System.out.println(Message.CONTINUE_MESSAGE.getMessage());
-		} else if (GameStatusType.START.equals(gameStatusType)) {
-			System.out.println(Message.INPUT_MESSAGE.getMessage());
-		}
+		printGameStatusMessage();
 
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
@@ -100,6 +90,19 @@ public class Baseball {
 			} else if (computerNumbers.contains(inputNumber)) {
 				ballCounts++;
 			}
+		}
+
+		if (strikeCounts == BaseBallGameConfig.MAX_STRIKE_COUNT) {
+			gameStatusType = GameStatusType.PAUSE;
+		}
+	}
+
+	public void printGameStatusMessage() {
+		if (GameStatusType.PAUSE.equals(gameStatusType)) {
+			System.out.println(Message.SUCCESS_MESSAGE.getMessage().replace("n", String.valueOf(strikeCounts)));
+			System.out.println(Message.CONTINUE_MESSAGE.getMessage());
+		} else if (GameStatusType.START.equals(gameStatusType)) {
+			System.out.println(Message.INPUT_MESSAGE.getMessage());
 		}
 	}
 
