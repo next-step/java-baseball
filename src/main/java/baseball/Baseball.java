@@ -3,7 +3,6 @@ package baseball;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Baseball {
 	private enum Command { START, CONTINUE, FINISH }
@@ -67,17 +66,17 @@ public class Baseball {
 		System.out.println(ballCountString);
 	}
 
-	private void playGameLoop(Scanner scanner) {
+	private void playGameLoop() {
 		boolean isCorrectAnswer = false;
 		while (!isCorrectAnswer) {
-			isCorrectAnswer = playGameRound(scanner);
+			isCorrectAnswer = playGameRound();
 		}
 	}
 
-	private boolean playGameRound(Scanner scanner) {
+	private boolean playGameRound() {
 		boolean isCorrectAnswer;
 		System.out.print("숫자를 입력해주세요: ");
-		String input = scanner.next();
+		String input = ScannerUtil.getInstance().next();
 		isCorrectAnswer = checkAnswer(Utils.stringToIntegerList(input));
 		printBallCount();
 		if (isCorrectAnswer) {
@@ -88,12 +87,11 @@ public class Baseball {
 	}
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
 		Command command = Command.START;
 		while (command != Command.FINISH) {
 			Baseball baseball = new Baseball();
-			baseball.playGameLoop(scanner);
-			command = Command.values()[scanner.nextInt()];
+			baseball.playGameLoop();
+			command = Command.values()[ScannerUtil.getInstance().nextInt()];
 		}
 	}
 }
