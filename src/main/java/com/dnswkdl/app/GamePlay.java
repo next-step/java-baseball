@@ -8,6 +8,7 @@ public class GamePlay implements ImplGamePlay {
     private Scanner scanner;
     private GamePlayService service;
 
+    private boolean isFinished;
     private int answer;
 
     @Override
@@ -18,45 +19,15 @@ public class GamePlay implements ImplGamePlay {
         scanner = new Scanner(System.in);
         service = new GamePlayService();
         answer = 123;
+        isFinished = false;
     }
 
     @Override
     public void start() {
-        /* TODO
-        *   1. 사용자 입력 ( 숫자 3개 ) (완료)
-        *   2. 입력 숫자와 정답 비교 (완료)
-        *   3. 결과 도출 (3 strike 종료, 이외에는 결과 print 재입력 */
-        while(true){
-            int inputNumber = getInputNumber();
-            int[] result = service.check(answer, inputNumber);
-
-            if(result[0]==0 && result[1]==0){
-                System.out.println("낫싱");
-            }else{
-                System.out.println((result[0]!=0?(result[0]+" 스트라이크 "):(""))+(result[1]!=0?(result[1]+" 볼 "):("")));
-            }
-            if(result[0]==3){
-                return;
-            }
+        while(!isFinished){
+            play();
         }
     }
-
-    private int getInputNumber(){
-        int input_number = 0;
-
-        System.out.print("숫자를 입력해주세요 : ");
-        try{
-            input_number = scanner.nextInt();
-        }catch (Exception e){
-            scanner.nextLine();
-        }
-        if(input_number<100 || input_number>1000){
-            System.out.println("잘못 입력 하였습니다. 1~9 중 서로다른 3개의 숫자를 입력해야합니다.");
-            return getInputNumber();
-        }
-        return input_number;
-    }
-
     @Override
     public boolean replay() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
@@ -74,4 +45,40 @@ public class GamePlay implements ImplGamePlay {
         if(replay==1) return true;
         return false;
     }
+
+
+    private void play(){
+        int inputNumber = getInputNumber();
+        int[] result = service.check(answer, inputNumber);
+        checkResult(result[0], result[1]);
+    }
+    private int getInputNumber(){
+        int input_number = 0;
+
+        System.out.print("숫자를 입력해주세요 : ");
+        try{
+            input_number = scanner.nextInt();
+        }catch (Exception e){
+            scanner.nextLine();
+        }
+        if(input_number<100 || input_number>1000){
+            System.out.println("잘못 입력 하였습니다. 1~9 중 서로다른 3개의 숫자를 입력해야합니다.");
+            return getInputNumber();
+        }
+        return input_number;
+    }
+
+    private void checkResult(int strike, int ball){
+        if(strike==0 && ball==0){
+            System.out.println("낫싱");
+            return;
+        }
+        System.out.println((strike!=0?(strike+" 스트라이크 "):(""))+(ball!=0?(ball+" 볼 "):("")));
+
+        if(strike==3){
+            isFinished = true;
+            return;
+        }
+    }
+
 }
