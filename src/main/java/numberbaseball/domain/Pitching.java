@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Pitching {
 
-  private static final int MIN = 1;
-  private static final int MAX = 9;
+  public static final int MIN = 1;
+  public static final int MAX = 9;
 
   private static final String INVALID_ARGUMENT_MESSAGE = "%d 부터 %d 사이의 값을 입력해주세요.";
 
@@ -28,7 +28,6 @@ public class Pitching {
   private boolean isGreaterThanMax(int number) {
     return number > MAX;
   }
-
 
   @Override
   public boolean equals(Object o) {
