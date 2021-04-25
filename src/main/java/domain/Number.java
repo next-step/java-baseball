@@ -22,6 +22,10 @@ public class Number {
         return new Number(StringUtils.parseInt(number), position);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validationCheck(int number) {
         if (number > 9 || number < 1) {
             throw new IllegalArgumentException("숫자는 1 ~ 9 사이의 수여야 합니다.");
@@ -39,6 +43,6 @@ public class Number {
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Objects.hash(number, position);
     }
 }

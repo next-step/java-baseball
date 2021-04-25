@@ -2,9 +2,10 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.NumberUtils;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class NumbersTest {
@@ -26,9 +27,41 @@ class NumbersTest {
         assertNumbersThrowIllegalArgumentException(numbers, "숫자는 서로 다른 수여야 합니다.");
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"1,0,214,true", "2,1,234,true", "3,2,354,true", "4,2,123,false"})
+    @DisplayName("gameNumbers에 입력한 number 가 position 상관없이 포함되어 있는지 여부 확인")
+    void containsEqualsNumberTest(int number, int position, String numbers, boolean expected) {
+
+        // given
+        Number inputNumber = Number.of(number, position);
+        Numbers gameNumbers = Numbers.of(numbers);
+
+        // when
+        boolean result = gameNumbers.contains(inputNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,0,214,false", "2,1,234,false", "3,2,354,false", "5,0,579,true", "4,2,123,false"})
+    @DisplayName("gameNumbers에 입력한 number 와 position 이 정확히 일치하는 number가 포함되어 있는지 여부 확인")
+    void containsEqualsAndHashCodeNumberTest(int number, int position, String numbers, boolean expected) {
+
+        // given
+        Number inputNumber = Number.of(number, position);
+        Numbers gameNumbers = Numbers.of(numbers);
+
+        // when
+        boolean result = gameNumbers.containsExactly(inputNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
     private void assertNumbersThrowIllegalArgumentException(String numbers, String message) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Numbers.of(NumberUtils.toList(numbers)))
+                .isThrownBy(() -> Numbers.of(numbers))
                 .withMessage(message);
     }
 }
