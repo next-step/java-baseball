@@ -52,4 +52,32 @@ class BaseballNumberMatchResultTest {
         // then
         assertFalse(result.isMatch());
     }
+
+    @DisplayName("strike도 ball도 아니면, isNothing은 true를 반환한다")
+    @Test
+    void isNothingTest() {
+
+        // given
+        BaseballNumberMatchResult result = new BaseballNumberMatchResult(
+                3,
+                0,
+                0
+        );
+
+        // when & then
+        assertTrue(result.isNothing());
+    }
+
+    @DisplayName("errorMessage가 존재하면, isError는 true를 반환한다")
+    @Test
+    void isErrorTest() {
+
+        // given
+        BaseballNumberMatchResult result = new BaseballNumberMatchResult(
+                new BaseballNumberDomainException("any error message")
+        );
+
+        // when & then
+        assertTrue(result.isError());
+    }
 }
