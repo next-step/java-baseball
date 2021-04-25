@@ -37,6 +37,10 @@ public class PitchResult {
         return this.ballCount != NO_COUNT;
     }
 
+    public boolean isNothing() {
+        return  !this.isExistsStrike() && !this.isExistsBall();
+    }
+
     public int strike() {
         return this.strikeCount;
     }

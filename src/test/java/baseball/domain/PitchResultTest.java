@@ -57,12 +57,8 @@ public class PitchResultTest {
         PitchResult pitchResult = PitchResult.of(0, 0);
         PitchResult pitchResult2 = PitchResult.of(0, 3);
 
-        // when
-        boolean result = !pitchResult.isExistsBall() && !pitchResult.isExistsStrike();
-        boolean result2 = !pitchResult2.isExistsBall() && !pitchResult2.isExistsStrike();
-
-        // then
-        assertThat(result).isTrue();
-        assertThat(result2).isFalse();
+        // when & then
+        assertThat(pitchResult.isNothing()).isTrue();
+        assertThat(pitchResult2.isNothing()).isFalse();
     }
 }

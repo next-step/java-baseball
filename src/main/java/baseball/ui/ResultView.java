@@ -28,7 +28,7 @@ public class ResultView {
     }
 
     private static void printNoCount(PitchResult pitchResult) {
-        if (!pitchResult.isExistsStrike() && !pitchResult.isExistsBall()) {
+        if (pitchResult.isNothing()) {
             System.out.print(MESSAGE_NO_COUNT);
         }
     }
