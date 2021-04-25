@@ -12,20 +12,17 @@ import java.util.Arrays;
         public Balls(){
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
-            Arrays.fill(this.ballExists, false);
         }
 
         public Balls(int[] selection) {
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
-            Arrays.fill(this.ballExists, false);
             this.setBallValues(selection);
         }
 
         public Balls(String numbers) {
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
-            Arrays.fill(this.ballExists, false);
             this.setBallValues(numbers);
         }
 
@@ -102,6 +99,7 @@ import java.util.Arrays;
         }
 
         private void markValueExist(){
+            Arrays.fill(this.ballExists, false);
             for (int i=0 ; i<BALL_LENGTH ; i++){
                 this.ballExists[this.ballValues[i]] = true;
             }
