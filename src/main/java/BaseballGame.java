@@ -70,7 +70,13 @@ public class BaseballGame {
     private int[] parseUserNumber(String input) {
     }
 
+    //valid check
     private boolean checkNumberValid(String input) {
+        if(input.length() != 3) return false;
+        String regExp = "^[1-9]+$";
+
+        if(!input.matches(regExp)) return false;
+        return true;
     }
 
     //컴퓨터 3자리 난수 생성
