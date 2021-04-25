@@ -29,12 +29,12 @@ public class BaseBallGame {
     }
 
     private void reStartGame() {
-        if (isReStartGame(getInputThrowBalls())) {
+        if (isReStartGame(getInputIsReStart())) {
             startGame();
         }
     }
 
-    private String getInputThrowBalls() {
+    private String getInputIsReStart() {
         String inputRestartGame = null;
         Scanner scanner = new Scanner(System.in);
 
@@ -44,7 +44,7 @@ public class BaseBallGame {
         } catch (InputMismatchException e) {
             System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
             scanner.nextLine();
-            getInputThrowBalls();
+            getInputIsReStart();
         }
 
         return inputRestartGame;
