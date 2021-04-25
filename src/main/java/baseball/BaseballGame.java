@@ -42,12 +42,14 @@ public class BaseballGame {
 
 	private void start(Computer computer, User user) {
 		int[] computerBalls = computer.selectComputerBalls(ballCount);
-		while (!match(computerBalls, user.selectUserBalls(ballCount, inputUserBalls())));
+		while (!match(computerBalls, user.selectUserBalls(ballCount, inputUserBalls()))) {
+		}
 		System.out.println(ballCount + "개의 숫자를 모두 맞히셨습니다! 게임종료");
 	}
 
 	private boolean match(int[] computerBalls, int[] userBalls) {
-		int strike = 0, ball = 0;
+		int strike = 0;
+		int ball = 0;
 		for (int i = 0; i < ballCount; ++i) {
 			strike += tryStrike(computerBalls, userBalls, i);
 			ball   += tryBall(computerBalls, userBalls, i);
