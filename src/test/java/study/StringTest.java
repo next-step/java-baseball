@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-
 public class StringTest {
 
     @Test
@@ -60,7 +59,8 @@ public class StringTest {
         String initString = "abc";
         int outOfIndex = initString.length() + 1;
 
-        assertThatExceptionOfType(StringIndexOutOfBoundsException.class).isThrownBy(() -> initString.charAt(outOfIndex)
-        ).withMessageMatching("String index out of range: \\d+");
+        assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
+                .isThrownBy(() -> initString.charAt(outOfIndex))
+                .withMessageMatching("String index out of range: \\d+");
     }
 }
