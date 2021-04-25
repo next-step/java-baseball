@@ -27,7 +27,7 @@ class BaseballGameTest {
 
 	@BeforeEach
 	void setup() {
-		baseballGame = new BaseballGame();
+		baseballGame = new BaseballGame(3);
 		computer = new Computer();
 		user = new User();
 	}
