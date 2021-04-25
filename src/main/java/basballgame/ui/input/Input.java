@@ -8,7 +8,7 @@ import basballgame.ui.output.Output;
 
 public class Input {
 	private static Scanner scanner = new Scanner(System.in);
-	protected static String withGuideAndValidator(String guideText, Predicate<String> validator) {
+	static String withGuideAndValidator(String guideText, Predicate<String> validator) {
 
 		String line;
 		do {
