@@ -35,4 +35,26 @@ public class BaseballNumbers {
 		}
 	}
 
+	public BaseballGameMatchResult getBaseballGameMatchResult(BaseballNumbers other) {
+		BaseballGameMatchResult matchResult = new BaseballGameMatchResult();
+		for (int i = 0; i < MAX_BASEBALL_NUMBER_COUNT; i++) {
+			BaseballNumberMatch baseballNumbersMatch = other.getBaseballNumberMatch(i, baseballNumbers.get(i));
+			matchResult.increaseMatchCount(baseballNumbersMatch);
+		}
+
+		return matchResult;
+	}
+
+	private BaseballNumberMatch getBaseballNumberMatch(int position, BaseballNumber compareNumber) {
+		if (baseballNumbers.get(position).equals(compareNumber)) {
+			return BaseballNumberMatch.STRIKE;
+		}
+
+		if (baseballNumbers.contains(compareNumber)) {
+			return BaseballNumberMatch.BALL;
+		}
+
+		return BaseballNumberMatch.FOUR_BALL;
+	}
+
 }
