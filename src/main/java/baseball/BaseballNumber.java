@@ -1,6 +1,9 @@
 package baseball;
 
 class BaseballNumber {
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
+
     private final int val;
 
     private BaseballNumber(int val) {
@@ -16,7 +19,7 @@ class BaseballNumber {
     }
 
     private static boolean isRangeOneToNine(int number) {
-        return number >= 1 && number <= 9;
+        return number >= MIN_NUMBER && number <= MAX_NUMBER;
     }
 
 
