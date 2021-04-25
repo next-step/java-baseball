@@ -60,15 +60,17 @@ class BaseballNumbersTest {
         assertThatThrownBy(() -> new BaseballNumbers(inputValues2)).isInstanceOf(BaseballNumbersHasInvalidLength.class);
     }
 
-    @DisplayName("중복되지 않은 3자리 야구게임 숫자 모음 생성 테스트")
-    @Test
-    void 중복되지_않은_3자리_야구게임_숫자_모음_생성_테스트() {
+    @ParameterizedTest(name = "중복되지 않은 3자리 야구게임 숫자 모음 생성 테스트")
+    @CsvSource({
+            "197"
+            , "281"
+    })
+    void 중복되지_않은_3자리_야구게임_숫자_모음_생성_테스트(String input) {
         // when
-        BaseballNumbers baseballNumbers = new BaseballNumbers("197");
+        BaseballNumbers baseballNumbers = new BaseballNumbers(input);
 
         // then
         assertThat(baseballNumbers.getSize()).isEqualTo(3);
-        assertThat(baseballNumbers.getValue()).containsExactly((BaseballNumber) Arrays.asList(1, 9, 7));
     }
 
 }

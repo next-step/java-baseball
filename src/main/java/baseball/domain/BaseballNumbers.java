@@ -3,6 +3,7 @@ package baseball.domain;
 import baseball.exception.BaseballNumbersHasDuplicationException;
 import baseball.exception.BaseballNumbersHasInvalidLength;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,17 +14,33 @@ public class BaseballNumbers {
 
     private Set<BaseballNumber> baseballNumbers;
 
+    private BaseballNumbers() {
+    }
+
     public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
-        this.baseballNumbers = new LinkedHashSet<BaseballNumber>();
+        createBaseballNumbers(baseballNumbers);
+    }
+
+    public BaseballNumbers(String input) {
+        List<BaseballNumber> baseballNumbers = asBaseballNumbers(input);
+        createBaseballNumbers(baseballNumbers);
+    }
+
+    private void createBaseballNumbers(List<BaseballNumber> baseballNumbers) {
         setValue(baseballNumbers);
         validate(baseballNumbers);
     }
 
-    public BaseballNumbers(String baseballNumbers) {
-        // TODO
+    private List<BaseballNumber> asBaseballNumbers(String input) {
+        List<BaseballNumber> baseballNumbers = new ArrayList<>();
+        for (Character baseballNumber : input.toCharArray()) {
+            baseballNumbers.add(new BaseballNumber(String.valueOf(baseballNumber)));
+        }
+        return baseballNumbers;
     }
 
     private void setValue(List<BaseballNumber> baseballNumbers) {
+        this.baseballNumbers = new LinkedHashSet<BaseballNumber>();
         for (BaseballNumber baseballNumber : baseballNumbers) {
             this.baseballNumbers.add(baseballNumber);
         }
