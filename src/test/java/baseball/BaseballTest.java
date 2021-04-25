@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -30,6 +31,7 @@ public class BaseballTest {
 	}
 
 	@Test
+	@DisplayName("1~9까지 서로 다른 수로 이루어진 3자리 수 생성")
 	void makeAnswerNumbers() {
 		Baseball baseball = new Baseball();
 		List<Integer> answerNumbers = baseball.answerNumbers;
@@ -53,6 +55,7 @@ public class BaseballTest {
 		"1,2,3:3,2,1:false",
 		"1,2,3:4,5,6:false"
 	}, delimiter=':')
+	@DisplayName("정답과 입력값 비교, 볼카운트를 판정하여 정답여부 확인")
 	void checkAnswer(String answer, String input, Boolean isCorrectAnswer) {
 		Baseball baseball = new Baseball();
 		List<Integer> answerNumberList = StringUtil.stringToIntegerListWithDelimiter(answer);
@@ -71,6 +74,7 @@ public class BaseballTest {
 		"1,2,3:3,2,1:1 스트라이크 2볼",
 		"1,2,3:4,5,6:낫싱"
 	}, delimiter=':')
+	@DisplayName("정답과 입력값 비교, 볼카운트를 판정하여 System.out 출력")
 	void printBallCount(String answer, String input, String message) {
 		Baseball baseball = new Baseball();
 		List<Integer> answerNumberList = StringUtil.stringToIntegerListWithDelimiter(answer);
