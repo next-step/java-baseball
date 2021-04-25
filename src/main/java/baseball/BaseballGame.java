@@ -1,8 +1,7 @@
 package baseball;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Collections;
 
 public class BaseballGame {
@@ -23,7 +22,6 @@ public class BaseballGame {
 		return Collections.unmodifiableList(randList);
  	}
 	
-	public static BallCount ballCount(final List<Integer> inputIntegerList, final List<Integer> randomIntegerList) {
 	public static List<Integer> inputBaseballNumber(BufferedReader br) throws IOException {
 		String inputValue = null;
 		do {
@@ -52,6 +50,7 @@ public class BaseballGame {
 		return value.length() == length;
 	}
 	
+	public static BallCount takeBallCount(final List<Integer> randomIntegerList, final List<Integer> inputIntegerList) {
 		int len = randomIntegerList.size();		
 		BallCount ballCount = new BallCount(len);
 		for(int i = 0; i < len; ++i) {
