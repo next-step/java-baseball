@@ -5,7 +5,7 @@ public class EnemyNumberGenerator {
 
     private void initNumber(BaseBallDTO dto){
         List<String> numbers = dto.getEnemyNumbers();
-        String randomNumber = String.valueOf((int)(Math.random()*GameSetting.COUNT.getValue())+1);
+        String randomNumber = String.valueOf((int)(Math.random()*GameSetting.COUNT.value)+1);
         if(!numbers.contains(randomNumber)){
             numbers.add(randomNumber);
         }
@@ -15,7 +15,7 @@ public class EnemyNumberGenerator {
     protected void generateNumber(BaseBallDTO dto){
         List<String> numberStorage = new ArrayList<>();
         dto.setEnemyNumbers(numberStorage);
-        int maxLength = GameSetting.LENGTH.getValue();
+        int maxLength = GameSetting.LENGTH.value;
         while(dto.getEnemyNumbers().size()<maxLength){
             initNumber(dto);
         }
