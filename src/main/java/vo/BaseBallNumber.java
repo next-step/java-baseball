@@ -30,12 +30,7 @@ public class BaseBallNumber {
     }
 
     public CompareResult compare(List<Integer> inputList) {
-        if (inputList.size() != BASEBALL_NUMBER_SIZE)
-            throw new IllegalArgumentException(String.format("숫자야구게임의 입력 숫자는 %d개만 가능합니다.",
-                    BASEBALL_NUMBER_SIZE));
-        Set<Integer> inputSet = new HashSet<>(inputList);
-        if (inputSet.size() != BASEBALL_NUMBER_SIZE)
-            throw new IllegalArgumentException("숫자야구게임의 입력 숫자는 중복될 수 없습니다.");
+        validateInputList(inputList);
 
         CompareResult compareResult = new CompareResult();
         Set<Integer> numberSet = new HashSet<>(this.numbers);
@@ -44,6 +39,15 @@ public class BaseBallNumber {
         }
 
         return compareResult;
+    }
+
+    private void validateInputList(List<Integer> inputList) {
+        if (inputList.size() != BASEBALL_NUMBER_SIZE)
+            throw new IllegalArgumentException(String.format("숫자야구게임의 입력 숫자는 %d개만 가능합니다.",
+                    BASEBALL_NUMBER_SIZE));
+        Set<Integer> inputSet = new HashSet<>(inputList);
+        if (inputSet.size() != BASEBALL_NUMBER_SIZE)
+            throw new IllegalArgumentException("숫자야구게임의 입력 숫자는 중복될 수 없습니다.");
     }
 
     private void setUpCompareResult(CompareResult compareResult, int inputValue, int numberValue, Set<Integer> numberSet) {
