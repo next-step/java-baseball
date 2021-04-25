@@ -28,20 +28,20 @@ class BaseBallTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"1, 2, 3, 1, 2, 3, 3"
-        , "1, 2, 3, 1, 2, 4, 2", "1, 2, 3, 4, 2, 3, 2", "1, 2, 3, 1, 4, 3, 2"
-        , "1, 2, 3, 1, 4, 5, 1", "1, 2, 3, 4, 5, 6, 0"})
-    void countStrike(int number1, int number2, int number3, int input1, int input2, int input3, int strikeCount) {
-        BaseBall baseBall = BaseBall.of(Arrays.asList(Ball.of(number1), Ball.of(number2), Ball.of(number3)));
-        BaseBall inputBaseBall = BaseBall.of(Arrays.asList(Ball.of(input1), Ball.of(input2), Ball.of(input3)));
+    @CsvSource({"123, 123, 3"
+        , "123, 124, 2", "123, 423, 2", "123, 143, 2"
+        , "123, 145, 1", "123, 456, 0"})
+    void countStrike(String numbers, String inputNumbers, int strikeCount) {
+        BaseBall baseBall = BaseBall.of(numbers);
+        BaseBall inputBaseBall = BaseBall.of(inputNumbers);
 
         assertThat(baseBall.countStrike(inputBaseBall)).isEqualTo(strikeCount);
     }
 
     @ParameterizedTest
-    @CsvSource({"1, 2, 3, 3, 1, 2, 3"
-        , "1, 2, 3, 4, 1, 2, 2", "1, 2, 3, 2, 3, 4, 2", "1, 2, 3, 3, 4, 1, 2"
-        , "1, 2, 3, 4, 1, 5, 1", "1, 2, 3, 4, 5, 6, 0"})
+    @CsvSource({"123, 312, 3"
+        , "123, 412, 2", "123, 234, 2", "123, 341, 2"
+        , "123, 415, 1", "123, 456, 0"})
     void countBall(int number1, int number2, int number3, int input1, int input2, int input3, int strikeCount) {
         BaseBall baseBall = BaseBall.of(Arrays.asList(Ball.of(number1), Ball.of(number2), Ball.of(number3)));
         BaseBall inputBaseBall = BaseBall.of(Arrays.asList(Ball.of(input1), Ball.of(input2), Ball.of(input3)));
