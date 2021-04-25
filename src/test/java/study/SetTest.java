@@ -25,6 +25,14 @@ public class SetTest {
     @Test
     @DisplayName("Set의 size() 메소드를 활용해 Set의 크기를 확인")
     void require1() {
+        assertThat(numbers.size()).isEqualTo(3);
+
+        numbers = new HashSet<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+
         assertThat(numbers.size()).isEqualTo(4);
     }
 }
