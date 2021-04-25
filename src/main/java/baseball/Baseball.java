@@ -3,8 +3,10 @@ package baseball;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Baseball {
+	private enum Command { START, CONTINUE, FINISH }
 	private static final int MIN_NUMBER = 1;
 	private static final int MAX_NUMBER = 9;
 	private static final int SIZE_OF_NUMBERS = 3;
@@ -63,5 +65,35 @@ public class Baseball {
 			ballCountString = String.format("%d볼", ball);
 		}
 		System.out.println(ballCountString);
+	}
+
+	private void playGameLoop(Scanner scanner) {
+		boolean isCorrectAnswer = false;
+		while (!isCorrectAnswer) {
+			isCorrectAnswer = playGameRound(scanner);
+		}
+	}
+
+	private boolean playGameRound(Scanner scanner) {
+		boolean isCorrectAnswer;
+		System.out.print("숫자를 입력해주세요: ");
+		String input = scanner.next();
+		isCorrectAnswer = checkAnswer(Utils.stringToIntegerList(input));
+		printBallCount();
+		if (isCorrectAnswer) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		}
+		return isCorrectAnswer;
+	}
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Command command = Command.START;
+		while (command != Command.FINISH) {
+			Baseball baseball = new Baseball();
+			baseball.playGameLoop(scanner);
+			command = Command.values()[scanner.nextInt()];
+		}
 	}
 }

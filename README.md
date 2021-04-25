@@ -29,7 +29,10 @@
     - public boolean checkAnswer(List<Integer> numbers): 세자리 수를 입력받아 정답과 비교하여 스트라이크와 볼 개수를 출력
     - private BallCount getBallCountFromNumber(int number, int idx): 숫자와 인덱스를 입력받아 스트라이크, 볼을 판정하여 생성한 BallCount 인스턴스를 리턴
     - public void printBallCount(): 현재 BallCount를 System.out으로 출력
-    - public static void main(String[] args): 숫자야구게임 대화영 입/출력
+    - private void playGameLoop(Scanner scanner): 정답을 맞출 때 까지 게임 라운드를 반복하는 메소드
+    - private boolean playGameRound(Scanner scanner): 게임 라운드를 진행하는 메소드. 입력된 세자리 수로 볼카운트를 판정하여 메시지를 출력
+    - public static void main(String[] args): 숫자야구게임 시작점. 게임이 종료 후 다시 시작하거나 완전히 종료하는 기능 포함
+    
 - Utils Class
   - public static List<Integer> stringToIntegerListWithDelimiter(String input): delimiter 가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴 (default delimiter: ",")
   - public static List<Integer> stringToIntegerListWithDelimiter(String input, String delimiter) delimiter가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴
