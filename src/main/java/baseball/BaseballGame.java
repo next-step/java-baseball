@@ -51,10 +51,12 @@ public class BaseballGame {
 		do {
 			System.out.print("숫자를 입력해주세요. ");
 			inputValue = br.readLine();
-		} while (validateInputValue(inputValue));
-		return Arrays.asList(Character.getNumericValue(inputValue.charAt(0))
-				, Character.getNumericValue(inputValue.charAt(1))
-				, Character.getNumericValue(inputValue.charAt(2)));
+		} while (!validateInputValue(inputValue));
+		List<Integer> inputBaseBallNumberList = new ArrayList<>();
+		for (int i = 0; i < RANDOM_NUMBER_LENGTH; ++i) {
+			inputBaseBallNumberList.add(Character.getNumericValue(inputValue.charAt(i)));
+		}
+		return inputBaseBallNumberList;
 	}
 	
 	public static boolean validateInputValue(String inputValue) {
