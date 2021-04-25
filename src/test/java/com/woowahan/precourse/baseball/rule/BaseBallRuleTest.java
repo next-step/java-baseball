@@ -27,4 +27,12 @@ class BaseBallRuleTest {
         assertThat(BaseBallRule.isStrike(gameNumber1, inputNumber1)).isTrue();
         assertThat(BaseBallRule.isStrike(gameNumber2, inputNumber2)).isFalse();
     }
+
+    @Test
+    @DisplayName("gameNumber와 inputNumber가 같으면 isBall은 false 다르면 isBall은 true")
+    void isBallTest() {
+        assertThat(BaseBallRule.isBall(gameNumber1, inputNumber1)).isFalse();
+        assertThat(BaseBallRule.isBall(gameNumber2, inputNumber2)).isTrue();
+    }
+
 }
