@@ -40,4 +40,17 @@ class GameNumberTest {
                 .hasMessageContaining("숫자에 0을 포함해서는 안됩니다.");
     }
 
+    @Test
+    @DisplayName("서로 다른 수가 아닌 값을 입력하였을 때 예외를 출력한다.")
+    void ofDuplicationTest() {
+        //given
+        Integer[] inputDuplication = new Integer[]{1, 1, 2};
+
+        assertThatThrownBy(() -> {
+            // when
+            GameNumber.of(Arrays.asList(inputDuplication)); })
+                // then
+                .isInstanceOf(ContainsDuplicationException.class)
+                .hasMessageContaining("숫자가 중복되어서는 안됩니다.");
+    }
 }

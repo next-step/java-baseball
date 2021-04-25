@@ -1,12 +1,11 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class GameNumber {
     public static final int FROM_INDEX = 0;
     public static final int TO_INDEX = 3;
     public static final String MESSAGE_CONTAINS_ZERO = "숫자에 0을 포함해서는 안됩니다.";
     private static final Integer[] sourceNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private static final String MESSAGE_CONTAINS_DUPLICATION = "숫자가 중복되어서는 안됩니다.";
     private final List<Integer> gameNumber;
 
     public GameNumber(List<Integer> gameNumber) {
@@ -26,6 +25,14 @@ public class GameNumber {
 
     private void validateGameNumber() {
         validateContainsZero();
+        validateDuplication();
+    }
+
+    private void validateDuplication() {
+        Set<Integer> gameNumberSet = new HashSet<>(gameNumber);
+        if (gameNumberSet.size() != 3) {
+            throw new ContainsDuplicationException(MESSAGE_CONTAINS_DUPLICATION);
+        }
     }
 
     private void validateContainsZero() {
