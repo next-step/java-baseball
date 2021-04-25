@@ -1,7 +1,5 @@
 package com.github.momentjin.model;
 
-import java.util.Objects;
-
 public class BaseballNumber {
 
     private final int value;
@@ -19,9 +17,7 @@ public class BaseballNumber {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
+    public int hashCode() { return value; }
 
     @Override
     public String toString() {
