@@ -54,4 +54,22 @@ public class MainApplicationTest {
     assertThat(mainApplication.validateStrike(testRandomNumber2, testInputNumber2)).isEqualTo(2);
     assertThat(mainApplication.validateStrike(testRandomNumber3, testInputNumber3)).isEqualTo(0);
   }
+
+  @Test
+  public void validateBallTest() {
+    List<Character> testRandomNumber1 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber1 = new LinkedList<>(Arrays.asList('2', '3', '1'));
+    List<Character> testRandomNumber2 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber2 = new LinkedList<>(Arrays.asList('4', '5', '6'));
+    List<Character> testRandomNumber3 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber3 = new LinkedList<>(Arrays.asList('5', '1', '7'));
+    List<Character> testRandomNumber4 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber4 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+
+    MainApplication mainApplication = new MainApplication();
+    assertThat(mainApplication.validateBall(testRandomNumber1, testInputNumber1)).isEqualTo(3);
+    assertThat(mainApplication.validateBall(testRandomNumber2, testInputNumber2)).isEqualTo(0);
+    assertThat(mainApplication.validateBall(testRandomNumber3, testInputNumber3)).isEqualTo(1);
+    assertThat(mainApplication.validateBall(testRandomNumber4, testInputNumber4)).isEqualTo(3);
+  }
 }
