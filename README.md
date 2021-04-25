@@ -5,3 +5,15 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능 목록
+ * 사용자 화면
+  - 숫자 입력 
+  - 결과 출력
+ * 게임 기능
+  - 3자리 난수 생성
+  - input 값 체크(유효성 검사)
+  - Strike 갯수 확인
+  - ball 갯수 확인
+  - 게임 종료 후 재시작/종료
+
