@@ -2,6 +2,7 @@ package numberbaseball.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
@@ -26,6 +27,14 @@ class InningTest {
     assertThatThrownBy(() -> new Inning(given)).isInstanceOf(IllegalArgumentException.class);
   }
 
+  @DisplayName("예상 숫자를 맞춰보고 결과 객체를 반환하는 테스트")
+  @MethodSource("provideForComputingScore")
+  @ParameterizedTest
+  void computeScoreTest(List<Pitching> actual, List<Pitching> expect, CountScore result) {
+    Inning actualInning = new Inning(actual);
+    assertThat(actualInning.computeScore(new Inning(expect))).isEqualTo(result);
+  }
+
   static Stream<List<Pitching>> provideForConstruction() {
     return Stream.of(
         List.of(new Pitching(1), new Pitching(2), new Pitching(3)),
@@ -38,6 +47,20 @@ class InningTest {
     return Stream.of(
         List.of(new Pitching(1), new Pitching(1), new Pitching(3)),
         List.of(new Pitching(8), new Pitching(5))
+    );
+  }
+
+  static Stream<Arguments> provideForComputingScore() {
+    return Stream.of(
+        Arguments.of(List.of(new Pitching(1), new Pitching(2), new Pitching(3)),
+                      List.of(new Pitching(1), new Pitching(2), new Pitching(3)),
+                      new CountScore(List.of(Count.STRIKE, Count.STRIKE, Count.STRIKE))),
+        Arguments.of(List.of(new Pitching(2), new Pitching(6), new Pitching(1)),
+                      List.of(new Pitching(2), new Pitching(1), new Pitching(4)),
+                      new CountScore(List.of(Count.STRIKE, Count.BALL, Count.NOTHING))),
+        Arguments.of(List.of(new Pitching(2), new Pitching(6), new Pitching(1)),
+                      List.of(new Pitching(3), new Pitching(4), new Pitching(5)),
+                      new CountScore(List.of(Count.NOTHING, Count.NOTHING, Count.NOTHING)))
     );
   }
 

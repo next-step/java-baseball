@@ -3,6 +3,8 @@ package numberbaseball.domain;
 
 import java.util.*;
 
+import static numberbaseball.domain.Count.NOTHING;
+
 public class Inning {
 
   private static final int PITCHING_COUNT_PER_INNING = 3;
@@ -18,6 +20,27 @@ public class Inning {
 
   public static Inning generateRandomInning() {
     return new Inning(PitchingFactory.generateGivenCountPitching(PITCHING_COUNT_PER_INNING));
+  }
+
+  public CountScore computeScore(Inning expect) {
+    List<Count> countsOfExpectInning = new ArrayList<>();
+    Map<Pitching, Integer> expectPitchingAndOrder = expect.pitchingAndOrder;
+    for (Map.Entry<Pitching, Integer> expectPitchingAndOrderEntry : expectPitchingAndOrder.entrySet()) {
+      Count count = getPitchingMatchStatus(pitchingAndOrder, expectPitchingAndOrderEntry);
+      countsOfExpectInning.add(count);
+    }
+    return new CountScore(countsOfExpectInning);
+  }
+
+  private Count getPitchingMatchStatus(Map<Pitching, Integer> pitchingAndOrder, Map.Entry<Pitching, Integer> expectPitchingAndOrderEntry) {
+    Pitching expectPitching = expectPitchingAndOrderEntry.getKey();
+    Integer orderOfExpectPitching = expectPitchingAndOrderEntry.getValue();
+    if(!pitchingAndOrder.containsKey(expectPitching)) {
+      return NOTHING;
+    }
+    Integer orderOfActualPitching = pitchingAndOrder.get(expectPitching);
+    boolean matchStatus = orderOfActualPitching.equals(orderOfExpectPitching);
+    return Count.retrieveMatchCountScore(matchStatus);
   }
 
   private Map<Pitching, Integer> transformToPitchingAndOrderMap(List<Pitching> pitchingCollection) {
