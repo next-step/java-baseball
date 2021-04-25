@@ -17,7 +17,7 @@ public class Computer {
 
 	private Set<Integer> ballSet = new TreeSet<>();
 
-	private int numberRandom(int min, int max) {
+	private int randomNumber(int min, int max) {
 		return (int)(Math.random() * max + min);
 	}
 
@@ -48,31 +48,31 @@ public class Computer {
 		int randomMax = 9;
 
 		while (ballSet.size() != this.getMaxBallSize()) {
-			ballSet.add(this.numberRandom(randomMin, randomMax));
+			ballSet.add(this.randomNumber(randomMin, randomMax));
 		}
 		this.ballSet = ballSet;
 	}
 
-	protected void strikeRuleCheck(char ball, int index) {
+	protected void checkRuleStrike(char ball, int index) {
 		if (this.getBall().indexOf(ball) == index) {
 			this.strikeCount++;
 		}
 	}
 
-	protected void ballRuleCheck(char ball, int index) {
+	protected void checkRuleBall(char ball, int index) {
 		final String strBall = this.getBall();
 		if (strBall.indexOf(ball) != -1 && strBall.indexOf(ball) != index) {
 			this.ballCount++;
 		}
 	}
 
-	public boolean result(String input) {
+	public boolean answer(String input) {
 		this.strikeCount = 0;
 		this.ballCount = 0;
 		int index = 0;
 		for (char c : input.toCharArray()) {
-			this.strikeRuleCheck(c, index);
-			this.ballRuleCheck(c, index);
+			this.checkRuleStrike(c, index);
+			this.checkRuleBall(c, index);
 			index++;
 		}
 

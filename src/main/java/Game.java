@@ -4,12 +4,12 @@ public class Game {
 
 	Computer computer = new Computer();
 
-	private void init() {
+	private void reset() {
 		computer.setBallSet();
 		System.out.println("숫자를 입력해주세요");
 	}
 
-	private String resultMessage(int strikeCount, int ballCount) {
+	private String answerMessage(int strikeCount, int ballCount) {
 		StringBuilder sb = new StringBuilder();
 		if (strikeCount != 0 && strikeCount != computer.getMaxBallSize()) {
 			sb.append(computer.getStrikeCount()).append("스트라이크 ");
@@ -22,27 +22,28 @@ public class Game {
 		return sb.toString();
 	}
 
-	private void successMessage() {
+	private void completeMessage() {
 		System.out.println("3스트라이크");
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 	}
 
-	private void success(String input) {
-		if ("1".equals(input)) {
-			try (Scanner scan = new Scanner(System.in)) {
-				this.start(scan);
-			}
-			return;
-		}
+	private void complete(String input) {
 		if ("2".equals(input)) {
 			System.exit(0);
 		}
+		if (!"1".equals(input)) {
+			return;
+		}
+
+		try (Scanner scan = new Scanner(System.in)) {
+			this.start(scan);
+		}
 	}
 
-	private void judgment() {
+	private void decide() {
 		if (computer.getStrikeCount() != 0 || computer.getBallCount() != 0) {
-			System.out.println(this.resultMessage(computer.getStrikeCount(), computer.getBallCount()));
+			System.out.println(this.answerMessage(computer.getStrikeCount(), computer.getBallCount()));
 			return;
 		}
 
@@ -53,18 +54,18 @@ public class Game {
 		String input;
 		do {
 			input = scan.next().trim();
-			this.success(input);
+			this.complete(input);
 		} while (!"1".equals(input) && !"2".equals(input));
 	}
 
 	public void start(Scanner scan) {
-		this.init();
+		this.reset();
 
-		while (!computer.result(scan.next())) {
-			this.judgment();
+		while (!computer.answer(scan.next())) {
+			this.decide();
 		}
 
-		this.successMessage();
+		this.completeMessage();
 		this.hasRetry(scan);
 	}
 }
