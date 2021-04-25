@@ -74,6 +74,15 @@ class BaseBallGameTest {
 		assertThat(actual).isEqualTo(GameMessage.INPUT);
 	}
 
-
+	@DisplayName("게임 종료 확인")
+	@Test
+	void gameEndTest() {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(1, 2, 3));
+		game.flushOutput();
+		game.processInput("123");
+		game.flushOutput();
+		game.processInput("2");
+		assertThat(game.isCompleted()).isTrue();
+	}
 
 }

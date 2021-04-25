@@ -1,11 +1,7 @@
 package io.github.sejoung.baseball;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.github.sejoung.baseball.constants.GameMessage;
 import io.github.sejoung.baseball.constants.GameStatus;
-import io.github.sejoung.baseball.constants.PlayMessage;
 import io.github.sejoung.baseball.validator.BaseBallValidator;
 
 public class BaseBallGame {
@@ -13,6 +9,8 @@ public class BaseBallGame {
 	private final BaseBallGameComputerNumber baseBallGameComputerNumber;
 	private final BaseBallGameStatus status;
 	private final BaseBallValidator validator;
+
+	boolean isCompleted = false;
 
 	public BaseBallGame(BaseBallNumberGenerator generator) {
 		this.output = new TextOutput(GameMessage.INPUT);
@@ -22,7 +20,7 @@ public class BaseBallGame {
 	}
 
 	public boolean isCompleted() {
-		return false;
+		return isCompleted;
 	}
 
 	public String flushOutput() {
@@ -30,14 +28,17 @@ public class BaseBallGame {
 	}
 
 	public void processInput(String input) {
-		if (validator.validationInput(input) && !checkRestart()) {
+		if (validator.validationInput(input) && !checkRestart(input)) {
 			checkBaseBallNumbers(
 				new BaseBallGamePlayerNumber(baseBallGameComputerNumber.getComputerNumbers(), output, status, input));
 		}
 	}
 
-	public boolean checkRestart() {
-		if (GameStatus.RESTART.equals(status.getStatus())) {
+	public boolean checkRestart(String input) {
+		if ("2".equals(input)) {
+			isCompleted = true;
+		}
+		if ("1".equals(input) && GameStatus.RESTART.equals(status.getStatus())) {
 			status.playGame();
 			baseBallGameComputerNumber.changeBaseBallGameComputerNumber();
 			output.printMessages(GameMessage.INPUT);
