@@ -11,7 +11,7 @@ import java.util.List;
 import static baseball.ApplicationContext.EMPTY_DELIMITER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@DisplayName("Validator를 테스트한다")
 class ValidatorTest {
     private final Validator validator = new Validator();
 

@@ -10,7 +10,7 @@ public interface Random {
     List<String> list = new ArrayList(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
 
     default Numbers getRandomNumber(int limit) {
-        return new Numbers(take(shuffle(list), limit));
+        return Numbers.valueOf(take(shuffle(list), limit));
     }
 
     List shuffle(List<String> list);

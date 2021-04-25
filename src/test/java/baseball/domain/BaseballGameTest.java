@@ -1,61 +1,66 @@
 package baseball.domain;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("야구게임을 테스트한다")
 class BaseballGameTest {
-    private final Numbers randomNumbers = new Numbers("1", "2", "3");
     private BaseballGame baseballGame;
+    private BaseballResult baseballResult;
+    private Map<BaseballEnum, Integer> baseballCounts;
 
-    @Test
-    void strike3() {
-        final Numbers userNumbers = new Numbers("1", "2", "3");
+    private void setUp(String randoms, String users) {
+        final Numbers randomNumbers = Numbers.valueOf(randoms);
+        final Numbers userNumbers = Numbers.valueOf(users);
         baseballGame = new BaseballGame(randomNumbers, userNumbers);
+        baseballResult = baseballGame.playOneRound();
+        baseballCounts = baseballResult.getBaseballCounts();
+    }
 
-        BaseballResult baseballResult = baseballGame.playOneRound();
-        Map<BaseballEnum, Integer> baseballCounts = baseballResult.getBaseballCounts();
+    @DisplayName("스트라이크가 3개일 경우를 테스트한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "523", "496"})
+    void strike3(final String value) {
+        setUp(value, value);
 
         assertThat(baseballResult.isNothing()).isFalse();
         assertThat(baseballCounts.get(BaseballEnum.STRIKE)).isEqualTo(3);
         assertThat(baseballCounts.get(BaseballEnum.BALL)).isEqualTo(0);
     }
 
-    @Test
-    void strike1ball2() {
-        final Numbers userNumbers = new Numbers("1", "3", "2");
-        baseballGame = new BaseballGame(randomNumbers, userNumbers);
-
-        BaseballResult baseballResult = baseballGame.playOneRound();
-        Map<BaseballEnum, Integer> baseballCounts = baseballResult.getBaseballCounts();
+    @DisplayName("스트라이크가 1개 볼 2개인 경우를 테스트한다")
+    @ParameterizedTest
+    @CsvSource(value = {"123,132", "523,325", "496,946"})
+    void strike1ball2(final String randoms, final String users) {
+        setUp(randoms, users);
 
         assertThat(baseballResult.isNothing()).isFalse();
         assertThat(baseballCounts.get(BaseballEnum.STRIKE)).isEqualTo(1);
         assertThat(baseballCounts.get(BaseballEnum.BALL)).isEqualTo(2);
     }
 
-    @Test
-    void ball3() {
-        final Numbers userNumbers = new Numbers("3", "1", "2");
-        baseballGame = new BaseballGame(randomNumbers, userNumbers);
-
-        BaseballResult baseballResult = baseballGame.playOneRound();
-        Map<BaseballEnum, Integer> baseballCounts = baseballResult.getBaseballCounts();
+    @DisplayName("볼 3개인 경우를 테스트한다")
+    @ParameterizedTest
+    @CsvSource(value = {"123,312", "523,352", "496,649"})
+    void ball3(final String randoms, final String users) {
+        setUp(randoms, users);
 
         assertThat(baseballResult.isNothing()).isFalse();
         assertThat(baseballCounts.get(BaseballEnum.STRIKE)).isEqualTo(0);
         assertThat(baseballCounts.get(BaseballEnum.BALL)).isEqualTo(3);
     }
 
-    @Test
-    void nothing() {
-        final Numbers userNumbers = new Numbers("4", "5", "6");
-        baseballGame = new BaseballGame(randomNumbers, userNumbers);
-
-        BaseballResult baseballResult = baseballGame.playOneRound();
-        Map<BaseballEnum, Integer> baseballCounts = baseballResult.getBaseballCounts();
+    @DisplayName("낫싱(스트라이크 0개 볼 0개)인 경우를 테스트한다")
+    @ParameterizedTest
+    @CsvSource(value = {"123,456", "523,189", "496,378"})
+    void nothing(final String randoms, final String users) {
+        setUp(randoms, users);
 
         assertThat(baseballResult.isNothing()).isTrue();
         assertThat(baseballCounts.get(BaseballEnum.STRIKE)).isEqualTo(0);

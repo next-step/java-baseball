@@ -52,7 +52,7 @@ public class GameController {
         output.print(PLEASE_INPUT_NUMBERS);
         final List<String> numbers = input.getNumbers();
         validate(numbers);
-        return new Numbers(numbers);
+        return Numbers.valueOf(numbers);
     }
 
     private void validate(final List<String> numbers) {

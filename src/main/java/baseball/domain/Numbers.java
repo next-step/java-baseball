@@ -9,17 +9,21 @@ public class Numbers {
     public final static int SIZE = 3;
     private final List<String> numbers;
 
-    public Numbers(final List<String> numbers) {
+    private Numbers(final List<String> numbers) {
         validateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    public Numbers(final String numbers) {
-        this(new ArrayList(Arrays.asList(numbers.split(EMPTY_DELIMITER))));
+    public static Numbers valueOf(final String numbers) {
+        return valueOf(numbers.split(EMPTY_DELIMITER));
     }
 
-    public Numbers(final String... numbers) {
-        this(new ArrayList(Arrays.asList(numbers)));
+    public static Numbers valueOf(final String... numbers) {
+        return valueOf(Arrays.asList(numbers));
+    }
+
+    public static Numbers valueOf(final List<String> numbers) {
+        return new Numbers(new ArrayList(numbers));
     }
 
     private void validateNumbers(final List<String> numbers) {
