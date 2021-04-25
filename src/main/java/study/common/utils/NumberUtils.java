@@ -26,14 +26,12 @@ public class NumberUtils {
         return numbers;
     }
 
-
     /**
      * <p> 구성 숫자 중복 확인 메서드 </p>
      *
      * @param num
-     * @return boolean
      */
-    public static boolean checkDuplicateNumber(int num) {
-        return true;
+    public static void checkDuplicateNumber(int num) {
+
     }
 }

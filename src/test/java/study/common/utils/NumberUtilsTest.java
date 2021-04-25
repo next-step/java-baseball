@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NumberUtilsTest {
 
@@ -28,13 +29,13 @@ class NumberUtilsTest {
     @ParameterizedTest
     @CsvSource({
             "333",
-            "332"
+            "322"
     })
     public void 입력숫자_구성_중복_확인(int input) {
 
         NumberUtils numberUtils = new NumberUtils();
 
-        assertThat(numberUtils.checkDuplicateNumber(input)).isEqualTo(false);
+        assertThrows(IllegalArgumentException.class, () -> numberUtils.checkDuplicateNumber(input));
 
     }
 
