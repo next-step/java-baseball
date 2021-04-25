@@ -9,15 +9,16 @@ import java.util.Scanner;
 public class Player {
 	private String input;
 	
-	/*
-	 * 플레이어에게 숫자를 입력하게 하는 기능
+	
+	/**
+	 *  플레이어에게 숫자를 입력하게 하는 기능
+	 * @return String 플레이어가 입력한 문자
 	 */
 	public String selectNums() {
 		try {
 			System.out.print("숫자를 입력해주세요 : ");
 			Scanner sc = new Scanner(System.in);
 			input = sc.next();
-			sc.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
