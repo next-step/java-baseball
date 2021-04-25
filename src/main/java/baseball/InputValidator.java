@@ -6,15 +6,20 @@ public class InputValidator {
     private AbnormalInputChecker abnormalInputChecker;
     private DuplicationInputChecker duplicationInputChecker;
 
+    private int targetLength;
+
     public InputValidator(
             AbnormalInputChecker abnormalInputChecker,
-            DuplicationInputChecker duplicationInputChecker){
+            DuplicationInputChecker duplicationInputChecker,
+            int targetLength){
         this.abnormalInputChecker = abnormalInputChecker;
         this.duplicationInputChecker = duplicationInputChecker;
+
+        this.targetLength = targetLength;
     }
 
     public UserInputValidation validate(String target) {
-        if (target.length() != 3) {
+        if (target.length() != this.targetLength) {
             return UserInputValidation.INVALID_INPUT_LENGTH;
         }
 

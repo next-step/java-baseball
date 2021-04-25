@@ -8,6 +8,8 @@ import customtypes.UserInputValidation;
 import custommodel.DecisionResult;
 
 public class BaseballGame {
+    private static final int BALL_COUNT = 3;
+
     private BaseballReferee baseballReferee;
     private RandomGenerator randomGenerator;
 
@@ -24,11 +26,11 @@ public class BaseballGame {
 
         this.inputValidator = new InputValidator(
                 new AbnormalInputChecker(),
-                new DuplicationInputChecker());
+                new DuplicationInputChecker(), BALL_COUNT);
         this.decisionCounter = new DecisionCounter();
 
         // [ 210425 praivesi ] Baseball game must have 3 trial, so pass digitCount parameter as 3
-        this.computerInput = this.randomGenerator.getRandomDigits(3);
+        this.computerInput = this.randomGenerator.getRandomDigits(BALL_COUNT);
     }
 
     public GameResult play(String playerInput) {
@@ -40,7 +42,7 @@ public class BaseballGame {
 
         System.out.println(decisionResult);
 
-        return this.judgeGameResult(decisionResult);
+        return decisionResult.getStrikeCount() == BALL_COUNT ? GameResult.WIN : GameResult.LOSE;
     }
 
     private DecisionResult pitching(String playerInput) {
@@ -49,9 +51,5 @@ public class BaseballGame {
         DecisionResult decisionResult = this.decisionCounter.countDecisions(decisions);
 
         return decisionResult;
-    }
-
-    private GameResult judgeGameResult(DecisionResult decisionResult) {
-        return decisionResult.getStrikeCount() == 3 ? GameResult.WIN : GameResult.LOSE;
     }
 }

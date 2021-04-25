@@ -5,10 +5,13 @@ import java.util.Scanner;
 import customtypes.GameResult;
 
 public class BaseballGameBox {
-    public static void main(String[] args) {
-        int retryFlag = 1;
+    private static final int AGAIN_PLAY = 1;
+    private static final int STOP_PLAY = 2;
 
-        while (retryFlag == 1) {
+    public static void main(String[] args) {
+        int retryFlag = AGAIN_PLAY;
+
+        while (retryFlag == AGAIN_PLAY) {
             Scanner scanner = new Scanner(System.in);
             BaseballGame baseballGame = new BaseballGame(new BaseballReferee(), new RandomGenerator());
 
@@ -41,7 +44,7 @@ public class BaseballGameBox {
     private static int askRetry(Scanner scanner) {
         int retryFlag = 0;
 
-        while (retryFlag != 1 && retryFlag != 2) {
+        while (retryFlag != AGAIN_PLAY && retryFlag != STOP_PLAY) {
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             retryFlag = scanner.nextInt();
         }

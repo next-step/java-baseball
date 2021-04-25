@@ -24,7 +24,7 @@ public class InputValidatorTest {
 
         this.inputValidator = new InputValidator(
                 this.abnormalInputChecker,
-                this.duplicationInputChecker);
+                this.duplicationInputChecker, 3);
     }
 
     @Test

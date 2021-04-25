@@ -11,8 +11,8 @@ public class DuplicationInputChecker {
     }
 
     public Boolean isDuplicated(char[] targetChars) {
-        int duplicationCnt = 0;
         this.appearedChars.clear();
+        int duplicationCnt = 0;
 
         for (char targetChar : targetChars) {
             duplicationCnt += this.alreadyAppeared(targetChar);
