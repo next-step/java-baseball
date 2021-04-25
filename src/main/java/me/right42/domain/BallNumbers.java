@@ -39,16 +39,16 @@ public class BallNumbers {
 		BallMatchResult result = new BallMatchResult();
 
 		for (int index = 0; index < target.getBalls().size(); index++) {
-			BallNumber ballNumber = target.getBalls().get(index);
-			result.addCount(checkMatchType(ballNumber, index));
+			BallNumber targetBallNumbers = target.getBalls().get(index);
+			result.addCount(checkMatchType(targetBallNumbers, index));
 		}
 
 		return result;
 	}
 
-	private BallMatchType checkMatchType(BallNumber ballNumber, int index) {
-		if(this.balls.contains(ballNumber)) {
-			return compareValueAndIndex(ballNumber, index);
+	private BallMatchType checkMatchType(BallNumber targetBallNumbers, int index) {
+		if(this.balls.contains(targetBallNumbers)) {
+			return compareValueAndIndex(targetBallNumbers, index);
 		}
 
 		return BallMatchType.NOTHING;
