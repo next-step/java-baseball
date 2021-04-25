@@ -22,8 +22,8 @@ public class BaseballRefereeTest {
 
     @ParameterizedTest
     @CsvSource(value = {"123,STRIKE", "312,BALL", "456,NOTHING"})
-    @DisplayName("결과 판정 - 플레이어가 입력한 숫자값 3개가 모두 같은 결과일 경우")
-    void decide_succeed(String playerInput, Decision expected) {
+    @DisplayName("결과 판정 - 플레이어가 입력한 숫자값 3개가 모두 같은 결과일 경우 동일한 Decision을 리턴")
+    void decide_allInputCharacterHasSameResults_returnsSameDecisions(String playerInput, Decision expected) {
         // given
         String computerInput = "123";
 
@@ -36,8 +36,8 @@ public class BaseballRefereeTest {
     }
 
     @Test
-    @DisplayName("결과 판정 - 사용자가 134를 던지고 컴퓨터가 123을 던졌을 경우")
-    void decide_succeed() {
+    @DisplayName("결과 판정 - 사용자가 134를 던지고 컴퓨터가 123을 던졌을 경우 1 스트라이크 1 볼 1 낫싱을 리턴")
+    void decide_userInputIs134AndComputerInputIs123_returnsOneStrikeOneBallOneNothing() {
         // given
         String playerInput = "134";
         String computerInput = "123";

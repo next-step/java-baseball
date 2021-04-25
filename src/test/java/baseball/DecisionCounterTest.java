@@ -1,14 +1,15 @@
 package baseball;
 
-import custommodel.DecisionResult;
-import customtypes.Decision;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import custommodel.DecisionResult;
+import customtypes.Decision;
 
 public class DecisionCounterTest {
 
@@ -20,7 +21,7 @@ public class DecisionCounterTest {
     }
 
     @Test
-    @DisplayName("2 스트라이크 1 볼인 경우")
+    @DisplayName("Decision 취합 - 2 스트라이크 1 볼인 경우 스트라이크 값이 2, 볼 값이 1인 DecisionResult를 리턴")
     void countDecisions_TwoStrikesOneBall_ResultHasSameCount() {
         // given
         List<Decision> decisions = new ArrayList<Decision>();
@@ -38,7 +39,7 @@ public class DecisionCounterTest {
     }
 
     @Test
-    @DisplayName("3 스트라이크인 경우")
+    @DisplayName("Decision 취합 - 3 스트라이크인 경우 스트라이크 값이 3인 DecisionResult를 리턴")
     void countDecisions_ThreeStrikes_ResultHasSameCount() {
         // given
         List<Decision> decisions = new ArrayList<Decision>();
@@ -56,7 +57,7 @@ public class DecisionCounterTest {
     }
 
     @Test
-    @DisplayName("3 볼인 경우")
+    @DisplayName("Decision 취합 - 3 볼인 경우 볼 값이 3인 DecisionResult를 리턴")
     void countDecisions_ThreeBalls_ResultHasSameCount() {
         // given
         List<Decision> decisions = new ArrayList<Decision>();
@@ -74,7 +75,7 @@ public class DecisionCounterTest {
     }
 
     @Test
-    @DisplayName("낫싱인 경우")
+    @DisplayName("Decision 취합 - 낫싱인 경우 낫싱 값이 3인 DecisionResult를 리턴")
     void countDecisions_ThreeNothings_ResultHasSameCount() {
         // given
         List<Decision> decisions = new ArrayList<Decision>();

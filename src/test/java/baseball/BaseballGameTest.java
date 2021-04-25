@@ -26,7 +26,7 @@ public class BaseballGameTest {
     }
 
     @Test
-    @DisplayName("경기 진행 - 사용자가 모든 숫자를 맞춘 경우")
+    @DisplayName("경기 진행 - 사용자가 모든 숫자를 맞춘 경우 WIN을 리턴")
     void play_returnsWin_playerInsertThreeStrikes() {
         // given
         String playerInput = "123";
@@ -42,7 +42,7 @@ public class BaseballGameTest {
 
     @ParameterizedTest
     @CsvSource(value = {"134", "234", "423", "125", "456", "789"})
-    @DisplayName("경기 진행 - 사용자가 3개 숫자 모두를 맞추지 못한 경우")
+    @DisplayName("경기 진행 - 사용자가 3개 숫자 모두를 맞추지 못한 경우 LOSE를 리턴")
     void play_returnsLose_playerNotInsertThreeStrikes(String playerInput){
         // given
         when(this.randomGenerator.getRandomDigits(3)).thenReturn("123");
@@ -57,7 +57,7 @@ public class BaseballGameTest {
 
     @ParameterizedTest
     @CsvSource(value = {"!df", "34", "$$$", "4125", "45698354", "aa789"})
-    @DisplayName("경기 진행 - 사용자가 유효하지 않은 값을 입력한 경우")
+    @DisplayName("경기 진행 - 사용자가 유효하지 않은 값을 입력한 경우 INVALID_INPUT을 리턴")
     void play_returnsInvalidInput_playerInsertInvalidInput(String playerInput){
         // given
         this.baseballGame = new BaseballGame(this.baseballReferee, this.randomGenerator);

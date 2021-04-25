@@ -20,8 +20,8 @@ public class RandomGeneratorTest {
     }
 
     @Test
-    @DisplayName("랜덤 숫자 생성 - 성공")
-    void getRandomDigits_succeed() {
+    @DisplayName("랜덤 숫자 생성 - 랜덤 생성 함수는 1~9 사이 중복되지 않은 3자리 수로 구성된 값을 리턴")
+    void getRandomDigits_generateRandomDigits_allCharacterMatchesValidationRule() {
         // given
         int digitCount = 3;
 
