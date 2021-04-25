@@ -16,4 +16,12 @@ public class NumberUtils {
         return list;
     }
 
+    public static List<Number> toList(String inputNumbers) {
+        List<Number> list = new ArrayList<>();
+        int index = 0;
+        for (String number : inputNumbers.split("")) {
+            list.add(Number.of(number, index++));
+        }
+        return list;
+    }
 }
