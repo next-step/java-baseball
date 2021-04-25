@@ -49,7 +49,6 @@ class StringClassStudyTest {
 
 		final String substring = given.substring(rightBrace+1,leftBrace);
 		// than
-		System.out.println(">> "+substring);
 		assertThat(substring)
 				.isNotEmpty()
 				.contains("1,2");
