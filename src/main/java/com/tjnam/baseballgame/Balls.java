@@ -16,7 +16,7 @@ import java.util.Arrays;
             this.ballValues = new int[BALL_LENGTH];
         }
 
-        public void SetRandomBalls() {
+        public void setRandomBalls() {
             int[] randomBalls = this.getRandomNumbers();
             this.setBallValues(randomBalls);
         }
