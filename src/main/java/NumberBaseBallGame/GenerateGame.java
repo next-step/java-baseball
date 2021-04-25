@@ -78,12 +78,17 @@ public class GenerateGame {
 		int result = 0;
 		for(int i = 0; i < GAMENUMBERS_LENGTH; i++){
 			if(gameNumbers[i] == clientNumber[i]) continue;
-			try{
-				Arrays.binarySearch(gameNumbers, clientNumber[i]);
-				result++;
-			}catch (ArrayIndexOutOfBoundsException e){
-				System.out.println("찾는요소없음.");
-			}
+			result = binarySearch(clientNumber[i], result);
+		}
+		return result;
+	}
+
+	private int binarySearch(int aClientNumber, int result){
+		try{
+			Arrays.binarySearch(gameNumbers, aClientNumber);
+			result++;
+		}catch (ArrayIndexOutOfBoundsException e){
+			System.out.println("찾는요소없음.");
 		}
 		return result;
 	}
