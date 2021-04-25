@@ -7,6 +7,19 @@ public class BaseballApplication {
     public static void main(String[] args){
     }
 
+    public void printStrikeBallOrNothing(Referee referee){
+        if(referee.getStrikeCount() > 0){
+            System.out.print(referee.getStrikeCount() + "스트라이크 ");
+        }
+        if(referee.getBallCount() > 0){
+            System.out.print(referee.getBallCount() + "볼");
+        }
+        if(referee.isNothing()){
+            System.out.print("낫싱");
+        }
+        System.out.println();
+    }
+
     public int[] inputThreeDigits(){
         System.out.print("숫자를 입력해주세요 : ");
         Scanner scan = new Scanner(System.in);
