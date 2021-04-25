@@ -24,4 +24,11 @@ public class BaseballGameResultPrinterTest {
         assertEquals(printer.convertBaseballGameResult(new int[]{3, 0}), "3 스트라이크");
     }
 
+    @Test
+    public void printerConvertGameResultBalls(){
+        assertEquals(printer.convertBaseballGameResult(new int[]{0, 1}), "1 볼");
+        assertEquals(printer.convertBaseballGameResult(new int[]{0, 2}), "2 볼");
+        assertEquals(printer.convertBaseballGameResult(new int[]{0, 3}), "3 볼");
+    }
+
 }
