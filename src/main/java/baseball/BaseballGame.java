@@ -3,7 +3,10 @@ package baseball;
 import baseball.domain.BaseballNumbers;
 import baseball.domain.BaseballNumbersProvider;
 import baseball.domain.player.Computer;
+import baseball.domain.player.Player;
 import baseball.ui.BaseballIO;
+
+import static baseball.domain.player.PlayStatus.PLAY;
 
 public class BaseballGame {
 
@@ -13,8 +16,10 @@ public class BaseballGame {
 
     private static void startGame() {
         Computer computer = new Computer(BaseballNumbersProvider.provideBaseballNumbers());
-        // TODO 플레이어의 수 입력 받기
-        BaseballNumbers playerNumber = new BaseballNumbers(BaseballIO.readInput());
+        Player player = new Player(PLAY);
+        if (player.getPlayStatus() == PLAY) {
+            BaseballNumbers playerNumber = new BaseballNumbers(BaseballIO.readInput());
+        }
     }
 
 }
