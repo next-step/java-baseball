@@ -19,4 +19,18 @@ public class BaseballApplication {
         return numbers;
     }
 
+    public boolean inputExitOrNot(){
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        Scanner scan = new Scanner(System.in);
+        String exitStr = scan.nextLine();
+        int exitFlag = Integer.parseInt(exitStr);
+        if(exitFlag == 1){
+            return false;
+        }
+        if(exitFlag == 2){
+            return true;
+        }
+        return false;
+    }
+
 }
