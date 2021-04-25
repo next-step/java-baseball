@@ -42,7 +42,7 @@ public class Game {
         while (!Rule.doesWin(judge)) {
             int[] playerList = getPlayerList();
             judge = Rule.judge(dealer.getList(), playerList);
-            System.out.println(judge.toString());
+            System.out.println(judge);
         }
 
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
