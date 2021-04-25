@@ -9,7 +9,7 @@ public class BaseBallRandomNumber {
     private String number;
 
     public void initialize() {
-        List<Integer> list = Arrays.asList(0,1,2,3,4,5,6,7,8,9);
+        List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9);
         Collections.shuffle(list);
 
         StringBuilder stringBuilder = new StringBuilder();

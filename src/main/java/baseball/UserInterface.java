@@ -9,7 +9,7 @@ public class UserInterface {
     public static String COMMAND_ANOTHER_GAME = "1";
     public static String COMMAND_EXIT_GAME = "2";
 
-    private static final Pattern VALID_GUESS_NUMBER_PATTERN = Pattern.compile(String.format("[0-9]{%d}", RANDOM_NUMBER_LENGTH));
+    private static final Pattern VALID_GUESS_NUMBER_PATTERN = Pattern.compile(String.format("[1-9]{%d}", RANDOM_NUMBER_LENGTH));
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String printGuideAndScanGuessNumber() {
