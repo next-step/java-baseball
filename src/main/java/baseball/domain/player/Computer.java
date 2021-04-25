@@ -10,4 +10,7 @@ public class Computer {
         this.baseballNumbers = baseballNumbers;
     }
 
+    public BaseballNumbers getBaseballNumbers() {
+        return baseballNumbers;
+    }
 }

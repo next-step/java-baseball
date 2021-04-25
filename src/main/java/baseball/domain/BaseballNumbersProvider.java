@@ -22,8 +22,9 @@ public class BaseballNumbersProvider {
     private static void createRandomNumber() {
         int randomNumber = RandomIntegerProvider.provideRandomNumber(MIN_NUMBER_OF_BASEBALL_NUMBER.getValue()
                 , MAX_NUMBER_OF_BASEBALL_NUMBER.getValue());
-        if (!baseballNumbers.contains(randomNumber)) {
-            baseballNumbers.add(new BaseballNumber(randomNumber));
+        BaseballNumber baseballNumber = new BaseballNumber(randomNumber);
+        if (!baseballNumbers.contains(baseballNumber)) {
+            baseballNumbers.add(baseballNumber);
         }
     }
 }
