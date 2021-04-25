@@ -7,18 +7,18 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
-1. 3자리 숫자 생성
+1. 3자리 숫자 생성 [generateThreeNumbers]
    * 1~9 사이의 서로 다른 수로 이루어진 3자리 숫자
 
-2. 입력값 유효성 검증
-   * 길이 검증 (세 자리)
-   * 형식 검증 (각 자리에 0이 없어야 하고 숫자이어야 함)
+2. 입력값 유효성 검증 [isValidInputValue]
+   * 길이 검증 (세 자리) [isValidLength]
+   * 형식 검증 (각 자리에 0이 없어야 하고 숫자이어야 함) [isValidFormat]
 
-3. 스트라이크, 볼 계산
-   * 스트라이크 갯수(X) 계산
-   * 볼 갯수(Y) 계산
+3. 스트라이크, 볼 계산 [calculate]
+   * 스트라이크 갯수(X) 계산 [calculateStrike]
+   * 볼 갯수(Y) 계산 [calculateBall]
    
-4. 결과 출력
+4. 결과 출력 [printResult]
    * X 스트라이크 Y 볼
    * X 스트라이크
    * Y 볼
