@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class BaseballApplication {
 
     public static void main(String[] args){
-
     }
 
     public int[] inputThreeDigits(){
+        System.out.print("숫자를 입력해주세요 : ");
         Scanner scan = new Scanner(System.in);
         String[] args = scan.nextLine().split("");
         int[] numbers = new int[3];
