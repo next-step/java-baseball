@@ -7,6 +7,7 @@ import java.util.Map;
 public class Result {
     private static final int DEFAULT_VALUE = 0;
     private static final int INCREASE = 1;
+    private static final int END = 3;
 
     private Map<Record, Integer> result = new HashMap<>();
 
@@ -27,5 +28,9 @@ public class Result {
 
     public boolean isNothing() {
         return countStrike() == DEFAULT_VALUE && countBall() == DEFAULT_VALUE;
+    }
+
+    public boolean isEnd() {
+        return result.getOrDefault(Record.STRIKE, DEFAULT_VALUE) == END;
     }
 }
