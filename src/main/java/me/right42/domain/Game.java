@@ -16,15 +16,15 @@ public class Game {
 
 	public void start() {
 		GameStatus gameStatus = GameStatus.START;
-		ThreeBall goal = computer.generateBall();
+		BallNumbers goal = computer.generateBall();
 
 		while(GameStatus.START.equals(gameStatus)) {
 			gameStatus = playOneGame(goal);
 		}
 	}
 
-	private GameStatus playOneGame(ThreeBall goal) {
-		ThreeBall answer = gamer.getAnswer();
+	private GameStatus playOneGame(BallNumbers goal) {
+		BallNumbers answer = gamer.getAnswer();
 		BallMatchResult matchResult = ballMatch(answer, goal);
 
 		while(!matchResult.isAllStrike()) {
@@ -37,7 +37,7 @@ public class Game {
 		return GameStatus.findByCode(code);
 	}
 
-	private BallMatchResult ballMatch(ThreeBall answer, ThreeBall goal) {
+	private BallMatchResult ballMatch(BallNumbers answer, BallNumbers goal) {
 		BallMatchResult matchResult = goal.compareTo(answer);
 		matchResult.printMatchInfo();
 		return matchResult;

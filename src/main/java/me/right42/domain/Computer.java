@@ -1,16 +1,16 @@
 package me.right42.domain;
 
-import me.right42.generator.ThreeBallGenerator;
+import me.right42.generator.BallNumbersGenerator;
 
 public class Computer {
 
-	private final ThreeBallGenerator ballNumberGenerator;
+	private final BallNumbersGenerator ballNumberGenerator;
 
-	public Computer(ThreeBallGenerator ballNumberGenerator) {
+	public Computer(BallNumbersGenerator ballNumberGenerator) {
 		this.ballNumberGenerator = ballNumberGenerator;
 	}
 
-	public ThreeBall generateBall() {
+	public BallNumbers generateBall() {
 		return ballNumberGenerator.generate();
 	}
 }

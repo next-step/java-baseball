@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import me.right42.domain.ThreeBall;
+import me.right42.domain.BallNumbers;
 
-public class RandomThreeBallGenerator implements ThreeBallGenerator {
+public class RandomBallNumberGenerator implements BallNumbersGenerator {
 
 	private final List<String> stringNumbers = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
 	@Override
-	public ThreeBall generate() {
+	public BallNumbers generate() {
 		Collections.shuffle(stringNumbers);
-		return ThreeBall.createThreeBall(stringNumbers.get(0) + stringNumbers.get(1) + stringNumbers.get(2));
+		return BallNumbers.create(stringNumbers.get(0) + stringNumbers.get(1) + stringNumbers.get(2));
 	}
 }

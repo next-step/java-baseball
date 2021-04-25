@@ -7,31 +7,35 @@ import java.util.List;
 import me.right42.domain.type.BallMatchType;
 import me.right42.exception.BallNumberDuplicationException;
 
-public class ThreeBall {
+public class BallNumbers {
 
 	private final List<BallNumber> balls = new ArrayList<>();
 
 	private static final int BALL_SIZE = 3;
 
-	private ThreeBall(String ballNumbers) {
-		validateValue(ballNumbers);
+	private BallNumbers(List<Integer> numbers) {
+		validateSize(numbers);
 
-		for (Integer number : parseValue(ballNumbers)) {
+		for (Integer number : numbers) {
 			BallNumber ballNumber = new BallNumber(number);
-			validateBallNumber(ballNumber);
+			validateDuplicateBallNumber(ballNumber);
 			balls.add(ballNumber);
 		}
 	}
 
-	public static ThreeBall createThreeBall(String ballNumbers){
-		return new ThreeBall(ballNumbers);
+	public static BallNumbers create(String ballNumbers){
+		return new BallNumbers(parseValue(ballNumbers));
+	}
+
+	public static BallNumbers create(List<Integer> ballNumbers){
+		return new BallNumbers(ballNumbers);
 	}
 
 	public List<BallNumber> getBalls() {
 		return Collections.unmodifiableList(this.balls);
 	}
 
-	public BallMatchResult compareTo(ThreeBall target) {
+	public BallMatchResult compareTo(BallNumbers target) {
 		BallMatchResult result = new BallMatchResult();
 
 		for (int index = 0; index < target.getBalls().size(); index++) {
@@ -58,7 +62,7 @@ public class ThreeBall {
 		return BallMatchType.BALL;
 	}
 
-	private List<Integer> parseValue(String value) {
+	private static List<Integer> parseValue(String value) {
 		List<Integer> ballNumbers = new ArrayList<>();
 		for (String ballNumber : value.split("")) {
 			ballNumbers.add(Integer.valueOf(ballNumber));
@@ -67,13 +71,13 @@ public class ThreeBall {
 		return ballNumbers;
 	}
 
-	private void validateValue(String value) {
-		if (value == null || value.length() != BALL_SIZE) {
+	private void validateSize(List<Integer> ballNumbers) {
+		if (ballNumbers == null || ballNumbers.size() != BALL_SIZE) {
 			throw new IllegalArgumentException(String.format("볼 사이즈는 %d개 입니다.", BALL_SIZE));
 		}
 	}
 
-	private void validateBallNumber(BallNumber ballNumber) {
+	private void validateDuplicateBallNumber(BallNumber ballNumber) {
 		if(balls.contains(ballNumber)) {
 			throw new BallNumberDuplicationException("볼 값은 중복불가 입니다.");
 		}

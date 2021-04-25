@@ -4,16 +4,16 @@ import me.right42.ui.InputView;
 
 public class Gamer {
 
-	private ThreeBall threeBall;
+	private BallNumbers threeBall;
 
-	public ThreeBall getAnswer(){
+	public BallNumbers getAnswer(){
 		inputValue();
 		return this.threeBall;
 	}
 
 	private void inputValue(){
 		String userInput = InputView.inputNumber();
-		this.threeBall = ThreeBall.createThreeBall(userInput);
+		this.threeBall = BallNumbers.create(userInput);
 	}
 
 }
