@@ -20,13 +20,13 @@ public class PlayGame {
 	 * 게임 시작!
 	 *  사용자 입력과 게임 값을 비교
 	 *
-	 * @param getNumbers
+	 * @param getClientNumber
 	 * @return
 	 */
-	public GameHintAndResults playGame(String getNumbers){
-		ValidationCheckUtils.checkValidation(getNumbers);
+	public GameHintAndResults playGame(String getClientNumber){
+		ValidationCheckUtils.checkValidation(getClientNumber);
 
-		int[] clientNumber = parseCharToInt(getNumbers.toCharArray());
+		int[] clientNumber = parseCharToInt(getClientNumber);
 
 		int strike = checkStrike(clientNumber);
 		int ball = checkBall(clientNumber);
@@ -88,7 +88,8 @@ public class PlayGame {
 		return result;
 	}
 
-	private int[] parseCharToInt(char[] chars){
+	private int[] parseCharToInt(String getClientNumber){
+		char[] chars = getClientNumber.toCharArray();
 		int[] ints = new int[GAMENUMBERS_LENGTH];
 
 		for(int i =0 ; i< GAMENUMBERS_LENGTH; i++){
