@@ -17,15 +17,41 @@ public class BaseballGame {
 
 
 	public void playBaseballGame(){
-		// TODO: init numbers
 		String randomNumbers = getRandomNumbers();
-
-		// get input numbers
 		String input = getInput();
+
+		// TODO: get score
+		Score score = getScore(randomNumbers, input);
 		// TODO: show score
+		showScore(score);
 		// TODO: check Game status
 
 		System.out.println("Random Numbers: " + randomNumbers);
+	}
+
+	public Score getScore(String input, String randomNumbers){
+		Score score = new Score();
+		for(int i = 0; i < NUMBER_SIZE; i++){
+			if(isStrike(input.charAt(i), randomNumbers.charAt(i))) {
+				score.setStrikeCount(score.getStrikeCount() + 1);
+				continue;
+			}
+			if(isBall(input.charAt(i), randomNumbers)){
+				score.setBallCount(score.getBallCount() + 1);
+				continue;
+			}
+		}
+		return score;
+	}
+
+	public boolean isStrike(char input, char randomNumber){
+		return false;
+	}
+	public boolean isBall(char input, String randomNumbers){
+		return false;
+	}
+
+	public void showScore(Score score){
 	}
 
 	public String getRandomNumbers(){
