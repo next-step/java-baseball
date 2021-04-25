@@ -24,6 +24,16 @@ public class GameManagerImpl implements GameManager {
         userInterface.close();
     }
 
+    /**
+     * 게임 흐름
+     * 1. 상대방 랜덤숫자를 생성한다.
+     * 2. 플레이어에게 숫자를 입력 받는다
+     * 3. 상대방 숫자와 플레이어 숫자를 비교하여 판단한다.
+     * 4. 판단 결과에 따라 게임 진행 여부를 결정한다.
+     * @param playable
+     * @param status
+     * @param opponentNumbers
+     */
     private void doPlay(boolean playable, GameStatus status, String[] opponentNumbers) {
         while (playable) {
             opponentNumbers = getOpponentNumbers(status, opponentNumbers)
