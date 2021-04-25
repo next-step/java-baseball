@@ -7,7 +7,7 @@ import java.util.Set;
 public class DefaultBaseballNumberBundleValidator implements BaseballNumberBundleValidator {
 
     @Override
-    public void validate(BaseballNumberBundle bundle) {
+    public void validate(BaseballNumberBundle bundle) throws BaseballNumberDomainException {
 
         validateSize(bundle);
         validateOverLap(bundle);
@@ -19,7 +19,7 @@ public class DefaultBaseballNumberBundleValidator implements BaseballNumberBundl
             return;
         }
 
-        throw new RuntimeException(
+        throw new BaseballNumberDomainException(
             String.format("숫자야구게임의 숫자 묶음 사이즈는 %d이어야 합니다.", BaseballNumberConstants.BUNDLE_SIZE)
         );
     }
@@ -30,7 +30,7 @@ public class DefaultBaseballNumberBundleValidator implements BaseballNumberBundl
         Set<BaseballNumber> baseballNumberSet = new HashSet<>(baseballNumberList);
 
         if (baseballNumberSet.size() != bundle.size()) {
-            throw new RuntimeException("숫자야구게임의 숫자 묶음은 중복을 허용하지 않습니다.");
+            throw new BaseballNumberDomainException("숫자야구게임의 숫자 묶음은 중복을 허용하지 않습니다.");
         }
     }
 }

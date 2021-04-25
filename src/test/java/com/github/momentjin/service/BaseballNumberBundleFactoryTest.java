@@ -1,6 +1,7 @@
 package com.github.momentjin.service;
 
 import com.github.momentjin.model.BaseballNumberBundle;
+import com.github.momentjin.model.BaseballNumberDomainException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,7 @@ class BaseballNumberBundleFactoryTest {
         int bundleSize = 11;
 
         // when & then
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(BaseballNumberDomainException.class, () -> {
             BaseballNumberBundle bundle = factory.generate(bundleSize);
         });
     }

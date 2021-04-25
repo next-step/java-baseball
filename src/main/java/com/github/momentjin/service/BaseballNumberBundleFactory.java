@@ -2,6 +2,7 @@ package com.github.momentjin.service;
 
 import com.github.momentjin.model.BaseballNumber;
 import com.github.momentjin.model.BaseballNumberBundle;
+import com.github.momentjin.model.BaseballNumberDomainException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class BaseballNumberBundleFactory {
     public BaseballNumberBundle generate(int bundleSize) {
 
         if (bundleSize > 10) {
-            throw new RuntimeException("숫자묶음의 크기는 10이하이어야 합니다.");
+            throw new BaseballNumberDomainException("숫자묶음의 크기는 10이하이어야 합니다.");
         }
 
         List<BaseballNumber> randomNumbers = new ArrayList<>();

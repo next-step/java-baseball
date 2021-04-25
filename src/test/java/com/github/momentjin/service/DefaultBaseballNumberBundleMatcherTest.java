@@ -1,9 +1,6 @@
 package com.github.momentjin.service;
 
-import com.github.momentjin.model.BaseballNumber;
-import com.github.momentjin.model.BaseballNumberBundle;
-import com.github.momentjin.model.BaseballNumberBundleValidator;
-import com.github.momentjin.model.BaseballNumberMatchResult;
+import com.github.momentjin.model.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -88,7 +85,7 @@ class BaseballNumberBundleMatcherTest {
 class NoOpValidator implements BaseballNumberBundleValidator {
 
     @Override
-    public void validate(BaseballNumberBundle bundle) throws RuntimeException {
+    public void validate(BaseballNumberBundle bundle) throws BaseballNumberDomainException {
         // do nothing
     }
 }

@@ -25,7 +25,7 @@ class DefaultBaseballNumberBundleValidatorTest {
         BaseballNumberBundle bundle = new BaseballNumberBundle(baseballNumbers);
 
         // when & then
-        assertThrows(RuntimeException.class, () -> validator.validate(bundle));
+        assertThrows(BaseballNumberDomainException.class, () -> validator.validate(bundle));
     }
 
     @DisplayName("BaseballNumberBundle은 크기가 3 초과하면 예외가 발생한다")
@@ -43,7 +43,7 @@ class DefaultBaseballNumberBundleValidatorTest {
         BaseballNumberBundle bundle = new BaseballNumberBundle(baseballNumbers);
 
         // when & then
-        assertThrows(RuntimeException.class, () -> validator.validate(bundle));
+        assertThrows(BaseballNumberDomainException.class, () -> validator.validate(bundle));
     }
 
     @DisplayName("BaseballNumberBundle은 중복이 있으면 예외가 발생한다")
@@ -60,6 +60,6 @@ class DefaultBaseballNumberBundleValidatorTest {
         BaseballNumberBundle bundle = new BaseballNumberBundle(baseballNumbers);
 
         // when & then
-        assertThrows(RuntimeException.class, () -> validator.validate(bundle));
+        assertThrows(BaseballNumberDomainException.class, () -> validator.validate(bundle));
     }
 }
