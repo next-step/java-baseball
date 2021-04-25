@@ -2,6 +2,8 @@ package techcamp.baseball.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import techcamp.baseball.Validation;
+import techcamp.baseball.setting.Config;
 
 import java.util.List;
 

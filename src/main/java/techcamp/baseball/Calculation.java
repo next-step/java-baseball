@@ -1,4 +1,7 @@
-package techcamp.baseball.domain;
+package techcamp.baseball;
+
+import techcamp.baseball.domain.Answer;
+import techcamp.baseball.domain.Question;
 
 public class Calculation {
 

@@ -1,5 +1,7 @@
 package techcamp.baseball.domain;
 
+import techcamp.baseball.setting.Config;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

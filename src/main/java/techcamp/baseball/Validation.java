@@ -1,4 +1,6 @@
-package techcamp.baseball.domain;
+package techcamp.baseball;
+
+import techcamp.baseball.setting.Config;
 
 import java.util.Collections;
 import java.util.List;

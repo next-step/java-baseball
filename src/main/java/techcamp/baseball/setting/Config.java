@@ -1,4 +1,4 @@
-package techcamp.baseball.domain;
+package techcamp.baseball.setting;
 
 public class Config {
     public static final int NUMBERS_LENGTH = 3;
