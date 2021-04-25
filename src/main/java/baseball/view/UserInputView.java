@@ -20,20 +20,28 @@ public class UserInputView {
 
     public static void resultConfirm(ResultType resultType) {
         StringBuffer sb = new StringBuffer();
-        if(resultType.getStrikeCnt() > 0 && resultType.getStrikeCnt() < 3) {
-            sb.append(resultType.getStrikeCnt());
-            sb.append(" 스트라이크 ");
-        }
 
-        if(resultType.getBallCnt() > 0) {
-            sb.append(resultType.getBallCnt());
-            sb.append(" 볼");
-        }
+        strikeOutput(resultType.getStrikeCnt());
+        ballOutput(resultType.getBallCnt());
+        nothingOutPut(resultType.getStrikeCnt(), resultType.getBallCnt());
+        System.out.println();
+    }
 
-        if(resultType.getStrikeCnt() == 0 && resultType.getBallCnt() == 0) {
-            sb.append("낫싱");
+    private static void strikeOutput(int strikeCnt) {
+        if(strikeCnt > 0 && strikeCnt < 3) {
+            System.out.print(strikeCnt + "스트라이크 ");
         }
+    }
 
-        System.out.println(sb.toString());
+    private static void ballOutput(int ballCnt) {
+        if(ballCnt > 0) {
+            System.out.print(ballCnt + "볼");
+        }
+    }
+
+    private static void nothingOutPut(int strikeCnt, int ballCnt) {
+        if(ballCnt == 0 && strikeCnt ==0) {
+            System.out.print("낫싱");
+        }
     }
 }
