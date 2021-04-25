@@ -1,8 +1,9 @@
 package numberbaseball.dto;
 
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
+import numberbaseball.domain.Inning;
+import numberbaseball.domain.Pitching;
+
+import java.util.*;
 
 public class ExpectNumbers {
 
@@ -20,6 +21,20 @@ public class ExpectNumbers {
       throw new IllegalArgumentException(PLEASE_INPUT_THREE_DIGITS_INTEGER);
     }
     this.expect = collectByDigits(input);
+  }
+
+  public Inning transFormToInning() {
+    List<Pitching> expectPitchings = transFormToPitchingList(expect);
+    return new Inning(expectPitchings);
+  }
+
+  private List<Pitching> transFormToPitchingList(Set<Integer> integers) {
+    List<Pitching> returnList = new ArrayList<>();
+    for (Integer integer : integers) {
+      Pitching pitching = new Pitching(integer);
+      returnList.add(pitching);
+    }
+    return returnList;
   }
 
   private int getNumberOfDigits(int number) {
