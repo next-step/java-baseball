@@ -5,10 +5,11 @@ import baseball.exception.BaseballNumberInvalidRangeException;
 
 import java.util.Objects;
 
+import static baseball.domain.rule.BaseballRule.MAX_NUMBER_OF_BASEBALL_NUMBER;
+import static baseball.domain.rule.BaseballRule.MIN_NUMBER_OF_BASEBALL_NUMBER;
+
 public class BaseballNumber {
 
-    private static final int MIN_NUMBER_OF_BASEBALL_NUMBER = 1;
-    private static final int MAX_NUMBER_OF_BASEBALL_NUMBER = 9;
     private int value;
 
     public BaseballNumber(int value) {
@@ -25,7 +26,7 @@ public class BaseballNumber {
     }
 
     private void validate(int value) {
-        if (value > MAX_NUMBER_OF_BASEBALL_NUMBER || value < MIN_NUMBER_OF_BASEBALL_NUMBER) {
+        if (value > MAX_NUMBER_OF_BASEBALL_NUMBER.getValue() || value < MIN_NUMBER_OF_BASEBALL_NUMBER.getValue()) {
             throw new BaseballNumberInvalidRangeException();
         }
     }

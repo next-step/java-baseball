@@ -1,8 +1,10 @@
 package baseball.exception;
 
+import static baseball.exception.message.ErrorMessage.BASEBALL_NUMBER_INVALID_FORMAT_EXCEPTION_MASSAGE;
+
 public class BaseballNumberInvalidFormatException extends RuntimeException {
     public BaseballNumberInvalidFormatException() {
-        super("야구게임에 유효하지 않은 형식 입니다. - 정수만 입력 가능");
+        super(BASEBALL_NUMBER_INVALID_FORMAT_EXCEPTION_MASSAGE.getMessage());
     }
 
     public BaseballNumberInvalidFormatException(String message) {

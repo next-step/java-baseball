@@ -1,8 +1,10 @@
 package baseball.exception;
 
+import static baseball.exception.message.ErrorMessage.BASEBALL_NUMBERS_HAS_DUPLICATION_EXCEPTION_MASSAGE;
+
 public class BaseballNumbersHasDuplicationException extends RuntimeException {
     public BaseballNumbersHasDuplicationException() {
-        super("야구게임 숫자 모음은 중복된 수를 가질 수 없습니다.");
+        super(BASEBALL_NUMBERS_HAS_DUPLICATION_EXCEPTION_MASSAGE.getMessage());
     }
 
     public BaseballNumbersHasDuplicationException(String message) {

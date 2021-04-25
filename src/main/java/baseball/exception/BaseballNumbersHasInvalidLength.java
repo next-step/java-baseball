@@ -1,8 +1,10 @@
 package baseball.exception;
 
+import static baseball.exception.message.ErrorMessage.BASEBALL_NUMBERS_HAS_INVALID_LENGTH_EXCEPTION_MASSAGE;
+
 public class BaseballNumbersHasInvalidLength extends RuntimeException {
     public BaseballNumbersHasInvalidLength() {
-        super("야구게임 숫자 모음에 유효하지 않은 길이입니다.");
+        super(BASEBALL_NUMBERS_HAS_INVALID_LENGTH_EXCEPTION_MASSAGE.getMessage());
     }
 
     public BaseballNumbersHasInvalidLength(String message) {

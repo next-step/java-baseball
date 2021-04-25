@@ -7,9 +7,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import static baseball.domain.rule.BaseballRule.COUNT_OF_BASEBALL_NUMBERS;
+
 public class BaseballNumbers {
 
-    private static final int COUNT_OF_BASEBALL_NUMBERS = 3;
     private Set<BaseballNumber> baseballNumbers;
 
     public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
@@ -30,7 +31,7 @@ public class BaseballNumbers {
     }
 
     private void validateLength() {
-        if (getSize() != COUNT_OF_BASEBALL_NUMBERS) {
+        if (getSize() != COUNT_OF_BASEBALL_NUMBERS.getValue()) {
             throw new BaseballNumbersHasInvalidLength();
         }
     }
