@@ -45,6 +45,18 @@ public class AnswerTest {
     }
 
     @Test
+    public void compareWithUserAnswerTest() {
+        List<Answer> answers = new ArrayList<>();
+        for (String number : numbers) {
+            Answer userAnswer = new Answer(number);
+            if (answer.compareWithUserAnswer(userAnswer)) {
+                answers.add(userAnswer);
+            }
+        }
+        assertThat(answers.size()).isEqualTo(1);
+    }
+
+    @Test
     public void ballCoutTest() {
         int totalCount = this.numbers.size();
         int oneBallCount = 0;
@@ -100,7 +112,7 @@ public class AnswerTest {
     public void printTest() {
         for (String number : numbers) {
             Answer temp = new Answer(number);
-            System.out.print("temp: " + temp + ", answer: " + answer + ", ");
+            System.out.print("temp: " + temp + ", answer: " + answer + " ");
             answer.printHint(temp);
         }
     }
