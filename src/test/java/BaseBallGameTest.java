@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,9 +9,15 @@ import static org.assertj.core.api.Assertions.*;
 
 public class BaseBallGameTest {
 
-    @Test
+    @BeforeAll
     @DisplayName("야구 게임 시작")
-    public void start() {
+    public static void start() {
+
+    }
+
+    @AfterAll
+    @DisplayName("야구 게임 종료")
+    public static void end() {
 
     }
 
@@ -45,8 +53,35 @@ public class BaseBallGameTest {
     }
 
     @Test
-    @DisplayName("야구 게임 종료")
-    public void end() {
+    @DisplayName("스트라이크 계산 테스트")
+    public void calculateStrike() {
+        char[] base = {'7', '1', '3'};
+        char[] input = {'7', '9', '1'};
+        int expectedCount = 1;
+        int actualCount = 0;
 
+        int baseLength = base.length;
+        for (int i = 0; i < baseLength; i++) {
+            actualCount += (base[i] == input[i] ? 1 : 0);
+        }
+        assertThat(actualCount).isEqualTo(expectedCount);
+    }
+
+    @Test
+    @DisplayName("볼 계산 테스트")
+    public void calculateBall() {
+        char[] base = {'7', '1', '3'};
+        char[] input = {'7', '9', '1'};
+        int expectedCount = 1;
+        int actualCount = 0;
+
+        int baseLength = base.length;
+        int inputLength = input.length;
+        for (int i = 0; i < baseLength; i++) {
+            for (int j = 0; j < inputLength; j++) {
+                actualCount += (i != j && base[i] == input[j] ? 1 : 0);
+            }
+        }
+        assertThat(actualCount).isEqualTo(expectedCount);
     }
 }

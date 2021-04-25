@@ -24,7 +24,8 @@ public class BaseBallGame {
             if (!isValidInputValue(inputNumbers)) {
                 continue;
             }
-            if (isThreeStrikes(inputNumbers)) {
+            int[] strikeBallCount = calculate(threeNumbers, inputNumbers);
+            if (isThreeStrikes(strikeBallCount[0], strikeBallCount[1])) {
                 return end();
             }
         }
@@ -72,7 +73,34 @@ public class BaseBallGame {
         return true;
     }
 
-    private boolean isThreeStrikes(String inputNumbers) {
+    private int[] calculate(String inputNumbers, String threeNumbers) {
+        char[] base = threeNumbers.toCharArray();
+        char[] input = inputNumbers.toCharArray();
+        int baseLength = base.length;
+        int strikeCount = 0;
+        int ballCount = 0;
+        for (int i = 0; i < baseLength; i++) {
+            strikeCount += calculateStrike(base[i], input[i]);
+            ballCount += calculateBall(i, base[i], input);
+        }
+        return new int[] {strikeCount, ballCount};
+    }
+
+    private int calculateStrike(char base, char input) {
+        return base == input ? 1 : 0;
+    }
+
+    private int calculateBall(int baseIndex, int base, char[] input) {
+        int inputLength = input.length;
+        for (int i = 0; i < inputLength; i++) {
+            if (i != baseIndex && base == input[i]) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    private boolean isThreeStrikes(int strikeCount, int ballCount) {
         return true;
     }
 
