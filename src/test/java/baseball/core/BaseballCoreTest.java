@@ -28,6 +28,7 @@ public class BaseballCoreTest {
 	private List<Character> numbersForGameInInstance;
 	private Method makeGame;
 	private Method countBall;
+	private Method countStrike;
 
 	@BeforeEach
 	@SuppressWarnings("unchecked")
@@ -47,6 +48,8 @@ public class BaseballCoreTest {
 		makeGame.setAccessible(true);
 		countBall = this.core.getClass().getDeclaredMethod("countBall", String.class);
 		countBall.setAccessible(true);
+		countStrike = this.core.getClass().getDeclaredMethod("countStrike", String.class);
+		countStrike.setAccessible(true);
 	}
 
 	@Test
@@ -73,7 +76,7 @@ public class BaseballCoreTest {
 	}
 
 	@DisplayName(value = "2. Ball Count")
-	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs.")
+	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected balls.")
 	@Order(2)
 	@CsvSource(value = {"123,456,789;1,2,0", "147,258,369;1,1,1", "987,624,351;0,3,0"}, delimiter = ';')
 	public void testCountBall(String playerInputs, String expectedScores) throws
@@ -93,7 +96,7 @@ public class BaseballCoreTest {
 
 		System.out.print("playerInputsArr : [");
 		for (String input : playerInputsArr) {
-			System.out.print(input + ", ");
+			System.out.print(input + " ");
 		}
 		System.out.println("]");
 
@@ -107,6 +110,44 @@ public class BaseballCoreTest {
 			int ballCnt = (int) countBall.invoke(this.core, playerInputsArr[i]);
 
 			assertThat(ballCnt).isEqualTo(Integer.parseInt(expectedScoreArr[i]));
+		}
+	}
+
+	@DisplayName(value = "3. Strike Count")
+	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected strikes.")
+	@Order(3)
+	@CsvSource(value = {"143,256,789;0,2,0", "147,258,369;0,3,0", "987,624,351;0,0,1"}, delimiter = ';')
+	public void testCountStrike(String playerInputs, String expectedScores) throws
+		InvocationTargetException,
+		IllegalAccessException,
+		NoSuchFieldException {
+
+		List<Character> numbersForGame = Lists.newArrayList('2', '5', '8');
+
+		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
+		fieldNumbersForGame.setAccessible(true);
+		fieldNumbersForGame.set(this.core, numbersForGame);
+		System.out.println("numbersForGameInInstance : " + this.numbersForGameInInstance);
+
+		String[] playerInputsArr = playerInputs.split(",");
+		String[] expectedScoreArr = expectedScores.split(",");
+
+		System.out.print("playerInputsArr : [");
+		for (String input : playerInputsArr) {
+			System.out.print(input + " ");
+		}
+		System.out.println("]");
+
+		System.out.print("expectedScoreArr : [");
+		for (String score : expectedScoreArr) {
+			System.out.print(score + " ");
+		}
+		System.out.println("]");
+
+		for (int i = 0; i < playerInputsArr.length; i++) {
+			int strikeCnt = (int) countStrike.invoke(this.core, playerInputsArr[i]);
+
+			assertThat(strikeCnt).isEqualTo(Integer.parseInt(expectedScoreArr[i]));
 		}
 	}
 }

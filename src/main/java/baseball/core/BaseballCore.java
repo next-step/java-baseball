@@ -43,4 +43,17 @@ public class BaseballCore {
 		}
 		return ball;
 	}
+
+	/**
+	 * 사용자가 입력한 문자열에서 스트라이크의 갯수를 계산한다.
+	 * @param playerInput
+	 * @return
+	 */
+	private int countStrike(String playerInput) {
+		int strike = 0;
+		for (int i = 0; i < playerInput.split("").length; i++) {
+			strike = (playerInput.charAt(i) == numbersForGame.get(i)) ? ++strike : strike;
+		}
+		return strike;
+	}
 }
