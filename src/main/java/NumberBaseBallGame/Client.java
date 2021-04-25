@@ -1,5 +1,6 @@
 package NumberBaseBallGame;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Client {
@@ -12,8 +13,16 @@ public class Client {
 
 		while (true){
 			System.out.println("숫자를입력해주세요 : ");
+			String gameNumbers = scanner.nextLine();
 
-			GameHintAndResults gameHintAndResults = playGame.insertNumbers(scanner.nextLine());// Logical GangKing!
+			try{
+				ValidationCheckUtils.checkValidation(gameNumbers);
+			}catch (IllegalArgumentException e){
+				System.out.println(e.getMessage());
+				continue;
+			}
+
+			GameHintAndResults gameHintAndResults = playGame.playGame(gameNumbers);
 			if(!gameHintAndResults.isFinish()){
 				System.out.println(gameHintAndResults.getHint());
 				continue;
