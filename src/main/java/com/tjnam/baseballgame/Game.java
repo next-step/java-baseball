@@ -30,7 +30,7 @@ public class Game {
             gamerBall.setBallValues(userInputBallValue);
 
             gameResult = this.compareBalls();
-            this.printGameResult(gameResult.toString());
+            this.printGameResult(gameResult.getResultString());
         } while(this.judgeResult(gameResult));
     }
 
