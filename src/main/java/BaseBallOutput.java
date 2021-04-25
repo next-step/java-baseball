@@ -1,7 +1,6 @@
 public class BaseBallOutput {
 
-
-    protected int resultOfAtack(BaseBallDTO dto){
+    protected int resultOfAttack(BaseBallDTO dto){
         int result = new BaseBallOutput()
                 .strikeOutput(dto)
                 .ballOutput(dto)
