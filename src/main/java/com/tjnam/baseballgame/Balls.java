@@ -25,6 +25,12 @@ import java.util.Arrays;
             this.ballValues = selection;
         }
 
+        public void setBallValues(String numbers) {
+            this.ballValues[0] = Integer.parseInt(String.valueOf(numbers.charAt(0)));
+            this.ballValues[1] = Integer.parseInt(String.valueOf(numbers.charAt(1)));
+            this.ballValues[2] = Integer.parseInt(String.valueOf(numbers.charAt(2)));
+        }
+
         public int[] getNumbers(){
             return this.ballValues;
         }
