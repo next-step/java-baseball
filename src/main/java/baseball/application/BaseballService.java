@@ -4,9 +4,10 @@ import baseball.domain.BaseballNumbers;
 import baseball.util.BaseballNumberFactory;
 
 public class BaseballService {
-    private final BaseballNumberFactory baseballNumberFactory = new BaseballNumberFactory();
+    private BaseballNumberFactory baseballNumberFactory;
 
     public BaseballService() {
+        baseballNumberFactory = new BaseballNumberFactory();
     }
 
     public BaseballNumbers generateAnswer() {
