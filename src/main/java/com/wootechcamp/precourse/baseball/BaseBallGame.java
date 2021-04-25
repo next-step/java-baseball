@@ -17,7 +17,7 @@ public class BaseBallGame {
             Scanner scan = new Scanner(System.in);
             int input = scan.nextInt();
 
-            if(input < 100){
+            if(input < 100 || input > 999){
                 System.out.println("세자리의 수를 입력해 주세요.");
                 continue;
             }
