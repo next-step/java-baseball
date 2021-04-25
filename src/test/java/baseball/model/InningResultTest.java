@@ -31,8 +31,7 @@ class InningResultTest {
 	}
 
 	@ParameterizedTest
-	@CsvSource(value = { "123:InningResult [strike=3, ball=0]", "321:InningResult [strike=1, ball=2]",
-			"456:InningResult [strike=0, ball=0]" }, delimiter = ':')
+	@CsvSource(value = { "123:3 스트라이크", "321:1 스트라이크 2 볼", "456:nothing", "125:2 스트라이크" }, delimiter = ':')
 	@DisplayName("randomBaseballNumber, userBaseNumber를 비교하여 inning result 확인")
 	void testJudgementInningResult(String userInput, String expected) {
 

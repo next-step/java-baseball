@@ -11,7 +11,6 @@ import baseball.model.InningResult;
 public class OutputView extends View {
 
 	public void printInningResult(InningResult inningResult) {
-		// TODO inning output 출력형식 구현
 		out.println(inningResult.toString());
 	}
 
