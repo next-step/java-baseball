@@ -10,11 +10,11 @@ public class GameCore {
 	
 	private final int DEFEND_COUNT = 3; 
 	
-	public HintModel checker(int [] attackNumberArr, int [] defendNumberArr) {
+	public HintModel attack(int [] attackNumberArr, int [] defendNumberArr) {
 		HintModel result = new HintModel();
 		
 		for(int i=0; i<attackNumberArr.length; i++) {
-			HintModel attackResult = attack(attackNumberArr[i], i, defendNumberArr);
+			HintModel attackResult = checkAttack(attackNumberArr[i], i, defendNumberArr);
 			result.setStrikeCount(result.getStrikeCount()+attackResult.getStrikeCount());
 			result.setBallCount(result.getBallCount()+attackResult.getBallCount());
 		}
@@ -22,7 +22,7 @@ public class GameCore {
 		return result;
 	}
 	
-	public HintModel attack(int attackNumber, int attackIndex, int[] defendNumberArr) {
+	public HintModel checkAttack(int attackNumber, int attackIndex, int[] defendNumberArr) {
 		HintModel result = new HintModel();
 		for(int i=0; i<defendNumberArr.length; i++) {
 			HintType matched = match(attackNumber, attackIndex, defendNumberArr[i], i);
@@ -44,7 +44,7 @@ public class GameCore {
 		return HintType.BALL;
 	}
 	
-	public int[] makeDeffendNumber() {
+	public int[] makeDefendNumber() {
 			
 		ArrayList<Integer> targets = new ArrayList<Integer>();
 		for(int i=0; i<9; i++) {
