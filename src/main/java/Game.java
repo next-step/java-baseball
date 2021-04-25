@@ -19,8 +19,6 @@ public class Game {
 
     public Score play(int number) {
         int strike = 0;
-        if (number == opponent)
-            return new Score(3, 0);
         if (number / 100 == opponent / 100)
             strike++;
         if (number / 10 % 10 ==  opponent / 10 % 10)
