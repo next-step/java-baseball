@@ -20,6 +20,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import baseball.code.ScoreCode;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BaseballCoreTest {
 
@@ -29,6 +31,7 @@ public class BaseballCoreTest {
 	private Method makeGame;
 	private Method countBall;
 	private Method countStrike;
+	private Method finalScore;
 
 	@BeforeEach
 	@SuppressWarnings("unchecked")
@@ -50,6 +53,8 @@ public class BaseballCoreTest {
 		countBall.setAccessible(true);
 		countStrike = this.core.getClass().getDeclaredMethod("countStrike", String.class);
 		countStrike.setAccessible(true);
+		finalScore = this.core.getClass().getDeclaredMethod("finalScore", String.class);
+		finalScore.setAccessible(true);
 	}
 
 	@Test
@@ -148,6 +153,52 @@ public class BaseballCoreTest {
 			int strikeCnt = (int) countStrike.invoke(this.core, playerInputsArr[i]);
 
 			assertThat(strikeCnt).isEqualTo(Integer.parseInt(expectedScoreArr[i]));
+		}
+	}
+
+	@DisplayName(value = "4. Final Score")
+	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected strikes. {2} are a List of expected balls.")
+	@Order(4)
+	@CsvSource(value = {"142,182,582;0,0,0;1,2,3", "148,428,852;1,1,1;0,1,2", "147,258;0,3;0,0"}, delimiter = ';')
+	public void testCountStrike(String playerInputs, String expectedStrikeScores, String expectedBallScores) throws
+		InvocationTargetException,
+		IllegalAccessException,
+		NoSuchFieldException {
+
+		List<Character> numbersForGame = Lists.newArrayList('2', '5', '8');
+
+		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
+		fieldNumbersForGame.setAccessible(true);
+		fieldNumbersForGame.set(this.core, numbersForGame);
+		System.out.println("numbersForGameInInstance : " + this.numbersForGameInInstance);
+
+		String[] playerInputsArr = playerInputs.split(",");
+		String[] expectedStrikeScoresArr = expectedStrikeScores.split(",");
+		String[] expectedBallScoresArr = expectedBallScores.split(",");
+
+		System.out.print("playerInputsArr : [");
+		for (String input : playerInputsArr) {
+			System.out.print(input + " ");
+		}
+		System.out.println("]");
+
+		System.out.print("expectedStrikeScoresArr : [");
+		for (String score : expectedStrikeScoresArr) {
+			System.out.print(score + " ");
+		}
+		System.out.println("]");
+
+		System.out.print("expectedBallScoresArr : [");
+		for (String score : expectedBallScoresArr) {
+			System.out.print(score + " ");
+		}
+		System.out.println("]");
+
+		for (int i = 0; i < playerInputsArr.length; i++) {
+			ScoreCode scoreCode = (ScoreCode) finalScore.invoke(this.core, playerInputsArr[i]);
+
+			assertThat(scoreCode.getStrike()).isEqualTo(Integer.parseInt(expectedStrikeScoresArr[i]));
+			assertThat(scoreCode.getBall()).isEqualTo(Integer.parseInt(expectedBallScoresArr[i]));
 		}
 	}
 }

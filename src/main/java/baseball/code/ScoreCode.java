@@ -21,6 +21,14 @@ public enum ScoreCode {
 		this.message = message;
 	}
 
+	public int getBall() {
+		return this.ball;
+	}
+
+	public int getStrike() {
+		return this.strike;
+	}
+
 	/**
 	 * 스트라이크와 볼의 갯수가 일치하는 코드를 리턴한다.
 	 * @param strike

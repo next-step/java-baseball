@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import baseball.code.ScoreCode;
+
 public class BaseballCore {
 
 	private boolean isEndGame = true;
@@ -47,7 +49,7 @@ public class BaseballCore {
 	/**
 	 * 사용자가 입력한 문자열에서 스트라이크의 갯수를 계산한다.
 	 * @param playerInput
-	 * @return
+	 * @return int
 	 */
 	private int countStrike(String playerInput) {
 		int strike = 0;
@@ -55,5 +57,24 @@ public class BaseballCore {
 			strike = (playerInput.charAt(i) == numbersForGame.get(i)) ? ++strike : strike;
 		}
 		return strike;
+	}
+
+	/**
+	 * 최종 스코어를 계산한다.
+	 * - 볼은 스트라이크의 필요조건. 즉, 볼은 스트라이크보다 크거나 같다.
+	 * - 볼과 스트라이크의 개수가 같으면 : 볼 0
+	 * - 볼이 스트라이크보다 많은 경우 : (볼 카운트) - (스트라이크 카운트) = 최종 볼 개수
+	 * - 둘 다 0인 경우 : 낫싱
+	 * @param playerInput
+	 * @return ScoreCode
+	 */
+	private ScoreCode finalScore(String playerInput) {
+
+		int strike = this.countStrike(playerInput);
+		int ball = this.countBall(playerInput) - strike;
+
+		ScoreCode scoreCode = ScoreCode.getScoreCode(strike, ball);
+		ScoreCode.printScore(scoreCode);
+		return scoreCode;
 	}
 }
