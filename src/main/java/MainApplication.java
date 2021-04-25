@@ -1,4 +1,6 @@
-import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,7 +9,7 @@ public class MainApplication {
   public static void main(String[] args) {
     MainApplication mainApplication = new MainApplication();
 
-    String randomNumber = mainApplication.makeRandomNumber(3);
+    String randomNumber = mainApplication.generateRandomNumber(3);
     boolean exit = false;
     Scanner scanner = new Scanner(System.in);
     while (!exit) {
@@ -22,14 +24,16 @@ public class MainApplication {
 
   // 난수 생성
   private String makeRandomNumber(int length) {
-    String NUMBERS = "123456789";
-
-    Random random = new SecureRandom();
-
+  private String generateRandomNumber(int length) {
+    List<String> numbers =
+        new LinkedList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
+    Random random = new Random();
     StringBuilder randomNumber = new StringBuilder();
 
     for (int i = 0; i < length; i++) {
-      randomNumber.append(NUMBERS.charAt(random.nextInt(NUMBERS.length())));
+      int index = random.nextInt(numbers.size() - 1);
+      randomNumber.append(numbers.get(index));
+      numbers.remove(index);
     }
 
     return randomNumber.toString();
