@@ -1,7 +1,7 @@
 public class BaseballGame {
 
 	public Integer generateNumbers(){
-		return 100;
+		return 111;
 	}
 
 }
