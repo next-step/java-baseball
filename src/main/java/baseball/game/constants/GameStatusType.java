@@ -10,5 +10,5 @@ package baseball.game.constants;
  * @author 박준영
  **/
 public enum GameStatusType {
-	START, STOP
+	START, PAUSE, STOP
 }
