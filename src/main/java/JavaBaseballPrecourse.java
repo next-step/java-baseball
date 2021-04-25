@@ -6,7 +6,6 @@ public class JavaBaseballPrecourse {
 
 		try (Scanner scan = new Scanner(System.in)) {
 			new Game().start(scan);
-			System.exit(0);
 		}
 
 	}
