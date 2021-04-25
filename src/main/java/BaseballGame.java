@@ -62,7 +62,16 @@ public class BaseballGame {
     }
 
     private int getBall(int[] computerGameNumber, int[] userNumber) {
+        int ball = 0;
+        int idx = 0;
 
+        while (idx < 3) {
+            ball = set.contains(userNumber[idx])? ball+1:ball;
+            ball = computerGameNumber[idx]==userNumber[idx]? ball-1:ball;
+            idx++;
+        }
+
+        return ball;
     }
 
     private int getStrike(int[] computerGameNumber, int[] userNumber) {
@@ -70,10 +79,10 @@ public class BaseballGame {
         int idx = 0;
 
         while (idx < 3) {
-            strike = computerGameNumber[idx]==userNumber[idx]? strike++:strike;
+            strike = computerGameNumber[idx]==userNumber[idx]? strike+1:strike;
             idx++;
         }
-        
+
         return strike;
     }
 
