@@ -37,4 +37,23 @@ public class BaseballNumbersTest {
 		assertThat(baseballNumbers).isInstanceOf(BaseballNumbers.class);
 	}
 
+	@Test
+	@DisplayName("야구 숫자 묶음들의 일치 결과를 얻을 수 있다.")
+	void getBaseballGameMatchResult() {
+		BaseballNumbers baseballNumbers = BaseballNumbers.newBaseballNumbers(
+			Arrays.asList(new BaseballNumber(1), new BaseballNumber(2), new BaseballNumber(3))
+		);
+
+		BaseballNumbers otherBaseballNumbers = BaseballNumbers.newBaseballNumbers(
+			Arrays.asList(new BaseballNumber(2), new BaseballNumber(1), new BaseballNumber(3))
+		);
+
+		BaseballGameMatchResult matchResult = baseballNumbers.getBaseballGameMatchResult(otherBaseballNumbers);
+
+		assertThat(matchResult).isInstanceOf(BaseballGameMatchResult.class);
+		assertThat(matchResult.getMatchCount(BaseballNumberMatch.STRIKE)).isOne();
+		assertThat(matchResult.getMatchCount(BaseballNumberMatch.BALL)).isSameAs(2);
+		assertThat(matchResult.getMatchCount(BaseballNumberMatch.FOUR_BALL)).isZero();
+	}
+
 }
