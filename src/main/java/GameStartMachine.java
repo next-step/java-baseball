@@ -24,9 +24,14 @@ class GameStartMachine {
         } catch (NumberFormatException e) {
             System.out.print("이상한 값이 입력되었습니다."); e.printStackTrace();
         }if(startVariable == 2) System.exit(0);
-
+        inGameStart();
     }
 
-
+    void inGameStart(){
+        int endGames = 0;
+        while(!(endGames == 1)) {
+            endGames = game.startGame();
+        }
+    }
 
 }
