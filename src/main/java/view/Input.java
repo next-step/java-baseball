@@ -26,6 +26,7 @@ public class Input {
     public boolean askContinueGame() {
         String inputAnswer;
         do {
+            System.out.println(Notice.CORRECT_ALL_NUMBER.getMessage());
             System.out.println(Notice.INPUT_GAME_AGAIN.getMessage());
             inputAnswer = scanner.next();
         } while (!validationUtil.isCorrectContinueAnswer(inputAnswer));
