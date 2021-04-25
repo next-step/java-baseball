@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import basballgame.exception.NumberFormatValidationException;
 import basballgame.ui.output.Output;
 
-class Input {
+public class Input {
 	private static Scanner scanner = new Scanner(System.in);
 	protected static String withGuideAndValidator(String guideText, Predicate<String> validator) {
 
