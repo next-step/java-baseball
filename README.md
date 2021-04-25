@@ -33,4 +33,4 @@
 - Utils Class
   - public static List<Integer> stringToIntegerListWithDelimiter(String input): delimiter 가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴 (default delimiter: ",")
   - public static List<Integer> stringToIntegerListWithDelimiter(String input, String delimiter) delimiter가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴
-
+  - public static List<Integer> stringToIntegerList(String input): String 형태의 수를 입력받아 자리 수 별로 분리하여 IntegerList로 변환하여 리턴

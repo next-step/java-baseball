@@ -5,6 +5,14 @@ import java.util.List;
 
 public class Utils {
 
+	public static List<Integer> stringToIntegerList(String input) {
+		List<Integer> integerList = new ArrayList<>();
+		for (int i = 0; i < input.length(); i++) {
+			integerList.add(Character.getNumericValue(input.charAt(i)));
+		}
+		return integerList;
+	}
+
 	public static List<Integer> stringToIntegerListWithDelimiter(String input) {
 		return stringToIntegerListWithDelimiter(input, ",");
 	}
