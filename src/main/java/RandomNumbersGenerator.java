@@ -2,6 +2,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import number.Number;
 import number.Numbers;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
@@ -21,7 +22,7 @@ public class RandomNumbersGenerator implements NumbersGenerator {
 	private Set<Integer> generateRandomNumberSet() {
 		Set<Integer> randomNumberSet = new HashSet<>();
 		while (isNotFilledByNumbersLength(randomNumberSet)) {
-			int randomInt = random.nextInt(Numbers.UPPER_BOUND) + 1;
+			int randomInt = random.nextInt(Number.UPPER_BOUND) + 1;
 			randomNumberSet.add(randomInt);
 		}
 		return randomNumberSet;

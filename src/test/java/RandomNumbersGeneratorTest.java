@@ -5,6 +5,7 @@ import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import number.Number;
 import number.Numbers;
 
 
@@ -23,7 +24,7 @@ class RandomNumbersGeneratorTest {
 		public int nextInt(int bound) {
 			char[] randomNumberChars = mockRandomNumbers.toCharArray();
 			int idx = nextIntCallCount++ % Numbers.LENGTH;
-			return Character.digit(randomNumberChars[idx], Numbers.NUMBER_RADIX) - 1;
+			return Character.digit(randomNumberChars[idx], Number.NUMBER_RADIX) - 1;
 		}
 	}
 

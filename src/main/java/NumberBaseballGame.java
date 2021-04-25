@@ -2,6 +2,7 @@ import java.util.Random;
 
 import number.IllegalNumberException;
 import number.Numbers;
+import number.NumbersMatchResult;
 
 public class NumberBaseballGame {
 
@@ -16,6 +17,7 @@ public class NumberBaseballGame {
 	public void run() {
 		Numbers numbers = numbersGenerator.generate();
 		Numbers otherNumbers = view.inputNumbers();
+		NumbersMatchResult numbersMatchResult = numbers.match(otherNumbers);
 	}
 
 	public static void main(String[] args) {

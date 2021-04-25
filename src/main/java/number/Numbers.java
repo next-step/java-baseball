@@ -9,58 +9,64 @@ import java.util.Set;
 
 public class Numbers {
 	public static final int LENGTH = 3;
-	private static final int LOWER_BOUND = 1;
-	public static final int UPPER_BOUND = 9;
-	public static final int NUMBER_RADIX = 10;
+	private static final int FIRST_POSITION = 0;
+	private static final int NOT_MATCH_POSITION = -1;
+	private final List<Number> numbers;
 
-	private final List<Integer> numbers;
-
-	private Numbers(List<Integer> numbers) {
+	private Numbers(List<Number> numbers) {
 		checkValidation(numbers);
 		this.numbers = Collections.unmodifiableList(numbers);
 	}
 
-	private void checkValidation(List<Integer> numbers) {
+	private void checkValidation(List<Number> numbers) {
 		checkLengthOfNumbers(numbers);
-		checkRangeOfNumber(numbers);
 		checkDuplicationOfNumbers(numbers);
 	}
 
-	private void checkLengthOfNumbers(List<Integer> numbers) {
+	private void checkLengthOfNumbers(List<Number> numbers) {
 		if (numbers.size() != LENGTH) {
 			throw IllegalNumberException.ILLEGAL_LENGTH_OF_NUMBERS;
 		}
 	}
 
-	private void checkDuplicationOfNumbers(List<Integer> numbers) {
-		Set<Integer> numberSet = new HashSet<>(numbers);
+	private void checkDuplicationOfNumbers(List<Number> numbers) {
+		Set<Number> numberSet = new HashSet<>(numbers);
 		if (numberSet.size() != LENGTH) {
 			throw IllegalNumberException.DUPLICATION_OF_NUMBERS;
 		}
 	}
 
-	private void checkRangeOfNumber(List<Integer> numbers) {
-		for (Integer number : numbers) {
-			checkRangeOfNumber(number);
-		}
-	}
-
-	private void checkRangeOfNumber(Integer numbers) {
-		if (numbers < LOWER_BOUND || numbers > UPPER_BOUND) {
-			throw IllegalNumberException.ILLEGAL_RANGE_OF_NUMBER;
-		}
-	}
-
 	public static Numbers of(String inputString) {
-		List<Integer> inputNumbers = new ArrayList<>();
-		for (char c : inputString.toCharArray()) {
-			inputNumbers.add(Character.digit(c, NUMBER_RADIX));
+		List<Number> inputNumbers = new ArrayList<>();
+		for (char digit : inputString.toCharArray()) {
+			inputNumbers.add(Number.of(digit));
 		}
 		return new Numbers(inputNumbers);
 	}
 
 	public static Numbers of(Set<Integer> inputSet) {
-		return new Numbers(new ArrayList<>(inputSet));
+		List<Number> inputNumbers = new ArrayList<>();
+		for (Integer number : inputSet) {
+			inputNumbers.add(Number.of(number));
+		}
+		return new Numbers(inputNumbers);
+	}
+
+	public NumbersMatchResult match(Numbers otherNumbers) {
+		List<MatchResult> matchResults = new ArrayList<>();
+		for (int position = FIRST_POSITION; position < numbers.size(); position++) {
+			Number number = numbers.get(position);
+			MatchResult matchResult = otherNumbers.match(number, position);
+			matchResults.add(matchResult);
+		}
+		return NumbersMatchResult.of(matchResults);
+	}
+
+	private MatchResult match(Number otherNumber, int otherPosition) {
+		final int position = numbers.indexOf(otherNumber);
+		final boolean containEqualNumber = (position != NOT_MATCH_POSITION);
+		final boolean equalPosition = (position == otherPosition);
+		return MatchResult.applyMatchRules(containEqualNumber, equalPosition);
 	}
 
 	@Override
