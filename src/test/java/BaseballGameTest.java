@@ -52,4 +52,17 @@ class BaseballGameTest {
         assertEquals("3 스트라이크 ", game.getResultMessage());
         assertTrue(game.isSuccess());
     }
+
+    @Test
+    @DisplayName("일치하지 않을 경우 낫싱을 출력해야 한다")
+    void testValidHintTextWhenOut() {
+        // 1 스트라이크 2 볼
+        game.setBaseballNumber("123");
+        game.setInputNumber("456");
+        game.evaluate();
+        // 메시지 결과
+        assertEquals("낫싱", game.getResultMessage());
+    }
+
+
 }

@@ -99,10 +99,17 @@ public class BaseballGame {
         // 메시지 생성하고
         int balls = result.getBalls();
         int strikes = result.getStrikes();
-        resultMessage = (strikes > 0 ? strikes + " 스트라이크 " : "")
-                + (balls > 0 ? balls + " 볼" : "");
+        createResultMessage(balls, strikes);
         // 성공여부 확인
         isSuccess = result.isSuccess();
+    }
+
+    private void createResultMessage(int balls, int strikes) {
+        resultMessage = "낫싱";
+        if (strikes > 0 || balls > 0) {
+            resultMessage = (strikes > 0 ? strikes + " 스트라이크 " : "")
+                    + (balls > 0 ? balls + " 볼" : "");
+        }
     }
 
     /**
