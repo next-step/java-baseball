@@ -117,6 +117,29 @@ public class NumberBaseballGame {
     public static int countBall(int random, int input) {
         int ball = 0;
 
+        List<Integer> randomList = new ArrayList<>();
+        List<Integer> inputList = new ArrayList<>();
+
+        while (input > 0) {
+            randomList.add(random % 10);
+            inputList.add(input % 10);
+
+            random /= 10;
+            input /= 10;
+        }
+
+        for (int i = 0; i < inputList.size(); i++) {
+            ball += isBall(randomList, inputList, i) ? 1 : 0;
+        }
+
         return ball;
+    }
+
+    /*
+        6. 볼 여부 판단
+        @Return 볼 여부
+     */
+    public static boolean isBall(List<Integer> randomList, List<Integer> inputList, int i) {
+        return false;
     }
 }

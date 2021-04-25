@@ -48,4 +48,33 @@ public class NumberBaseballGameTest {
         assertThat(strike).isEqualTo(3);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {135, 143, 153, 123})
+    void countBall(int input) {
+        int random = 123;
+
+        int ball = 0;
+        List<Integer> randomList = new ArrayList<>();
+        List<Integer> inputList = new ArrayList<>();
+
+        while (input > 0) {
+            randomList.add(random % 10);
+            inputList.add(input % 10);
+
+            random /= 10;
+            input /= 10;
+        }
+
+        for (int i = 0; i < inputList.size(); i++) {
+            if (randomList.get(i) == inputList.get(i)) {
+                continue;
+            }
+            if (randomList.contains(inputList.get(i))) {
+                ball++;
+            }
+        }
+
+        assertThat(ball).isEqualTo(0);
+    }
+
 }
