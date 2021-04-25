@@ -1,10 +1,10 @@
-package baseball;
+package utils;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class UtilsTest {
+public class StringUtilTest {
 
 	@Test
 	void stringToIntegerListDelimiter() {

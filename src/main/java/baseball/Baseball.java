@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import utils.ScannerUtil;
+import utils.StringUtil;
+
 public class Baseball {
 	private enum Command { START, CONTINUE, FINISH }
 	private static final int MIN_NUMBER = 1;
