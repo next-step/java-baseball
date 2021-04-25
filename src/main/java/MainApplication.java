@@ -45,7 +45,7 @@ public class MainApplication {
   }
 
   // 입력값 검증
-  private boolean validateInputNumber(List<Character> inputNumber) {
+  public boolean validateInputNumber(List<Character> inputNumber) {
     Set<Character> characterSet = new HashSet<>(inputNumber);
 
     if (characterSet.contains('0')) {
@@ -56,7 +56,7 @@ public class MainApplication {
   }
 
   // Convert char array to Character List
-  private List<Character> convertToList(char[] chars) {
+  public List<Character> convertToList(char[] chars) {
     List<Character> characterList = new LinkedList<>();
     for (char c : chars) {
       characterList.add(c);
@@ -65,7 +65,7 @@ public class MainApplication {
   }
 
   // 난수 생성
-  private List<Character> generateRandomNumber(int length) {
+  public List<Character> generateRandomNumber(int length) {
     List<Character> numbers =
         new LinkedList<>(Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9'));
     Random random = new Random();
@@ -81,7 +81,7 @@ public class MainApplication {
   }
 
   // Strike 확인
-  private int validateStrike(List<Character> randomNumber, List<Character> inputNumber) {
+  public int validateStrike(List<Character> randomNumber, List<Character> inputNumber) {
     int strike = 0;
     int size = randomNumber.size();
     for (int i = 0; i < size; i++) {
@@ -98,7 +98,7 @@ public class MainApplication {
   }
 
   // Ball 확인
-  private int validateBall(List<Character> randomNumber, List<Character> inputNumber) {
+  public int validateBall(List<Character> randomNumber, List<Character> inputNumber) {
     int ball = 0;
     for (int i = 0; i < randomNumber.size(); i++) {
       if (randomNumber.contains(inputNumber.get(i))) {
@@ -110,7 +110,7 @@ public class MainApplication {
   }
 
   // 결과 출력
-  private void printResult(int strike, int ball) {
+  public void printResult(int strike, int ball) {
     if (strike > 0) {
       System.out.print(strike + " 스트라이크 ");
     }
@@ -127,7 +127,7 @@ public class MainApplication {
   }
 
   // 다시 시작 여부 확인
-  private boolean checkRestartGame() {
+  public boolean checkRestartGame() {
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("게임을 새로 시작하려면 1, 종료하려면 2을 입력하세요.");
