@@ -33,4 +33,10 @@ public class MainApplicationTest {
     assertThat(mainApplication.convertToList(test1)).hasSize(3).contains('1', '2', '3');
     assertThat(mainApplication.convertToList(test2)).hasSize(3).contains('2', '3', '4');
   }
+
+  @Test
+  public void generateRandomNumberTest() {
+    MainApplication mainApplication = new MainApplication();
+    assertThat(mainApplication.generateRandomNumber(3)).hasSize(3).doesNotHaveDuplicates();
+  }
 }
