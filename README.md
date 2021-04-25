@@ -41,6 +41,19 @@
 
 ### 구현 목록
 * BaseballGameApplication : 숫자 야구 게임이 실행되는 main 메소드가 있는 클래스
-* BaseballClient : 숫자 야구 게임의 화면 입/출력을 담당하는 클래스
-* BaseballUser : 사용자의 입력 정보가 저장되는 클래스
-* BaseballUtil : 난수 생성, 입력값 비교, 결과 판정 등 게임 로직 메소드들이 구현되어있는 클래스
+* baseball.view.BaseballClient : 숫자 야구 게임의 화면 입/출력을 담당하는 클래스
+  + 게임 옵션 출력 메소드
+  + 사용자 인풋 입력 메소드
+  + 게임 결과 메세지 출력 메소드
+  + 게임 종료 메세지 출력 메소드
+* baseball.common.BaseballGame : 게임 로직 및 상태 값 저장하는 클래스
+  + 게임 상태 상수
+  + 게임 시작 메소드
+  + 사용자 입력 바탕으로 랜덤 숫자 추측 메소드
+  + 힌트 값 초기화 메소드
+  + 게임 종료 조건 판정 메소드
+  + 결과 메세지 생성 메소드
+* baseball.util.BaseballUtil : 난수 생성, 난수 validation 체크 등 유틸성 메소드 클래스
+  + 난수 생성 메소드
+  + 생성된 난수 중복 값 validation 체크 메소드
+  
