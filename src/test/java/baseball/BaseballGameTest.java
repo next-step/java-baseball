@@ -56,7 +56,7 @@ public class BaseballGameTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"!df", "34", "###", "4125", "45698354", "aa789"})
+    @CsvSource(value = {"!df", "34", "$$$", "4125", "45698354", "aa789"})
     @DisplayName("경기 진행 - 사용자가 유효하지 않은 값을 입력한 경우")
     void play_returnsInvalidInput_playerInsertInvalidInput(String playerInput){
         // given
