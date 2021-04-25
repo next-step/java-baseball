@@ -94,7 +94,7 @@ class BaseballResultsTest {
     @Test
     void 낫싱() {
         //given
-        final String EXPECTED_STRING = "3낫싱";
+        final String EXPECTED_STRING = "낫싱";
         BaseballResults baseballResults = new BaseballResults();
 
         //when
