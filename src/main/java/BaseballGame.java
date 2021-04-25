@@ -1,6 +1,7 @@
 import domain.BaseballNumberScore;
 import domain.BaseballNumbers;
 import domain.BaseballResult;
+import domain.ContinuePlay;
 import util.BaseballNumberGenerator;
 import util.TransStringNumberToNumberListUtil;
 import view.InputView;
@@ -30,11 +31,10 @@ public class BaseballGame {
     }
 
     private boolean isContinuePlay() {
-        int continueAnswer = inputView.isContinue();
-        if (continueAnswer == 1) {
+        ContinuePlay continuePlay = ContinuePlay.create(inputView.isContinue());
+        if (continuePlay.isContinuePlay()) {
             return true;
         }
-
         return false;
     }
 
