@@ -19,12 +19,12 @@ class PlayGameTest {
 		assertThatThrownBy(() -> {playGame.playGame("꺄꼬");})
 		// than
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining("중복되지 않는 숫자 3자리를 입력해야합니다.")
+			.hasMessageContaining("1~9사이의 숫자만 입력해주세요. example : 123, 456 ")
 		;
 	}
 	@Test
 	@DisplayName("3. 게임 [X] 게임 입력값 벨리데이션체크 3자리보다 길게 넣았을때.")
-	public void 게임_입력값_벨리데이션체크_초과길_RED(){
+	public void 게임_입력값_벨리데이션체크_초과길이_RED(){
 		// given
 		PlayGame playGame = new PlayGame();;
 
@@ -32,7 +32,20 @@ class PlayGameTest {
 		assertThatThrownBy(() -> {playGame.playGame("1234");})
 				// than
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessageContaining("중복되지 않는 숫자 3자리를 입력해야합니다.");
+				.hasMessageContaining("3글자만 입력해주세요. example : 123, 456 ");
+	}
+
+	@Test
+	@DisplayName("3. 게임 [X] 게임 입력값 벨리데이션체크 0포험")
+	public void 게임_입력값_벨리데이션체크_숫자범위_RED(){
+		// given
+		PlayGame playGame = new PlayGame();;
+
+		// when
+		assertThatThrownBy(() -> {playGame.playGame("012");})
+				// than
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("1~9사이의 숫자만 입력해주세요. example : 123, 456 ");
 	}
 
 	@Test
@@ -45,7 +58,7 @@ class PlayGameTest {
 		assertThatThrownBy(() -> {playGame.playGame("122");})
 				// than
 				.isInstanceOf(IllegalArgumentException.class)
-				.hasMessageContaining("중복되지 않는 숫자 3자리를 입력해야합니다.");
+				.hasMessageContaining("숫자가 중복되면 안됩니다.");
 	}
 
 	@Nested
