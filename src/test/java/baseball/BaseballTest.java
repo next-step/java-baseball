@@ -62,4 +62,11 @@ public class BaseballTest {
     public void countStrikesTest(String baseballNumberString, String predictionNumberString, int expected) {
         assertEquals(baseball.countStrikes(baseballNumberString, predictionNumberString), expected);
     }
+
+    @DisplayName("정답,예측수,기대되는 볼개수 를 입력하여 베이스볼 게임에서 볼 개수를 세는 메소드를 테스트 한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"965,123,0", "456,456,0", "356,953,1", "289,492,2", "195,598,1", "356,635,3"}, delimiter = ',')
+    public void countBallsTest(String baseballNumberString, String predictionNumberString, int expected) {
+        assertEquals(baseball.countBalls(baseballNumberString, predictionNumberString), expected);
+    }
 }

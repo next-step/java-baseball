@@ -81,4 +81,22 @@ public class Baseball {
         return baseballChar == predictionChar ? 1 : 0;
     }
 
+    /**
+     * Baseball 정답과 예측수를 비교하여 Ball의 개수를 센다.
+     */
+    public int countBalls(String baseballNumber, String predictionNumber) {
+        int count = 0;
+
+        for (int i = 0; i < baseballNumber.length(); ++i) {
+            for (int j = 0; j < predictionNumber.length(); ++j) {
+                if (i != j && baseballNumber.charAt(i) == predictionNumber.charAt(j)) {
+                    ++count;
+                }
+            }
+        }
+
+        return count;
+    }
+
+
 }
