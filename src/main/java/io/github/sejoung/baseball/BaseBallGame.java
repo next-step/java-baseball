@@ -4,18 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.sejoung.baseball.constants.GameMessage;
+import io.github.sejoung.baseball.constants.GameStatus;
 import io.github.sejoung.baseball.constants.PlayMessage;
-import io.github.sejoung.baseball.constants.ValidatorMessage;
+import io.github.sejoung.baseball.validator.BaseBallValidator;
 
 public class BaseBallGame {
-	private static final String NEW_LINE = System.lineSeparator();
-
-	private final StringBuffer output;
-	private List<Integer> computerNumbers;
+	private final TextOutput output;
+	private final BaseBallGameComputerNumber baseBallGameComputerNumber;
+	private final BaseBallGameStatus status;
+	private final BaseBallValidator validator;
 
 	public BaseBallGame(BaseBallNumberGenerator generator) {
-		this.output = new StringBuffer(GameMessage.INPUT);
-		this.computerNumbers = generator.generateBaseBallNumbers();
+		this.output = new TextOutput(GameMessage.INPUT);
+		this.status = new BaseBallGameStatus();
+		this.baseBallGameComputerNumber = new BaseBallGameComputerNumber(generator);
+		this.validator = new BaseBallValidator(this.output, this.status);
 	}
 
 	public boolean isCompleted() {
@@ -23,38 +26,50 @@ public class BaseBallGame {
 	}
 
 	public String flushOutput() {
-		String message = output.toString();
-		output.setLength(0);
-		return message;
+		return output.flush();
 	}
 
 	public void processInput(String input) {
-		if (validationInput(input)) {
+		if (validator.validationInput(input)) {
 			checkBaseBallNumbers(input);
 		}
 	}
 
-	private boolean validationInput(String input) {
-		return validationNumberFormat(input) && validationLength(input);
-	}
-
-	private boolean validationLength(String input) {
-		if (input.length() != 3) {
-			printMessages(ValidatorMessage.LENGTH, GameMessage.INPUT);
-			return false;
+	public boolean checkRestart() {
+		if (GameStatus.RESTART.equals(status.getStatus())) {
+			status.playGame();
+			baseBallGameComputerNumber.changeBaseBallGameComputerNumber();
+			output.printMessages(GameMessage.INPUT);
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	private void checkBaseBallNumbers(String input) {
-		List<Integer> playerNumbers = playerInputTransperList(input);
-		if (computerNumbers.equals(playerNumbers)) {
-			printMessages(PlayMessage.getStrike(3), GameMessage.SUCCESS, GameMessage.RESTART);
+		if (!checkRestart()) {
+			List<Integer> playerNumbers = playerInputTransperList(input);
+			int strikeCount = strikeCheck(playerNumbers);
+			int ballCount = 0;
+			printPlayMessage(strikeCount, ballCount);
 		}
 	}
 
-	private void printMessages(String... messages) {
-		output.append(String.join(System.lineSeparator(), messages));
+	private void printPlayMessage(int strikeCount, int ballCount) {
+		if (strikeCount == 3) {
+			output.printMessages(PlayMessage.getStrike(3), GameMessage.SUCCESS, GameMessage.RESTART);
+		}
+	}
+
+	private int strikeCheck(List<Integer> playerNumbers) {
+		return threeStrikeCheck(playerNumbers);
+	}
+
+	private int threeStrikeCheck(List<Integer> playerNumbers) {
+		if (baseBallGameComputerNumber.getComputerNumbers().equals(playerNumbers)) {
+			status.restartGame();
+			return 3;
+		}
+		return 0;
 	}
 
 	private List<Integer> playerInputTransperList(String input) {
@@ -65,13 +80,4 @@ public class BaseBallGame {
 		return playerNumbers;
 	}
 
-	private boolean validationNumberFormat(String input) {
-		try {
-			Integer.parseInt(input);
-			return true;
-		} catch (NumberFormatException exception) {
-			printMessages(ValidatorMessage.NUMBER, GameMessage.INPUT);
-			return false;
-		}
-	}
 }

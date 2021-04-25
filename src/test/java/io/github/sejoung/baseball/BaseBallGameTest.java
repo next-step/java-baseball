@@ -26,7 +26,7 @@ class BaseBallGameTest {
 		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(1, 2, 3));
 		String actual = game.flushOutput();
 
-		assertThat(actual).isEqualTo("숫자를 입력해주세요: ");
+		assertThat(actual).isEqualTo(GameMessage.INPUT);
 	}
 
 	@DisplayName("플레이어가 입력한 값은 3자리 이다.")
@@ -53,13 +53,25 @@ class BaseBallGameTest {
 
 	@DisplayName("플레이어가 입력한 숫자가 컴퓨터 숫자를 모두 맞춤 메시지 확인")
 	@Test
-	void playerInputNumberStrikeMessageTest() {
+	void playerInputNumberThreeStrikeMessageTest() {
 		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(1, 2, 3));
 		game.flushOutput();
 		game.processInput("123");
 		String actual = game.flushOutput();
 		assertThat(actual).isEqualTo(
 			PlayMessage.getStrike(3) + NEW_LINE + GameMessage.SUCCESS + NEW_LINE + GameMessage.RESTART);
+	}
+
+	@DisplayName("게임 재시작 확인")
+	@Test
+	void gameRestartTest() {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(1, 2, 3));
+		game.flushOutput();
+		game.processInput("123");
+		game.flushOutput();
+		game.processInput("1");
+		String actual = game.flushOutput();
+		assertThat(actual).isEqualTo(GameMessage.INPUT);
 	}
 
 }
