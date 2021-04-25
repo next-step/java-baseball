@@ -40,7 +40,7 @@ public class GameMachine {
     }
 
     private void isRandomValue(String value) {
-        String regExp = "^[0-9]";
+        String regExp = "^[1-9]";
         if (!value.matches(regExp))
             throw new IllegalArgumentException("랜덤 값은 1 ~ 9까지 수여야 합니다");
     }

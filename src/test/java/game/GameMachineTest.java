@@ -49,6 +49,8 @@ class GameMachineTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> GameMachine.of().isValid(new String[]{"a", "b", "c"}))
                 .withMessage("랜덤 값은 1 ~ 9까지 수여야 합니다");
+        assertThatIllegalArgumentException().isThrownBy(() -> GameMachine.of().isValid(new String[]{"0", "2", "3"}))
+                .withMessage("랜덤 값은 1 ~ 9까지 수여야 합니다");
         assertThatIllegalArgumentException().isThrownBy(() -> GameMachine.of().isValid(new String[]{"11", "2", "3"}))
                 .withMessage("랜덤 값은 1 ~ 9까지 수여야 합니다");
         assertThatIllegalStateException().isThrownBy(() -> GameMachine.of().isValid(new String[]{"1", "2", "2"}))
@@ -58,6 +60,8 @@ class GameMachineTest {
     @Test
     @DisplayName("입력값 길이 유효성 검사")
     void isValidLengthTest() {
+        assertThat(GameMachine.of().isValid(new String[]{"1", "2", "3"})).isTrue();
+        
         assertThatIllegalArgumentException().isThrownBy(() -> GameMachine.of().isValid(new String[]{"1", "2"}))
                 .withMessage("입력된 값의 길이는 반드시 3이어야 합니다");
 
