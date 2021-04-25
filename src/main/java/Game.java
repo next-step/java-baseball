@@ -11,7 +11,7 @@ public class Game {
 
 	private String answerMessage(int strikeCount, int ballCount) {
 		StringBuilder sb = new StringBuilder();
-		if (strikeCount != 0 && strikeCount != computer.getMaxBallSize()) {
+		if (strikeCount != 0 && strikeCount != Computer.MAX_BALL_SIZE) {
 			sb.append(computer.getStrikeCount()).append("스트라이크 ");
 		}
 
@@ -58,10 +58,22 @@ public class Game {
 		} while (!"1".equals(input) && !"2".equals(input));
 	}
 
+	private String checkInput(Scanner scan) {
+		final int max = Computer.MAX_BALL_SIZE;
+		String pattern = String.format("^[1-9]{%d}$", max);
+		String input = scan.next().trim();
+
+		while (input.length() != max || !input.matches(pattern)) {
+			System.out.println("1~9까지의 3자리수를 입력해주세요");
+			input = scan.next().trim();
+		}
+		return input;
+	}
+
 	public void start(Scanner scan) {
 		this.reset();
 
-		while (!computer.answer(scan.next())) {
+		while (!computer.answer(checkInput(scan))) {
 			this.decide();
 		}
 

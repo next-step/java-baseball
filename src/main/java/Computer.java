@@ -3,6 +3,7 @@ import java.util.TreeSet;
 
 public class Computer {
 
+	static final int MAX_BALL_SIZE = 3;
 	private int strikeCount = 0;
 	private int ballCount = 0;
 	private String ball = "";
@@ -19,10 +20,6 @@ public class Computer {
 
 	private int randomNumber(int min, int max) {
 		return (int)(Math.random() * max + min);
-	}
-
-	public int getMaxBallSize() {
-		return 3;
 	}
 
 	private Set<Integer> getBallSet() {
@@ -47,10 +44,11 @@ public class Computer {
 		int randomMin = 1;
 		int randomMax = 9;
 
-		while (ballSet.size() != this.getMaxBallSize()) {
+		while (ballSet.size() != Computer.MAX_BALL_SIZE) {
 			ballSet.add(this.randomNumber(randomMin, randomMax));
 		}
 		this.ballSet = ballSet;
+		this.ball = null;
 	}
 
 	protected void checkRuleStrike(char ball, int index) {
@@ -76,6 +74,6 @@ public class Computer {
 			index++;
 		}
 
-		return this.getStrikeCount() == this.getMaxBallSize();
+		return this.getStrikeCount() == Computer.MAX_BALL_SIZE;
 	}
 }

@@ -15,7 +15,7 @@ public class ComputerTest {
 
 	@Test
 	void setBallTest() {
-		assertEquals(computer.getBall().length(), computer.getMaxBallSize());
+		assertEquals(computer.getBall().length(), Computer.MAX_BALL_SIZE);
 	}
 
 	@Test
