@@ -6,7 +6,7 @@ public class BaseballGameResultPrinter {
 
     public void printResult(BaseballNumberMatchResult result) {
 
-        if (result.hasError()) {
+        if (result.isError()) {
             System.out.println(result.getErrorMessage());
             return;
         }

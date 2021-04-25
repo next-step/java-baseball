@@ -102,7 +102,7 @@ class ValidatorResultBundle {
             addIfHasError(resultsHasError, result);
         }
 
-        return results;
+        return resultsHasError;
     }
 
     private void addIfHasError(List<ValidatorResult> errors, ValidatorResult result) {

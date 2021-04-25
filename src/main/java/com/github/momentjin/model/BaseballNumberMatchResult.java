@@ -18,7 +18,7 @@ public class BaseballNumberMatchResult {
         this.bundleSize = bundleSize;
         this.strikeCount = strikeCount;
         this.ballCount = ballCount;
-        this.errorMessage = null;
+        this.errorMessage = "";
     }
 
     public int getStrikeCount() {
@@ -33,11 +33,15 @@ public class BaseballNumberMatchResult {
         return ballCount == 0 && strikeCount == bundleSize;
     }
 
-    public boolean isError() {
-        return errorMessage != null && !errorMessage.isEmpty();
+    public boolean isNothing() {
+        return ballCount == 0 && strikeCount == 0;
     }
 
     public String getErrorMessage() {
         return errorMessage;
+    }
+
+    public boolean isError() {
+        return errorMessage != null && !errorMessage.isEmpty();
     }
 }
