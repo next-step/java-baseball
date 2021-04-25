@@ -21,6 +21,23 @@ public class Numbers {
         return strikeNumber;
     }
 
+    public int ball(List<Integer> userNumbers) {
+        int ballNumber = 0;
+        for (Integer quizNumber : quizNumbers) {
+            ballNumber += ballNumber(userNumbers, quizNumber);
+        }
+        return ballNumber;
+    }
+
+    private int ballNumber(List<Integer> userNumbers, Integer quizNumber) {
+        int ballNumber = 0;
+        int userNumberIndex = userNumbers.indexOf(quizNumber);
+        if (userNumberIndex != -1) {
+            ballNumber++;
+        }
+        return ballNumber;
+    }
+
     private int strikeNumber(List<Integer> userNumbers, Integer quizNumber) {
         int strikeNumber = 0;
         int userNumberIndex = userNumbers.indexOf(quizNumber);

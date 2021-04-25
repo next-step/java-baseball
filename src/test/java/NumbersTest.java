@@ -24,6 +24,15 @@ class NumbersTest {
         assertThat(numbers.strike(Arrays.asList(5, 6, 7))).isEqualTo(0);
     }
 
+
+    @Test
+    @DisplayName("볼 확인")
+    void ball() {
+        assertThat(numbers.ball(Arrays.asList(1, 2, 3))).isEqualTo(0);
+        assertThat(numbers.ball(Arrays.asList(1, 2, 4))).isEqualTo(1);
+        assertThat(numbers.ball(Arrays.asList(5, 6, 7))).isEqualTo(0);
+    }
+
     @Test
     @BeforeEach
     void init() {
