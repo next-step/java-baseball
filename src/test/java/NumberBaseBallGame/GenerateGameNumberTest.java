@@ -13,7 +13,7 @@ class GenerateGameNumberTest {
 	@DisplayName("2. 대결 준비.[😊] 대결용 임의의 수 1~9사이 서로다른 3자리 수")
 	public void 대결준비_랜덤수_생성_Green(){
 	    // given
-		GenerateGameNumber generateGameNumber = new GenerateGameNumber();
+		GenerateGameNumber generateGameNumber = new GenerateGameNumber(3);
 	    // when
 		int[] gameNumber = generateGameNumber.generateGameNumber();
 		// than :: 서로다른 3자리 수
