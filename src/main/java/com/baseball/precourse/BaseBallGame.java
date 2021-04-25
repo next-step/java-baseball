@@ -2,6 +2,7 @@ package com.baseball.precourse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author 김윤제
@@ -34,6 +35,7 @@ public class BaseBallGame extends Thread {
 			String input = inputNumByPlayer();
 			strike = judgmentPoint(computerNums, input);
 		}
+		requestStopBaseBall();
 	}
 	
 	/**
@@ -133,6 +135,11 @@ public class BaseBallGame extends Thread {
 		System.out.print("서로 다른 3자리의 숫자만 입력이 가능합니다.");
 	}
 	
+	public void printEndLog() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+	}
+	
 	public void printJudgement(int strike, int ball) {
 		StringBuilder sb = new StringBuilder();
 		if ( strike > START_STRIKE && strike < MAX_STRIKE ) {
@@ -148,5 +155,14 @@ public class BaseBallGame extends Thread {
 		}
 		
 		System.out.println(sb.toString());
+	}
+	
+	public void requestStopBaseBall() {
+		printEndLog();
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		if ( input == 2 ) {
+			runflag = false;
+		}
 	}
 }
