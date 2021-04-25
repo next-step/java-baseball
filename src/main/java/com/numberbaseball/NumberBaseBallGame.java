@@ -13,17 +13,26 @@ public class NumberBaseBallGame {
 		List<Integer> answerNumbers = eachNumberToList(answer);
 		List<Integer> inputNumbers = eachNumberToList(input);
 
+		return toNumberBaseBallResult(answerNumbers, inputNumbers);
+	}
+
+	private NumberBaseBallResult toNumberBaseBallResult(List<Integer> answerNumbers, List<Integer> inputNumbers) {
 		int strike = 0;
-		int ball = 0;
+		int strikeAndBall = 0;
 		for (int i = 0; i < NumberCreator.MAX_NUMBER_LENGTH; i++) {
-			if (answerNumbers.get(i).intValue() == inputNumbers.get(i).intValue()) {
-				strike++;
-			} else if (answerNumbers.contains(inputNumbers.get(i))) {
-				ball++;
-			}
+			strike += strikeCount(answerNumbers.get(i), inputNumbers.get(i));
+			strikeAndBall += ballCount(answerNumbers, inputNumbers.get(i));
 		}
 
-		return NumberBaseBallResult.of(strike, ball);
+		return NumberBaseBallResult.of(strike, strikeAndBall - strike);
+	}
+
+	private int ballCount(List<Integer> answerNumbers, int inputNumber) {
+		return answerNumbers.contains(inputNumber) ? 1 : 0;
+	}
+
+	private int strikeCount(int answer, int number) {
+		return answer == number ? 1 : 0;
 	}
 
 	private List<Integer> eachNumberToList(int number) {
