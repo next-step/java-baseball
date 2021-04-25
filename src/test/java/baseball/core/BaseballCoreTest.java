@@ -239,4 +239,28 @@ public class BaseballCoreTest {
 
 		assertThat(numbersForGameInInstance.containsAll(cloneNumbersForGame)).isEqualTo(isSamePrevGame);
 	}
+
+	@DisplayName(value = "6. Reset Game when start new game.")
+	@ParameterizedTest(name = "{index} - {0} is player input. {1} is expected result.")
+	@Order(6)
+	@CsvSource(value = {"123;false", "258;true"}, delimiter = ';')
+	public void testCheckWinGame(String playerInput, boolean expectedResult) throws
+		IllegalAccessException,
+		NoSuchFieldException {
+
+		List<Character> numbersForGame = Lists.newArrayList('2', '5', '8');
+
+		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
+		fieldNumbersForGame.setAccessible(true);
+		fieldNumbersForGame.set(this.core, numbersForGame);
+		System.out.println("numbersForGameInInstance : " + fieldNumbersForGame.get(this.core));
+
+		System.out.println("playerInput : " + playerInput);
+		System.out.println("expectedResult : " + expectedResult);
+
+
+		boolean actualResult = this.core.checkWinGame(playerInput);
+
+		assertThat(actualResult).isEqualTo(expectedResult);
+	}
 }

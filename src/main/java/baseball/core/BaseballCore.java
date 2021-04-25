@@ -69,7 +69,6 @@ public class BaseballCore {
 	 * @return ScoreCode
 	 */
 	private ScoreCode finalScore(String playerInput) {
-
 		int strike = this.countStrike(playerInput);
 		int ball = this.countBall(playerInput) - strike;
 
@@ -86,5 +85,19 @@ public class BaseballCore {
 		if (this.isEndGame) {
 			this.makeGame();
 		}
+	}
+
+	/**
+	 * 게임종료 여부를 판독한다.
+	 * @param playerInput
+	 * @return boolean
+	 */
+	public boolean checkWinGame(String playerInput) {
+		ScoreCode scoreCode = this.finalScore(playerInput);
+		if (ScoreCode.THREE_STRIKE == scoreCode) {
+			this.isEndGame = true;
+			return true;
+		}
+		return false;
 	}
 }
