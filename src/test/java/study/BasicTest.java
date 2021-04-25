@@ -1,6 +1,7 @@
 package study;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -43,6 +44,7 @@ public class BasicTest {
         Assertions.assertThat(substring).isEqualTo("1,2");
     }
 
+    @DisplayName("String 클래스의 charAt 메소드 테스트")
     @ParameterizedTest
     @MethodSource("provideStringForCharAtTest")
     public void charAtTest(String given, int index, char expected) {
@@ -62,6 +64,7 @@ public class BasicTest {
         );
     }
 
+    @DisplayName("String 클래스의 charAt 메소드 StringIndexOutOfBoundException 테스트")
     @ParameterizedTest
     @MethodSource("provideStringForCharAtStringIndexOutOfBoundExceptionTest")
     public void charAtStringIndexOutOfBoundExceptionTest(String given, int index, String expected) {
