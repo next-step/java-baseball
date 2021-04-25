@@ -21,15 +21,17 @@ public class Game {
         return dealer;
     }
 
-    private static int[] getPlayerList() {
+    private static int[] askPlayerList() {
         System.out.println("숫자를 입력해주세요 : ");
         int input = scanner.nextInt();
-        int[] playerList = createPlayerNumbers(input);
+        return createPlayerNumbers(input);
+    }
+
+    private static int[] getPlayerList() {
+        int[] playerList = askPlayerList();
 
         while (!Rule.isValid(playerList)) {
-            System.out.println("숫자를 입력해주세요 : ");
-            input = scanner.nextInt();
-            playerList = createPlayerNumbers(input);
+            playerList = askPlayerList();
         }
 
         return playerList;
