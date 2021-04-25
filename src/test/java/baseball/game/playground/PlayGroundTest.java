@@ -6,12 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import baseball.ui.UiSystem;
 import baseball.ui.impl.TestUiSystem;
 
 class PlayGroundTest {
 
-	TestUiSystem uiSystem = new TestUiSystem();
-	PlayGround playGround = new PlayGround();
+	UiSystem uiSystem;
+	PlayGround playGround;
 
 	@BeforeEach
 	void setup() {
