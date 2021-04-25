@@ -2,15 +2,14 @@ package baseball;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class BaseballGenerator {
-    private static final int BASEBALL_SIZE = 3;
+public class RandomBaseballGenerator {
 
     public static BaseballNumber apply() {
         BaseballNumber baseballNumber = new BaseballNumber();
 
-        while (baseballNumber.size() != BASEBALL_SIZE) {
-            Integer randomNumberBetweenOneToNine = createRandomNumberBetweenOneToNine();
-            baseballNumber.addBaseballNumber(randomNumberBetweenOneToNine);
+        while (baseballNumber.size() != BaseballConstants.BASEBALL_NUMBER_SIZE) {
+            Integer randomNumber = createRandomNumberBetweenOneToNine();
+            baseballNumber.addNumber(randomNumber);
         }
 
         return baseballNumber;

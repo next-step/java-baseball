@@ -13,7 +13,7 @@ class BaseballNumberTest {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
     void 입력되는_숫자가_1이상_9이하(int rangedNumber) {
         BaseballNumber baseballNumber = new BaseballNumber();
-        baseballNumber.addBaseballNumber(rangedNumber);
+        baseballNumber.addNumber(rangedNumber);
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ class BaseballNumberTest {
     void 입력되는_숫자가_1이상_9이하가_아니면_예외(int exceedRangeNumber) {
         BaseballNumber baseballNumber = new BaseballNumber();
         assertThrows(IllegalArgumentException.class,
-                () -> baseballNumber.addBaseballNumber(exceedRangeNumber));
+                () -> baseballNumber.addNumber(exceedRangeNumber));
     }
 
     @ParameterizedTest
@@ -38,9 +38,9 @@ class BaseballNumberTest {
         BaseballNumber baseballNumber = new BaseballNumber();
 
         //when
-        baseballNumber.addBaseballNumber(a);
-        baseballNumber.addBaseballNumber(b);
-        baseballNumber.addBaseballNumber(c);
+        baseballNumber.addNumber(a);
+        baseballNumber.addNumber(b);
+        baseballNumber.addNumber(c);
 
         //then
         assertEquals(EXPECTED_SIZE, baseballNumber.size());
@@ -54,9 +54,9 @@ class BaseballNumberTest {
         BaseballNumber baseballNumber = new BaseballNumber();
 
         //when
-        baseballNumber.addBaseballNumber(rangedNumber);
-        baseballNumber.addBaseballNumber(rangedNumber);
-        baseballNumber.addBaseballNumber(rangedNumber);
+        baseballNumber.addNumber(rangedNumber);
+        baseballNumber.addNumber(rangedNumber);
+        baseballNumber.addNumber(rangedNumber);
 
         //then
         assertEquals(EXPECTED_SIZE, baseballNumber.size());
