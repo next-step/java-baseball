@@ -31,4 +31,11 @@ public class BaseballGameResultPrinterTest {
         assertEquals(printer.convertBaseballGameResult(new int[]{0, 3}), "3 볼");
     }
 
+    @Test
+    public void printerConvertGameResultStrikesAndBalls(){
+        //2, 1 은 불가능하다
+        assertEquals(printer.convertBaseballGameResult(new int[]{1, 2}), "1 스트라이크 2 볼");
+        assertEquals(printer.convertBaseballGameResult(new int[]{1, 1}), "1 스트라이크 1 볼");
+    }
+
 }
