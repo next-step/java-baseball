@@ -6,6 +6,8 @@ import numberBaseball.view.ConsoleInput;
 import numberBaseball.view.ConsoleOutput;
 
 public class NumberBaseBallController {
+    public static final String PARAMETER_TO_REPLAY = "1";
+    public static final String PARAMETER_TO_EXIT = "2";
     NumberBaseBallService numberBaseBallService;
 
     public NumberBaseBallController(NumberBaseBallService numberBaseBallService) {
@@ -13,7 +15,22 @@ public class NumberBaseBallController {
     }
 
     public void run() {
-        playOneGame();
+        boolean wantToReplay = false;
+        do {
+            playOneGame();
+            wantToReplay = askToReplay();
+        } while(wantToReplay);
+    }
+
+    private boolean askToReplay() {
+        String wantToReplayInput = ConsoleInput.inputReplay();
+        if (wantToReplayInput.equals(PARAMETER_TO_REPLAY)) {
+            return true;
+        }
+        if (wantToReplayInput.equals(PARAMETER_TO_EXIT)) {
+            return false;
+        }
+        throw new IllegalArgumentException();
     }
 
     private void playOneGame() {

@@ -11,4 +11,5 @@ public class ConsoleOutput {
     public static void printClearMessage() {
         System.out.println(MESSAGE_GAME_CLEAR);
     }
+
 }
