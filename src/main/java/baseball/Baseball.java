@@ -115,15 +115,9 @@ public class Baseball {
         StringBuffer sb = new StringBuffer("");
 
         sb.append(makeStrikeCountString(comparisonResult.strikeCount));
-        if (comparisonResult.hasBothCount()) {
-            sb.append(" ");
-        }
+        sb.append(addIfNeedSpace(comparisonResult.hasBothCount()));
         sb.append(makeBallCountString(comparisonResult.ballCount));
-
-        if (comparisonResult.strikeAll()) {
-            sb.append("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            sb.append("\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        }
+        sb.append(addIfAllStrike(comparisonResult.strikeAll()));
 
         return sb.toString();
     }
@@ -135,9 +129,21 @@ public class Baseball {
         return "";
     }
 
+    private String addIfNeedSpace(boolean needSpace) {
+        return needSpace ? " " : "";
+    }
+
     private String makeBallCountString(int ballCount) {
         if (ballCount > 0) {
             return ballCount + " 볼";
+        }
+        return "";
+    }
+
+    private String addIfAllStrike(boolean allStrike) {
+        if (allStrike) {
+            return "\n3개의 숫자를 모두 맞히셨습니다! 게임 종료" +
+                    "\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
         }
         return "";
     }
