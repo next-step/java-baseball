@@ -25,7 +25,8 @@ public class BaseBallGame {
                 continue;
             }
             int[] strikeBallCount = calculate(threeNumbers, inputNumbers);
-            if (isThreeStrikes(strikeBallCount[0], strikeBallCount[1])) {
+            printResult(strikeBallCount[0], strikeBallCount[1]);
+            if (strikeBallCount[0] == 3) {
                 return end();
             }
         }
@@ -100,8 +101,16 @@ public class BaseBallGame {
         return 0;
     }
 
-    private boolean isThreeStrikes(int strikeCount, int ballCount) {
-        return true;
+    private void printResult(int strikeCount, int ballCount) {
+        if (strikeCount > 0 && ballCount > 0) {
+            System.out.println(strikeCount + " 스트라이크 " + ballCount + " 볼");
+        } else if (strikeCount > 0 && ballCount == 0) {
+            System.out.println(strikeCount + " 스트라이크");
+        } else if (ballCount > 0) {
+            System.out.println(ballCount + " 볼");
+        } else if (ballCount == 0) {
+            System.out.println("낫싱");
+        }
     }
 
     private int end() {
