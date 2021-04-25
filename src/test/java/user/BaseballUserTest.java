@@ -1,5 +1,7 @@
-package baseball;
+package user;
 
+import baseball.BaseballConstants;
+import baseball.BaseballNumbers;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -16,10 +18,9 @@ class BaseballUserTest {
             "951"
     })
     void 사용자가_유효한_BaseballNumber_생성(String userInput) {
-        final int EXPECTED_NUMBER = 3;
         BaseballUser baseballUser = new BaseballUser();
-        BaseballNumber baseballNumber = baseballUser.inputNumber(userInput);
-        assertEquals(EXPECTED_NUMBER, baseballNumber.size());
+        BaseballNumbers baseballNumbers = baseballUser.inputNumber(userInput);
+        assertEquals(BaseballConstants.BASEBALL_NUMBER_SIZE, baseballNumbers.size());
     }
 
     @ParameterizedTest

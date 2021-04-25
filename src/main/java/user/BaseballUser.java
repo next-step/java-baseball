@@ -1,16 +1,18 @@
-package baseball;
+package user;
+
+import baseball.BaseballConstants;
+import baseball.BaseballNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballUser {
 
-    public BaseballNumber inputNumber(String userInput) {
-        BaseballNumber baseballNumber = new BaseballNumber();
+    public BaseballNumbers inputNumber(String userInput) {
         List<Integer> userInputIntegers = parseToIntegers(userInput);
-        baseballNumber.addAllNumber(userInputIntegers);
-        validateBaseballNumberSize(baseballNumber);
-        return baseballNumber;
+        BaseballNumbers baseballNumbers = BaseballNumbers.create(userInputIntegers);
+        validateBaseballNumberSize(baseballNumbers);
+        return baseballNumbers;
     }
 
     private List<Integer> parseToIntegers(String userInput) {
@@ -30,8 +32,8 @@ public class BaseballUser {
         }
     }
 
-    private void validateBaseballNumberSize(BaseballNumber baseballNumber) {
-        if (baseballNumber.size() != BaseballConstants.BASEBALL_NUMBER_SIZE) {
+    private void validateBaseballNumberSize(BaseballNumbers baseballNumbers) {
+        if (baseballNumbers.size() != BaseballConstants.BASEBALL_NUMBER_SIZE) {
             throw new IllegalArgumentException("입력된 숫자가 올바르지 않습니다.");
         }
     }
