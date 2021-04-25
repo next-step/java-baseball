@@ -1,50 +1,49 @@
 package nextstep.study.baseball.domain;
 
-import java.util.HashMap;
+import nextstep.study.baseball.domain.strategy.DecisionStrategy;
+import nextstep.study.baseball.domain.strategy.DefaultDecisionStrategy;
+import nextstep.study.baseball.domain.strategy.DefaultOutStrategy;
+import nextstep.study.baseball.domain.strategy.OutStrategy;
+
 import java.util.List;
-import java.util.Map;
 
 public class Referee {
 
-	private Map<DecisionType, Integer> map;
+	private DecisionStrategy decisionStrategy;
+	private OutStrategy outStrategy;
 
 	public Referee() {
-		this.map = new HashMap<>();
-		this.init();
+		this.decisionStrategy = new DefaultDecisionStrategy();
+		this.outStrategy = new DefaultOutStrategy();
 	}
 
-	public void init() {
-		map.clear();
-		map.put(DecisionType.STRIKE, 0);
-		map.put(DecisionType.BALL, 0);
-		map.put(DecisionType.NOTHING, 0);
+	public Referee(DecisionStrategy decisionStrategy, OutStrategy outStrategy) {
+		this.decisionStrategy = decisionStrategy;
+		this.outStrategy = outStrategy;
 	}
 
-	public RefreeDecision makeRefreeDecision(List<Integer> batterNums,
-		List<Integer> pitcherNums) {
+	public DecisionResult makeDecisionResult(List<Integer> batterNumbers,
+		List<Integer> pitcherNumbers) {
 
-		for (int i = 0; i < batterNums.size(); i++) {
-			int number = batterNums.get(i);
-			DecisionType type = getDecisionType(i, number, pitcherNums);
-			Integer count = map.get(type);
-			map.put(type, ++count);
+		DecisionResult decisionResult = new DecisionResult();
+
+		for (int i = 0; i < batterNumbers.size(); i++) {
+			int batterNumber = batterNumbers.get(i);
+			Decision decision = this.decisionStrategy.decide(i, batterNumber, pitcherNumbers);
+			decisionResult.addDecision(decision);
 		}
-		return new RefreeDecision(
-			map.get(DecisionType.STRIKE),
-			map.get(DecisionType.BALL),
-			map.get(DecisionType.NOTHING));
+		return decisionResult;
 	}
 
-	public DecisionType getDecisionType(int index, int number, List<Integer> pitcherNums) {
-		int targetIndex = pitcherNums.indexOf(number);
-
-		if (targetIndex == -1) {
-			return DecisionType.NOTHING;
-		}
-		if (targetIndex == index) {
-			return DecisionType.STRIKE;
-		}
-		return DecisionType.BALL;
+	public boolean isOut(DecisionResult decisionResult) {
+		return this.outStrategy.isOut(decisionResult);
 	}
 
+	public void setDecisionStrategy(DecisionStrategy decisionStrategy) {
+		this.decisionStrategy = decisionStrategy;
+	}
+
+	public void setOutStrategy(OutStrategy outStrategy) {
+		this.outStrategy = outStrategy;
+	}
 }

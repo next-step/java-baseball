@@ -2,39 +2,44 @@ package nextstep.study.baseball.service;
 
 import nextstep.study.baseball.common.BaseConstants;
 import nextstep.study.baseball.domain.Batter;
+import nextstep.study.baseball.domain.DecisionResult;
 import nextstep.study.baseball.domain.Pitcher;
 import nextstep.study.baseball.domain.Referee;
-import nextstep.study.baseball.domain.RefreeDecision;
 import nextstep.study.baseball.util.BaseballUtil;
 
 import java.util.Scanner;
 
 public class BaseballService {
+	private Referee referee;
+
+	public BaseballService() {
+		referee = new Referee();
+	}
+
+	public BaseballService(Referee referee) {
+		this.referee = referee;
+	}
 
 	public void playBall() {
 		Batter batter = new Batter();
-		batter.generateRandomNumbers();
+		Pitcher pitcher = new Pitcher();
 
-		//TODO - 테스트 후 제거
-		System.out.println("타자의 숫자 : " + batter.getNumbers());
-		System.out.println();
+		this.playBall(batter, pitcher);
+	}
 
-		int strikeCount = 0;
+	public void playBall(Batter batter, Pitcher pitcher) {
+		DecisionResult decisionResult = null;
 
-		while (strikeCount < 3) {
-			Pitcher pitcher = new Pitcher();
+		do {
 			pitcher.makeMixBallNumber(); // 투수 볼배합 만들기 (입력받기)
+			decisionResult = referee.makeDecisionResult(batter.getNumbers(), pitcher.getNumbers());
+			this.showDecisionMessage(decisionResult);
+		} while (!referee.isOut(decisionResult));
 
-			Referee referee = new Referee();
-			RefreeDecision decision = referee.makeRefreeDecision(batter.getNumbers(), pitcher.getNumbers());
-			strikeCount = decision.getStrikeCount();
-
-			this.showDecisionMessage(decision);
-		}
 		askFinish();
 	}
 
-	public void showDecisionMessage(RefreeDecision decision) {
+	public void showDecisionMessage(DecisionResult decision) {
 		if (decision.getStrikeCount() > 0) {
 			BaseballUtil.showMessage(String.format("%d 스트라이크 ", decision.getStrikeCount()));
 		}
@@ -48,7 +53,14 @@ public class BaseballService {
 	}
 
 	public void askFinish() {
-		BaseballUtil.showMessage(BaseConstants.MESSAGE_FINISH);
+		this.askFinish(BaseConstants.FINISH_STRIKE_OUT + BaseConstants.MESSAGE_FINISH);
+	}
+
+	public void askFinish(String message) {
+		if (message == null && message.length() == 0) {
+			message = BaseConstants.FINISH_STRIKE_OUT + BaseConstants.MESSAGE_FINISH;
+		}
+		BaseballUtil.showMessage(message);
 		Scanner scanner = new Scanner(System.in);
 		String inputStr = scanner.nextLine();
 		if (inputStr.equals("1")) {

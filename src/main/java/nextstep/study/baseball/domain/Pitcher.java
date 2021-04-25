@@ -20,10 +20,16 @@ public class Pitcher {
 	}
 
 	public String makeMixBallNumber() {
-		return this.makeMixBallNumber(true);
+		numbers.clear();
+		return this.processMakeMixBallNumber(true);
 	}
 
 	public String makeMixBallNumber(boolean validation) {
+		numbers.clear();
+		return this.processMakeMixBallNumber(validation);
+	}
+
+	private String processMakeMixBallNumber(boolean validation) {
 		int makeCount = 0;
 		boolean continues = true;
 		String inputNums = null;

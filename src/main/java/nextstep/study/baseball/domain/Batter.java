@@ -9,10 +9,13 @@ public class Batter {
 	private Set<Integer> numbers = new LinkedHashSet<Integer>();
 
 	public Batter() {
+		this.generateRandomNumbers();
 	}
 
 	public List<Integer> generateRandomNumbers() {
-		return this.generateRandomNumbers(BaseConstants.INPUT_NUMBER_LENGTH);
+		List<Integer> list = this.generateRandomNumbers(BaseConstants.INPUT_NUMBER_LENGTH);
+		System.out.println("타자번호 : " + list);
+		return list;
 	}
 
 	public List<Integer> generateRandomNumbers(int length) {

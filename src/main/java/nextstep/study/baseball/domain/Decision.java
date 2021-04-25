@@ -1,5 +1,5 @@
 package nextstep.study.baseball.domain;
 
-public enum DecisionType {
+public enum Decision {
 	STRIKE, BALL, NOTHING
 }

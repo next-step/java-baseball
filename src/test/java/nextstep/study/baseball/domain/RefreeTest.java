@@ -20,7 +20,7 @@ public class RefreeTest {
 		List<Integer> picherNums = BaseballUtil.strToList(pitcherNum);
 
 		Referee referee = new Referee();
-		RefreeDecision decision = referee.makeRefreeDecision(batterNums, picherNums);
+		DecisionResult decision = referee.makeDecisionResult(batterNums, picherNums);
 		System.out.println(decision);
 
 		assertThat(decision.getStrikeCount()).isEqualTo(3);
