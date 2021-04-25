@@ -9,6 +9,9 @@ public class BaseballGame {
     private boolean isOver;
     private final NumberGenerator numberGenerator;
 
+    private static final String NEW_GAME_NUMBER = "1";
+    private static final String GAME_OVER_NUMBER = "2";
+
     private static final String NOT_GAME_START_YET_ERROR_MESSAGE = "아직 게임이 시작되지 않았습니다.";
 
     public BaseballGame(NumberGenerator numberGenerator) {
@@ -25,13 +28,22 @@ public class BaseballGame {
         return this.results;
     }
 
-    public void over() {
+    public void newGameOrGameOver(String continueNumber) {
         validateIsGameStarted();
+        if (continueNumber.equals(NEW_GAME_NUMBER)) {
+            this.reset();
+        }
+
+        if (continueNumber.equals(GAME_OVER_NUMBER)) {
+            this.over();
+        }
+    }
+
+    private void over() {
         this.isOver = true;
     }
 
-    public void reset() {
-        validateIsGameStarted();
+    private void reset() {
         this.gameNumbers = this.numberGenerator.generate();
         this.isOver = false;
         this.results = null;
