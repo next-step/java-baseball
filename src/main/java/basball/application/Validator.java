@@ -24,7 +24,7 @@ public class Validator {
         if (!checkContinue(input.charAt(0)-'0')) {
             return inputContinue();
         }
-        return input.charAt(0);
+        return input.charAt(0)-'0';
     }
 
     private boolean checkContinue(int num) {
