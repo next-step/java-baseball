@@ -2,6 +2,8 @@ package com.nextstep.baseball.handler;
 
 import com.nextstep.baseball.enums.ErrorMessages;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GameLogicHandler {
@@ -30,10 +32,33 @@ public class GameLogicHandler {
     }
 
     public int makeRandomNumberForGame() {
+        List<Integer> list = makeRandomNumberList();
+        return makeRandomNumListToSum(list);
+    }
+
+    private List<Integer> makeRandomNumberList() {
+        List<Integer> randomNumList = new ArrayList<>();
+        while (randomNumList.size() < 3) {
+            addRandomNumberNotDuplicated(randomNumList);
+        }
+        return randomNumList;
+    }
+
+    private void addRandomNumberNotDuplicated(List<Integer> randomNumList) {
         Random random = new Random();
+        int num = random.nextInt(9) + 1;
+
+        if (!randomNumList.contains(num)) {
+            randomNumList.add(num);
+        }
+    }
+
+    private int makeRandomNumListToSum(List<Integer> randomNumList) {
         int result = 0;
-        for (int i = 0; i < 3 ; i++) {
-            result = result * 10 + (random.nextInt(9) + 1);
+        int mul = 100;
+        for (int i : randomNumList) {
+            result += i * mul;
+            mul /= 10;
         }
         return result;
     }
