@@ -17,6 +17,10 @@ public class Question {
         this.numbers = generatedNumbers();
     }
 
+    public Question(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
+
     private List<Integer> generatedNumbers() {
         List<Integer> newNumbers = new ArrayList<>();
         Random random = new Random();
