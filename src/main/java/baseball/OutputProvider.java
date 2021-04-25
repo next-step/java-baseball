@@ -18,8 +18,9 @@ public class OutputProvider {
         output.append(REQUEST_INPUT);
     }
 
-    public void appendNothing() {
-        output.append(RESULT_NOTHING);
+    public void appendResultNothing() {
+        appendNothing();
+        appendNewLineOutput();
     }
 
     public void appendComplete() {
@@ -30,6 +31,10 @@ public class OutputProvider {
         appendStrikeOutput(strikeCount);
         appendBallOutput(ballCount, strikeCount > 0);
         appendNewLineOutput();
+    }
+
+    private void appendNothing() {
+        output.append(RESULT_NOTHING);
     }
 
     private void appendNewLineOutput() {

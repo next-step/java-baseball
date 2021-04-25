@@ -22,9 +22,11 @@ public class GameModel {
 
     public void input(String number) {
         if (isPending) {
+            InputValidator.validatePendingInput(number);
             processPending(number);
             return;
         }
+        InputValidator.validateGuessInput(number);
         processGame(number);
     }
 
@@ -55,7 +57,8 @@ public class GameModel {
 
     private void makePlayResult(int strikeCount, int ballCount) {
         if (strikeCount == 0 && ballCount == 0) {
-            output.appendNothing();
+            output.appendResultNothing();
+            output.appendRequestInput();
             return;
         }
 

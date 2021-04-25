@@ -1,6 +1,9 @@
+import baseball.AbnormalInputException;
 import baseball.GameModel;
+import baseball.InputValidator;
 import baseball.OutputProvider;
 import com.sun.tools.javac.util.Pair;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -28,7 +31,7 @@ public class GameModelTest {
         model.input("456");
 
         String actual = model.flushOutput();
-        assertThat(actual).startsWith(OutputProvider.RESULT_NOTHING);
+        assertThat(actual).startsWith(OutputProvider.RESULT_NOTHING + "\n");
     }
 
     @Test
@@ -113,13 +116,13 @@ public class GameModelTest {
 
     @Test
     void generate_ShouldCallGenerateWhenStartAgain() {
-        NumberGeneratorStub stub = new NumberGeneratorStub("123");
-        GameModel model = new GameModel(stub);
+        NumberGeneratorStub spy = new NumberGeneratorStub("123");
+        GameModel model = new GameModel(spy);
 
         model.input("123");
         model.input("1");
 
-        int actual = stub.getGenerateCallCount();
+        int actual = spy.getGenerateCallCount();
 
         assertThat(actual).isEqualTo(2);
     }
@@ -135,4 +138,25 @@ public class GameModelTest {
 
         assertThat(actual).isTrue();
     }
+
+    @Test
+    void input_ShouldThrowWhenInputWrongGuess() {
+        GameModel model = new GameModel(new NumberGeneratorStub("123"));
+
+        Assertions.assertThrows(AbnormalInputException.class, () -> {
+            model.input("1");
+        });
+    }
+
+    @Test
+    void input_ShouldThrowWhenInputWrongModeInPending() {
+        GameModel model = new GameModel(new NumberGeneratorStub("123"));
+        model.input("123");
+
+        Assertions.assertThrows(AbnormalInputException.class, () -> {
+            model.input("123");
+        });
+    }
+
+
 }
