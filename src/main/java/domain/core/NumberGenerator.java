@@ -1,15 +1,12 @@
 package domain.core;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class NumberGenerator {
     private final Set<Integer> answer;
 
     private NumberGenerator() {
-        answer = new HashSet<>();
+        answer = new LinkedHashSet<>();
     }
 
     public static NumberGenerator newInstance(){
