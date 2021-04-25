@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballGame {
-    private Numbers gameNumbers;
+    private GameNumbers gameNumbers;
     private Results results;
     private boolean isOver;
     private final NumberGenerator numberGenerator;
@@ -24,7 +24,7 @@ public class BaseballGame {
         return this.isOver;
     }
 
-    public Results start(Numbers inputNumbers) {
+    public Results start(List<Number> inputNumbers) {
         this.results = findMatchedResults(inputNumbers);
         return this.results;
     }
@@ -61,9 +61,9 @@ public class BaseballGame {
         }
     }
 
-    private Results findMatchedResults(Numbers inputNumbers) {
+    private Results findMatchedResults(List<Number> inputNumbers) {
         List<Result> results = new ArrayList<>();
-        for (Number inputNumber : inputNumbers.getNumbers()) {
+        for (Number inputNumber : inputNumbers) {
             results.add(Result.findByCondition(gameNumbers.contains(inputNumber), gameNumbers.containsExactly(inputNumber)));
         }
         return Results.of(results);

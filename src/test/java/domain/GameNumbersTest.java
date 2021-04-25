@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class NumbersTest {
+class GameNumbersTest {
     @ParameterizedTest
     @ValueSource(strings = {"2345", "12", "1"})
     @DisplayName("입력한 숫자 길이가 3보다 크거나 작을 시 예외 발생")
@@ -36,7 +36,7 @@ class NumbersTest {
 
         // given
         Number inputNumber = Number.of(number, position);
-        Numbers gameNumbers = Numbers.of(numbers);
+        GameNumbers gameNumbers = GameNumbers.of(numbers);
 
         // when
         boolean result = gameNumbers.contains(inputNumber);
@@ -52,7 +52,7 @@ class NumbersTest {
 
         // given
         Number inputNumber = Number.of(number, position);
-        Numbers gameNumbers = Numbers.of(numbers);
+        GameNumbers gameNumbers = GameNumbers.of(numbers);
 
         // when
         boolean result = gameNumbers.containsExactly(inputNumber);
@@ -63,7 +63,7 @@ class NumbersTest {
 
     private void assertNumbersThrowIllegalArgumentException(String numbers, String message) {
         assertThatExceptionOfType(BaseBallGameFailureException.class)
-                .isThrownBy(() -> Numbers.of(numbers))
+                .isThrownBy(() -> GameNumbers.of(numbers))
                 .withMessageContainingAll(message);
     }
 }

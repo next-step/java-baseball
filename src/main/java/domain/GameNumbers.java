@@ -4,31 +4,30 @@ import exception.BaseBallGameFailureException;
 import exception.ErrorCode;
 import utils.NumberUtils;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Numbers {
+public class GameNumbers {
 
     private final List<Number> numbers;
     private final Set<Number> numberSet;
 
     private static final int NUMBER_LENGTH = 3;
 
-    private Numbers(List<Number> numbers) {
+    private GameNumbers(List<Number> numbers) {
         validateNumbers(numbers);
         this.numbers = numbers;
         this.numberSet = new HashSet<>(numbers);
     }
 
-    public static Numbers of(List<Number> numbers) {
-        return new Numbers(numbers);
+    public static GameNumbers of(List<Number> numbers) {
+        return new GameNumbers(numbers);
     }
 
-    public static Numbers of(String inputNumbers) {
+    public static GameNumbers of(String inputNumbers) {
         List<Number> numbers = NumberUtils.toList(inputNumbers);
-        return new Numbers(numbers);
+        return new GameNumbers(numbers);
     }
 
     /**
@@ -47,10 +46,6 @@ public class Numbers {
      */
     public boolean containsExactly(Number number) {
         return numberSet.contains(number);
-    }
-
-    public List<Number> getNumbers() {
-        return Collections.unmodifiableList(numbers);
     }
 
     private void validateNumbers(List<Number> numbers) {

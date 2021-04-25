@@ -7,6 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import utils.NumberUtils;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -18,7 +21,7 @@ class BaseballGameTest {
     @BeforeEach
     void setUp() {
         String gameNumber = "123";
-        game = new BaseballGame(() -> Numbers.of(gameNumber));
+        game = new BaseballGame(() -> GameNumbers.of(gameNumber));
     }
 
     @ParameterizedTest
@@ -27,7 +30,7 @@ class BaseballGameTest {
     void getResultsTest(String numbers, int strikeCnt, int ballCnt) {
 
         // given
-        Numbers inputNumbers = Numbers.of(numbers);
+        List<Number> inputNumbers = NumberUtils.toList(numbers);
 
         // when
         Results results = game.start(inputNumbers);

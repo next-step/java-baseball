@@ -15,9 +15,9 @@ class GameNumberGeneratorTest {
         NumberGenerator gameNumberGenerator = new GameNumberGenerator();
 
         // when
-        Numbers numbers = gameNumberGenerator.generate();
+        GameNumbers gameNumbers = gameNumberGenerator.generate();
 
         // then
-        assertThat(numbers).isNotNull();
+        assertThat(gameNumbers).isNotNull();
     }
 }

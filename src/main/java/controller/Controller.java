@@ -2,8 +2,8 @@ package controller;
 
 import domain.BaseballGame;
 import domain.GameNumberGenerator;
-import domain.Numbers;
 import domain.Results;
+import utils.NumberUtils;
 import view.InputView;
 import view.PrintView;
 
@@ -16,7 +16,7 @@ public class Controller {
 
         while (!game.isOver()) {
             inputView.inputNumbers();
-            Results results = game.start(Numbers.of(inputView.getNumbers()));
+            Results results = game.start(NumberUtils.toList(inputView.getNumbers()));
 
             printView.printResult(results.createResultMessage());
             continueOrInputCommand(game, inputView);
