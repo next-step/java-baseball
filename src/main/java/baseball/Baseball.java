@@ -55,15 +55,14 @@ public class Baseball {
 	public void printBallCount() {
 		int strike = ballCount.getStrike();
 		int ball = ballCount.getBall();
-		String ballCountString = "낫싱";
-		if (strike > 0 && ball > 0) {
-			ballCountString = String.format("%d 스트라이크 %d볼", strike, ball);
-		} else if (strike > 0 && ball == 0) {
-			ballCountString = String.format("%d 스트라이크", strike);
-		} else if (strike == 0 && ball > 0) {
-			ballCountString = String.format("%d볼", ball);
-		}
-		System.out.println(ballCountString);
+
+		String strikeString = strike > 0 ? String.format("%d 스트라이크", strike) : "";
+		String ballString = ball > 0 ? String.format("%d볼", ball) : "";
+		String spaceString = strike > 0 && ball > 0 ? " " : "";
+		String ballCountString = String.format("%s%s%s", strikeString, spaceString,  ballString);
+
+		String resultString = strike > 0 || ball > 0 ? ballCountString : "낫싱";
+		System.out.println(resultString);
 	}
 
 	private void playGameLoop() {
