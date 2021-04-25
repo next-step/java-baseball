@@ -5,6 +5,8 @@ import java.util.function.BiFunction;
 public class AnswerChecker {
 
     private static final int COUNT_OF_NUMBERS = 3;
+    private static final int ADD_COUNT = 1;
+    private static final int NOT_ADD_COUNT = 0;
 
     private final Numbers answer;
 
@@ -26,8 +28,8 @@ public class AnswerChecker {
 
     private int getCount(BiFunction<Numbers, Integer, Integer> biFunction, Numbers numbers) {
         int count = 0;
-        for (int i = 0; i < COUNT_OF_NUMBERS; i++) {
-            count += biFunction.apply(numbers, i);
+        for (int index = 0; index < COUNT_OF_NUMBERS; index++) {
+            count += biFunction.apply(numbers, index);
         }
         return count;
     }
@@ -36,18 +38,18 @@ public class AnswerChecker {
         return a.intValue() == b.intValue();
     }
 
-    private int ifStrikeThenPlusOne(Numbers numbers, int i) {
-        if (equals(numbers.get(i), answer.get(i))) {
-            return 1;
+    private int ifStrikeThenPlusOne(Numbers numbers, int index) {
+        if (equals(numbers.get(index), answer.get(index))) {
+            return ADD_COUNT;
         }
-        return 0;
+        return NOT_ADD_COUNT;
     }
 
     private int ifBallThenPlusOne(Numbers numbers, int index) {
         if (!equals(numbers.get(index), answer.get(index))
             && answer.contains(numbers.get(index))) {
-            return 1;
+            return ADD_COUNT;
         }
-        return 0;
+        return NOT_ADD_COUNT;
     }
 }

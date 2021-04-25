@@ -3,6 +3,7 @@ package domain;
 public class Hint {
 
     private static final int MAX_COUNT_OF_STRIKE = 3;
+    private static final String BLANK = "";
 
     private final int strike;
     private final int ball;
@@ -30,13 +31,13 @@ public class Hint {
         if (strike > 0) {
             return strike + " strike ";
         }
-        return "";
+        return BLANK;
     }
 
     private String addBallString() {
         if (ball > 0) {
             return ball + " ball";
         }
-        return "";
+        return BLANK;
     }
 }
