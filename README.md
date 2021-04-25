@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+1. 상대방(컴퓨터)의 3개의 수 생성
+2. 입력 수 유효성 검사
+3. 입력 수 와 상대방의 수 검증 
+4. 게임 다시 시작 및 종료 기능 
+5. 테스트 기능 작업 
