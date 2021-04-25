@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import baseball.game.playground.gameball.validatitor.GameBallValidator;
+
 /**
  * 번호의 범위는 최소 1, 최대 9로 제한된다
  * 번호는 3개로 이루어져있다
@@ -11,7 +13,6 @@ import java.util.List;
  */
 public class GameBall {
 
-	private final GameNumber[] numbers;
 	private final String numberToString;
 	private final Integer numberToInteger;
 
@@ -22,7 +23,6 @@ public class GameBall {
 			numberString.append(number.getNum());
 		}
 
-		this.numbers = numbers;
 		this.numberToString = numberString.toString();
 		this.numberToInteger = Integer.parseInt(numberString.toString());
 	}
@@ -81,9 +81,7 @@ public class GameBall {
 	public static GameBall create(Integer number) {
 
 		String stringNumber = String.valueOf(number);
-		checkDigitNumber(stringNumber);
-		checkOverlapped(stringNumber);
-
+		GameBallValidator.checkValidation(stringNumber);
 		GameNumber[] numbers = createBallNumbers(stringNumber);
 		return new GameBall(numbers);
 
@@ -92,10 +90,7 @@ public class GameBall {
 	// 문자열로 생성
 	public static GameBall create(String string) {
 
-		checkInputNumber(string);
-		checkDigitNumber(string);
-		checkOverlapped(string);
-
+		GameBallValidator.checkValidation(string);
 		GameNumber[] numbers = createBallNumbers(string);
 		return new GameBall(numbers);
 	}
@@ -109,33 +104,4 @@ public class GameBall {
 		}
 		return numbers;
 	}
-
-	////////////////////////////////////////////////////////////////////////////////////
-	// GameBall 생성시 유효성 검증
-	////////////////////////////////////////////////////////////////////////////////////
-	// 유효성 검증 - 번호인지
-	private static void checkInputNumber(String inputString) {
-		boolean isNumber = inputString.matches("[+-]?\\d*(\\.\\d+)?");
-		if (!isNumber) {
-			throw new IllegalArgumentException();
-		}
-	}
-
-	// 유효성 검증 - 자릿수
-	private static void checkDigitNumber(String inputString) {
-		if (inputString.length() != Policy.DIGIT_NUMBER) {
-			throw new IllegalArgumentException();
-		}
-	}
-
-	// 유효성 검증 - 중복
-	private static void checkOverlapped(String inputString) {
-
-		boolean overlap = inputString.replaceAll("(.)(?=.*\\1)", "").length() < inputString.length();
-		if (overlap) {
-			throw new IllegalArgumentException();
-		}
-
-	}
-
 }

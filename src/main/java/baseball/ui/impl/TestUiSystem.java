@@ -5,19 +5,36 @@ import baseball.ui.UiSystem;
 public class TestUiSystem implements UiSystem {
 
 	// test only
-	private Integer gameInput;
+	private String gameInput;
 	private String systemInput;
+	private String displayData;
 
-	public void setGameInput(Integer gameInput) {
+	public String getGameInput() {
+		return gameInput;
+	}
+
+	public void setGameInput(String gameInput) {
 		this.gameInput = gameInput;
+	}
+
+	public String getSystemInput() {
+		return systemInput;
 	}
 
 	public void setSystemInput(String systemInput) {
 		this.systemInput = systemInput;
 	}
 
+	public String getDisplayData() {
+		return displayData;
+	}
+
+	public void setDisplayData(String displayData) {
+		this.displayData = displayData;
+	}
+
 	@Override
-	public Integer gameInput() {
+	public String gameInput() {
 		return gameInput;
 	}
 
@@ -28,6 +45,11 @@ public class TestUiSystem implements UiSystem {
 
 	@Override
 	public void display(String data) {
+		displayData = data;
+	}
+
+	@Override
+	public void debug(String data) {
 
 	}
 
