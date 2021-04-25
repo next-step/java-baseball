@@ -48,15 +48,21 @@ public class BaseballResult {
     private String makeResultMessage() {
         StringBuilder sb = new StringBuilder();
 
-        checkCountAndAddMessage(sb, strikeCount, MESSAGE_STRIKE);
-        checkCountAndAddMessage(sb, ballCount, MESSAGE_BALL);
+        checkStrikeCountAndAddMessage(sb);
+        checkBallCountAndAddMessage(sb);
 
         return sb.toString();
     }
 
-    private void checkCountAndAddMessage(StringBuilder sb, int ballCount, String message) {
+    private void checkStrikeCountAndAddMessage(StringBuilder sb) {
+        if (strikeCount > 0) {
+            sb.append(strikeCount).append(MESSAGE_STRIKE);
+        }
+    }
+
+    private void checkBallCountAndAddMessage(StringBuilder sb) {
         if (ballCount > 0) {
-            sb.append(ballCount).append(message);
+            sb.append(ballCount).append(MESSAGE_BALL);
         }
     }
 }
