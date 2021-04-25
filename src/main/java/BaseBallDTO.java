@@ -1,25 +1,43 @@
 import java.util.List;
 
-public class BaseBallDTO {
+public class BaseBallDTO extends DTO{
 
+    private int countOfStrike;
+    private int countOfBall;
+    private List<String> enemyNumbers;
+    private List<String> inputNumbers;
     private String inputNumber;
-    private String enemyNumber;
-    private List<Integer> numberStorage;
 
-    public String getEnemyNumber() {
-        return enemyNumber;
+    public int getCountOfStrike() {
+        return countOfStrike;
     }
 
-    public void setEnemyNumber(String enemyNumber) {
-        this.enemyNumber = enemyNumber;
+    public void setCountOfStrike(int countOfStrike) {
+        this.countOfStrike = countOfStrike;
     }
 
-    public List<Integer> getNumberStorage() {
-        return numberStorage;
+    public int getCountOfBall() {
+        return countOfBall;
     }
 
-    public void setNumberStorage(List<Integer> numberStorage) {
-        this.numberStorage = numberStorage;
+    public void setCountOfBall(int countOfBall) {
+        this.countOfBall = countOfBall;
+    }
+
+    public List<String> getEnemyNumbers() {
+        return enemyNumbers;
+    }
+
+    public void setEnemyNumbers(List<String> enemyNumbers) {
+        this.enemyNumbers = enemyNumbers;
+    }
+
+    public List<String> getInputNumbers() {
+        return inputNumbers;
+    }
+
+    public void setInputNumbers(List<String> inputNumbers) {
+        this.inputNumbers = inputNumbers;
     }
 
     public String getInputNumber() {
