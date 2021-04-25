@@ -9,12 +9,13 @@ public class BallNumbers {
     private final List<BallNumber> numbers;
 
     public BallNumbers(List<BallNumber> numbers) {
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
     public BallNumbers(String numbers) {
         validateNullorEmpty(numbers);
-        validateDuplicate(numbers);
+        validateDuplicate(convertToList(numbers));
         this.numbers = convertToList(numbers);
     }
 
@@ -29,19 +30,11 @@ public class BallNumbers {
         return splited;
     }
 
-    private void validateDuplicate(String numbers) {
-        Set<BallNumber> validateSet = makeValidateSet(splitNumbers(numbers));
+    private void validateDuplicate(Collection<BallNumber> numbers) {
+        Set<BallNumber> validateSet = new HashSet<>(numbers);
         if (validateSet.size() != NUMBERS_LIMIT_SIZE) {
             throw new IllegalArgumentException("숫자는 중복되지 않은 3자리 숫자여야 합니다.");
         }
-    }
-
-    private Set<BallNumber> makeValidateSet(String[] splited) {
-        Set<BallNumber> validateSet = new HashSet<>();
-        for (String number : splited) {
-            validateSet.add(new BallNumber(number));
-        }
-        return validateSet;
     }
 
     private List<BallNumber> convertToList(String numbers) {
