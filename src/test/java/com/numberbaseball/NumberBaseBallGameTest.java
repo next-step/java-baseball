@@ -120,4 +120,12 @@ class NumberBaseBallGameTest {
 		assertThat(result.toStr()).isEqualTo("2 스트라이크 1볼");
 	}
 
+	@Test
+	@DisplayName("아무것도 맞추지 못한 경우 출력 결과")
+	void 낫싱_테스트() {
+		NumberBaseBallResult result = NumberBaseBallResult.of(0, 0);
+
+		assertThat(result.toStr()).isEqualTo("낫싱");
+	}
+
 }

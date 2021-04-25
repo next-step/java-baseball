@@ -24,7 +24,14 @@ public class NumberBaseBallResult {
 	}
 
 	public String toStr() {
+		if (isNothing()) {
+			return "낫싱";
+		}
 		return strikeToResultString() + appendSpaceIfExistStrikeAndBall() + ballToResultString();
+	}
+
+	private boolean isNothing() {
+		return this.strike == 0 && this.ball == 0;
 	}
 
 	private String ballToResultString() {
