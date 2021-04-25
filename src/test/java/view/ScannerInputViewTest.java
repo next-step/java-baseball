@@ -1,3 +1,5 @@
+package view;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
@@ -9,20 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import number.Numbers;
 
-public class ViewTest {
+public class ScannerInputViewTest {
 
 	@Test
 	@DisplayName("사용자가 입력한 숫자가 나와야 한다.")
 	public void inputNumbersTest() {
 		// given
 		String userInputNumbers = "123";
-		InputStream inputStream = new ByteArrayInputStream(userInputNumbers.getBytes(StandardCharsets.UTF_8));
-		View view = new View(inputStream, new StrikeFirstResultRenderer());
+		ScannerInputView scannerInputView = generateInputView(userInputNumbers);
 
 		// when
-		Numbers numbers = view.inputNumbers();
+		Numbers numbers = scannerInputView.inputNumbers();
 
 		// then
 		assertThat(numbers).isEqualTo(Numbers.of(userInputNumbers));
+	}
+
+	private ScannerInputView generateInputView(String userInput) {
+		InputStream inputStream = new ByteArrayInputStream(userInput.getBytes(StandardCharsets.UTF_8));
+		return new ScannerInputView(inputStream);
 	}
 }

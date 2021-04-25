@@ -1,13 +1,11 @@
+package number;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Random;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import number.Number;
-import number.Numbers;
-
 
 class RandomNumbersGeneratorTest {
 

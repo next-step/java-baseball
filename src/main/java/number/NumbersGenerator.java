@@ -1,5 +1,4 @@
-
-import number.Numbers;
+package number;
 
 public interface NumbersGenerator {
 	Numbers generate();

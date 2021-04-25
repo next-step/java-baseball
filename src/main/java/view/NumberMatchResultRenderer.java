@@ -1,3 +1,5 @@
+package view;
+
 import number.NumbersMatchResult;
 
 public interface NumberMatchResultRenderer {

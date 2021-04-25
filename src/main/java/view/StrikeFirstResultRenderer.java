@@ -1,3 +1,5 @@
+package view;
+
 import number.MatchResult;
 import number.NumbersMatchResult;
 

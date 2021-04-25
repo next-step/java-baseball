@@ -1,9 +1,8 @@
+package number;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
-import number.Number;
-import number.Numbers;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
 
