@@ -40,7 +40,7 @@ public class BaseBallGame {
 
     private void doGuess(Scanner sc){
         ((GuessNumber)map.get("guessNumber")).guessNumber(dto);
-        int success = ((BaseBallOutput)map.get("baseBallOutput")).resultOfAtack(dto);
+        int success = ((BaseBallOutput)map.get("baseBallOutput")).resultOfAttack(dto);
         if(success==CODE.FAIL.value){
             resetBallCount();
         }
