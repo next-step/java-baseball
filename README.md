@@ -22,6 +22,7 @@
 - Baseball Class 
   - 멤버변수
     - List<Integer> answerNumbers: 정답 숫자 리스트
+    - private enum Command { START, CONTINUE, FINISH }: 게임 상태
   - 메소드
     - public void Baseball(): 생성자, 1부터 9까지 서로 다른 임의의 수 3개를 생성하고 BallCount를 리셋
     - private void makeUniqueAnswerNumber(): 다른 숫자와 겹치지 않는 정답 숫자 1개를 생성
@@ -32,8 +33,8 @@
     - private void playGameLoop(Scanner scanner): 정답을 맞출 때 까지 게임 라운드를 반복하는 메소드
     - private boolean playGameRound(Scanner scanner): 게임 라운드를 진행하는 메소드. 입력된 세자리 수로 볼카운트를 판정하여 메시지를 출력
     - public static void main(String[] args): 숫자야구게임 시작점. 게임이 종료 후 다시 시작하거나 완전히 종료하는 기능 포함
-    
 - Utils Class
   - public static List<Integer> stringToIntegerListWithDelimiter(String input): delimiter 가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴 (default delimiter: ",")
   - public static List<Integer> stringToIntegerListWithDelimiter(String input, String delimiter) delimiter가 포함된 String 형태의 숫자를 입력받아 Integer List 로 변환하여 리턴
   - public static List<Integer> stringToIntegerList(String input): String 형태의 수를 입력받아 자리 수 별로 분리하여 IntegerList로 변환하여 리턴
+- ScannerUtil Class: Scanner를 singleton으로 사용하기 위한 구현체
