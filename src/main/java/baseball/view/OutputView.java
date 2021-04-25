@@ -23,4 +23,8 @@ public class OutputView {
 
         System.out.println(String.join(" ", messages));
     }
+
+    public static void endGame() {
+        System.out.println(String.format("%d개의 숫자를 모두 맞히셨습니다! 게임 종료", Game.BALL_SIZE));
+    }
 }

@@ -1,7 +1,7 @@
 package baseball.domain;
 
 public class Game {
-    private final static int BALL_SIZE = 3;
+    public final static int BALL_SIZE = 3;
 
     private final BallGenerationStrategy generationStrategy;
     private final Balls computerBalls;
