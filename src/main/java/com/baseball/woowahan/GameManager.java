@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
+/**
+ * 게임 시작, 관리 모듈
+ */
 public class GameManager {
 	public static final int GAME_LENGTH = 3;
+	private final String CONTINUE_FLAG = "1";
 	private BufferedReader bufferedReader;
 
 	public GameManager() {
@@ -22,25 +26,24 @@ public class GameManager {
 		}
 	}
 
-	private void play(UserInputGenerator userInputGenerator, RandomGenerator randomGenerator,
-		ScoreCalculatorAndPrinter scoreCalculatorAndPrinter) throws IOException {
+	private void play(UserInputGenerator userInputGenerator, RandomGenerator randomGenerator) throws IOException {
 		String randomNumber = randomGenerator.makeRandomNumbers();
+		ScoreCalculatorAndPrinter scoreCalculatorAndPrinter = new ScoreCalculatorAndPrinter(randomNumber);
 		while (!scoreCalculatorAndPrinter.isCompleted()) {
 			String inputNumber = userInputGenerator.returnInputNumber();
-			scoreCalculatorAndPrinter.calculate(inputNumber, randomNumber);
+			scoreCalculatorAndPrinter.calculate(inputNumber);
 		}
 		System.out.println(Message.COMPLETE.getMessage());
 		choiceRestart();
 	}
 
 	private void start() throws IOException {
-		play(new UserInputGenerator(bufferedReader, new UserInputValidator()), new RandomGenerator(),
-			new ScoreCalculatorAndPrinter());
+		play(new UserInputGenerator(bufferedReader, new UserInputValidator()), new RandomGenerator());
 	}
 
 	private void choiceRestart() throws IOException {
 		System.out.println(Message.RESTART_OR_END.getMessage());
-		if (Objects.equals(bufferedReader.readLine(), "1")) {
+		if (Objects.equals(bufferedReader.readLine(), CONTINUE_FLAG)) {
 			start();
 		}
 	}

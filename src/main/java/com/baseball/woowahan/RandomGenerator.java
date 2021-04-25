@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 랜덤 숫자 생성 모듈
+ */
 public class RandomGenerator {
 	private final int MAX_NUMBER = 9;
 	private final int MIN_NUMBER = 1;

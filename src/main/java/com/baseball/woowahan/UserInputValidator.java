@@ -7,6 +7,9 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 입력 값 유효성 체크 모듈
+ */
 class UserInputValidator {
 	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", GameManager.GAME_LENGTH, "}$");
 

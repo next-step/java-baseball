@@ -3,6 +3,9 @@ package com.baseball.woowahan;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * 사용자 입력 모듈
+ */
 public class UserInputGenerator {
 	private BufferedReader bufferedReader;
 	private UserInputValidator userInputValidator;
