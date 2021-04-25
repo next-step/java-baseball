@@ -1,14 +1,25 @@
 package game;
 
+import java.util.Scanner;
+
 public class BaseBallGame {
-    public void startGame() {
-        Hitter hitter = new Hitter();
-        Pitcher pitcher = new Pitcher();
-        startGame(hitter, pitcher);
+    private Referee referee;
+
+    public Referee getReferee() {
+        return referee;
     }
 
-    private void startGame(Hitter hitter, Pitcher pitcher) {
-        System.out.println("정답: " + hitter.getBallList());
-        System.out.println("입력 값: " + pitcher.getThrowBallList());
+    public void startGame() {
+        startGame(new Hitter());
+    }
+
+    private void startGame(Hitter hitter) {
+        this.referee = new Referee();
+        GameResult gameResult;
+
+        do {
+            gameResult = getReferee().getGameResult(new Pitcher(), hitter);
+            gameResult.printGameResult();
+        } while (!gameResult.isCorrect());
     }
 }

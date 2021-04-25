@@ -16,7 +16,7 @@ public class Hitter {
         this.ballList = createRandomBallList();
     }
 
-    public List<Integer> createRandomBallList() {
+    private List<Integer> createRandomBallList() {
         Set<Integer> randomNumberSet = new LinkedHashSet<>();
         Random random = new Random();
 
