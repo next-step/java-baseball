@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
@@ -11,8 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class BaseBallTest {
     @Test
     void create() {
-        assertThatCode(() -> BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).doesNotThrowAnyException();
-        assertThatCode(() -> BaseBall.of("159")).doesNotThrowAnyException();
+        assertThat(BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).isEqualTo(BaseBall.of("159"));
     }
 
     @ParameterizedTest
