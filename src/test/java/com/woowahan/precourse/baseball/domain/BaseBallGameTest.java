@@ -9,16 +9,17 @@ class BaseBallGameTest {
 
     @Test
     @DisplayName("세자리의 수는 서로 다른 수여야 한다.")
-    void shouldBeThreeNumberIsDifferentNumbers() {
+    void shouldThreeNumberIsDifferentNumbers() {
 
         for (int i = 0; i < 10000; i++) {
             String[] gameNumber = new BaseBallGame().getGameNumber();
+
             assertThat(isDifferentNumbers(gameNumber)).isTrue();
         }
     }
 
     @Test
-    @DisplayName("shouldBeThreeNumberIsDifferentNumbers()에서 사용된 isDifferentNumbers()가 세개의 서로다른 수를 정확히 검증하고 있는지 확인")
+    @DisplayName("shouldThreeNumberIsDifferentNumbers()에서 사용된 isDifferentNumbers()가 세개의 서로다른 수를 정확히 검증하고 있는지 확인")
     void isDifferentNumbersTest() {
         // 3자리가 모두 다른지 확인 가능한 모든 경우의 수는 아래 4개 뿐이다.
         String[] str1 = new String[] { "1", "1", "1" };
