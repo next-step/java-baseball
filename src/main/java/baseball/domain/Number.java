@@ -47,8 +47,8 @@ public class Number {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final var that = (Number) o;
-        return value == that.value;
+        Number number = (Number) o;
+        return value == number.value;
     }
 
     @Override
