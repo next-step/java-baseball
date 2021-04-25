@@ -99,4 +99,37 @@ public class Baseball {
     private int countIfBall(int i, int sameIndex) {
         return i != sameIndex && sameIndex != -1 ? 1 : 0;
     }
+
+    /**
+     * Baseball 정답수와 예측수를 비교 판단한 결과로 출력할 문장을 만들어낸다.
+     */
+    public String makeComparisonResultString(BaseballComparisonResult comparisonResult) {
+        int strike = comparisonResult.strikeCount;
+        int ball = comparisonResult.ballCount;
+
+        StringBuffer sb = new StringBuffer("");
+
+        if (!comparisonResult.hasStrikeCount() && !comparisonResult.hasBallCount()) {
+            return "낫싱";
+        }
+
+        if (comparisonResult.hasStrikeCount()) {
+            sb.append(strike + " 스트라이크");
+        }
+
+        if (comparisonResult.hasBothCount()) {
+            sb.append(" ");
+        }
+
+        if (comparisonResult.hasBallCount()) {
+            sb.append(ball + " 볼");
+        }
+
+        if (strike == 3) {
+            sb.append("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            sb.append("\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        }
+
+        return sb.toString();
+    }
 }
