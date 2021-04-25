@@ -56,4 +56,24 @@ public class GameResultTest {
         assertThat(result.getResultString()).isEqualTo("낫싱");
     }
 
+    @Test
+    public void threeStrikeJudgeTest(){
+        GameResult result = new GameResult();
+
+        result.strike = 3;
+        assertThat(result.isThreeStrike()).isTrue();
+
+        result.strike = 2;
+        result.ball = 1;
+        assertThat(result.isThreeStrike()).isFalse();
+
+        result.strike = 0;
+        result.ball = 0;
+        assertThat(result.isThreeStrike()).isFalse();
+
+        result.strike = 0;
+        result.ball = 2;
+        assertThat(result.isThreeStrike()).isFalse();
+    }
+
 }

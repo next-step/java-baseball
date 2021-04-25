@@ -46,6 +46,67 @@ public class GameTest {
     }
 
     @Test
+    public void judgeGameResultTest(){
+
+        Game game = new Game();
+        GameResult gameResult = new GameResult();
+        Boolean isGameContinue;
+
+        try {
+            Method judgeResultMethod = game.getClass().getDeclaredMethod("judgeResult", GameResult.class);
+            judgeResultMethod.setAccessible(true);
+
+            //낫싱
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isTrue();
+
+            //1ball
+            gameResult.addBall();
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isTrue();
+
+            //2ball
+            gameResult.addBall();
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isTrue();
+
+            //2b 1s
+            gameResult.addStrike();
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isTrue();
+
+            //2s 1b
+            gameResult = new GameResult();
+            gameResult.addStrike();
+            gameResult.addStrike();
+            gameResult.addBall();
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isTrue();
+
+            //3b
+            gameResult = new GameResult();
+            gameResult.addBall();
+            gameResult.addBall();
+            gameResult.addBall();
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isTrue();
+
+            //3s
+            gameResult = new GameResult();
+            gameResult.addStrike();
+            gameResult.addStrike();
+            gameResult.addStrike();
+            isGameContinue = (Boolean) judgeResultMethod.invoke(game, gameResult);
+            assertThat(isGameContinue).isFalse();
+
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    @Test
     public void duplicatedInputValidationFuncTest(){
         Game game = new Game();
         Boolean isDuplicate;
