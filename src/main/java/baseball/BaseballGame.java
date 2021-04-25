@@ -70,7 +70,7 @@ public class BaseballGame {
 		return true;
 	}
 	
-	public static boolean isIntegerValue(String value) {
+	public static boolean isIntegerValue(final String value) {
 		try {
 			Integer.parseInt(value);
 			return true;
