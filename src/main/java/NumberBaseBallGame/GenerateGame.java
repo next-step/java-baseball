@@ -1,8 +1,6 @@
 package NumberBaseBallGame;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class GenerateGame {
 	private final int[] gameNumbers;
@@ -78,18 +76,13 @@ public class GenerateGame {
 		int result = 0;
 		for(int i = 0; i < GAMENUMBERS_LENGTH; i++){
 			if(gameNumbers[i] == clientNumber[i]) continue;
-			result = binarySearch(clientNumber[i], result);
+			result = checkContains(clientNumber[i], result);
 		}
 		return result;
 	}
 
-	private int binarySearch(int aClientNumber, int result){
-		try{
-			Arrays.binarySearch(gameNumbers, aClientNumber);
-			result++;
-		}catch (ArrayIndexOutOfBoundsException e){
-			System.out.println("찾는요소없음.");
-		}
+	private int checkContains(int aClientNumber, int result){
+		for (int item : gameNumbers) if(item == aClientNumber) result++;
 		return result;
 	}
 
