@@ -2,24 +2,42 @@ package com.nextstep.precourse.computer;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Computer {
-	private String answer = "000";
+	private static final int ANSWER_LENGTH = 3;
+
+	private String answer;
 
 	public String generateNewAnswer() {
-		int randomNumber = 0;
+		Random random = null;
 		try {
-			SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
-			randomNumber = secureRandom.nextInt(1000);
+			random = SecureRandom.getInstance("SHA1PRNG");
 		} catch (NoSuchAlgorithmException e) {
-			Random random = new Random();
-			randomNumber = random.nextInt(1000);
+			random = new Random();
 		}
-		return String.format("%03d", randomNumber);
+
+		String newAnswer = "";
+		List<Integer> selectedNumber = new ArrayList<>();
+		while (newAnswer.length() != ANSWER_LENGTH) {
+			newAnswer += generateRandomOneNumber(random, selectedNumber);
+		}
+		this.answer = newAnswer;
+		return newAnswer;
 	}
 
-	public void startNewGame() {
-		this.answer = generateNewAnswer();
+	private String generateRandomOneNumber(Random random, List<Integer> selectedNumber) {
+		int randomNumber = random.nextInt(9) + 1;
+		if (!selectedNumber.contains(randomNumber)) {
+			selectedNumber.add(randomNumber);
+			return Integer.toString(randomNumber);
+		}
+		return "";
+	}
+
+	public void ready() {
+		generateNewAnswer();
 	}
 }

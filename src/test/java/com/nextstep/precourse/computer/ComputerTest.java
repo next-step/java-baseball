@@ -14,9 +14,12 @@ public class ComputerTest {
 	public void generateNewAnswerTest() {
 		Computer computer = new Computer();
 		String newAnswer = computer.generateNewAnswer();
-
-		List<Object> charList = Arrays.asList(newAnswer.toCharArray());
+		char[] answerChars = newAnswer.toCharArray();
+		List<Object> charList = Arrays.asList(answerChars);
 		assertThat(charList).allMatch(ch -> Character.isDigit((char)ch))
+			.doesNotContain('0')
 			.hasSize(3);
+		assertThat(
+			answerChars[0] == answerChars[1] || answerChars[0] == answerChars[2] || answerChars[1] == answerChars[2]);
 	}
 }
