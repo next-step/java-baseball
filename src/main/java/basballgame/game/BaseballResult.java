@@ -1,8 +1,5 @@
 package basballgame.game;
 
-import basballgame.ui.HintMessages;
-import basballgame.ui.output.Output;
-
 public class BaseballResult {
 	private int strike;
 	private int ball;
@@ -30,25 +27,6 @@ public class BaseballResult {
 
 	public boolean isNothing() {
 		return this.strike == 0 && this.ball == 0;
-	}
-	
-	public void print() {
-		if (isNothing()) {
-			Output.print(HintMessages.NOTHING_TEXT);
-			return;
-		}
-
-		if (onlyStrike()) {
-			Output.print(HintMessages.strikeMessage(getStrike()));
-			return;
-		}
-
-		if (onlyBall()) {
-			Output.print(HintMessages.ballMessage(getBall()));
-			return;
-		}
-
-		Output.print(HintMessages.strikeAndBallMessage(getStrike(), getBall()));
 	}
 
 	public boolean isCorrectAnswer() {
