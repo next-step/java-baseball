@@ -6,18 +6,28 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class GameMakerTest {
-	private final GameMaker gameMaker;
+	private GameMaker gameMaker;
+	private Set<Integer> gameSet;
 
-	GameMakerTest(){
-		this.gameMaker = new GameMaker();
+	@BeforeEach
+	void setUp() {
+		gameMaker = new GameMaker();
+		gameSet = new LinkedHashSet<>();
+		gameSet.add(1);
+		gameSet.add(2);
+		gameSet.add(3);
 	}
 
 	@DisplayName("난수 반복테스트")
@@ -33,15 +43,11 @@ class GameMakerTest {
 	@Test
 	void inputNumber() {
 		String input = "123";
-		Set<Integer> inputSet = new HashSet<>();
-		inputSet.add(1);
-		inputSet.add(2);
-		inputSet.add(3);
 
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 
-		assertThat(gameMaker.inputNumber()).isEqualTo(inputSet);
+		assertThat(gameMaker.inputNumber()).isEqualTo(gameSet);
 	}
 
 	@DisplayName("플레이어 입력 유효성 체크 테스트")
@@ -62,5 +68,52 @@ class GameMakerTest {
 				gameMaker.inputNumber();
 			}).isInstanceOf(RuntimeException.class);
 		}
+	}
+
+	@DisplayName("점수 매기기 테스트")
+	@ParameterizedTest
+	@CsvSource(value = {"1,2,3:3,0",  "1,2,4:2,0", "3,2,1:1,2", "6,7,8:0,0","3,1,2:0,3"}, delimiter = ':')
+	void getScore(String playerNumber, String result) {
+		String[] playerNumberList = playerNumber.split(",");
+		String[] resultList = result.split(",");
+
+		Set<Integer> playerSet = new LinkedHashSet<>();
+		for(String s : playerNumberList){
+			playerSet.add(Integer.parseInt(s));
+		}
+
+
+		int matchCount = gameMaker.countMatch(gameSet, playerSet);
+		int countContain = gameMaker.countContain(gameSet, playerSet);
+		int strikeCount = gameMaker.getStrike(matchCount);
+		int ballCount = gameMaker.getBall(matchCount, countContain);
+
+		assertThat(strikeCount).isEqualTo(Integer.parseInt(resultList[0]));
+		assertThat(ballCount).isEqualTo(Integer.parseInt(resultList[1]));
+	}
+
+	@DisplayName("플레이어 승리 판별 테스트")
+	@Test
+	void getWinner() {
+		Set<Integer> playerSet = new LinkedHashSet<>();
+		playerSet.add(1);
+		playerSet.add(2);
+		playerSet.add(3);
+
+		assertThat(gameMaker.getWinner(gameSet, playerSet)).isTrue();
+
+		playerSet.clear();
+		playerSet.add(3);
+		playerSet.add(6);
+		playerSet.add(9);
+
+		assertThat(gameMaker.getWinner(gameSet, playerSet)).isFalse();
+
+		playerSet.clear();
+		playerSet.add(3);
+		playerSet.add(2);
+		playerSet.add(1);
+
+		assertThat(gameMaker.getWinner(gameSet, playerSet)).isFalse();
 	}
 }
