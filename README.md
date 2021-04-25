@@ -7,6 +7,14 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
+(* 최초 작성한 내용)
+- 1부터 9까지 서로 다른 임의의 수 3개를 선택하는 기능
+- 숫자 두 개를 입력 받아 스트라이크, 볼을 판정 하는 기능
+- 세자리 수 두 쌍을 입력 받아 스트라이크와 볼 개수를 리턴하는 기능
+- 대화형 입출력 기능
+
+
+## 구현 기능 목록
 - BallCount Class
   - 멤버변수
     - private int strike: 스트라이크 수
