@@ -7,7 +7,7 @@ import ui.PrintOutputManager;
 public class ThreeStrikeState implements GameState {
 
 	private final OutputManager outputManager = PrintOutputManager.getInstance();
-	
+
 	private static GameState gameState = new ThreeStrikeState();
 
 	private ThreeStrikeState() {
@@ -25,9 +25,9 @@ public class ThreeStrikeState implements GameState {
 		if (isThreeStrike(computerBaseballNumbers, userBaseballNumbers)) {
 			game.setGameState(EndState.getInstance());
 			game.progress();
-
 			return;
 		}
+
 		game.setGameState(StrikeAndBallState.getInstance());
 		game.progress();
 	}
@@ -36,11 +36,7 @@ public class ThreeStrikeState implements GameState {
 		boolean result = true;
 
 		for (int i = 0; i < computerBaseballNumbers.size(); i++) {
-			if (computerBaseballNumbers.get(i) != userBaseballNumbers.get(i)) {
-				result = false;
-
-				return result;
-			}
+			result = result && (computerBaseballNumbers.get(i)).equals(userBaseballNumbers.get(i));
 		}
 
 		if (result) {
