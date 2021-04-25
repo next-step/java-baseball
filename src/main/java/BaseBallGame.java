@@ -23,9 +23,7 @@ public class BaseBallGame {
             if (!isValidInputValue(inputNumbers)) {
                 continue;
             }
-            int[] strikeBallCount = calculate(threeNumbers, inputNumbers);
-            printResult(strikeBallCount[0], strikeBallCount[1]);
-            if (strikeBallCount[0] == 3) {
+            if (isThreeStrikes(threeNumbers, inputNumbers)) {
                 return end();
             }
         }
@@ -41,7 +39,6 @@ public class BaseBallGame {
             num2 = random.nextInt(9) + 1;
             num3 = random.nextInt(9) + 1;
         }
-
         return String.valueOf(num1) + num2 + num3;
     }
 
@@ -76,6 +73,12 @@ public class BaseBallGame {
             }
         }
         return true;
+    }
+
+    private boolean isThreeStrikes(String threeNumbers, String inputNumbers) {
+        int[] strikeBallCount = calculate(threeNumbers, inputNumbers);
+        printResult(strikeBallCount[0], strikeBallCount[1]);
+        return strikeBallCount[0] == 3;
     }
 
     private int[] calculate(String inputNumbers, String threeNumbers) {
@@ -118,14 +121,11 @@ public class BaseBallGame {
     }
 
     private int end() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-        System.out.println("게임을 새로 시작하려면 1. 종료하려면 2를 입력하세요.");
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1. 종료하려면 2를 입력하세요.");
         Scanner scanner = new Scanner(System.in);
         while (true) {
             int endValue = scanner.nextInt();
-            if (endValue == 1) {
-                return endValue;
-            } else if (endValue == 2) {
+            if (endValue == 1 || endValue == 2) {
                 return endValue;
             }
             System.out.println("유효하지 않은 입력 값 입니다. 다시 입력 해주세요.");
