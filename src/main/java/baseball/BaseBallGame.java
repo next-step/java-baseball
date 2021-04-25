@@ -1,31 +1,92 @@
 package baseball;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
+
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class BaseBallGame {
-    public static void main(String[] args) {
-        int i[] = createComNum();
+    int[] comNum = new int[3];
+    int[] userNum = new int[3];
 
-        System.out.println("x");
-    }
+    int strike;	// 스트라이크 개수
+	int ball;	// 볼 개수
+
+    Scanner sc = new Scanner(System.in);
 
     // 컴퓨터의 수를 생성한다.
-    public static int[] createComNum(){
-        int comNum[] = new int[3];
-        Random ran = new Random();
-        
-        for (int i=0; i < comNum.length; i++){
+    public void createComNum(){
+        Set<Integer> numSet = new HashSet<Integer>();
+		
+		// Set을 이용한 3개의 난수 생성
+		while(numSet.size()<3){
+			numSet.add( (int)(Math.random() * 9 + 1) );
+		}
+		
+		Iterator<Integer> it = numSet.iterator();
+		
+		int i = 0; 
+		while(it.hasNext()){
+			comNum[i++] = it.next().intValue();
+		}
+		
+		// 데이터를 섞는다.
+		for(int j=1; j<=100; j++){  
+			int rnd = (int)(Math.random() * comNum.length);  // 0 ~ 2 사이의 난수
+			int temp = comNum[0];
+			comNum[0] = comNum[rnd];
+			comNum[rnd] = temp;
+		}
+    }
 
-            comNum[i] = ran.nextInt(10);
+    public void inputUserNum(){
+		int inputUser, cnt = 0;  // 입력한 값을 저장할 변수
+		
+		do{
+			System.out.print("숫자를 입력해주세요 : ");
+			inputUser = sc.nextInt();
+			
+            if (inputUser > 99 && inputUser <= 999){
+                LinkedList<Integer> stack = new LinkedList<Integer>();
 
-			for (int j = 0; j < i; j++) {
-				if (comNum[j] == comNum[i]) {
-					i--;
-					break;
+                while (inputUser > 0){
+                    stack.push(inputUser % 10);
+                    inputUser = inputUser / 10;
+                }
+
+                while ((!stack.isEmpty())){
+                    userNum[cnt] = stack.pop();
+                    cnt++;
                 }
             }
-        }
+		}while(inputUser != 0);
+	}
 
-        return comNum;
+    public void gameStart(){
+		
+        // 컴퓨터 수 난수 생성
+		createComNum();
+		
+		// 확인용
+		System.out.println("난수값 => " + userNum[0] + " " + userNum[1] + " " + userNum[2]);
+		
+		do{
+			inputUserNum(); // 사용자 입력 메서드 호출
+			// ballCount();  // 볼카운트하는 메서드 호출
+		}while(strike!=3);  // 3 스트라이크가 될 때까지 반복
+		
+		// 다시 시작하시겠습니까?
+	}
+
+    public static void main(String[] args) {
+
+        BaseBallGame bbg = new BaseBallGame();
+        bbg.gameStart();
     }
+
+    
+    
 }
