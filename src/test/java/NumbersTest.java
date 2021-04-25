@@ -20,6 +20,8 @@ class NumbersTest {
     @DisplayName("스트라이크 확인")
     void strike() {
         assertThat(numbers.strike(Arrays.asList(1, 2, 3))).isEqualTo(3);
+        assertThat(numbers.strike(Arrays.asList(1, 2, 4))).isEqualTo(2);
+        assertThat(numbers.strike(Arrays.asList(5, 6, 7))).isEqualTo(0);
     }
 
     @Test

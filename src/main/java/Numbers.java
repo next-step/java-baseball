@@ -17,7 +17,7 @@ public class Numbers {
         int strikeNumber = 0;
         for (Integer quizNumber : quizNumbers) {
             int indexOf = userNumbers.indexOf(quizNumber);
-            if (quizNumbers.get(indexOf).equals(quizNumber)) {
+            if (indexOf != -1 && quizNumbers.get(indexOf).equals(quizNumber)) {
                 strikeNumber++;
             }
         }
