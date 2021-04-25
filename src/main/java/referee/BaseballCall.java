@@ -8,31 +8,37 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseballCall {
-    private static int strike = 0;
-    private static int ball = 0;
-
+    /*
+        판정 메서드
+    */
     public static boolean callMethod(String player, String counter){
-        cntStrike(player, counter);
-        cntBall(player, counter);
+        int strike = cntStrike(player, counter);
+        int ball = cntBall(player, counter, strike);
         boolean ret = false;
         if(strike == 3) {
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            ret = InputApi.input(Message.GAME_START.getMessage(), "start").equals("1") ? true : false;
-            return ret;
+            System.out.println(Message.GAME_OVER.getMessage());
+            return true;
         }
         System.out.println(strike + " 스트라이크 " + ball + " 볼 ");
-        return ret;
+        return false;
     }
 
-    private static void cntStrike(String player, String counter){
+    /*
+        스트라이크 판정 메서드
+    */
+    private static int cntStrike(String player, String counter){
+        int strike = 0;
         for(int i=0; i<3; i++){
             strike += player.charAt(i) == counter.charAt(i) ? 1 : 0;
         }
-
+        return strike;
     }
 
-    private static void cntBall(String player, String counter){
-        ball = -strike;
+    /*
+        봂 판정 메서드
+    */
+    private static int cntBall(String player, String counter, int strike){
+        int ball = -strike;
         Set<Character> pitNum = new HashSet<Character>();
         for(int i=0; i<3; i++){
             pitNum.add(player.charAt(i));
@@ -40,5 +46,6 @@ public class BaseballCall {
         for(int i=0; i<3; i++){
             ball += pitNum.contains(counter.charAt(i)) ? 1 : 0;
         }
+        return ball;
     }
 }
