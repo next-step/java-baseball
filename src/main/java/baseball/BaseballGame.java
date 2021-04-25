@@ -50,6 +50,15 @@ public class BaseballGame {
 		return value.length() == length;
 	}
 	
+	public static boolean isRetryOrEnd(BufferedReader br) throws IOException {
+		do {
+			System.out.println("게임을 새로 사작하려면 1, 종료하려면 2를 입력하세요.");
+			String inputValue = br.readLine();
+			if (inputValue.equals("1")) return true;
+			if (inputValue.equals("2")) return false;
+		} while (true);
+	}
+	
 	public static BallCount takeBallCount(final List<Integer> randomIntegerList, final List<Integer> inputIntegerList) {
 		int len = randomIntegerList.size();		
 		BallCount ballCount = new BallCount(len);
