@@ -6,10 +6,13 @@
 */
 package baseball.core;
 
+import baseball.exception.BaseballException;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
 public class BaseballGameExecutor {
+
+	private static final String MENU_REGEX = "^[1-2]$";
 
 	private final InputView userInput;
 
@@ -39,7 +42,12 @@ public class BaseballGameExecutor {
 	}
 
 	private boolean checkContinueGame() {
+
 		String continueInput = this.userInput.getMakeContinueInput();
+
+		if (continueInput.matches(MENU_REGEX) == false) {
+			throw new BaseballException("1 or 2만 입력가능합니다.");
+		}
 
 		if ("1".equals(continueInput)) {
 			return false;
