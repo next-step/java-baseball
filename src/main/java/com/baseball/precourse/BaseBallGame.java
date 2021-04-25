@@ -109,6 +109,7 @@ public class BaseBallGame extends Thread {
 			ball += checkBallPoint(computerNums, playerNums.charAt(i)-'0', i);
 			strike += checkStrikePoint(computerNums, playerNums.charAt(i)-'0', i);
 		}
+		printJudgement(strike, ball);
 		return strike;
 	}
 	
@@ -130,5 +131,22 @@ public class BaseBallGame extends Thread {
 	
 	public void printErrorLog() {
 		System.out.print("서로 다른 3자리의 숫자만 입력이 가능합니다.");
+	}
+	
+	public void printJudgement(int strike, int ball) {
+		StringBuilder sb = new StringBuilder();
+		if ( strike > START_STRIKE && strike < MAX_STRIKE ) {
+			sb.append(String.format("%d 스트라이크 ", strike));
+		}
+		
+		if ( ball > START_BALL ) {
+			sb.append(String.format("%d 볼 ", ball));
+		}
+		
+		if ( strike == START_STRIKE && ball == START_BALL ) {
+			sb.append("낫싱");
+		}
+		
+		System.out.println(sb.toString());
 	}
 }
