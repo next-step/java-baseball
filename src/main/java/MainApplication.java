@@ -26,11 +26,11 @@ public class MainApplication {
       List<Character> inputNumber = mainApplication.convertToList(scanner.nextLine().toCharArray());
 
       if (!mainApplication.validateInputNumber(inputNumber)) {
-        System.out.println("중복 되지 않은 3자리의 숫자를 입력해주세요.");
+        System.out.println("중복 되지 않은 1~9까지의 3자리 숫자를 입력해주세요.");
         continue;
       }
 
-      List<Character> tempRandomNumber = randomNumber;
+      List<Character> tempRandomNumber = new LinkedList<>(randomNumber);
 
       int strike = mainApplication.validateStrike(tempRandomNumber, inputNumber);
       int ball = mainApplication.validateBall(tempRandomNumber, inputNumber);
@@ -46,8 +46,11 @@ public class MainApplication {
 
   // 입력값 검증
   private boolean validateInputNumber(List<Character> inputNumber) {
-    Set<Character> characterSet = new HashSet<>();
-    characterSet.addAll(inputNumber);
+    Set<Character> characterSet = new HashSet<>(inputNumber);
+
+    if (characterSet.contains('0')) {
+      return false;
+    }
 
     return characterSet.size() == 3;
   }
@@ -87,6 +90,7 @@ public class MainApplication {
         randomNumber.remove(i);
         inputNumber.remove(i);
         size = randomNumber.size();
+        i--;
       }
     }
 
@@ -102,7 +106,7 @@ public class MainApplication {
       }
     }
 
-    return ball != 0 ? ball : 4;
+    return ball;
   }
 
   // 결과 출력
@@ -110,8 +114,13 @@ public class MainApplication {
     if (strike > 0) {
       System.out.print(strike + " 스트라이크 ");
     }
+
     if (ball > 0) {
       System.out.print(ball + " 볼");
+    }
+
+    if (strike == 0 && ball == 0) {
+      System.out.print("4 볼");
     }
 
     System.out.println();
