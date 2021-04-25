@@ -57,4 +57,18 @@ public class BaseballTest {
 		assertThat(BaseballGame.isIntegerValue("안녕하세요1234"))
 			.isEqualTo(false);
 	}
+	
+	@Test
+	@DisplayName("중복 숫자 존재여부 통과 테스트")
+	public void validate_duplicate_number_pass_test() {
+		assertThat(BaseballGame.validateDuplicateNumber("873"))
+			.isEqualTo(true);
+	}
+	
+	@Test
+	@DisplayName("중복 숫자 존재여부 실패 테스트")
+	public void validate_duplicate_number_fail_test() {
+		assertThat(BaseballGame.validateDuplicateNumber("883"))
+			.isEqualTo(false);
+	}
 }
