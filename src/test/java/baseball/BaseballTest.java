@@ -69,4 +69,22 @@ public class BaseballTest {
     public void countBallsTest(String baseballNumberString, String predictionNumberString, int expected) {
         assertEquals(baseball.countBalls(baseballNumberString, predictionNumberString), expected);
     }
+
+    @DisplayName("정답수와 예측수를 비교한 결과(스트라이크 개수, 볼 개수)출력 문자열 생성 중 올스트라이크 제외 테스트 한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,1 스트라이크 2 볼", "2,0,2 스트라이크", "0,3,3 볼", "0,0,낫싱"}, delimiter = ',')
+    public void makeComparisonResultStringTest(int strikeCount, int ballCount, String expected) {
+        String resultString = baseball.makeComparisonResultString(new BaseballComparisonResult(strikeCount, ballCount));
+        assertThat(resultString).isEqualTo(expected);
+    }
+
+    @DisplayName("정답수와 예측수를 비교한 결과(스트라이크 개수, 볼 개수)출력 문자열 생성 중 올스트라이크 테스트 한다.")
+    @Test
+    public void makeComparisonResultStringAllStrikeTest() {
+        String resultString = baseball.makeComparisonResultString(new BaseballComparisonResult(3, 0));
+        String allStrikeExpected = "3 스트라이크" +
+                "\n3개의 숫자를 모두 맞히셨습니다! 게임 종료" +
+                "\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+        assertThat(resultString).isEqualTo(allStrikeExpected);
+    }
 }
