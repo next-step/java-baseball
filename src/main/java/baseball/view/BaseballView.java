@@ -11,6 +11,9 @@ public class BaseballView {
     private final BaseballService baseballService;
     private final Scanner sc;
     private final String MESSAGE_ENTER_NUMERIC = "숫자를 입력해주세요 : ";
+    private final String MESSAGE_RE_GAME = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요";
+    private final int ANSWER_RE_GAME = 1;
+    private final int ANSWER_EXIT = 2;
 
     public BaseballView() {
         baseballService = new BaseballService();
@@ -22,7 +25,7 @@ public class BaseballView {
         while (isContinued){
             BaseballNumbers answer = this.baseballService.generateAnswer();
             deduceNumber(answer);
-            isContinued = false;
+            isContinued = askAboutReGame();
         }
     }
 
@@ -47,5 +50,17 @@ public class BaseballView {
         }
     }
 
+    private boolean askAboutReGame() {
+        System.out.println(MESSAGE_RE_GAME);
+
+        boolean result = false;
+        int playerAnswer = sc.nextInt();
+        if (playerAnswer == ANSWER_RE_GAME)
+            result = true;
+        else if (playerAnswer == ANSWER_EXIT)
+            result = false;
+
+        return result;
+    }
 
 }
