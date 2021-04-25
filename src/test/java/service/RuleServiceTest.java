@@ -39,4 +39,28 @@ class RuleServiceTest {
         assertThat(ruleService.countStrike(BOT_NUMBER, new int[]{1, 2, 3})).isEqualTo(2);
         assertThat(ruleService.countStrike(BOT_NUMBER, new int[]{1, 2, 5})).isEqualTo(3);
     }
+
+    @DisplayName("The number of balls should be correct")
+    @Test
+    void testCountBall() {
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{6, 7, 8})).isEqualTo(0);
+
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{1, 8, 9})).isEqualTo(1);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{8, 1, 9})).isEqualTo(1);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{8, 9, 1})).isEqualTo(1);
+
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{1, 2, 9})).isEqualTo(2);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{1, 9, 2})).isEqualTo(2);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{2, 1, 9})).isEqualTo(2);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{2, 9, 1})).isEqualTo(2);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{9, 1, 2})).isEqualTo(2);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{9, 2, 1})).isEqualTo(2);
+
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{1, 2, 5})).isEqualTo(3);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{1, 5, 2})).isEqualTo(3);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{2, 1, 5})).isEqualTo(3);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{2, 5, 1})).isEqualTo(3);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{5, 1, 2})).isEqualTo(3);
+        assertThat(ruleService.countBall(BOT_NUMBER, new int[]{5, 2, 1})).isEqualTo(3);
+    }
 }

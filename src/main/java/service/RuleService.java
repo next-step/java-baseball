@@ -12,6 +12,16 @@ class RuleService {
         return count;
     }
 
+    int countBall(int[] botNumber, int[] userNumber) {
+        int count = 0;
+        for (int i : userNumber) {
+            if (isOverlap(botNumber, i)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     boolean isOverlap(int[] arr, int newNumber) {
         for (int number : arr) {
             if (number == newNumber) {
