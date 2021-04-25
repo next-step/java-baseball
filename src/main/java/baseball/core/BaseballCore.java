@@ -77,4 +77,14 @@ public class BaseballCore {
 		ScoreCode.printScore(scoreCode);
 		return scoreCode;
 	}
+
+	/**
+	 * 게임을 초기화한다.
+	 * - 게임이 새로 시작하는 경우에만 게임을 초기화한다.
+	 */
+	public void resetGameWhenNewGame() {
+		if (this.isEndGame) {
+			this.makeGame();
+		}
+	}
 }

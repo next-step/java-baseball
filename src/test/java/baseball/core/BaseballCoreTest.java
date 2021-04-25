@@ -26,8 +26,9 @@ import baseball.code.ScoreCode;
 public class BaseballCoreTest {
 
 	private BaseballCore core;
-	private Set<Character> numbersForResetInInstance;
-	private List<Character> numbersForGameInInstance;
+	private Field fieldNumbersForReset;
+	private Field fieldNumbersForGame;
+	private Field fieldIsEndGame;
 	private Method makeGame;
 	private Method countBall;
 	private Method countStrike;
@@ -39,22 +40,23 @@ public class BaseballCoreTest {
 		// 대조군
 		this.core = new BaseballCore();
 
-		Field fieldNumbersForReset = this.core.getClass().getDeclaredField("numbersForReset");
-		fieldNumbersForReset.setAccessible(true);
-		numbersForResetInInstance = (Set<Character>) fieldNumbersForReset.get(this.core);
+		// fields
+		this.fieldNumbersForReset = this.core.getClass().getDeclaredField("numbersForReset");
+		this.fieldNumbersForReset.setAccessible(true);
+		this.fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
+		this.fieldNumbersForGame.setAccessible(true);
+		this.fieldIsEndGame = this.core.getClass().getDeclaredField("isEndGame");
+		this.fieldIsEndGame.setAccessible(true);
 
-		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
-		fieldNumbersForGame.setAccessible(true);
-		numbersForGameInInstance = (List<Character>) fieldNumbersForGame.get(this.core);
-
-		makeGame = this.core.getClass().getDeclaredMethod("makeGame");
-		makeGame.setAccessible(true);
-		countBall = this.core.getClass().getDeclaredMethod("countBall", String.class);
-		countBall.setAccessible(true);
-		countStrike = this.core.getClass().getDeclaredMethod("countStrike", String.class);
-		countStrike.setAccessible(true);
-		finalScore = this.core.getClass().getDeclaredMethod("finalScore", String.class);
-		finalScore.setAccessible(true);
+		// methods
+		this.makeGame = this.core.getClass().getDeclaredMethod("makeGame");
+		this.makeGame.setAccessible(true);
+		this.countBall = this.core.getClass().getDeclaredMethod("countBall", String.class);
+		this.countBall.setAccessible(true);
+		this.countStrike = this.core.getClass().getDeclaredMethod("countStrike", String.class);
+		this.countStrike.setAccessible(true);
+		this.finalScore = this.core.getClass().getDeclaredMethod("finalScore", String.class);
+		this.finalScore.setAccessible(true);
 	}
 
 	@Test
@@ -70,6 +72,9 @@ public class BaseballCoreTest {
 		// 낮은 확률로 numbersForGameInInstance(List<String>)이 "1","2","3"이 순서대로 들어가서 오류를 발생할 수도 있다.
 		for (int i = 0; i < 5; i++) {
 			this.makeGame.invoke(this.core);
+
+			Set<Character> numbersForResetInInstance = (Set<Character>) this.fieldNumbersForReset.get(this.core);
+			List<Character> numbersForGameInInstance = (List<Character>) this.fieldNumbersForGame.get(this.core);
 
 			System.out.println(numbersForResetInInstance);
 			System.out.println(numbersForGameInInstance);
@@ -94,7 +99,7 @@ public class BaseballCoreTest {
 		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
 		fieldNumbersForGame.setAccessible(true);
 		fieldNumbersForGame.set(this.core, numbersForGame);
-		System.out.println("numbersForGameInInstance : " + this.numbersForGameInInstance);
+		System.out.println("numbersForGameInInstance : " + fieldNumbersForGame.get(this.core));
 
 		String[] playerInputsArr = playerInputs.split(",");
 		String[] expectedScoreArr = expectedScores.split(",");
@@ -132,7 +137,7 @@ public class BaseballCoreTest {
 		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
 		fieldNumbersForGame.setAccessible(true);
 		fieldNumbersForGame.set(this.core, numbersForGame);
-		System.out.println("numbersForGameInInstance : " + this.numbersForGameInInstance);
+		System.out.println("numbersForGameInInstance : " + fieldNumbersForGame.get(this.core));
 
 		String[] playerInputsArr = playerInputs.split(",");
 		String[] expectedScoreArr = expectedScores.split(",");
@@ -160,7 +165,7 @@ public class BaseballCoreTest {
 	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected strikes. {2} are a List of expected balls.")
 	@Order(4)
 	@CsvSource(value = {"142,182,582;0,0,0;1,2,3", "148,428,852;1,1,1;0,1,2", "147,258;0,3;0,0"}, delimiter = ';')
-	public void testCountStrike(String playerInputs, String expectedStrikeScores, String expectedBallScores) throws
+	public void testFinalScore(String playerInputs, String expectedStrikeScores, String expectedBallScores) throws
 		InvocationTargetException,
 		IllegalAccessException,
 		NoSuchFieldException {
@@ -170,7 +175,7 @@ public class BaseballCoreTest {
 		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
 		fieldNumbersForGame.setAccessible(true);
 		fieldNumbersForGame.set(this.core, numbersForGame);
-		System.out.println("numbersForGameInInstance : " + this.numbersForGameInInstance);
+		System.out.println("numbersForGameInInstance : " + fieldNumbersForGame.get(this.core));
 
 		String[] playerInputsArr = playerInputs.split(",");
 		String[] expectedStrikeScoresArr = expectedStrikeScores.split(",");
@@ -200,5 +205,38 @@ public class BaseballCoreTest {
 			assertThat(scoreCode.getStrike()).isEqualTo(Integer.parseInt(expectedStrikeScoresArr[i]));
 			assertThat(scoreCode.getBall()).isEqualTo(Integer.parseInt(expectedBallScoresArr[i]));
 		}
+	}
+
+	@DisplayName(value = "5. Reset Game when start new game.")
+	@ParameterizedTest(name = "{index} - {0} is 'isEndGame'. {1} is same previous game.")
+	@Order(5)
+	@CsvSource(value = {"false;true", "true;false"}, delimiter = ';')
+	public void testResetGameWhenNewGame(boolean isEndGame, boolean isSamePrevGame) throws
+		IllegalAccessException,
+		NoSuchFieldException {
+
+		List<Character> numbersForGame = Lists.newArrayList('2', '5', '8');
+		List<Character> cloneNumbersForGame = Lists.newArrayList('2', '5', '8');
+
+		Field fieldIsEndGame = this.core.getClass().getDeclaredField("isEndGame");
+		fieldIsEndGame.setAccessible(true);
+		fieldIsEndGame.set(this.core, isEndGame);
+		System.out.println("isEndGameInInstance : " + fieldIsEndGame.get(this.core));
+
+		Field fieldNumbersForGame = this.core.getClass().getDeclaredField("numbersForGame");
+		fieldNumbersForGame.setAccessible(true);
+		fieldNumbersForGame.set(this.core, numbersForGame);
+		System.out.println("numbersForGameInInstance : " + fieldNumbersForGame.get(this.core));
+
+		System.out.println("isEndGame : " + isEndGame);
+		System.out.println("isSamePrevGame : " + isSamePrevGame);
+
+
+		this.core.resetGameWhenNewGame();
+
+		List<Character> numbersForGameInInstance = (List<Character>) this.fieldNumbersForGame.get(this.core);
+		System.out.println("isEndGameInInstance : " + numbersForGameInInstance);
+
+		assertThat(numbersForGameInInstance.containsAll(cloneNumbersForGame)).isEqualTo(isSamePrevGame);
 	}
 }
