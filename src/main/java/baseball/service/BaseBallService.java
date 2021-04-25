@@ -18,15 +18,22 @@ public class BaseBallService {
 
     private void init() {
         resultList = Computer.createNumbers();
-        resultList.forEach(System.out::print);
     }
 
     public void start() {
+        String inputStr = UserInputView.inputNumbers();
+
+        ResultType resultType = resultCheck(inputStr);
+        resultConfirm(resultType);
+        String restartStr = restartCheck();
+        restartConfirm(restartStr);
+
+        System.exit(0);
+    }
+
+    private ResultType resultCheck(String inputStr) {
         Result result = null;
         ResultType resultType = null;
-        String inputStr = UserInputView.inputNumbers();
-        String restartStr;
-
         try {
             result = new Result(resultList, User.inputStrToList(inputStr));
             resultType = result.getResultType();
@@ -34,16 +41,31 @@ public class BaseBallService {
         } catch (IllegalArgumentException e) {
             start();
         }
+        return resultType;
+    }
 
-        if(!resultType.isResult()) start();
+    private void resultConfirm(ResultType resultType) {
+        if(!resultType.isResult()) {
+            start();
+        }
+    }
 
-        restartStr = UserInputView.inputRestart();
+    private String restartCheck() {
+        String restartStr = "";
+        try {
+            restartStr = UserInputView.inputRestart();
+            User.validateRestart(restartStr);
+        } catch (IllegalArgumentException e) {
+            restartStr = restartCheck();
+        }
 
-        if(restartStr.equals("1")) {
+        return restartStr;
+    }
+
+    private void restartConfirm(String restartStr) {
+        if("1".equals(restartStr)) {
             init();
             start();
         }
-
-        System.exit(0);
     }
 }
