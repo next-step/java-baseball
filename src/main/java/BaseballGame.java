@@ -21,7 +21,21 @@ public class BaseballGame {
 
     //게임 종료 후 재시작 유무 질의
     private boolean restartGame() {
+        String input = gameView.getGameRestart().trim();
+        boolean isValid = checkRestartValid(input);
 
+        while (!isValid){
+            input = gameView.getGameRestart().trim();
+            isValid = checkRestartValid(input);
+        }
+
+        if(input.equals("1")) return true;
+        return false;
+    }
+
+    private boolean checkRestartValid(String input) {
+        if(input.equals("1")||input.equals("2")) return true;
+        return false;
     }
 
     //게임 진행 로직
@@ -34,7 +48,6 @@ public class BaseballGame {
         int[] numbers = new int[3];
         int idx = 0;
 
-
         while (idx < 3) {
             numbers[idx++] = getRandomNumber();
         }
@@ -43,11 +56,12 @@ public class BaseballGame {
     }
 
     private int getRandomNumber() {
-
         int number = random.nextInt(8) + 1;
-        while(set.contains(number)){
+
+        while (set.contains(number)) {
             number = random.nextInt(8) + 1;
         }
+
         set.add(number);
         return number;
     }
