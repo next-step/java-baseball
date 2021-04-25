@@ -3,9 +3,9 @@ package common.models;
 import common.code.HintType;
 
 public class HintModel {
-	
-	private int strikeCount=0;
-	private int ballCount=0;
+
+	private int strikeCount = 0;
+	private int ballCount = 0;
 	
 	public int getStrikeCount() {
 		return strikeCount;
@@ -18,6 +18,20 @@ public class HintModel {
 	}
 	public void setBallCount(int ballCount) {
 		this.ballCount = ballCount;
+	}
+	
+	public void calculateCount(HintType hintType) {
+		if (hintType == null) {
+			return;
+		}
+		
+		if(hintType.equals(HintType.STRIKE)) {
+			this.strikeCount++;
+		}
+		
+		if(hintType.equals(HintType.BALL)) {
+			this.ballCount++;
+		}
 	}
 	
 	@Override
