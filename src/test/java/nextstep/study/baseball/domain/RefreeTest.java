@@ -22,7 +22,6 @@ public class RefreeTest {
 
 		Referee referee = new Referee();
 		DecisionResult decision = referee.makeDecisionResult(batterNums, picherNums);
-		System.out.println(decision);
 
 		assertThat(decision.getStrikeCount()).isEqualTo(3);
 	}
