@@ -3,7 +3,7 @@ package game.baseball;
 import common.code.HintType;
 import common.models.HintModel;
 
-public class GameChecker {
+public class GameCore {
 	public HintModel checker(int [] attackNumberArr, int [] defendNumberArr) {
 		HintModel result = new HintModel();
 		

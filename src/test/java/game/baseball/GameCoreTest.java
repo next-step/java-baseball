@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import common.models.HintModel;
 
-public class GameCheckerTest {
+public class GameCoreTest {
 	
 	// mocking
 	int[] defendNumberArr = {1,2,3};
-	GameChecker gameChecker = new GameChecker();
+	GameCore gameChecker = new GameCore();
 	
 	@Test
 	void attack_test() {
