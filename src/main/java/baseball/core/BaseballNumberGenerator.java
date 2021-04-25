@@ -22,7 +22,7 @@ public class BaseballNumberGenerator {
 	private final List<Integer> baseballNumbers = new ArrayList<>();
 
 	/**
-	 * BaseballNumberServiceImpl 클래스의 새 인스턴스를 초기화 합니다.
+	 * BaseballNumberGenerator 클래스의 새 인스턴스를 초기화 합니다.
 	 */
 	public BaseballNumberGenerator() {
 		this.initBaseballNumbers();

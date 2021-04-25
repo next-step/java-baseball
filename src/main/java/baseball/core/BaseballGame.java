@@ -8,6 +8,7 @@ package baseball.core;
 
 import baseball.model.BaseballNumber;
 import baseball.model.InningResult;
+import baseball.model.UserBaseballNumber;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -15,7 +16,7 @@ public class BaseballGame {
 
 	private final BaseballNumberGenerator baseballNumberGenerator;
 
-	private final BaseballInningService baseballInningService;
+	private final BaseballNumber randomBaseballNumber;
 
 	private final InputView inputView;
 
@@ -32,8 +33,7 @@ public class BaseballGame {
 		this.outputView = outputView;
 
 		this.baseballNumberGenerator = new BaseballNumberGenerator();
-		BaseballNumber randomBaseballNumber = this.baseballNumberGenerator.getRandomBaseballNumber();
-		this.baseballInningService = new BaseballInningServiceImpl(randomBaseballNumber);
+		this.randomBaseballNumber = this.baseballNumberGenerator.getRandomBaseballNumber();
 	}
 
 	public void startGame() {
@@ -42,9 +42,13 @@ public class BaseballGame {
 		while (!isEnd) {
 			String inputValue = this.inputView.getMakeNumberInput();
 
-			InningResult judgeInning = this.baseballInningService.judgeInning(inputValue);
-			this.outputView.printInningResult(judgeInning);
-			isEnd = this.baseballInningService.isEndGame(judgeInning);
+			UserBaseballNumber userBaseballNumber = new UserBaseballNumber(inputValue);
+			InningResult inningResult = new InningResult(0, 0);
+
+			inningResult.judgeInningResult(this.randomBaseballNumber, userBaseballNumber);
+
+			this.outputView.printInningResult(inningResult);
+			isEnd = inningResult.isEndGame();
 		}
 
 		this.outputView.printEndGame();

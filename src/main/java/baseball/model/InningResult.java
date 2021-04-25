@@ -6,6 +6,8 @@
 */
 package baseball.model;
 
+import java.util.List;
+
 public class InningResult {
 
 	private int strike;
@@ -25,36 +27,50 @@ public class InningResult {
 		this.ball = ball;
 	}
 
-	/**
-	 * strike count를 하나 증가시킵니다.
-	 */
-	public void plusStrikeCount() {
+	private void plusStrikeCount() {
 		this.strike++;
 	}
 
-	/**
-	 * ball count를 하나 증가시킵니다.
-	 */
-	public void plusBallCount() {
+	private void plusBallCount() {
 		this.ball++;
 	}
 
-	/**
-	 * strike를 반환합니다.
-	 * 
-	 * @return strike
-	 */
 	public int getStrike() {
 		return this.strike;
 	}
 
-	/**
-	 * ball를 반환합니다.
-	 * 
-	 * @return ball
-	 */
 	public int getBall() {
 		return this.ball;
+	}
+
+	public void judgeInningResult(BaseballNumber randomBaseballNumber, BaseballNumber userBaseballNumber) {
+		List<Integer> targetNumbers = randomBaseballNumber.getNumbers();
+		for (int i = 0; i < targetNumbers.size(); i++) {
+			List<Integer> userNumbers = userBaseballNumber.getNumbers();
+			int userNumber = userNumbers.get(i);
+
+			this.judgeNumber(targetNumbers, i, userNumber);
+		}
+	}
+
+	private void judgeNumber(List<Integer> targetNumbers, int i, int userNumber) {
+		if (targetNumbers.get(i) == userNumber) {
+			this.plusStrikeCount();
+		} else if (targetNumbers.contains(userNumber)) {
+			this.plusBallCount();
+		}
+	}
+
+	/**
+	 * 3스트라이크인지 확인하여 게임종료여부 반환
+	 * 
+	 * @return 게임종료여부
+	 */
+	public boolean isEndGame() {
+		if (this.strike == 3) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

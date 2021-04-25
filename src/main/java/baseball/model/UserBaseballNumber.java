@@ -13,7 +13,7 @@ public class UserBaseballNumber extends BaseballNumber {
 	 */
 	public UserBaseballNumber(String userInput) {
 
-		//TODO input validation
+		// TODO input validation
 		int inputNumber = Integer.parseInt(userInput);
 
 		int first = inputNumber / 100;
