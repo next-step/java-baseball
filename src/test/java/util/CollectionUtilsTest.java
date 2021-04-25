@@ -13,7 +13,7 @@ class CollectionUtilsTest {
 
 	@Test
 	@DisplayName("입력한 collection 이 empty 인 경우, true 를 반환한다")
-	void returnTrue_whenCollectionIsEmpty() {
+	void returnTrueWhenCollectionIsEmpty() {
 		// given
 		List<Integer> input = new ArrayList<>();
 
@@ -26,7 +26,7 @@ class CollectionUtilsTest {
 
 	@Test
 	@DisplayName("입력한 collection 이 empty 가 아닌 경우, false 를 반환한다")
-	void returnFalse_whenCollectionIsNotEmpty() {
+	void returnFalseWhenCollectionIsNotEmpty() {
 		// given
 		List<Integer> input = Collections.singletonList(1);
 
@@ -39,7 +39,7 @@ class CollectionUtilsTest {
 
 	@Test
 	@DisplayName("입력한 collection 이 null 경우, true 를 반환한다")
-	void returnTrue_whenCollectionIsNull() {
+	void returnTrueWhenCollectionIsNull() {
 		// given
 
 		// when

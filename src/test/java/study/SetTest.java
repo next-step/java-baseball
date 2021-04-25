@@ -51,7 +51,7 @@ public class SetTest {
 	@ParameterizedTest
 	@CsvSource({"1,true", "2,true", "3,true", "4,false", "5,false"})
 	@DisplayName("Set 에 원소가 있는 경우에는 True 를, 아닌 경우에는 False 를 반환한다")
-	void toUpperCase_ShouldGenerateTheExpectedUppercaseValue(int input, boolean expected) {
+	void toUpperCaseShouldGenerateTheExpectedUppercaseValue(int input, boolean expected) {
 		// given
 
 		// when
