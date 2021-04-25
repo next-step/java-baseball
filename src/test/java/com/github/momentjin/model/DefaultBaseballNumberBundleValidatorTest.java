@@ -8,9 +8,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class BaseballNumberBundleValidatorTest {
+class DefaultBaseballNumberBundleValidatorTest {
 
-    private final BaseballNumberBundleValidator validator = new BaseballNumberBundleValidator();
+    private final DefaultBaseballNumberBundleValidator validator = new DefaultBaseballNumberBundleValidator();
 
     @DisplayName("BaseballNumberBundle은 크기가 3 미만이면 예외가 발생한다")
     @Test

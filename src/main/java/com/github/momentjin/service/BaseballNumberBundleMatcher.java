@@ -4,7 +4,11 @@ import com.github.momentjin.model.*;
 
 public class BaseballNumberBundleMatcher {
 
-    private final BaseballNumberBundleValidator validator = new BaseballNumberBundleValidator();
+    private final BaseballNumberBundleValidator validator;
+
+    public BaseballNumberBundleMatcher(BaseballNumberBundleValidator validator) {
+        this.validator = validator;
+    }
 
     public BaseballNumberMatchResult match(BaseballNumberBundle origin, BaseballNumberBundle target) {
 

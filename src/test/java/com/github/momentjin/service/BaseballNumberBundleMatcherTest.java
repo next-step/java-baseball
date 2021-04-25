@@ -2,6 +2,7 @@ package com.github.momentjin.service;
 
 import com.github.momentjin.model.BaseballNumber;
 import com.github.momentjin.model.BaseballNumberBundle;
+import com.github.momentjin.model.BaseballNumberBundleValidator;
 import com.github.momentjin.model.BaseballNumberMatchResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BaseballNumberBundleMatcherTest {
 
+    private final BaseballNumberBundleMatcher service = new BaseballNumberBundleMatcher(new NoOpValidator());
 
     @DisplayName("정답이 713일 떄, 입력이 213이면 2S 0B")
     @Test
     void matchTest1() {
-
-        BaseballNumberBundleMatcher service = new BaseballNumberBundleMatcher();
 
         BaseballNumberBundle origin = new BaseballNumberBundle(Arrays.asList(
                 new BaseballNumber(7),
@@ -42,8 +42,6 @@ class BaseballNumberBundleMatcherTest {
     @Test
     void matchTest2() {
 
-        BaseballNumberBundleMatcher service = new BaseballNumberBundleMatcher();
-
         BaseballNumberBundle origin = new BaseballNumberBundle(Arrays.asList(
                 new BaseballNumber(7),
                 new BaseballNumber(1),
@@ -67,8 +65,6 @@ class BaseballNumberBundleMatcherTest {
     @Test
     void matchTest3() {
 
-        BaseballNumberBundleMatcher service = new BaseballNumberBundleMatcher();
-
         BaseballNumberBundle origin = new BaseballNumberBundle(Arrays.asList(
                 new BaseballNumber(7),
                 new BaseballNumber(1),
@@ -86,5 +82,13 @@ class BaseballNumberBundleMatcherTest {
         // then
         assertEquals(0, result.getStrikeCount());
         assertEquals(3, result.getBallCount());
+    }
+}
+
+class NoOpValidator implements BaseballNumberBundleValidator {
+
+    @Override
+    public void validate(BaseballNumberBundle bundle) throws RuntimeException {
+        // do nothing
     }
 }
