@@ -22,6 +22,12 @@ public class BaseballController {
         BallNumbers computedNumbers = baseballService.generateComputedNumbers();
 
         loopQuestion(computedNumbers);
+
+        int nextProcess = baseballView.questionNextProcess();
+        if (nextProcess == CONTINUE.flagNumber()) {
+            startGame();
+        }
+        stopGame();
     }
 
     private void loopQuestion(BallNumbers computedNumbers) {
@@ -32,11 +38,9 @@ public class BaseballController {
         if (!response.isAllStrike()) {
             loopQuestion(computedNumbers);
         }
+    }
 
-        int nextProcess = baseballView.questionNextProcess();
-        if (nextProcess == CONTINUE.flagNumber()) {
-            startGame();
-        }
+    private void stopGame() {
         System.exit(0);
     }
 

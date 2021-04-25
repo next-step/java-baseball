@@ -5,6 +5,8 @@ import baseball.exceptions.InvalidBallNumberException;
 import java.util.Objects;
 
 public class BallNumber {
+    public static final int VALID_MIN_NUMBER = 1;
+    public static final int VALID_MAX_NUMBER = 9;
     private int number;
 
     public BallNumber(int number) {
@@ -13,7 +15,7 @@ public class BallNumber {
     }
 
     private void validation(int number) {
-        if (number < 1 || number > 9) {
+        if (number < VALID_MIN_NUMBER || number > VALID_MAX_NUMBER) {
             throw new InvalidBallNumberException();
         }
     }

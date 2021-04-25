@@ -11,6 +11,7 @@ import static baseball.domain.PitchingResultStatus.*;
 
 public class BallNumbers {
 
+    public static final int VALID_EXACT_SIZE = 3;
     private final List<BallNumber> ballNumbers = new ArrayList<>();
 
     public BallNumbers(List<BallNumber> ballNumbers) {
@@ -30,7 +31,7 @@ public class BallNumbers {
     }
 
     private void checkSize(List<BallNumber> ballNumbers) {
-        if (ballNumbers.size() != 3) {
+        if (ballNumbers.size() != VALID_EXACT_SIZE) {
             throw new InvalidBallNumbersSizeException();
         }
     }
@@ -67,12 +68,20 @@ public class BallNumbers {
     }
 
     public PitchingResultStatus getPitchingResultStatus(BallNumber ballNumber, int index) {
-        if (ballNumbers.get(index).equals(ballNumber)) {
+        if (isStrike(ballNumber, index)) {
             return STRIKE;
         }
-        if (ballNumbers.contains(ballNumber)) {
+        if (isBall(ballNumber)) {
             return BALL;
         }
         return NOTHING;
+    }
+
+    private boolean isBall(BallNumber ballNumber) {
+        return ballNumbers.contains(ballNumber);
+    }
+
+    private boolean isStrike(BallNumber ballNumber, int index) {
+        return ballNumbers.get(index).equals(ballNumber);
     }
 }

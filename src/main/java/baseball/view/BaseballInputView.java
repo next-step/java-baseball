@@ -44,13 +44,10 @@ public class BaseballInputView implements InputView {
 
         while (number > 0) {
             int digit = number % 10;
-
             validateDigit(list, digit);
-
             list.add(digit);
             number = number / 10;
         }
-
         Collections.reverse(list);
 
         return list;
