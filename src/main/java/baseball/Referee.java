@@ -1,8 +1,6 @@
 package baseball;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static baseball.constant.Constant.*;
 
@@ -18,17 +16,19 @@ public class Referee {
         System.out.println("this.enemyNumbers = " + this.enemyNumbers);
     }
 
-    public List<Integer> decide(List<Integer> playerNumbersList) {
-        List<Integer> decideList = new ArrayList<>();
-        decideList.add(enemyNumbers.strike(playerNumbersList));
-        decideList.add(enemyNumbers.ball(playerNumbersList));
-        return decideList;
+    public Map<String, Integer> decide(List<Integer> playerNumbersList) {
+        Map<String, Integer> playResult = new HashMap<>();
+        int strike = enemyNumbers.strike(playerNumbersList);
+        int ball = enemyNumbers.ball(playerNumbersList);
+        playResult.put(STRIKE, strike);
+        playResult.put(BALL, ball);
+        return playResult;
     }
 
     private void generateRandomWithoutDuplicate(List<Integer> randomList) {
         Random random = new Random();
-        int randomNumber = random.nextInt(RANDOM_MAX_NUMBER - RANDOM_MIN_NUMBER + 1) + RANDOM_MIN_NUMBER;
-        if (randomList.contains(randomNumber)) {
+        int randomNumber = random.nextInt(RANDOM_MAX_NUMBER);
+        if (randomList.contains(randomNumber) || randomNumber == 0) {
             generateRandomWithoutDuplicate(randomList);
         }
         System.out.println("randomNumber = " + randomNumber);

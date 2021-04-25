@@ -4,6 +4,7 @@ import baseball.view.InputView;
 import baseball.view.ResultView;
 
 import java.util.List;
+import java.util.Map;
 
 public class BaseballClient {
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class BaseballClient {
         ResultView resultView = new ResultView();
         List<Integer> input = inputView.questionToList("숫자를입력해주세요: ");
 
-        List<Integer> swing = referee.decide(input);
+        Map<String, Integer> swing = referee.decide(input);
         resultView.printBaseBall(swing);
     }
 }
