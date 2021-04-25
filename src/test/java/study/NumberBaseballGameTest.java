@@ -33,4 +33,19 @@ public class NumberBaseballGameTest {
         assertThat(randomSet).containsExactly(testRandoms[0], testRandoms[1], testRandoms[2]);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {135, 143, 153, 123})
+    void countStrike(int input) {
+        int random = 123;
+
+        int strike = 0;
+        while (input > 0) {
+            strike += random % 10 == input % 10 ? 1 : 0;
+            random /= 10;
+            input /= 10;
+        }
+
+        assertThat(strike).isEqualTo(3);
+    }
+
 }

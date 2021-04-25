@@ -101,6 +101,12 @@ public class NumberBaseballGame {
     public static int countStrike(int random, int input) {
         int strike = 0;
 
+        while (input > 0) {
+            strike += random % 10 == input % 10 ? 1 : 0;
+            random /= 10;
+            input /= 10;
+        }
+
         return strike;
     }
 
