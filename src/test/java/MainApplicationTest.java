@@ -39,4 +39,19 @@ public class MainApplicationTest {
     MainApplication mainApplication = new MainApplication();
     assertThat(mainApplication.generateRandomNumber(3)).hasSize(3).doesNotHaveDuplicates();
   }
+
+  @Test
+  public void validateStrikeTest() {
+    List<Character> testRandomNumber1 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber1 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testRandomNumber2 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber2 = new LinkedList<>(Arrays.asList('1', '2', '4'));
+    List<Character> testRandomNumber3 = new LinkedList<>(Arrays.asList('1', '2', '3'));
+    List<Character> testInputNumber3 = new LinkedList<>(Arrays.asList('4', '1', '2'));
+
+    MainApplication mainApplication = new MainApplication();
+    assertThat(mainApplication.validateStrike(testRandomNumber1, testInputNumber1)).isEqualTo(3);
+    assertThat(mainApplication.validateStrike(testRandomNumber2, testInputNumber2)).isEqualTo(2);
+    assertThat(mainApplication.validateStrike(testRandomNumber3, testInputNumber3)).isEqualTo(0);
+  }
 }
