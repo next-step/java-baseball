@@ -18,14 +18,14 @@ public class BaseballGame {
     }
 
     private void gameStart() {
-        boolean playingFlag = true;
-        while (playingFlag) {
+        boolean continueGame = true;
+        while (continueGame) {
             BaseballNumberScore baseballNumberScore = new BaseballNumberScore(
                     BaseballNumbers.create(BaseballNumberGenerator.generator())
             );
             playRound(baseballNumberScore);
 
-            playingFlag = isContinuePlay();
+            continueGame = isContinuePlay();
         }
     }
 
@@ -39,15 +39,23 @@ public class BaseballGame {
     }
 
     private void playRound(BaseballNumberScore baseballNumberScore) {
-        boolean playBall = true;
+        boolean gameover = false;
 
-        while (playBall) {
-            List<Integer> inputNumbers = TransStringNumberToNumberListUtil.toNumberList(inputView.inputNumber());
-            BaseballResult baseballResult = baseballNumberScore.judge(BaseballNumbers.create(inputNumbers));
-            resultView.showResult(baseballResult);
+        while (!gameover) {
+            BaseballResult baseballResult = baseballNumberScore.judge(getPlayerNumber());
 
-            playBall = !baseballResult.isEndGame();
+            gameover = roundResult(baseballResult);
         }
         resultView.finishScreen();
+    }
+
+    private boolean roundResult(BaseballResult baseballResult) {
+        resultView.showResult(baseballResult);
+        return baseballResult.isEndGame();
+    }
+
+    private BaseballNumbers getPlayerNumber() {
+        List<Integer> inputNumbers = TransStringNumberToNumberListUtil.toNumberList(inputView.inputNumber());
+        return BaseballNumbers.create(inputNumbers);
     }
 }
