@@ -66,4 +66,25 @@ public class Game {
 		return input.inputWantContinuity() == YES;
 	}
 
+	private void outputStatus() {
+		if (isThreeStrike()) {
+			output.outputGameCompleted();
+			return;
+		}
+		if (strikeCnt + ballCnt > 0) {
+			output.outputStrikeBallCount(strikeCnt, ballCnt);
+			return;
+		}
+		output.outputFourBall();
+	}
+
+	public void startGameMain() {
+		createEnemyNum();
+		do {
+			askHumanNumber();
+			calcStrikeBallCount();
+			outputStatus();
+		} while (!isThreeStrike());
+		output.outputWantContinuity();
+	}
 }
