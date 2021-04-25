@@ -38,7 +38,7 @@ public class SetTest {
      */
     @ParameterizedTest
     @ValueSource(ints = { 1, 2, 3 })
-    void containsElementsOfSetTest1(int number) {
+    void containsElementsOfSetTest(int number) {
         // then
         assertThat(numbers.contains(number)).isTrue();
     }
@@ -51,7 +51,7 @@ public class SetTest {
      */
     @ParameterizedTest
     @CsvSource(value = { "1:4", "2:5", "3:6" }, delimiter = ':')
-    void containsElementsOfSetTest2(int containedNumber, int notContainedNumber) {
+    void containsElementsOfSetTest(int containedNumber, int notContainedNumber) {
         // then
         assertThat(numbers.contains(containedNumber)).isTrue();
         assertThat(numbers.contains(notContainedNumber)).isFalse();

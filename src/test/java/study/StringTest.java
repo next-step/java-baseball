@@ -12,7 +12,7 @@ public class StringTest {
      * 요구사항 1-1
      */
     @Test
-    void stringSplitTest1() {
+    void splitStringTest() {
         // given
         String string = "1,2";
 
@@ -29,7 +29,7 @@ public class StringTest {
      * 요구사항 1-2
      */
     @Test
-    void stringSplitTest2() {
+    void splitOneLengthStringTest() {
         // given
         String string = "1";
 
@@ -45,7 +45,7 @@ public class StringTest {
      * 요구사항 2
      */
     @Test
-    void stringSubstringTest() {
+    void substringTest() {
         // given
         String string = "(1,2)";
 
