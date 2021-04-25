@@ -19,14 +19,14 @@ public class RefereeTest {
 		answerList.add(1);
 		answerList.add(2);
 		answerList.add(3);
-		referee = new Referee(answerList);
+		referee = new Referee();
 	}
 
 	@Test
 	@DisplayName("User 가 입력한 숫자에 맞게 스트라이크 개수가 세어지는지 테스트.")
 	void countStrike() {
 		int[] userInputArray = {1, 4, 5};
-		referee.judgeBall(userInputArray);
+		referee.judgeBall(answerList, userInputArray);
 		assertEquals(referee.getStrikeCount(), 1);
 	}
 
@@ -34,7 +34,7 @@ public class RefereeTest {
 	@DisplayName("User 가 입력한 숫자에 맞게 볼 개수가 세어지는지 테스트.")
 	void countBall() {
 		int[] userInputArray = {3, 4, 5};
-		referee.judgeBall(userInputArray);
+		referee.judgeBall(answerList, userInputArray);
 		assertEquals(referee.getBallCount(), 1);
 	}
 
@@ -42,7 +42,7 @@ public class RefereeTest {
 	@DisplayName("User 가 입력한 숫자에 스트라이크와, 볼이 없으면 낫싱인지 테스트.")
 	void isZeroStrikeAndBallThenNothing() {
 		int[] userInputArray = {5, 6, 7};
-		referee.judgeBall(userInputArray);
+		referee.judgeBall(answerList, userInputArray);
 		assertEquals(referee.getStrikeCount() + referee.getBallCount(), 0);
 	}
 }
