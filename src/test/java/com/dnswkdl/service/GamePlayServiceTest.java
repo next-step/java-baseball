@@ -8,6 +8,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GamePlayServiceTest {
+    ImplGamePlayService implGamePlayService;
+    @BeforeAll
+    public void init(){
+        implGamePlayService = (compare, input)->{return (compare==input?1:0);};
+    }
 
     @Test
     @DisplayName("3 Strike TEST")
@@ -43,15 +48,9 @@ public class GamePlayServiceTest {
         int[] ansArray = toArray(answer);
         int[] inpArray = toArray(input);
         for(int i = 0 ; i < ansArray.length; i++){
-            if(ansArray[i]==inpArray[i%3]){
-                result[0]++;
-            }
-            if(ansArray[i]==inpArray[(i+1)%3]){
-                result[1]++;
-            }
-            if(ansArray[i]==inpArray[(i+2)%3]){
-                result[1]++;
-            }
+            result[0] += implGamePlayService.compareTo(ansArray[i], inpArray[i%3]);
+            result[1] += implGamePlayService.compareTo(ansArray[i], inpArray[(i+1)%3]);
+            result[1] += implGamePlayService.compareTo(ansArray[i], inpArray[(i+2)%3]);
         }
         return result;
     }

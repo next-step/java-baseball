@@ -1,6 +1,9 @@
 package com.dnswkdl.service;
 
 public class GamePlayService {
+
+    ImplGamePlayService implGamePlayService = (compare, input)->{return (compare==input?1:0);};
+
     public int[] check(int answer, int input){
         /** result[0] = strike, result[1] = ball */
         int[] result = {0,0};
@@ -8,15 +11,9 @@ public class GamePlayService {
         int[] ansArray = toArray(answer);
         int[] inpArray = toArray(input);
         for(int i = 0 ; i < ansArray.length; i++){
-            if(ansArray[i]==inpArray[i%3]){
-                result[0]++;
-            }
-            if(ansArray[i]==inpArray[(i+1)%3]){
-                result[1]++;
-            }
-            if(ansArray[i]==inpArray[(i+2)%3]){
-                result[1]++;
-            }
+            result[0] += implGamePlayService.compareTo(ansArray[i], inpArray[i%3]);
+            result[1] += implGamePlayService.compareTo(ansArray[i], inpArray[(i+1)%3]);
+            result[1] += implGamePlayService.compareTo(ansArray[i], inpArray[(i+2)%3]);
         }
         return result;
     }
