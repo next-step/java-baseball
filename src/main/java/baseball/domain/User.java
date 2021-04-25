@@ -19,6 +19,12 @@ public class User {
         return new ArrayList<>(numbers);
     }
 
+    public static void validateRestart(String str) throws IllegalArgumentException {
+        if(!("1".equals(str) || "2".equals(str))) {
+            throw new IllegalArgumentException("1 또는 2를 입력해주세여");
+        }
+    }
+
     private static void validateSize(String numbersStr) throws IllegalArgumentException {
         if(numbersStr.length() != CREATE_SIZE) {
             throw new IllegalArgumentException("숫자1~9인 3자리 수 를 입력하세요.");
