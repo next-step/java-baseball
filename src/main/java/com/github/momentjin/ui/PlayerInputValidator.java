@@ -1,7 +1,6 @@
 package com.github.momentjin.ui;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class PlayerInputValidator {
 
@@ -22,7 +21,7 @@ public class PlayerInputValidator {
             return ValidatorResult.success();
         }
 
-        return ValidatorResult.fail(size+"개의 숫자만 입력해야 합니다.");
+        return ValidatorResult.fail(size + "개의 숫자만 입력해야 합니다.");
     }
 
     public ValidatorResult containsOverlappedNumber(String inputNumbers) {
@@ -40,14 +39,23 @@ public class PlayerInputValidator {
 
         return ValidatorResult.fail("중복된 숫자는 입력할 수 없습니다.");
     }
+
+    public ValidatorResultBundle validate(String inputNumbers, int size) {
+
+        return new ValidatorResultBundle(Arrays.asList(
+                isNotNumber(inputNumbers),
+                isInvalidSize(inputNumbers, size),
+                containsOverlappedNumber(inputNumbers)
+        ));
+    }
 }
 
 class ValidatorResult {
 
-    public boolean isValid;
-    public String errorMessage;
+    private boolean isValid;
+    private String errorMessage;
 
-    private ValidatorResult(boolean isValid, String errorMessage) {
+    public ValidatorResult(boolean isValid, String errorMessage) {
         this.isValid = isValid;
         this.errorMessage = errorMessage;
     }
@@ -62,5 +70,44 @@ class ValidatorResult {
 
     public static ValidatorResult fail(String errorMessage) {
         return new ValidatorResult(false, errorMessage);
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+}
+
+class ValidatorResultBundle {
+
+    private final List<ValidatorResult> results;
+
+    public ValidatorResultBundle(List<ValidatorResult> results) {
+        this.results = results;
+    }
+
+    public boolean isError() {
+
+        boolean isError = false;
+        for (ValidatorResult result : results) {
+            isError |= result.isError();
+        }
+
+        return isError;
+    }
+
+    public List<ValidatorResult> getResultsHasError() {
+
+        List<ValidatorResult> resultsHasError = new ArrayList<>();
+        for (ValidatorResult result : results) {
+            addIfHasError(resultsHasError, result);
+        }
+
+        return results;
+    }
+
+    private void addIfHasError(List<ValidatorResult> errors, ValidatorResult result) {
+        if (result.isError()) {
+            errors.add(result);
+        }
     }
 }
