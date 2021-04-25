@@ -6,10 +6,12 @@
 */
 package baseball.core;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -35,6 +37,20 @@ class BaseballInningServiceImplTest {
 
 		InningResult judgeInning = this.target.judgeInning(userInput);
 		assertEquals(expected, judgeInning.toString());
+	}
+
+	@Test
+	@DisplayName("1스트라이크 2볼일때 게임 종료여부를 false로 반환하는지 확인")
+	void testCheckEndGameFalse() {
+		boolean endGame = this.target.isEndGame(new InningResult(1, 2));
+		assertThat(endGame).isFalse();
+	}
+
+	@Test
+	@DisplayName("3스트라이크일때 게임 종료여부를 true로 반환하는지 확인")
+	void testCheckEndGameTrue() {
+		boolean endGame = this.target.isEndGame(new InningResult(3, 0));
+		assertThat(endGame).isTrue();
 	}
 
 }
