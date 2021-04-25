@@ -3,23 +3,24 @@ package camp.nextstep.edu.game;
 import camp.nextstep.edu.util.NumberUtil;
 import camp.nextstep.edu.util.ValidationUtil;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BaseballNumber {
 
     private final List<String> numberList = new ArrayList<>();
 
-    public BaseballNumber(Set<Integer> numberSet) {
+    private BaseballNumber(Set<Integer> numberSet) {
         for (Integer integer : numberSet) {
             numberList.add(integer.toString());
         }
     }
 
-    public List<String> getNumberList() {
-        return numberList;
+    private BaseballNumber(String numberString) {
+        numberList.addAll(Arrays.asList(numberString.split("")));
+    }
+
+    public static BaseballNumber of(String input) {
+        return new BaseballNumber(input);
     }
 
     public static BaseballNumber generateBaseballNumber() {
@@ -38,7 +39,29 @@ public class BaseballNumber {
                 && input.length() == 3;
     }
 
-    public BaseballGameResult compare(String input) {
-        return null;
+    public BaseballGameResult compare(BaseballNumber input) {
+        int strike = countStrike(input);
+        int ball = countBall(input);
+        return new BaseballGameResult(strike, ball);
+    }
+
+    private int countStrike(BaseballNumber input) {
+        int strike = 0;
+        for (int i = 0; i < input.numberList.size(); i++) {
+            String targetValue = this.numberList.get(i);
+            String inputValue = input.numberList.get(i);
+            strike += targetValue.equals(inputValue) ? 1 : 0;
+        }
+        return strike;
+    }
+
+    private int countBall(BaseballNumber input) {
+        int ball = 0;
+        for (int i = 0; i < input.numberList.size(); i++) {
+            String targetValue = this.numberList.get(i);
+            String inputValue = input.numberList.get(i);
+            ball += (!targetValue.equals(inputValue) && this.numberList.contains(inputValue)) ? 1 : 0;
+        }
+        return ball;
     }
 }
