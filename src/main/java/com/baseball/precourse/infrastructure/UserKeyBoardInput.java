@@ -1,4 +1,4 @@
-package com.baseball.precourse;
+package com.baseball.precourse.infrastructure;
 
 import com.baseball.precourse.baseball.UserInput;
 

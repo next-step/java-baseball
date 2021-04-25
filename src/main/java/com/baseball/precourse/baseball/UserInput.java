@@ -1,2 +1,5 @@
-package com.baseball.precourse.baseball;public interface UserInput {
+package com.baseball.precourse.baseball;
+
+public interface UserInput {
+    String readInput();
 }
