@@ -15,4 +15,10 @@ public class UserSelectOptionTest {
     public void selectOptionRestart(){
         assertEquals(option.selectOption("1"), true);
     }
+
+    @Test
+    public void selectOptionStop(){
+        assertEquals(option.selectOption("2"), false);
+    }
+
 }
