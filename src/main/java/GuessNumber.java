@@ -2,6 +2,7 @@ import java.util.List;
 
 public class GuessNumber {
 
+
     protected void guessNumber(BaseBallDTO dto){
         int index = 0 ;
         for(String str:dto.getInputNumbers()) {
@@ -16,6 +17,7 @@ public class GuessNumber {
             value = returnBall(dto);
             return value;
         }
+
         return value;
     }
 
@@ -25,7 +27,7 @@ public class GuessNumber {
         String myNumber = dto.getInputNumbers().get(dto.getForLoopIndex());
         if(enemyNumbers.get(dto.getForLoopIndex()).equals(myNumber)) {
             dto.setCountOfStrike(dto.getCountOfStrike()+1);
-            return 1;
+            return CODE.STRIKE.getValue();
         }
         return value;
     }
@@ -36,7 +38,7 @@ public class GuessNumber {
         String myNumber = dto.getInputNumbers().get(dto.getForLoopIndex());
         if(enemyNumbers.contains(myNumber)) {
             dto.setCountOfBall(dto.getCountOfBall()+1);
-            return 2;
+            return CODE.BALL.getValue();
         }
         return value;
     }
