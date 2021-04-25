@@ -9,20 +9,24 @@ public class MainApplication {
   public static void main(String[] args) {
     MainApplication mainApplication = new MainApplication();
 
-    String randomNumber = null;
+    List<Character> randomNumber = null;
     boolean exit = false;
     boolean newGame = true;
+
     Scanner scanner = new Scanner(System.in);
     while (!exit) {
       if (newGame) {
         randomNumber = mainApplication.generateRandomNumber(3);
         newGame = false;
       }
-      System.out.print("숫자를 입력해주세요 : ");
-      String inputNumber = scanner.nextLine();
 
-      int strike = mainApplication.validateStrike(randomNumber, inputNumber);
-      int ball = mainApplication.validateBall(randomNumber, inputNumber);
+      System.out.print("숫자를 입력해주세요 : ");
+      List<Character> inputNumber = mainApplication.convertToList(scanner.nextLine().toCharArray());
+
+      List<Character> tempRandomNumber = randomNumber;
+
+      int strike = mainApplication.validateStrike(tempRandomNumber, inputNumber);
+      int ball = mainApplication.validateBall(tempRandomNumber, inputNumber);
       mainApplication.printResult(strike, ball);
 
       if (strike == 3) {
@@ -33,28 +37,41 @@ public class MainApplication {
     }
   }
 
+  // Convert char array to Character List
+  private List<Character> convertToList(char[] chars) {
+    List<Character> characterList = new LinkedList<>();
+    for (char c : chars) {
+      characterList.add(c);
+    }
+    return characterList;
+  }
+
   // 난수 생성
-  private String generateRandomNumber(int length) {
-    List<String> numbers =
-        new LinkedList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
+  private List<Character> generateRandomNumber(int length) {
+    List<Character> numbers =
+        new LinkedList<>(Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9'));
     Random random = new Random();
-    StringBuilder randomNumber = new StringBuilder();
+    List<Character> randomNumber = new LinkedList<>();
 
     for (int i = 0; i < length; i++) {
       int index = random.nextInt(numbers.size() - 1);
-      randomNumber.append(numbers.get(index));
+      randomNumber.add(numbers.get(index));
       numbers.remove(index);
     }
 
-    return randomNumber.toString();
+    return randomNumber;
   }
 
   // Strike 확인
-  private int validateStrike(String randomNumber, String inputNumber) {
+  private int validateStrike(List<Character> randomNumber, List<Character> inputNumber) {
     int strike = 0;
-    for (int i = 0; i < randomNumber.length(); i++) {
-      if (randomNumber.charAt(i) == inputNumber.charAt(i)) {
+    int size = randomNumber.size();
+    for (int i = 0; i < size; i++) {
+      if (randomNumber.get(i) == inputNumber.get(i)) {
         strike++;
+        randomNumber.remove(i);
+        inputNumber.remove(i);
+        size = randomNumber.size();
       }
     }
 
@@ -62,11 +79,10 @@ public class MainApplication {
   }
 
   // Ball 확인
-  private int validateBall(String randomNumber, String inputNumber) {
+  private int validateBall(List<Character> randomNumber, List<Character> inputNumber) {
     int ball = 0;
-    for (int i = 0; i < randomNumber.length(); i++) {
-      if (randomNumber.charAt(i) != inputNumber.charAt(i)
-          && randomNumber.contains(String.valueOf(inputNumber.charAt(i)))) {
+    for (int i = 0; i < randomNumber.size(); i++) {
+      if (randomNumber.contains(inputNumber.get(i))) {
         ball++;
       }
     }
@@ -79,7 +95,6 @@ public class MainApplication {
     if (strike > 0) {
       System.out.print(strike + " 스트라이크 ");
     }
-
     if (ball > 0) {
       System.out.print(ball + " 볼");
     }
