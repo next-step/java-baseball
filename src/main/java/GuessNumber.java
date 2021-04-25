@@ -27,7 +27,7 @@ public class GuessNumber {
         String myNumber = dto.getInputNumbers().get(dto.getForLoopIndex());
         if(enemyNumbers.get(dto.getForLoopIndex()).equals(myNumber)) {
             dto.setCountOfStrike(dto.getCountOfStrike()+1);
-            return CODE.STRIKE.getValue();
+            return CODE.STRIKE.value;
         }
         return value;
     }
@@ -38,7 +38,7 @@ public class GuessNumber {
         String myNumber = dto.getInputNumbers().get(dto.getForLoopIndex());
         if(enemyNumbers.contains(myNumber)) {
             dto.setCountOfBall(dto.getCountOfBall()+1);
-            return CODE.BALL.getValue();
+            return CODE.BALL.value;
         }
         return value;
     }

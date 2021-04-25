@@ -33,7 +33,8 @@ public class BaseBallOutput {
     public int threeStrikeOutput(BaseBallDTO dto){
         if(dto.getCountOfStrike()==3){
             System.out.print("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-            return CODE.SUCCESS.getValue();
+            System.out.println();
+            return CODE.SUCCESS.value;
         }
         System.out.println();
         return 0;
