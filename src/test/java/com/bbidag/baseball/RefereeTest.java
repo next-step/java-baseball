@@ -28,7 +28,7 @@ public class RefereeTest {
     @DisplayName("3 스트라이크 유무에 따라 승리 여부를 판단 테스트")
     public void isWinOrNot(int strikeCount, boolean isWin){
         referee.setStrikeCount(strikeCount);
-        assertThat(referee.applyWinOrNot()).isEqualTo(isWin);
+        assertThat(referee.isWinGame()).isEqualTo(isWin);
     }
 
     @ParameterizedTest

@@ -40,7 +40,7 @@ public class Referee {
         }
     }
 
-    public boolean applyWinOrNot() {
+    public boolean isWinGame() {
         return strikeCount == 3;
     }
 
