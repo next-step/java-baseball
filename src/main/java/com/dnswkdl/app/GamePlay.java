@@ -29,6 +29,12 @@ public class GamePlay implements ImplGamePlay {
         while(true){
             int inputNumber = getInputNumber();
             int[] result = service.check(answer, inputNumber);
+
+            if(result[0]==0 && result[1]==0){
+                System.out.println("낫싱");
+            }else{
+                System.out.println((result[0]!=0?(result[0]+" 스트라이크 "):(""))+(result[1]!=0?(result[1]+" 볼 "):("")));
+            }
             if(result[0]==3){
                 return;
             }

@@ -26,6 +26,7 @@
 * 게임 종료 후 재시작 숫자 입력 및 재시작<br>(replay 함수)
 2. 게임 플레이 구성
 * 게임 시작 할 때, 정답 만들기
-* 정답과 입력된 숫자 결과 비교 (strike, ball 수 확인)<br>(checkStrike, checkBall)
-* 숫자 결과를 통하여 재입력 or 게임 종료 결정.
-* 게임 종료 후 재시작
+* 정답과 입력된 숫자 결과 비교 (strike, ball 수 확인)<br>
+  (checkStrike, checkBall)
+* 숫자 결과를 프린트 하고, 3 strike 의 경우 게임 종료.
+* 게임 종료 후 재시작(replay) 실행.
