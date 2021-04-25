@@ -1,48 +1,23 @@
 package input;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class InputApi {
-    enum Message {
-        NUMBER("숫자를 입력해 주세요");
-
-
-    }
-    public static String input(String ){
-        String inStr;
-        Scanner scanner = new Scanner(System.in);
-        do{
-            System.out.print("숫자를 입력해주세요 : ");
-            inStr = scanner.nextLine();
-        }while(!checkValidIn(inStr, "number"));
-        return inStr;
-    }
-    /*
-        숫자 입력 메서드
-     */
-    public static String inputNumber(){
-        String inStr;
-        Scanner scanner = new Scanner(System.in);
-        do{
-            System.out.print("숫자를 입력해주세요 : ");
-            inStr = scanner.nextLine();
-        }while(!checkValidIn(inStr, "number"));
-        return inStr;
-    }
 
     /*
-        게임 시작 입력 메서드
+        입력 메서드
      */
-    public static String inputStart(){
+    public static String input(String message, String condition){
         String inStr;
         Scanner scanner = new Scanner(System.in);
         do{
-            System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            System.out.print(message);
             inStr = scanner.nextLine();
-        }while(!checkValidIn(inStr, "start"));
+        }while(!checkValidIn(inStr, condition));
         return inStr;
     }
-
 
     /*
         입력된 String의 유효성을 체크한다
@@ -54,9 +29,23 @@ public class InputApi {
             2) 3자리 숫자인지(0을 제외한 숫자)
      */
     private static boolean checkValidIn(String input, String condition){
-        boolean ret = condition.equals("number") ? input.matches("[1-9]{3}") : input.matches("[1-2]{1}");
+        boolean ret = condition.equals("number") ? gameInputValid(input) : input.matches("[1-2]{1}");
 
         return ret;
     }
 
+    /*
+        게임 중 사용자 입력 값 유효성 체크
+    */
+    private static boolean gameInputValid(String input){
+        if(!input.matches("[1-9]{3}"))
+            return false;
+        Set<Integer> chkNum = new HashSet<Integer>();
+        for(char c : input.toCharArray()){
+            int a = c - '0';
+            chkNum.add(a);
+        }
+
+        return chkNum.size() == 3 ? true : false;
+    }
 }
