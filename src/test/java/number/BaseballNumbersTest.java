@@ -64,5 +64,11 @@ public class BaseballNumbersTest {
 	void get() {
 		assertThat(baseballNumbers.get(0)).isEqualTo(1);
 	}
+	
+	@Test
+	void contains() {
+		assertThat(baseballNumbers.contains(1)).isTrue();
+		assertThat(baseballNumbers.contains(9)).isFalse();
+	}
 
 }

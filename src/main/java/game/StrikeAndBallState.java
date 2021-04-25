@@ -7,7 +7,7 @@ import ui.PrintOutputManager;
 public class StrikeAndBallState implements GameState {
 
 	private final OutputManager outputManager = PrintOutputManager.getInstance();
-	
+
 	private static GameState gameState = new StrikeAndBallState();
 
 	private StrikeAndBallState() {
@@ -19,36 +19,35 @@ public class StrikeAndBallState implements GameState {
 
 	@Override
 	public void next(Game game) {
-		int strikeCount = 0;
-		int ballCount = 0;
-
 		BaseballNumbers computerBaseballNumbers = game.getComputer().getNumbers();
 		BaseballNumbers userBaseballNumbers = game.getUser().getNumbers();
 
-		for (int i = 0; i < computerBaseballNumbers.size(); i++) {
-			if (computerBaseballNumbers.get(i) == userBaseballNumbers.get(i)) {
-				strikeCount++;
-			}
-		}
+		int strikeCount = 0;
+		int ballCount = 0;
 
 		for (int i = 0; i < computerBaseballNumbers.size(); i++) {
-			for (int j = 0; j < userBaseballNumbers.size(); j++) {
-				if (i != j && computerBaseballNumbers.get(i) == userBaseballNumbers.get(j)) {
-					ballCount++;
-				}
-			}
+			strikeCount += countEquals(computerBaseballNumbers.get(i), userBaseballNumbers.get(i));
+			ballCount += countContains(computerBaseballNumbers, userBaseballNumbers.get(i));
 		}
+		ballCount -= strikeCount;
 
 		if (strikeCount + ballCount == 0) {
 			game.setGameState(NothingState.getInstance());
 			game.progress();
-
 			return;
 		}
 
 		outputManager.print(strikeCount + " 스트라이크 " + ballCount + "볼" + "\n");
 		game.setGameState(RunningState.getInstance());
 		game.progress();
+	}
+
+	private int countEquals(Integer computerNumber, Integer userNnumber) {
+		return computerNumber.equals(userNnumber) ? 1 : 0;
+	}
+
+	private int countContains(BaseballNumbers computerBaseballNumbers, Integer userNnumber) {
+		return computerBaseballNumbers.contains(userNnumber) ? 1 : 0;
 	}
 
 }
