@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static baseball.constant.Constant.NUMBERS_LIMIT;
+import static baseball.constant.Constant.*;
 
 public class Referee {
     protected final Numbers enemyNumbers;
@@ -15,6 +15,7 @@ public class Referee {
             generateRandomWithoutDuplicate(randomList);
         }
         this.enemyNumbers = new Numbers(randomList);
+        System.out.println("this.enemyNumbers = " + this.enemyNumbers);
     }
 
     public List<Integer> decide(List<Integer> playerNumbersList) {
@@ -26,10 +27,11 @@ public class Referee {
 
     private void generateRandomWithoutDuplicate(List<Integer> randomList) {
         Random random = new Random();
-        int randomNumber = random.nextInt();
+        int randomNumber = random.nextInt(RANDOM_MAX_NUMBER - RANDOM_MIN_NUMBER + 1) + RANDOM_MIN_NUMBER;
         if (randomList.contains(randomNumber)) {
             generateRandomWithoutDuplicate(randomList);
         }
+        System.out.println("randomNumber = " + randomNumber);
         randomList.add(randomNumber);
     }
 }

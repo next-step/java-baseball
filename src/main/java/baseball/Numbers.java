@@ -51,4 +51,11 @@ public class Numbers {
         }
         return strikeNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Numbers{" +
+                "gameNumbers=" + gameNumbers +
+                '}';
+    }
 }
