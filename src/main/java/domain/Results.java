@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Results {
     private int numberOfStrike;
@@ -22,6 +23,28 @@ public class Results {
 
     public int getNumberOfBall() {
         return this.numberOfBall;
+    }
+
+    public String createResultMessage() {
+        StringJoiner joiner = new StringJoiner(" ");
+        strikeResult(joiner);
+        ballResult(joiner);
+        return joiner.toString().isEmpty() ? "낫싱" : joiner.toString();
+    }
+
+    private void strikeResult(StringJoiner joiner) {
+        if (numberOfStrike > 0) {
+            joiner.add(Integer.toString(numberOfStrike)).add("스트라이크");
+        }
+        if (numberOfStrike == 3) {
+            joiner.add("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        }
+    }
+
+    private void ballResult(StringJoiner joiner) {
+        if (numberOfBall > 0) {
+            joiner.add(Integer.toString(numberOfBall)).add("볼");
+        }
     }
 
     private void validateResults(List<Result> results) {
