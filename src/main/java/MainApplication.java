@@ -71,7 +71,7 @@ public class MainApplication {
       }
     }
 
-    return ball;
+    return ball != 0 ? ball : 4;
   }
 
   // 결과 출력
@@ -79,9 +79,11 @@ public class MainApplication {
     if (strike > 0) {
       System.out.print(strike + " 스트라이크 ");
     }
+
     if (ball > 0) {
       System.out.print(ball + " 볼");
     }
+
     System.out.println();
   }
 
