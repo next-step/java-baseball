@@ -6,6 +6,7 @@ public class GameNumber {
     public static final String MESSAGE_CONTAINS_ZERO = "숫자에 0을 포함해서는 안됩니다.";
     private static final Integer[] sourceNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     private static final String MESSAGE_CONTAINS_DUPLICATION = "숫자가 중복되어서는 안됩니다.";
+    private static final String MESSAGE_NOT_THREE_DIGIT = "세 자리 수만 입력할 수 있습니다.";
     private final List<Integer> gameNumber;
 
     public GameNumber(List<Integer> gameNumber) {
@@ -24,8 +25,15 @@ public class GameNumber {
     }
 
     private void validateGameNumber() {
+        validateThreeDigit();
         validateContainsZero();
         validateDuplication();
+    }
+
+    private void validateThreeDigit() {
+        if (gameNumber.size() != 3) {
+            throw new NotThreeDigitException(MESSAGE_NOT_THREE_DIGIT);
+        }
     }
 
     private void validateDuplication() {

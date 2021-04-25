@@ -53,4 +53,17 @@ class GameNumberTest {
                 .isInstanceOf(ContainsDuplicationException.class)
                 .hasMessageContaining("숫자가 중복되어서는 안됩니다.");
     }
+
+    @Test
+    @DisplayName("세 자리 수가 아닌 값을 입력하였을 때 예외를 출력한다.")
+    void ofSizeTest() {
+        //given
+        Integer[] inputTwoNumbers = new Integer[]{1, 2};
+        assertThatThrownBy(() -> {
+            // when
+            GameNumber.of(Arrays.asList(inputTwoNumbers)); })
+            // then
+                .isInstanceOf(NotThreeDigitException.class)
+                .hasMessageContaining("세 자리 수만 입력할 수 있습니다");
+    }
 }
