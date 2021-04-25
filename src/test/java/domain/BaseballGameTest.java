@@ -15,7 +15,7 @@ class BaseballGameTest {
     void whenInputNotValidNumberLengthThenExceptionTest(String numbers) {
 
         // given
-        NumberGenerator numberGenerator = () -> NumberUtils.toList(numbers);
+        NumberGenerator numberGenerator = () -> Numbers.of(NumberUtils.toList(numbers));
 
         // then
         assertNumbersThrowIllegalArgumentException(numberGenerator, "숫자는 3자리 수여야 합니다.");
@@ -27,7 +27,7 @@ class BaseballGameTest {
     void whenInputDuplicatedNumberThenExceptionTest(String numbers) {
 
         // given
-        NumberGenerator numberGenerator = () -> NumberUtils.toList(numbers);
+        NumberGenerator numberGenerator = () -> Numbers.of(NumberUtils.toList(numbers));
 
         // then
         assertNumbersThrowIllegalArgumentException(numberGenerator, "숫자는 서로 다른 수여야 합니다.");

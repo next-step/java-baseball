@@ -3,8 +3,6 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameNumberGeneratorTest {
@@ -17,9 +15,9 @@ class GameNumberGeneratorTest {
         NumberGenerator gameNumberGenerator = new GameNumberGenerator();
 
         // when
-        List<Number> numbers = gameNumberGenerator.generate();
+        Numbers numbers = gameNumberGenerator.generate();
 
         // then
-        assertThat(numbers).hasSize(3);
+        assertThat(numbers).isNotNull();
     }
 }
