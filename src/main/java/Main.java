@@ -2,8 +2,11 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("program started!");
 		GameConfig gameConfig = new GameConfig(
-			Configs.NUM_DIGIT, Configs.OPTION_MIN_NUM, Configs.OPTION_MAX_NUM);
-		BaseballGame baseballGame = new BaseballGame(gameConfig);
+			Constant.NUM_DIGIT, Constant.OPTION_MIN_NUM, Constant.OPTION_MAX_NUM);
+		CandidateFactory candidateFactory = new CandidateFactory(gameConfig);
+		BaseballGame baseballGame = new BaseballGame(candidateFactory);
+		baseballGame.setDefensingUser(new ComputerUser());
+		baseballGame.setOffensingUser(new HumanUser());
 		baseballGame.start();
 		System.out.println("program end!");
 	}

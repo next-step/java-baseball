@@ -1,23 +1,29 @@
-public class BaseballGame {
-	private GameConfig gameConfig;
-	private boolean willContinue = false;
+import java.util.List;
 
-	public BaseballGame(GameConfig gameConfig){
-		this.gameConfig = gameConfig;
+public class BaseballGame {
+	private CandidateFactory candidateFactory;
+	private User offensingUser;
+	private User defensingUser;
+
+	public BaseballGame(CandidateFactory candidateFactory){
+		this.candidateFactory = candidateFactory;
+	}
+
+	public void setOffensingUser(User user){
+		this.offensingUser = user;
+	}
+
+	public void setDefensingUser(User user){
+		this.defensingUser = user;
 	}
 
 	public void start(){
 		do {
 			//TODO: 게임진행
-			setWillContinue(InputDispatcher.askContinue());
-		} while (getWillContinue());
+			List<Integer> candidates = candidateFactory.getNumbers();
+			List<Integer> defenseNumbers = defensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+			List<Integer> offenseNumbers = offensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+		} while (InputDispatcher.askContinue());
 	}
 
-	public void setWillContinue(boolean willContinue) {
-		this.willContinue = willContinue;
-	}
-
-	public boolean getWillContinue(){
-		return this.willContinue;
-	}
 }
