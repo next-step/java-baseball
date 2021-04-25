@@ -17,6 +17,10 @@ public class CompareResult {
     }
 
     public void print() {
+        if (this.strikeCnt == 0 && this.ballCnt == 0) {
+            System.out.println("nothing");
+            return;
+        }
         System.out.printf("strike : %d, ball : %d%n", this.strikeCnt, this.ballCnt);
     }
 }
