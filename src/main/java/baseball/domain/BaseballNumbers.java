@@ -11,7 +11,7 @@ public class BaseballNumbers {
     public static final int MAX_RANDOM_NUMBER = 9;
     public static final int MIN_RANDOM_NUMBER = 1;
     public static final int RANDOM_NUMBER_COUNT = 3;
-    private  List<String> values;
+    private List<String> values;
 
     public BaseballNumbers() {
 
@@ -69,7 +69,11 @@ public class BaseballNumbers {
         return this.values.size();
     }
 
-    public boolean isEmpty() {
-        return values.isEmpty();
+    public int indexOf(String baseballNumber) {
+        return values.indexOf(baseballNumber);
+    }
+
+    public String getSpecificIndexValue(int index) {
+        return values.get(index);
     }
 }
