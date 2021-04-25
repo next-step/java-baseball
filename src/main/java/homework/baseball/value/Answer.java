@@ -47,16 +47,6 @@ public class Answer {
         return hint.toString();
     }
 
-    void printHint(Answer answer) {
-        int strikeCount = getStrikeCount(answer);
-        int ballCount = getBallCount(answer);
-        if (strikeCount == 0 && ballCount == 0) {
-            System.out.println("낫싱");
-            return;
-        }
-        System.out.println(getHint(strikeCount, ballCount));
-    }
-
     public boolean compareWithUserAnswer(Answer userAnswer) {
         int strikeCount = getStrikeCount(userAnswer);
         if (strikeCount == 3) {
@@ -65,18 +55,6 @@ public class Answer {
         }
         int ballCount = getBallCount(userAnswer);
         System.out.println(getHint(strikeCount, ballCount));
-        return false;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof Answer) {
-            Answer answer = (Answer) obj;
-            return this.value.equals(answer.value);
-        }
         return false;
     }
 
