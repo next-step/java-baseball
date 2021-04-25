@@ -4,28 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public enum CountScore {
+public enum Count {
 
   STRIKE(true),
   BALL(false),
   NOTHING(null);
 
-  private static final Map<Boolean, CountScore> VALUES_MAP;
+  private static final Map<Boolean, Count> VALUES_MAP;
 
   static {
     VALUES_MAP = new HashMap<>();
-    for(CountScore current : values()) {
+    for(Count current : values()) {
       VALUES_MAP.put(current.matchStatus, current);
     }
   }
 
   private final Boolean matchStatus;
 
-  CountScore(Boolean matchStatus) {
+  Count(Boolean matchStatus) {
     this.matchStatus = matchStatus;
   }
 
-  public static CountScore retrieveMatchCountScore(Boolean matchStatus) {
+  public static Count retrieveMatchCountScore(Boolean matchStatus) {
     return Optional.ofNullable(VALUES_MAP.get(matchStatus))
                     .orElse(NOTHING);
   }
