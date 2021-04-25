@@ -9,7 +9,7 @@ public class BaseBallGameService {
 
     public BaseBallNumber createBaseBallNumber() {
         Set<Integer> numberSet = new HashSet<>();
-        while (numberSet.size() < 3) {
+        while (numberSet.size() < BaseBallNumber.BASEBALL_NUMBER_SIZE) {
             Random random = new Random();
             numberSet.add(random.nextInt(9) + 1);
         }
