@@ -23,12 +23,14 @@ public class GamePlay implements ImplGamePlay {
     @Override
     public void start() {
         /* TODO
-        *   1. 사용자 입력 ( 숫자 3개 )
+        *   1. 사용자 입력 ( 숫자 3개 ) (완료)
         *   2. 입력 숫자와 정답 비교
         *   3. 결과 도출 (3 strike 종료, 이외에는 결과 print 재입력 */
         while(true){
             int inputNumber = getInputNumber();
-            if(inputNumber==answer){
+            int strike = service.checkStrike(answer, inputNumber);
+            int ball = service.checkBall(answer, inputNumber);
+            if(strike==3){
                 return;
             }
         }
