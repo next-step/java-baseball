@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -17,7 +18,7 @@ class BaseballServiceTest {
     @BeforeEach
     void setUp() {
         randomNumberRepository = RandomNumberRepository.getInstance();
-        baseballService = new BaseballService(randomNumberRepository);
+        baseballService = BaseballService.getInstance(randomNumberRepository);
     }
 
     @ParameterizedTest
@@ -40,6 +41,21 @@ class BaseballServiceTest {
 
         // then
         assertThat(baseballService.getBallCount(inputNumber)).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("난수 생성 기능 테스트")
+    void generateRandomNumber() {
+
+        // when
+        baseballService.makeRandomNumber();
+
+        // then
+        assertThat(randomNumberRepository.getTargetNumber())
+                .isNotEmpty()
+                .isNotBlank()
+                .isInstanceOf(String.class)
+                .matches("^[0-9]+$");
     }
 
 }
