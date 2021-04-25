@@ -16,7 +16,7 @@ public class Game {
     }
 
     public void match(Balls balls) {
-        if(balls.size() != 3) {
+        if(balls.size() != BALL_SIZE) {
             String errorMessage = String.format("매칭할 공의 개수는 %d개 여야 합니다.", BALL_SIZE);
 
             throw new IllegalArgumentException(errorMessage);
