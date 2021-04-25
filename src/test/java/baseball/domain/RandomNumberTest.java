@@ -8,7 +8,7 @@ class RandomNumberTest {
     @Test
     void value() {
         for (int i = 0; i < 10000; i++) {
-            assertThat(new RandomNumber().value()).isBetween(0, 9);
+            assertThat(new RandomNumber().value()).isBetween(1, 9);
         }
     }
 }
