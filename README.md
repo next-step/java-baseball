@@ -5,3 +5,17 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능
+![baseball-classdiagram](https://github.com/mettlekc/woocamp-resources/blob/main/woocamp-baseball-precourse_20210426.jpg)
+
+#### 기능
+* start : 게임 시작/플레이/종료
+* create : 임의의 세자리 숫자 생성
+* play : 플레이어의 숫자와 생성된 숫자 비교하여 결과 반환
+* print : 결과 표시
+
+#### 모델
+Score
+* strike : strike count
+* ball : ball count
