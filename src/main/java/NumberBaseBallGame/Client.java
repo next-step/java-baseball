@@ -16,7 +16,7 @@ public class Client {
 			String gameNumbers = scanner.nextLine();
 
 			try{
-				ValidationCheckUtils.checkValidation(gameNumbers);
+				ValidationCheckUtils.checkInputNumber(gameNumbers);
 			}catch (IllegalArgumentException e){
 				System.out.println(e.getMessage());
 				continue;

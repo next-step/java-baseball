@@ -24,7 +24,7 @@ public class PlayGame {
 	 * @return
 	 */
 	public GameHintAndResults playGame(String getClientNumber){
-		ValidationCheckUtils.checkValidation(getClientNumber);
+		ValidationCheckUtils.checkInputNumber(getClientNumber);
 
 		int[] clientNumber = parseCharToInt(getClientNumber);
 
