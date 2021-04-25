@@ -19,10 +19,13 @@ public class Controller {
             Results results = game.start(Numbers.of(inputView.getNumbers()));
 
             printView.printResult(results.createResultMessage());
+            continueOrInputNextAction(game, inputView);
+        }
+    }
 
-            if (game.isClear()) {
-                inputView.inputContinueNumber();
-            }
+    private static void continueOrInputNextAction(BaseballGame game, InputView inputView) {
+        if (game.isClear()) {
+            inputView.inputContinueNumber();
         }
     }
 }
