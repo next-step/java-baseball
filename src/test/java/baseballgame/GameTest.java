@@ -3,11 +3,14 @@ package baseballgame;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class GameTest {
     List<Integer> computerNumbers;
@@ -19,90 +22,43 @@ class GameTest {
         userNumbers = new ArrayList<>();
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("모두 맞추지 못한 경우")
-    void checkNothing() {
-        int strike = 0;
-        int ball = 0;
+    @CsvSource(value = {"1,2", "3,4", "5,6"}, delimiterString = ",")
+    void checkNothing(int computer, int user) {
+        //given
+        //when
+        computerNumbers.add(computer);
+        userNumbers.add(user);
+        //then
+        assertNotEquals((int) computerNumbers.get(0), user);
+        assertFalse(userNumbers.contains(computer));
+    }
 
-        computerNumbers.add(1);
-        computerNumbers.add(2);
-        computerNumbers.add(3);
-
-        userNumbers.add(4);
-        userNumbers.add(5);
-        userNumbers.add(6);
-
-        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
-            int computerNumber = computerNumbers.get(i);
-            int userNumber = userNumbers.get(i);
-
-            if (computerNumber == userNumber) {
-                strike++;
-            }
-
-            if (computerNumbers.contains(userNumber)) {
-                ball++;
-            }
-        }
-
-        assertEquals(0, strike);
-        assertEquals(0, ball);
+    @ParameterizedTest
+    @DisplayName("스트라이크인 경우")
+    @CsvSource(value = {"1,1", "2,2", "3,3"}, delimiterString = ",")
+    void checkStrikeCount(int computer, int user) {
+        //given
+        //when
+        computerNumbers.add(computer);
+        userNumbers.add(user);
+        //then
+        assertEquals(computerNumbers.get(0), userNumbers.get(0));
     }
 
     @Test
-    @DisplayName("모두 스트라이크인 경우")
-    void checkStrikeCount() {
-        int strike = 0;
-
-        computerNumbers.add(1);
-        computerNumbers.add(2);
-        computerNumbers.add(3);
-
-        userNumbers.add(1);
-        userNumbers.add(2);
-        userNumbers.add(3);
-
-        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
-            int computerNumber = computerNumbers.get(i);
-            int userNumber = userNumbers.get(i);
-
-            if (computerNumber == userNumber) {
-                strike++;
-            }
-        }
-
-        assertEquals(3, strike);
-    }
-
-    @Test
-    @DisplayName("1스트라이크 2볼인 경우")
+    @DisplayName("볼인 경우")
     void checkStrikeAndBall() {
-        int strike = 0;
+        //given
         int ball = 0;
-
-        computerNumbers.add(1);
-        computerNumbers.add(2);
-        computerNumbers.add(3);
-
-        userNumbers.add(1);
-        userNumbers.add(3);
-        userNumbers.add(2);
-
-        for (int i = 0; i < Const.NUMBER_COUNT; i++) {
-            int computerNumber = computerNumbers.get(i);
-            int userNumber = userNumbers.get(i);
-
-            if (computerNumber == userNumber) {
-                strike++;
-            }
-
-            if (computerNumbers.contains(userNumber)) {
-                ball++;
-            }
-        }
-
-        assertEquals(1, strike);
-        assertEquals(2, ball - strike);
+        computerNumbers = Arrays.asList(1, 2, 3);
+        userNumbers = Arrays.asList(3, 1, 2);
+        //when
+        ball += computerNumbers.contains(userNumbers.get(0)) ? 1 : 0;
+        ball += computerNumbers.contains(userNumbers.get(1)) ? 1 : 0;
+        ball += computerNumbers.contains(userNumbers.get(2)) ? 1 : 0;
+        //then
+        assertEquals(3, ball);
     }
 }
