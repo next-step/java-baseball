@@ -35,30 +35,32 @@ public class BaseBallGameTest {
         }
         assertThat(String.valueOf(num1) + num2 + num3).isInstanceOf(String.class);
         assertThat(String.valueOf(num1) + num2 + num3).hasSize(3);
-        assertThat((num1 > 0 && num1 < 10)
-                && (num2 > 0 && num2 < 10)
-                && (num3 > 0 && num3 < 10)).isTrue();
-        assertThat((num1 != num2)
-                && (num1 != num3)
-                && (num2 != num3)).isTrue();
+        assertThat(num1).isBetween(1, 9);
+        assertThat(num2).isBetween(1, 9);
+        assertThat(num3).isBetween(1, 9);
+        assertThat(num1).isNotEqualTo(num2);
+        assertThat(num1).isNotEqualTo(num3);
+        assertThat(num2).isNotEqualTo(num3);
     }
 
     @Test
     @DisplayName("길이 검증 테스트")
     public void isValidLength() {
         String nums = "1234";
-
-        assertThat(nums.length() != 3).isTrue();
+        assertThat(nums.length()).isNotEqualTo(3);
     }
 
     @Test
     @DisplayName("형식 검증 테스트")
     public void isValidFormat() {
-        String inputVal1 = "#12";
-        String inputVal2 = "106";
-
-        assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() -> Integer.parseInt(inputVal1));
-        assertThat(inputVal2).contains("0");
+        char[] correctChars = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] wrongChars = {'0', '!', '@', '*', 'a', 'A'};
+        for (char c : correctChars) {
+            assertThat((int) c).isBetween(49, 57);
+        }
+        for (char c : wrongChars) {
+            assertThat((int) c).isNotIn(49, 50, 51, 52, 53, 54, 55, 56, 57);
+        }
     }
 
     @Test
@@ -68,7 +70,6 @@ public class BaseBallGameTest {
         char[] input = {'7', '9', '1'};
         int expectedCount = 1;
         int actualCount = 0;
-
         int baseLength = base.length;
         for (int i = 0; i < baseLength; i++) {
             actualCount += (base[i] == input[i] ? 1 : 0);
@@ -83,7 +84,6 @@ public class BaseBallGameTest {
         char[] input = {'7', '9', '1'};
         int expectedCount = 1;
         int actualCount = 0;
-
         int baseLength = base.length;
         int inputLength = input.length;
         for (int i = 0; i < baseLength; i++) {
