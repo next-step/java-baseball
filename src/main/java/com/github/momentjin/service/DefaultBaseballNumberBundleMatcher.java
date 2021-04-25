@@ -2,14 +2,15 @@ package com.github.momentjin.service;
 
 import com.github.momentjin.model.*;
 
-public class BaseballNumberBundleMatcher {
+public class DefaultBaseballNumberBundleMatcher implements BaseballNumberBundleMatcher{
 
     private final BaseballNumberBundleValidator validator;
 
-    public BaseballNumberBundleMatcher(BaseballNumberBundleValidator validator) {
+    public DefaultBaseballNumberBundleMatcher(BaseballNumberBundleValidator validator) {
         this.validator = validator;
     }
 
+    @Override
     public BaseballNumberMatchResult match(BaseballNumberBundle origin, BaseballNumberBundle target) {
 
         validator.validate(origin);

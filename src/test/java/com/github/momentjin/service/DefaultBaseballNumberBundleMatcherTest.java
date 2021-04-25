@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BaseballNumberBundleMatcherTest {
+class DefaultBaseballNumberBundleMatcherTest {
 
-    private final BaseballNumberBundleMatcher service = new BaseballNumberBundleMatcher(new NoOpValidator());
+    private final DefaultBaseballNumberBundleMatcher service = new DefaultBaseballNumberBundleMatcher(new NoOpValidator());
 
     @DisplayName("정답이 713일 떄, 입력이 213이면 2S 0B")
     @Test
