@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballGame {
@@ -19,11 +20,10 @@ public class BaseballGame {
 
 	public void start(){
 		do {
-			//TODO: 게임진행
 			List<Integer> candidates = candidateFactory.getNumbers();
-			List<Integer> defenseNumbers = defensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
-			List<Integer> offenseNumbers = offensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+			ArrayList<Integer> defenseNumbers = defensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+			ArrayList<Integer> offenseNumbers = offensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+			//TODO: 결과 판단
 		} while (InputDispatcher.askContinue());
 	}
-
 }

@@ -15,4 +15,11 @@ public class InputDispatcher {
 			}
 		}
 	}
+
+	public static String askUserExpect(){
+		System.out.print("숫자를 입력해주세요 : ");
+		Scanner scanner = new Scanner(System.in);
+		String userInput = scanner.nextLine();
+		return userInput;
+	}
 }

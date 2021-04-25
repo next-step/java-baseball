@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class HumanUser implements User {
 	private ArrayList<Integer> chosenNumbers;
@@ -10,6 +11,20 @@ public class HumanUser implements User {
 
 	@Override
 	public ArrayList<Integer> pickNumbers(List<Integer> numbers, int numNeedToPick) {
-		return null;
+		String userExpect = InputDispatcher.askUserExpect();
+		setChosenNumbers(parseNumericString(userExpect));
+		return this.chosenNumbers;
+	}
+
+	public ArrayList<Integer> parseNumericString(String numericString){
+		ArrayList<Integer> parsedResult = new ArrayList<>();
+		for(int i=0; i<numericString.length(); i++){
+			parsedResult.add( Character.getNumericValue(numericString.charAt(i)) );
+		}
+		return parsedResult;
+	}
+
+	public void setChosenNumbers(ArrayList<Integer> chosenNumbers){
+		this.chosenNumbers = chosenNumbers;
 	}
 }
