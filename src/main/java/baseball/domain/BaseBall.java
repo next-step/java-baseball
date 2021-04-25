@@ -35,7 +35,7 @@ public class BaseBall implements Iterable<Ball> {
 
     public static BaseBall ofRandom(OneDigitNumber oneDigitNumber) {
         List<Ball> balls = new ArrayList<>();
-        while (balls.size() <= 3) {
+        while (balls.size() < 3) {
             Ball ball = Ball.of(oneDigitNumber);
             if (!balls.contains(ball)) {
                 balls.add(ball);
