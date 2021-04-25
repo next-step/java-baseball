@@ -7,7 +7,7 @@ import static ttuop.nextstep.baseball.Constants.*;
  *
  * @author ttuop
  */
-public class MenuController {
+class MenuController {
 
 	/**
 	 * 사용자가 입력한 메뉴 번호를 처리한다. 현재 지원하는 메뉴 번호는 {@link ttuop.nextstep.baseball.Constants#NEW_GAME_MENU New Game}과
@@ -15,7 +15,7 @@ public class MenuController {
 	 *
 	 * @return 메뉴 번호가 {@link ttuop.nextstep.baseball.Constants#NEW_GAME_MENU New Game}이면 true, 아니면 false
 	 */
-	public static boolean process() {
+	static boolean process() {
 		UserInterface.send(REQUEST_MENU_TO_USER_MESSAGE);
 
 		final String input = receiveMessageUntilValid();
