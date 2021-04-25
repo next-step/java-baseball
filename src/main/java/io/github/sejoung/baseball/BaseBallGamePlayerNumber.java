@@ -8,8 +8,8 @@ import java.util.List;
 
 public class BaseBallGamePlayerNumber {
 
-	private int strikeCount = 0;
-	private int ballCount = 0;
+	private int strikeCount;
+	private int ballCount;
 	private final List<Integer> playerNumbers;
 	private final List<Integer> computerNumber;
 	private final TextOutput output;
@@ -21,6 +21,8 @@ public class BaseBallGamePlayerNumber {
 		this.output = output;
 		this.status = status;
 		this.playerNumbers = playerInputTransperList(input);
+		this.strikeCount = 0;
+		this.ballCount = 0;
 	}
 
 	public void check() {
@@ -34,12 +36,19 @@ public class BaseBallGamePlayerNumber {
 	private void strikeAndBallCheck() {
 		for (int i = 0; i < 3; i++) {
 			int numberIndex = computerNumber.indexOf(playerNumbers.get(i));
-			ballCheck(numberIndex);
+			strikeCheck(i, numberIndex);
+			ballCheck(i, numberIndex);
 		}
 	}
 
-	private void ballCheck(int numberIndex) {
-		if (numberIndex > -1) {
+	private void strikeCheck(int i, int numberIndex) {
+		if (i == numberIndex) {
+			strikeCount++;
+		}
+	}
+
+	private void ballCheck(int i, int numberIndex) {
+		if (i != numberIndex && numberIndex > -1) {
 			ballCount++;
 		}
 	}
@@ -48,9 +57,14 @@ public class BaseBallGamePlayerNumber {
 		if (strikeCount == 0 && ballCount == 0) {
 			output.printMessages(NOTHING);
 		}
-
+		if (strikeCount > 0 && strikeCount < 3) {
+			output.printMessages(getStrike(strikeCount));
+		}
 		if (ballCount > 0) {
 			output.printMessages(getBall(ballCount));
+		}
+		if (strikeCount == 3) {
+			output.printMessages(getStrike(3), SUCCESS, RESTART);
 		}
 	}
 
@@ -58,7 +72,6 @@ public class BaseBallGamePlayerNumber {
 		if (computerNumber.equals(playerNumbers)) {
 			status.restartGame();
 			this.strikeCount = 3;
-			output.printMessages(getStrike(3), SUCCESS, RESTART);
 		}
 	}
 

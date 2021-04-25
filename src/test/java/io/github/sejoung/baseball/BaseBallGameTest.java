@@ -110,4 +110,14 @@ class BaseBallGameTest extends BaseBallGameParameterized {
 		assertThat(actual).isEqualTo(PlayMessage.getBall(ballCount));
 	}
 
+	@ParameterizedTest(name = "{index} 스트라이크이면 스트라이크 메시지를 출력한다. => numbers = {0}, input = {1}, ballCount = {2}")
+	@MethodSource("generateStrikeArgumentsStream")
+	void strikeTest(List<Integer> numbers, String input, int strikeCount) {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(numbers));
+		game.flushOutput();
+		game.processInput(input);
+		String actual = game.flushOutput();
+		assertThat(actual).isEqualTo(PlayMessage.getStrike(strikeCount));
+	}
+
 }
