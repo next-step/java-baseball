@@ -14,5 +14,8 @@ class DealerTest {
         assertThat(dealer.getList()[0]).isBetween(1, 9);
         assertThat(dealer.getList()[1]).isBetween(1, 9);
         assertThat(dealer.getList()[2]).isBetween(1, 9);
+        assertNotEquals(dealer.getList()[0], dealer.getList()[1]);
+        assertNotEquals(dealer.getList()[0], dealer.getList()[2]);
+        assertNotEquals(dealer.getList()[2], dealer.getList()[1]);
     }
 }
