@@ -2,12 +2,14 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import constant.NumberValidation;
+import util.GameManager;
 
 @DisplayName("야구 게임에 이용되는 수에 대한 검증 테스트")
 public class ValidationTest {
@@ -58,5 +60,31 @@ public class ValidationTest {
 	public void numberNotRightFormatTest(String digits) {
 		Predicate<String> validate = NumberValidation.IsRightNumberFormat.getValidate();
 		Assertions.assertFalse(validate.test(digits));
+	}
+
+	@DisplayName("서로 다른 숫자로만 이루어져 있는 지 테스트(길이가 3일 것이라 가정)")
+	@ParameterizedTest
+	@ValueSource(strings = {"123", "456"})
+	public void numberDifferenceTest(String digits) {
+		Predicate<String> validate = NumberValidation.IsDiffertNumber.getValidate();
+		Assertions.assertTrue(validate.test(digits));
+	}
+
+	@DisplayName("중복 숫자 존재하는 지 테스트(길이가 3일 것이라 가정)")
+	@ParameterizedTest
+	@ValueSource(strings = {"112", "445", "777", "883"})
+	public void numberSameTest(String digits) {
+		Predicate<String> validate = NumberValidation.IsDiffertNumber.getValidate();
+		Assertions.assertFalse(validate.test(digits));
+	}
+
+	@DisplayName("실제 난수 생성 로직 시 정상적인지 테스트")
+	@Test
+	public void madeNumberDifferentTest() {
+		Predicate<String> validate = NumberValidation.IsDiffertNumber.getValidate();
+		GameManager gameManager = GameManager.getInstance();
+		for (int i = 0; i < 100; i++) {
+			Assertions.assertTrue(validate.test(gameManager.getAnswer()));
+		}
 	}
 }
