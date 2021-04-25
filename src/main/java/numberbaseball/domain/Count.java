@@ -6,9 +6,9 @@ import java.util.Optional;
 
 public enum Count {
 
-  STRIKE(true),
-  BALL(false),
-  NOTHING(null);
+  STRIKE(true, "스트라이크"),
+  BALL(false, "볼"),
+  NOTHING(null, "낫싱");
 
   private static final Map<Boolean, Count> VALUES_MAP;
 
@@ -20,13 +20,19 @@ public enum Count {
   }
 
   private final Boolean matchStatus;
+  private final String korName;
 
-  Count(Boolean matchStatus) {
+  Count(Boolean matchStatus, String korName) {
     this.matchStatus = matchStatus;
+    this.korName = korName;
   }
 
   public static Count retrieveMatchCountScore(Boolean matchStatus) {
     return Optional.ofNullable(VALUES_MAP.get(matchStatus))
                     .orElse(NOTHING);
+  }
+
+  public String getKorName() {
+    return korName;
   }
 }
