@@ -8,8 +8,8 @@ public class Player {
         this.playStatus = playStatus;
     }
 
-    public PlayStatus getPlayStatus() {
-        return playStatus;
+    public boolean isPlaying() {
+        return playStatus.isPlaying();
     }
 
     public void setPlayStatus(PlayStatus playStatus) {

@@ -3,9 +3,13 @@ package baseball.domain.player;
 public enum PlayStatus {
     PLAY(true), STOP(false);
 
-    private final boolean value;
+    private final boolean isPlaying;
 
-    PlayStatus(boolean value) {
-        this.value = value;
+    PlayStatus(boolean isPlaying) {
+        this.isPlaying = isPlaying;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
     }
 }
