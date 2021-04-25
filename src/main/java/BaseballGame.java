@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -5,10 +6,11 @@ public class BaseballGame {
 
     private final BaseballGameView gameView = new BaseballGameView();
     private final Random random = new Random();
-    HashSet<Integer> set = new HashSet<>();
+    HashSet<Integer> set = null;
 
     //게임 시작 로직
     public boolean baseballGameStart() {
+        set = new HashSet<>();
         int[] computerGameNumber = makeComputerGameNumber();
         boolean finishGame = false;
         
@@ -40,7 +42,7 @@ public class BaseballGame {
 
     //게임 진행 로직
     private boolean progressGame(int[] computerGameNumber) {
-
+        System.out.println(Arrays.toString(computerGameNumber));
         String input = gameView.getUserNumber().trim();
         boolean isValid = checkNumberValid(input);
 
