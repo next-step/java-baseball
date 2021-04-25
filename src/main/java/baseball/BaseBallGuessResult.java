@@ -1,28 +1,31 @@
 package baseball;
 
-import static baseball.BaseBallRandomNumber.RANDOM_NUMBER_LENGTH;
-
 public class BaseBallGuessResult {
-    private int strike;
-    private int ball;
+    private int strikeCount;
+    private int ballCount;
+    private boolean isFourBall;
 
-    public boolean isCorrect() {
-        return strike == RANDOM_NUMBER_LENGTH;
+    public int getStrikeCount() {
+        return strikeCount;
     }
 
-    public int getStrike() {
-        return strike;
+    public void setStrikeCount(int strikeCount) {
+        this.strikeCount = strikeCount;
     }
 
-    public void setStrike(int strike) {
-        this.strike = strike;
+    public int getBallCount() {
+        return ballCount;
     }
 
-    public int getBall() {
-        return ball;
+    public void setBallCount(int ballCount) {
+        this.ballCount = ballCount;
     }
 
-    public void setBall(int ball) {
-        this.ball = ball;
+    public boolean isFourBall() {
+        return isFourBall;
+    }
+
+    public void setIsFourBall(boolean isFourBall) {
+        this.isFourBall = isFourBall;
     }
 }

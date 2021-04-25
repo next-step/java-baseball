@@ -21,8 +21,9 @@ public class UserInterface {
     }
 
     public static void printGuessResult(BaseBallGuessResult guessResult) {
-        printStrike(guessResult.getStrike());
-        printBall(guessResult.getBall());
+        printStrike(guessResult.getStrikeCount());
+        printBall(guessResult.getBallCount());
+        printFourBall(guessResult.isFourBall());
         System.out.println();
     }
 
@@ -35,6 +36,12 @@ public class UserInterface {
     public static void printBall(int ball) {
         if (ball > 0) {
             System.out.printf("%d 볼", ball);
+        }
+    }
+
+    public static void printFourBall(boolean isFourBall) {
+        if (isFourBall) {
+            System.out.print("포볼");
         }
     }
 
