@@ -64,7 +64,7 @@ public class BaseballUtil {
 		return strNum.length() == length;
 	}
 
-	public static List<Integer> strToList(String str) {
+	public static List<Integer> convertStringToIntList(String str) {
 		if (str == null) {
 			return new ArrayList<>();
 		}

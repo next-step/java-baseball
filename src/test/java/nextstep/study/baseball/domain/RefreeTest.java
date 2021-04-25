@@ -17,8 +17,8 @@ public class RefreeTest {
 	@CsvSource(value = {"123:123"}, delimiter = ':')
 	void testMatch(String batterNum, String pitcherNum) {
 
-		List<Integer> batterNums = BaseballUtil.strToList(batterNum);
-		List<Integer> picherNums = BaseballUtil.strToList(pitcherNum);
+		List<Integer> batterNums = BaseballUtil.convertStringToIntList(batterNum);
+		List<Integer> picherNums = BaseballUtil.convertStringToIntList(pitcherNum);
 
 		Referee referee = new Referee();
 		DecisionResult decision = referee.makeDecisionResult(batterNums, picherNums);

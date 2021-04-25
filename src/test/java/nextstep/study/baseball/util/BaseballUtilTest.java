@@ -118,7 +118,7 @@ public class BaseballUtilTest {
 	@DisplayName("10. 문자열을 숫자형 리스트로 변환 테스트")
 	void testStrToIntArray() {
 		String strNum = "456";
-		List<Integer> list = BaseballUtil.strToList(strNum);
+		List<Integer> list = BaseballUtil.convertStringToIntList(strNum);
 		StringBuilder sb = new StringBuilder();
 		for (Integer num : list) {
 			sb.append(String.valueOf(num));

@@ -39,7 +39,7 @@ public class Pitcher {
 			continues = isContinuable(inputNums, validation);
 			makeCount++;
 		}
-		numbers.addAll(BaseballUtil.strToList(inputNums));
+		numbers.addAll(BaseballUtil.convertStringToIntList(inputNums));
 		return inputNums;
 	}
 
