@@ -39,4 +39,57 @@ public class BaseballTest {
         }
     }
 
+
+    @Test
+    @DisplayName("find Strike 테스트")
+    public void findStrikeTest() {
+        baseball.questionSet = numberFactory.createUserNumber("123");
+
+        try {
+            Method method = baseball.getClass().getDeclaredMethod("findStrike", int.class, int.class);
+            method.setAccessible(true);
+            int ret = (int) method.invoke(baseball,2,1);
+            assertThat(ret).isEqualTo(1);
+            ret = (int) method.invoke(baseball,2,0);
+            assertThat(ret).isEqualTo(0);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @DisplayName("find Ball 테스트")
+    public void findBallTest() {
+        baseball.questionSet = numberFactory.createUserNumber("123");
+
+        try {
+            Method method = baseball.getClass().getDeclaredMethod("findBall", int.class, int.class);
+            method.setAccessible(true);
+            int ret = (int) method.invoke(baseball,2,1);
+            assertThat(ret).isEqualTo(0);
+            ret = (int) method.invoke(baseball,2,0);
+            assertThat(ret).isEqualTo(1);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @DisplayName("result msg 테스트")
+    public void resultTest() {
+        baseball.questionSet = numberFactory.createUserNumber("123");
+
+        try {
+            Method method = baseball.getClass().getDeclaredMethod("result", int.class, int.class);
+            method.setAccessible(true);
+            String ret = (String) method.invoke(baseball,0,0);
+            assertThat(ret).isEqualTo("낫싱");
+            ret = (String) method.invoke(baseball,2,0);
+            assertThat(ret).isEqualTo("2 스트라이크 ");
+            ret = (String) method.invoke(baseball,2,1);
+            assertThat(ret).isEqualTo("2 스트라이크 1볼");
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
 }
