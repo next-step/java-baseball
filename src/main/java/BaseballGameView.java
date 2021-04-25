@@ -11,4 +11,9 @@ public class BaseballGameView {
         return scanner.next();
     }
 
+    //Result 출력
+    public void printGameResult(String message){
+        System.out.println(message);
+    }
+
 }
