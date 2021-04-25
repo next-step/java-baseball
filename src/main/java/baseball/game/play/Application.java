@@ -17,9 +17,8 @@ public class Application {
 		Baseball baseball = new Baseball();
 		baseball.initialize();
 
-		while (GameStatusType.START.equals(baseball.type)) {
-			baseball.inputNumbers();
-			System.out.println(baseball.getResultMessage());
+		while (!GameStatusType.STOP.equals(baseball.gameStatusType)) {
+			baseball.execute();
 		}
 
 	}
