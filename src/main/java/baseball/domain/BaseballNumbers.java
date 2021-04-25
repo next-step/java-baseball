@@ -13,9 +13,6 @@ public class BaseballNumbers {
     public static final int RANDOM_NUMBER_COUNT = 3;
     private List<String> values;
 
-    public BaseballNumbers() {
-
-    }
     public BaseballNumbers(List<String> values) {
         this.values = values;
     }
