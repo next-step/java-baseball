@@ -1,16 +1,17 @@
 package techcamp.baseball.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class QuestionTest {
 
     @DisplayName("생성된_숫자_리스트_검증")
-    @Test
+    @RepeatedTest(value = 2, name = "{displayName}")
     public void validate_generated_numbers() {
         //Given
         Question question = new Question();

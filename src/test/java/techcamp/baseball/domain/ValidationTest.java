@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ValidationTest {
 
     @DisplayName("입력값 검증")
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"123", "356", "962"})
     public void validate_input_size(String input) {
         //Given
