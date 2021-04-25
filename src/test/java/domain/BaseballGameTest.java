@@ -42,4 +42,12 @@ class BaseballGameTest {
                 .isThrownBy(() -> game.isClear())
                 .withMessage("아직 게임이 시작되지 않았습니다.");
     }
+
+    @Test
+    @DisplayName("게임 시작 전 executeCommand() 메소드 호출 시 예외발생")
+    void test(){
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> game.executeCommand("1"))
+                .withMessage("아직 게임이 시작되지 않았습니다.");
+    }
 }
