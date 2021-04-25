@@ -17,6 +17,13 @@ public class Referee {
         this.enemyNumbers = new Numbers(randomList);
     }
 
+    public List<Integer> decide(List<Integer> playerNumbersList) {
+        List<Integer> decideList = new ArrayList<>();
+        decideList.add(enemyNumbers.strike(playerNumbersList));
+        decideList.add(enemyNumbers.ball(playerNumbersList));
+        return decideList;
+    }
+
     private void generateRandomWithoutDuplicate(List<Integer> randomList) {
         Random random = new Random();
         int randomNumber = random.nextInt();
