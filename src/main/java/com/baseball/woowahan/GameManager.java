@@ -22,18 +22,19 @@ public class GameManager {
 		}
 	}
 
-	private void play(UserInput userInput, RandomGenerator randomGenerator,
+	private void play(UserInputGenerator userInputGenerator, RandomGenerator randomGenerator,
 		ScoreCalculatorAndPrinter scoreCalculatorAndPrinter) throws IOException {
 		String randomNumber = randomGenerator.makeRandomNumbers();
 		while (!scoreCalculatorAndPrinter.isCompleted()) {
-			String inputNumber = userInput.returnInputNumber();
+			String inputNumber = userInputGenerator.returnInputNumber();
 			scoreCalculatorAndPrinter.calculate(inputNumber, randomNumber);
 		}
+		System.out.println(Message.COMPLETE.getMessage());
 		choiceRestart();
 	}
 
 	private void start() throws IOException {
-		play(new UserInput(new UserInputGenerator(bufferedReader), new UserInputValidator()), new RandomGenerator(),
+		play(new UserInputGenerator(bufferedReader, new UserInputValidator()), new RandomGenerator(),
 			new ScoreCalculatorAndPrinter());
 	}
 
