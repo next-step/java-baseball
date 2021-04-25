@@ -16,12 +16,16 @@ public class InputView {
         this.numbers = SCANNER.nextLine();
     }
 
+    public void inputContinueNumber() {
+        System.out.println(INPUT_CONTINUE_MESSAGE);
+        this.continueNumber = SCANNER.nextLine();
+    }
+
     public String getNumbers() {
         return this.numbers;
     }
 
-    public void inputContinueNumber() {
-        System.out.println(INPUT_CONTINUE_MESSAGE);
-        this.continueNumber = SCANNER.nextLine();
+    public String getContinueNumber() {
+        return continueNumber;
     }
 }
