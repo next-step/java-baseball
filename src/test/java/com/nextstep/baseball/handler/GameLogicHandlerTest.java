@@ -2,6 +2,7 @@ package com.nextstep.baseball.handler;
 
 import com.nextstep.baseball.enums.ErrorMessages;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -38,4 +39,14 @@ public class GameLogicHandlerTest {
     public void validateInput_ShouldReturnNumber(String input) {
         assertThat(gameLogicHandler.validateAndReturnInput(input)).isEqualTo(Integer.parseInt(input));
     }
+
+    @RepeatedTest(10)
+    public void makeRandomNumberForGame() {
+        String randomNumber = String.valueOf(gameLogicHandler.makeRandomNumberForGame());
+        System.out.println(randomNumber);
+        assertThat(randomNumber)
+                .doesNotContain("0")
+                .hasSize(3);
+    }
+
 }
