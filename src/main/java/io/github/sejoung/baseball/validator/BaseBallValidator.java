@@ -1,6 +1,5 @@
 package io.github.sejoung.baseball.validator;
 
-import io.github.sejoung.baseball.BaseBallGameComputerNumber;
 import io.github.sejoung.baseball.BaseBallGameStatus;
 import io.github.sejoung.baseball.TextOutput;
 import io.github.sejoung.baseball.constants.GameMessage;
