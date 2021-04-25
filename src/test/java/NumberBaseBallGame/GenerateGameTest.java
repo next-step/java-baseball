@@ -2,21 +2,18 @@ package NumberBaseBallGame;
 
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import static org.assertj.core.api.Assertions.*;
 
-class PlayGameTest {
+class GenerateGameTest {
 
 	@Test
 	@DisplayName("3. 게임 [X] 게임 입력값 벨리데이션체크 숫자이외의 문자를 넣았을때.")
 	public void 게임_입력값_벨리데이션체크_숫자이외_RED(){
 		// given
-		PlayGame playGame = new PlayGame();;
+		GenerateGame newGame = new GenerateGame();
 
 		// when
-		assertThatThrownBy(() -> {playGame.playGame("꺄꼬");})
+		assertThatThrownBy(() -> {newGame.playGame("꺄꼬");})
 		// than
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("1~9사이의 숫자만 입력해주세요. example : 123, 456 ")
@@ -26,10 +23,10 @@ class PlayGameTest {
 	@DisplayName("3. 게임 [X] 게임 입력값 벨리데이션체크 3자리보다 길게 넣았을때.")
 	public void 게임_입력값_벨리데이션체크_초과길이_RED(){
 		// given
-		PlayGame playGame = new PlayGame();;
+		GenerateGame newGame = new GenerateGame();
 
 		// when
-		assertThatThrownBy(() -> {playGame.playGame("1234");})
+		assertThatThrownBy(() -> {newGame.playGame("1234");})
 				// than
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("3글자만 입력해주세요. example : 123, 456 ");
@@ -39,10 +36,10 @@ class PlayGameTest {
 	@DisplayName("3. 게임 [X] 게임 입력값 벨리데이션체크 0포험")
 	public void 게임_입력값_벨리데이션체크_숫자범위_RED(){
 		// given
-		PlayGame playGame = new PlayGame();;
+		GenerateGame newGame = new GenerateGame();
 
 		// when
-		assertThatThrownBy(() -> {playGame.playGame("012");})
+		assertThatThrownBy(() -> {newGame.playGame("012");})
 				// than
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("1~9사이의 숫자만 입력해주세요. example : 123, 456 ");
@@ -52,10 +49,10 @@ class PlayGameTest {
 	@DisplayName("3. 게임 [X] 게임 입력값 벨리데이션체크 중복숫자 넣았을때.")
 	public void 게임_입력값_벨리데이션체크_중복숫자_RED(){
 		// given
-		PlayGame playGame = new PlayGame();
+		GenerateGame newGame = new GenerateGame();
 
 		// when
-		assertThatThrownBy(() -> {playGame.playGame("122");})
+		assertThatThrownBy(() -> {newGame.playGame("122");})
 				// than
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining("숫자가 중복되면 안됩니다.");
@@ -64,14 +61,13 @@ class PlayGameTest {
 	@Nested
 	@DisplayName("PlayNewGame!")
 	class PlayNewGame{
-		PlayGame playGame = new PlayGame();
-		int[] gameNumbers;
+		GenerateGame aGame = new GenerateGame();
+		int[] gameNumbers = aGame.getGameNumbers();;
 		private int[] clientNumbers;
 
 		@BeforeEach
 		public void generateRandoms(){
 			clientNumbers = new GenerateGameNumber(3).generateGameNumber();
-			gameNumbers = playGame.getGameNumbers();
 		}
 
 		@Test
@@ -85,7 +81,7 @@ class PlayGameTest {
 			}
 
 			// when
-			GameHintAndResults results = playGame.playGame(allMatchNumber);
+			GameHintAndResults results = aGame.playGame(allMatchNumber);
 			// than
 			assertThat(results)
 					.extracting("finish")
@@ -105,7 +101,7 @@ class PlayGameTest {
 				randomNumbers+=String.valueOf(item);
 			}
 			// when
-			GameHintAndResults results = playGame.playGame(randomNumbers);
+			GameHintAndResults results = aGame.playGame(randomNumbers);
 			// than
 			if(results.isFinish()){
 				assertThat(results)

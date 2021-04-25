@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PlayGame {
+public class GenerateGame {
 	private final int[] gameNumbers;
 	private final int GAMENUMBERS_LENGTH= 3;
 
-	public PlayGame() {
+	public GenerateGame() {
 		gameNumbers = new GenerateGameNumber(GAMENUMBERS_LENGTH).generateGameNumber();
 	}
 

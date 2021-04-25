@@ -1,15 +1,14 @@
 package NumberBaseBallGame;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Client {
-	private static PlayGame playGame;
+	private static GenerateGame generateGame;
 	private static final Scanner scanner = new Scanner(System.in);
 
 
 	public static void main(String[] args) {
-		playGame = new PlayGame();
+		generateGame = new GenerateGame();
 
 		while (true){
 			System.out.println("숫자를입력해주세요 : ");
@@ -22,7 +21,7 @@ public class Client {
 				continue;
 			}
 
-			GameHintAndResults gameHintAndResults = playGame.playGame(gameNumbers);
+			GameHintAndResults gameHintAndResults = generateGame.playGame(gameNumbers);
 			if(!gameHintAndResults.isFinish()){
 				System.out.println(gameHintAndResults.getHint());
 				continue;
@@ -36,7 +35,7 @@ public class Client {
 				System.exit(0);
 			}
 			if(isContinue.equals("1")){
-				playGame = new PlayGame();
+				generateGame = new GenerateGame();
 			}
 		}
 	}
