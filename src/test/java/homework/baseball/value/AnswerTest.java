@@ -33,18 +33,6 @@ public class AnswerTest {
     }
 
     @Test
-    public void equalsTest() {
-        List<Answer> answers = new ArrayList<>();
-        for (String number : numbers) {
-            Answer temp = new Answer(number);
-            if (answer.equals(temp)) {
-                answers.add(temp);
-            }
-        }
-        assertThat(answers.size()).isEqualTo(1);
-    }
-
-    @Test
     public void compareWithUserAnswerTest() {
         List<Answer> answers = new ArrayList<>();
         for (String number : numbers) {
@@ -106,14 +94,5 @@ public class AnswerTest {
         assertThat(twoStrikeCount).isEqualTo(18);
         assertThat(threeStrikeCount).isEqualTo(1);
         assertThat(totalCount).isEqualTo(oneStrikeCount + twoStrikeCount + threeStrikeCount + noStrikeCount);
-    }
-
-    @Test
-    public void printTest() {
-        for (String number : numbers) {
-            Answer temp = new Answer(number);
-            System.out.print("temp: " + temp + ", answer: " + answer + " ");
-            answer.printHint(temp);
-        }
     }
 }
