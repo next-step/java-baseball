@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import io.github.sejoung.baseball.constants.GameMessage;
+import io.github.sejoung.baseball.constants.PlayMessage;
 import io.github.sejoung.baseball.constants.ValidatorMessage;
 
 class BaseBallGameTest {
@@ -48,6 +49,17 @@ class BaseBallGameTest {
 		game.processInput("한글");
 		String actual = game.flushOutput();
 		assertThat(actual).isEqualTo(ValidatorMessage.NUMBER + NEW_LINE + GameMessage.INPUT);
+	}
+
+	@DisplayName("플레이어가 입력한 숫자가 컴퓨터 숫자를 모두 맞춤 메시지 확인")
+	@Test
+	void playerInputNumberStrikeMessageTest() {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(1, 2, 3));
+		game.flushOutput();
+		game.processInput("123");
+		String actual = game.flushOutput();
+		assertThat(actual).isEqualTo(
+			PlayMessage.getStrike(3) + NEW_LINE + GameMessage.SUCCESS + NEW_LINE + GameMessage.RESTART);
 	}
 
 }
