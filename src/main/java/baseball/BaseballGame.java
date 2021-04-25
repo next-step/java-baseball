@@ -24,6 +24,34 @@ public class BaseballGame {
  	}
 	
 	public static BallCount ballCount(final List<Integer> inputIntegerList, final List<Integer> randomIntegerList) {
+	public static List<Integer> inputBaseballNumber(BufferedReader br) throws IOException {
+		String inputValue = null;
+		do {
+			System.out.print("숫자를 입력해주세요. ");
+			inputValue = br.readLine();
+		} while (validateInputValue(inputValue));
+		return Arrays.asList(Character.getNumericValue(inputValue.charAt(0))
+				, Character.getNumericValue(inputValue.charAt(1))
+				, Character.getNumericValue(inputValue.charAt(2)));
+	}
+	
+	public static boolean validateInputValue(String inputValue) {
+		return (isIntegerValue(inputValue) && validateLength(inputValue, 3));
+	}
+	
+	public static boolean isIntegerValue(String value) {
+		try {
+			Integer.parseInt(value);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static boolean validateLength(final String value, final int length) {
+		return value.length() == length;
+	}
+	
 		int len = randomIntegerList.size();		
 		BallCount ballCount = new BallCount(len);
 		for(int i = 0; i < len; ++i) {
