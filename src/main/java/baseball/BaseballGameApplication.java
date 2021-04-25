@@ -1,3 +1,5 @@
+package baseball;
+
 import baseball.common.BaseballGame;
 
 public class BaseballGameApplication {
