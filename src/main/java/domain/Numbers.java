@@ -45,6 +45,10 @@ public class Numbers {
         return numberSet.contains(number);
     }
 
+    public List<Number> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
     private void validateNumbers(List<Number> numbers) {
         if (numbers == null || numbers.size() != 3) {
             throw new IllegalArgumentException("숫자는 3자리 수여야 합니다.");
