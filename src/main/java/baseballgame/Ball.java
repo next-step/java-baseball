@@ -8,12 +8,8 @@ import java.util.Set;
 public class Ball {
 	private Set<Integer> answerSet;
 
-	public Ball() {
+	public void makeRandomlyThreeDigitAnswer() {
 		answerSet = new LinkedHashSet<>();
-		makeRandomlyThreeDigitAnswer();
-	}
-
-	private void makeRandomlyThreeDigitAnswer() {
 		while (answerSet.size() < 3) {
 			answerSet.add((int)(Math.random() * 9 + 1));
 		}
