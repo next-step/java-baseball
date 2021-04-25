@@ -90,6 +90,10 @@ class PlayGameTest {
 			assertThat(results)
 					.extracting("finish")
 					.isEqualTo(true);
+			assertThat(results)
+					.extracting("hint")
+					.isEqualTo("스트라이크 3볼 ")
+			;
 		}
 
 		@RepeatedTest(1000)
@@ -103,19 +107,24 @@ class PlayGameTest {
 			// when
 			GameHintAndResults results = playGame.playGame(randomNumbers);
 			// than
-			assertThat(results.getHint())
-					.isIn(
-							"스트라이크 1볼 ",
-							"스트라이크 2볼 ",
-							"1볼 ",
-							"2볼 ",
-							"3볼 ",
-							"스트라이크 1볼 1볼 ",
-							"스트라이크 2볼 1볼 ",
-							"스트라이크 1볼 2볼 ",
-							"스트라이크 3볼 "
-					)
-			.as("hints : %s , finish : %s", results.getHint(), results.isFinish());
+			if(results.isFinish()){
+				assertThat(results)
+						.extracting("hint")
+						.isEqualTo("스트라이크 3볼 ");
+			}
+			if(!results.isFinish()){
+				assertThat(results.getHint())
+						.isIn(
+								"스트라이크 1볼 ",
+								"스트라이크 2볼 ",
+								"1볼 ",
+								"2볼 ",
+								"3볼 ",
+								"스트라이크 1볼 1볼 ",
+								"스트라이크 2볼 1볼 ",
+								"스트라이크 1볼 2볼 "
+						);
+			}
 		}
 	}
 }
