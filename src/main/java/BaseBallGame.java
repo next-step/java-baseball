@@ -59,16 +59,8 @@ public class BaseBallGame {
     }
 
     private boolean isValidFormat(String inputNumbers) {
-        int inputNumbersLength = inputNumbers.length();
-        for (int i = 0; i < inputNumbersLength; i++) {
-            String s = inputNumbers.substring(i, i+1);
-            int number;
-            try {
-                number = Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                return false;
-            }
-            if (number < 1 || number > 9) {
+        for (char number : inputNumbers.toCharArray()) {
+            if ((int) number < 49 || (int) number > 57) {
                 return false;
             }
         }
