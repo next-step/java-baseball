@@ -17,8 +17,9 @@ class NumbersTest {
     }
 
     @Test
+    @DisplayName("스트라이크 확인")
     void strike() {
-        assertThat(numbers.strike(Arrays.asList(1, 2, 3))).isTrue();
+        assertThat(numbers.strike(Arrays.asList(1, 2, 3))).isEqualTo(3);
     }
 
     @Test
