@@ -11,8 +11,11 @@
    - main - application 실행
 
 1. Answer 클래스 - 야구 게임 정답을 의미하는 클래스
-   - equals - 입력으로 받은 정답이 자신과 동일한지 확인한다.
-   - printHint - 힌트를 출력한다.
+   - equals - 입력으로 받은 정답이 자신과 동일한지 확인
+   - printHint - 힌트를 출력
+   - getBallCount - ball 개수 반환
+   - getStrikeCount - strike 개수 반환
+   - getHint - strike 개수와 ball 개수를 이용하여 힌트 문자열 생성 후 반환
 
 1. ValidationChecker 클래스 - 사용자 입력에 대한 정합성 체크를 수행하는 클래스
    - isCorrectFormatForAnswer - 사용자가 정답이라고 입력한 값이 정상적인지 확인
