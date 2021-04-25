@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BaseBallTest {
     @Test
-    void create() {
+    void equals() {
         assertThat(BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).isEqualTo(BaseBall.of("159"));
+    }
+
+    @Test
+    void validDuplicateBall() {
+        assertThatThrownBy(() -> BaseBall.of("119"))
+            .hasMessageMatching("숫자는 중복되지 않아야 합니다.")
+            .isInstanceOf(DuplicatedNumberException.class);
     }
 
     @ParameterizedTest
