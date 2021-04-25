@@ -76,4 +76,21 @@ public class BaseballInningServiceImpl implements BaseballInningService {
 		return numberList;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see baseball.core.BaseballInningService#isEndGame(baseball.model.InningResult)
+	 */
+	@Override
+	public boolean isEndGame(InningResult inningResult) {
+
+		int strike = inningResult.getStrike();
+
+		if (strike == 3) {
+			return true;
+		}
+
+		return false;
+	}
+
 }

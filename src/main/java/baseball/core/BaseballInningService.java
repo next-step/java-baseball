@@ -18,4 +18,11 @@ public interface BaseballInningService {
 	 */
 	InningResult judgeInning(String input);
 
+	/**
+	 * inningResult를 통해 게임이 종료되었는지 판단합니다.
+	 * 
+	 * @param inningResult inningResult
+	 * @return 게임 종료여부
+	 */
+	boolean isEndGame(InningResult inningResult);
 }
