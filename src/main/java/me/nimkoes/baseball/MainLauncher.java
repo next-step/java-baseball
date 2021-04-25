@@ -10,7 +10,7 @@ public class MainLauncher {
     public static final int LENGTH_OF_NUMBER = 3;
 
     public static void main(String[] args) {
-        BaseballService baseballService = new BaseballService(RandomNumberRepository.getInstance());
+        BaseballService baseballService = BaseballService.getInstance(RandomNumberRepository.getInstance());
         BaseballController controller = new BaseballController(CommandLine.getInstance(), baseballService);
         controller.run();
     }

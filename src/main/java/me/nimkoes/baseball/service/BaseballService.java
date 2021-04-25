@@ -9,16 +9,25 @@ import me.nimkoes.baseball.model.RandomNumberRepository;
 
 public class BaseballService {
 
-    private final RandomNumberRepository randomNumberRepository;
+    private static final BaseballService baseballService = new BaseballService();
 
-    public BaseballService(RandomNumberRepository randomNumberRepository) {
-        this.randomNumberRepository = randomNumberRepository;
+    private static RandomNumberRepository randomNumberRepository;
+
+    private Random random = new Random();
+
+    public static BaseballService getInstance(RandomNumberRepository randomNumberRepository) {
+        BaseballService.randomNumberRepository = randomNumberRepository;
+        return baseballService;
     }
+
+    private BaseballService() {}
+
+    private boolean gameOver = false;
 
     /*
      * 새로운 난수를 저장
      */
-    public void setRandomNumber() {
+    public void makeRandomNumber() {
         randomNumberRepository.setTargetNumber(generateRandomNumber());
     }
 
@@ -27,13 +36,11 @@ public class BaseballService {
      */
     private String generateRandomNumber() {
         Set<Integer> integers = new LinkedHashSet<>();
-        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
 
         while (integers.size() < MainLauncher.LENGTH_OF_NUMBER) {
             integers.add(random.nextInt(10));
         }
-
-        StringBuilder sb = new StringBuilder();
         for (Integer integer : integers) {
             sb.append(integer);
         }
@@ -48,6 +55,10 @@ public class BaseballService {
         int strikeCount = 0;
         for (int i = 0; i < MainLauncher.LENGTH_OF_NUMBER; ++i) {
             strikeCount += checkStrike(randomNumberRepository.getTargetNumber(), input, i);
+        }
+
+        if (strikeCount == MainLauncher.LENGTH_OF_NUMBER) {
+            this.gameOver = true;
         }
         return strikeCount;
     }
@@ -86,6 +97,20 @@ public class BaseballService {
             return 0;
         }
         return 1;
+    }
+
+    /*
+     * gameOver 값을 false 로 세팅
+     */
+    public void gameStart() {
+        this.gameOver = false;
+    }
+
+    /*
+     * 생성 된 난수를 맞췄을 경우 true 를 반환
+     */
+    public boolean isGameOver() {
+        return gameOver;
     }
 
 }

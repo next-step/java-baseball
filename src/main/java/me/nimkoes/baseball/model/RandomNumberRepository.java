@@ -1,7 +1,7 @@
 package me.nimkoes.baseball.model;
 
 public class RandomNumberRepository {
-    private static RandomNumberRepository randomNumberRepository = new RandomNumberRepository();
+    private static final RandomNumberRepository randomNumberRepository = new RandomNumberRepository();
 
     private RandomNumberRepository() {}
 
