@@ -8,9 +8,15 @@ public class BaseballApplication {
 
     }
 
-    public String inputThreeDigits(){
+    public int[] inputThreeDigits(){
         Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
+        String[] args = scan.nextLine().split("");
+        int[] numbers = new int[3];
+        int idx = 0;
+        for(String numStr : args){
+            numbers[idx++] = Integer.parseInt(numStr);
+        }
+        return numbers;
     }
 
 }
