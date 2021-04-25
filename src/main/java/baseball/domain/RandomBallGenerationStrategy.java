@@ -7,7 +7,7 @@ public class RandomBallGenerationStrategy implements BallGenerationStrategy{
 
     @Override
     public Balls generate(int length) {
-        Random random = new Random();
+        Random random = new Random(System.currentTimeMillis());
 
         Set<Ball> balls = new HashSet<>();
         while(balls.size() < length) {
