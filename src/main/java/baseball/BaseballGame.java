@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Collections;
@@ -80,8 +79,17 @@ public class BaseballGame {
 		}
 	}
 	
-	public static boolean validateLength(final String value, final int length) {
-		return value.length() == length;
+	public static boolean validateLength(final String value) {
+		return value.length() == RANDOM_NUMBER_LENGTH;
+	}
+	
+	public static boolean validateDuplicateNumber(final String value) {
+		for (int i = 0; i < RANDOM_NUMBER_LENGTH - 1; ++i) {
+			if (value.substring(i + 1).contains(value.substring(i, i + 1))) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public static boolean isRetryOrEnd(BufferedReader br) throws IOException {
