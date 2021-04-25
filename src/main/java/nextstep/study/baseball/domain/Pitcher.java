@@ -34,10 +34,9 @@ public class Pitcher {
 		boolean continues = true;
 		String inputNums = null;
 		while (continues) {
-			BaseballUtil.showMessage(BaseballUtil.getInputMessage(makeCount));
+			BaseballUtil.showMessage(BaseballUtil.getInputMessage(makeCount++));
 			inputNums = this.scanner.nextLine();
 			continues = isContinuable(inputNums, validation);
-			makeCount++;
 		}
 		numbers.addAll(BaseballUtil.convertStringToIntList(inputNums));
 		return inputNums;
