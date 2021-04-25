@@ -20,6 +20,7 @@
 1. ValidationChecker 클래스 - 사용자 입력에 대한 정합성 체크를 수행하는 클래스
    - isCorrectFormatForAnswer - 사용자가 정답이라고 입력한 값이 정상적인지 확인
    - isCorrectFormatForRetry - 사용자가 재시작 여부라고 입력한 값이 정상적인지 확인
+   - isEachAllDifferentCharacter - 문자열의 각 자리가 모두 다른 문자인지 확인
    
 1. BaseballGame 클래스 - 야구 게임의 전체적인 흐름을 제어하는 클래스
    - run - 게임 시작
