@@ -1,5 +1,12 @@
+package numberBaseball;
+
+import numberBaseball.exception.ContainsDuplicationException;
+import numberBaseball.exception.ContainsZeroException;
+import numberBaseball.GameNumber;
+import numberBaseball.exception.NotThreeDigitException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.engine.support.discovery.SelectorResolver;
 
 import java.util.Arrays;
 
@@ -11,20 +18,6 @@ class GameNumberTest {
     void checkRandomGenerateTest() throws ContainsZeroException {
         GameNumber.randomGenerate();
     }
-
-//    @Test
-//    @DisplayName("랜덤으로 생성된 3자리 숫자의 크기가 세 자리다.")
-//    void checkSizeTest() {
-//        List<Integer> test = GameNumber.randomGenerate();
-//        assertThat(GameNumber.randomGenerate().size()).isEqualTo(3);
-//    }
-//
-//    @Test
-//    @DisplayName("랜덤으로 생성된 3자리 숫자가 중복되지 않는다.")
-//    void checkDuplicationTest() {
-//        Set<Integer> gameNumberSet = new HashSet<>(GameNumber.randomGenerate());
-//        assertThat(gameNumberSet.size()).isEqualTo(3);
-//    }
 
     @Test
     @DisplayName("0이 포함되면 ContainsZeroException을 출력한다.")
@@ -65,5 +58,31 @@ class GameNumberTest {
             // then
                 .isInstanceOf(NotThreeDigitException.class)
                 .hasMessageContaining("세 자리 수만 입력할 수 있습니다");
+    }
+
+    @Test
+    @DisplayName("스트라이크와 볼의 개수를 구하라")
+    void computeMatchResult() {
+        // given
+        GameNumber gameNumber1 =  GameNumber.of(Arrays.asList(1, 2, 3));
+        GameNumber gameNumber2 =  GameNumber.of(Arrays.asList(1, 4, 2));
+        // when
+        MatchResult matchResult = gameNumber1.computeMatchResult(gameNumber2);
+        // then
+        assertThat(matchResult.getStrikes()).isEqualTo(1);
+        assertThat(matchResult.getBalls()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("스트라이크와 볼의 개수를 구하라")
+    void computeMatchResult2() {
+        // given
+        GameNumber gameNumber1 =  GameNumber.of(Arrays.asList(1, 2, 3));
+        GameNumber gameNumber2 =  GameNumber.of(Arrays.asList(3, 1, 2));
+        // when
+        MatchResult matchResult = gameNumber1.computeMatchResult(gameNumber2);
+        // then
+        assertThat(matchResult.getStrikes()).isEqualTo(0);
+        assertThat(matchResult.getBalls()).isEqualTo(3);
     }
 }

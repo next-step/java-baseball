@@ -1,3 +1,9 @@
+package numberBaseball;
+
+import numberBaseball.exception.ContainsDuplicationException;
+import numberBaseball.exception.ContainsZeroException;
+import numberBaseball.exception.NotThreeDigitException;
+
 import java.util.*;
 
 public class GameNumber {
@@ -47,5 +53,43 @@ public class GameNumber {
         if (gameNumber.contains(0)) {
             throw new ContainsZeroException(MESSAGE_CONTAINS_ZERO);
         }
+    }
+
+    public MatchResult computeMatchResult(GameNumber target) {
+        int strikes = getStrikes(target);
+        int balls = getBalls(target);
+        return new MatchResult(strikes, balls);
+    }
+
+    private int getBalls(GameNumber target) {
+        int balls = 0;
+        for (int i = 0; i < gameNumber.size(); i++) {
+            ArrayList<Integer> indexRemovedGameNumber = new ArrayList<>(gameNumber);
+            indexRemovedGameNumber.remove(i);
+            balls = addBall(target, balls, i, indexRemovedGameNumber);
+        }
+        return balls;
+    }
+
+    private int addBall(GameNumber target, int balls, int i, ArrayList<Integer> indexRemovedGameNumber) {
+        if (indexRemovedGameNumber.contains(target.gameNumber.get(i))) {
+            balls++;
+        }
+        return balls;
+    }
+
+    private int getStrikes(GameNumber target) {
+        int strikes = 0;
+        for (int i = 0; i < gameNumber.size(); i++) {
+            strikes = addStrike(target, strikes, i);
+        }
+        return strikes;
+    }
+
+    private int addStrike(GameNumber target, int strikes, int i) {
+        if (gameNumber.get(i).equals(target.gameNumber.get(i))) {
+            strikes++;
+        }
+        return strikes;
     }
 }
