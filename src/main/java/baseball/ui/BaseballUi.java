@@ -3,6 +3,10 @@ package baseball.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import baseball.code.DisplayCode;
 
@@ -46,7 +50,7 @@ public class BaseballUi {
 	private void inGameScreen() {
 		System.out.print("숫자를 입력해주세요 : ");
 
-		// int playerInput = this.getIntegerFromSystemIn();
+		String playerInput = this.getPlayerInput();
 		boolean isWonGame = true;
 
 		if (isWonGame) {
@@ -109,5 +113,63 @@ public class BaseballUi {
 			System.out.println("올바른 입력이 아닙니다. 다시 입력해주세요.");
 			return null;
 		}
+	}
+
+	/**
+	 * 게임화면에서 입력한 사용자의 3자리 숫자 문자열을 취득한다.
+	 * @return String
+	 */
+	private String getPlayerInput() {
+		String playerInput = this.readLineFromSystemIn();
+		if (this.checkLength(playerInput)
+			&& this.checkNumber(playerInput)
+			&& this.checkIsDuplicatedNumber(playerInput)) {
+			return playerInput;
+		}
+		return null;
+	}
+
+	/**
+	 * 사용자가 입력한 문자열 길이가 3자리 인지 확인힌다.
+	 * @param playerInput
+	 * @return boolean
+	 */
+	private boolean checkLength(String playerInput) {
+		boolean flag = playerInput.length() == 3;
+		if (flag) {
+			return true;
+		}
+		System.out.println("1~9 사이의 숫자를 중복된 숫자 없이 3자리 입력해주세요. 사유 : 길이가 맞지 않습니다.");
+		return false;
+	}
+
+	/**
+	 * 사용자가 입력한 문자열이 3자리면서 숫자인지 확인한다.
+	 * @param playerInput
+	 * @return boolean
+	 */
+	private boolean checkNumber(String playerInput) {
+		Pattern pattern = Pattern.compile("[1-9]{3}");
+		Matcher matcher = pattern.matcher(playerInput);
+		if (matcher.find()) {
+			return true;
+		}
+		System.out.println("1~9 사이의 숫자를 중복된 숫자 없이 3자리 입력해주세요. 사유 : 숫자가 아닙니다.");
+		return false;
+	}
+
+	/**
+	 * 사용자가 입력한 문자열이 중복된 chracter가 있는지 확인한다.
+	 * @param playerInput
+	 * @return boolean
+	 */
+	private boolean checkIsDuplicatedNumber(String playerInput) {
+		int strLength = playerInput.length();
+		int nonDuplicatedStrLength = new HashSet<>(Arrays.asList(playerInput.split(""))).size();
+		if (strLength == nonDuplicatedStrLength) {
+			return true;
+		}
+		System.out.println("1~9 사이의 숫자를 중복된 숫자 없이 3자리 입력해주세요. 사유 : 중복된 숫자가 있습니다.");
+		return false;
 	}
 }
