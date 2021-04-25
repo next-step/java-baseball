@@ -28,9 +28,9 @@ public class Game {
             System.out.println("숫자를 입력해주세요 : ");
             String userInputBallValue = this.getUserBallInput();
             gamerBall.setBallValues(userInputBallValue);
+
             gameResult = this.compareBalls();
             this.printGameResult(gameResult.toString());
-
         } while(this.judgeResult(gameResult));
     }
 
@@ -53,13 +53,44 @@ public class Game {
     }
 
     private Boolean isValidUserInput(String userInput) {
-        //TODO : implements
+        if (userInput.length() != 3) {
+            System.out.println("입력이 길이가 잘못되었습니다. 다시 입력해 주세요");
+            return true;
+        }
+
+        if (this.checkDuplicateInput(userInput)) {
+            System.out.println("중복된 입력이 있습니다. 다시 입력해 주세요");
+            return true;
+        }
+
+        if (this.isInputIsNumberString(userInput)) {
+            System.out.println("1-9까지의 숫자의 입력만 가능합니다. 다시 입력해 주세요");
+            return true;
+        }
+
         return false;
     }
 
     private GameResult compareBalls(){
         gameResult = dealerBall.compareBalls(gamerBall);
         return gameResult;
+    }
+
+    private Boolean checkDuplicateInput(String userInput){
+        if (userInput.charAt(0) == userInput.charAt(1)) {
+            return true;
+        }
+        if (userInput.charAt(1) == userInput.charAt(2)) {
+            return true;
+        }
+        if (userInput.charAt(0) == userInput.charAt(2)) {
+            return true;
+        }
+        return false;
+    }
+
+    private Boolean isInputIsNumberString(String userInput){
+        return !userInput.matches("^[1-9]*$");
     }
 
     private void printGameResult(String gameResultString){
