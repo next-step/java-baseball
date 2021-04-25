@@ -51,6 +51,10 @@ public class Umpire {
         return strike;
     }
 
+    public int getBall(){
+        return ball;
+    }
+
     public void askAnotherRound() {
         initScore();
         OutputMessage.printMessage(Message.NOTICE_ANSWER);
