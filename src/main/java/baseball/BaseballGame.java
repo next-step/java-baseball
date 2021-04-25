@@ -60,7 +60,15 @@ public class BaseballGame {
 	}
 	
 	public static boolean validateInputValue(String inputValue) {
-		return (isIntegerValue(inputValue) && validateLength(inputValue, 3));
+		String message = null;
+		if (!isIntegerValue(inputValue)) message = "숫자가 아닌값을 입력하셨습니다.";
+		if (message == null && !validateLength(inputValue)) message = "숫자길이는 " + RANDOM_NUMBER_LENGTH + "자리로 입력해주세요.";
+		if (message == null && !validateDuplicateNumber(inputValue)) message = "중복된 숫자가 존재합니다.";
+		if(message != null) {
+			System.out.println(message);
+			return false;
+		}
+		return true;
 	}
 	
 	public static boolean isIntegerValue(String value) {
