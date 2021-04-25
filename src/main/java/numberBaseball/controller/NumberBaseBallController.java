@@ -18,10 +18,13 @@ public class NumberBaseBallController {
 
     private void playOneGame() {
         numberBaseBallService.generateTargetNumber();
-        while (true) {
+        boolean isClear = false;
+        while (!isClear) {
             String inputGameNumber = ConsoleInput.inputGameNumber();
             ResultResponse resultResponse = numberBaseBallService.getResultResponse(inputGameNumber);
             ConsoleOutput.printResult(resultResponse.getResult());
+            isClear = resultResponse.isClear();
         }
+        ConsoleOutput.printClearMessage();
     }
 }
