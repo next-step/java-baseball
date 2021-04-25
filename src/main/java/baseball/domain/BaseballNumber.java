@@ -5,8 +5,8 @@ import baseball.exception.BaseballNumberInvalidRangeException;
 
 import java.util.Objects;
 
-import static baseball.domain.rule.BaseballRule.MAX_NUMBER_OF_BASEBALL_NUMBER;
-import static baseball.domain.rule.BaseballRule.MIN_NUMBER_OF_BASEBALL_NUMBER;
+import static baseball.domain.BaseballGameRule.MAX_NUMBER_OF_BASEBALL_NUMBER;
+import static baseball.domain.BaseballGameRule.MIN_NUMBER_OF_BASEBALL_NUMBER;
 
 public class BaseballNumber {
 
@@ -22,7 +22,6 @@ public class BaseballNumber {
         } catch (NumberFormatException e) {
             throw new BaseballNumberInvalidFormatException();
         }
-
     }
 
     private void validate(int value) {

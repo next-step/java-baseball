@@ -1,6 +1,6 @@
-package baseball.domain.rule;
+package baseball.domain;
 
-public enum BaseballRule {
+public enum BaseballGameRule {
 
     MIN_NUMBER_OF_BASEBALL_NUMBER(1),
     MAX_NUMBER_OF_BASEBALL_NUMBER(9),
@@ -8,7 +8,7 @@ public enum BaseballRule {
 
     private final int value;
 
-    BaseballRule(int value) {
+    BaseballGameRule(int value) {
         this.value = value;
     }
 

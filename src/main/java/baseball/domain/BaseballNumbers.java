@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static baseball.domain.rule.BaseballRule.COUNT_OF_BASEBALL_NUMBERS;
+import static baseball.domain.BaseballGameRule.COUNT_OF_BASEBALL_NUMBERS;
 
 public class BaseballNumbers {
 
