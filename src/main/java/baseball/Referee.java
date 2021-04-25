@@ -1,6 +1,5 @@
 package baseball;
 
-// TODO: Add UI Decorate
 public class Referee {
 
 	public Referee() {

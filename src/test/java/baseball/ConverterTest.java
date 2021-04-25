@@ -16,6 +16,9 @@ public class ConverterTest {
 		assertThat(converter.isThreeDigits("000")).isFalse();
 		assertThat(converter.isThreeDigits("099")).isFalse();
 		assertThat(converter.isThreeDigits("1000")).isFalse();
+
+		assertThat(converter.isThreeDigits("")).isFalse();
+		assertThat(converter.isThreeDigits("text")).isFalse();
 	}
 
 	@Test

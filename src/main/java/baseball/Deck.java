@@ -4,21 +4,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public final class Deck {
-
-	// TODO: constant
-	public final int begin = 1;
-	public final int end = 10;
+public class Deck {
 
 	public Deck() {
 	}
 
 	private List<Integer> create() {
-		int value = begin;
-		int size = end - begin;
+		int value = 1;
 
-		Integer[] deck = new Integer[size];
-		for (int i = 0; i < size; i++, value++) {
+		Integer[] deck = new Integer[9];
+		for (int i = 0; i < 9; i++, value++) {
 			deck[i] = value;
 		}
 
@@ -30,7 +25,7 @@ public final class Deck {
 		return deck;
 	}
 
-	public final int[] draw() {
+	public int[] draw() {
 		List<Integer> deck = shuffle(create());
 
 		int[] numbers = new int[3];

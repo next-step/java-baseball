@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.Arrays;
+
 public class Player {
 
 	private int[] numbers;
@@ -17,5 +19,10 @@ public class Player {
 
 	public int[] getNumbers() {
 		return numbers;
+	}
+
+	@Override
+	public String toString() {
+		return Arrays.toString(numbers);
 	}
 }

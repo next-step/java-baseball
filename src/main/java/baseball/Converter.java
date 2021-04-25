@@ -6,11 +6,7 @@ public class Converter {
 	}
 
 	public boolean isThreeDigits(String raw) {
-		if (raw.length() != 3) {
-			return false;
-		}
-
-		if (!isNumber(raw)) {
+		if (raw.length() != 3 || !isNumber(raw)) {
 			return false;
 		}
 
