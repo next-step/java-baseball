@@ -20,18 +20,18 @@ public class RandomNumberUtil {
         int numberSize = 0;
 
         while(numberSize < 3) {
-            makeRandomNumber(baseBallNumberInfo.getBaseBallRandomNumberList());
+            makeRandomNumber(baseBallNumberInfo);
             numberSize = CheckDuplicateUtil.checkDuplicateNumber(baseBallNumberInfo.getBaseBallRandomNumberList());
         }
 
         return baseBallNumberInfo;
     }
 
-    public static void makeRandomNumber(List<Integer> baseBallNumberList) {
+    public static void makeRandomNumber(BaseBallNumberInfo baseBallNumberInfo) {
 
-        baseBallNumberList.clear();
+        baseBallNumberInfo.getBaseBallRandomNumberList().clear();
         for(int pos = 0; pos < 3; pos++) {
-            baseBallNumberList.add((int)(Math.random() * 9) + 1);
+            baseBallNumberInfo.setBaseBallPositionNumber((int)(Math.random() * 9) + 1);
         }
     }
 

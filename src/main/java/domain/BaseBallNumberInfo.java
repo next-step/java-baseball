@@ -15,11 +15,8 @@ public class BaseBallNumberInfo {
         return baseBallRandomNumber;
     }
 
-    public int setBaseBallPositionNumber(int randomNumber){
-
+    public void setBaseBallPositionNumber(int randomNumber){
         baseBallRandomNumber.add(randomNumber);
-
-        return baseBallRandomNumber.size();
     }
 
     public int getBaseBallPositionNumber(int position){
