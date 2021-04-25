@@ -29,4 +29,13 @@ class QuestionerTest {
     assertThat(count.size()).isEqualTo(3);
   }
 
+  @Test
+  @DisplayName(value = "생성된 숫자는 0이 없다")
+  void zeroIsNotExist() {
+    Questioner questioner = new Questioner();
+    String num = String.valueOf(questioner.makeProblem());
+
+    assertThat(num.contains("0")).isFalse();
+  }
+
 }
