@@ -21,9 +21,8 @@ public class NumberUtils {
 	 * @return
 	 */
 	public static int getGeneratedRandomNumber(int min, int max) {
-		long seed = System.currentTimeMillis();
-		Random random = new Random(seed);
-		int randomNumber = random.nextInt(min) + max;
+		Random random = new Random();
+		int randomNumber = random.nextInt(max) + min;
 
 		return randomNumber;
 	}
@@ -34,7 +33,7 @@ public class NumberUtils {
 	 * @param generatedRandomNumber
 	 * @return
 	 */
-	public static List<Integer> addNumbersNotDuplicate(List<Integer> selectedNumberList, int generatedRandomNumber) {
+	public static List<Integer> selectNumbersNotDuplicate(List<Integer> selectedNumberList, int generatedRandomNumber) {
 		if (!selectedNumberList.contains(generatedRandomNumber)) {
 			selectedNumberList.add(generatedRandomNumber);
 		}
