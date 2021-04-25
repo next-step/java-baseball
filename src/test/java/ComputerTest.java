@@ -21,17 +21,122 @@ public class ComputerTest {
 	}
 
 	@Test
-	void resultTest() {
-
-		String input = "123";
+	void oneStrikeTest() {
+		//given
 		Computer computer = new Computer();
 		computer.setBallSet();
-		if (computer.result(input) && computer.getStrikeCount() == 0 && computer.getBallCount() == 0) {
-			System.out.println("낫싱");
-		} else {
-			System.out.println(computer.getStrikeCount() + "스트라이크" + computer.getBallCount() + "볼");
-		}
-		System.out.println("strike : " + computer.getStrikeCount());
+		String balls = computer.getBall();
+		String oneBall = balls.substring(0,1);
 
+		//when
+		computer.strikeRuleCheck(oneBall.charAt(0), 0);
+		computer.ballRuleCheck(oneBall.charAt(0), 0);
+
+		//then
+		assertEquals(1, computer.getStrikeCount());
+		assertEquals(0, computer.getBallCount());
+	}
+
+	@Test
+	void twoStrikeTest() {
+		//given
+		Computer computer = new Computer();
+		computer.setBallSet();
+		String balls = computer.getBall();
+		String oneBall = balls.substring(0,1);
+		String twoBall = balls.substring(1,2);
+
+		//when
+		computer.strikeRuleCheck(oneBall.charAt(0), 0);
+		computer.ballRuleCheck(oneBall.charAt(0), 0);
+		computer.strikeRuleCheck(twoBall.charAt(0), 1);
+		computer.ballRuleCheck(twoBall.charAt(0), 1);
+
+		//then
+		assertEquals(2, computer.getStrikeCount());
+		assertEquals(0, computer.getBallCount());
+	}
+
+	@Test
+	void threeStrikeTest() {
+		//given
+		Computer computer = new Computer();
+		computer.setBallSet();
+		String balls = computer.getBall();
+		String oneBall = balls.substring(0,1);
+		String twoBall = balls.substring(1,2);
+		String threeBall = balls.substring(2,3);
+
+		//when
+		computer.strikeRuleCheck(oneBall.charAt(0), 0);
+		computer.ballRuleCheck(oneBall.charAt(0), 0);
+		computer.strikeRuleCheck(twoBall.charAt(0), 1);
+		computer.ballRuleCheck(twoBall.charAt(0), 1);
+		computer.strikeRuleCheck(threeBall.charAt(0), 2);
+		computer.ballRuleCheck(threeBall.charAt(0), 2);
+
+		//then
+		assertEquals(3, computer.getStrikeCount());
+		assertEquals(0, computer.getBallCount());
+	}
+
+	@Test
+	void oneBallTest() {
+		//given
+		Computer computer = new Computer();
+		computer.setBallSet();
+		String balls = computer.getBall();
+		String oneBall = balls.substring(0,1);
+
+		//when
+		computer.strikeRuleCheck(oneBall.charAt(0), 1);
+		computer.ballRuleCheck(oneBall.charAt(0), 1);
+
+		//then
+		assertEquals(0, computer.getStrikeCount());
+		assertEquals(1, computer.getBallCount());
+	}
+
+	@Test
+	void twoBallTest() {
+		//given
+		Computer computer = new Computer();
+		computer.setBallSet();
+		String balls = computer.getBall();
+		String oneBall = balls.substring(0,1);
+		String twoBall = balls.substring(1,2);
+
+		//when
+		computer.strikeRuleCheck(oneBall.charAt(0), 1);
+		computer.ballRuleCheck(oneBall.charAt(0), 1);
+		computer.strikeRuleCheck(twoBall.charAt(0), 2);
+		computer.ballRuleCheck(twoBall.charAt(0), 2);
+
+		//then
+		assertEquals(0, computer.getStrikeCount());
+		assertEquals(2, computer.getBallCount());
+	}
+
+	@Test
+	void threeBallTest() {
+		//given
+		Computer computer = new Computer();
+		computer.setBallSet();
+		String balls = computer.getBall();
+		String oneBall = balls.substring(0,1);
+		String twoBall = balls.substring(1,2);
+		String threeBall = balls.substring(2,3);
+
+		//when
+		computer.strikeRuleCheck(oneBall.charAt(0), 2);
+		computer.ballRuleCheck(oneBall.charAt(0), 2);
+		computer.strikeRuleCheck(twoBall.charAt(0), 0);
+		computer.ballRuleCheck(twoBall.charAt(0), 0);
+		computer.strikeRuleCheck(threeBall.charAt(0), 1);
+		computer.ballRuleCheck(threeBall.charAt(0), 1);
+
+		//then
+		assertEquals(0, computer.getStrikeCount());
+		assertEquals(3, computer.getBallCount());
 	}
 }

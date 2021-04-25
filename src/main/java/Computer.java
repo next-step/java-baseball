@@ -53,13 +53,13 @@ public class Computer {
 		this.ballSet = ballSet;
 	}
 
-	private void strikeRuleCheck(char ball, int index) {
+	protected void strikeRuleCheck(char ball, int index) {
 		if (this.getBall().indexOf(ball) == index) {
 			this.strikeCount++;
 		}
 	}
 
-	private void ballRuleCheck(char ball, int index) {
+	protected void ballRuleCheck(char ball, int index) {
 		final String strBall = this.getBall();
 		if (strBall.indexOf(ball) != -1 && strBall.indexOf(ball) != index) {
 			this.ballCount++;
