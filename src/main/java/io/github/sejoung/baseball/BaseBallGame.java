@@ -5,7 +5,7 @@ public class BaseBallGame {
 	}
 
 	public boolean isCompleted() {
-		return true;
+		return false;
 	}
 
 	public String flushOutput() {
