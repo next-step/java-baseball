@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import baseball.code.DisplayCode;
+import baseball.core.BaseballCore;
 
 public class BaseballUi {
 
@@ -16,6 +17,8 @@ public class BaseballUi {
 	private DisplayCode codeStatus = DisplayCode.BASEBALL_IN_GAME;
 	// 시스템 입력
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+	// 코어
+	private BaseballCore baseballCore = new BaseballCore();
 
 	/**
 	 * 프로그램 진입 화면
@@ -44,15 +47,28 @@ public class BaseballUi {
 	/**
 	 * 게임 화면
 	 * - 숫자 입력 요청 메시지를 출력한다.
-	 * - 게임 종료 조건을 달성했는지 여부를 판별한다.
-	 *   -- 게임 종료 조건을 달성하면 컨틴뉴 화면으로 상태를 변경한다.
 	 */
 	private void inGameScreen() {
 		System.out.print("숫자를 입력해주세요 : ");
 
 		String playerInput = this.getPlayerInput();
-		boolean isWonGame = true;
+		if (playerInput != null) {
+			this.proceedWonGame(playerInput);
+		}
+	}
 
+	/**
+	 * 게임 화면 내 게임 결과를 확인하고 다음 진행 상황을 체크한다.
+	 * - 게임이 종료된 경우에는 게임을 초기화하는 메서드를 호출한다.
+	 * - 게임 종료 조건을 달성했는지 여부를 판별한다.
+	 *   -- 게임 종료 조건을 달성하면 컨틴뉴 화면으로 상태를 변경한다.
+	 * @param playerInput
+	 */
+	private void proceedWonGame(String playerInput) {
+		// 초기화
+		baseballCore.resetGameWhenNewGame();
+		// 종료 조건 달성 여부 판별
+		boolean isWonGame = baseballCore.checkWinGame(playerInput);
 		if (isWonGame) {
 			this.codeStatus = DisplayCode.BASEBALL_CONTINUE_GAME;
 		}
