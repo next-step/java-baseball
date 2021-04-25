@@ -5,6 +5,14 @@ import baseball.view.BaseballClient;
 
 public class BaseballGame {
 
+    static final int MAX_NUM = 3;
+    static final int GAME_RESTART = 1;
+    static final int GAME_FINISH = 2;
+
+    static final String NOTHING = "낫싱";
+    static final String STRIKE = "스트라이크";
+    static final String BALL = "볼";
+
     BaseballClient client = new BaseballClient();
     String randomStr;
     String input;
