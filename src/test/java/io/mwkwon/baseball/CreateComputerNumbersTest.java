@@ -8,6 +8,13 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * createComputerNumber method 테스트 class
+ *
+ * @author  mwkwon
+ * @version 1.0: 최초 구현
+ *
+ */
 class CreateComputerNumbersTest {
 
     private String computerNumbers;
