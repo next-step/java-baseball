@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class GameTest {
     @Test
@@ -28,5 +29,17 @@ public class GameTest {
 
         assertThat(isGenerateCalled.get())
                 .isTrue();
+    }
+
+    @Test
+    @DisplayName("매칭시 정해진 개수가 아니면 Exception 이 발생한다.")
+    public void 매칭시_정해진_개수가_아니면_Exception이_발생한다() {
+        Game game = new Game();
+
+        Balls balls = new Balls(
+                Ball.of(1), Ball.of(2)
+        );
+
+        assertThatIllegalArgumentException().isThrownBy(() -> game.match(balls));
     }
 }
