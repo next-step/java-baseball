@@ -93,12 +93,13 @@ public class BaseballGame {
 			this.nothingCount += cnt;
 		}
 		
-		public void printBallCount() {			
-			String[] ballCountStrArr = {"", ""};
-			if(strikeCount > 0) ballCountStrArr[0] = strikeCount + " 스트라이크";
-			if(ballCount > 0) ballCountStrArr[1] = ballCount + " 볼";
-			if(nothingCount == totalBallCount) ballCountStrArr[0] = "낫싱";
-			System.out.println(String.join(" ", ballCountStrArr));
+		public BallCount printBallCount() {
+			String ballCountStr = ((strikeCount > 0) ? (strikeCount + " 스트라이크") : "")
+					+ ((strikeCount > 0 && ballCount > 0) ? " " : "")
+					+ ((ballCount > 0) ? (ballCount + " 볼") : "")
+					+ ((nothingCount == totalBallCount) ? "낫싱" : "");
+			System.out.println(ballCountStr);
+			return this;
 		}
 		
 		public boolean isAllStrike() {
