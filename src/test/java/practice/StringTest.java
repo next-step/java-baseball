@@ -32,4 +32,17 @@ public class StringTest {
         // then
         assertThat(splited).containsExactly("1");
     }
+
+    @Test
+    public void subStringTest() {
+
+        // given
+        String input = "(1,2)";
+
+        // when
+        String result = input.substring(1, input.length() - 1);
+
+        // then
+        assertThat(result).isEqualTo("1,2");
+    }
 }
