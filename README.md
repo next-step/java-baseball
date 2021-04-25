@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 앱 기본구조 작성
+* 숫자생성
+* 숫자입력
+* 숫자 비교 및 결과 출력
+* 게임 재실행 혹은 종료
