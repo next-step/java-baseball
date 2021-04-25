@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+## 기능
+1. 랜덤번호 추출 기능
+2. 스트라이크 체크 기능
+3. 볼 체크 기능
+4. 결과 체크 기능
