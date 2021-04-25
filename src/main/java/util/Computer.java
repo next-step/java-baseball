@@ -16,5 +16,18 @@ public class Computer {
         stringVariable = new HashSet<>();
     }
 
+    public void initComputerValue(){
+        initComputerVariable();
+        while(stringVariable.size() < 3){
+            int addlist  = (int)Math.floor(Math.random() * 10);
+            stringVariable.add(addlist);
+        }
+        for(Integer c : stringVariable){
+            variable += Integer.toString(c);
+        }
+    }
 
+    public String getComputerVariable(){
+        return this.variable;
+    }
 }
