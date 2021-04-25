@@ -34,6 +34,13 @@ public class GameResult {
         return resultString.toString().trim();
     }
 
+    public Boolean isThreeStrike(){
+        if (this.strike == 3) {
+            return true;
+        }
+        return false;
+    }
+
     private String createNothingString(){
         String nothing = "낫싱";
         return nothing;
