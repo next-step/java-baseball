@@ -16,6 +16,7 @@ public class BaseballPitcher {
         throwingBall();
     }
 
+    // FIXME: 줄수 제한 10
     public void throwingBall() {
         System.out.print(INPUT_NUMBER_MESSAGE);
         String input = scan.nextLine();
