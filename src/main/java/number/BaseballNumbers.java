@@ -47,7 +47,7 @@ public class BaseballNumbers {
 	public Integer get(int index) {
 		return baseballNumbers.get(index);
 	}
-	
+
 	public boolean contains(Object obj) {
 		return baseballNumbers.contains(obj);
 	}

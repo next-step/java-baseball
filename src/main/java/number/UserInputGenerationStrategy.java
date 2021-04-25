@@ -25,7 +25,7 @@ public class UserInputGenerationStrategy implements NumbersGenerationStrategy {
 
 		try {
 			result = baseballNumbersFactory.baseballNumbers(inputManager.nextInt());
-		} catch (IllegalArgumentException e) {			
+		} catch (IllegalArgumentException e) {
 			outputManager.print(e.getMessage() + " 재입력 : ");
 			return generate();
 		}
