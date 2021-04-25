@@ -10,4 +10,8 @@ public class Numbers {
     public int size() {
         return this.gameNumbers.size();
     }
+
+    public boolean strike(List<Integer> userNumbers) {
+        return false;
+    }
 }
