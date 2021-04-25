@@ -1,6 +1,7 @@
 package camp.nextstep.edu.game;
 
 import camp.nextstep.edu.util.NumberUtil;
+import camp.nextstep.edu.util.ValidationUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -28,5 +29,16 @@ public class BaseballNumber {
             numberSet.add(number);
         }
         return new BaseballNumber(numberSet);
+    }
+
+    public static boolean isValidBaseballNumber(String input) {
+        return ValidationUtil.isNumber(input)
+                && ValidationUtil.isDistinct(input)
+                && ValidationUtil.isNotContains(input, "0")
+                && input.length() == 3;
+    }
+
+    public BaseballGameResult compare(String input) {
+        return null;
     }
 }
