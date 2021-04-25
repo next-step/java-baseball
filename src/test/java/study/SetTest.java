@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,5 +33,17 @@ public class SetTest {
 
         // then
         Assertions.assertThat(setSize).isEqualTo(3);
+    }
+
+    @DisplayName("JUnit의 ParameterizedTest 어노테이션 테스트")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    public void parameterizedTest(int given) {
+
+        // when
+        boolean result = numbers.contains(given);
+
+        // then
+        Assertions.assertThat(result).isTrue();
     }
 }
