@@ -16,7 +16,7 @@ public class BaseballNumberInput {
 			try {
 				InputValidator.validateBaseballNumberInput(inputString);
 			} catch (ValidationException e) {
-				Output.print(e.getMessage());
+				Output.println(e.getMessage());
 				return false;
 			}
 			return true;
