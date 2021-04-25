@@ -13,7 +13,7 @@ class RandomBaseBallNumberGeneratorTest {
 	@DisplayName("중복된 숫자 확인")
 	@Test
 	void duplicateNumberTest() {
-		RandomBaseBallNumberGenerator generator = new RandomBaseBallNumberGenerator();
+		BaseBallNumberGenerator generator = new RandomBaseBallNumberGenerator();
 		List<Integer> numbers = generator.generateBaseBallNumbers();
 		assertThat(Collections.frequency(numbers, numbers.get(0))).isOne();
 		assertThat(Collections.frequency(numbers, numbers.get(1))).isOne();
@@ -23,7 +23,7 @@ class RandomBaseBallNumberGeneratorTest {
 	@DisplayName("3자리의 수 확인")
 	@Test
 	void sizeTest() {
-		RandomBaseBallNumberGenerator generator = new RandomBaseBallNumberGenerator();
+		BaseBallNumberGenerator generator = new RandomBaseBallNumberGenerator();
 		List<Integer> numbers = generator.generateBaseBallNumbers();
 		assertThat(numbers.size()).isEqualTo(3);
 	}
@@ -31,7 +31,7 @@ class RandomBaseBallNumberGeneratorTest {
 	@DisplayName("1부터 9까지 숫자 확인")
 	@Test
 	void minMaxNumberTest() {
-		RandomBaseBallNumberGenerator generator = new RandomBaseBallNumberGenerator();
+		BaseBallNumberGenerator generator = new RandomBaseBallNumberGenerator();
 		List<Integer> numbers = generator.generateBaseBallNumbers();
 		assertThat(Collections.frequency(numbers, 0)).isZero();
 	}
