@@ -10,7 +10,7 @@ public class BaseballNumberFactory {
     private final List<String> ALL_RANDOM_NUMBERS = new ArrayList();
 
     public BaseballNumberFactory() {
-        for(int i = 1; i <= 9; ++i) {
+        for(int i = BaseballNumbers.MIN_RANDOM_NUMBER; i <= BaseballNumbers.MAX_RANDOM_NUMBER; ++i) {
             this.ALL_RANDOM_NUMBERS.add(String.valueOf(i));
         }
 
@@ -18,7 +18,7 @@ public class BaseballNumberFactory {
 
     public BaseballNumbers generateNumbers() {
         Collections.shuffle(this.ALL_RANDOM_NUMBERS);
-        List<String> selectedRandomNumber = this.ALL_RANDOM_NUMBERS.subList(0, 3);
+        List<String> selectedRandomNumber = this.ALL_RANDOM_NUMBERS.subList(0, BaseballNumbers.RANDOM_NUMBER_COUNT);
         return new BaseballNumbers(selectedRandomNumber);
     }
 }
