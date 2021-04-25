@@ -24,7 +24,7 @@ class BaseballNumberScoreTest {
 
     private BaseballNumbers makeNormalBaseballNumber(int number1, int number2, int number3) {
         List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2, number3));
-        return new BaseballNumbers(initNumbers);
+        return BaseballNumbers.create(initNumbers);
     }
 
     @DisplayName("3스트라이크 게임종료 테스트")

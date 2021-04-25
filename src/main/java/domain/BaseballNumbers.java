@@ -9,12 +9,20 @@ public class BaseballNumbers {
 
     private List<Integer> numbers;
 
-    public BaseballNumbers(List<Integer> numbers) {
+    private BaseballNumbers() {
+
+    }
+
+    private BaseballNumbers(List<Integer> numbers) {
         this.numbers = numbers;
 
         if (numbers.size() != BASEBALL_NUMBER_SIZE) {
             throw new IllegalArgumentException(INVALID_BASEBALL_NUMBER_SIZE);
         }
+    }
+
+    public static BaseballNumbers create(List<Integer> numbers) {
+        return new BaseballNumbers(numbers);
     }
 
     public boolean contains(int playerNumber) {

@@ -21,7 +21,7 @@ public class BaseballGame {
         boolean playingFlag = true;
         while (playingFlag) {
             BaseballNumberScore baseballNumberScore = new BaseballNumberScore(
-                    new BaseballNumbers(BaseballNumberGenerator.generator())
+                    BaseballNumbers.create(BaseballNumberGenerator.generator())
             );
             playRound(baseballNumberScore);
 
@@ -30,8 +30,8 @@ public class BaseballGame {
     }
 
     private boolean isContinuePlay() {
-        int continueAnwser = inputView.isContinue();
-        if (continueAnwser == 1) {
+        int continueAnswer = inputView.isContinue();
+        if (continueAnswer == 1) {
             return true;
         }
 
@@ -43,7 +43,7 @@ public class BaseballGame {
 
         while (playBall) {
             List<Integer> inputNumbers = TransStringNumberToNumberListUtil.toNumberList(inputView.inputNumber());
-            BaseballResult baseballResult = baseballNumberScore.judge(new BaseballNumbers(inputNumbers));
+            BaseballResult baseballResult = baseballNumberScore.judge(BaseballNumbers.create(inputNumbers));
             resultView.showResult(baseballResult);
 
             playBall = !baseballResult.isEndGame();

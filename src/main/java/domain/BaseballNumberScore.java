@@ -13,7 +13,7 @@ public class BaseballNumberScore {
         BaseballResult baseballResult = new BaseballResult();
 
         for (int i = 1; i < 4; i++) {
-            Pitching pitching = new Pitching(i, playerScore.numberOfRound(i));
+            Pitching pitching = Pitching.create(i, playerScore.numberOfRound(i));
             comparePitching(baseballResult, pitching);
         }
 
@@ -21,7 +21,6 @@ public class BaseballNumberScore {
     }
 
     private void comparePitching(BaseballResult baseballResult, Pitching pitching) {
-
         if (numbers.contains(pitching.pitching())) {
             pitchingJudge(baseballResult, pitching);
         }

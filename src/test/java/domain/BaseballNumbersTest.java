@@ -18,7 +18,7 @@ class BaseballNumbersTest {
 
     private BaseballNumbers makeNormalBaseballNumber(int number1, int number2, int number3) {
         List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2, number3));
-        return new BaseballNumbers(initNumbers);
+        return BaseballNumbers.create(initNumbers);
     }
 
     @DisplayName("BaseballNumber 객체 생성확인")
@@ -38,7 +38,7 @@ class BaseballNumbersTest {
     void createBaseballNumbersExceptionTest(int number1, int number2) {
         List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2));
         assertThatThrownBy(() -> {
-            new BaseballNumbers(initNumbers);
+            BaseballNumbers.create(initNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -58,9 +58,9 @@ class BaseballNumbersTest {
     @CsvSource(value = {"8,3,7"}, delimiter = ',')
     void isSameBaseballNumbersTest(int number1, int number2, int number3) {
         BaseballNumbers baseballNumbers = makeNormalBaseballNumber(number1, number2, number3);
-        Pitching pitching1 = new Pitching(1, number1);
-        Pitching pitching2 = new Pitching(2, number2);
-        Pitching pitching3 = new Pitching(3, number3);
+        Pitching pitching1 = Pitching.create(1, number1);
+        Pitching pitching2 = Pitching.create(2, number2);
+        Pitching pitching3 = Pitching.create(3, number3);
 
         assertTrue(baseballNumbers.isSameIndex(pitching1));
         assertTrue(baseballNumbers.isSameIndex(pitching2));

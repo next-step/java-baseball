@@ -12,7 +12,7 @@ class PitchingTest {
     @ParameterizedTest
     @CsvSource(value = {"1:2", "2:7", "3:3"}, delimiter = ':')
     void createPitchingObject(int sequence, int pitchingNumber) {
-        Pitching pitching = new Pitching(sequence, pitchingNumber);
+        Pitching pitching = Pitching.create(sequence, pitchingNumber);
         assertThat(sequence).isEqualTo(pitching.pitchingSequence());
         assertThat(pitchingNumber).isEqualTo(pitching.pitching());
     }
