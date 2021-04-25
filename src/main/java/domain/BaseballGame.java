@@ -1,5 +1,8 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +14,6 @@ public class BaseballGame {
 
     private static final String NEW_GAME_COMMAND = "1";
     private static final String GAME_OVER_COMMAND = "2";
-
-    private static final String NOT_GAME_START_YET_ERROR_MESSAGE = "아직 게임이 시작되지 않았습니다.";
 
     public BaseballGame(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
@@ -56,7 +57,7 @@ public class BaseballGame {
 
     private void validateIsGameStarted() {
         if (this.results == null) {
-            throw new IllegalArgumentException(NOT_GAME_START_YET_ERROR_MESSAGE);
+            throw new BaseBallGameFailureException(ErrorCode.NOT_GAME_START_YET_ERROR_MESSAGE);
         }
     }
 

@@ -1,5 +1,8 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
+
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -12,8 +15,6 @@ public class Results {
     private static final int MIN_RESULT_COUNT = 0;
 
     private static final String ALL_STRIKE_MESSAGE = "\n3개의 숫자를 모두 맞히셨습니다! 게임 종료";
-    private static final String RESULT_EMPTY_ERROR_MESSAGE = "결과 값이 존재하지 않습니다.";
-    private static final String RESULT_COUNT_ERROR_MESSAGE = "결과 수가 부족합니다.";
 
     private static final String STRIKE_MESSAGE = "스트라이크";
     private static final String BALL_MESSAGE = "볼";
@@ -62,11 +63,11 @@ public class Results {
 
     private void validateResults(List<Result> results) {
         if (results == null || results.isEmpty() || results.contains(null)) {
-            throw new IllegalArgumentException(RESULT_EMPTY_ERROR_MESSAGE);
+            throw new BaseBallGameFailureException(ErrorCode.RESULT_EMPTY_ERROR_MESSAGE);
         }
 
         if (results.size() < MAX_RESULT_COUNT) {
-            throw new IllegalArgumentException(RESULT_COUNT_ERROR_MESSAGE);
+            throw new BaseBallGameFailureException(ErrorCode.RESULT_COUNT_ERROR_MESSAGE);
         }
     }
 

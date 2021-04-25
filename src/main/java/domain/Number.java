@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
 import utils.StringUtils;
 
 import java.util.Objects;
@@ -10,8 +12,6 @@ public class Number {
 
     private static final int MAXIMUM_NUMBER = 9;
     private static final int MINIMUM_NUMBER = 1;
-
-    private static final String NUMBER_BOUNDARY_ERROR_MESSAGE = "숫자는 1 ~ 9 사이의 수여야 합니다.";
 
     private Number(int number, int position) {
         validationCheck(number);
@@ -33,7 +33,7 @@ public class Number {
 
     private void validationCheck(int number) {
         if (number > MAXIMUM_NUMBER || number < MINIMUM_NUMBER) {
-            throw new IllegalArgumentException(NUMBER_BOUNDARY_ERROR_MESSAGE);
+            throw new BaseBallGameFailureException(ErrorCode.NUMBER_BOUNDARY_ERROR_MESSAGE);
         }
     }
 

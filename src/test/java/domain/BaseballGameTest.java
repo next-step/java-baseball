@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,16 +40,16 @@ class BaseballGameTest {
     @Test
     @DisplayName("게임 시작 전 isFinished() 메소드 호출 시 예외발생")
     void gameNotStartedExceptionTest(){
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(BaseBallGameFailureException.class)
                 .isThrownBy(() -> game.isClear())
-                .withMessage("아직 게임이 시작되지 않았습니다.");
+                .withMessageContaining(ErrorCode.NOT_GAME_START_YET_ERROR_MESSAGE.getMessage());
     }
 
     @Test
     @DisplayName("게임 시작 전 executeCommand() 메소드 호출 시 예외발생")
     void test(){
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(BaseBallGameFailureException.class)
                 .isThrownBy(() -> game.executeCommand("1"))
-                .withMessage("아직 게임이 시작되지 않았습니다.");
+                .withMessageContaining(ErrorCode.NOT_GAME_START_YET_ERROR_MESSAGE.getMessage());
     }
 }

@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -21,9 +23,9 @@ class ResultsTest {
     void validateNullOrEmptyOrHasNullTest(List<Result> results) {
 
         // then
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(BaseBallGameFailureException.class)
                 .isThrownBy(() -> Results.of(results))
-                .withMessage("결과 값이 존재하지 않습니다.");
+                .withMessageContaining(ErrorCode.RESULT_EMPTY_ERROR_MESSAGE.getMessage());
     }
 
     @ParameterizedTest

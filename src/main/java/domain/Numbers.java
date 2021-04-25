@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
 import utils.NumberUtils;
 
 import java.util.Collections;
@@ -13,8 +15,6 @@ public class Numbers {
     private final Set<Number> numberSet;
 
     private static final int NUMBER_LENGTH = 3;
-    private static final String NUMBER_LENGTH_ERROR_MESSAGE = "숫자는 3자리 수여야 합니다.";
-    private static final String NUMBER_DUPLICATE_ERROR_MESSAGE = "숫자는 서로 다른 수여야 합니다.";
 
     private Numbers(List<Number> numbers) {
         validateNumbers(numbers);
@@ -55,11 +55,11 @@ public class Numbers {
 
     private void validateNumbers(List<Number> numbers) {
         if (numbers == null || numbers.size() != NUMBER_LENGTH) {
-            throw new IllegalArgumentException(NUMBER_LENGTH_ERROR_MESSAGE);
+            throw new BaseBallGameFailureException(ErrorCode.NUMBER_LENGTH_ERROR_MESSAGE);
         }
 
         if (createNotDuplicatedNumbers(numbers).size() < NUMBER_LENGTH) {
-            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR_MESSAGE);
+            throw new BaseBallGameFailureException(ErrorCode.NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
 

@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,7 +17,7 @@ class NumbersTest {
     void whenInputNotValidNumberLengthThenExceptionTest(String numbers) {
 
         // then
-        assertNumbersThrowIllegalArgumentException(numbers, "숫자는 3자리 수여야 합니다.");
+        assertNumbersThrowIllegalArgumentException(numbers, ErrorCode.NUMBER_LENGTH_ERROR_MESSAGE.getMessage());
     }
 
     @ParameterizedTest
@@ -24,7 +26,7 @@ class NumbersTest {
     void whenInputDuplicatedNumberThenExceptionTest(String numbers) {
 
         // then
-        assertNumbersThrowIllegalArgumentException(numbers, "숫자는 서로 다른 수여야 합니다.");
+        assertNumbersThrowIllegalArgumentException(numbers, ErrorCode.NUMBER_DUPLICATE_ERROR_MESSAGE.getMessage());
     }
 
     @ParameterizedTest
@@ -60,8 +62,8 @@ class NumbersTest {
     }
 
     private void assertNumbersThrowIllegalArgumentException(String numbers, String message) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(BaseBallGameFailureException.class)
                 .isThrownBy(() -> Numbers.of(numbers))
-                .withMessage(message);
+                .withMessageContainingAll(message);
     }
 }

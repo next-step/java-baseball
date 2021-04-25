@@ -1,5 +1,7 @@
 package domain;
 
+import exception.BaseBallGameFailureException;
+import exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,9 +16,9 @@ class NumberTest {
     void whenInputNotValidNumberThenExceptionTest(int number) {
 
         // then
-        assertThatExceptionOfType(IllegalArgumentException.class)
+        assertThatExceptionOfType(BaseBallGameFailureException.class)
                 .isThrownBy(() -> Number.of(number, 0))
-                .withMessage("숫자는 1 ~ 9 사이의 수여야 합니다.");
+                .withMessageContaining(ErrorCode.NUMBER_BOUNDARY_ERROR_MESSAGE.getMessage());
     }
 
     @ParameterizedTest
