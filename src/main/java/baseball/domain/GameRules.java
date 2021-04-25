@@ -35,4 +35,12 @@ public class GameRules {
 
         countOfRule.put(gameRule, count + 1);
     }
+
+    public boolean isNotEndGame() {
+        return !isEndGame();
+    }
+
+    public boolean isEndGame() {
+        return countOfBall() == 0 && countOfMissing() == 0;
+    }
 }

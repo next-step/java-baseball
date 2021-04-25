@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
+    public static void gameStatus(GameRules gameRules) {
+        if(gameRules.isEndGame()) {
+            endGame();
+            return;
+        }
+
+        gameRules(gameRules);
+    }
+
     public static void gameRules(GameRules gameRules) {
         List<String> messages = new ArrayList<>();
 
