@@ -2,7 +2,6 @@ package study;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,8 +13,6 @@ import baseball.BaseballGame;
 import baseball.BaseballGame.BallCount;
 
 public class BaseballTest {
-
-	private BaseballGame baseballGame = new BaseballGame();
 	private List<Integer> inputListValue;
 	private List<Integer> randomListValue;
 	
@@ -34,7 +31,7 @@ public class BaseballTest {
 	@Test
 	@DisplayName("볼카운트 모두 스트라이크 성공 테스트")
 	public void ballcount_all_strike_pass_test() {
-		BallCount ballcnt = BaseballGame.ballCount(Arrays.asList(1,2,3), Arrays.asList(1,2,3));
+		BallCount ballcnt = BaseballGame.takeBallCount(Arrays.asList(1,2,3), Arrays.asList(1,2,3));
 		assertThat(ballcnt.isAllStrike())
 			.isEqualTo(true);
 	}
@@ -42,7 +39,7 @@ public class BaseballTest {
 	@Test
 	@DisplayName("볼카운트 모두 스트라이크 실패 테스트")
 	public void ballcount_all_strike_fail_test() {
-		BallCount ballcnt = BaseballGame.ballCount(Arrays.asList(1,2,4), Arrays.asList(1,2,3));
+		BallCount ballcnt = BaseballGame.takeBallCount(Arrays.asList(1,2,4), Arrays.asList(1,2,3));
 		assertThat(ballcnt.isAllStrike())
 			.isEqualTo(false);
 	}
