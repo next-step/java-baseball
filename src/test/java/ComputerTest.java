@@ -26,7 +26,7 @@ public class ComputerTest {
 		Computer computer = new Computer();
 		computer.setBallSet();
 		String balls = computer.getBall();
-		String oneBall = balls.substring(0,1);
+		String oneBall = balls.substring(0, 1);
 
 		//when
 		computer.strikeRuleCheck(oneBall.charAt(0), 0);
@@ -43,8 +43,8 @@ public class ComputerTest {
 		Computer computer = new Computer();
 		computer.setBallSet();
 		String balls = computer.getBall();
-		String oneBall = balls.substring(0,1);
-		String twoBall = balls.substring(1,2);
+		String oneBall = balls.substring(0, 1);
+		String twoBall = balls.substring(1, 2);
 
 		//when
 		computer.strikeRuleCheck(oneBall.charAt(0), 0);
@@ -63,9 +63,9 @@ public class ComputerTest {
 		Computer computer = new Computer();
 		computer.setBallSet();
 		String balls = computer.getBall();
-		String oneBall = balls.substring(0,1);
-		String twoBall = balls.substring(1,2);
-		String threeBall = balls.substring(2,3);
+		String oneBall = balls.substring(0, 1);
+		String twoBall = balls.substring(1, 2);
+		String threeBall = balls.substring(2, 3);
 
 		//when
 		computer.strikeRuleCheck(oneBall.charAt(0), 0);
@@ -86,7 +86,7 @@ public class ComputerTest {
 		Computer computer = new Computer();
 		computer.setBallSet();
 		String balls = computer.getBall();
-		String oneBall = balls.substring(0,1);
+		String oneBall = balls.substring(0, 1);
 
 		//when
 		computer.strikeRuleCheck(oneBall.charAt(0), 1);
@@ -103,8 +103,8 @@ public class ComputerTest {
 		Computer computer = new Computer();
 		computer.setBallSet();
 		String balls = computer.getBall();
-		String oneBall = balls.substring(0,1);
-		String twoBall = balls.substring(1,2);
+		String oneBall = balls.substring(0, 1);
+		String twoBall = balls.substring(1, 2);
 
 		//when
 		computer.strikeRuleCheck(oneBall.charAt(0), 1);
@@ -123,9 +123,9 @@ public class ComputerTest {
 		Computer computer = new Computer();
 		computer.setBallSet();
 		String balls = computer.getBall();
-		String oneBall = balls.substring(0,1);
-		String twoBall = balls.substring(1,2);
-		String threeBall = balls.substring(2,3);
+		String oneBall = balls.substring(0, 1);
+		String twoBall = balls.substring(1, 2);
+		String threeBall = balls.substring(2, 3);
 
 		//when
 		computer.strikeRuleCheck(oneBall.charAt(0), 2);
