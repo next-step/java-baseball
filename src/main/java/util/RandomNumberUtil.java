@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RandomNumberUtil {
 
+    // TestCase 및 코드에서 제거 필요
     public static BaseBallNumberInfo makeRandomBaseBallInfo(){
 
         BaseBallNumberInfo baseBallNumberInfo = new BaseBallNumberInfo();

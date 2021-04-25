@@ -1,6 +1,6 @@
 package controller;
 
-import View.PlayView;
+import view.PlayView;
 import domain.BaseBallNumberInfo;
 import util.RandomNumberUtil;
 
