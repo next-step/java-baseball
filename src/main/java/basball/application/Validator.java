@@ -21,7 +21,43 @@ public class Validator {
             return false;
         }
 
+        if (!checkRange(number)) {
+            return false;
+        }
+
+        if (!checkSame(number)) {
+            return false;
+        }
+
         return true;
     }
 
+    private boolean checkRange(String number) {
+        if (checkNumberRange(number.charAt(0) - '0')
+                || checkNumberRange(number.charAt(1) - '0')
+                || checkNumberRange(number.charAt(2) - '0')) {
+            System.out.println("1~9 사이의 수만 입력할 수 있습니다.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkSame(String number) {
+        if (checkSameNumber(number.charAt(0)-'0', number.charAt(1)-'0')
+                || checkSameNumber(number.charAt(0)-'0', number.charAt(2)-'0')
+                || checkSameNumber(number.charAt(1)-'0', number.charAt(2)-'0') ) {
+            System.out.println("서로 다른 숫자를 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkNumberRange(int num) {
+        return num < 1 || num > 9;
+    }
+
+    private boolean checkSameNumber(int num, int num2) {
+        return num == num2;
+    }
 }
