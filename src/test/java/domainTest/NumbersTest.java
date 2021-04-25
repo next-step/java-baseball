@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 import domain.Numbers;
 
@@ -60,4 +61,20 @@ public class NumbersTest {
 		assertThat(numbers.getDigits().size()).isEqualTo(2);
 	}
 
+	@DisplayName("Digits 리스트의 사이즈를 리턴함")
+	@Test
+	void length_returnLengthofDigits(){
+		//Given
+		Numbers numbers = new Numbers();
+
+		//when
+		numbers.add(1);
+		numbers.add(2);
+		numbers.add(3);
+
+		List<Integer> digitAnswer = numbers.getDigits();
+
+		//then
+		assertThat(numbers.length()).isEqualTo(digitAnswer.size());
+	}
 }
