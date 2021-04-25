@@ -17,6 +17,7 @@ public class BaseBallGame {
         while(check){
             baseBallUser.userSelectNum();
             userBaseNum = baseBallUser.getUserCreateNum();
+            check = baseBallComputer.game(computerBaseNum, userBaseNum);
         }
     }
 }
