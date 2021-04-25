@@ -1,5 +1,6 @@
-package numberBaseball;
+package numberBaseball.domain;
 
+import numberBaseball.dto.ResultResponse;
 import numberBaseball.exception.ContainsDuplicationException;
 import numberBaseball.exception.ContainsZeroException;
 import numberBaseball.exception.NotThreeDigitException;
@@ -9,10 +10,12 @@ import java.util.*;
 public class GameNumber {
     public static final int FROM_INDEX = 0;
     public static final int TO_INDEX = 3;
-    public static final String MESSAGE_CONTAINS_ZERO = "숫자에 0을 포함해서는 안됩니다.";
     private static final Integer[] sourceNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     private static final String MESSAGE_CONTAINS_DUPLICATION = "숫자가 중복되어서는 안됩니다.";
     private static final String MESSAGE_NOT_THREE_DIGIT = "세 자리 수만 입력할 수 있습니다.";
+    public static final String MESSAGE_CONTAINS_ZERO = "숫자에 0을 포함해서는 안됩니다.";
+    public static final int NUMBER_SIZE = 3;
+    public static final int EXCLUDING_NUMBER = 0;
     private final List<Integer> gameNumber;
 
     public GameNumber(List<Integer> gameNumber) {
@@ -37,20 +40,20 @@ public class GameNumber {
     }
 
     private void validateThreeDigit() {
-        if (gameNumber.size() != 3) {
+        if (gameNumber.size() != NUMBER_SIZE) {
             throw new NotThreeDigitException(MESSAGE_NOT_THREE_DIGIT);
         }
     }
 
     private void validateDuplication() {
         Set<Integer> gameNumberSet = new HashSet<>(gameNumber);
-        if (gameNumberSet.size() != 3) {
+        if (gameNumberSet.size() != NUMBER_SIZE) {
             throw new ContainsDuplicationException(MESSAGE_CONTAINS_DUPLICATION);
         }
     }
 
     private void validateContainsZero() {
-        if (gameNumber.contains(0)) {
+        if (gameNumber.contains(EXCLUDING_NUMBER)) {
             throw new ContainsZeroException(MESSAGE_CONTAINS_ZERO);
         }
     }
@@ -92,4 +95,10 @@ public class GameNumber {
         }
         return strikes;
     }
+
+    public ResultResponse getResultResponse(GameNumber inputGameNumber) {
+        MatchResult matchResult = this.computeMatchResult(inputGameNumber);
+        return matchResult.MatchResultToResponse();
+    }
+
 }
