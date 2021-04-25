@@ -33,14 +33,14 @@ public class PlayGame {
 
 		String hint = "";
 		if(strike >0){
-			hint+= "스트라이크 "+strike+"볼";
+			hint+= "스트라이크 "+strike+"볼 ";
 		}
 
 		if(ball >0){
-			hint+= ball+"볼";
+			hint+= ball+"볼 ";
 		}
 		if(strike==0 && ball ==0){
-			hint = "낫싱";
+			hint = "낫싱 ";
 		}
 
 		GameHintAndResults result = new GameHintAndResults();
