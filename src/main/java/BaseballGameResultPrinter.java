@@ -21,4 +21,9 @@ public class BaseballGameResultPrinter {
         return res[0] == 0 && res[1] > 0;
     }
 
+    public void print(int[] res){
+        String convertRes = convertBaseballGameResult(res);
+        System.out.println(convertRes);
+    }
+
 }
