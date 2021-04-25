@@ -17,11 +17,6 @@ public class BaseballNumber {
 		this.numbers.add(number);
 	}
 
-	/**
-	 * numbers를 반환합니다.
-	 * 
-	 * @return numbers
-	 */
 	public List<Integer> getNumbers() {
 		return this.numbers;
 	}

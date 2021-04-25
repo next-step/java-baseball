@@ -21,13 +21,15 @@ public class BaseballNumberGenerator {
 	/** 1~9 까지의 선택가능한 숫자를 저장 */
 	private final List<Integer> baseballNumbers = new ArrayList<>();
 
-	/**
-	 * BaseballNumberGenerator 클래스의 새 인스턴스를 초기화 합니다.
-	 */
 	public BaseballNumberGenerator() {
 		this.initBaseballNumbers();
 	}
 
+	/**
+	 * 컴퓨터의 1~9까지 숫자중 임의의 서로다른 3자리 숫자를 반환합니다.
+	 * 
+	 * @return BaseballRandomNumber
+	 */
 	public BaseballNumber getRandomBaseballNumber() {
 
 		int first = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND));

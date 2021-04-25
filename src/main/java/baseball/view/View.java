@@ -2,7 +2,7 @@
 * FileName : View.java
 * Created  : 2021. 4. 26.
 * Author   : youngjun.jin
-* Summary  : Input Output 을 위한 View클래스
+* Summary  : Input Output 을 위한 부모 View클래스
 */
 package baseball.view;
 

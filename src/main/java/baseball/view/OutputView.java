@@ -1,12 +1,8 @@
 /**
-* FileName : UserOutput.java
+* FileName : OutputView.java
 * Created  : 2021. 4. 25.
 * Author   : youngjun.jin
-* Summary  :
-* Copyright (C) 2021 yzzzzun. All rights reserved.
-*
-* 이 문서의 모든 저작권 및 지적 재산권은 yzzzzun에게 있습니다.
-* 이 문서의 어떠한 부분도 허가 없이 복제 또는 수정 하거나, 전송할 수 없습니다.
+* Summary  : console output view 클래스
 */
 package baseball.view;
 
@@ -15,6 +11,7 @@ import baseball.model.InningResult;
 public class OutputView extends View {
 
 	public void printInningResult(InningResult inningResult) {
+		// TODO inning output 출력형식 구현
 		out.println(inningResult.toString());
 	}
 

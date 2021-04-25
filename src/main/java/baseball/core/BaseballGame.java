@@ -22,12 +22,6 @@ public class BaseballGame {
 
 	private final OutputView outputView;
 
-	/**
-	 * BaseballGame 클래스의 새 인스턴스를 초기화 합니다.
-	 * 
-	 * @param inputView  user input instance
-	 * @param outputView user output instance
-	 */
 	public BaseballGame(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
 		this.outputView = outputView;
@@ -36,6 +30,9 @@ public class BaseballGame {
 		this.randomBaseballNumber = this.baseballNumberGenerator.getRandomBaseballNumber();
 	}
 
+	/**
+	 * 3스트라이크가 나와 이닝이 종료될때까지 한 세트의 야구게임을 진행합니다.
+	 */
 	public void startGame() {
 
 		boolean isEnd = false;
@@ -43,7 +40,7 @@ public class BaseballGame {
 			String inputValue = this.inputView.getMakeNumberInput();
 
 			UserBaseballNumber userBaseballNumber = new UserBaseballNumber(inputValue);
-			InningResult inningResult = new InningResult(0, 0);
+			InningResult inningResult = new InningResult();
 
 			inningResult.judgeInningResult(this.randomBaseballNumber, userBaseballNumber);
 

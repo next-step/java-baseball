@@ -8,9 +8,6 @@ package baseball.model;
 
 public class UserBaseballNumber extends BaseballNumber {
 
-	/**
-	 * UserBaseballNumber 클래스의 새 인스턴스를 초기화 합니다.
-	 */
 	public UserBaseballNumber(String userInput) {
 
 		// TODO input validation

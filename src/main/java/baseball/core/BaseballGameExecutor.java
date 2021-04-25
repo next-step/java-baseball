@@ -15,9 +15,6 @@ public class BaseballGameExecutor {
 
 	private final OutputView userOutput;
 
-	/**
-	 * BaseballGameExecutor 클래스의 새 인스턴스를 초기화 합니다.
-	 */
 	public BaseballGameExecutor() {
 		this.userInput = new InputView();
 		this.userOutput = new OutputView();

@@ -14,17 +14,9 @@ public class InningResult {
 
 	private int ball;
 
-	/**
-	 * InningResult 클래스의 새 인스턴스를 초기화 합니다.
-	 * 
-	 * @author youngjun.jin
-	 * @param strike strike 갯수
-	 * @param ball   ball 갯수
-	 */
-	public InningResult(int strike, int ball) {
-		super();
-		this.strike = strike;
-		this.ball = ball;
+	public InningResult() {
+		this.strike = 0;
+		this.ball = 0;
 	}
 
 	private void plusStrikeCount() {
@@ -33,14 +25,6 @@ public class InningResult {
 
 	private void plusBallCount() {
 		this.ball++;
-	}
-
-	public int getStrike() {
-		return this.strike;
-	}
-
-	public int getBall() {
-		return this.ball;
 	}
 
 	public void judgeInningResult(BaseballNumber randomBaseballNumber, BaseballNumber userBaseballNumber) {
@@ -53,8 +37,8 @@ public class InningResult {
 		}
 	}
 
-	private void judgeNumber(List<Integer> targetNumbers, int i, int userNumber) {
-		if (targetNumbers.get(i) == userNumber) {
+	private void judgeNumber(List<Integer> targetNumbers, int index, int userNumber) {
+		if (targetNumbers.get(index) == userNumber) {
 			this.plusStrikeCount();
 		} else if (targetNumbers.contains(userNumber)) {
 			this.plusBallCount();

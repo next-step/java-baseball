@@ -1,8 +1,8 @@
 /**
-* FileName : UserInput.java
+* FileName : InputView.java
 * Created  : 2021. 4. 25.
 * Author   : youngjun.jin
-* Summary  : 사용자 입력 singleton
+* Summary  : 사용자 콘솔 입력 클래스
 */
 package baseball.view;
 
@@ -12,9 +12,6 @@ public class InputView extends View {
 
 	private final Scanner scanner;
 
-	/**
-	 * UserInput 클래스의 새 인스턴스를 초기화 합니다.
-	 */
 	public InputView() {
 		this.scanner = new Scanner(System.in);
 	}
@@ -35,7 +32,7 @@ public class InputView extends View {
 	 * @return 입력값
 	 */
 	public String getMakeContinueInput() {
-		out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+		out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 		return this.scanner.nextLine();
 	}
 
