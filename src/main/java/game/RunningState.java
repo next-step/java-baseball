@@ -22,7 +22,6 @@ public class RunningState implements GameState {
 		game.getUser().generateNumbers();
 
 		game.setGameState(ThreeStrikeState.getInstance());
-
 		game.progress();
 	}
 

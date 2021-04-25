@@ -19,6 +19,7 @@ public class NothingState implements GameState {
 	@Override
 	public void next(Game game) {
 		outputManager.print("낫싱"+"\n");
+		
 		game.setGameState(RunningState.getInstance());
 		game.progress();
 	}

@@ -14,9 +14,8 @@ public class InitState implements GameState {
 	@Override
 	public void next(Game game) {
 		game.getComputer().generateNumbers();
-		
+
 		game.setGameState(RunningState.getInstance());
-		
 		game.progress();
 	}
 

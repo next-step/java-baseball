@@ -1,5 +1,5 @@
 package game;
 
-public interface GameState {	
+public interface GameState {
 	void next(Game game);
 }
