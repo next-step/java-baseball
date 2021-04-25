@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomBaseballGenerator {
 
-    public static BaseballNumbers apply() {
+    public BaseballNumbers apply() {
         Set<Integer> integers = new HashSet<>();
         while (integers.size() != BaseballConstants.BASEBALL_NUMBER_SIZE) {
             integers.add(createRandomNumberBetweenOneToNine());
@@ -18,7 +18,7 @@ public class RandomBaseballGenerator {
         return BaseballNumbers.create(new ArrayList<>(integers));
     }
 
-    private static Integer createRandomNumberBetweenOneToNine() {
+    private Integer createRandomNumberBetweenOneToNine() {
         return ThreadLocalRandom.current().nextInt(9) + 1;
     }
 }

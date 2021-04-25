@@ -1,37 +1,29 @@
 package baseball;
 
 class BaseballNumber {
-    private final int number;
-    private final int position;
+    private final int val;
 
-    private BaseballNumber(int number, int position) {
-        this.number = number;
-        this.position = position;
+    private BaseballNumber(int val) {
+        this.val = val;
     }
 
-    public static BaseballNumber createByNumberAndPosition(int number, int position) {
+    public static BaseballNumber create(int number) {
         if (!isRangeOneToNine(number)) {
             throw new IllegalArgumentException("숫자의 범위는 1이상, 9이하 입니다.");
         }
 
-        if (isNegative(position)) {
-            throw new IllegalArgumentException("위치 값은 0 이상 이어야 합니다.");
-        }
-
-        return new BaseballNumber(number, position);
+        return new BaseballNumber(number);
     }
 
     private static boolean isRangeOneToNine(int number) {
         return number >= 1 && number <= 9;
     }
 
-    private static boolean isNegative(int position) {
-        return position < 0;
-    }
+
 
     @Override
     public int hashCode() {
-        return number;
+        return val;
     }
 
     @Override
@@ -45,6 +37,6 @@ class BaseballNumber {
         }
 
         BaseballNumber target = (BaseballNumber) obj;
-        return number == target.number && position == target.position;
+        return val == target.val;
     }
 }

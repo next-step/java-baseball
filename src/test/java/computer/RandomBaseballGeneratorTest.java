@@ -10,7 +10,8 @@ class RandomBaseballGeneratorTest {
 
     @Test
     void BASEBALL_NUMBER_SIZE_크기의_BaseballNumber를_생성한다(){
-        BaseballNumbers createdBaseballNumbers = RandomBaseballGenerator.apply();
+        RandomBaseballGenerator randomBaseballGenerator = new RandomBaseballGenerator();
+        BaseballNumbers createdBaseballNumbers = randomBaseballGenerator.apply();
         assertEquals(BaseballConstants.BASEBALL_NUMBER_SIZE, createdBaseballNumbers.size());
     }
 }
