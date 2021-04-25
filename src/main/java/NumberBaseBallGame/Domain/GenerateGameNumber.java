@@ -11,6 +11,11 @@ public class GenerateGameNumber {
 
 	public GenerateGameNumber(int GAMENUMBERS_LENGTH) {
 		this.gameBallLength = GAMENUMBERS_LENGTH;
+		this.randomBalls = generateGameNumber();
+	}
+
+	public List<Ball> getRandomBalls() {
+		return randomBalls;
 	}
 
 	/**
@@ -18,7 +23,7 @@ public class GenerateGameNumber {
 	 *
 	 * @return
 	 */
-	public List<Ball> generateGameNumber(){
+	private List<Ball> generateGameNumber(){
 		randomBalls = new ArrayList<>();
 		Random random = new Random();
 		for (int i = 0; i < gameBallLength; i++){

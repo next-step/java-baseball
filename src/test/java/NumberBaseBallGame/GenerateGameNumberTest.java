@@ -17,7 +17,7 @@ class GenerateGameNumberTest {
 	    // given
 		GenerateGameNumber generateGameNumber = new GenerateGameNumber(3);
 	    // when
-		List<Ball> gameNumber = generateGameNumber.generateGameNumber();
+		List<Ball> gameNumber = generateGameNumber.getRandomBalls();
 		// than :: 서로다른 3자리 수
 		assertThat(gameNumber)
 				.isNotEmpty()
