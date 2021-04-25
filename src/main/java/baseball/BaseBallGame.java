@@ -13,12 +13,18 @@ public class BaseBallGame {
         BaseBallGuessResult guessResult = new BaseBallGuessResult();
         while (!isGuessCorrect(guessResult)) {
             String goal = randomNumber.getNumber();
-            String guess = UserInterface.printGuideAndScanUserInput();
+            String guess = UserInterface.printGuideAndScanGuessNumber();
 
             guessResult = BaseBallReferee.calculate(goal, guess);
             UserInterface.printGuessResult(guessResult);
         }
         UserInterface.printGameComplete();
+    }
+
+    public boolean wantAnotherGame() {
+        String userInput = UserInterface.printGuideAndScanExitCommand();
+
+        return UserInterface.COMMAND_ANOTHER_GAME.equals(userInput);
     }
 
     @VisibleForTesting

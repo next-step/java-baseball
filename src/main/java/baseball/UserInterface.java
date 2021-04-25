@@ -6,17 +6,27 @@ import java.util.regex.Pattern;
 import static baseball.BaseBallRandomNumber.RANDOM_NUMBER_LENGTH;
 
 public class UserInterface {
-    private static final Pattern VALID_INPUT_PATTERN = Pattern.compile(String.format("[0-9]{%d}", RANDOM_NUMBER_LENGTH));
+    public static String COMMAND_ANOTHER_GAME = "1";
+    public static String COMMAND_EXIT_GAME = "2";
+
+    private static final Pattern VALID_GUESS_NUMBER_PATTERN = Pattern.compile(String.format("[0-9]{%d}", RANDOM_NUMBER_LENGTH));
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String printGuideAndScanUserInput() {
-        System.out.print("숫자를 입력해 주세요 : ");
-        String userInput = scanner.next();
-
-        if (!VALID_INPUT_PATTERN.matcher(userInput).matches()) {
-            return printGuideAndScanUserInput();
+    public static String printGuideAndScanGuessNumber() {
+        String userInput = "";
+        while (!VALID_GUESS_NUMBER_PATTERN.matcher(userInput).matches()) {
+            System.out.print("숫자를 입력해 주세요 : ");
+            userInput = scanner.nextLine().trim();
         }
+        return userInput;
+    }
 
+    public static String printGuideAndScanExitCommand() {
+        String userInput = "";
+        while (!userInput.equals(COMMAND_ANOTHER_GAME) && !userInput.equals(COMMAND_EXIT_GAME)) {
+            System.out.printf("게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요\n", COMMAND_ANOTHER_GAME, COMMAND_EXIT_GAME);
+            userInput = scanner.nextLine().trim();
+        }
         return userInput;
     }
 

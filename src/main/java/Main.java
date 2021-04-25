@@ -3,7 +3,10 @@ import baseball.BaseBallGame;
 public class Main {
     public static void main(String[] args) {
         BaseBallGame game = new BaseBallGame();
-        game.newGame();
-        game.startGame();
+
+        do {
+            game.newGame();
+            game.startGame();
+        } while (game.wantAnotherGame());
     }
 }
