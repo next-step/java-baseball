@@ -16,13 +16,13 @@ import org.junit.jupiter.api.Test;
 
 import baseball.model.BaseballNumber;
 
-class BaseballNumberServiceImplTest {
+class BaseballNumberGeneratorTest {
 
-	private BaseballNumberServiceImpl target;
+	private BaseballNumberGenerator target;
 
 	@BeforeEach
 	void setUp() {
-		this.target = new BaseballNumberServiceImpl();
+		this.target = new BaseballNumberGenerator();
 	}
 
 	@Test
@@ -41,10 +41,11 @@ class BaseballNumberServiceImplTest {
 		for (int i = 1; i < 10; i++) {
 			numbers.add(i);
 		}
-
-		int first = randomBaseballNumber.getFirstNumber();
-		int second = randomBaseballNumber.getSecondNumber();
-		int third = randomBaseballNumber.getThirdNumber();
+		
+		List<Integer> randomNumbers = randomBaseballNumber.getNumbers();
+		int first = randomNumbers.get(0);
+		int second = randomNumbers.get(1);
+		int third = randomNumbers.get(2);
 
 		Assertions.assertThat(numbers.contains(first)).isTrue();
 		Assertions.assertThat(numbers.contains(second)).isTrue();

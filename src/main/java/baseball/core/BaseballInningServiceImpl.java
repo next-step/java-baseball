@@ -6,11 +6,12 @@
 */
 package baseball.core;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import baseball.model.BaseballNumber;
 import baseball.model.InningResult;
+import baseball.model.RandomBaseballNumber;
+import baseball.model.UserBaseballNumber;
 
 public class BaseballInningServiceImpl implements BaseballInningService {
 
@@ -33,16 +34,12 @@ public class BaseballInningServiceImpl implements BaseballInningService {
 	@Override
 	public InningResult judgeInning(String input) {
 
-		// TODO input validation
-		BaseballNumber userBaseballNumber = this.getUserInputBaseballNumber(input);
-
-		List<Integer> userNumberList = this.changeBaseballNumber(userBaseballNumber);
-		List<Integer> targetNumberList = this.changeBaseballNumber(targetBaseballNumber);
+		UserBaseballNumber userBaseballNumber = new UserBaseballNumber(input);
 
 		InningResult inningResult = new InningResult(0, 0);
-		for (int i = 0; i < userNumberList.size(); i++) {
-			int userNumber = userNumberList.get(i);
-			this.judgeNumber(inningResult, targetNumberList, i, userNumber);
+		for (int i = 0; i < this.targetBaseballNumber.getNumbers().size(); i++) {
+			int userNumber = userBaseballNumber.getNumbers().get(i);
+			this.judgeNumber(inningResult, this.targetBaseballNumber.getNumbers(), i, userNumber);
 		}
 
 		return inningResult;
@@ -54,26 +51,6 @@ public class BaseballInningServiceImpl implements BaseballInningService {
 		} else if (targetNumberList.contains(userNumber)) {
 			inningResult.plusBallCount();
 		}
-	}
-
-	private BaseballNumber getUserInputBaseballNumber(String input) {
-		int inputNumber = Integer.parseInt(input);
-
-		int first = inputNumber / 100;
-		int second = inputNumber % 100 / 10;
-		int third = inputNumber % 10;
-
-		return new BaseballNumber(first, second, third);
-	}
-
-	private List<Integer> changeBaseballNumber(BaseballNumber baseballNumber) {
-
-		ArrayList<Integer> numberList = new ArrayList<>();
-		numberList.add(baseballNumber.getFirstNumber());
-		numberList.add(baseballNumber.getSecondNumber());
-		numberList.add(baseballNumber.getThirdNumber());
-
-		return numberList;
 	}
 
 	/**

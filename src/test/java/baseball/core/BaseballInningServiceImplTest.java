@@ -24,7 +24,10 @@ class BaseballInningServiceImplTest {
 
 	@BeforeEach
 	void setup() {
-		BaseballNumber targetNumber = new BaseballNumber(9, 1, 2);
+		BaseballNumber targetNumber = new BaseballNumber();
+		targetNumber.addNumber(9);
+		targetNumber.addNumber(1);
+		targetNumber.addNumber(2);
 		this.target = new BaseballInningServiceImpl(targetNumber);
 
 	}

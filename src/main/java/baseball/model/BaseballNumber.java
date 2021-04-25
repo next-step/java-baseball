@@ -6,63 +6,24 @@
 */
 package baseball.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BaseballNumber {
 
-	private final int firstNumber;
-	private final int secondNumber;
-	private final int thirdNumber;
+	private final List<Integer> numbers = new ArrayList<>();
 
-	/**
-	 * BaseballNumber 클래스의 새 인스턴스를 초기화 합니다.
-	 * 
-	 * @param firstNumber  첫번째 수
-	 * @param secondNumber 두번째 수
-	 * @param thirdNumber  세번째 수
-	 */
-	public BaseballNumber(int firstNumber, int secondNumber, int thirdNumber) {
-		super();
-		this.firstNumber = firstNumber;
-		this.secondNumber = secondNumber;
-		this.thirdNumber = thirdNumber;
+	public void addNumber(int number) {
+		this.numbers.add(number);
 	}
 
 	/**
-	 * firstNumber를 반환합니다.
+	 * numbers를 반환합니다.
 	 * 
-	 * @return firstNumber
+	 * @return numbers
 	 */
-	public int getFirstNumber() {
-		return this.firstNumber;
-	}
-
-	/**
-	 * secondNumber를 반환합니다.
-	 * 
-	 * @return secondNumber
-	 */
-	public int getSecondNumber() {
-		return this.secondNumber;
-	}
-
-	/**
-	 * thirdNumber를 반환합니다.
-	 * 
-	 * @return thirdNumber
-	 */
-	public int getThirdNumber() {
-		return this.thirdNumber;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see java.lang.Object#toString()
-	 * @author youngjun.jin
-	 */
-	@Override
-	public String toString() {
-		return "BaseballNumber [firstNumber=" + firstNumber + ", secondNumber=" + secondNumber + ", thirdNumber="
-				+ thirdNumber + "]";
+	public List<Integer> getNumbers() {
+		return this.numbers;
 	}
 
 }

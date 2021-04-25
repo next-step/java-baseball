@@ -11,8 +11,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import baseball.model.BaseballNumber;
+import baseball.model.RandomBaseballNumber;
 
-public class BaseballNumberServiceImpl implements BaseballNumberService {
+public class BaseballNumberGenerator {
 
 	/** random index max bound */
 	private static final int INDEX_MAX_BOUND = 9;
@@ -23,23 +24,22 @@ public class BaseballNumberServiceImpl implements BaseballNumberService {
 	/**
 	 * BaseballNumberServiceImpl 클래스의 새 인스턴스를 초기화 합니다.
 	 */
-	public BaseballNumberServiceImpl() {
+	public BaseballNumberGenerator() {
 		this.initBaseballNumbers();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see baseball.core.BaseballNumberService#getRandomBaseballNumber()
-	 */
-	@Override
 	public BaseballNumber getRandomBaseballNumber() {
 
 		int first = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND));
 		int second = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND - 1));
 		int third = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND - 2));
 
-		return new BaseballNumber(first, second, third);
+		RandomBaseballNumber randomBaseballNumber = new RandomBaseballNumber();
+		randomBaseballNumber.addNumber(first);
+		randomBaseballNumber.addNumber(second);
+		randomBaseballNumber.addNumber(third);
+
+		return randomBaseballNumber;
 	}
 
 	private void initBaseballNumbers() {

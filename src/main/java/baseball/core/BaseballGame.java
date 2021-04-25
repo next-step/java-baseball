@@ -13,7 +13,7 @@ import baseball.view.OutputView;
 
 public class BaseballGame {
 
-	private final BaseballNumberService baseballNumberService;
+	private final BaseballNumberGenerator baseballNumberGenerator;
 
 	private final BaseballInningService baseballInningService;
 
@@ -31,8 +31,8 @@ public class BaseballGame {
 		this.inputView = inputView;
 		this.outputView = outputView;
 
-		this.baseballNumberService = new BaseballNumberServiceImpl();
-		BaseballNumber randomBaseballNumber = this.baseballNumberService.getRandomBaseballNumber();
+		this.baseballNumberGenerator = new BaseballNumberGenerator();
+		BaseballNumber randomBaseballNumber = this.baseballNumberGenerator.getRandomBaseballNumber();
 		this.baseballInningService = new BaseballInningServiceImpl(randomBaseballNumber);
 	}
 
