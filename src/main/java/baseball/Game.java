@@ -26,7 +26,8 @@ public class Game {
 
 	// Game Logic
 	public static void game() {
-		Opponent opponent = new Opponent();
+		Deck deck = new Deck();
+		Player opponent = new Player(deck.draw());
 
 		System.out.printf("정답: %d%d%d\n", opponent.getNumbers()[0], opponent.getNumbers()[1], opponent.getNumbers()[2]);
 
@@ -36,7 +37,7 @@ public class Game {
 	}
 
 	// Game Logic
-	public static boolean inning(Player player, Opponent opponent) {
+	public static boolean inning(Player player, Player opponent) {
 		if (isThreeDigits()) {
 			player.setNumbers(converter.toArray(converter.toNumber(raw)));
 			return decision(player, opponent);
@@ -60,7 +61,7 @@ public class Game {
 	}
 
 	// TODO: go to Referee UI
-	public static boolean decision(Player player, Opponent opponent) {
+	public static boolean decision(Player player, Player opponent) {
 		int strikes = referee.countStrikes(player.getNumbers(), opponent.getNumbers());
 		int balls = referee.countBall(player.getNumbers(), opponent.getNumbers());
 

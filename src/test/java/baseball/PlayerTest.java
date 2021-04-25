@@ -29,4 +29,17 @@ public class PlayerTest {
 
 		assertThat(player.getNumbers()).isNotEqualTo(another);
 	}
+
+	@Test
+	void threeDigits() {
+		Deck deck = new Deck();
+		Player opponent = new Player(deck.draw());
+
+		int[] numbers = opponent.getNumbers();
+
+		assertThat(numbers).hasSize(3);
+		assertThat(numbers[0]).isBetween(1, 9);
+		assertThat(numbers[1]).isBetween(1, 9);
+		assertThat(numbers[2]).isBetween(1, 9);
+	}
 }
