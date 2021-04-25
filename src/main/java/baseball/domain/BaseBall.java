@@ -33,6 +33,17 @@ public class BaseBall implements Iterable<Ball> {
         }
     }
 
+    public static BaseBall ofRandom(OneDigitNumber oneDigitNumber) {
+        List<Ball> balls = new ArrayList<>();
+        while (balls.size() <= 3) {
+            Ball ball = Ball.of(oneDigitNumber);
+            if (!balls.contains(ball)) {
+                balls.add(ball);
+            }
+        }
+        return BaseBall.of(balls);
+    }
+
     public int countStrike(BaseBall inputBaseBall) {
         return IntStream.range(0, balls.size())
             .map(i -> inputBaseBall.countStrike(i, balls.get(i)))
