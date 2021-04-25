@@ -6,8 +6,14 @@ import java.util.Objects;
 import java.util.Set;
 
 public class BallNumbers {
+    public static final int NUMBERS_INIT_INDEX = 0;
+    public static final int NUMBERS_LIMIT_SIZE = 3;
 
     private final List<BallNumber> numbers;
+
+    public BallNumbers(List<BallNumber> numbers) {
+        this.numbers = numbers;
+    }
 
     public BallNumbers(String numbers) {
         validateNullorEmpty(numbers);
@@ -24,7 +30,7 @@ public class BallNumbers {
     private void validateDuplicate(String numbers) {
         String[] splited = numbers.split("");
         Set<BallNumber> validateSet = makeValidateSet(splited);
-        if (validateSet.size() != 3) {
+        if (validateSet.size() != NUMBERS_LIMIT_SIZE) {
             throw new IllegalArgumentException("숫자는 중복되지 않은 3자리 숫자여야 합니다.");
         }
     }

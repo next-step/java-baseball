@@ -4,6 +4,8 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class BallNumber {
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 9;
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
 
     private final int number;
@@ -18,7 +20,7 @@ public class BallNumber {
     }
 
     private void validateNumber(int number) {
-        if (number < 1 || number > 9) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("숫자값은 1보다 작거나 9보다 클 수 없습니다.");
         }
     }
