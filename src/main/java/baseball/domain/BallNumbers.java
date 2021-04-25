@@ -47,6 +47,10 @@ public class BallNumbers {
         return null;
     }
 
+    public List<BallNumber> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
