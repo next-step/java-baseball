@@ -20,4 +20,18 @@ public class ValidationUtils {
 		String regExp = "^[0-9]*$";
 		return input.matches(regExp);
 	}
+
+	/**
+	 * 입력한 문자가 파라미터로 받은 길이와 같은지 확인하는 기능
+	 * @param input
+	 * @param basedLength
+	 * @return
+	 */
+	public static boolean checkNumberLengh(String input, int basedLength) {
+		if (input.length() == basedLength) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
