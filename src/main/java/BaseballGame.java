@@ -62,12 +62,29 @@ public class BaseballGame {
     }
 
     private int getBall(int[] computerGameNumber, int[] userNumber) {
+
     }
 
     private int getStrike(int[] computerGameNumber, int[] userNumber) {
+        int strike = 0;
+        int idx = 0;
+
+        while (idx < 3) {
+            strike = computerGameNumber[idx]==userNumber[idx]? strike++:strike;
+            idx++;
+        }
+        
+        return strike;
     }
 
     private int[] parseUserNumber(String input) {
+        int[] userNumbers = new int[3];
+
+        for(int i = 0; i < 3; i++){
+            userNumbers[i] = input.charAt(i) - '0';
+        }
+
+        return userNumbers;
     }
 
     //valid check
