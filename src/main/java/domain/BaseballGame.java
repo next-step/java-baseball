@@ -6,10 +6,15 @@ import java.util.Set;
 
 public class BaseballGame {
     private List<Number> gameNumbers;
+    private boolean isOver;
 
     public BaseballGame(NumberGenerator numberGenerator) {
         this.gameNumbers = numberGenerator.generate();
         validateNumbers(this.gameNumbers);
+    }
+
+    public boolean isOver() {
+        return this.isOver;
     }
 
     private void validateNumbers(List<Number> numbers) {
