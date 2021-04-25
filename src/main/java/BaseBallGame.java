@@ -1,3 +1,4 @@
+import vo.BaseBallNumber;
 public class BaseBallGame {
 
     private final BaseBallGameService baseBallGameService = new BaseBallGameService();
