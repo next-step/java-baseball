@@ -9,7 +9,8 @@ class JudgeTest {
     @ParameterizedTest
     @CsvSource({"0, 0, '낫싱'",
                 "1, 0, '1 스트라이크'",
-                "0, 3, '3볼'"})
+                "0, 3, '3볼'",
+                "1, 2, '1 스트라이크 2볼'"})
     void testToString(ArgumentsAccessor argumentsAccessor) {
         Judge judge = new Judge();
         judge.strike = argumentsAccessor.getInteger(0);
