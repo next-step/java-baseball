@@ -17,7 +17,7 @@ public class OffensePlayer {
         char[] input = receiveValidDataFromInput();
 
         for(int i=0;i<Numbers.MAX_SIZE;i++){
-            guessNumbers.getDigits().add(Character.getNumericValue(input[i]));
+            guessNumbers.add(Character.getNumericValue(input[i]));
         }
         return guessNumbers;
     }
