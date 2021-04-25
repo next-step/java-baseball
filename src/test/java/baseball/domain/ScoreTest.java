@@ -119,4 +119,14 @@ class ScoreTest {
         // Then
         assertEquals("낫싱", score.getJudgeMessage());
     }
+
+    @Test
+    @DisplayName("에러_상태를_가지는_스코어_생성_기능_테스트")
+    void testCreatingScoreWithErrorState() {
+        // When
+        Score score = Score.createErrorStateScore();
+
+        // Then
+        assertEquals(ScoreStatus.ERROR,score.getScoreStatus());
+    }
 }

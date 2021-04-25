@@ -7,6 +7,7 @@ import static baseball.domain.BaseballNumbers.RANDOM_NUMBER_COUNT;
 import static java.lang.String.format;
 
 public class Score {
+    private ScoreStatus scoreStatus;
     private int strike;
     private int ball;
 
@@ -15,7 +16,7 @@ public class Score {
         for (int i = 0 ; i < RANDOM_NUMBER_COUNT ; i++) {
             result.judgeBaseballNumber(answer, playerInput.getSpecificIndexValue(i), i);
         }
-
+        result.changeScoreStatus();
         return result;
     }
 
@@ -36,12 +37,20 @@ public class Score {
         this.ball++;
     }
 
+    private void changeScoreStatus() {
+        if (strike == RANDOM_NUMBER_COUNT)
+            scoreStatus = ScoreStatus.SUCCESS;
+        else if (strike != RANDOM_NUMBER_COUNT) {
+            scoreStatus = ScoreStatus.FAIL;
+        }
+    }
+
     public String getJudgeMessage() {
         String result = "";
-        if (strike == 0 && ball == 0)
-            result = "낫싱";
-        else if (strike == RANDOM_NUMBER_COUNT)
+        if (isPassed())
             result = format("%d개의 숫자를 모두 맞히셨습니다! 게임종료", RANDOM_NUMBER_COUNT);
+        else if (strike == 0 && ball == 0)
+            result = "낫싱";
         else if (strike >= 1 || ball >= 1)
             result = getStrikeBallMessage();
 
@@ -59,11 +68,21 @@ public class Score {
         return String.join(" ", result);
     }
 
+    public ScoreStatus getScoreStatus() {
+        return scoreStatus;
+    }
+
     public boolean isPassed() {
         boolean result = false;
-        if (strike == RANDOM_NUMBER_COUNT) {
+        if(scoreStatus == ScoreStatus.SUCCESS) {
             result = true;
         }
         return result;
+    }
+
+    public static Score createErrorStateScore() {
+        Score score = new Score();
+        score.scoreStatus = ScoreStatus.ERROR;
+        return score;
     }
 }
