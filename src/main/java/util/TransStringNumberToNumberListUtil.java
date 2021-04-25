@@ -5,6 +5,9 @@ import java.util.List;
 
 public class TransStringNumberToNumberListUtil {
 
+    private TransStringNumberToNumberListUtil(){
+    }
+
     public static List<Integer> toNumberList(String numberString) {
         List<Integer> numbers = new ArrayList<>();
         char[] numberChar = numberString.toCharArray();
