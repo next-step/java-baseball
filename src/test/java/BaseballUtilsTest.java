@@ -72,7 +72,7 @@ class BaseballUtilsTest {
 	}
 
 	@Test
-	public void checkIncludeZeroTest(){
+	public void checkIncludeZeroTest() {
 		// given
 		// when
 		// then
@@ -120,5 +120,4 @@ class BaseballUtilsTest {
 				baseballUtils.checkNotExistsDupNumbers("1234");
 			}).doesNotThrowAnyException();
 	}
-
 }

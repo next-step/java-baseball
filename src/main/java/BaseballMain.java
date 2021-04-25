@@ -5,7 +5,7 @@ public class BaseballMain {
 		BaseballGame game = new BaseballGame(console);
 
 		game.initGame();
-		game.requestInputNumbers();
+		game.playGame();
 	}
 
 }
