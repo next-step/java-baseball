@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -41,5 +42,22 @@ public class BaseballGameTest {
     void validInputStringTest(String inputString, String regex, boolean expected) {
         boolean valid = baseBallGame.validInputString(inputString, regex);
         assertThat(valid).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @DisplayName("isContinueGame method의 parameter 값이 1 또는 2가 아닌 경우 IllegalArgumentException throw 테스트")
+    @ValueSource(strings = {"0", "3", "4"})
+    void isContinueGameThrowIllegalArgumentExceptionTest(String continueFlag) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> baseBallGame.isContinueGame(continueFlag))
+                .withMessage("continueFlag 값은 1 또는 2만 허용합니다.");
+
+    }
+
+    @ParameterizedTest
+    @DisplayName("isContinueGame method 입력값에 따른 true, false 정상 반환 여부 테스트")
+    @CsvSource(value = {"1,true", "2,false"})
+    void continueGameTest(String continueFlag, boolean expected) {
+        assertThat(baseBallGame.isContinueGame(continueFlag)).isEqualTo(expected);
     }
 }

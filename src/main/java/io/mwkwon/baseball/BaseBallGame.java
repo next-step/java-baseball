@@ -55,7 +55,7 @@ public class BaseBallGame {
      * 사용자가 입력한 데이터에 대한 유효성 검사
      * @param inputString: 사용자 입력 String
      * @param regex: 유효성 체크를 위한 정규 표현식
-     * @return: 사용가능 입력 String인 경우 true, 아닌 경우 false
+     * @return: 사용 가능 입력 String인 경우 true, 아닌 경우 false
      */
     public boolean validInputString(String inputString, String regex) {
         if (inputString == null) {
@@ -65,6 +65,19 @@ public class BaseBallGame {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(targetString);
         return matcher.matches();
+    }
+
+    /**
+     * 게임 계속 진행여부 확인
+     * @param continueFlag: 게임 계속 진행여부 확인 flag 값
+     * @return continueFlag == "1" true, continueFlag  == "2" false
+     */
+    public boolean isContinueGame(String continueFlag) {
+        int value = Integer.valueOf(continueFlag);
+        if (!(value > 0) || !(value <= 2)) {
+            throw new IllegalArgumentException("continueFlag 값은 1 또는 2만 허용합니다.");
+        }
+        return value == 1;
     }
 
     /**
