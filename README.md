@@ -5,3 +5,20 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 컴퓨터의 BaseballNumber 생성 기능
+  * BaseballNumber 의 각 숫자는 1 부터 9 까지 랜덤이다.
+  * BaseballNumber 의 숫자는 총 3개로 이루어져 있다.
+  * BaseballNumber 의 각 숫자들은 서로 중복되지 않는다.
+* 사용자가 예상하는 baseBallNumber 입력 기능
+  * 사용자가 입력한 숫자는 총 3개로 이루어져 있어야 한다.
+  * 사용자가 입력한 숫자는 서로 중복되지 않아야 한다.
+  * 위 조건을 만족하지 않는다면 에러 메시지를 출력하고, 다시 입력 받는다.
+  * BaseballNumber 입력 기능은 컴퓨터가 생성한 BaseballNumber 를 맞출 때까지 진행된다.
+* BaseballNumber 비교 기능 (두 개의 BaseballNumber 를 각각 a, b 라고 명명한다.)
+  * a와 b의 숫자를 비교해서 같은 자리에 같은 숫자가 있으면 스트라이크이다.
+  * a와 b의 숫자를 비교해서 다른 자리에 같은 숫자가 존재하면 볼이다.
+  * a와 b의 숫자를 비교해서 같은 숫자가 없다면 낫싱이다.
+* 게임 종료 기능
+  * 사용자가 컴퓨터가 생성한 BaseballNumber 을 맞췄다면 게임을 종료할 지, 다시 시작할 지 선택할 수 있다.
