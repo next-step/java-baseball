@@ -17,4 +17,11 @@ public class StringTest {
     void require1to2() {
         assertThat("1".split(",")).contains("1");
     }
+
+    @Test
+    @DisplayName("\"(1,2)\" 값이 주어졌을 때 String의 substring() 메소드를 활용해 () 을 제거하고 \"1,2\"를 반환되는가?")
+    void require2() {
+        String requiredString = "(1,2)";
+        assertThat(requiredString.substring(1, requiredString.length() - 1)).isEqualTo("1,2");
+    }
 }
