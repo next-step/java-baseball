@@ -14,13 +14,13 @@ public enum BaseballResultType {
 	STRIKE("스트라이크"),
 	NOTHING("낫싱");
 
-	BaseballResultType(String type) {
-		this.type = type;
+	BaseballResultType(String value) {
+		this.value = value;
 	}
 
-	private String type;
+	private String value;
 
-	public String getType() {
-		return type;
+	public String getValue() {
+		return value;
 	}
 }
