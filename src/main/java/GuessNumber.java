@@ -2,8 +2,7 @@ import java.util.List;
 
 public class GuessNumber {
 
-
-    protected void guessNumber(BaseBallDTO dto){
+    protected void doGuessNumber(BaseBallDTO dto){
         int index = 0 ;
         for(String str:dto.getInputNumbers()) {
             dto.setForLoopIndex(index++);
@@ -11,14 +10,11 @@ public class GuessNumber {
         }
     }
 
-    private int ballCountCheck(BaseBallDTO dto){
+    private void ballCountCheck(BaseBallDTO dto){
         int value = returnStrike(dto);
         if(value==0){
-            value = returnBall(dto);
-            return value;
+            returnBall(dto);
         }
-
-        return value;
     }
 
     private int returnStrike(BaseBallDTO dto){
