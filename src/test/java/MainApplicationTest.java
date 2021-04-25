@@ -23,4 +23,14 @@ public class MainApplicationTest {
     assertThat(mainApplication.validateInputNumber(test3)).isEqualTo(false);
     assertThat(mainApplication.validateInputNumber(test4)).isEqualTo(false);
   }
+
+  @Test
+  public void convertToListTest() {
+    MainApplication mainApplication = new MainApplication();
+    char[] test1 = {'1', '2', '3'};
+    char[] test2 = {'2', '3', '4'};
+
+    assertThat(mainApplication.convertToList(test1)).hasSize(3).contains('1', '2', '3');
+    assertThat(mainApplication.convertToList(test2)).hasSize(3).contains('2', '3', '4');
+  }
 }
