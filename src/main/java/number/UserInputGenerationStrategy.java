@@ -1,22 +1,23 @@
 package number;
 
 import ui.InputManager;
+import ui.OutputManager;
+import ui.PrintOutputManager;
 import ui.ScannerInputManager;
 
 public class UserInputGenerationStrategy implements NumbersGenerationStrategy {
 
-	private static NumbersGenerationStrategy numbersGenerationStrategy = new UserInputGenerationStrategy(
-			ScannerInputManager.getInstance());
+	private final InputManager inputManager = ScannerInputManager.getInstance();
+	private final OutputManager outputManager = PrintOutputManager.getInstance();
 
-	private UserInputGenerationStrategy(InputManager inputManager) {
-		this.inputManager = inputManager;
+	private static NumbersGenerationStrategy numbersGenerationStrategy = new UserInputGenerationStrategy();
+
+	private UserInputGenerationStrategy() {
 	}
 
 	public static NumbersGenerationStrategy getInstance() {
 		return numbersGenerationStrategy;
 	}
-
-	private final InputManager inputManager;
 
 	@Override
 	public BaseballNumbers generate() {
@@ -24,7 +25,8 @@ public class UserInputGenerationStrategy implements NumbersGenerationStrategy {
 
 		try {
 			result = baseballNumbersFactory.baseballNumbers(inputManager.nextInt());
-		} catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {			
+			outputManager.print(e.getMessage() + " 재입력 : ");
 			return generate();
 		}
 
