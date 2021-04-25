@@ -6,12 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseball.ui.UiSystem;
 import baseball.ui.impl.TestUiSystem;
 
 class PlayGroundTest {
 
-	UiSystem uiSystem;
+	TestUiSystem uiSystem;
 	PlayGround playGround;
 
 	@BeforeEach
@@ -25,6 +24,7 @@ class PlayGroundTest {
 	void should_conditionRunningIsTrue_When_start() {
 
 		// Given
+		uiSystem.setGameInput("123");
 		PlayGround newPlayGround = new PlayGround();
 
 		// When

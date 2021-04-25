@@ -24,7 +24,7 @@ public class PlayGround {
 
 		this.playing = true;
 		this.uiSystem = uiSystem;
-		update();
+		init();
 	}
 
 	private void init() {
@@ -34,10 +34,7 @@ public class PlayGround {
 	}
 
 	public void update() {
-
-		init();
 		while (isPlaying()) {
-
 			String throwingNumber = this.pitcher.throwing();
 			String swingNumber = this.hitter.swing();
 

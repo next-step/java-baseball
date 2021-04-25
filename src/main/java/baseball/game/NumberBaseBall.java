@@ -20,6 +20,7 @@ public class NumberBaseBall {
 		while (isRunning) {
 
 			playGround.playBall(uiSystem);
+			playGround.update();
 			isRunning = onUpdate();
 		}
 		uiSystem.display("game exit");
