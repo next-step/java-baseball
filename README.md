@@ -35,5 +35,9 @@
 
 ### RandomNumberGenerator
 * getRandomNumber - 랜덤 숫자 생성(1~9까지의 랜덤 숫자 생성)
-* getRandomNumberArray - 사이즈에 맞는 랜덤 숫자 배열 생성
+* getRandomNumberList - 사이즈에 맞는 랜덤 숫자 배열 생성
+* addNumberIntoList - 리스트에 숫자 추가
 * checkDuplication - 중복 체크
+
+### Converter
+* convertStringArrayToIntegerList - String 배열을 Integer 리스트로 변환
