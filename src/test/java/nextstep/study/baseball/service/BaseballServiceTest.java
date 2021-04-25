@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+@DisplayName("야구서비스 테스트")
 public class BaseballServiceTest {
 
 	@DisplayName("판정 결과 출력 테스트")

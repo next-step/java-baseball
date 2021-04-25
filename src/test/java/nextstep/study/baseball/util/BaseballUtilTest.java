@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("유틸클래스 테스트")
+@DisplayName("유틸 테스트")
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 public class BaseballUtilTest {
 

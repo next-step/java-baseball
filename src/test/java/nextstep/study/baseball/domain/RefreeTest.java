@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("심판 테스트")
 public class RefreeTest {
 
 	@DisplayName("투수와 타자의 숫자값 비교 테스트")
