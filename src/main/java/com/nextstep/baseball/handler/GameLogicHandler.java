@@ -8,11 +8,7 @@ public class GameLogicHandler {
     public static final int INPUT_LENGTH = 3;
 
     public int validateAndReturnInput(String input) {
-        if (input == null) {
-            return ErrorMessages.INPUT_LENGTH_UNDER.getCode();
-        }
-
-        if (input.length() < INPUT_LENGTH) {
+        if (input == null || input.length() < INPUT_LENGTH) {
             return ErrorMessages.INPUT_LENGTH_UNDER.getCode();
         }
 
