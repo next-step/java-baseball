@@ -16,14 +16,15 @@ public class Numbers {
     public int strike(List<Integer> userNumbers) {
         int strikeNumber = 0;
         for (Integer quizNumber : quizNumbers) {
-            strikeNumber = getStrikeNumber(userNumbers, strikeNumber, quizNumber);
+            strikeNumber += strikeNumber(userNumbers, quizNumber);
         }
         return strikeNumber;
     }
 
-    private int getStrikeNumber(List<Integer> userNumbers, int strikeNumber, Integer quizNumber) {
-        int indexOf = userNumbers.indexOf(quizNumber);
-        if (indexOf != -1 && quizNumbers.get(indexOf).equals(quizNumber)) {
+    private int strikeNumber(List<Integer> userNumbers, Integer quizNumber) {
+        int strikeNumber = 0;
+        int userNumberIndex = userNumbers.indexOf(quizNumber);
+        if (userNumberIndex != -1 && quizNumbers.get(userNumberIndex).equals(quizNumber)) {
             strikeNumber++;
         }
         return strikeNumber;
