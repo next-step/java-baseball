@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static baseball.ApplicationContext.EMPTY_DELIMITER;
+
 public class ConsoleInput implements Input {
     private final static int RE_START_NUMBER = 1;
     private final Scanner scanner;
@@ -17,8 +19,7 @@ public class ConsoleInput implements Input {
     @Override
     public List<String> getNumbers() {
         final String numbers = scanner.next();
-        final String DELIMITER = "";
-        return new ArrayList(Arrays.asList(numbers.split(DELIMITER)));
+        return new ArrayList(Arrays.asList(numbers.split(EMPTY_DELIMITER)));
     }
 
     @Override

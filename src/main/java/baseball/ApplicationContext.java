@@ -9,10 +9,10 @@ import baseball.view.output.ConsoleOutput;
 import baseball.view.output.Output;
 
 public class ApplicationContext {
+    public static final String EMPTY_DELIMITER = "";
     private final Input input;
     private final Output output;
     private final Random randomGenerator;
-    private final int numberSize = 3;
 
     public ApplicationContext() {
         this.input = new ConsoleInput(System.in);
@@ -21,6 +21,6 @@ public class ApplicationContext {
     }
 
     public GameController getGameController() {
-        return new GameController(input, output, numberSize, randomGenerator);
+        return new GameController(input, output,  randomGenerator);
     }
 }
