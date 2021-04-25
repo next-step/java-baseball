@@ -30,7 +30,6 @@ public class Game {
 
 	public void play(){
 		Numbers answer = defensePlayer.decideAnswerNumber();
-		System.out.println(answer.getDigits().toString());
 		while (umpire.getStrike() != Numbers.MAX_SIZE){
 			umpire.requestInput();
 			Numbers guess = offensePlayer.makeGuess();
