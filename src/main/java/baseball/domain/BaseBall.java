@@ -20,9 +20,17 @@ public class BaseBall implements Iterable<Ball> {
     public static BaseBall of(String numbers) {
         List<Ball> balls = new ArrayList<>();
         for (int i = 0; i < numbers.length(); i++) {
-            balls.add(Ball.of(numbers.substring(i, i + 1)));
+            Ball ball = Ball.of(numbers.substring(i, i + 1));
+            validateDuplicate(balls, ball);
+            balls.add(ball);
         }
         return BaseBall.of(balls);
+    }
+
+    private static void validateDuplicate(List<Ball> balls, Ball ball) {
+        if (balls.contains(ball)) {
+            throw new DuplicatedNumberException("숫자는 중복되지 않아야 합니다.");
+        }
     }
 
     public int countStrike(BaseBall inputBaseBall) {
