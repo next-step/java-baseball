@@ -36,4 +36,54 @@ public class BaseballService {
 
     }
 
+    public void compareNumber(Referee referee, Number generateNumber, int inputValue) {
+
+        compareFirstNumber(referee, generateNumber, readNumberByPosition(inputValue, 1));
+        compareSecondNumber(referee, generateNumber, readNumberByPosition(inputValue, 2));
+        compareThirdNumber(referee, generateNumber, readNumberByPosition(inputValue, 3));
+
+    }
+
+    public void compareFirstNumber(Referee referee, Number generateNumber, int inputValue) {
+
+        if (inputValue == generateNumber.getFirstNumber()) {
+            referee.addStrike();
+            return;
+        }
+
+        if (inputValue == generateNumber.getSecondNumber() || inputValue == generateNumber.getThirdNumber()) {
+            referee.addBall();
+            return;
+        }
+
+    }
+
+    public void compareSecondNumber(Referee referee, Number generateNumber, int inputValue) {
+
+        if (inputValue == generateNumber.getSecondNumber()) {
+            referee.addStrike();
+            return;
+        }
+
+        if (inputValue == generateNumber.getFirstNumber() || inputValue == generateNumber.getThirdNumber()) {
+            referee.addBall();
+            return;
+        }
+
+    }
+
+    public void compareThirdNumber(Referee referee, Number generateNumber, int inputValue) {
+
+        if (inputValue == generateNumber.getThirdNumber()) {
+            referee.addStrike();
+            return;
+        }
+
+        if (inputValue == generateNumber.getFirstNumber() || inputValue == generateNumber.getSecondNumber()) {
+            referee.addBall();
+            return;
+        }
+
+    }
+
 }
