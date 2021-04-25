@@ -27,6 +27,19 @@ public class GamePlay implements ImplGamePlay {
 
     @Override
     public boolean replay() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        int replay = 0;
+        try{
+            replay = scanner.nextInt();
+        }catch (Exception e){
+            scanner.nextLine();
+        }
+        if(replay!=1 && replay!=2) {
+            System.out.println("잘못 입력 하였습니다.");
+            return replay();
+        }
+
+        if(replay==1) return true;
         return false;
     }
 }
