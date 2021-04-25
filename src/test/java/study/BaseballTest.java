@@ -43,4 +43,18 @@ public class BaseballTest {
 		assertThat(ballcnt.isAllStrike())
 			.isEqualTo(false);
 	}
+	
+	@Test
+	@DisplayName("정수값 여부 통과 테스트")
+	public void is_integer_value_pass_test() {
+		assertThat(BaseballGame.isIntegerValue("123"))
+			.isEqualTo(true);
+	}
+	
+	@Test
+	@DisplayName("정수값 여부 실패 테스트")
+	public void is_integer_value_fail_test() {
+		assertThat(BaseballGame.isIntegerValue("안녕하세요1234"))
+			.isEqualTo(false);
+	}
 }
