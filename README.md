@@ -25,10 +25,12 @@
     - isEachAllDifferentCharacter - 문자열의 각 자리가 모두 다른 문자인지 확인
 
 1. BaseballGame 클래스 - 야구 게임의 전체적인 흐름을 제어하는 클래스
-    - run - 게임 시작
+    - ~~getNumber - 사용자 정답 입력~~(제거)
+    - getRandomNumber - 게임에 사용할 랜덤한 숫자 값 생성
     - getInitAnswer - 초기화 된 정답 객체를 반환
-    - getNumber - 사용자 정답 입력
     - isRetryOrNot - 게임 재시작 여부 확인
+    - getUserAnswer - 사용자가 입력한 정답 객체 생성
+    - run - 게임 시작
 
 1. Main 클래스 - application 동작을 위한 클래스
     - main - application 실행
