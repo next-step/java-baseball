@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import baseball.game.config.BaseBallGameConfig;
 import baseball.game.constants.BaseballResultType;
+import baseball.game.constants.ErrorMessage;
 import baseball.game.constants.GameStatusType;
 import baseball.game.constants.Message;
 import baseball.game.exception.NotAllowedLengthException;
@@ -43,6 +44,10 @@ public class Baseball {
 		this.ballCounts = 0;
 	}
 
+	public List<Integer> getComputerNumbers() {
+		return computerNumbers;
+	}
+
 	public void execute() {
 		initCount();
 		printGameStatusMessage();
@@ -66,7 +71,7 @@ public class Baseball {
 
 	public void validationCheck(String input) {
 		if (!ValidationUtils.isValidNumber(input)) {
-			throw new NumberFormatException();
+			throw new NumberFormatException(ErrorMessage.NOT_INPUT_FORMAT.getMessage());
 		}
 
 		if (!ValidationUtils.checkNumberLengh(input, BaseBallGameConfig.MAX_NUMBER_LENGTH)) {

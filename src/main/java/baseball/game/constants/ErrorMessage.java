@@ -11,6 +11,7 @@ package baseball.game.constants;
  **/
 public enum ErrorMessage {
 
+	NOT_INPUT_FORMAT("입력값 형식이 다릅니다."),
 	NOW_ALLOWED_LENGTH("입력 가능한 길이는 세자리입니다.");
 
 	ErrorMessage(String message) {
