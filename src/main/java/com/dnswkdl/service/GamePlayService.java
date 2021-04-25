@@ -14,6 +14,16 @@ public class GamePlayService {
     }
     public int checkBall(int answer, int input){
         int ball = 0;
+        int[] ansArray = toArray(answer);
+        int[] inpArray = toArray(input);
+        for(int i = 0 ; i < ansArray.length; i++){
+            if(ansArray[i]==inpArray[(i+1)%3]){
+                ball++;
+            }
+            if(ansArray[i]==inpArray[(i+2)%3]){
+                ball++;
+            }
+        }
         return ball;
     }
     private int[] toArray(int number){
