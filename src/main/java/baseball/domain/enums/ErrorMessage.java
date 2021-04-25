@@ -5,7 +5,7 @@ import static java.lang.String.format;
 
 public enum ErrorMessage {
     MESSAGE_NUMERIC_ONLY("숫자만 입력 해주세요 "),
-    MESSAGE_INVALID_NUMERIC_BOUNDARY(format("%d과 %d 사이의 숫자로 이뤄진 %d 자리 숫자를 입력해주세요"
+    MESSAGE_INVALID_NUMERIC_BOUNDARY(format("%d에서 %d 사이의 숫자로 이뤄진 %d자리 숫자를 입력해주세요"
             , MIN_RANDOM_NUMBER
             , MAX_RANDOM_NUMBER
             , RANDOM_NUMBER_COUNT)),
