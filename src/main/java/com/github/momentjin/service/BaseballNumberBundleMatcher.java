@@ -1,12 +1,15 @@
 package com.github.momentjin.service;
 
-import com.github.momentjin.model.BaseballNumber;
-import com.github.momentjin.model.BaseballNumberBundle;
-import com.github.momentjin.model.BaseballNumberMatchResult;
+import com.github.momentjin.model.*;
 
 public class BaseballNumberBundleMatcher {
 
+    private final BaseballNumberBundleValidator validator = new BaseballNumberBundleValidator();
+
     public BaseballNumberMatchResult match(BaseballNumberBundle origin, BaseballNumberBundle target) {
+
+        validator.validate(origin);
+        validator.validate(target);
 
         int strikeCount = calculateStrikeCount(origin, target);
         int ballCount = calculateBallCount(origin, target);
