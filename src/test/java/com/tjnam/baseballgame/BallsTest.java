@@ -141,4 +141,31 @@ public class BallsTest {
         }
     }
 
+
+    @Test
+    public void isExistValueOnBallsTest(){
+        Balls ball = new Balls("123");
+        Boolean[] valueMarking;
+
+        try {
+            Field ballExistMarkVariable = ball.getClass().getDeclaredField("ballExists");
+            ballExistMarkVariable.setAccessible(true);
+
+            valueMarking = (Boolean[])ballExistMarkVariable.get(ball);
+            assertThat(valueMarking[0]).isFalse();
+            assertThat(valueMarking[4]).isFalse();
+            assertThat(valueMarking[5]).isFalse();
+            assertThat(valueMarking[6]).isFalse();
+            assertThat(valueMarking[7]).isFalse();
+            assertThat(valueMarking[8]).isFalse();
+            assertThat(valueMarking[9]).isFalse();
+
+            assertThat(valueMarking[1]).isTrue();
+            assertThat(valueMarking[2]).isTrue();
+            assertThat(valueMarking[3]).isTrue();
+
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 }
