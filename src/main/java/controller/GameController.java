@@ -13,7 +13,6 @@ public class GameController {
 	private RestartOrder restartOrder = RestartOrder.RESTART;
 
 	public void play() {
-		Game game = GameMaster.startNewGame();
 		do {
 			playGame();
 		} while (restartOrder != RestartOrder.EXIT);
