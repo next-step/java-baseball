@@ -17,7 +17,7 @@ public class ViewTest {
 		// given
 		String userInputNumbers = "123";
 		InputStream inputStream = new ByteArrayInputStream(userInputNumbers.getBytes(StandardCharsets.UTF_8));
-		View view = new View(inputStream);
+		View view = new View(inputStream, new StrikeFirstResultRenderer());
 
 		// when
 		Numbers numbers = view.inputNumbers();
