@@ -21,4 +21,18 @@ public class InputView {
 
         return new Balls(balls);
     }
+
+    public static Continuable moreGame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+        String answer = new Scanner(System.in).nextLine();
+
+        if(answer.equals("1")) {
+            return Continuable.CONTINUE;
+        }else if(answer.equals("2")) {
+            return Continuable.BREAK;
+        }
+
+        return Continuable.UNKNOWN;
+    }
 }
