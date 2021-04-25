@@ -74,4 +74,6 @@ class BaseBallGameTest {
 		assertThat(actual).isEqualTo(GameMessage.INPUT);
 	}
 
+
+
 }

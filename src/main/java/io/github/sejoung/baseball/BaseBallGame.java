@@ -30,8 +30,9 @@ public class BaseBallGame {
 	}
 
 	public void processInput(String input) {
-		if (validator.validationInput(input)) {
-			checkBaseBallNumbers(input);
+		if (validator.validationInput(input) && !checkRestart()) {
+			checkBaseBallNumbers(
+				new BaseBallGamePlayerNumber(baseBallGameComputerNumber.getComputerNumbers(), output, status, input));
 		}
 	}
 
@@ -45,39 +46,7 @@ public class BaseBallGame {
 		return false;
 	}
 
-	private void checkBaseBallNumbers(String input) {
-		if (!checkRestart()) {
-			List<Integer> playerNumbers = playerInputTransperList(input);
-			int strikeCount = strikeCheck(playerNumbers);
-			int ballCount = 0;
-			printPlayMessage(strikeCount, ballCount);
-		}
+	private void checkBaseBallNumbers(BaseBallGamePlayerNumber baseBallGamePlayerNumber) {
+		baseBallGamePlayerNumber.check();
 	}
-
-	private void printPlayMessage(int strikeCount, int ballCount) {
-		if (strikeCount == 3) {
-			output.printMessages(PlayMessage.getStrike(3), GameMessage.SUCCESS, GameMessage.RESTART);
-		}
-	}
-
-	private int strikeCheck(List<Integer> playerNumbers) {
-		return threeStrikeCheck(playerNumbers);
-	}
-
-	private int threeStrikeCheck(List<Integer> playerNumbers) {
-		if (baseBallGameComputerNumber.getComputerNumbers().equals(playerNumbers)) {
-			status.restartGame();
-			return 3;
-		}
-		return 0;
-	}
-
-	private List<Integer> playerInputTransperList(String input) {
-		List<Integer> playerNumbers = new ArrayList<>();
-		for (char number : input.toCharArray()) {
-			playerNumbers.add(Character.getNumericValue(number));
-		}
-		return playerNumbers;
-	}
-
 }
