@@ -16,4 +16,8 @@ public class TurnResult {
 		this.ballCount = ballCount;
 		this.strikeCount = strikeCount;
 	}
+
+	public boolean isNothing() {
+		return this.getBallCount() == 0 && this.getStrikeCount() == 0;
+	}
 }

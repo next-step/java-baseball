@@ -22,4 +22,5 @@ public class Game {
 	public void clear() {
 		isCleared = true;
 	}
+
 }
