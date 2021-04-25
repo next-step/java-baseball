@@ -7,14 +7,14 @@ import java.util.Random;
 import static baseball.constant.Constant.NUMBERS_LIMIT;
 
 public class Referee {
-    protected final Numbers numbers;
+    protected final Numbers enemyNumbers;
 
     public Referee() {
         List<Integer> randomList = new ArrayList<>();
         for (int i = 0; i < NUMBERS_LIMIT; i++) {
             generateRandomWithoutDuplicate(randomList);
         }
-        this.numbers = new Numbers(randomList);
+        this.enemyNumbers = new Numbers(randomList);
     }
 
     private void generateRandomWithoutDuplicate(List<Integer> randomList) {
