@@ -1,5 +1,6 @@
 package domainTest;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
@@ -9,6 +10,7 @@ import domain.game.Game;
 
 public class GameTest {
 
+	@DisplayName("Game 객체 생성 시, 다른 객체들도 생성됨")
 	@Test
 	void createParticipantsWhenGameConstructed(){
 		//Given+When
@@ -20,6 +22,7 @@ public class GameTest {
 		assertThat(game.getUmpire()).isNotNull();
 	}
 
+	@DisplayName("Game 객체 생성 시, status가 ONGOING으로 설정됨")
 	@Test
 	void setStatusWhenGameConstructed(){
 		//Given+When
@@ -27,20 +30,5 @@ public class GameTest {
 
 		//Then
 		assertThat(game.getStatus()).isEqualTo(GameStatus.ONGOING);
-
-	}
-
-
-	@Test
-	void checkWhetherAnswerIsCreatedAfterPlayStarts(){
-		//Given
-		Game game = new Game();
-		DefensePlayer defensePlayer = game.getDefensePlayer();
-
-		//When
-		game.play();
-
-		//Then
-		assertThat(defensePlayer.getAnswer().getDigits().size()).isEqualTo(3);
 	}
 }
