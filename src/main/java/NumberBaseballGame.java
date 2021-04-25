@@ -140,6 +140,10 @@ public class NumberBaseballGame {
         @Return 볼 여부
      */
     public static boolean isBall(List<Integer> randomList, List<Integer> inputList, int i) {
-        return false;
+        if (randomList.get(i).equals(inputList.get(i))) {
+            return false;
+        }
+
+        return randomList.contains(inputList.get(i));
     }
 }
