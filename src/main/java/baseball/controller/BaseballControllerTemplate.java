@@ -8,7 +8,7 @@ import baseball.model.BaseballResult;
 public abstract class BaseballControllerTemplate {
 
     public void run() {
-        this.run(BaseballConfig.builder().build());
+        this.run(BaseballConfig.getDefaultConfig());
     }
 
     public void run(BaseballConfig config) {
@@ -35,7 +35,7 @@ public abstract class BaseballControllerTemplate {
         BaseballResult result;
         do {
             // Unit Game Process
-            result = processGame();
+            result = this.processGame();
         } while (!result.isComplete());
 
         return result;
@@ -49,13 +49,9 @@ public abstract class BaseballControllerTemplate {
         BaseballResult result = null;
 
         // Finite Loop
-        for (int i = 0; i < tryCount; i++) {
+        for (int i = 0; i < tryCount && (result == null || !result.isComplete()); i++) {
             // Unit Game Process
-            result = processGame();
-
-            if (result.isComplete()) {
-                return result;
-            }
+            result = this.processGame();
         }
 
         return result;

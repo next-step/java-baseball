@@ -11,7 +11,7 @@ public abstract class BaseballView {
     protected final BaseballConfig config;
 
     public BaseballView() {
-        this(new DefaultReadWriter(), BaseballConfig.builder().build());
+        this(new DefaultReadWriter(), BaseballConfig.getDefaultConfig());
     }
 
     public BaseballView(BaseballConfig config) {

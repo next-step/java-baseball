@@ -21,6 +21,10 @@ public class BaseballConfig {
     private BaseballConfig() {
     }
 
+    public static BaseballConfig getDefaultConfig() {
+        return BaseballConfig.builder().build();
+    }
+
     public static class Builder {
         private BaseballConfig config;
 
@@ -29,6 +33,8 @@ public class BaseballConfig {
             this.config.size = BaseballNumber.DEFAULT_NUMBERS_SIZE;
             this.config.radix = BaseballNumber.DEFAULT_NUMBER_RADIX;
             this.config.tryCount = 0;
+            this.config.locale = Locale.getDefault();
+            this.config.resourceBundle = ResourceBundle.getBundle("message", this.config.locale);
         }
 
         public Builder size(int size) {
@@ -47,17 +53,15 @@ public class BaseballConfig {
         }
 
         public Builder locale(Locale locale) {
-            this.config.locale = locale;
-            this.config.resourceBundle = ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, locale);
+            if (!this.config.locale.equals(locale)) {
+                this.config.locale = locale;
+                this.config.resourceBundle = ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, locale);
+            }
+
             return this;
         }
 
         public BaseballConfig build() {
-            if (this.config.resourceBundle == null) {
-                this.config.locale = Locale.getDefault();
-                this.config.resourceBundle = ResourceBundle.getBundle("message", this.config.locale);
-            }
-
             return this.config;
         }
     }
