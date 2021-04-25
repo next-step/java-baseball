@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.sun.tools.javac.util.StringUtils;
+
 import basballgame.exception.GameRestartInputValidationException;
 import basballgame.exception.MultipleUseNumberValidationException;
 import basballgame.exception.NumberFormatValidationException;
@@ -20,9 +22,8 @@ public class InputValidator {
 
 	private static void validateNumberFormat(String inputString) {
 		try {
-			String trimInputString = inputString.trim();
-			Integer.parseInt(trimInputString);
-		} catch (NumberFormatException | NullPointerException e) {
+			Integer.parseInt(inputString);
+		} catch (NumberFormatException e) {
 			throw new NumberFormatValidationException();
 		}
 	}
@@ -40,15 +41,24 @@ public class InputValidator {
 			throw new MultipleUseNumberValidationException();
 	}
 
+	private static String trim(String inputString) {
+		if(inputString == null || inputString.length() == 0)
+			throw new NumberFormatValidationException();
+
+		return inputString.trim();
+	}
+
 	public static void validateBaseballNumberInput(String inputString) {
-		validateNumberFormat(inputString);
-		validateNumRange(inputString);
-		validateMultipleUseNumber(inputString);
+		String trimInputString = trim(inputString);
+		validateNumberFormat(trimInputString);
+		validateNumRange(trimInputString);
+		validateMultipleUseNumber(trimInputString);
 	}
 
 	public static void validateGameRestartInputNumber(String inputString) {
-		validateNumberFormat(inputString);
-		int inputNumber = Integer.parseInt(inputString);
+		String trimInputString = trim(inputString);
+		validateNumberFormat(trimInputString);
+		int inputNumber = Integer.parseInt(trimInputString);
 
 		if(inputNumber != GAME_RESTART && inputNumber != GAME_EXIT)
 			throw new GameRestartInputValidationException();
