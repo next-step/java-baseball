@@ -15,10 +15,10 @@ public class GenerateGameNumber {
 	 * @return
 	 */
 	public int[] generateGameNumber(){
-		int[] gameNumbers = new int[3];
+		int[] gameNumbers = new int[GAMENUMBERS_LENGTH];
 		Random random = new Random();
 		out:
-		for (int i = 0; i < gameNumbers.length; i++){
+		for (int i = 0; i < GAMENUMBERS_LENGTH; i++){
 			int aRandomNumber = random.nextInt(10);
 
 			for(int item : gameNumbers){
