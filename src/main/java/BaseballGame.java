@@ -4,6 +4,11 @@ public class BaseballGame {
     private boolean isContinuing = true; // 게임 진행을 계속할지 여부
     private boolean isSuccess = true; // 결과가 맞는지 여부
     private String resultMessage; // 결과 메시지
+    private BaseballNumberValidator validator;
+
+    public BaseballGame(BaseballNumberValidator validator) {
+        this.validator = validator;
+    }
 
     public String getBaseballNumber() {
         return baseballNumber;
@@ -69,7 +74,9 @@ public class BaseballGame {
      */
     public void putNumbers() {
         String inputNumber = InputProcessor.putNumbers();
+        while(!validator.validateNumber(inputNumber)){
+            inputNumber = InputProcessor.putNumbers();
+        }
         this.inputNumber = inputNumber;
-
     }
 }
