@@ -44,6 +44,10 @@ public class Referee {
         return strikeCount == 3;
     }
 
+    public boolean isNothing() {
+        return strikeCount == 0 && ballCount == 0;
+    }
+
     public void setStrikeCount(int strikeCount) {
         this.strikeCount = strikeCount;
     }

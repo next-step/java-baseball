@@ -32,6 +32,15 @@ public class RefereeTest {
     }
 
     @ParameterizedTest
+    @MethodSource("provideStrikeBallCountForNothing")
+    @DisplayName("스트라이크, 볼 수에 따라 낫싱 여부 테스트")
+    public void isNothing(int strikeCount, int ballCount, boolean expected){
+        referee.setStrikeCount(strikeCount);
+        referee.setBallCount(ballCount);
+        assertThat(referee.isNothing()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
     @MethodSource("provideIndexAndNumberForStrikeCount")
     @DisplayName("스트라이크 수 세기 테스트")
     public void strikeCount(int inputIdx, int inputNumber, int computerNumberIndex, int computerNumber, int expected){
@@ -82,6 +91,12 @@ public class RefereeTest {
         return Stream.of(
             Arguments.of(3,true), Arguments.of(2,false),
             Arguments.of(1,false), Arguments.of(0,false)
+        );
+    }
+
+    private static Stream<Arguments> provideStrikeBallCountForNothing(){
+        return Stream.of(
+            Arguments.of(2,1,false), Arguments.of(0,0,true)
         );
     }
 
