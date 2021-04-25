@@ -8,6 +8,8 @@ public class GamePlay implements ImplGamePlay {
     private Scanner scanner;
     private GamePlayService service;
 
+    private int answer;
+
     @Override
     public void init() {
         /* TODO
@@ -15,6 +17,7 @@ public class GamePlay implements ImplGamePlay {
         *   2. 변수 선언 */
         scanner = new Scanner(System.in);
         service = new GamePlayService();
+        answer = 123;
     }
 
     @Override
@@ -23,6 +26,28 @@ public class GamePlay implements ImplGamePlay {
         *   1. 사용자 입력 ( 숫자 3개 )
         *   2. 입력 숫자와 정답 비교
         *   3. 결과 도출 (3 strike 종료, 이외에는 결과 print 재입력 */
+        while(true){
+            int inputNumber = getInputNumber();
+            if(inputNumber==answer){
+                return;
+            }
+        }
+    }
+
+    private int getInputNumber(){
+        int input_number = 0;
+
+        System.out.print("숫자를 입력해주세요 : ");
+        try{
+            input_number = scanner.nextInt();
+        }catch (Exception e){
+            scanner.nextLine();
+        }
+        if(input_number<100 || input_number>1000){
+            System.out.println("잘못 입력 하였습니다. 1~9 중 서로다른 3개의 숫자를 입력해야합니다.");
+            return getInputNumber();
+        }
+        return input_number;
     }
 
     @Override
