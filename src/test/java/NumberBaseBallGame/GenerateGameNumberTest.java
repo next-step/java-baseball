@@ -1,10 +1,12 @@
 package NumberBaseBallGame;
 
+import NumberBaseBallGame.Domain.Ball;
+import NumberBaseBallGame.Domain.GenerateGameNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GenerateGameNumberTest {
@@ -15,15 +17,15 @@ class GenerateGameNumberTest {
 	    // given
 		GenerateGameNumber generateGameNumber = new GenerateGameNumber(3);
 	    // when
-		int[] gameNumber = generateGameNumber.generateGameNumber();
+		List<Ball> gameNumber = generateGameNumber.generateGameNumber();
 		// than :: 서로다른 3자리 수
 		assertThat(gameNumber)
 				.isNotEmpty()
 				.hasSize(3)
 				.containsOnlyOnce(
-						gameNumber[0]
-						,gameNumber[1]
-						,gameNumber[2]
+						gameNumber.get(0)
+						,gameNumber.get(1)
+						,gameNumber.get(2)
 				)
 				;
 	}
