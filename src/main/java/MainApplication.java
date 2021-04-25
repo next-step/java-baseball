@@ -1,8 +1,10 @@
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class MainApplication {
 
@@ -23,6 +25,11 @@ public class MainApplication {
       System.out.print("숫자를 입력해주세요 : ");
       List<Character> inputNumber = mainApplication.convertToList(scanner.nextLine().toCharArray());
 
+      if (!mainApplication.validateInputNumber(inputNumber)) {
+        System.out.println("중복 되지 않은 3자리의 숫자를 입력해주세요.");
+        continue;
+      }
+
       List<Character> tempRandomNumber = randomNumber;
 
       int strike = mainApplication.validateStrike(tempRandomNumber, inputNumber);
@@ -35,6 +42,14 @@ public class MainApplication {
         newGame = exit;
       }
     }
+  }
+
+  // 입력값 검증
+  private boolean validateInputNumber(List<Character> inputNumber) {
+    Set<Character> characterSet = new HashSet<>();
+    characterSet.addAll(inputNumber);
+
+    return characterSet.size() == 3;
   }
 
   // Convert char array to Character List
