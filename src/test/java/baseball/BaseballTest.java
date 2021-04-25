@@ -32,7 +32,7 @@ public class BaseballTest {
 
 	@Test
 	@DisplayName("1~9까지 서로 다른 수로 이루어진 3자리 수 생성")
-	void makeAnswerNumbers() {
+	void baseball() {
 		Baseball baseball = new Baseball();
 		List<Integer> answerNumbers = baseball.answerNumbers;
 		assertThat(answerNumbers).hasSize(3);
