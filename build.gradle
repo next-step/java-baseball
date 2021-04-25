@@ -3,6 +3,7 @@ apply plugin: 'eclipse'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
@@ -11,6 +12,10 @@ repositories {
 dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
     testCompile('org.assertj:assertj-core:3.19.0')
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 test {
