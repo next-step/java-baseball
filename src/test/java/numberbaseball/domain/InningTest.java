@@ -30,9 +30,9 @@ class InningTest {
   @DisplayName("예상 숫자를 맞춰보고 결과 객체를 반환하는 테스트")
   @MethodSource("provideForComputingScore")
   @ParameterizedTest
-  void computeScoreTest(List<Pitching> actual, List<Pitching> expect, CountScore result) {
+  void computeScoreTest(List<Pitching> actual, List<Pitching>  expectation, CountScore result) {
     Inning actualInning = new Inning(actual);
-    assertThat(actualInning.computeScore(new Inning(expect))).isEqualTo(result);
+    assertThat(actualInning.computeScore(new Inning( expectation))).isEqualTo(result);
   }
 
   static Stream<List<Pitching>> provideForConstruction() {

@@ -22,9 +22,9 @@ public class Inning {
     return new Inning(PitchingFactory.generateGivenCountPitching(PITCHING_COUNT_PER_INNING));
   }
 
-  public CountScore computeScore(Inning expect) {
+  public CountScore computeScore(Inning expectation) {
     List<Count> countsOfExpectInning = new ArrayList<>();
-    Map<Pitching, Integer> expectPitchingAndOrder = expect.pitchingAndOrder;
+    Map<Pitching, Integer> expectPitchingAndOrder = expectation.pitchingAndOrder;
     for (Map.Entry<Pitching, Integer> expectPitchingAndOrderEntry : expectPitchingAndOrder.entrySet()) {
       Count count = getPitchingMatchStatus(pitchingAndOrder, expectPitchingAndOrderEntry);
       countsOfExpectInning.add(count);
