@@ -48,7 +48,12 @@ public class BaseballNumber {
         }
 
         for (int i = 0; i < this.size; i++) {
-            numbers[i] = Character.isDigit(input.charAt(i)) ? input.charAt(i) - '0' : Character.toUpperCase(input.charAt(i)) - 'A' + 10;
+            char c = input.charAt(i);
+            if (!Character.isDigit(c) && !Character.isAlphabetic(c)) {
+                throw new BaseballNumberFormatException(input);
+            }
+
+            numbers[i] = Character.isDigit(c) ? c - '0' : Character.toUpperCase(c) - 'A' + 10;
         }
 
         if (!checkValid()) {
@@ -64,7 +69,7 @@ public class BaseballNumber {
     private boolean checkValid(int startIndex, int endIndex) {
         boolean[] isChecked = new boolean[this.radix];
         for (int i = startIndex; i < endIndex; i++) {
-            if (isChecked[numbers[i]] || numbers[i] == 0) {
+            if (numbers[i] < 0 || numbers[i] >= this.radix || isChecked[numbers[i]] || numbers[i] == 0) {
                 return false;
             }
 

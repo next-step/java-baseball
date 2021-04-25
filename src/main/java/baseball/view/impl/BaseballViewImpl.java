@@ -4,10 +4,20 @@ import baseball.config.BaseballConfig;
 import baseball.constants.MessageKey;
 import baseball.model.BaseballResult;
 import baseball.view.BaseballView;
+import baseball.view.ReaderWriter;
 
 public class BaseballViewImpl extends BaseballView {
+
+    public BaseballViewImpl() {
+        this(new DefaultReadWriter(), BaseballConfig.getDefaultConfig());
+    }
+
     public BaseballViewImpl(BaseballConfig config) {
-        super(config);
+        this(new DefaultReadWriter(), config);
+    }
+
+    public BaseballViewImpl(ReaderWriter io, BaseballConfig config) {
+        super(io, config);
     }
 
     public void printInputPrompt() {
@@ -20,12 +30,13 @@ public class BaseballViewImpl extends BaseballView {
     }
 
     public void printGameResult(BaseballResult baseballResult) {
-        if (baseballResult.isComplete()) {
-            this.printFormatMessage(MessageKey.successGameResultFormat.getKey(), baseballResult.getStrike());
-            return;
-        }
+        MessageKey messageKey = baseballResult.isComplete() ? MessageKey.successGameResultFormat : MessageKey.failedGameResultFormat;
+//        if (baseballResult.isComplete()) {
+//            this.printFormatMessage(MessageKey.successGameResultFormat.getKey(), baseballResult.getStrike());
+//            return;
+//        }
 
-          this.printFormatMessage(MessageKey.failedGameResultFormat.getKey(), baseballResult.getStrike());
+          this.printFormatMessage(messageKey.getKey(), baseballResult.getStrike());
     }
 
     public void printAskingReGame() {
@@ -35,6 +46,7 @@ public class BaseballViewImpl extends BaseballView {
     @Override
     public void printException(Exception e) {
         this.printFormatMessage(MessageKey.exceptionMessageFormat.getKey(), e);
+        e.printStackTrace();
     }
 
     public String readInputPrompt() {

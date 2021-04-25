@@ -2,21 +2,12 @@ package baseball.view;
 
 import baseball.config.BaseballConfig;
 import baseball.model.BaseballResult;
-import baseball.view.impl.DefaultReadWriter;
 import lombok.Setter;
 
 public abstract class BaseballView {
     @Setter
     private ReaderWriter io;
     protected final BaseballConfig config;
-
-    public BaseballView() {
-        this(new DefaultReadWriter(), BaseballConfig.getDefaultConfig());
-    }
-
-    public BaseballView(BaseballConfig config) {
-        this(new DefaultReadWriter(), config);
-    }
 
     public BaseballView(ReaderWriter io, BaseballConfig config) {
         this.io = io;
