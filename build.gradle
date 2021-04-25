@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation('com.google.guava:guava:23.0')
     testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
     testCompile('org.assertj:assertj-core:3.19.0')
 }
