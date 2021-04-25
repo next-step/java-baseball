@@ -43,8 +43,13 @@ public class Game {
     }
 
     private Boolean checkRestart(){
-    //TODO : do implement
-        return true;
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
+        int userInput = this.getUserRestartInput();
+
+        if (userInput == 1) {
+            return true;
+        }
+        return false;
     }
 
     private Boolean judgeResult(GameResult gameResult){
@@ -99,4 +104,21 @@ public class Game {
     private void printGameResult(String gameResultString){
         System.out.println(gameResultString);
     }
+
+    private int getUserRestartInput(){
+        int input;
+        do {
+            input = this.scan.nextInt();
+        }while(this.isValidRestartInput(input));
+        return input;
+    }
+
+    private Boolean isValidRestartInput(int restartInput) {
+        if (restartInput != 1 && restartInput !=2) {
+            System.out.println("1 또는 2의 값을 입력해 주세요.");
+            return true;
+        }
+        return false;
+    }
+
 }
