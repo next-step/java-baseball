@@ -28,6 +28,8 @@ public class Game {
             System.out.println("숫자를 입력해주세요 : ");
             String userInputBallValue = this.getUserBallInput();
             gamerBall.setBallValues(userInputBallValue);
+            gameResult = this.compareBalls();
+            this.printGameResult(gameResult.toString());
 
         } while(this.judgeResult(gameResult));
     }
@@ -55,6 +57,12 @@ public class Game {
         return false;
     }
 
+    private GameResult compareBalls(){
+        gameResult = dealerBall.compareBalls(gamerBall);
+        return gameResult;
+    }
 
-
+    private void printGameResult(String gameResultString){
+        System.out.println(gameResultString);
+    }
 }
