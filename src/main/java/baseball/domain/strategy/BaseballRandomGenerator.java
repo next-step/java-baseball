@@ -3,7 +3,9 @@ package baseball.domain.strategy;
 import baseball.domain.BallNumber;
 import baseball.domain.BallNumbers;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BaseballRandomGenerator implements BaseballGenerator{
     private static List<BallNumber> ballNumbers;

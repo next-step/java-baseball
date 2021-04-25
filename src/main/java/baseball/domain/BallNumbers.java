@@ -21,6 +21,14 @@ public class BallNumbers {
         }
     }
 
+    public static BallNumbers of(List<Integer> inputNumbers) {
+        List<BallNumber> ballNumbers = new ArrayList<>();
+        for (Integer number : inputNumbers) {
+            ballNumbers.add(new BallNumber(number));
+        }
+        return new BallNumbers(ballNumbers);
+    }
+
     private void checkSize(List<BallNumber> ballNumbers) {
         if (ballNumbers.size() != 3) {
             throw new InvalidBallNumbersSizeException();
