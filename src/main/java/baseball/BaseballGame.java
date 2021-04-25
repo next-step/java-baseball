@@ -11,6 +11,8 @@ import java.util.Random;
 import java.util.Collections;
 
 public class BaseballGame {
+	public static final int RANDOM_NUMBER_LENGTH = 3;
+	
 	public static void main(String[] args) {
 		try {
 			playGame();
@@ -22,11 +24,11 @@ public class BaseballGame {
 	public static void playGame() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		do {
-			List<Integer> randomIntegerList = generateRandomIntegerList(3);
+			List<Integer> randomIntegerList = generateRandomIntegerList(RANDOM_NUMBER_LENGTH);
 			while (!takeBallCount(randomIntegerList, inputBaseballNumber(br))
 					.printBallCount()
 					.isAllStrike()) {}
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			System.out.println(RANDOM_NUMBER_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임종료");
 		} while (isRetryOrEnd(br));
 		br.close();
 	}
