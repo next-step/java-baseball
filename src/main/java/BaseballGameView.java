@@ -16,4 +16,11 @@ public class BaseballGameView {
         System.out.println(message);
     }
 
+    //게임 재진행/종료 유무 출력
+    public String getGameRestart(){
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+        return scanner.next();
+    }
+
 }
