@@ -28,7 +28,7 @@ class Game {
 
     public String calculatorGaming(String playerVariable){
 
-
+        return calculator.getCalculatorResult(playerVariable, computer.getComputerVariable());
     }
 
 }
