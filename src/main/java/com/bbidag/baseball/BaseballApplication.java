@@ -6,7 +6,14 @@ import java.util.Scanner;
 public class BaseballApplication {
 
     public static void main(String[] args){
-
+        boolean isContinueGame = true;
+        while(isContinueGame){
+            Computer computer = new Computer(new Random(System.currentTimeMillis()));
+            Referee referee = new Referee(computer);
+            referee.generateRandomNumberOfComputer();
+            playGame(referee);
+            isContinueGame = inputContinueOrNot();
+        }
     }
 
     public static void playGame(Referee referee){
@@ -44,6 +51,14 @@ public class BaseballApplication {
             numbers[idx++] = Integer.parseInt(numStr);
         }
         return numbers;
+    }
+
+    public static boolean inputContinueOrNot(){
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        Scanner scan = new Scanner(System.in);
+        String exitStr = scan.nextLine();
+        int exitFlag = Integer.parseInt(exitStr);
+        return exitFlag == 1 ? true : false;
     }
 
 }
