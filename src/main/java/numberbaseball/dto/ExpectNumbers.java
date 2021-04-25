@@ -15,16 +15,16 @@ public class ExpectNumbers {
   private static final String PLEASE_INPUT_THREE_DIGITS_INTEGER = "세자리 수를 입력해주세요.";
   private static final String PLEASE_INPUT_DIFFERENT_NUMBER_OF_DIGITS_EACH_OTHER = "각 자리수가 서로 다르게 입력해주세요.";
 
-  private final Set<Integer> expect;
+  private final Set<Integer>  expectation;
   public ExpectNumbers(int input) {
     if(getNumberOfDigits(input) != NUMBER_DIGITS_PER_EXPECTING) {
       throw new IllegalArgumentException(PLEASE_INPUT_THREE_DIGITS_INTEGER);
     }
-    this.expect = collectByDigits(input);
+    this. expectation = collectByDigits(input);
   }
 
   public Inning transFormToInning() {
-    List<Pitching> expectPitchings = transFormToPitchingList(expect);
+    List<Pitching> expectPitchings = transFormToPitchingList( expectation);
     return new Inning(expectPitchings);
   }
 
@@ -59,8 +59,8 @@ public class ExpectNumbers {
     return result;
   }
 
-  private void throwExceptionIfAddingFail(Set<Integer> expect, int value) {
-    if(!expect.add(value)) {
+  private void throwExceptionIfAddingFail(Set<Integer>  expectation, int value) {
+    if(! expectation.add(value)) {
       throw new IllegalArgumentException(PLEASE_INPUT_DIFFERENT_NUMBER_OF_DIGITS_EACH_OTHER);
     }
   }
@@ -70,11 +70,11 @@ public class ExpectNumbers {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ExpectNumbers that = (ExpectNumbers) o;
-    return expect.equals(that.expect);
+    return  expectation.equals(that. expectation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expect);
+    return Objects.hash( expectation);
   }
 }
