@@ -3,6 +3,8 @@ package io.mwkwon.baseball;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 숫자 야구 게임 구현 class
@@ -47,6 +49,37 @@ public class BaseBallGame {
         }
         ballCount -= strikeCount;
         return new GameResult(strikeCount, ballCount);
+    }
+
+    /**
+     * 사용자가 입력한 데이터에 대한 유효성 검사
+     * @param inputString: 사용자 입력 String
+     * @param regex: 유효성 체크를 위한 정규 표현식
+     * @return: 사용가능 입력 String인 경우 true, 아닌 경우 false
+     */
+    public boolean validInputString(String inputString, String regex) {
+        if (inputString == null) {
+            return false;
+        }
+        String targetString = this.removeDuplicateString(inputString);
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(targetString);
+        return matcher.matches();
+    }
+
+    /**
+     * 사용자가 입력한 데이터에 중복 문자 제거
+     * @param inputString: 사용자 입력 String
+     * @return 중복 제거가 완료된 String
+     */
+    private String removeDuplicateString(String inputString) {
+        if (inputString.length() == 1) {
+            return inputString;
+        }
+        if (inputString.substring(1).contains(inputString.substring(0, 1))) {
+            return removeDuplicateString(inputString.substring(1));
+        }
+        return inputString.substring(0, 1) + removeDuplicateString(inputString.substring(1));
     }
 
     /**
