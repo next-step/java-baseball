@@ -23,11 +23,11 @@ public class BaseballNumbersTest {
 	void validateSuitableSize() {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new BaseballNumbers(Arrays.asList(1, 2));
-		});
+		}).withMessage("세자리의 수가 아닙니다.");
 
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new BaseballNumbers(Arrays.asList(1, 2, 3, 4));
-		});
+		}).withMessage("세자리의 수가 아닙니다.");;
 	}
 
 	@Test
@@ -35,11 +35,11 @@ public class BaseballNumbersTest {
 	void validateDuplication() {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new BaseballNumbers(Arrays.asList(3, 3, 1));
-		});
+		}).withMessage("숫자에 중복이 존재합니다.");
 
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new BaseballNumbers(Arrays.asList(1, 3, 1));
-		});
+		}).withMessage("숫자에 중복이 존재합니다.");
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class BaseballNumbersTest {
 	void validateBetweenOneAndNine() {
 		assertThatIllegalArgumentException().isThrownBy(() -> {
 			new BaseballNumbers(Arrays.asList(1, 2, 0));
-		});
+		}).withMessage("1~9의 숫자로 구성되어 있지 않습니다.");
 	}
 
 	@Test
