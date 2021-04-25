@@ -9,21 +9,31 @@ public class MainApplication {
   public static void main(String[] args) {
     MainApplication mainApplication = new MainApplication();
 
-    String randomNumber = mainApplication.generateRandomNumber(3);
+    String randomNumber = null;
     boolean exit = false;
+    boolean newGame = true;
     Scanner scanner = new Scanner(System.in);
     while (!exit) {
+      if (newGame) {
+        randomNumber = mainApplication.generateRandomNumber(3);
+        newGame = false;
+      }
       System.out.print("숫자를 입력해주세요 : ");
       String inputNumber = scanner.nextLine();
 
       int strike = mainApplication.validateStrike(randomNumber, inputNumber);
       int ball = mainApplication.validateBall(randomNumber, inputNumber);
       mainApplication.printResult(strike, ball);
+
+      if (strike == 3) {
+        System.out.print("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+        exit = !mainApplication.checkRestartGame();
+        newGame = exit;
+      }
     }
   }
 
   // 난수 생성
-  private String makeRandomNumber(int length) {
   private String generateRandomNumber(int length) {
     List<String> numbers =
         new LinkedList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
@@ -73,5 +83,15 @@ public class MainApplication {
       System.out.print(ball + " 볼");
     }
     System.out.println();
+  }
+
+  // 다시 시작 여부 확인
+  private boolean checkRestartGame() {
+    Scanner scanner = new Scanner(System.in);
+
+    System.out.println("게임을 새로 시작하려면 1, 종료하려면 2을 입력하세요.");
+    int input = scanner.nextInt();
+
+    return input == 1;
   }
 }
