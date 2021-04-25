@@ -1,30 +1,44 @@
-package com.baseball.precourse;
+package com.baseball.precourse.baseball;
+
+import java.util.StringJoiner;
 
 public class Score {
-    private final int TOTAL_COUNT = 3;
-
     private int ball;
     private int strike;
 
-    public void Score(int ball, int strike){
-        this.ball = ball;
+    public Score(int strike, int ball){
         this.strike = strike;
+        this.ball = ball;
     }
 
     public boolean isOut(){
-        return (strike == TOTAL_COUNT);
+        return (strike == Ball.BALL_COUNT);
     }
 
     public String toString(){
-        StringBuffer buffer = new StringBuffer();
-        if (strike > 0){
-            buffer.append(String.format("%d 스트라이크", strike));
+        if (nothing()){
+            return displayNothing();
         }
-        if (ball > 0){
-            buffer.append(String.format("%d 볼", ball));
-        }
-        return buffer.toString();
+        return displayScore();
     }
 
+    private boolean nothing(){
+        return (strike == 0 && ball == 0);
+    }
 
+    private String displayScore(){
+        StringJoiner joiner = new StringJoiner(" ");
+        if (strike > 0){
+            joiner.add(String.format("%d 스트라이크", strike));
+        }
+        if (ball > 0){
+            joiner.add(String.format("%d 볼", ball));
+        }
+
+        return joiner.toString();
+    }
+
+    private String displayNothing(){
+        return String.format("낫싱");
+    }
 }
