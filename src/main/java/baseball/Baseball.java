@@ -87,16 +87,16 @@ public class Baseball {
     public int countBalls(String baseballNumber, String predictionNumber) {
         int count = 0;
 
-        for (int i = 0; i < baseballNumber.length(); ++i) {
-            for (int j = 0; j < predictionNumber.length(); ++j) {
-                if (i != j && baseballNumber.charAt(i) == predictionNumber.charAt(j)) {
-                    ++count;
-                }
-            }
+        for (int baseballNumberIndex = 0; baseballNumberIndex < baseballNumber.length(); ++baseballNumberIndex) {
+            int sameIndex = predictionNumber.indexOf(baseballNumber.charAt(baseballNumberIndex));
+
+            count += countIfBall(baseballNumberIndex, sameIndex);
         }
 
         return count;
     }
 
-
+    private int countIfBall(int i, int sameIndex) {
+        return i != sameIndex && sameIndex != -1 ? 1 : 0;
+    }
 }
