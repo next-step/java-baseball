@@ -13,9 +13,7 @@ public class Batter {
 	}
 
 	public List<Integer> generateRandomNumbers() {
-		List<Integer> list = this.generateRandomNumbers(BaseConstants.INPUT_NUMBER_LENGTH);
-		System.out.println("타자번호 : " + list);
-		return list;
+		return this.generateRandomNumbers(BaseConstants.INPUT_NUMBER_LENGTH);
 	}
 
 	public List<Integer> generateRandomNumbers(int length) {
