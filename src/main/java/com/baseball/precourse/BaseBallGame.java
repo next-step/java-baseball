@@ -28,9 +28,11 @@ public class BaseBallGame extends Thread {
 	 * @return void 게임 시작 기능
 	 */
 	public void playBaseBall() {
+		List<Integer> computerNums = computer.getRandomNums();
 		int strike = START_STRIKE;
 		while (strike < MAX_STRIKE) {
 			String input = inputNumByPlayer();
+			strike = judgmentPoint(computerNums, input);
 		}
 	}
 	
@@ -100,6 +102,32 @@ public class BaseBallGame extends Thread {
 		return duplicateList;
 	}
 
+	public int judgmentPoint(List<Integer> computerNums, String playerNums) {
+		int strike = 0;
+		int ball = 0;
+		for ( int i = 0; i < playerNums.length(); i++ ) {
+			ball += checkBallPoint(computerNums, playerNums.charAt(i)-'0', i);
+			strike += checkStrikePoint(computerNums, playerNums.charAt(i)-'0', i);
+		}
+		return strike;
+	}
+	
+	public int checkBallPoint(List<Integer> computerNums, int playerNum, int position) {
+		int ball = 0;
+		if ( computerNums.get(position) != playerNum && computerNums.contains(playerNum) ) {
+			ball++;
+		}
+		return ball;
+	}
+	
+	public int checkStrikePoint(List<Integer> computerNums, int playerNum, int position) {
+		int strike = 0;
+		if ( computerNums.get(position) == playerNum ) {
+			strike++;
+		}
+		return strike;
+	}
+	
 	public void printErrorLog() {
 		System.out.print("서로 다른 3자리의 숫자만 입력이 가능합니다.");
 	}

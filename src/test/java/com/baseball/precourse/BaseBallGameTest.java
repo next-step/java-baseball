@@ -1,5 +1,7 @@
 package com.baseball.precourse;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +12,29 @@ import org.junit.jupiter.api.Test;
 public class BaseBallGameTest {
 
 
-	@DisplayName("inputNumByPlayer")
+//	@DisplayName("inputNumByPlayer")
+//	@Test
+//	void testinputNumByPlayer() {
+//		BaseBallGame baseBallGame = new BaseBallGame();
+//		try {
+//			baseBallGame.inputNumByPlayer();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+	
+	@DisplayName("judgementPlay")
 	@Test
-	void testinputNumByPlayer() {
+	void testjudgementPlay() {
 		BaseBallGame baseBallGame = new BaseBallGame();
+		Computer computer = new Computer();
+		List<Integer> computerNums = computer.getRandomNums();
+
 		try {
-			baseBallGame.inputNumByPlayer();
+			String playerNums = baseBallGame.inputNumByPlayer();
+			baseBallGame.judgmentPoint(computerNums, playerNums);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
