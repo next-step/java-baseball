@@ -12,7 +12,6 @@ public class BaseballGame {
     private RandomGenerator randomGenerator;
 
     private InputValidator inputValidator;
-    private DecisionPrinter decisionPrinter;
     private DecisionCounter decisionCounter;
 
     private String computerInput;
@@ -26,7 +25,6 @@ public class BaseballGame {
         this.inputValidator = new InputValidator(
                 new AbnormalInputChecker(),
                 new DuplicationInputChecker());
-        this.decisionPrinter = new DecisionPrinter();
         this.decisionCounter = new DecisionCounter();
 
         // [ 210425 praivesi ] Baseball game must have 3 trial, so pass digitCount parameter as 3
@@ -40,7 +38,7 @@ public class BaseballGame {
 
         DecisionResult decisionResult = this.pitching(playerInput);
 
-        this.decisionPrinter.printDecisionResult(decisionResult);
+        System.out.println(decisionResult);
 
         return this.judgeGameResult(decisionResult);
     }
