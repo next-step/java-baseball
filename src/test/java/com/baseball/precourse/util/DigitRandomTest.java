@@ -1,4 +1,4 @@
-package com.baseball.precourse.baseball.util;
+package com.baseball.precourse.util;
 
 
 import org.junit.jupiter.api.DisplayName;

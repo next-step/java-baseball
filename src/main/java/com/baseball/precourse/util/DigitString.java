@@ -1,7 +1,8 @@
-package com.baseball.precourse.baseball.util;
+package com.baseball.precourse.util;
+
+import com.baseball.precourse.baseball.Ball;
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 public class DigitString {
@@ -19,11 +20,6 @@ public class DigitString {
         } catch (NumberFormatException nfe) {
             throw new IllegalArgumentException("숫자가 아닌 값이 존재합니다");
         }
-    }
-
-    public static DigitString random(int length){
-        String randomString = DigitRandom.generate(length);
-        return new DigitString(randomString);
     }
 
     private char getDigit(int pos){
@@ -71,5 +67,20 @@ public class DigitString {
 
     public String toString(){
         return digit;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+
+        DigitString other = (DigitString) obj;
+        if (other.digit == digit){
+            return true;
+        }
+        return false;
     }
 }

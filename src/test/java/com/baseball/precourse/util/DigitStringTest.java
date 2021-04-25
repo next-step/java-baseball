@@ -1,6 +1,5 @@
-package com.baseball.precourse.baseball.util;
+package com.baseball.precourse.util;
 
-import com.baseball.precourse.baseball.Ball;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
