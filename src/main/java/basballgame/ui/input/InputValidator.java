@@ -12,25 +12,23 @@ import basballgame.exception.NumberRangeValidationException;
 
 public class InputValidator {
 
-	public static void validateNumberFormat(String inputString) {
+	private static void validateNumberFormat(String inputString) {
 		try {
-			Integer.parseInt(inputString);
-		} catch (NumberFormatException e) {
+			String trimInputString = inputString.trim();
+			Integer.parseInt(trimInputString);
+		} catch (NumberFormatException | NullPointerException e) {
 			throw new NumberFormatValidationException();
 		}
 	}
 
-	public static void validateNumRange(String inputString ) {
+	private static void validateNumRange(String inputString ) {
 		int inputNumber = Integer.parseInt(inputString);
-		if (inputNumber < 123 || inputNumber > 987)
+		if (inputNumber < 111 || inputNumber > 999)
 			throw new NumberRangeValidationException();
 	}
 
-	public static void validateMultipleUseNumber(String inputString) {
-		List<Character> inputList = Arrays.asList(
-			inputString.charAt(0)
-			, inputString.charAt(1)
-			, inputString.charAt(2));
+	private static void validateMultipleUseNumber(String inputString) {
+		List<Character> inputList = Arrays.asList(inputString.charAt(0), inputString.charAt(1), inputString.charAt(2));
 		Set<Character> inputSet = new HashSet<>(inputList);
 		if (inputSet.size() < 3)
 			throw new MultipleUseNumberValidationException();
