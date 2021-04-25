@@ -13,7 +13,7 @@ public class BaseballGame {
         boolean finishGame = false;
         
         do {
-            finishGame = progressGame();
+            finishGame = progressGame(computerGameNumber);
         } while (!finishGame);
 
         return restartGame();
@@ -39,11 +39,41 @@ public class BaseballGame {
     }
 
     //게임 진행 로직
-    private boolean progressGame() {
+    private boolean progressGame(int[] computerGameNumber) {
 
+        String input = gameView.getUserNumber().trim();
+        boolean isValid = checkNumberValid(input);
+
+        while (!isValid) {
+            input = gameView.getUserNumber().trim();
+            isValid = checkNumberValid(input);
+        }
+
+        int[] userNumber = parseUserNumber(input);
+
+        BaseballGameResult result = new BaseballGameResult();
+        result.setStrike(getStrike(computerGameNumber, userNumber));
+        result.setBall(getBall(computerGameNumber, userNumber));
+
+        if(result.isFinish()) return true;
+
+        gameView.printGameResult(result.isNothing()? "낫싱":result.toString());
+        return false;
     }
 
-    //컴퓨터 3자리 난수 출력
+    private int getBall(int[] computerGameNumber, int[] userNumber) {
+    }
+
+    private int getStrike(int[] computerGameNumber, int[] userNumber) {
+    }
+
+    private int[] parseUserNumber(String input) {
+    }
+
+    private boolean checkNumberValid(String input) {
+    }
+
+    //컴퓨터 3자리 난수 생성
     private int[] makeComputerGameNumber() {
         int[] numbers = new int[3];
         int idx = 0;
