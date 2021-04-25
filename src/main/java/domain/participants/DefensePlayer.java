@@ -13,7 +13,7 @@ public class DefensePlayer {
     public Numbers decideAnswerNumber() {
         answer = new Numbers();
         int digit;
-        while(answer.getDigits().size()<Numbers.MAX_SIZE){
+        while(answer.length()<Numbers.MAX_SIZE){
             digit = generateRandomNumber();
             answer.add(digit);
         }

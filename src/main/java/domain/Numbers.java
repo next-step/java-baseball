@@ -33,4 +33,8 @@ public class Numbers {
 
 	public List<Integer> getDigits() { return digits; }
 
+	public int length(){
+		return digits.size();
+	}
+
 }
