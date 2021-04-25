@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Numbers {
     private final List<Integer> gameNumbers;
-    private final List<Integer> quizNumbers;
 
     public Numbers(List<Integer> gameNumbers) {
+        if (gameNumbers.size() != 3) {
+            throw new IllegalArgumentException("게임숫자는 3개이어야 합니다.");
+        }
         this.gameNumbers = gameNumbers;
-        this.quizNumbers = gameNumbers.subList(0, 3);
     }
 
     public int size() {
@@ -17,7 +18,7 @@ public class Numbers {
 
     public int strike(List<Integer> userNumbers) {
         int strikeNumber = 0;
-        for (Integer quizNumber : quizNumbers) {
+        for (Integer quizNumber : gameNumbers) {
             strikeNumber += strikeNumber(userNumbers, quizNumber);
         }
         return strikeNumber;
@@ -25,7 +26,7 @@ public class Numbers {
 
     public int ball(List<Integer> userNumbers) {
         int ballNumber = 0;
-        for (Integer quizNumber : quizNumbers) {
+        for (Integer quizNumber : gameNumbers) {
             ballNumber += ballNumber(userNumbers, quizNumber);
         }
         return ballNumber;
@@ -34,7 +35,7 @@ public class Numbers {
     private int ballNumber(List<Integer> userNumbers, Integer quizNumber) {
         int ballNumber = 0;
         int userNumberIndex = userNumbers.indexOf(quizNumber);
-        if (userNumberIndex != -1 && !quizNumbers.get(userNumberIndex).equals(quizNumber)) {
+        if (userNumberIndex != -1 && !gameNumbers.get(userNumberIndex).equals(quizNumber)) {
             ballNumber++;
         }
         return ballNumber;
@@ -43,7 +44,7 @@ public class Numbers {
     private int strikeNumber(List<Integer> userNumbers, Integer quizNumber) {
         int strikeNumber = 0;
         int userNumberIndex = userNumbers.indexOf(quizNumber);
-        if (userNumberIndex != -1 && quizNumbers.get(userNumberIndex).equals(quizNumber)) {
+        if (userNumberIndex != -1 && gameNumbers.get(userNumberIndex).equals(quizNumber)) {
             strikeNumber++;
         }
         return strikeNumber;
