@@ -15,6 +15,22 @@ public class Validator {
         return input;
     }
 
+    public int inputContinue() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = sc.nextLine();
+        if (input.length() != 1) {
+            return inputContinue();
+        }
+        if (!checkContinue(input.charAt(0)-'0')) {
+            return inputContinue();
+        }
+        return input.charAt(0);
+    }
+
+    private boolean checkContinue(int num) {
+        return num == 1 || num == 2;
+    }
+
     private boolean checkString(String number) {
         if (number.length() != 3) {
             System.out.println("3자리 숫자를 입력해주세요");

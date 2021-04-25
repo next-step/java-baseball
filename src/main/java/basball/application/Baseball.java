@@ -10,10 +10,15 @@ public class Baseball {
     private static final Validator validator = new Validator();
 
     public void startGame() {
+        do {
+            questionSet = factory.createRandomNumber();
+            //System.out.println("맞춰야하는 숫자" + questionSet.toString());
+            play();
+        } while (isContinue());
+    }
 
-        questionSet = factory.createRandomNumber();
-        //System.out.println("맞춰야하는 숫자" + questionSet.toString());
-        play();
+    private boolean isContinue() {
+        return validator.inputContinue() == 1;
     }
 
     private void play() {
