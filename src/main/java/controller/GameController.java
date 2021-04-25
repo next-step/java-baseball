@@ -1,19 +1,16 @@
 package controller;
 
-import domain.BaseBallNumberInfo;
-import util.RandomNumberUtil;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class GameController {
 
-    UserController userController;
-    BaseBallNumberInfo baseBallNumberInfo;
+    public int[] checkGameScore(List<Integer> baseBallNumberList, List<Integer> userNumberList){
 
-    public GameController(){
-        userController = new UserController();
-        baseBallNumberInfo = RandomNumberUtil.makeRandomBaseBallInfo();
+        int strikeCount = checkStrikeCount(baseBallNumberList, userNumberList);
+        int ballCount = checkBallCount(baseBallNumberList, userNumberList);
+
+        return new int[]{ strikeCount, ballCount };
+
     }
 
     public int checkStrikeCount(List<Integer> baseBallNumberList, List<Integer> userNumberList){

@@ -16,13 +16,15 @@ public class UserController {
 
     public UserNumberInfo getUserNumberInfo(){
 
+        return userNumberInfo;
+    }
+
+    public void makeUserNumberInfo(){
         boolean chkNum = false;
         while(chkNum == false){
             int inputNumber = inputUserNumber();
             chkNum = generateUserNumberInfo(inputNumber);
         }
-
-        return userNumberInfo;
     }
 
     public boolean generateUserNumberInfo(int inputNumber){
@@ -44,7 +46,7 @@ public class UserController {
         while(numberCheck == false){
             System.out.print("숫자를 입력해주세요 : ");
             Scanner sc = new Scanner(System.in);
-            inputNumber = sc.nextInt();
+            inputNumber = Integer.parseInt(sc.nextLine());
             numberCheck = UserNumberUtil.checkNumberDigit(inputNumber);
         }
 
