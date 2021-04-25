@@ -1,30 +1,24 @@
 package com.dnswkdl.service;
 
 public class GamePlayService {
-    public int checkStrike(int answer, int input){
-        int strike = 0;
+    public int[] check(int answer, int input){
+        /** result[0] = strike, result[1] = ball */
+        int[] result = {0,0};
+
         int[] ansArray = toArray(answer);
         int[] inpArray = toArray(input);
         for(int i = 0 ; i < ansArray.length; i++){
-            if(ansArray[i]==inpArray[i]){
-                strike++;
+            if(ansArray[i]==inpArray[i%3]){
+                result[0]++;
             }
-        }
-        return strike;
-    }
-    public int checkBall(int answer, int input){
-        int ball = 0;
-        int[] ansArray = toArray(answer);
-        int[] inpArray = toArray(input);
-        for(int i = 0 ; i < ansArray.length; i++){
             if(ansArray[i]==inpArray[(i+1)%3]){
-                ball++;
+                result[1]++;
             }
             if(ansArray[i]==inpArray[(i+2)%3]){
-                ball++;
+                result[1]++;
             }
         }
-        return ball;
+        return result;
     }
     private int[] toArray(int number){
         int[] result = {0,0,0};
