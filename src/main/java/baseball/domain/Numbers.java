@@ -2,9 +2,11 @@ package baseball.domain;
 
 import java.util.*;
 
+import static baseball.ApplicationContext.EMPTY_DELIMITER;
 import static baseball.view.input.InputMessages.PLEASE_INPUT_VALID_NUMBERS;
 
 public class Numbers {
+    public final static int SIZE = 3;
     private List<String> numbers;
 
     public Numbers(List<String> numbers) {
@@ -12,22 +14,18 @@ public class Numbers {
         this.numbers = numbers;
     }
 
+    public Numbers(String numbers) {
+        this(new ArrayList(Arrays.asList(numbers.split(EMPTY_DELIMITER))));
+    }
+
     public Numbers(String... numbers) {
         this(new ArrayList(Arrays.asList(numbers)));
     }
 
     private void validateNumbers(List<String> numbers) {
-        if (validateSize(numbers) || validateDuplicate(numbers)) {
+        if (Validator.inValidate(numbers)) {
             throw new IllegalArgumentException(PLEASE_INPUT_VALID_NUMBERS);
         }
-    }
-
-    private boolean validateSize(List<String> numbers) {
-        return numbers.size() != 3;
-    }
-
-    private boolean validateDuplicate(List<String> numbers) {
-        return new HashSet(numbers).size() != 3;
     }
 
     public List<String> getNumbers() {

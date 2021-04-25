@@ -3,11 +3,11 @@ package baseball.controller;
 import baseball.domain.BaseballGame;
 import baseball.domain.BaseballResult;
 import baseball.domain.Numbers;
+import baseball.domain.Validator;
 import baseball.random.Random;
 import baseball.view.input.Input;
 import baseball.view.output.Output;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static baseball.view.input.InputMessages.PLEASE_INPUT_NUMBERS;
@@ -15,17 +15,15 @@ import static baseball.view.input.InputMessages.PLEASE_INPUT_NUMBERS;
 public class GameController {
     private final Input input;
     private final Output output;
-    private final int numberSize;
     private final int ZERO = 0;
     private Random randomGenerator;
     private Numbers randomNumbers;
 
-    public GameController(final Input input, final Output output, final int numberSize, final Random randomGenerator) {
+    public GameController(final Input input, final Output output, final Random randomGenerator) {
         this.input = input;
         this.output = output;
-        this.numberSize = numberSize;
         this.randomGenerator = randomGenerator;
-        this.randomNumbers = randomGenerator.getRandomNumber(numberSize);
+        this.randomNumbers = randomGenerator.getRandomNumber(Numbers.SIZE);
     }
 
     public void start() {
@@ -35,7 +33,7 @@ public class GameController {
     }
 
     public void reStart() {
-        randomNumbers = randomGenerator.getRandomNumber(numberSize);
+        randomNumbers = randomGenerator.getRandomNumber(Numbers.SIZE);
         start();
     }
 
@@ -58,18 +56,10 @@ public class GameController {
     }
 
     private void validate(final List<String> numbers) {
-        if (validateSize(numbers) || validateDuplicate(numbers)) {
-            output.printValiedateNumber(numberSize);
+        if (Validator.inValidate(numbers)) {
+            output.printValiedateNumber();
             getUserNumbers();
         }
-    }
-
-    private boolean validateSize(List<String> numbers) {
-        return numbers.size() != numberSize;
-    }
-
-    private boolean validateDuplicate(List<String> numbers) {
-        return new HashSet<>(numbers).size() != numberSize;
     }
 
 }
