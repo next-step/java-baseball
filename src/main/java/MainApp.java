@@ -1,17 +1,13 @@
 import game.Game;
-import number.RandomGenerationStrategy;
-import number.UserInputGenerationStrategy;
-import player.Computer;
 import player.Player;
-import player.User;
+import player.PlayerFactory;
 
 public class MainApp {
 
 	public static void main(String[] args) {
-		Player computer = new Computer(RandomGenerationStrategy.getInstance());
-		Player user = new User(UserInputGenerationStrategy.getInstance());
+		Player user = new PlayerFactory().user();
 		
-		Game game = new Game(computer, user);
+		Game game = new Game(user);
 		game.start();
 	}
 
