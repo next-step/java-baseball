@@ -1,6 +1,10 @@
 package com.tjnam.baseballgame;
 
 public class Game {
+
+    private Balls dealerBall;
+//    private Balls gamerBall;
+
     public Game(){
 
     }
@@ -12,7 +16,7 @@ public class Game {
     }
 
     public void run(){
-
+        dealerBall.setRandomBalls();
     }
 
     private Boolean checkRestart(){
