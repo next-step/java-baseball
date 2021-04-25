@@ -46,11 +46,11 @@ public class BaseBallGame {
     }
 
     private boolean isValidInputValue(String inputNumbers) {
-        if (isValidLength(inputNumbers)) {
+        if (!isValidLength(inputNumbers)) {
             System.out.println("유효하지 않은 입력길이 입니다. 다시 입력 해주세요.");
             return false;
         }
-        if (isValidFormat(inputNumbers)) {
+        if (!isValidFormat(inputNumbers)) {
             System.out.println("유효하지 않은 입력형식 입니다. 다시 입력 해주세요.");
             return false;
         }
