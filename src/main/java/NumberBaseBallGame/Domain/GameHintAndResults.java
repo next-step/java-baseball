@@ -1,4 +1,4 @@
-package NumberBaseBallGame;
+package NumberBaseBallGame.Domain;
 
 public class GameHintAndResults {
 	private boolean finish;

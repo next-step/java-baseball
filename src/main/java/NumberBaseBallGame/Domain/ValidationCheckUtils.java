@@ -1,13 +1,15 @@
-package NumberBaseBallGame;
+package NumberBaseBallGame.Domain;
+
+import NumberBaseBallGame.BaseBallConst;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ValidationCheckUtils {
-	private static final int GAMENUMBERS_LENGTH= 3;
+	private static final int GAMENUMBERS_LENGTH= BaseBallConst.GAMENUMBERS_LENGTH;
 
 	public static void checkInputNumber(String clientNumber){
-		if(!clientNumber.matches("^[1-9]*$")){
+		if(!clientNumber.matches("^["+BaseBallConst.INPUT_RANGE_MIN+"-"+BaseBallConst.INPUT_RANGE_MAX+"]*$")){
 			throw new IllegalArgumentException("1~9사이의 숫자만 입력해주세요. example : 123, 456 ");
 		}
 

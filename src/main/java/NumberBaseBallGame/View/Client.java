@@ -1,4 +1,8 @@
-package NumberBaseBallGame;
+package NumberBaseBallGame.View;
+
+import NumberBaseBallGame.Domain.GameHintAndResults;
+import NumberBaseBallGame.Domain.GenerateGame;
+import NumberBaseBallGame.Domain.ValidationCheckUtils;
 
 import java.util.Scanner;
 
@@ -22,6 +26,7 @@ public class Client {
 			}
 
 			GameHintAndResults gameHintAndResults = generateGame.playGame(gameNumbers);
+
 			if(!gameHintAndResults.isFinish()){
 				System.out.println(gameHintAndResults.getHint());
 				continue;
