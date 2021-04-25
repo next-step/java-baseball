@@ -9,6 +9,10 @@ public class Validator {
     public String input() {
         System.out.print("숫자를 입력해주세요 : ");
         String input = sc.nextLine();
+        if (input.length() != 3) {
+            System.out.println("3자리 숫자를 입력해주세요");
+            return input();
+        }
         if (!checkString(input)) {
             return input();
         }
@@ -32,11 +36,6 @@ public class Validator {
     }
 
     private boolean checkString(String number) {
-        if (number.length() != 3) {
-            System.out.println("3자리 숫자를 입력해주세요");
-            return false;
-        }
-
         if (!checkRange(number)) {
             return false;
         }
