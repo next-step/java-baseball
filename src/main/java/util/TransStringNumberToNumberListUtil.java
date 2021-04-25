@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TransStringNumberToNumberListUtil {
 
-    private TransStringNumberToNumberListUtil(){
+    private TransStringNumberToNumberListUtil() {
     }
 
     public static List<Integer> toNumberList(String numberString) {
