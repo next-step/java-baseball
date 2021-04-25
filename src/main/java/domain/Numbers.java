@@ -15,8 +15,8 @@ public class Numbers {
 		this.digits = new ArrayList<>();
 	}
 
-	public void add(int digit) throws IndexOutOfBoundsException{
-		if(!canAddNewDigit()) throw new IndexOutOfBoundsException();
+	public void add(int digit) {
+		if(!canAddNewDigit()) return;
 
 		if(isBetweenRange(digit)){
 			digits.add(digit);
