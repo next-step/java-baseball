@@ -5,3 +5,21 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 구현
+1. Main 클래스 - application 동작을 위한 클래스
+   - main - application 실행
+
+1. Answer 클래스 - 야구 게임 정답을 의미하는 클래스
+   - equals - 입력으로 받은 정답이 자신과 동일한지 확인한다.
+   - printHint - 힌트를 출력한다.
+
+1. ValidationChecker 클래스 - 사용자 입력에 대한 정합성 체크를 수행하는 클래스
+   - isCorrectFormatForAnswer - 사용자가 정답이라고 입력한 값이 정상적인지 확인
+   - isCorrectFormatForRetry - 사용자가 재시작 여부라고 입력한 값이 정상적인지 확인
+   
+1. BaseballGame 클래스 - 야구 게임의 전체적인 흐름을 제어하는 클래스
+   - run - 게임 시작
+   - getInitAnswer - 초기화 된 정답 객체를 반환
+   - getNumber - 사용자 정답 입력
+   - isRetryOrNot - 게임 재시작 여부 확인
