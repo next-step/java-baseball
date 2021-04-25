@@ -8,6 +8,10 @@ public class CompareResult {
         return this.strikeCnt;
     }
 
+    public int getBallCnt(){
+        return this.ballCnt;
+    }
+
     public void plusStrikeCnt() {
         this.strikeCnt++;
     }
