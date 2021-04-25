@@ -15,7 +15,7 @@ public class BaseballNumbersFactoryTest {
 	}
 
 	@Test
-	@DisplayName("int형 input에 의해 BaseballNumbers 발생")
+	@DisplayName("int형 input에 의해 BaseballNumbers 객체가 발생")
 	void baseballNumbers() {
 		assertThat(baseballNumbersFactory.baseballNumbers(123)).isExactlyInstanceOf(BaseballNumbers.class);
 	}

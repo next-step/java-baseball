@@ -10,14 +10,14 @@ import number.BaseballNumbers;
 import number.RandomGenerationStrategy;
 
 public class ComputerTest {
-	
+
 	private Player computer;
-	
+
 	@BeforeEach
 	void setIp() {
-		computer = new Computer(RandomGenerationStrategy.getInstance());		
-	}	
-	
+		computer = new Computer(RandomGenerationStrategy.getInstance());
+	}
+
 	@Test
 	@DisplayName("baseballNumbers이 발생하였는지 테스트")
 	public void generateNumbers() {

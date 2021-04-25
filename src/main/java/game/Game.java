@@ -4,7 +4,7 @@ import player.Player;
 import player.PlayerFactory;
 
 public class Game {
-	private final Player computer = new PlayerFactory().computer();
+	private final Player computer = PlayerFactory.getInstance().computer();
 	private Player user;
 
 	private GameState gameState;
