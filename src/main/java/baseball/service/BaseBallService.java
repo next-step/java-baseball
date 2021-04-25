@@ -37,7 +37,6 @@ public class BaseBallService {
         try {
             result = new Result(resultList, User.inputStrToList(inputStr));
             resultType = result.getResultType();
-            UserInputView.resultConfirm(resultType);
         } catch (IllegalArgumentException e) {
             start();
         }
@@ -46,6 +45,7 @@ public class BaseBallService {
 
     private void resultConfirm(ResultType resultType) {
         if(!resultType.isResult()) {
+            UserInputView.resultConfirm(resultType);
             start();
         }
     }
