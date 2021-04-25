@@ -37,6 +37,7 @@ public class BaseBallGame {
 	public boolean checkRestart(String input) {
 		if ("2".equals(input)) {
 			isCompleted = true;
+			return true;
 		}
 		if ("1".equals(input) && GameStatus.RESTART.equals(status.getStatus())) {
 			status.playGame();

@@ -100,4 +100,14 @@ class BaseBallGameTest extends BaseBallGameParameterized {
 		assertThat(actual).isEqualTo(PlayMessage.NOTHING);
 	}
 
+	@ParameterizedTest(name = "{index} 볼 이면 볼 메시지를 출력한다. => numbers = {0}, input = {1}, ballCount = {2}")
+	@MethodSource("generateBallArgumentsStream")
+	void ballTest(List<Integer> numbers, String input, int ballCount) {
+		BaseBallGame game = new BaseBallGame(new BaseBallNumberGeneratorStub(numbers));
+		game.flushOutput();
+		game.processInput(input);
+		String actual = game.flushOutput();
+		assertThat(actual).isEqualTo(PlayMessage.getBall(ballCount));
+	}
+
 }

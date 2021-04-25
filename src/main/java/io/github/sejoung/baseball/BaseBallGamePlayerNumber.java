@@ -25,15 +25,33 @@ public class BaseBallGamePlayerNumber {
 
 	public void check() {
 		threeStrikeCheck();
+		if (this.strikeCount < 3) {
+			strikeAndBallCheck();
+		}
 		makeMessage();
 	}
 
+	private void strikeAndBallCheck() {
+		for (int i = 0; i < 3; i++) {
+			int numberIndex = computerNumber.indexOf(playerNumbers.get(i));
+			ballCheck(numberIndex);
+		}
+	}
+
+	private void ballCheck(int numberIndex) {
+		if (numberIndex > -1) {
+			ballCount++;
+		}
+	}
 
 	private void makeMessage() {
 		if (strikeCount == 0 && ballCount == 0) {
 			output.printMessages(NOTHING);
 		}
 
+		if (ballCount > 0) {
+			output.printMessages(getBall(ballCount));
+		}
 	}
 
 	private void threeStrikeCheck() {
