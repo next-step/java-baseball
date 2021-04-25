@@ -18,6 +18,6 @@ public class AutoNumbersStratgy implements NumbersStratgy{
     @Override
     public BallNumbers generate() {
         Collections.shuffle(NUMBERS);
-        return new BallNumbers(NUMBERS.subList(BallNumbers.NUMBERS_INIT_INDEX, BallNumbers.NUMBERS_LIMIT_SIZE));
+        return new BallNumbers(NUMBERS.subList(BallNumbers.MINIMUN_NUMBERS, BallNumbers.LIMIT_NUMBERS));
     }
 }

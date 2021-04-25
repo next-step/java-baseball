@@ -1,11 +1,9 @@
 package baseball.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Computer {
+    private static final int INIT = 0;
 
     private final BallNumbers numbers;
 
@@ -16,7 +14,7 @@ public class Computer {
     public Result match(BallNumbers ballNumbers) {
         Result result = new Result();
         if (isNothing(ballNumbers)) {
-            return result.put(Arrays.asList(Record.NOTHING));
+            return result.put(Collections.singletonList(Record.NOTHING));
         }
         return result.put(decideRecords(ballNumbers));
     }
@@ -24,21 +22,21 @@ public class Computer {
     private List<Record> decideRecords(BallNumbers ballNumbers) {
         List<Record> records = new ArrayList<>();
         int checkCount = ballNumbers.size();
-        for (int i = 0; i < checkCount; i++) {
+        for (int i = INIT; i < checkCount; i++) {
             records.add(checkRecord(ballNumbers, i));
         }
         return records;
     }
 
     private Record checkRecord(BallNumbers ballNumbers, int index) {
-        int matchPoint = 0;
+        int matchPoint = INIT;
         matchPoint += checkContains(ballNumbers, index);
         matchPoint += checkEqualPosition(ballNumbers, index);
         return Record.findRecord(matchPoint);
     }
 
     private int checkContains(BallNumbers ballNumbers, int index) {
-        int matchPoint = 0;
+        int matchPoint = INIT;
         if (isContains(ballNumbers, index)) {
             matchPoint++;
         }
@@ -46,7 +44,7 @@ public class Computer {
     }
 
     private int checkEqualPosition(BallNumbers ballNumbers, int index) {
-        int matchPoint = 0;
+        int matchPoint = INIT;
         if (isEqualPosition(ballNumbers, index)) {
             matchPoint++;
         }

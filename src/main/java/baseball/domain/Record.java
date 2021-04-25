@@ -9,6 +9,7 @@ public enum Record {
     BALL("%d 볼", 1),
     NOTHING("낫싱", 0);
 
+    private static final int SELECT = 0;
     private final String record;
     private final int matchpoint;
 
@@ -24,7 +25,7 @@ public enum Record {
             result.add(record.find(matchPoint));
         }
         Collections.sort(result);
-        return result.get(0);
+        return result.get(SELECT);
     }
 
     private Record find(int matchPoint) {
