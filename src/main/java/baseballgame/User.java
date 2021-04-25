@@ -1,5 +1,5 @@
 package baseballgame;
-드
+
 import java.util.Scanner;
 
 public class User {
