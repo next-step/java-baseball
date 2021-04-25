@@ -44,6 +44,7 @@ public class Baseball {
 	}
 
 	public void inputNumbers() {
+		initCount();
 		System.out.println(Message.INPUT_MESSAGE.getMessage());
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
@@ -57,7 +58,6 @@ public class Baseball {
 		}
 
 		checkNumbers(input);
-		initCount();
 	}
 
 	public void generatedComputerNumbers() {
