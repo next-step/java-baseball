@@ -19,4 +19,15 @@ class RefereeTest {
 		assertThat(strike).isEqualTo(expected);
 	}
 
+	@ParameterizedTest
+	@CsvSource({"231,3", "234,2", "245,1", "456,0", ",-1", "111,-1", "1234,-1", "abc,-1"})
+	@DisplayName("볼 판정 테스트")
+	void testFindBall(String input, int expected) {
+		Referee referee = new Referee("123");
+
+		int ball = referee.findBall(input);
+
+		assertThat(ball).isEqualTo(expected);
+	}
+
 }
