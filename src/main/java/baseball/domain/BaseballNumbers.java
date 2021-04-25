@@ -19,6 +19,10 @@ public class BaseballNumbers {
         validate(baseballNumbers);
     }
 
+    public BaseballNumbers(String baseballNumbers) {
+        // TODO
+    }
+
     private void setValue(List<BaseballNumber> baseballNumbers) {
         for (BaseballNumber baseballNumber : baseballNumbers) {
             this.baseballNumbers.add(baseballNumber);
