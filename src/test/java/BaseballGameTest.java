@@ -32,5 +32,20 @@ public class BaseballGameTest{
         assertNotEquals(first_numbers, third_numbers);
 	}
 
+    @Test
+	public void couldMakeRandomDigitsNotDuplicated(){
+		BaseballGame game = new BaseballGame();
+        String numbers = game.generateNumbers();
+        String[] splitedNumbers = numbers.split("");
+        assertNotEquals(splitedNumbers[0], splitedNumbers[1]);
+        assertNotEquals(splitedNumbers[1], splitedNumbers[2]);
+        assertNotEquals(splitedNumbers[0], splitedNumbers[2]);
+
+        String numbers1 = game.generateNumbers();
+        String[] splitedNumbers1 = numbers1.split("");
+        assertNotEquals(splitedNumbers1[0], splitedNumbers1[1]);
+        assertNotEquals(splitedNumbers1[1], splitedNumbers1[2]);
+        assertNotEquals(splitedNumbers1[0], splitedNumbers1[2]);
+	}
 
 }
