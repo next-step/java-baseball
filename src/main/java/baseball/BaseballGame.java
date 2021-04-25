@@ -21,40 +21,39 @@ import static baseball.BaseballGame.GameStatus.SHUTDOWN;
  */
 
 public class BaseballGame {
-	private static final int BALL_COUNT = 3;
+	private static final int DEFAULT_BALL_COUNT = 3;
+
+	private int ballCount;
 
 	public static void main(String[] args) {
-		BaseballGame baseballGame = new BaseballGame();
-
+		BaseballGame baseballGame = new BaseballGame(DEFAULT_BALL_COUNT);
+		Computer computer = new Computer();
+		User user = new User();
 		GameStatus gameStatus = READY;
 		while (gameStatus != SHUTDOWN) {
-			baseballGame.start();
+			baseballGame.start(computer, user);
 			gameStatus = selectRestartOrExit();
 		}
 	}
 
-	private void start() {
-		Computer computer = new Computer();
-		int[] computerBalls = computer.selectComputerBalls(BALL_COUNT);
-		System.out.println("Computer: " + Arrays.toString(computerBalls));
-		User user = new User();
-		boolean isWin = false;
-		while (!isWin) {
-			int[] userBalls = user.selectUserBalls(BALL_COUNT, inputUserBalls());
-			System.out.println("User: " + Arrays.toString(userBalls));
-			isWin = match(computerBalls, userBalls);
-		}
-		System.out.println(BALL_COUNT + "개의 숫자를 모두 맞히셨습니다! 게임종료");
+	public BaseballGame(int ballCount) {
+		this.ballCount = ballCount;
+	}
+
+	private void start(Computer computer, User user) {
+		int[] computerBalls = computer.selectComputerBalls(ballCount);
+		while (!match(computerBalls, user.selectUserBalls(ballCount, inputUserBalls())));
+		System.out.println(ballCount + "개의 숫자를 모두 맞히셨습니다! 게임종료");
 	}
 
 	private boolean match(int[] computerBalls, int[] userBalls) {
 		int strike = 0, ball = 0;
-		for (int i = 0; i < BALL_COUNT; ++i) {
+		for (int i = 0; i < ballCount; ++i) {
 			strike += tryStrike(computerBalls, userBalls, i);
 			ball   += tryBall(computerBalls, userBalls, i);
 		}
 		System.out.println(createResultMessage(strike, ball));
-		return strike == BALL_COUNT;
+		return strike == ballCount;
 	}
 
 	private int tryStrike(int[] computerBalls, int[] userBalls, int idx) {
