@@ -48,7 +48,10 @@ public class Game {
     }
 
     private Boolean judgeResult(GameResult gameResult){
-        //TODO : implements
+        if (gameResult.isThreeStrike()) {
+            System.out.println("3개의 숫자를 모두 맞히였습니다! 게임 종료");
+            return false;
+        }
         return true;
     }
 
