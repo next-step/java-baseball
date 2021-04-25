@@ -19,6 +19,10 @@ public class Controller {
             Results results = game.start(Numbers.of(inputView.getNumbers()));
 
             printView.printResult(results.createResultMessage());
+
+            if (game.isClear()) {
+                inputView.inputContinueNumber();
+            }
         }
     }
 }

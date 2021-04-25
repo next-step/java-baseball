@@ -81,4 +81,8 @@ public class Results {
         if (result.equals(Result.BALL)) this.numberOfBall++;
         if (result.equals(Result.NOTHING)) this.numberOfNothing++;
     }
+
+    public boolean isAllStrike() {
+        return numberOfStrike == MAX_RESULT_COUNT;
+    }
 }
