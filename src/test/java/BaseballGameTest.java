@@ -19,7 +19,7 @@ class BaseballGameTest {
     }
 
     @Test
-    @DisplayName("게임 생성 시 생성자의 argument 인 validator, generator, evalutor 는 null이면 안된다")
+    @DisplayName("게임 생성 시 생성자의 argument 인 validator, generator, evaluator 는 null 이면 안된다")
     void testIsValidConstructorArguments() {
         assertAll(
                 () -> assertThrows(AssertionError.class, () -> new BaseballGame(null, new BaseballNumberValidator(), new BaseballNumberEvaluator())),
@@ -39,5 +39,17 @@ class BaseballGameTest {
     void testIsNewGameGenerateBaseballNumber() {
         game.generateBaseBallNumber();
         assertNotNull(game.getBaseballNumber());
+    }
+
+    @Test
+    @DisplayName("게임 결과 확인 후에는 정상적인 결과를 반환해야 한다")
+    void testValidHintText() {
+        // 1 스트라이크 2 볼
+        game.setBaseballNumber("123");
+        game.setInputNumber("123");
+        game.evaluate();
+        // 메시지 결과
+        assertEquals("3 스트라이크 ", game.getResultMessage());
+        assertTrue(game.isSuccess());
     }
 }

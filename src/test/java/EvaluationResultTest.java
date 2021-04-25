@@ -30,7 +30,7 @@ class EvaluationResultTest {
         result.success();
         assertEquals(3, result.getStrikes());
         assertEquals(0, result.getBalls());
-        assertTrue(result.getSuccess());
+        assertTrue(result.isSuccess());
     }
 
 

@@ -11,16 +11,13 @@ public class BaseballNumberEvaluator {
      */
     public EvaluationResult evaluate(String source, String target) {
         EvaluationResult result = new EvaluationResult();
-        // 일치하는지 검사
         if (source.equals(target)) {
             result.success(); // 성공 처리
             return result;
         }
-        // 볼, 스트라이크 검사
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < ConfigConstants.BASEBALL_NUMBER_SIZE; i++) {
             evaluateBallOrStrike(result, source, target, i);
         }
-
         return result;
     }
 
@@ -71,7 +68,7 @@ public class BaseballNumberEvaluator {
     private Boolean isBall(String source, String target, int position) {
         char targetChar = target.charAt(position);
         Boolean isBall = false;
-        for (int i = 0; i < 3 && !isBall; i++) {
+        for (int i = 0; i < ConfigConstants.BASEBALL_NUMBER_SIZE && !isBall; i++) {
             char sourceChar = source.charAt(i);
             isBall = sourceChar == targetChar;
         }

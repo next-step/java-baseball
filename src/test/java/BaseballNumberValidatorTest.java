@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BaseballNumberValidatorTest {
 
@@ -15,4 +17,14 @@ class BaseballNumberValidatorTest {
         Boolean isValid = baseballNumberValidator.validateNumber(number);
         assertFalse(isValid);
     }
+
+    @ParameterizedTest
+    @DisplayName("리셋의 입력값은 1,2 중 하나여야 함")
+    @ValueSource(strings = {"1", "2"})
+    void testResetInput(String type) {
+        BaseballNumberValidator baseballNumberValidator = new BaseballNumberValidator();
+        boolean validResetInput = baseballNumberValidator.isValidResetInput(type);
+        assertTrue(validResetInput);
+    }
+
 }

@@ -16,7 +16,7 @@ class BaseballNumberEvaluatorTest {
     @DisplayName("두 숫자가 일치할 경우 isSuccess 가 true를 반환해야 한다")
     void testSuccessCase() {
         EvaluationResult result = evaluator.evaluate("123", "123");
-        assertTrue(result.getSuccess());
+        assertTrue(result.isSuccess());
     }
 
     @Test

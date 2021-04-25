@@ -7,10 +7,9 @@ import java.util.Random;
  */
 public class BaseballNumberGenerator {
     private Random random = new Random();
-    private int BASEBALL_NUMBER_SIZE = 3;
     public  String generate() {
         List<String> numbers = new ArrayList<>();
-        while (numbers.size() < BASEBALL_NUMBER_SIZE) {
+        while (numbers.size() < ConfigConstants.BASEBALL_NUMBER_SIZE) {
             putBaseballNumber(numbers, generateRandomNumber());
         }
         return String.join("", numbers);

@@ -1,7 +1,7 @@
 public class EvaluationResult {
     private int balls;
     private int strikes;
-    private Boolean isSuccess;
+    private boolean isSuccess;
 
     public int getBalls() {
         return balls;
@@ -11,17 +11,13 @@ public class EvaluationResult {
         return strikes;
     }
 
-    public Boolean getSuccess() {
+    public boolean isSuccess() {
         return isSuccess;
-    }
-
-    public void setSuccess(Boolean success) {
-        isSuccess = success;
     }
 
     public void success(){
         this.isSuccess = true;
-        this.strikes = 3;
+        this.strikes = ConfigConstants.BASEBALL_NUMBER_SIZE;
         this.balls = 0;
     }
 

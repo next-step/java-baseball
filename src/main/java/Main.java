@@ -7,11 +7,10 @@ public class Main {
 
         while(baseballGame.continuing()){
             baseballGame.generateBaseBallNumber();
-            System.out.print("숫자를 입력해 주세요 : ");
             baseballGame.putNumbers();
             baseballGame.evaluate();
-
-
+            baseballGame.printResult();
+            baseballGame.validateSuccess();
         }
     }
 }
