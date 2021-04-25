@@ -3,10 +3,10 @@ package baseballgame;
 import java.util.Scanner;
 
 public class Game {
-    Computer computer;
-    User user;
-    int strike;
-    int ball;
+    private final Computer computer;
+    private final User user;
+    private int strike;
+    private int ball;
 
     public Game() {
         this.computer = new Computer();

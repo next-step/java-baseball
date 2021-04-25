@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class User {
-    List<Integer> selectNumbers = new ArrayList<>();
+    private final List<Integer> selectNumbers = new ArrayList<>();
 
     public List<Integer> getSelectNumbers() {
         return selectNumbers;
