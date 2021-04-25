@@ -2,9 +2,7 @@ package baseball.application;
 
 import baseball.domain.BaseballNumbers;
 import baseball.domain.Score;
-import baseball.domain.ScoreStatus;
-import baseball.util.BaseballException;
-import org.junit.jupiter.api.BeforeEach;
+import baseball.domain.enums.ScoreStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

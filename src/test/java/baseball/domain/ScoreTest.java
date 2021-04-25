@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.domain.enums.ScoreStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

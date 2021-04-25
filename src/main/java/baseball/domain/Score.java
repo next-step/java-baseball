@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.domain.enums.ScoreStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,7 +3,7 @@ package baseball.view;
 import baseball.application.BaseballService;
 import baseball.domain.BaseballNumbers;
 import baseball.domain.Score;
-import baseball.domain.ScoreStatus;
+import baseball.domain.enums.ScoreStatus;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.domain.enums;
 
 public enum ScoreStatus {
     SUCCESS, FAIL, ERROR;
