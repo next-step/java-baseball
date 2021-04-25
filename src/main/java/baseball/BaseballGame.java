@@ -1,12 +1,34 @@
 package baseball;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Collections;
 
 public class BaseballGame {
 	public static void main(String[] args) {
+		try {
+			playGame();
+		}  catch (Exception e) {
+			System.out.println("프로그램 에러 발생, 프로그램을 종료합니다.");
+		}
+	}
 		
+	public static void playGame() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		do {
+			List<Integer> randomIntegerList = generateRandomIntegerList(3);
+			while (!takeBallCount(randomIntegerList, inputBaseballNumber(br))
+					.printBallCount()
+					.isAllStrike()) {}
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		} while (isRetryOrEnd(br));
+		br.close();
 	}
 	
 	public static List<Integer> generateRandomIntegerList(int randLength) {
@@ -115,7 +137,6 @@ public class BaseballGame {
 			if(strikeCount == totalBallCount) {
 				return true;
 			}
-			
 			return false;
 		}
 	}
