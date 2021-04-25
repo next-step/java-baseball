@@ -6,9 +6,11 @@ public class InputValidator {
     private AbnormalInputChecker abnormalInputChecker;
     private DuplicationInputChecker duplicationInputChecker;
 
-    public InputValidator(){
-        this.abnormalInputChecker = new AbnormalInputChecker();
-        this.duplicationInputChecker = new DuplicationInputChecker();
+    public InputValidator(
+            AbnormalInputChecker abnormalInputChecker,
+            DuplicationInputChecker duplicationInputChecker){
+        this.abnormalInputChecker = abnormalInputChecker;
+        this.duplicationInputChecker = duplicationInputChecker;
     }
 
     public UserInputValidation validate(String target) {

@@ -23,7 +23,9 @@ public class BaseballGame {
         this.baseballReferee = baseballReferee;
         this.randomGenerator = randomGenerator;
 
-        this.inputValidator = new InputValidator();
+        this.inputValidator = new InputValidator(
+                new AbnormalInputChecker(),
+                new DuplicationInputChecker());
         this.decisionPrinter = new DecisionPrinter();
         this.decisionCounter = new DecisionCounter();
 
