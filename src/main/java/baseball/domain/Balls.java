@@ -41,4 +41,8 @@ public class Balls {
 
         return new Position(position);
     }
+
+    public int size() {
+        return balls.size();
+    }
 }

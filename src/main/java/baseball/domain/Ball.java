@@ -1,8 +1,8 @@
 package baseball.domain;
 
 public class Ball {
-    private static final int MINIMUM_NUMBER = 1;
-    private static final int MAXIMUM_NUMBER = 9;
+    public static final int MINIMUM_NUMBER = 1;
+    public static final int MAXIMUM_NUMBER = 9;
     private static final Ball[] BALLS = new Ball[MAXIMUM_NUMBER + 1];
 
     static {
