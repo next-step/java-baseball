@@ -29,7 +29,7 @@
 ### 프로그래밍 요구 사항
 * 메소드 분리
   + 코딩 컨벤션 https://naver.github.io/hackday-conventions-java/
-  + indent는 depth 1까지 허용 (whiled 안의 if는 2)
+  + indent는 depth 1까지 허용 (while 안의 if는 2)
   + JAVA 8 stream X , 람다 O
   + else는 사용 X
   + 메소드 길이 10라인 넘어가지 않도록   
