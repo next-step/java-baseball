@@ -34,6 +34,11 @@ public class Baseball {
 		this.gameStatusType = GameStatusType.START;
 	}
 
+	public Baseball (List<Integer> computerNumbers) {
+		this.gameStatusType = GameStatusType.START;
+		this.computerNumbers = computerNumbers;
+	}
+
 	public void initialize() {
 		computerNumbers = new ArrayList<>();
 		generatedComputerNumbers();
@@ -48,9 +53,17 @@ public class Baseball {
 		return computerNumbers;
 	}
 
+	public int getStrikeCounts() {
+		return strikeCounts;
+	}
+
+	public int getBallCounts() {
+		return ballCounts;
+	}
+
 	public void execute() {
 		initCount();
-		printGameStatusMessage();
+		printMessage(getGameStatusMessage());
 
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
@@ -65,7 +78,7 @@ public class Baseball {
 		} else {
 			validationCheck(input);
 			checkNumbers(input);
-			printResultMessage();
+			printMessage(getResultMessage());
 		}
 	}
 
@@ -102,23 +115,30 @@ public class Baseball {
 		}
 	}
 
-	public void printGameStatusMessage() {
-		if (GameStatusType.PAUSE.equals(gameStatusType)) {
-			System.out.println(Message.SUCCESS_MESSAGE.getMessage().replace("n", String.valueOf(strikeCounts)));
-			System.out.println(Message.CONTINUE_MESSAGE.getMessage());
-		} else if (GameStatusType.START.equals(gameStatusType)) {
-			System.out.println(Message.INPUT_MESSAGE.getMessage());
-		}
+	public void printMessage(String message) {
+		System.out.println(message);
 	}
 
-	public void printResultMessage() {
+	public String getGameStatusMessage() {
+		String message = "";
+		if (GameStatusType.PAUSE.equals(gameStatusType)) {
+			message = Message.SUCCESS_MESSAGE.getMessage().replace("n", String.valueOf(strikeCounts)) + "\r\n";
+			message += Message.CONTINUE_MESSAGE.getMessage();
+		} else if (GameStatusType.START.equals(gameStatusType)) {
+			message = Message.INPUT_MESSAGE.getMessage();
+		}
+
+		return message;
+	}
+
+	public String getResultMessage() {
 		String message;
 
 		message = strikeCounts > 0 ? String.format("%d %s", strikeCounts, BaseballResultType.STRIKE.getValue()) : "";
-		message += ballCounts > 0 ? String.format(" %d %s", ballCounts, BaseballResultType.BALL.getValue()) : "";
+		message += ballCounts > 0 ? String.format("%d %s", ballCounts, BaseballResultType.BALL.getValue()) : "";
 		message += strikeCounts + ballCounts == 0 ? String.format("%s", BaseballResultType.NOTHING.getValue()) : "";
 
-		System.out.println(message);
+		return message;
 	}
 
 }
