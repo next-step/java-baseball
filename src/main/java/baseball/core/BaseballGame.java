@@ -8,7 +8,8 @@ package baseball.core;
 
 import baseball.model.BaseballNumber;
 import baseball.model.InningResult;
-import baseball.view.UserInput;
+import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class BaseballGame {
 
@@ -16,34 +17,36 @@ public class BaseballGame {
 
 	private final BaseballInningService baseballInningService;
 
+	private final InputView inputView;
+
+	private final OutputView outputView;
+
 	/**
 	 * BaseballGame 클래스의 새 인스턴스를 초기화 합니다.
+	 * 
+	 * @param inputView  user input instance
+	 * @param outputView user output instance
 	 */
-	public BaseballGame() {
-		super();
+	public BaseballGame(InputView inputView, OutputView outputView) {
+		this.inputView = inputView;
+		this.outputView = outputView;
+
 		this.baseballNumberService = new BaseballNumberServiceImpl();
 		BaseballNumber randomBaseballNumber = this.baseballNumberService.getRandomBaseballNumber();
 		this.baseballInningService = new BaseballInningServiceImpl(randomBaseballNumber);
 	}
 
 	public void startGame() {
-		// TODO baseball game start
-
-		// 게임진행 시작, 3스트라이크가 나올때까지
-		UserInput userInput = UserInput.getInstance();
 
 		boolean isEnd = false;
 		while (!isEnd) {
-
-			System.out.print("숫자를 입력해주세요 : ");
-			String inputValue = userInput.input();
+			String inputValue = this.inputView.getMakeNumberInput();
 
 			InningResult judgeInning = this.baseballInningService.judgeInning(inputValue);
-			System.out.println(judgeInning.toString());
+			this.outputView.printInningResult(judgeInning);
 			isEnd = this.baseballInningService.isEndGame(judgeInning);
 		}
-		
-		
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+
+		this.outputView.printEndGame();
 	}
 }

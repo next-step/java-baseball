@@ -6,9 +6,22 @@
 */
 package baseball.core;
 
-import baseball.view.UserInput;
+import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class BaseballGameExecutor {
+
+	private final InputView userInput;
+
+	private final OutputView userOutput;
+
+	/**
+	 * BaseballGameExecutor 클래스의 새 인스턴스를 초기화 합니다.
+	 */
+	public BaseballGameExecutor() {
+		this.userInput = new InputView();
+		this.userOutput = new OutputView();
+	}
 
 	/**
 	 * 야구 게임을 실행합니다.
@@ -19,21 +32,19 @@ public class BaseballGameExecutor {
 
 		while (!isEnd) {
 
-			BaseballGame baseballGame = new BaseballGame();
+			BaseballGame baseballGame = new BaseballGame(this.userInput, this.userOutput);
 			baseballGame.startGame();
 
 			isEnd = this.checkContinueGame();
 		}
+
+		this.userInput.closeUserInput();
 	}
 
 	private boolean checkContinueGame() {
-		// TODO game 지속 여부 확인구현
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+		String continueInput = this.userInput.getMakeContinueInput();
 
-		UserInput userInput = UserInput.getInstance();
-		String input = userInput.input();
-
-		if ("1".equals(input)) {
+		if ("1".equals(continueInput)) {
 			return false;
 		}
 
