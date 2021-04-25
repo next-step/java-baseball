@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 /**
- * 입력을 처리
+ * 입력 생성
  */
 public class InputProcessor {
-    public static String input(){
-        Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
+    public static String putNumbers(){
         return scanner.nextLine();
     }
 }
