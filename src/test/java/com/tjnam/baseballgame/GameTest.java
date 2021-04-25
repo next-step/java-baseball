@@ -168,4 +168,32 @@ public class GameTest {
             e.printStackTrace();
         }
     }
+
+
+    @Test
+    public void restartInputTest(){
+        int restartInput;
+        Boolean result;
+
+        Game game = new Game();
+
+        try {
+            Method testMethod = game.getClass().getDeclaredMethod("isValidRestartInput", int.class);
+            testMethod.setAccessible(true);
+
+            restartInput = 1;
+            result = (Boolean) testMethod.invoke(game, restartInput);
+            assertThat(result).isFalse();
+
+            restartInput = 9;
+            result = (Boolean) testMethod.invoke(game, restartInput);
+            assertThat(result).isTrue();
+
+            restartInput = 2;
+            result = (Boolean) testMethod.invoke(game, restartInput);
+            assertThat(result).isFalse();
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 }
