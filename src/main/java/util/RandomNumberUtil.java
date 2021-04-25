@@ -15,7 +15,7 @@ public class RandomNumberUtil {
         return baseBallNumberInfo;
     }
 
-    public static BaseBallNumberInfo makeBaseBall(BaseBallNumberInfo baseBallNumberInfo){
+    public static void makeBaseBall(BaseBallNumberInfo baseBallNumberInfo){
 
         int numberSize = 0;
 
@@ -24,7 +24,6 @@ public class RandomNumberUtil {
             numberSize = CheckDuplicateUtil.checkDuplicateNumber(baseBallNumberInfo.getBaseBallRandomNumberList());
         }
 
-        return baseBallNumberInfo;
     }
 
     public static void makeRandomNumber(BaseBallNumberInfo baseBallNumberInfo) {

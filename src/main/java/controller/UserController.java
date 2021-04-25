@@ -42,6 +42,7 @@ public class UserController {
         boolean numberCheck = false;
         int inputNumber = 0;
         while(numberCheck == false){
+            System.out.print("숫자를 입력해주세요 : ");
             Scanner sc = new Scanner(System.in);
             inputNumber = sc.nextInt();
             numberCheck = UserNumberUtil.checkNumberDigit(inputNumber);
@@ -70,15 +71,6 @@ public class UserController {
             userNumberInfo.setUserInputNumber(numberArr[i]);
         }
 
-    }
-
-    public static void main(String[] args) {
-        UserController userController = new UserController();
-        UserNumberInfo userNumberInfo1 = userController.getUserNumberInfo();
-
-        for(int i =0; i < 3; i++){
-            System.out.println(userNumberInfo1.getUserInputNumberList().get(i));
-        }
     }
 
 }
