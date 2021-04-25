@@ -13,7 +13,8 @@
 ## 구현목록
 * [ ] 컴퓨터 수 선택
 * [ ] 게임 초기화시 완료 상태가 아니다
-
+* [ ] 게임 실행시 숫자를 입력해주세요 메시지 출력
+* [ ]
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)

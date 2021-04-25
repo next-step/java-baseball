@@ -9,7 +9,7 @@ public class BaseBallGame {
 	}
 
 	public String flushOutput() {
-		return null;
+		return "숫자를 입력해주세요: ";
 	}
 
 	public void processInput(String input) {
