@@ -3,14 +3,6 @@ import java.util.Scanner;
 public class Game {
     private static Scanner scanner;
 
-    private static boolean isValidInput(int input) {
-        if ((input < 100) || (input > 999)) return false;
-        if (input % 10 == 0) return false;
-        if (input % 100 < 10) return false;
-
-        return true;
-    }
-
     private static int[] createPlayerNumbers(int input) {
         int[] playerList = new int[3];
         playerList[0] = input % 10;
@@ -20,20 +12,31 @@ public class Game {
         return playerList;
     }
 
+    private static Dealer createDealer() {
+        Dealer dealer = new Dealer();
+        while (!Rule.isValid(dealer.getList())) {
+            dealer = new Dealer();
+        }
+
+        return dealer;
+    }
+
     private static int[] getPlayerList() {
         System.out.println("숫자를 입력해주세요 : ");
         int input = scanner.nextInt();
+        int[] playerList = createPlayerNumbers(input);
 
-        while (!isValidInput(input)) {
+        while (!Rule.isValid(playerList)) {
             System.out.println("숫자를 입력해주세요 : ");
             input = scanner.nextInt();
+            playerList = createPlayerNumbers(input);
         }
 
-        return createPlayerNumbers(input);
+        return playerList;
     }
 
     private static void play() {
-        Dealer dealer = new Dealer();
+        Dealer dealer = createDealer();
         Judge judge = new Judge();
 
         while (!Rule.doesWin(judge)) {

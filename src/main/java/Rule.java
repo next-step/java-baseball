@@ -12,9 +12,6 @@ public class Rule {
     }
 
     public static Judge judge(int[] dealerList, int[] playerList) {
-        if (!isValid(dealerList)) return null;
-        if (!isValid(playerList)) return null;
-
         Judge judge = new Judge();
 
         if (dealerList[0] == playerList[0]) judge.strike++;
