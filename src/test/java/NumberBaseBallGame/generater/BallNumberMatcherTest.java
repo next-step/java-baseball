@@ -2,6 +2,7 @@ package NumberBaseBallGame.generater;
 
 import NumberBaseBallGame.domain.Ball;
 import NumberBaseBallGame.domain.BallNumberMatchResult;
+import NumberBaseBallGame.domain.BaseBallConst;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(4));
 		clientBalls.add(new Ball(5));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -55,7 +56,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(2));
 		clientBalls.add(new Ball(5));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -84,7 +85,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(2));
 		clientBalls.add(new Ball(3));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -113,7 +114,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(5));
 		clientBalls.add(new Ball(1));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -142,7 +143,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(3));
 		clientBalls.add(new Ball(1));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -171,7 +172,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(3));
 		clientBalls.add(new Ball(1));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -200,7 +201,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(5));
 		clientBalls.add(new Ball(6));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
@@ -229,7 +230,7 @@ class BallNumberMatcherTest {
 		clientBalls.add(new Ball(3));
 		clientBalls.add(new Ball(6));
 
-		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher();
+		BallNumberMatcher ballNumberMatcher = new BallNumberMatcher(BaseBallConst.GAMENUMBERS_LENGTH);
 		// when
 		BallNumberMatchResult matchResult = ballNumberMatcher.matchNumber(clientBalls, targetBalls);
 
