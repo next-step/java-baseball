@@ -3,22 +3,26 @@ import java.util.Set;
 
 public class NumberMatcher {
 
-    public String matchNumber(String inputNumber, String answerNumber) {
-        char[] inputNumbers = inputNumber.toCharArray();
-        char[] answerNumbers = answerNumber.toCharArray();
+    private int strike = 0;
+    private int ball = 0;
+    private int totalMatch = 0;
+    private char[] inputNumbers;
+    private char[] generatedNumbers;
 
-        int totalMatch = getTotalMatch(inputNumbers, answerNumbers);
-        int strike = getStrike(inputNumbers, answerNumbers);
-        int ball = totalMatch - strike;
-
-        return strike + "" + ball + "" + totalMatch;
+    public NumberMatcher(String inputNumber, String generatedNumber) {
+        inputNumbers = inputNumber.toCharArray();
+        generatedNumbers = generatedNumber.toCharArray();
     }
 
-    public int getStrike(char[] inputNumbers, char[] answerNumbers) {
-        int strike = 0;
+    public void matchNumber() {
+        totalMatch = calculateTotalMatch();
+        strike = calculateStrike();
+        ball = totalMatch - strike;
+    }
 
+    private int calculateStrike() {
         for (int i = 0; i < inputNumbers.length; i++) {
-            strike = addStrike(strike, inputNumbers[i], answerNumbers[i]);
+            strike = addStrike(strike, inputNumbers[i], generatedNumbers[i]);
         }
 
         return strike;
@@ -32,19 +36,17 @@ public class NumberMatcher {
         return strike;
     }
 
-    public int getTotalMatch(char[] inputNumbers, char[] answerNumbers) {
-        int totalMatch = 0;
+    private int calculateTotalMatch() {
+        Set<Character> numbers = collectNumbers();
 
-        Set<Character> numbers = collectNumbers(inputNumbers);
-
-        for (char answerNumber : answerNumbers) {
-            totalMatch = addTotalMatch(totalMatch, numbers, answerNumber);
+        for (char answerNumber : generatedNumbers) {
+            totalMatch = addTotalMatch(numbers, answerNumber);
         }
 
         return totalMatch;
     }
 
-    private Set<Character> collectNumbers(char[] inputNumbers) {
+    private Set<Character> collectNumbers() {
         Set<Character> numbers = new HashSet<>();
         for (char c : inputNumbers) {
             numbers.add(c);
@@ -53,11 +55,31 @@ public class NumberMatcher {
         return numbers;
     }
 
-    private int addTotalMatch(int totalMatch, Set<Character> numbers, char answerNumber) {
+    private int addTotalMatch(Set<Character> numbers, char answerNumber) {
         if (numbers.contains(answerNumber)) {
             return totalMatch + 1;
         }
 
         return totalMatch;
+    }
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
+    }
+
+    public int getTotalMatch() {
+        return totalMatch;
+    }
+
+    public boolean isFourBall() {
+        return totalMatch == 0;
+    }
+
+    public boolean isMatch() {
+        return strike == GameOptions.HOW_MANY_DIGIT;
     }
 }
