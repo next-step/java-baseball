@@ -22,7 +22,7 @@ public class BaseballHitter {
 
     private void hittingBall() {
         Collections.shuffle(initNumbers);
-         numbers = initNumbers.subList(0, SIZE);
+        numbers = initNumbers.subList(0, SIZE);
     }
 
     public List<Integer> getNumbers() {
