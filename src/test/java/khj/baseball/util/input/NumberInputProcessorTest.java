@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NumberInputProcessorTest {
-    InputProcessor inputProcessor = new DefaultInputProcessor();
+    InputProcessor inputProcessor = new NumberInputProcessor();
 
     @ParameterizedTest(name = "파라미터로 넘긴 값 {arguments}이 넘어오는 지 확인")
     @ValueSource(strings = {"123", "456", "789"})
