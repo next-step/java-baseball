@@ -32,6 +32,27 @@ public class BaseBallGame {
     }
 
     public void checkAnswer(String input) {
+        if (this.isNumber(input) && this.checkInputThreeLength(input)) {
+
+        }
         this.setRunning(false);
+    }
+
+    private boolean isNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (Exception e) {
+            message.notNumber();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkInputThreeLength(String input) {
+        if (input.length() != 3) {
+            message.notThreeNumber();
+            return false;
+        }
+        return true;
     }
 }
