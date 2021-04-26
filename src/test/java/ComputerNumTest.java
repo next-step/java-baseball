@@ -36,4 +36,16 @@ class ComputerNumTest {
         }
     }
 
+    @Test
+    @DisplayName("1-9 리스트에서 내부 인덱스중 한개를 OutNumInList 메서드로 실행시켰을때 리스트 갯수가 1 감소한다")
+    void OutNumInListTest(){
+        List<Integer> numList = new ArrayList<>();
+        for(int i = START; i < END; i++){
+            numList.add(i);
+        }
+        int randomNum = 8;
+        List<Integer> outNumResult = ComputerNum.outNumInList(numList, randomNum);
+        assertThat(outNumResult.size()).isEqualTo(8);
+    }
+
 }
