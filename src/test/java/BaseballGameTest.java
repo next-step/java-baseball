@@ -112,4 +112,16 @@ public class BaseballGameTest{
 		assertEquals("3스트라이크", output);
 	}
 
+
+	@Test
+	public void outputWhenResultIsNothing(){
+		String answer = "123";
+		String nothing_guess = "___";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,nothing_guess);
+
+		assertEquals("낫싱", output);
+	}
+
+
 }
