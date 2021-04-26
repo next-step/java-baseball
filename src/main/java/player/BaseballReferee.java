@@ -24,7 +24,7 @@ public class BaseballReferee {
         pitcherNumbers = numbers;
     }
 
-    public boolean strikeout() {
+    public boolean isStrikeout() {
         resetCount();
         checkBaseball();
         if (strikeCount == 3) {

@@ -28,7 +28,7 @@ public class Game {
 
     private void playRound(BaseballPitcher pitcher, BaseballHitter hitter) {
         BaseballReferee referee = new BaseballReferee(hitter.getNumbers(), pitcher.getNumbers());
-        while (!referee.strikeout()) {
+        while (!referee.isStrikeout()) {
             pitcher.throwingBall();
             referee.changePitcherNumbers(pitcher.getNumbers());
         }
