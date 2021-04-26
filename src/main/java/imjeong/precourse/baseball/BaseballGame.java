@@ -144,6 +144,22 @@ public class BaseballGame {
    if(ANSWER_LIST.contains(userAnswer) && userAnswer == ANSWER_LIST.get(i)) strike++;
    if(ANSWER_LIST.contains(userAnswer) && userAnswer != ANSWER_LIST.get(i)) ball++;
   }
+  printGameResult(strike, ball);
   return strike;
+ }
+ 
+ /**
+  * 게임 결과 출력<br/>
+  * &emsp;- Strike 수와 Ball 수 출력<br/>
+  * &emsp;- Strike와 Ball 수가 없으면 낫싱 출력<br/>
+  * @param strike
+  * @param ball
+  * @since 2021. 04. 26
+  */
+ public static void printGameResult(int strike, int ball) {
+  if(strike != 0) System.out.print(strike + " 스트라이크 ");
+  if(ball != 0) System.out.print(ball + " 볼");
+  if(strike == 0 && ball == 0) System.out.print("낫싱");
+  System.out.println();
  }
 }
