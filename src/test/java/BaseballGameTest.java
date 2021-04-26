@@ -67,4 +67,39 @@ class BaseballGameTest {
         );
     }
 
+    /**
+     * checkStrike
+     * 타겟 난수 map, 입력 map을 해당 숫자와 비교하여 스트라이크 여부 확인하는지 테스트
+     * @param targets 타겟 난수 map
+     * @param inputs 플레이어로부터 입력받은 map
+     * @param num 비교 대상 숫자 1~9
+     * @param expected 예측 결과
+     */
+    @ParameterizedTest
+    @MethodSource("provideCheckStrikeParameters")
+    public void checkStrike(HashMap<Integer,Integer> targets, HashMap<Integer,Integer> inputs, int num, int expected) {
+        assertEquals(baseballGame.checkStrike(targets,inputs,num),expected);
+    }
+
+
+    private static Stream<Arguments> provideCheckStrikeParameters(){
+        HashMap<Integer,Integer> target1 = new HashMap<>();
+        HashMap<Integer,Integer> inputs1 = new HashMap<>();
+        target1.put(4,0);
+        target1.put(7,1);
+        target1.put(2,2);
+        inputs1.put(8,0);
+        inputs1.put(7,1);
+        inputs1.put(2,2);
+
+
+        return Stream.of(
+                Arguments.of(target1,inputs1,2,1),
+                Arguments.of(target1,inputs1,4,0),
+                Arguments.of(target1,inputs1,7,1),
+                Arguments.of(target1,inputs1,8,0)
+        );
+    }
+
+
 }
