@@ -14,7 +14,6 @@ public class BaseBallGame {
     }
 
     public void gameStart(){
-        gameInit();
         while(true){
             System.out.print("입력:");
             Scanner sc = new Scanner(System.in);
@@ -39,12 +38,12 @@ public class BaseBallGame {
     }
 
     private void doGuess(Scanner sc){
-        ((GuessNumber)map.get("guessNumber")).guessNumber(dto);
+        ((GuessNumber)map.get("guessNumber")).doGuessNumber(dto);
         int success = ((BaseBallOutput)map.get("baseBallOutput")).resultOfAttack(dto);
         if(success==CODE.FAIL.value){
             resetBallCount();
         }
-        reGameComment(success,sc);
+        reGameChk(success,sc);
     }
 
     public void resetBallCount(){
@@ -52,15 +51,14 @@ public class BaseBallGame {
         dto.setCountOfStrike(0);
     }
 
-    private void reGameComment(int success, Scanner sc){
-        String retryCode = "0";
+    private void reGameChk(int success, Scanner sc){
         if(success==CODE.SUCCESS.value){
             dto = new BaseBallDTO();
-            reGameChk(sc);
+            reGameComment(sc);
         }
     }
 
-    private void reGameChk(Scanner sc){
+    private void reGameComment(Scanner sc){
         String inputText = "";
         while(!validation.restartValidationChk(inputText)){
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
@@ -73,6 +71,9 @@ public class BaseBallGame {
         if("1".equals(str)){
             gameInit();
         }
+        gameExit(str);
+    }
+    private void gameExit(String str){
         if("2".equals(str)){
            System.exit(0);
         }
@@ -80,6 +81,7 @@ public class BaseBallGame {
 
     public static void main(String []args) {
         BaseBallGame newGame = new BaseBallGame();
+        newGame.gameInit();
         newGame.gameStart();
     }
 

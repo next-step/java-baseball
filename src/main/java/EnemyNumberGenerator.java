@@ -9,7 +9,6 @@ public class EnemyNumberGenerator {
         if(!numbers.contains(randomNumber)){
             numbers.add(randomNumber);
         }
-        System.out.println("컵퓨터->"+numbers);
     }
 
     protected void generateNumber(BaseBallDTO dto){
