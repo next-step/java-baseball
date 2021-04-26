@@ -47,7 +47,7 @@ public class BallMatchResult {
 		}
 
 		if (ballCount > 0) {
-			System.out.printf("%d 볼", ballCount);
+			System.out.printf("%d볼", ballCount);
 		}
 
 		if (ballCount == 0 && strikeCount == 0) {
