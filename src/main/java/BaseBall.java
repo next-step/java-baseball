@@ -46,7 +46,7 @@ public class BaseBall {
 		do {
 			System.out.print("숫자를 입력해주세요 : ");
 			value = scanner.nextLine();
-		} while (userInputcheck(value));
+		} while (userBallCheck(value));
 		return value;
 	}
 
@@ -55,7 +55,7 @@ public class BaseBall {
 	 * @param value
 	 * @return 잘못입력하면 true, 맞게 입력하면 false
 	 */
-	public boolean userInputcheck(String value) {
+	public boolean userBallCheck(String value) {
 		boolean result = value.matches("^[1-9]{3}$");
 		if (result
 			&& ((0 != value.lastIndexOf(value.charAt(0) + "")) || (1 != value.lastIndexOf(value.charAt(1) + "")))) {
@@ -65,6 +65,104 @@ public class BaseBall {
 			System.out.println("\n잘못 입력하셨습니다.");
 		}
 		return !result;
+	}
+
+	/**
+	 * @param baseball
+	 */
+	public void game(String baseball) {
+		boolean flag = false;
+		do {
+			flag = ballCompare(userBall(), baseball);
+		} while (flag);
+	}
+
+	/**
+	 * 사용자 값과 야구공 비교하기
+	 * @param userBall
+	 * @param ball
+	 * @return boolean
+	 */
+	public boolean ballCompare(String userBall, String ball) {
+		if (!ball.equals(userBall)) {
+			userHint(userBall, ball);
+			return true;
+		}
+		System.out.println("3스트라이크");
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		return false;
+	}
+
+	/**
+	 * 유저에게 힌트 주기 (볼, 스트라이크, 낫싱 메세지 출력)
+	 * @param value
+	 * @param ball
+	 */
+	public void userHint(String userBall, String ball) {
+		int strikeCount = strikeCount(userBall, ball);
+		int ballCount = ballCount(userBall, ball);
+		if (ballCount == 0 && strikeCount == 0) {
+			System.out.print("낫싱");
+		}
+		if (strikeCount > 0 && strikeCount != 3) {
+			System.out.print(strikeCount + "스트라이크");
+		}
+		if (ballCount > 0) {
+			System.out.print(ballCount + "볼");
+		}
+		System.out.println();
+	}
+
+	/**
+	 * @param userBall
+	 * @param ball
+	 * @return
+	 */
+	public int strikeCount(String userBall, String ball) {
+		int count = 0;
+		for (int i = 0; i < 3; i++) {
+			count += strikeCheck(userBall, ball, i);
+		}
+		return count;
+	}
+
+	/**
+	 * @param userBall
+	 * @param ball
+	 * @param i
+	 * @return
+	 */
+	public int strikeCheck(String userBall, String ball, int i) {
+		if (userBall.charAt(i) == ball.charAt(i)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * @param userBall
+	 * @param ball
+	 * @return
+	 */
+	public int ballCount(String userBall, String ball) {
+		int count = 0;
+		for (int i = 0; i < 3; i++) {
+			count += ballCheck(userBall, ball, i);
+		}
+		return count;
+	}
+
+	/**
+	 * @param userBall
+	 * @param ball
+	 * @param i
+	 * @return
+	 */
+	public int ballCheck(String userBall, String ball, int i) {
+		if (ball.contains(userBall.charAt(i) + "") && userBall.charAt(i) != ball.charAt(i)) {
+			return 1;
+		}
+		return 0;
 	}
 
 }
