@@ -19,18 +19,6 @@ public class JavaBaseballGame {
 		return new JavaBaseballGame();
 	}
 
-	public static void main(String[] args) {
-		final JavaBaseballGame baseballGame = JavaBaseballGame.of();
-		final RandomNumberStringGenerator generator = baseballGame.randomNumberStringGenerator;
-		final BaseballReferee referee = baseballGame.referee;
-		final String target = generator.generate(BASEBALL_NUMBER_LENGTH);
-
-		String candidate = baseballGame.tryAnswer();
-		BallCounts ballCounts = referee.decideBalls(candidate, target);
-
-		// TODO(jjeda): Implement baseball game
-	}
-
 	private String tryAnswer() {
 		System.out.println("숫자를 입력해주세요 : ");
 		String candidate;
@@ -40,5 +28,18 @@ public class JavaBaseballGame {
 		}
 
 		return candidate;
+	}
+
+	public static void main(String[] args) {
+		final JavaBaseballGame baseballGame = JavaBaseballGame.of();
+		final RandomNumberStringGenerator generator = baseballGame.randomNumberStringGenerator;
+		final BaseballReferee referee = baseballGame.referee;
+		final String target = generator.generate(BASEBALL_NUMBER_LENGTH);
+
+		String candidate = baseballGame.tryAnswer();
+		BallCounts ballCounts = referee.decideBalls(candidate, target);
+		System.out.println(ballCounts.toString());
+
+		// TODO(jjeda): Implement baseball game
 	}
 }
