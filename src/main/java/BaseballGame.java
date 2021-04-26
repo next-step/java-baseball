@@ -21,4 +21,29 @@ public class BaseballGame {
         }
         return randomNumbers;
     }
+
+    public List<Integer> inputUserNumber(){
+        System.out.print(INPUT_PRINT);
+        String userNumber = sc.nextLine();
+        while (!validateUserNumber(userNumber)) {
+            userNumber = sc.nextLine();
+        }
+        return toIntegerList(userNumber);
+    }
+
+    public boolean validateUserNumber(String userNumber) {
+        if ( userNumber.length() != MAX_LEN) {
+            System.out.print(INPUT_PRINT);
+            return false;
+        }
+        return true;
+    }
+
+    public List<Integer> toIntegerList(String userNumber) {
+        List<Integer> answer = new ArrayList<>();
+        for (int i = 0; i < MAX_LEN; i++) {
+            answer.add(Integer.parseInt(String.valueOf(userNumber.charAt(i))));
+        }
+        return answer;
+    }
 }
