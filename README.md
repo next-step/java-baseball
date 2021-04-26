@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능목록
+* 공격 숫자 선정
+* 수비 숫자 선정
+* 스트라이크/볼/포볼 판별
+* 판별 결과 출력
+* 게임 종료/재개 분기
