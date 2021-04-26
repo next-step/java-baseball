@@ -1,6 +1,6 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
+import numberBaseBallGame.domain.Ball;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,12 @@ public class GenerateClientBall {
 
 	public List<Ball> generateBall(String getClientNumber){
 		List<Ball> balls = new ArrayList<>();
+
 		for (char item : getClientNumber.toCharArray()){
+
 			Ball aBall = new Ball(Integer.parseInt(String.valueOf(item)));
 			balls.add(aBall);
+
 		}
 		return balls;
 	}

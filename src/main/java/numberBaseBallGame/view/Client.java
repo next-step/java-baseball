@@ -1,8 +1,8 @@
-package NumberBaseBallGame.view;
+package numberBaseBallGame.view;
 
-import NumberBaseBallGame.domain.BallNumberMatchResult;
-import NumberBaseBallGame.generater.GenerateGame;
-import NumberBaseBallGame.ValidationCheckUtils;
+import numberBaseBallGame.domain.BallNumberMatchResult;
+import numberBaseBallGame.generater.GenerateGame;
+import numberBaseBallGame.ValidationCheckUtils;
 
 import java.util.Scanner;
 
@@ -31,6 +31,7 @@ public class Client {
 				System.out.println(setHintMessage(gameHintAndResults));
 				continue;
 			}
+
 			System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
 			System.out.println("게임을새로시작하려면1,종료하려면 2를입력하세요. (아무키나 누르시면 종료됩니다.) : ");
 
@@ -39,22 +40,28 @@ public class Client {
 			if(isContinue.equals("1")){
 				generateGame = new GenerateGame();
 			}
+
 			if(!isContinue.equals("1")){
 				System.exit(0);
 			}
 		}
 	}
+
 	private static String setHintMessage(BallNumberMatchResult matchResult){
 		String message = "";
+
 		if(matchResult.isNothing()){
 			return BaseBallStatus.NOTHING.getMessage();
 		}
+
 		if(matchResult.getStrikeCount()>0){
 			message += (BaseBallStatus.STRIKE.getMessage()+matchResult.getStrikeCount()+"볼");
 		}
+
 		if(matchResult.getBallCount()>0){
 			message += (matchResult.getBallCount()+BaseBallStatus.BALL.getMessage());
 		}
+
 		return message;
 	}
 }

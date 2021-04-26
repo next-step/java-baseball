@@ -1,9 +1,10 @@
-package NumberBaseBallGame.domain;
+package numberBaseBallGame.domain;
 
 public class BallNumberMatchResult {
 	private final int GAMENUMBERS_LENGTH= BaseBallConst.GAMENUMBERS_LENGTH;
-	private int strikeCount;
-	private int ballCount;
+
+	private final int strikeCount;
+	private final int ballCount;
 
 	public BallNumberMatchResult(int strikeCount, int ballCount) {
 		this.strikeCount = strikeCount;

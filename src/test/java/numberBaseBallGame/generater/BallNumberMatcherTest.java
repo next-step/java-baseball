@@ -1,8 +1,8 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.domain.BallNumberMatchResult;
-import NumberBaseBallGame.domain.BaseBallConst;
+import numberBaseBallGame.domain.Ball;
+import numberBaseBallGame.domain.BallNumberMatchResult;
+import numberBaseBallGame.domain.BaseBallConst;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,10 +34,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(1);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}
@@ -63,10 +66,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(2);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}
@@ -92,10 +98,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(3);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.isAllMatch())
 				.isTrue();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}
@@ -121,10 +130,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(1);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}
@@ -150,10 +162,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(2);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}
@@ -179,10 +194,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(3);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}
@@ -208,10 +226,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(0);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isTrue();
 	}
@@ -237,10 +258,13 @@ class BallNumberMatcherTest {
 		// than
 		assertThat(matchResult.getStrikeCount())
 				.isEqualTo(1);
+
 		assertThat(matchResult.getBallCount())
 				.isEqualTo(1);
+
 		assertThat(matchResult.isAllMatch())
 				.isFalse();
+
 		assertThat(matchResult.isNothing())
 				.isFalse();
 	}

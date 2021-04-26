@@ -1,12 +1,6 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.domain.BallNumberMatchResult;
-import NumberBaseBallGame.generater.BallNumberMatcher;
-import NumberBaseBallGame.generater.GenerateGame;
 import org.junit.jupiter.api.*;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 

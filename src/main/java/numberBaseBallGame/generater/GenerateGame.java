@@ -1,9 +1,9 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.BallNumberMatchResult;
-import NumberBaseBallGame.domain.BaseBallConst;
-import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.ValidationCheckUtils;
+import numberBaseBallGame.domain.BallNumberMatchResult;
+import numberBaseBallGame.domain.BaseBallConst;
+import numberBaseBallGame.domain.Ball;
+import numberBaseBallGame.ValidationCheckUtils;
 
 import java.util.List;
 
@@ -11,9 +11,10 @@ public class GenerateGame {
 	private final List<Ball> randomBalls;
 	private final GenerateClientBall pickClientBalls;
 	private final BallNumberMatcher ballNumberMatcher;
-	private final int GAMENUMBERS_LENGTH= BaseBallConst.GAMENUMBERS_LENGTH;
+
 
 	public GenerateGame() {
+		int GAMENUMBERS_LENGTH = BaseBallConst.GAMENUMBERS_LENGTH;
 		randomBalls = new GenerateGameNumber(GAMENUMBERS_LENGTH).getRandomBalls();
 		ballNumberMatcher = new BallNumberMatcher(GAMENUMBERS_LENGTH);
 		pickClientBalls = new GenerateClientBall(GAMENUMBERS_LENGTH);

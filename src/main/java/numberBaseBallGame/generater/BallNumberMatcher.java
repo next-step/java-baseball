@@ -1,7 +1,7 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.domain.BallNumberMatchResult;
+import numberBaseBallGame.domain.Ball;
+import numberBaseBallGame.domain.BallNumberMatchResult;
 
 import java.util.List;
 
@@ -18,27 +18,35 @@ public class BallNumberMatcher {
 				,matchBall(clientBalls, targetBalls)
 		);
 	}
+
 	private int matchStrike(List<Ball> clientBalls, List<Ball> targetBalls){
 		int strikeCount = 0;
+
 		for(int i = 0; i < GAMENUMBERS_LENGTH; i++){
 			strikeCount = targetBalls.get(i).equals(clientBalls.get(i)) ? ++strikeCount : strikeCount;
 		}
+
 		return strikeCount;
 	}
 
 	private int matchBall(List<Ball> clientBalls, List<Ball> targetBalls){
 		int ballCount = 0;
+
 		for(int i = 0; i < GAMENUMBERS_LENGTH; i++){
 			ballCount = containButNotEqual(i, clientBalls.get(i), targetBalls) ? ++ballCount :ballCount;
 		}
+
 		return ballCount;
 	}
+
 	private boolean containButNotEqual(int index,Ball ball, List<Ball> targetBalls){
 		boolean contains = targetBalls.contains(ball);
+
 		if (contains){
 			int indexOf = targetBalls.indexOf(ball);
 			return indexOf != index;
 		}
+
 		return false;
 	}
 

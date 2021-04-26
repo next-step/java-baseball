@@ -1,7 +1,7 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.domain.BaseBallConst;
+import numberBaseBallGame.domain.Ball;
+import numberBaseBallGame.domain.BaseBallConst;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

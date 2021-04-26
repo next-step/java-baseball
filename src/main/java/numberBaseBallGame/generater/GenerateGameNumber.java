@@ -1,17 +1,18 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
+import numberBaseBallGame.domain.Ball;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GenerateGameNumber {
-	private final int gameBallLength;
+	private final int GAMENUMBERS_LENGTH;
+
 	private List<Ball> randomBalls;
 
 	public GenerateGameNumber(int GAMENUMBERS_LENGTH) {
-		this.gameBallLength = GAMENUMBERS_LENGTH;
+		this.GAMENUMBERS_LENGTH = GAMENUMBERS_LENGTH;
 		this.randomBalls = generateGameNumber();
 	}
 
@@ -27,12 +28,13 @@ public class GenerateGameNumber {
 	private List<Ball> generateGameNumber(){
 		randomBalls = new ArrayList<>();
 		Random random = new Random();
-		for (int i = 0; i < gameBallLength; i++){
+		for (int i = 0; i < GAMENUMBERS_LENGTH; i++){
 			int aRandomNumber = random.nextInt(9)+1;
 			i += checkDuplicate(randomBalls,aRandomNumber) ? 0 : -1;
 		}
 		return randomBalls;
 	}
+
 	private boolean checkDuplicate(List<Ball> randomBalls, int aRandomNumber){
 		Ball aBall = new Ball(aRandomNumber);
 		if(!randomBalls.contains(aBall)){

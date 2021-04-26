@@ -1,6 +1,6 @@
-package NumberBaseBallGame.generater;
+package numberBaseBallGame.generater;
 
-import NumberBaseBallGame.domain.Ball;
+import numberBaseBallGame.domain.Ball;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
@@ -25,8 +25,7 @@ class GenerateGameNumberTest {
 						gameNumber.get(0)
 						,gameNumber.get(1)
 						,gameNumber.get(2)
-				)
-				;
+				);
 	}
 
 }
