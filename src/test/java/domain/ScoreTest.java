@@ -3,6 +3,8 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,47 +34,25 @@ public class ScoreTest {
         return new NumberBalls(result);
     }
 
-    @Test
-    @DisplayName("원 스트라이크 확인")
-    public void oneStrike() throws Exception {
-        NumberBalls inputBalls = createInputBalls("1,4,5");
+    @ParameterizedTest
+    @CsvSource(value = {"1,4,5|1|0", "1,2,4|2|0", "1,2,3|3|0", "1,4,2|1|1", "3,1,2|0|3" }, delimiter = '|')
+    @DisplayName("점수 확인")
+    public void score(String inputText, int strike, int ball) throws Exception {
+        NumberBalls inputBalls = createInputBalls(inputText);
 
         Score resultScore = randomBalls.matchToScore(inputBalls);
-        Score oneStrikeScore = new Score(1, 0);
+        Score oneStrikeScore = new Score(strike, ball);
 
         assertThat(resultScore).isEqualTo(oneStrikeScore);
     }
 
-    @Test
-    @DisplayName("투 스트라이크 확인")
-    public void twoStrike() throws Exception {
-        NumberBalls inputBalls = createInputBalls("1,2,4");
-
-        Score resultScore = randomBalls.matchToScore(inputBalls);
-        Score twoStrikeScore = new Score(2, 0);
-
-        assertThat(resultScore).isEqualTo(twoStrikeScore);
+    @ParameterizedTest
+    @CsvSource(value = {"0,4", "1,3", "4,0"})
+    @DisplayName("스트라이크 + 볼은 3이 최대")
+    public void maxCountException(int strike, int ball) throws Exception {
+        assertThatThrownBy(() -> new Score(strike, ball))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("쓰리 스트라이크 확인")
-    public void threeStrike() throws Exception {
-        NumberBalls inputBalls = createInputBalls("1,2,3");
-
-        Score resultScore = randomBalls.matchToScore(inputBalls);
-        Score threeStrikeScore = new Score(3, 0);
-
-        assertThat(resultScore).isEqualTo(threeStrikeScore);
-    }
-
-    @Test
-    @DisplayName("원 볼 확인")
-    public void oneBall() throws Exception {
-        NumberBalls inputBalls = createInputBalls("9,8,1");
-        Score resultScore = randomBalls.matchToScore(inputBalls);
-        Score oneBallScore = new Score(0, 1);
-
-        assertThat(resultScore).isEqualTo(oneBallScore);
-    }
 
 }
