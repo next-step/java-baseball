@@ -11,7 +11,6 @@ public class BaseBallGame {
     public BaseBallGame(Message message) {
         this.message = message;
         this.resetGame();
-        this.createAnswer();
     }
 
     public void resetGame() {
