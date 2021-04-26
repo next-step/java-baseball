@@ -13,17 +13,17 @@
 |•미션은 https://github.com/next-step/java-baseball-precourse 저장소를 fork/clone해 시작한다.|[x] fork <br> [x] clone||
 |•기능을 구현하기 전에 java-baseball/README.md 파일에 구현할 기능 목록을 정리해 추가한다. |[x] 요구사항 정리||
 |•git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.<br>&nbsp;&nbsp;&nbsp;&nbsp;•AngularJS Commit Message Conventions 참고해 commit log를 남긴다.|[x] AngularJS Commit<br>&nbsp;&nbsp;&nbsp;&nbsp;Message Conventions 참고||
-|•과제 진행 및 제출 방법은 프리코스 과제 제출 문서를 참고한다.|[ ] 과제 제출 문서 참고<br>[ ] 과제 제출|•2021년<br>&nbsp;4월 27일(화)<br>&nbsp;23시 59분까지 <br>&nbsp;GitHub을 통한<br>&nbsp;**미션 제출**과 **메일** 완료|
+|•과제 진행 및 제출 방법은 프리코스 과제 제출 문서를 참고한다.|[x] 과제 제출 문서 참고<br>[x] 과제 제출|•2021년<br>&nbsp;4월 27일(화)<br>&nbsp;23시 59분까지 <br>&nbsp;GitHub을 통한<br>&nbsp;**미션 제출**과 **메일** 완료|
 
 ### 1.2. 프로그래밍 요구사항
 |구분|상세|구현 방법|비고|
 |:---:|:---|---|---|
 |메소드 분리|• 자바 코드 컨벤션을 지키면서 프로그래밍한다.<br>&nbsp;&nbsp;• https://naver.github.io/hackday-conventions-java/|[x] gradle-editorconfig 적용<br>[x] gradle-checkstyle 적용<br>[x] IntelliJ 적용<br>[x] Github 적용||
-| |• indent(인덴트, 들여쓰기) depth를 2가 넘지 않도록 구현한다. 1까지만 허용한다.<br>&nbsp;&nbsp;• 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.<br>&nbsp;&nbsp;• **힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리**하면 된다.|[ ] < 2depth 규칙||
-| |• 자바 8에 추가된 stream api를 사용하지 않고 구현해야 한다. 단, 람다는 사용 가능하다.|[ ] stream api 사용하지 말 것||
-| |• else 예약어를 쓰지 않는다.<br>&nbsp;&nbsp;• 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.<br>&nbsp;&nbsp;• else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.|[ ] else 예약어 금지||
-| |• 함수(또는 메소드)의 길이가 10라인을 넘어가지 않도록 구현한다.<br>&nbsp;&nbsp;• 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.|[ ] 함수(또는 메서드) 10라인 이하||
-|단위 테스트|• 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in, Scanner) 로직은 제외 <br>&nbsp;&nbsp;• 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.|[ ] 핵심 로직 단위테스트||
+| |• indent(인덴트, 들여쓰기) depth를 2가 넘지 않도록 구현한다. 1까지만 허용한다.<br>&nbsp;&nbsp;• 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.<br>&nbsp;&nbsp;• **힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리**하면 된다.|[x] < 2depth 규칙||
+| |• 자바 8에 추가된 stream api를 사용하지 않고 구현해야 한다. 단, 람다는 사용 가능하다.|[x] stream api 사용하지 말 것||
+| |• else 예약어를 쓰지 않는다.<br>&nbsp;&nbsp;• 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.<br>&nbsp;&nbsp;• else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.|[x] else 예약어 금지||
+| |• 함수(또는 메소드)의 길이가 10라인을 넘어가지 않도록 구현한다.<br>&nbsp;&nbsp;• 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.|[x] 함수(또는 메서드) 10라인 이하||
+|단위 테스트|• 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in, Scanner) 로직은 제외 <br>&nbsp;&nbsp;• 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.|[x] 핵심 로직 단위테스트||
 | |• JUnit5와 AssertJ 사용법에 익숙하지 않은 개발자는 첨부한 "학습테스트를 통해 JUnit 학습하기.pdf"<br>&nbsp;&nbsp;문서를 참고해 사용법을 익힌 후 JUnit5 기반 단위 테스트를 구현한다.|[x] 사용법 학습||
 
 ### 1.3. 기능 요구사항
@@ -59,3 +59,29 @@
 ### 2.1. Flowchart
 
 ![image](./documents/2-architecture/baseball-flowchart.jpeg)
+
+## 3. 느낀점 및 배운점
+### 3.1. 느낀점
+- 테스트 코드의 작성이 실제 코드의 구현만큼이나 신경을 써야함이 어려웠습니다.
+- 메소드 분리
+  - 1depth 허용, else 예약어 사용 금지, 10라인 이내의 규칙이 너무도 어려웠습니다.
+  - 이 규칙을 지키고나니 메소드의 재활용이 용이했습니다.
+  - 자연스레 가독성이 높아져 메소드의 기능을 이해하기가 좋았습니다.
+- 구현하는 것에 급했던 지난날에 대한 반성
+  - 품질에 대한 고민없이 기능 구현에만 치우쳤던 것이 부끄러워졌습니다.
+  - 과거 정상적으로 동작하는 것에 안일하지 않았나 싶습니다.
+  - Exception을 발생하는 코드를 테스트함으로써 많은 경우의 수를 고려할 수 있었습니다.
+
+### 3.2. 배운점
+- 테스트
+  - 테스트를 작성함에 있어 System.out.println()으로 디버깅을 했던 방식보다 비교군과 대조군을 명확히하여 테스트가 가능했습니다.
+  - 다른 사람이 코드를 받아도 동일한 테스트 결과가 나오게끔 할 수 있어서 좋았습니다.
+- 자바 코드 conventions & Commit message conventions
+  - conventions라는 용어를 처음 접했습니다.
+  - 자바 코드 컨벤션을 통해 소스 코드 품질을 높일 수 있었고, 협업을 하더라도 동일한 소스코드가 나올 수 있어서 협업에 도움이 될 것 같습니다.
+  - git을 활용하면서 커밋 메시지를 균일하게 하여 제목부에서 어떤 작업을 했는지 쉽게 파악할 수 있었습니다.
+  - git 제목부에 넘버링의 필요성을 느꼈습니다. resolves, see also를 활용하지 못한 점이 아쉬워서, 다음에는 꼭 적용하고자 합니다.
+- stack memory 관리의 어려움
+  - 메소드를 중첩하여 호출하다보면(게임을 반복할수록) stack이 쌓여 효율적인 프로그램이 구동되지 않습니다.
+  - 따라서 자꾸만 쌓여가는 stack에서 벗어남과 동시에 기존의 화면 그대로 유지하는 것을 고민했습니다.
+  - 해당 기능은 class의 field로 상태값을 저장하는 것으로 관리를 하여 문제를 해결했습니다.
