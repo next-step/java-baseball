@@ -12,16 +12,6 @@ import org.junit.jupiter.api.Test;
 import baseball.BaseBall;
 
 public class BaseBallTest {
-	@DisplayName("야구게임 정답 난수 생성")
-	@Test
-	public void testMakeRandomAnswer() {
-		//when
-		List<Integer> answer = BaseBall.makeAnswer();
-
-		//then
-		assertThat(answer.size()).isEqualTo(3);
-		assertThat(answer.size()).isEqualTo(new HashSet<>(answer).size());
-	}
 
 	@DisplayName("야구게임 정답 일치")
 	@Test

@@ -1,28 +1,21 @@
 package baseball;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import static utils.RandomUtils.*;
+
 import java.util.List;
 
 public class BaseBall {
-	private static final List<Integer> DEFAULT_RANGE = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
-	private static final int DEFAULT_LENGTH = 3;
+	private static final int DEFAULT_MAX_RANGE = 9;
+	private static final int DEFAULT_ANSWER_LENGTH = 3;
 
 	private List<Integer> answer;
 
 	public BaseBall() {
-		this.answer = makeAnswer();
+		this.answer = pickRandomInSerialNumbers(DEFAULT_MAX_RANGE, DEFAULT_ANSWER_LENGTH);
 	}
 
 	public BaseBall(List<Integer> answer) {
 		this.answer = answer;
-	}
-
-	public static List<Integer> makeAnswer() {
-		List<Integer> copy = new ArrayList<>(DEFAULT_RANGE);
-		Collections.shuffle(copy);
-		return copy.subList(0, DEFAULT_LENGTH);
 	}
 
 	public BaseBallDto.Result getUserResult(List<Integer> userAnswer) {
@@ -42,7 +35,7 @@ public class BaseBall {
 	}
 
 	private void refresh() {
-		answer = makeAnswer();
+		answer = pickRandomInSerialNumbers(DEFAULT_MAX_RANGE, this.answer.size());
 	}
 
 	private int getBall(List<Integer> userAnswer) {
