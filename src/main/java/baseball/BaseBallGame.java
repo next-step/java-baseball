@@ -88,9 +88,16 @@ public class BaseBallGame {
 		}
 	}
 
+	private void printBallCount() {
+		for (BallCountPrinter ballCountPrinter : BallCountPrinter.values()) {
+			ballCountPrinter.testAndPrintln(ballCountPrinter, gameStatus);
+		}
+	}
+
 	public int gameStart() {
 		playerNumberCheck();
 		getGameResult(computer, player);
+		printBallCount();
 		return -1;
 	}
 }
