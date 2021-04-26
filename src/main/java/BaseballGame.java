@@ -30,7 +30,7 @@ public class BaseballGame {
 			ball+=1;
 		}
 
-		return (strike==0 && ball==0?"낫싱":(strike>0?strike + "스트라이크 ":"")+(ball>0?ball + "볼":""));
+		return (strike==0 && ball==0?"낫싱":(strike>0?strike + "스트라이크":"")+(ball>0?ball + "볼":""));
 	}
 
 	private String generateNumbers(String all,int length){

@@ -81,4 +81,35 @@ public class BaseballGameTest{
 		assertEquals("3볼", output);
 	}
 
+	@Test
+	public void outputWhenResultIsOneStrike(){
+		String answer = "123";
+		String onestrike_guess = "1__";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,onestrike_guess);
+
+		assertEquals("1스트라이크", output);
+	}
+
+
+	@Test
+	public void outputWhenResultIsTwoStrike(){
+		String answer = "123";
+		String twostrike_guess = "1_3";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,twostrike_guess);
+
+		assertEquals("2스트라이크", output);
+	}
+
+	@Test
+	public void outputWhenResultIsThreeStrike(){
+		String answer = "123";
+		String threestrike_guess = "123";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,threestrike_guess);
+
+		assertEquals("3스트라이크", output);
+	}
+
 }
