@@ -38,6 +38,10 @@ public class Ball {
         this.count = INIT_COUNT;
     }
 
+    public boolean isNothing() {
+        return count == INIT_COUNT;
+    }
+
     public int getCount() {
         return count;
     }
