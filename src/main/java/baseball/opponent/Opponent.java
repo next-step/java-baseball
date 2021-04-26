@@ -157,12 +157,17 @@ public class Opponent {
     private int getNonDuplicatedRandomValue(int[] answers) {
         int random = (int) (Math.random() * 9) + 1;
 
+        // 배열을 정렬 위한 얕은 복사
         int[] tempAnswers = Arrays.copyOf(answers, ANSWER_LENGTH);
+
+        // binarySearch 하기 위한 정렬
         Arrays.sort(tempAnswers);
 
+        // random 값이 배열에 있으면 재귀 호출로 random 값 재생성
         if (Arrays.binarySearch(tempAnswers, random) >= 0)
             return getNonDuplicatedRandomValue(answers);
 
+        // 중복되지 않은 random 값 반환
         return random;
     }
 
