@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static baseball.ApplicationContext.EMPTY_DELIMITER;
 
-public class ConsoleInput implements Input {
+public class ConsoleInput implements Input, AutoCloseable {
     private final static int RE_START_NUMBER = 1;
     private final Scanner scanner;
 
@@ -27,4 +27,8 @@ public class ConsoleInput implements Input {
         return scanner.nextInt() == RE_START_NUMBER;
     }
 
+    @Override
+    public void close() {
+        scanner.close();
+    }
 }
