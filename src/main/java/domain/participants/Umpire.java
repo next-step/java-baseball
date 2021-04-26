@@ -17,13 +17,15 @@ public class Umpire {
 
     public void makeJudgement(Numbers answer, Numbers guess) {
         initScore();
-        boolean isStrike;
         for(int i=0;i<Numbers.MAX_SIZE;i++){
-            isStrike = false;
-            isStrike = checkStrike(answer, guess, i);
-            if(!isStrike) checkBall(answer, guess, i);
+            compareEachDigit(answer,guess,i);
         }
         noticeResult();
+    }
+
+    private void compareEachDigit(Numbers answer, Numbers guess, int idx) {
+        boolean isStrike = checkStrike(answer, guess, idx);
+        if(!isStrike) checkBall(answer, guess, idx);
     }
 
     private void noticeResult() {
