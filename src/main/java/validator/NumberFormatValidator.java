@@ -28,7 +28,7 @@ public class NumberFormatValidator {
     return true;
   }
 
-  private static void checkParseToInteger(String input) {
+  public static void checkParseToInteger(String input) {
     if (!isParseInteger(input)) {
       throw new IllegalArgumentException("입력은 숫자로만 구성되어야 합니다.");
     }
