@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/frostnight/java-baseball-precourse/compare/v1.1.4...v1.1.5) (2021-04-26)
+
+
+### Tests
+
+* Set 클래스 Test 및 AssertJ 활용법 공부 + 커밋 메시지 수정 ([e1d7313](https://github.com/frostnight/java-baseball-precourse/commit/e1d7313e11d34bfd8968662e1a19451c1ad89824))
+
 ### [1.1.4](https://github.com/frostnight/java-baseball-precourse/compare/v1.1.3...v1.1.4) (2021-04-26)
 
 ### [1.1.3](https://github.com/frostnight/java-baseball-precourse/compare/v1.1.2...v1.1.3) (2021-04-26)
