@@ -23,4 +23,8 @@ public enum SystemNumberType {
     public int getNumber() {
         return number;
     }
+    
+    public String getDescription() {
+        return description;
+    }
 }

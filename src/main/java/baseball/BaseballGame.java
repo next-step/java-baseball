@@ -7,7 +7,9 @@ import java.util.*;
 
 import static enumType.ErrorType.ERROR_1000_INPUT_DATA_TYPE_ERROR;
 import static enumType.GameNoticeType.INPUT_REQUEST;
+import static enumType.GameNoticeType.GAME_RESTART_INQUIRE;
 import static enumType.SystemNumberType.DIGIT;
+import static enumType.SystemNumberType.END;
 
 import static enumType.UmpireType.STRIKE;
 import static enumType.UmpireType.BALL;
@@ -42,6 +44,24 @@ public class BaseballGame {
         // 게임 결과 출력
         gameScore.gameResult();
         
+    }
+    
+    
+    /**
+     * @author      : jeeyong.park 
+     * @date        : 2021.04.26
+     * @description : 게임 재시작 여부를 결정한다.
+     */
+    public boolean playAgain() {
+        System.out.println(GAME_RESTART_INQUIRE.getMessage());
+        
+        int againYn = playerInput();
+        
+        if (againYn == END.getNumber()) {
+            return false;
+        }
+        
+        return true;
     }
     
     
@@ -83,10 +103,6 @@ public class BaseballGame {
             // 사용자 입력값 유효성 체크
             validationUtil.playerInputValidation(playerInputNumber);
             
-            // TODO 아래 sout 지울것
-            System.out.println("randomNumber : "        + randomNumber
-                             + ", playerInputNumber : " + playerInputNumber);
-            
             gameScore = umpire(randomNumber, playerInputNumber);
             
             printCurrentScore(gameScore);
@@ -111,7 +127,7 @@ public class BaseballGame {
             Scanner scan = new Scanner(System.in);
             playerInputNumber = scan.nextInt();
         } catch (InputMismatchException ime) {
-            throw new IllegalArgumentException(ERROR_1000_INPUT_DATA_TYPE_ERROR.getErrorMessage());
+            throw new InputMismatchException(ERROR_1000_INPUT_DATA_TYPE_ERROR.getErrorMessage());
         }
         
         return playerInputNumber;
