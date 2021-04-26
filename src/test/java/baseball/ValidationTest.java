@@ -27,7 +27,7 @@ public class ValidationTest {
     public void 입력값이Null확인_기능(){
 
         String input = null;
-        assertTrue(input != null, "입력이 null 이다");
+        assertTrue(getCheckNull(input), "입력이 null 이다");
 
     }
 
@@ -36,7 +36,7 @@ public class ValidationTest {
     public void 입력값이Null확인_기능_성공(){
 
         String input = "TES";
-        assertTrue(input != null, "입력이 null 이다");
+        assertTrue(getCheckNull(input), "입력이 null 이다");
 
     }
 
@@ -45,7 +45,7 @@ public class ValidationTest {
     public void 입력값의길이확인_기능(){
 
         String input = "TEST";
-        assertTrue(input.length() == 3, "입력값의 길이가 안맞다.");
+        assertTrue(getInputLength(input, 3), "입력값의 길이가 안맞다.");
 
     }
 
@@ -54,7 +54,7 @@ public class ValidationTest {
     public void 입력값의길이확인_기능_성공(){
 
         String input = "TES";
-        assertTrue(input.length() == 3, "입력값의 길이가 안맞다.");
+        assertTrue(getInputLength(input, 3), "입력값의 길이가 안맞다.");
 
     }
 
@@ -94,6 +94,20 @@ public class ValidationTest {
 
         assertTrue(getCheckDiffInt(input), "서로 다른 숫자가 아니다. : {} " + input );
 
+    }
+
+    /*
+        널 체크.
+     */
+    private boolean getCheckNull(String input){
+        return input != null ? true : false;
+    }
+
+    /*
+        문자열의 길이 비교 기능
+     */
+    private boolean getInputLength(String input, int length){
+        return input.length() == length ? true : false;
     }
 
     /*
