@@ -53,7 +53,7 @@ public class Answer {
             message += this.strikeCount + " 스트라이크 ";
         }
         if(this.ballCount > 0) {
-            message += this.strikeCount + " 볼";
+            message += this.ballCount + " 볼";
         }
         if (this.strikeCount + this.ballCount == 0) {
             message += "낫싱";
