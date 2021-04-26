@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GameRules {
-    private static int INIT_COUNT = 0;
+    private static final int INIT_COUNT = 0;
 
     private final Map<GameRule, Integer> countOfRule = new HashMap<>();
 

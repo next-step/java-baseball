@@ -3,7 +3,7 @@ package baseball.domain;
 import java.util.*;
 
 public class Balls {
-    private static int NOT_FOUND_INDEX = -1;
+    private static final int NOT_FOUND_INDEX = -1;
 
     private final List<Ball> balls;
 
