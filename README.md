@@ -39,6 +39,9 @@
 * Domain
   * Game Model (난수, 진행상태 값 저장)
   * BallCount Model (스트라이크, 볼 횟수 저장)
+* Error
+  * 1~9 사이 숫자가 아닐 경우
+  * 중복된 번호가 있을 경우
 * View
   * 사용자 숫자 입력, 결과 출력 View
   * 재시작 입력, 결과 출력 View
