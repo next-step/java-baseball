@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GameTest {
+public class ValidationTest {
 
     @DisplayName("게임 종료 후 다시시작 or 완전종료 기능 ")
     @Test
