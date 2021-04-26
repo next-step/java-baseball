@@ -30,7 +30,7 @@ public class UserBallInput {
     private boolean isValidatedDigital(String compareStr) {
         boolean isDigital = true;
         for (int i=0; i<compareStr.length(); i++)
-            isDigital = isDigital ? compareDigital(compareStr.charAt(i) + "") : false;
+            isDigital = isDigital && compareDigital(compareStr.charAt(i) + "");
         return isDigital;
     }
 
@@ -50,7 +50,7 @@ public class UserBallInput {
     private boolean isValidatedUnique(String compareStr) {
         boolean isUnique = true;
         for(int i=0;i<compareStr.length();i++)
-            isUnique = isUnique ? compareUnique(compareStr, compareStr.charAt(i)) : false;
+            isUnique = isUnique && compareUnique(compareStr, compareStr.charAt(i));
         return isUnique;
     }
 
@@ -72,6 +72,12 @@ public class UserBallInput {
         return "FALSE";
     }
 
-
-
+    public String userBallInputRead() {
+        System.out.println("숫자를 입력해주세요 : ");
+        String inputBall = read();
+        if(validateInput(inputBall))
+            return inputBall;
+        System.out.println("올바른 입력값이 아닙니다.");
+        return "FALSE";
+    }
 }

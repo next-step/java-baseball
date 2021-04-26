@@ -10,4 +10,9 @@ public class BaseballGame {
     public BaseballGame(int maxLen) {
         this.maxLen = maxLen;
     }
+
+    public static void main(String[] args) {
+        BaseballGame baseballGame = new BaseballGame();
+
+    }
 }
