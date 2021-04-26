@@ -17,6 +17,14 @@ public class StrikeTest {
     }
 
     @Test
+    @DisplayName("스트라이크 허용 범위가 0~3을 벗어나면 IllegalArgumentException를 리턴한다. (음수)")
+    public void validationNegativeBall() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Strike.of(-1);
+        });
+    }
+
+    @Test
     @DisplayName("스트라이크 점수가 맞는지 비교한다.")
     public void strikeCheck() {
         assertThat(Strike.of(3).toString()).isEqualTo("3");
