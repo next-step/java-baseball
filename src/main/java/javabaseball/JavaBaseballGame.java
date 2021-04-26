@@ -51,13 +51,29 @@ public class JavaBaseballGame {
 		return false;
 	}
 
+	private boolean isContinueGame() {
+		String input;
+		while (!isValidInput(input = this.scanner.next())) {
+			System.out.println("1 또는 2를 입력해주세요.(시작: 1, 종료: 2)");
+		}
+
+		return input.equals("1");
+	}
+
+	private boolean isValidInput(String input) {
+		return input.equals("1") || input.equals("2");
+	}
+
 	public static void main(String[] args) {
 		final JavaBaseballGame baseballGame = JavaBaseballGame.of();
 		final RandomNumberStringGenerator generator = baseballGame.randomNumberStringGenerator;
-		final BaseballReferee referee = baseballGame.referee;
-		final String target = generator.generate(BASEBALL_NUMBER_LENGTH);
+		boolean isContinue = true;
 
-		baseballGame.findTarget(target);
-		// TODO(jjeda): Implement baseball game
+		while (isContinue) {
+			final String target = generator.generate(BASEBALL_NUMBER_LENGTH);
+			baseballGame.findTarget(target);
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			isContinue = baseballGame.isContinueGame();
+		}
 	}
 }
