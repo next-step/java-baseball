@@ -74,7 +74,7 @@ public class Referee {
 		List<String> scoringList = new ArrayList<>();
 		decorateScoreCount("%d 스트라이크", strikeCount, scoringList);
 		decorateScoreCount("%d 볼", ballCount, scoringList);
-		return String.join(", ", scoringList);
+		return String.join(" ", scoringList);
 	}
 
 }

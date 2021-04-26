@@ -2,14 +2,21 @@ package baseball.game.playground.enums;
 
 public enum SystemCommand {
 
-	AGAIN("again"),    //	다시하기
+	UNKNOWN("0", "[정의되지 않은 명령]"),    //	정의되지 않은 명령
+	AGAIN("1", "[다시하기]"),    //	다시하기
 
-	EXIT("exit");        // 게임 종료
+	EXIT("2", "[종료]");        // 게임 종료
 
+	private final String command;    // 명령 이름
 	private final String name;    // 명령 이름
 
-	SystemCommand(String name) {
+	SystemCommand(String command, String name) {
+		this.command = command;
 		this.name = name;
+	}
+
+	public String getCommand() {
+		return command;
 	}
 
 	/**
@@ -17,23 +24,33 @@ public enum SystemCommand {
 	 * @param input trim된 문자열
 	 * @return 존재하는지 여부 반환
 	 */
-	public static boolean contains(String input) {
+	public static SystemCommand parse(String input) {
 
-		if (AGAIN.name.equals(input)) {
-			return true;
+		String inputCommand = String.valueOf(input);
+		if (AGAIN.command.equals(inputCommand)) {
+			return AGAIN;
 		}
 
-		return EXIT.name.equals(input);
+		if (EXIT.command.equals(input)) {
+			return EXIT;
+		}
 
+		return UNKNOWN;
 	}
 
 	/**
 	 * 재시작 가능한지 판별
-	 * @param input trim된 문자열
-	 * @return 재시작 여부 반환
 	 */
-	public static boolean canAgain(String input) {
-		return AGAIN.name.equals(input);
+	public static boolean canAgain(SystemCommand cmd) {
+		return AGAIN.equals(cmd);
+	}
+
+	public static boolean canExit(SystemCommand cmd) {
+		return EXIT.equals(cmd);
+	}
+
+	public String display() {
+		return this.command + "-" + this.name;
 	}
 
 }

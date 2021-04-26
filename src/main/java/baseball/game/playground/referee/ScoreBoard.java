@@ -7,6 +7,8 @@ import baseball.ui.UiSystem;
  */
 public class ScoreBoard {
 
+	private static final String FINALLY_COMMENT = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+
 	private final String board;
 
 	private final boolean gameOver;
@@ -31,7 +33,7 @@ public class ScoreBoard {
 		uiSystem.display(judgeDisplay);
 
 		if (gameOver) {
-			uiSystem.display("게임 셋!!");
+			uiSystem.display(FINALLY_COMMENT);
 		}
 	}
 }

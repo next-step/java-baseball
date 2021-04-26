@@ -6,6 +6,10 @@ import baseball.ui.UiSystem;
 
 public class NumberBaseBall {
 
+	private static final String SYSTEM_COMMENT = String.format("게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요",
+		SystemCommand.AGAIN.getCommand(),
+		SystemCommand.EXIT.getCommand());
+
 	private final UiSystem uiSystem;
 	private final PlayGround playGround;
 
@@ -21,24 +25,27 @@ public class NumberBaseBall {
 
 			playGround.playBall(uiSystem);
 			playGround.update();
-			isRunning = onUpdate();
-		}
-		uiSystem.display("game exit");
 
+			isRunning = onSystemUpdate();
+		}
+		uiSystem.display("게임을 종료합니다");
 	}
 
-	private boolean onUpdate() {
+	private boolean onSystemUpdate() {
 
 		while (true) {
-			uiSystem.display("\tagain-다시하기\n\texit-종료하기");
+			uiSystem.display(SYSTEM_COMMENT);
 
-			String input = uiSystem.gameInput();
-			String command = input.trim().toLowerCase();
-			if (SystemCommand.contains(command)) {
-				return SystemCommand.canAgain(command);
+			String inputString = uiSystem.gameInput().trim().toLowerCase();
+			SystemCommand cmd = SystemCommand.parse(inputString);
+			if (SystemCommand.canAgain(cmd)) {
+				return true;
 			}
 
-			uiSystem.display("알수 없는 명령");
+			if (SystemCommand.canExit(cmd)) {
+				return false;
+			}
+			uiSystem.display(SystemCommand.UNKNOWN.name());
 		}
 	}
 }
