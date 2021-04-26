@@ -69,6 +69,21 @@ public class BaseballInning {
 		return numbers;
 	}
 	
+	private int compareNumber(int a, int b) {
+		if(a == b) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	private int calculateStrike(ArrayList<Integer> pitter, ArrayList<Integer> hitter) {
+		int strike = 0;
+		for(int i = 0; i < 3; i++) {
+			strike += compareNumber(pitter.get(i), hitter.get(i));
+		}
+		return strike;
+	}
+	
 	public void start() {
 		isEnd = false;
 		pitchingstrategy = makePitchingstrategy();
@@ -80,6 +95,7 @@ public class BaseballInning {
 		if(!error.equals("")) {
 			return error;
 		}
+		int strike = calculateStrike(pitchingstrategy, hittingstrategy);
 		return "";
 	}
 }
