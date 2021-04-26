@@ -98,6 +98,30 @@ public class BaseballInning {
 		}
 	}
 	
+	private String toStringOfStrikeResult(int strike) {
+		String result = "";
+		if(strike != 0) {
+			result += (strike + STRIKE);
+		}
+		return result;
+	}
+	
+	private String toStringOfBallResult(int ball) {
+		String result = "";
+		if(ball != 0) {
+			result += (ball + BALL);
+		}
+		return result;
+	}
+	
+	private String toStringOfResult(int strike, int ball) {
+		String result = toStringOfStrikeResult(strike) + toStringOfBallResult(ball);
+		if(result.equals("")) {
+			result += NOTHING;
+		}
+		return result;
+	}
+	
 	public void start() {
 		isEnd = false;
 		pitchingstrategy = makePitchingstrategy();
@@ -112,7 +136,7 @@ public class BaseballInning {
 		int strike = calculateStrike(pitchingstrategy, hittingstrategy);
 		int ball = calculateBall(pitchingstrategy, hittingstrategy);
 		setInningEndCondition(strike);
-		return "";
+		return toStringOfResult(strike, ball);
 	}
 	
 	public boolean isEnd() {
