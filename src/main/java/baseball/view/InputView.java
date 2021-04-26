@@ -10,12 +10,13 @@ import java.util.Scanner;
 public class InputView {
     public static Balls balls() {
         System.out.println("숫자를 입력해주세요 : ");
+
         byte[] numbers = new Scanner(System.in)
                 .nextLine()
                 .getBytes();
 
         List<Ball> balls = new ArrayList<>();
-        for(byte number : numbers) {
+        for (byte number : numbers) {
             balls.add(Ball.of(number - '0'));
         }
 
@@ -23,13 +24,17 @@ public class InputView {
     }
 
     public static Continuable moreGame() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(
+                String.format("게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요",
+                Continuable.CONTINUE.getKeyword(),
+                Continuable.BREAK.getKeyword())
+        );
 
         String answer = new Scanner(System.in).nextLine();
 
-        if(answer.equals("1")) {
+        if (answer.equals(Continuable.CONTINUE.getKeyword())) {
             return Continuable.CONTINUE;
-        }else if(answer.equals("2")) {
+        } else if (answer.equals(Continuable.BREAK.getKeyword())) {
             return Continuable.BREAK;
         }
 
