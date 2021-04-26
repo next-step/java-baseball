@@ -16,4 +16,17 @@ public class GameMainTest {
 		assertThat(isAnswer(com, user2)).isFalse();
 	}
 
+	@Test
+	public void isCorrectStrikeCount() {
+		int[] com = {9, 3, 2};
+		int[] user1 = {5, 3, 1};
+		assertThat(getStrikeCount(com, user1)).isEqualTo(1);
+
+		int[] user2 = {5, 2, 1};
+		assertThat(getStrikeCount(com, user2)).isEqualTo(0);
+
+		int[] user3 = {9, 3, 2};
+		assertThat(getStrikeCount(com, user3)).isEqualTo(3);
+	}
+
 }
