@@ -1,29 +1,47 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Question {
 
-    private List<Integer> question;
+    private List<Integer> questions;
 
     public Question() {
         makeQuestion();
     }
 
+    public Question(List<Integer> questions) {
+        this.questions = questions;
+    }
+
     public List<Integer> getQuestions() {
-        return question;
+        return questions;
     }
 
     private void makeQuestion() {
-        Random random = new Random();
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        Collections.shuffle(list);
 
-        question = new ArrayList<>(3);
-        question.add(getRandomOneToNine(random));
-        question.add(getRandomOneToNine(random));
-        question.add(getRandomOneToNine(random));
+        questions = new ArrayList<>(3);
+        questions.add(list.get(0));
+        questions.add(list.get(1));
+        questions.add(list.get(2));
     }
 
-    private int getRandomOneToNine(Random random) {
-        return random.nextInt(9) + 1;
+    public JudgeResult judge(String answer) {
+        List<Integer> answerList = new ArrayList<>();
+
+        int answerNumber = Integer.parseInt(answer);
+        answerList.add(answerNumber / 100);
+        answerList.add((answerNumber % 100) / 10);
+        answerList.add(answerNumber % 10);
+
+        return judge(answerList);
+    }
+
+    public JudgeResult judge(List<Integer> answer) {
+        JudgeResult judgeResult = new JudgeResult();
+        for (int i = 0; i < 3; i++) {
+            judgeResult.judgeEach(questions, i, answer.get(i));
+        }
+        return judgeResult;
     }
 }

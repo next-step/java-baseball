@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class BaseballGame {
     private Scanner scanner = new Scanner(System.in);
-    private boolean isSolved = false;
-    private Question question = new Question();
+    private boolean isSolved;
+    private Question question;
+
+    public BaseballGame() {
+        init();
+    }
 
     private boolean isPlaying() {
         if (!isSolved) {
@@ -14,13 +18,33 @@ public class BaseballGame {
         if (input.equals("2")) {
             return false;
         }
+        init();
         return true;
     }
 
+    private void init() {
+        isSolved = false;
+        question = new Question();
+    }
+
     private void judge(String answer) {
-        // TODO 플레이어가 제출한 답안 확인
-        System.out.println("3 스트라이크"); // TODO 결과 출력
-        isSolved = true; // TODO 결과에 따라 플레이 상태 변경
+        JudgeResult judgeResult = question.judge(answer);
+        printJudge(judgeResult);
+        isSolved = judgeResult.isSolved();
+    }
+
+    private void printJudge(JudgeResult judgeResult) {
+        if (judgeResult.isNothing()) {
+            System.out.println("낫싱");
+            return;
+        }
+        if (judgeResult.getStrike() != 0) {
+            System.out.print(judgeResult.getStrike() + " 스트라이크 ");
+        }
+        if (judgeResult.getBall() != 0) {
+            System.out.print(judgeResult.getBall() + "볼");
+        }
+        System.out.println();
     }
 
     public void run() {
