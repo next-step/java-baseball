@@ -1,4 +1,4 @@
-package baseball;
+package precourse.baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,13 +17,13 @@ class BaseballGeneratorTest {
     @DisplayName("1 ~ 9 사이의 임의의 숫자로 중복되지 않는 야구공을 생성한다.")
     @Test
     void randomBaseballs() throws NoSuchFieldException, IllegalAccessException {
-        BaseballGenerator generator = new BaseballGenerator();
-        Baseballs baseballs = generator.createRandomBaseballs();
+        precourse.baseball.BaseballGenerator generator = new precourse.baseball.BaseballGenerator();
+        precourse.baseball.Baseballs baseballs = generator.createRandomBaseballs();
 
         Field field = baseballs.getClass().getDeclaredField("basket");
         field.setAccessible(true);
-        List<Baseball> basket = (List<Baseball>) field.get(baseballs);
-        Set<Baseball> nonDuplicateBasket = new HashSet<>(basket);
+        List<precourse.baseball.Baseball> basket = (List<precourse.baseball.Baseball>) field.get(baseballs);
+        Set<precourse.baseball.Baseball> nonDuplicateBasket = new HashSet<>(basket);
 
         assertThat(nonDuplicateBasket.size()).isEqualTo(3);
     }
@@ -32,13 +32,13 @@ class BaseballGeneratorTest {
     @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(strings = {"123", "456", "789"})
     void baseballs(String answer) throws NoSuchFieldException, IllegalAccessException {
-        BaseballGenerator generator = new BaseballGenerator();
-        Baseballs baseballs = generator.createBaseballs(answer);
+        precourse.baseball.BaseballGenerator generator = new precourse.baseball.BaseballGenerator();
+        precourse.baseball.Baseballs baseballs = generator.createBaseballs(answer);
 
         Field field = baseballs.getClass().getDeclaredField("basket");
         field.setAccessible(true);
-        List<Baseball> basket = (List<Baseball>) field.get(baseballs);
-        Set<Baseball> nonDuplicateBasket = new HashSet<>(basket);
+        List<precourse.baseball.Baseball> basket = (List<precourse.baseball.Baseball>) field.get(baseballs);
+        Set<precourse.baseball.Baseball> nonDuplicateBasket = new HashSet<>(basket);
 
         assertThat(nonDuplicateBasket.size()).isEqualTo(3);
     }
@@ -47,7 +47,7 @@ class BaseballGeneratorTest {
     @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(strings = {"111", "012", "!@#", "abc"})
     void invalidBaseballs(String answer) {
-        BaseballGenerator generator = new BaseballGenerator();
+        precourse.baseball.BaseballGenerator generator = new precourse.baseball.BaseballGenerator();
 
         assertThatIllegalArgumentException().isThrownBy(() -> generator.createBaseballs(answer));
     }

@@ -1,6 +1,6 @@
-package baseball;
+package precourse.baseball;
 
-import static constant.BaseballSpecification.*;
+import static precourse.constant.BaseballSpecification.*;
 
 import java.util.Objects;
 
