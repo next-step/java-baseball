@@ -10,7 +10,7 @@ public class UI {
     public String getAnswerByNotice(Notice output) {
         output.print();
         String string = scanner.nextLine();
-        if(!answerCondition(string, 3)){
+        if(!answerCondition(string, Bettings.bettingSize())){
             getAnswerByNotice(output);
         }
         return string;
@@ -29,5 +29,15 @@ public class UI {
         if(s.length() != size || hashSet.size() != size)
             return false;
         return true;
+    }
+
+    public void printScore(Strike strike, Ball ball, Nothing nothing){
+        strike.print();
+        ball.print();
+        if(strike.getCount() == 0 && ball.getCount() == 0){
+            nothing.setCount(Bettings.bettingSize());
+            nothing.print();
+        }
+        System.out.println();
     }
 }

@@ -30,6 +30,8 @@ public class Referee {
         List<Integer> computerValues = bettings.getComputerValues();
         setScore(userInputs, computerValues);
 
+        ui.printScore(strike,ball,nothing);
+
         return strike;
     }
 
