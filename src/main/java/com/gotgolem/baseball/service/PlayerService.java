@@ -3,6 +3,7 @@ package com.gotgolem.baseball.service;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.gotgolem.baseball.asset.game.GameState;
 import com.gotgolem.baseball.asset.pitch.ThreePitches;
 import com.gotgolem.baseball.exception.PlayerInputException;
 
@@ -20,6 +21,12 @@ public class PlayerService {
 		return baseballService.createThreePitches(toIntArray(pitchesString));
 	}
 
+	public GameState parseGameStateString(String gameStateString) {
+		gameStateString = removeWhitespaces(gameStateString);
+		validateGameStateString(gameStateString);
+		return gameStateString.equals("1") ? GameState.START : GameState.END;
+	}
+
 	private void validatePitchesString(String pitchesString) {
 		if (isBlank(pitchesString)
 				|| containsNonDigit(pitchesString)
@@ -27,6 +34,14 @@ public class PlayerService {
 				|| pitchesString.contains("0")
 				|| pitchesString.length() != 3) {
 			throw new PlayerInputException("1-9까지의 중복되지 않는 3자리의 숫자여야 합니다.");
+		}
+	}
+
+	private void validateGameStateString(String gameStateString) {
+		if (isBlank(gameStateString)
+				|| gameStateString.length() != 1
+				|| !"12".contains(gameStateString)) {
+			throw new PlayerInputException("1 또는 2여야 합니다.");
 		}
 	}
 

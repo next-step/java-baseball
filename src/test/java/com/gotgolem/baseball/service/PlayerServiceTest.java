@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.gotgolem.baseball.asset.game.GameState;
 import com.gotgolem.baseball.asset.number.NumberGenerator;
 import com.gotgolem.baseball.asset.number.RandomNumberGenerator;
 import com.gotgolem.baseball.asset.pitch.Ball;
@@ -46,6 +47,23 @@ public class PlayerServiceTest {
 	public void whenParsePitchesString_thenThrow(String pitchesString) {
 		assertThatExceptionOfType(PlayerInputException.class)
 				.isThrownBy(() -> service.parsePitchesString(pitchesString));
+	}
+
+	@DisplayName("문자열에 맞는 GameState 변환 성공 테스트")
+	@ParameterizedTest
+	@CsvSource({"1,START", "2,END", "  1,START", " 2,END"})
+	public void whenParseGameStateString_thenExact(String gameStateString, GameState expectGameState) {
+		final GameState gameState = service.parseGameStateString(gameStateString);
+		assertThat(gameState).isEqualTo(expectGameState);
+	}
+
+	@DisplayName("GameState 변환 예외 테스트")
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {"a", "12", "0", "#"})
+	public void whenParseGameStateString_thenThrow(String gameStateString) {
+		assertThatExceptionOfType(PlayerInputException.class)
+				.isThrownBy(() -> service.parseGameStateString(gameStateString));
 	}
 
 }
