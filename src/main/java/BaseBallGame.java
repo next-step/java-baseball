@@ -19,19 +19,18 @@ public class BaseBallGame {
         for(int i = 0 ; i < 3 ; i++) {
             generatedArray[i] = baseBallNum.get(i);
         }
-
+        //System.out.println("생성된 숫자 : "+Arrays.toString(generatedArray));
         return;
     }
 
     void getUserNumber() {
         do {
             Scanner sc = new Scanner(System.in);
-            System.out.println("Input Number : ");
+            System.out.println("숫자를 입력해주세요 : ");
             String input = sc.next();
             String[] inputArray = input.split("");
             convertStringToNumber(inputArray);
         } while (isUserNumberDuplicate());
-
         return;
     }
 
@@ -50,6 +49,24 @@ public class BaseBallGame {
             return true;
         }
 
+        return false;
+    }
+
+    boolean checkGameResult() {
+        int strike = checkStrikeNumber();
+        int ball = checkBallNumber();
+        System.out.println("strike : "+strike);
+        System.out.println("ball : "+ball);
+        if(strike == 3) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+            return true;
+        }
+        if(strike > 0) {
+            System.out.print(String.format("%d 스트라이크 ",strike));
+        }
+        if(ball > 0) {
+            System.out.println(String.format("%d 볼",ball));
+        }
         return false;
     }
 
