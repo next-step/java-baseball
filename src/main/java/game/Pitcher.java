@@ -7,14 +7,12 @@ import java.util.*;
 
 public class Pitcher {
     private List<Integer> throwBallList;
-    private final Scanner scanner;
 
     public List<Integer> getThrowBallList() {
         return throwBallList;
     }
 
     public Pitcher() {
-        this.scanner = new Scanner(System.in);
         this.throwBallList = getInputThrowBallList();
     }
 
