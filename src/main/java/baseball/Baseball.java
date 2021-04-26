@@ -78,7 +78,10 @@ public class Baseball {
     }
 
     private int countIfStrike(char baseballChar, char predictionChar) {
-        return baseballChar == predictionChar ? 1 : 0;
+        if (baseballChar == predictionChar) {
+            return 1;
+        }
+        return 0;
     }
 
     /**
@@ -97,7 +100,10 @@ public class Baseball {
     }
 
     private int countIfBall(int i, int sameIndex) {
-        return i != sameIndex && sameIndex != -1 ? 1 : 0;
+        if (i == sameIndex && sameIndex != -1) {
+            return 1;
+        }
+        return 0;
     }
 
     /**
@@ -130,7 +136,10 @@ public class Baseball {
     }
 
     private String addIfNeedSpace(boolean needSpace) {
-        return needSpace ? " " : "";
+        if (needSpace) {
+            return " ";
+        }
+        return "";
     }
 
     private String makeBallCountString(int ballCount) {
