@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class BallRecord {
+  private static final int MAX_COUNT = 3;
+
   private final Map<StrikeZone, Integer> values;
 
   private BallRecord(Map<StrikeZone, Integer> values) {
@@ -27,6 +29,14 @@ public class BallRecord {
 
   public int getCount(StrikeZone strikeZone) {
     return values.getOrDefault(strikeZone, 0);
+  }
+
+  public boolean isStrikeOut() {
+    return getCount(StrikeZone.STRIKE) == MAX_COUNT;
+  }
+
+  public Map<StrikeZone, Integer> getValues() {
+    return values;
   }
 
   @Override

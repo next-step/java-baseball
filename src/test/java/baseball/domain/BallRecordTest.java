@@ -27,6 +27,22 @@ class BallRecordTest {
     expected.put(StrikeZone.BALL, 1);
 
     assertThat(actual)
-            .hasFieldOrPropertyWithValue("value", expected);
+            .hasFieldOrPropertyWithValue("values", expected);
+  }
+
+  @Test
+  @DisplayName("3 스트라이크인지 판단하는 메서드 추가")
+  void isStrikeOut() {
+    // given
+    BallRecord ballRecord = BallRecord.create()
+            .plusCount(StrikeZone.STRIKE)
+            .plusCount(StrikeZone.STRIKE)
+            .plusCount(StrikeZone.STRIKE);
+
+    // when
+    boolean isStrikeOut = ballRecord.isStrikeOut();
+
+    // then
+    assertThat(isStrikeOut).isTrue();
   }
 }
