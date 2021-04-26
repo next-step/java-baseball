@@ -9,10 +9,15 @@ import static enumType.ErrorType.ERROR_1000_INPUT_DATA_TYPE_ERROR;
 import static enumType.GameNoticeType.INPUT_REQUEST;
 import static enumType.SystemNumberType.DIGIT;
 
+import static enumType.UmpireType.STRIKE;
+import static enumType.UmpireType.BALL;
+import static enumType.UmpireType.NOTHING;
+
 public class BaseballGame {
 
     NumberUtil     numberUtil     = new NumberUtil();
     ValidationUtil validationUtil = new ValidationUtil();
+    GameScore      gameScore      = new GameScore();
     
     /**
      * @author      : jeeyong.park 
@@ -24,18 +29,18 @@ public class BaseballGame {
      * 2021.04.25    jeeyong.park   컴퓨터 난수 생성 로직 추가
      * 2021.04.25    jeeyong.park   사용자 숫자 입력 및 유효성 체크 로직 추가
      * 2021.04.26    jeeyong.park   컴퓨터 난수와 사용자 입력값을 비교하여 심판하는 로직 추가
+     * 2021.04.26    jeeyong.park   점수 출력 로직 추가
      */
     public void gameStart() {
         
-        // GameScore gameScore = new GameScore();
-        
         // 컴퓨터 난수 생성
         int randomNumber = generateNumber();
-        
+    
         // 사용자 게임 진행
         playerTurn(randomNumber);
         
-        // TODO 결과 출력
+        // 게임 결과 출력
+        gameScore.gameResult();
         
     }
     
@@ -66,13 +71,11 @@ public class BaseballGame {
      */
     private void playerTurn(int randomNumber) {
         
-        GameScore gameScore = new GameScore();
-        
         int     playerInputNumber = 0;
         boolean isCorrect         = true;
         
         while (isCorrect) {
-            System.out.println(INPUT_REQUEST.getMessage());
+            System.out.println("\n" + INPUT_REQUEST.getMessage());
             
             // 사용자 숫자 입력
             playerInputNumber = playerInput();
@@ -81,13 +84,14 @@ public class BaseballGame {
             validationUtil.playerInputValidation(playerInputNumber);
             
             // TODO 아래 sout 지울것
-            System.out.println("randomNumber : "      + randomNumber);
-            System.out.println("playerInputNumber : " + playerInputNumber);
+            System.out.println("randomNumber : "        + randomNumber
+                             + ", playerInputNumber : " + playerInputNumber);
             
             gameScore = umpire(randomNumber, playerInputNumber);
             
+            printCurrentScore(gameScore);
+            
             if (gameScore.getStrikeCnt() >= DIGIT.getNumber()) {
-                System.out.println("정답 맞췄으니 종료");
                 isCorrect = false;
             }
         }
@@ -168,6 +172,25 @@ public class BaseballGame {
         if (listIndex != -1 && listIndex != index) {
             gameScore.ball();
         }
+    }
+    
+    
+    /**
+     * @author      : jeeyong.park 
+     * @date        : 2021.04.26
+     * @description : 현재 점수를 출력한다.
+     */
+    private void printCurrentScore(GameScore gameScore) {
+        if (gameScore.getStrikeCnt() != 0) {
+            System.out.print(gameScore.getStrikeCnt() + STRIKE.getDecision() + " ");
+        }
+        if (gameScore.getBallCnt() != 0) {
+            System.out.print(gameScore.getBallCnt() + BALL.getDecision() + " ");
+        }
+        if (gameScore.getStrikeCnt() == 0 && gameScore.getBallCnt() == 0) {
+            System.out.print(NOTHING.getDecision());
+        }
+        System.out.print("\n");
     }
     
 }

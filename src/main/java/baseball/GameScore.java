@@ -1,6 +1,8 @@
 package baseball;
 
 import static enumType.SystemNumberType.DIGIT;
+import static enumType.GameNoticeType.GAME_WIN_MESSAGE;
+import static enumType.UmpireType.*;
 
 public class GameScore {
     
@@ -24,10 +26,14 @@ public class GameScore {
     }
     
     public boolean gameResult() {
+        
         boolean isWin = false;
-        if(this.strikeCnt == DIGIT.getNumber()) {
+        
+        if(this.getStrikeCnt() == DIGIT.getNumber()) {
             isWin = true;
+            System.out.println(GAME_WIN_MESSAGE.getMessage()); 
         }
+        
         return isWin;
     }
 }
