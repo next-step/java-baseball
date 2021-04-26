@@ -5,3 +5,9 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능
+* 야구 게임 시작
+* 야구 게임 정답 생성 : 주어진 범위 내 중복없이 난수 생성
+* 야구 정답 확인 : 볼, 스트라이크
+* 야구 게임 종료 : 다시시작 혹은 완전 종료
