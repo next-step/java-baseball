@@ -19,4 +19,16 @@ class BaseballInningTest {
 	void create() {
 		assertThat(inning).isNotNull();
 	}
+	
+	@Test
+	@DisplayName("게임이 정상적으로 시작되었는지 확인")
+	void start() {
+		int testcase = 789;
+		String answer = inning.pitchAndHit(testcase);
+		assertThat(answer).isEqualTo(inning.NOT_STARTED);
+		inning.start();
+		answer = inning.pitchAndHit(testcase);
+		assertThat(answer).isNotEqualTo(inning.NOT_STARTED);
+		assertThat(answer).isNotEqualTo(inning.NOT_VALID_PARAM);
+	}
 }
