@@ -32,20 +32,21 @@
 
 ### 구현 목록
 * Config
-  * Game Config (관련 설정 값 저장)
-  * Game Context (인스턴스 관리)
+  * App Config: 난수 및 사용자 숫자 입력 관련 상수 관리
+  * App Context: Application Context, Instance 관리
 * Controller
-  * Game Controller (게임의 진행상태에 따라 관련된 service와 view를 control)
+  * Game Controller: 게임의 진행상태에 따라 관련된 domain, service, domain control
 * Domain
-  * Game Model (난수, 진행상태 값 저장)
-  * BallCount Model (스트라이크, 볼 횟수 저장)
+  * Game Model: 난수, 진행상태 값 저장
+  * BallCount Model: 스트라이크, 볼 횟수 저장
 * Error
-  * 1~9 사이 숫자가 아닐 경우
-  * 중복된 번호가 있을 경우
+  * NonNumericCharacters: 1~9 사이 숫자가 아닐 경우 Exception
+  * DuplicateCharacters: 중복된 번호가 있을 경우 Exception
+  * NonRestartCharacters: 1(재시작), 2(종료)가 아닐 경우 Exception
 * View
-  * 사용자 숫자 입력, 결과 출력 View
-  * 재시작 입력, 결과 출력 View
+  * BallCount View: 사용자 숫자 입력, 결과 출력
+  * Restart View: 재시작 입력, 결과 출력
 * Service
-  * Game Service (난수 생성, 난수와 사용자 입력값 비교)
-* App
-  * App 구동
+  * BallCount Service: 난수 생성, 난수와 사용자 숫자 입력값 비교
+  * Restart Service: 재시작 여부 반환
+* App: Application 구동
