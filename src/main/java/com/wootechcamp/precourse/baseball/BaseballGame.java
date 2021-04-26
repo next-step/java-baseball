@@ -1,5 +1,6 @@
 package com.wootechcamp.precourse.baseball;
 
+import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -33,11 +34,15 @@ public class BaseballGame {
             // 정답에 같은 숫자가 있으면 리턴
             List sameNumbers = getSameNumbers();
             int sameNumbersSize = sameNumbers.size();
-            System.out.println(sameNumbers.toString());
 
-            // 스트라이크 체크, 존재하는 숫자가 위치는 몇개 같은지 체크
+            // 스트라이크 개수 계산, 존재하는 숫자가 위치까지 같은지 체크
+            int strikeNum = getStrikeNum(sameNumbers);
 
-            // 스트라이크, 볼 개수 계산
+            // 볼 개수 계산
+            int ballNum = sameNumbersSize - strikeNum;
+
+            // 결과 출력
+            printResult(ballNum, strikeNum);
 
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 
@@ -145,7 +150,7 @@ public class BaseballGame {
     }
 
     public List getSameNumbers() {
-        List result = new ArrayList();
+        List result = new ArrayList<Integer>();
 
         for(int i = 0; i < answerList.size(); i++){
             if(inputList.contains(answerList.get(i))){
@@ -154,5 +159,42 @@ public class BaseballGame {
         }
 
         return result;
+    }
+
+    public int getStrikeNum(List sameNumbers) {
+        int result = 0;
+
+        for(int i = 0; i < sameNumbers.size(); i++){
+            int number = (int)sameNumbers.get(i);
+
+            if(answerList.indexOf(number) == inputList.indexOf(number)){
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    public void printResult(int ballNum, int strikeNum){
+        if(ballNum <= 0 && strikeNum <= 0){
+            System.out.println("낫싱");
+        }
+
+        StringBuilder result = new StringBuilder();
+        if(strikeNum > 0){
+            result.append(strikeNum);
+            result.append(" 스트라이크");
+        }
+
+        if(result.length() > 0 && ballNum > 0){
+            result.append(", ");
+        }
+
+        if(ballNum > 0){
+            result.append(ballNum);
+            result.append(" 볼");
+        }
+
+        System.out.println(result);
     }
 }
