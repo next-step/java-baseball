@@ -1,12 +1,13 @@
 package com.syl.game.baseball.domain.util;
 
-import com.syl.game.baseball.domain.player.dto.InputNumbers;
-import com.syl.game.baseball.domain.util.dto.BaseBallJudgementStatus;
+import com.syl.game.baseball.domain.dto.BaseBallJudgementStatus;
+import com.syl.game.baseball.domain.dto.BaseBallNumbers;
 
 public class BaseBallGameManager {
 
+    private String currentPlayer;
+
     private static BaseBallGameManager instance;
-    private static String currentPlayer;
 
     public static BaseBallGameManager getInstance() {
         synchronized (BaseBallGameManager.class) {
@@ -19,12 +20,15 @@ public class BaseBallGameManager {
 
     /**
      * 스트라이크, 볼, 포볼을 판단한다.
+     * @param selectedNumbers
      * @param inputNumbers
      * @return 판정 상태값
      */
-    public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(InputNumbers inputNumbers) {
-        BaseBallJudgementStatus baseBallJudgementStatus = new BaseBallJudgementStatus();
-        return baseBallJudgementStatus;
+    public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
+        int strike = selectedNumbers.countStrike(inputNumbers);
+        int ball = selectedNumbers.countBall(inputNumbers);
+        int nothing = selectedNumbers.checkNothing(inputNumbers);
+        return new BaseBallJudgementStatus(strike, ball, nothing);
     }
 
     /**
@@ -42,7 +46,6 @@ public class BaseBallGameManager {
     public void setCurrentPlayer(String playerName) {
         currentPlayer = playerName;
     }
-
 
 
 }
