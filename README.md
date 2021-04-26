@@ -8,6 +8,7 @@
     * 파일명 : BaseballNumber
     * 1-9의 서로 다른 수로 이루어진 3자리의 수
 2. 입력
+    * 파일명 : Validation
     * 3자리의 수
 3. 게임
     * 파일명 : Pitching

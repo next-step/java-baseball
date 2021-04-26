@@ -37,12 +37,7 @@ public class PitchingTest {
     @Test
     @DisplayName("3스트라이크 검사")
     void threeStrickTest() {
-        String pitch = "";
-        for(int ball : baseball){
-            pitch += String.valueOf(ball);
-        }
-
-        PitchingResult pitchingResult = pitching.getPitchingResult(pitch,baseball);
+        PitchingResult pitchingResult = pitching.getPitchingResult(baseball, baseball);
         assertEquals(true, pitchingResult.isResult());
         assertEquals(3, pitchingResult.getStrike());
     }
@@ -50,9 +45,10 @@ public class PitchingTest {
     @Test
     @DisplayName("낫싱 검사")
     void isNothingTest() {
-        int[] pitches = {1, 2, 3};
+        int[] baseball = {1, 2, 3};
+        int[] pitches = {4, 5, 6};
 
-        PitchingResult pitchingResult = pitching.getPitchingResult("456",pitches);
+        PitchingResult pitchingResult = pitching.getPitchingResult(pitches, baseball);
         assertEquals(false, pitchingResult.isResult());
         assertEquals(false, pitchingResult.isNothing());
         assertEquals(0, pitchingResult.getStrike());
@@ -62,9 +58,10 @@ public class PitchingTest {
     @Test
     @DisplayName("1스트라이크 1볼")
     void oneStrikeoneBallTest() {
-        int[] pitches = {1, 2, 3};
+        int[] baseball = {1, 2, 3};
+        int[] pitches = {1, 3, 6};
 
-        PitchingResult pitchingResult = pitching.getPitchingResult("136",pitches);
+        PitchingResult pitchingResult = pitching.getPitchingResult(pitches, baseball);
         assertEquals(false, pitchingResult.isResult());
         assertEquals(false, pitchingResult.isNothing());
         assertEquals(1, pitchingResult.getStrike());
@@ -74,9 +71,10 @@ public class PitchingTest {
     @Test
     @DisplayName("1스트라이크 2볼")
     void oneStriketwoBallTest() {
-        int[] pitches = {1, 2, 3};
+        int[] baseball = {1, 2, 3};
+        int[] pitches = {3, 2, 1};
 
-        PitchingResult pitchingResult = pitching.getPitchingResult("321",pitches);
+        PitchingResult pitchingResult = pitching.getPitchingResult(pitches, baseball);
         assertEquals(false, pitchingResult.isResult());
         assertEquals(false, pitchingResult.isNothing());
         assertEquals(1, pitchingResult.getStrike());

@@ -1,12 +1,11 @@
 public class Pitching {
 
-    public PitchingResult getPitchingResult(String pitching, int[] baseballNumber){
+    public PitchingResult getPitchingResult(int[] pitches, int[] baseballNumber){
         PitchingResult pitchingResult = new PitchingResult();
 
         int strike = 0;
         int ball = 0;
 
-        int[] pitches = getPitches(pitching);
         for(int i=0 ; i<pitches.length ; i++){
             if(isStrike(baseballNumber, i, pitches[i])) strike++;
             if(isBall(baseballNumber, i, pitches[i])) ball++;
@@ -24,15 +23,6 @@ public class Pitching {
         }
 
         return pitchingResult;
-    }
-
-    //입력 받은 숫자를 한 글자씩 끊어 저장
-    public int[] getPitches(String pitching){
-        int[] pitches = new int[pitching.length()];
-        for(int i=0;i<pitching.length();i++){
-            pitches[i]= Integer.parseInt(String.valueOf(pitching.charAt(i)));
-        }
-        return pitches;
     }
 
     //숫자가 스트라이크인지 판별
