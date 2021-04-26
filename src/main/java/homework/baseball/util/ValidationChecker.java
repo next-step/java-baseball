@@ -39,4 +39,3 @@ public class ValidationChecker {
         return false;
     }
 }
-
