@@ -8,4 +8,5 @@ public final class Constants {
 	public static final String STRIKE_ONLY = "%d 스트라이크";
 	public static final String BALL_ONLY = "%d볼";
 	public static final String STRIKE_N_BALL = "%d 스트라이크 %d볼";
+	public static final String END_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하시려면 2를 입력하세요.";
 }

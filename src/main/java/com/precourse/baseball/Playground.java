@@ -5,6 +5,7 @@ import java.util.List;
 public class Playground {
 	private final NumberGenerator numberGenerator = new NumberGenerator();
 	private final UserScanner userScanner = new UserScanner();
+	public int menuNumber;
 
 	public void play() {
 		List<Integer> comNumList = numberGenerator.generate();
@@ -12,6 +13,7 @@ public class Playground {
 		do {
 			userNumList = getNumberList();
 		} while (!isOut(comNumList, userNumList));
+		selectMenu();
 	}
 
 	/**
@@ -35,4 +37,11 @@ public class Playground {
 		return hint.strike == Constants.STRIKE_OUT;
 	}
 
+	/**
+	 * menuNumber 에 1 또는 2를 저장
+	 */
+	public void selectMenu() {
+		System.out.println(Constants.END_MESSAGE);
+		menuNumber = userScanner.scanMenuNumber();
+	}
 }

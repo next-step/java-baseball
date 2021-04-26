@@ -38,4 +38,9 @@ public class UserScanner {
 	public int charToInt(char ch) {
 		return ch - '0';
 	}
+
+	public int scanMenuNumber() {
+		int input = sc.nextInt();
+		return input;
+	}
 }
