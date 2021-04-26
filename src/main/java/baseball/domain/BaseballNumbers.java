@@ -88,4 +88,8 @@ public class BaseballNumbers {
     public boolean contains(BaseballNumber targetBaseballNumber) {
         return baseballNumbers.contains(targetBaseballNumber);
     }
+
+    public void setNull(){
+        baseballNumbers = null;
+    }
 }
