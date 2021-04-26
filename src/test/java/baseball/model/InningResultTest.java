@@ -19,37 +19,15 @@ class InningResultTest {
 
 	private InningResult inningResult;
 
-	private RandomBaseballNumber randomBaseballNumber;
+	private BaseballNumber randomBaseballNumber;
 
 	@BeforeEach
 	void setUp() {
 		this.inningResult = new InningResult();
-		this.randomBaseballNumber = new RandomBaseballNumber();
+		this.randomBaseballNumber = new BaseballNumber();
 		this.randomBaseballNumber.addNumber(1);
 		this.randomBaseballNumber.addNumber(2);
 		this.randomBaseballNumber.addNumber(3);
-	}
-
-	@ParameterizedTest
-	@CsvSource(value = { "123:3 스트라이크", "321:1 스트라이크 2 볼", "456:nothing", "125:2 스트라이크" }, delimiter = ':')
-	@DisplayName("randomBaseballNumber, userBaseNumber를 비교하여 inning result 확인")
-	void testJudgementInningResult(String userInput, String expected) {
-
-		BaseballNumber userNumber = new UserBaseballNumber(userInput);
-
-		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
-		assertEquals(expected, this.inningResult.toString());
-	}
-
-	@ParameterizedTest
-	@ValueSource(strings = "123")
-	@DisplayName("3 strike 일때 게임 종료 true 반환 확인")
-	void testIsEndGameTrue(String userInput) {
-
-		BaseballNumber userNumber = new UserBaseballNumber(userInput);
-
-		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
-		Assertions.assertThat(this.inningResult.isEndGame()).isTrue();
 	}
 
 	@ParameterizedTest
@@ -57,9 +35,31 @@ class InningResultTest {
 	@DisplayName("3 strike 아닐 때 게임 종료 false 반환 확인")
 	void testIsEndGameFalse(String userInput) {
 
-		BaseballNumber userNumber = new UserBaseballNumber(userInput);
+		UserBaseballNumber userNumber = new UserBaseballNumber(userInput);
 
 		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
 		Assertions.assertThat(this.inningResult.isEndGame()).isFalse();
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = "123")
+	@DisplayName("3 strike 일때 게임 종료 true 반환 확인")
+	void testIsEndGameTrue(String userInput) {
+
+		UserBaseballNumber userNumber = new UserBaseballNumber(userInput);
+
+		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
+		Assertions.assertThat(this.inningResult.isEndGame()).isTrue();
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = { "123:3 스트라이크", "321:1 스트라이크 2 볼", "456:nothing", "125:2 스트라이크" }, delimiter = ':')
+	@DisplayName("randomBaseballNumber, userBaseNumber를 비교하여 inning result 확인")
+	void testJudgementInningResult(String userInput, String expected) {
+
+		UserBaseballNumber userNumber = new UserBaseballNumber(userInput);
+
+		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
+		assertEquals(expected, this.inningResult.toString());
 	}
 }

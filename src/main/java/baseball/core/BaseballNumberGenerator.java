@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import baseball.model.BaseballNumber;
-import baseball.model.RandomBaseballNumber;
 
 public class BaseballNumberGenerator {
 
@@ -36,7 +35,7 @@ public class BaseballNumberGenerator {
 		int second = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND - 1));
 		int third = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND - 2));
 
-		RandomBaseballNumber randomBaseballNumber = new RandomBaseballNumber();
+		BaseballNumber randomBaseballNumber = new BaseballNumber();
 		randomBaseballNumber.addNumber(first);
 		randomBaseballNumber.addNumber(second);
 		randomBaseballNumber.addNumber(third);
@@ -44,14 +43,14 @@ public class BaseballNumberGenerator {
 		return randomBaseballNumber;
 	}
 
+	private int getRandomIndex(int bound) {
+		return ThreadLocalRandom.current().nextInt(bound);
+	}
+
 	private void initBaseballNumbers() {
 		for (int i = 1; i < 10; i++) {
 			this.baseballNumbers.add(i);
 		}
-	}
-
-	private int getRandomIndex(int bound) {
-		return ThreadLocalRandom.current().nextInt(bound);
 	}
 
 }
