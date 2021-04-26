@@ -2,11 +2,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BaseballNumber {
-    public Set<Integer> getBaseballNumber(){
-        Set<Integer> baseballNumber = new HashSet<>();
-        while(baseballNumber.size() < 3){
-            baseballNumber.add((int)(Math.random() * 9 + 1));
+    public int[] getBaseballNumber(){
+        int[] baseballNumber = new int[3];
+        Set<Integer> randomNumber = new HashSet<>();
+        while(randomNumber.size() < 3){
+            randomNumber.add((int)(Math.random() * 9 + 1));
         }
+
+        int i = 0;
+        for (int r: randomNumber) {
+            baseballNumber[i++] = r;
+        }
+
         return baseballNumber;
     }
 }
