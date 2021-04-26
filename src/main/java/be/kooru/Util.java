@@ -27,5 +27,15 @@ public class Util {
         return result;
     }
 
-   
+    public static int[] convertStringToIntArray(String input) {
+        int value = Integer.parseInt(input);
+        int[] result = new int[input.length()];
+        int i = 2;
+        while (value != 0) {
+            result[i] = value % 10;
+            value /= 10;
+            i--;
+        }
+        return result;
+    }
 }
