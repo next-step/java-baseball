@@ -81,6 +81,25 @@ public class GamePlayServiceTest {
     }
 
 
+    @Test
+    public void formatTest(){
+        int number = 12;
+        assertThat(toList(number).get(0)).isEqualTo(0);
+
+        number = 1234;
+        assertThat(toList(number).get(0)).isGreaterThanOrEqualTo(10);
+
+        number = 112;
+        assertThat(toList(number).get(0)).isEqualTo(toList(number).get(1));
+
+        number = 122;
+        assertThat(toList(number).get(1)).isEqualTo(toList(number).get(2));
+
+        number = 121;
+        assertThat(toList(number).get(2)).isEqualTo(toList(number).get(0));
+
+    }
+
     private int[] check(int answer, int input){
 
         /* result[0] = strike, result[1] = ball */

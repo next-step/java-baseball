@@ -14,32 +14,36 @@ public class GamePlay implements ImplGamePlay {
     private boolean isFinished;
     private List<Integer> answer;
 
+    /* 기본 변수 정의 및 정답 세팅 */
     @Override
     public void init() {
-        /* 기본 변수 정의 및 정답 세팅 */
         scanner = new Scanner(System.in);
         service = new GamePlayService();
         answer = service.getAnswer();
         isFinished = false;
     }
 
+    /* 게임 시작 */
     @Override
     public void start() {
-        /* 게임 시작 */
         while(!isFinished){
             play();
         }
     }
+    /* 게임 시작 후 사용자 숫자 3가지 입력, 정답지 비교, 결과 도출 */
+    private void play(){
+        List<Integer> inputNumber = getInputNumber();
+        int[] result = service.check(answer, inputNumber);
+        checkResult(result[0], result[1]);
+    }
+
+
+    /* 게임 종료 후 replay 선택 */
     @Override
     public boolean replay() {
-        /* 게임 종료 후 replay 선택 */
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        int replay = 0;
-        try{
-            replay = scanner.nextInt();
-        }catch (Exception e){
-            scanner.nextLine();
-        }
+        int replay = getInput();
+
         if(replay!=1 && replay!=2) {
             System.out.println("잘못 입력 하였습니다.");
             return replay();
@@ -50,33 +54,29 @@ public class GamePlay implements ImplGamePlay {
     }
 
 
-    private void play(){
-        /* 게임 시작 후 사용자 숫자 3가지 입력, 정답지 비교, 결과 도출 */
-        List<Integer> inputNumber = getInputNumber();
-        int[] result = service.check(answer, inputNumber);
-        checkResult(result[0], result[1]);
-    }
-
+    /* 사용자 숫자 3가지 입력, 중복 없어야 함.*/
     private List<Integer> getInputNumber(){
-        /* 사용자 숫자 3가지 입력, 중복 없어야 함.*/
-        int input_number = 0;
 
         System.out.print("숫자를 입력해주세요 : ");
-        try{
-            input_number = scanner.nextInt();
-        }catch (Exception e){
-            scanner.nextLine();
-        }
-        if(input_number<100 || input_number>1000){
+        int inputNumber = getInput();
+
+        List<Integer> input = GamePlayUtils.toList(inputNumber);
+        boolean isRightFormat = input.get(0).equals(0) || input.get(0)>=10 || input.get(0).equals(input.get(1)) || input.get(1).equals(input.get(2)) || input.get(2).equals(input.get(0));
+        if(isRightFormat){
             System.out.println("잘못 입력 하였습니다. 1~9 중 서로다른 3개의 숫자를 입력해야합니다.");
             return getInputNumber();
         }
-
-        List<Integer> input = GamePlayUtils.toList(input_number);
-        if(input.get(0).equals(input.get(1)) || input.get(1).equals(input.get(2)) || input.get(2).equals(input.get(0))){
-            return getInputNumber();
-        }
         return input;
+    }
+
+    private int getInput(){
+        int result = 0;
+        try{
+            result = scanner.nextInt();
+        }catch (Exception e){
+            scanner.nextLine();
+        }
+        return result;
     }
 
 
