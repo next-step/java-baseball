@@ -22,7 +22,13 @@ public class BaseBallImpl implements BaseBall {
             isFinished = startOneGame( quizNumber );
         }
         boolean isReset = ui.getReset();
-        
+        reStart( isReset );
+    }
+    
+    protected void reStart( boolean isReset ) {
+        if( isReset ) {
+            start();
+        }
     }
     
     protected boolean startOneGame( int quizNumber ) {
