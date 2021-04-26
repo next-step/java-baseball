@@ -8,13 +8,14 @@ import java.util.List;
 
 public class BaseballNumberFactory {
 
+    private static final String STRING_INPUT_DELIMITER = "";
     private static final String MESSAGE_NON_INPUT = "숫자 정보를 입력해 주세요.";
 
     public List<BaseballNumber> generateBaseballNumbers(String numbers) {
         validate(numbers);
         List<Integer> baseballNumbers = new ArrayList<>();
-        for (char number : numbers.toCharArray()) {
-            baseballNumbers.add(Character.getNumericValue(number));
+        for (String number : numbers.split(STRING_INPUT_DELIMITER)) {
+            baseballNumbers.add(toNumber(number));
         }
         return generateBaseballNumbers(baseballNumbers);
     }
@@ -22,6 +23,14 @@ public class BaseballNumberFactory {
     private void validate(String baseballNumbers) {
         if (StringUtils.isBlank(baseballNumbers)) {
             throw new IllegalArgumentException(MESSAGE_NON_INPUT);
+        }
+    }
+
+    private Integer toNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력해 주세요.");
         }
     }
 

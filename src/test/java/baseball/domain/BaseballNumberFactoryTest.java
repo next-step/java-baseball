@@ -107,4 +107,16 @@ class BaseballNumberFactoryTest {
                 .isThrownBy(() -> factory.generateBaseballNumbers("112"))
                 .withMessageMatching("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
     }
+
+    @Test
+    @DisplayName("문자열 입력")
+    void create_nonNumeric() {
+        // given
+        BaseballNumberFactory factory = new BaseballNumberFactory();
+
+        // when then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> factory.generateBaseballNumbers("임동섭"))
+                .withMessageMatching("숫자를 입력해 주세요.");
+    }
 }
