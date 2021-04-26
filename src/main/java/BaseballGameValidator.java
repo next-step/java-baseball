@@ -12,4 +12,12 @@ public class BaseballGameValidator {
 
 		return true;
 	}
+
+	public static boolean isAllowedNumbers(String input) {
+		if (!"1".equals(input) && !"2".equals(input)) {
+			return true;
+		}
+
+		return false;
+	}
 }

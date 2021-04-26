@@ -17,4 +17,13 @@ public class BaseballGameValidatorTest {
 		assertThat(BaseballGameValidator.isNumbers("123")).isTrue();
 		assertThat(BaseballGameValidator.isNumbers("abc")).isFalse();
 	}
+
+	@Test
+	@DisplayName("종료시 입력이 허용된 숫자인지 확인")
+	public void is_allowed_numbers() {
+		assertThat(BaseballGameValidator.isAllowedNumbers("1")).isFalse();
+		assertThat(BaseballGameValidator.isAllowedNumbers("2")).isFalse();
+		assertThat(BaseballGameValidator.isAllowedNumbers("3")).isTrue();
+		assertThat(BaseballGameValidator.isAllowedNumbers("a")).isTrue();
+	}
 }
