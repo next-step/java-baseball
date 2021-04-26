@@ -32,6 +32,16 @@ public class Main {
 
 	    autoNum = sb.toString();
 	    
+	    inputNum();//사용자 입력 메서드
+	}
+	
+	//문자열 입력 메서드
+	public static void inputNum() {
+		ballNum = "";
+		System.out.print("숫자를 입력해주세요 : ");
+		Scanner sc = new Scanner(System.in);
+		ballNum = sc.next();
+		
 	}
 
 }
