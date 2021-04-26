@@ -24,11 +24,11 @@ public class BaseballGame {
 		}
 	}
 
-	public void initGame() {
+	private void initGame() {
 		answer = baseballUtils.cerateAnswer();
 	}
 
-	public void playGame() {
+	private void playGame() {
 		String attackKeyword;
 		boolean isOut = false;
 		while (!isOut) {
@@ -37,7 +37,7 @@ public class BaseballGame {
 		}
 	}
 
-	public boolean requestMorePitching() {
+	private boolean requestMorePitching() {
 		String pitchingCondition = console.getMessage("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
 		try {
 			baseballUtils.chekckPitchingCondition(pitchingCondition);

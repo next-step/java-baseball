@@ -10,19 +10,6 @@ class BaseballGameTest {
 
 	@Test
 	public void initGameTest() {
-		// given
-		baseballGame.initGame();
-
-		// when
-		String answer = baseballGame.getAnswer();
-
-		// then
-		assertThatCode(() -> {
-			baseballUtils.checkEqualLength3(answer);
-		}).doesNotThrowAnyException();
-		assertThatCode(() -> {
-			baseballUtils.checkNotExistsDupNumbers(answer);
-		}).doesNotThrowAnyException();
 
 	}
 }
