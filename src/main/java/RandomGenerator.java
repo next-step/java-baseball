@@ -16,6 +16,7 @@ public class RandomGenerator {
         if(!builder.toString().contains(appendStr))
             builder.append(appendStr);
     }
+
     public String generateBalls() {
         StringBuilder builder = new StringBuilder();
         Random random = new Random();

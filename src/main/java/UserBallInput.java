@@ -65,7 +65,7 @@ public class UserBallInput {
     }
 
     public String userBallInputRead(String inputBall) {
-        System.out.println("숫자를 입력해주세요 : ");
+        System.out.print("숫자를 입력해주세요 : ");
         if(validateInput(inputBall))
             return inputBall;
         System.out.println("올바른 입력값이 아닙니다.");
@@ -73,7 +73,7 @@ public class UserBallInput {
     }
 
     public String userBallInputRead() {
-        System.out.println("숫자를 입력해주세요 : ");
+        System.out.print("숫자를 입력해주세요 : ");
         String inputBall = read();
         if(validateInput(inputBall))
             return inputBall;

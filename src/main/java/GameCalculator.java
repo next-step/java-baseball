@@ -3,16 +3,19 @@ public class GameCalculator {
     private StrikeCalculator strikeCalculator;
     private BallCalculator ballCalculator;
 
-    public GameCalculator() {
-        this(BaseballGame.DEFAULT_LEN);
+    private void init() {
         strikeCalculator = new StrikeCalculator(BaseballGame.DEFAULT_LEN);
         ballCalculator = new BallCalculator(BaseballGame.DEFAULT_LEN);
     }
 
+    public GameCalculator() {
+        this(BaseballGame.DEFAULT_LEN);
+        init();
+    }
+
     public GameCalculator(int maxLen) {
         this.maxLen = maxLen;
-        strikeCalculator = new StrikeCalculator(maxLen);
-        ballCalculator = new BallCalculator(maxLen);
+        init();
     }
 
     public int[] calculateResult(String generated, String input) {
