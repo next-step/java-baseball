@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.Computer;
+import baseball.domain.EndType;
 import baseball.generator.AnswerGenerator;
 import baseball.view.InputView;
 import baseball.view.ResultView;
@@ -21,5 +22,15 @@ public class BaseballController {
             resultView.printScore(computer);
         }
         resultView.printEndMessage();
+        chooseEndType();
+    }
+
+    private void chooseEndType() {
+        String type = inputView.inputChooseType();
+        EndType endType = EndType.findEndType(type);
+        if (endType.equals(EndType.SYSTEM_EXIT)) {
+            System.exit(0);
+        }
+        run();
     }
 }
