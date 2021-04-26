@@ -10,12 +10,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RandomNumberStringGeneratorTest {
 
+	private final RandomNumberStringGenerator randomNumberStringGenerator = RandomNumberStringGenerator.of();
+
 	@DisplayName("길이를 인자로 받아 해당 길이만큼 생성")
 	@Test
 	void generate_shouldGenerateTheExpectedLength() {
 		// given
 		int length = 3;
-		RandomNumberStringGenerator randomNumberStringGenerator = new RandomNumberStringGenerator();
 
 		// when
 		String randomNumberString = randomNumberStringGenerator.generate(length);
@@ -30,7 +31,6 @@ class RandomNumberStringGeneratorTest {
 	void generate_shouldIncludedExpectedNumberRange(int number) {
 		// given
 		int length = 9;
-		RandomNumberStringGenerator randomNumberStringGenerator = new RandomNumberStringGenerator();
 
 		// when
 		String randomNumberString = randomNumberStringGenerator.generate(length);
@@ -45,11 +45,9 @@ class RandomNumberStringGeneratorTest {
 	void generate_shouldThrowException() {
 		// given
 		int length = 10;
-		RandomNumberStringGenerator randomNumberStringGenerator = new RandomNumberStringGenerator();
 
 		// when & then
 		// 1 ~ 9 의 숫자는 한 번씩만 사용 가능하기 때문에 10자리 이상의 숫자를 만들 수 없다.
 		assertThatIllegalArgumentException().isThrownBy(() -> randomNumberStringGenerator.generate(length));
 	}
-
 }

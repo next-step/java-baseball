@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomNumberStringGenerator {
+	private RandomNumberStringGenerator() {
+	}
+
+	public static RandomNumberStringGenerator of() {
+		return new RandomNumberStringGenerator();
+	}
 
 	public String generate(int length) {
 		List<Integer> candidates = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
