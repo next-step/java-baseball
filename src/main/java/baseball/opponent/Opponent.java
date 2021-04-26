@@ -56,6 +56,17 @@ public class Opponent {
     }
 
     /**
+     * 사용자가 입력한 답이 정답인지 확인
+     *
+     * @param compareResult 비교 결과
+     * @return 정답 true, 오답 false
+     */
+    public boolean isAnswer(Map<ResultType, Integer> compareResult) {
+        Integer strikeCount = compareResult.get(ResultType.STRIKE);
+        return strikeCount != null && strikeCount == ANSWER_LENGTH;
+    }
+
+    /**
      * 스트라이크의 개수를 계산
      *
      * @param answers      정답 배열
