@@ -12,7 +12,6 @@ public class GameRuleTest {
         Position source = new Position(1);
         Position dest = new Position(1);
 
-
         assertThat(GameRule.of(source, dest))
                 .isEqualTo(GameRule.STRIKE);
     }
@@ -23,7 +22,6 @@ public class GameRuleTest {
         Position source = new Position(1);
         Position dest = Position.NOT_FOUND;
 
-
         assertThat(GameRule.of(source, dest))
                 .isEqualTo(GameRule.MISSING);
     }
@@ -33,7 +31,6 @@ public class GameRuleTest {
     public void 같은_수가_다른자리에_있으면_볼() {
         Position source = new Position(1);
         Position dest = new Position(2);
-
 
         assertThat(GameRule.of(source, dest))
                 .isEqualTo(GameRule.BALL);
