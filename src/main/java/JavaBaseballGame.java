@@ -9,8 +9,9 @@ public class JavaBaseballGame {
         JavaBaseballGame javaBaseballGame = new JavaBaseballGame();
         boolean flag = true;
         while(flag){
-            System.out.println("숫자를 입력해주세요 : ");
+
             int x = javaBaseballGame.createRandomNumber();
+            System.out.println("숫자를 입력해주세요 : ");
             javaBaseballGame.startGame(x);
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
             flag = javaBaseballGame.isGame();
@@ -115,9 +116,9 @@ public class JavaBaseballGame {
         while(sSet.size() < THE_NUMBER_OF_NUM){
             sSet.add(rn.nextInt(9) + 1);
         }
-        System.out.println(sSet);
+
         int result = getRealNumber(sSet);
-        System.out.println(result);
+        System.out.println("정답 : " + result);
         return result;
 
     }
@@ -148,9 +149,9 @@ public class JavaBaseballGame {
         boolean flag = true;
         while(flag){
             int num = getNumberOfThree();
-            flag = isFinishGame(x, num);
 
             System.out.println(printSentence(x,num));
+            flag = isFinishGame(x, num);
         }
     }
 
@@ -167,9 +168,10 @@ public class JavaBaseballGame {
     private boolean isFinishGame(int x, int num) {
         StrikeBall strikeBall = getHintMap(x, num);
         if(strikeBall.getBall() == 0 && strikeBall.getStrike() == THE_NUMBER_OF_NUM) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다!. 게임 종료");
             return false;
         }
-        System.out.println("3개의 숫자를 모두 맞히셨습니다!. 게임 종료");
+
         return true;
     }
 
