@@ -40,7 +40,7 @@
 
 
 ### 구현 목록
-* BaseballGameApplication : 숫자 야구 게임이 실행되는 main 메소드가 있는 클래스
+* baseball.BaseballGameApplication : 숫자 야구 게임이 실행되는 main 메소드가 있는 클래스
 * baseball.view.BaseballClient : 숫자 야구 게임의 화면 입/출력을 담당하는 클래스
   + 게임 옵션 출력 메소드
   + 사용자 인풋 입력 메소드
