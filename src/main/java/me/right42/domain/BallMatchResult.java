@@ -31,7 +31,7 @@ public class BallMatchResult {
 	}
 
 	public int getBallCount(){
-		return match.get(BallMatchType.STRIKE);
+		return match.get(BallMatchType.BALL);
 	}
 
 	public int getNothingCount(){
