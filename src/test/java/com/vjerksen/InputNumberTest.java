@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class InputNumberTest {
 
-    @DisplayName(value = "숫자 입력받기")
+    @DisplayName(value = "숫자 입력")
     @Test
     public void getInputNumberTest() throws Exception {
         InputNumber inputNumber = new InputNumber();

@@ -1,9 +1,10 @@
 package com.vjerksen;
 
-public class RandomNumber implements Number{
+public class RandomNumber implements Number {
 
     @Override
     public String generateNumber() {
+        Validation validation = new Validation();
         int randNum = 0;
         int idx = 0;
         String randStringNum = "";
@@ -13,25 +14,11 @@ public class RandomNumber implements Number{
             randStringNum = randStringNum + Integer.toString(randNum);
         }
 
-        if(chkValidate(randStringNum)){
+        if (validation.isValidate(randStringNum)) {
             return randStringNum;
         }
 
         return generateNumber();
     }
 
-    @Override
-    public boolean chkValidate(String randStringNum) {
-        Validation validation = new Validation();
-
-        if(validation.chkLength(randStringNum) == false) {
-            return false;
-        }
-
-        if(validation.chkDuplicate(randStringNum) == false) {
-            return false;
-        }
-
-        return true;
-    }
 }
