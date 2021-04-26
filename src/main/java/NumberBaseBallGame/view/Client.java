@@ -2,7 +2,7 @@ package NumberBaseBallGame.view;
 
 import NumberBaseBallGame.domain.BallNumberMatchResult;
 import NumberBaseBallGame.generater.GenerateGame;
-import NumberBaseBallGame.domain.ValidationCheckUtils;
+import NumberBaseBallGame.ValidationCheckUtils;
 
 import java.util.Scanner;
 
@@ -28,7 +28,7 @@ public class Client {
 			BallNumberMatchResult gameHintAndResults = generateGame.playGame(gameNumbers);
 
 			if(!gameHintAndResults.isAllMatch()){
-				System.out.println("msg~~ TODO");
+				System.out.println(setHintMessage(gameHintAndResults));
 				continue;
 			}
 			System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
@@ -43,5 +43,18 @@ public class Client {
 				generateGame = new GenerateGame();
 			}
 		}
+	}
+	private static String setHintMessage(BallNumberMatchResult matchResult){
+		String message = "";
+		if(matchResult.isNothing()){
+			return BaseBallStatus.NOTHING.getMessage();
+		}
+		if(matchResult.getStrikeCount()>0){
+			message += (BaseBallStatus.STRIKE.getMessage()+matchResult.getStrikeCount()+"볼");
+		}
+		if(matchResult.getBallCount()>0){
+			message += (matchResult.getStrikeCount()+BaseBallStatus.BALL.getMessage());
+		}
+		return message;
 	}
 }
