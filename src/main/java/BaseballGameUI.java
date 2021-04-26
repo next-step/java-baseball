@@ -14,7 +14,7 @@ public class BaseballGameUI {
 			if (inputValidation(input = askNumbers(scanner))) {
 				continue;
 			}
-			System.out.println(baseballGameLogic.getNumber() + " / " + baseballGameLogic.getScore(input));
+			System.out.println(baseballGameLogic.getScore(input));
 			isContinue = isCorrect(baseballGameLogic.getScore(input), baseballGameLogic);
 		}
 	}
