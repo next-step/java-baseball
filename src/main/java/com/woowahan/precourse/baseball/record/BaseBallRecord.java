@@ -35,7 +35,7 @@ public class BaseBallRecord {
 
         if (BaseBallRule.isStrike(gameNumber, inputNumber)) {
             this.strikeCount++;
-        } else if (BaseBallRule.isBall(gameNumbers, inputNumber)) {
+        } else if (BaseBallRule.isBall(gameNumbers, inputNumber, recordPosition)) {
             this.ballCount++;
         }
     }
