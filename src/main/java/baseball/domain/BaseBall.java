@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BaseBall implements Iterable<Ball> {
@@ -18,17 +19,16 @@ public class BaseBall implements Iterable<Ball> {
     }
 
     public static BaseBall of(String numbers) {
-        List<Ball> balls = new ArrayList<>();
-        for (int i = 0; i < numbers.length(); i++) {
-            Ball ball = Ball.of(numbers.substring(i, i + 1));
-            validateDuplicate(balls, ball);
-            balls.add(ball);
-        }
+        List<Ball> balls = numbers.chars()
+            .mapToObj(number -> Ball.of(String.valueOf((char) number)))
+            .distinct()
+            .collect(Collectors.toList());
+        validationDuplicate(balls);
         return BaseBall.of(balls);
     }
 
-    private static void validateDuplicate(List<Ball> balls, Ball ball) {
-        if (balls.contains(ball)) {
+    private static void validationDuplicate(List<Ball> balls) {
+        if (balls.size() < 3) {
             throw new DuplicatedNumberException("숫자는 중복되지 않아야 합니다.");
         }
     }
