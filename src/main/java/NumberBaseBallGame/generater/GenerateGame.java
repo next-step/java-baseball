@@ -15,7 +15,7 @@ public class GenerateGame {
 
 	public GenerateGame() {
 		randomBalls = new GenerateGameNumber(GAMENUMBERS_LENGTH).getRandomBalls();
-		ballNumberMatcher = new BallNumberMatcher();
+		ballNumberMatcher = new BallNumberMatcher(GAMENUMBERS_LENGTH);
 		pickClientBalls = new GenerateClientBall(GAMENUMBERS_LENGTH);
 	}
 
