@@ -42,6 +42,16 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		ballNum = sc.next();
 		
+		numRuleCheck();
 	}
-
+	
+	//입력 숫자 규칙 확인
+	public static void numRuleCheck(){
+		boolean isCheckRule = ValidationCheck.checkRule(ballNum);
+		
+		if(!isCheckRule){//정해진 규칙에 맞지 않으면 새로 입력받도록 호출
+			System.out.println("정해진 규칙에 맞지 않은 숫자입니다.");
+			inputNum();
+		}
+	}
 }
