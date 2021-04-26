@@ -5,14 +5,14 @@ public enum HintType {
 	BALL("BALL","볼"),
 	NOTHING("NOTHING","낫싱");
 	
+	String hintCode;
+	String hintValue;
+	
 	private HintType(String hintCode, String hintValue) {
 		this.hintCode = hintCode;
 		this.hintValue = hintValue;
 	}
 
-	String hintCode;
-	String hintValue;
-	
 	
 	public String getHintCode() {
 		return hintCode;

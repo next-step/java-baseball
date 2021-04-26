@@ -43,6 +43,10 @@ public class HintModel {
 			return HintType.NOTHING.getHintValue();
 		}
 		
+		return makeStrikeBallMessage();
+	}
+	
+	private String makeStrikeBallMessage() {
 		List<String> resultMessageArr = new ArrayList<String>();
 		
 		if(strikeCount>0) {

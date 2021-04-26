@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import common.code.HintType;
+import common.exception.GameException;
 import common.models.HintModel;
 import common.models.ThreeNumbers;
 
 public class GameCore {
-	
-	private final int DEFEND_COUNT = 3; 
 	
 	public HintModel attack(ThreeNumbers attackNumbers, ThreeNumbers defendNumbers) {
 		HintModel result = new HintModel();
@@ -45,7 +44,7 @@ public class GameCore {
 		return HintType.BALL;
 	}
 	
-	public ThreeNumbers makeDefendNumber() {
+	public ThreeNumbers makeDefendNumber() throws GameException {
 		ArrayList<Integer> targets = new ArrayList<Integer>();
 		for(int i=0; i<9; i++) {
 			targets.add(i+1);

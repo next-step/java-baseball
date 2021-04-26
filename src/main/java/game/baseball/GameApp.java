@@ -10,44 +10,47 @@ import common.models.ThreeNumbers;
  *
  */
 public class GameApp {
-	static final GamePlayer gamePlayer = new GamePlayer();
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Scanner inputScanner = new Scanner(System.in);
+		GamePlayer gamePlayer = new GamePlayer();
 		boolean isFinish = false;
 		
 		while(!isFinish) {
-			System.out.print("숫자를입력해주세요: ");
-			
-			int inputNumber = inputScanner.nextInt();
-			
-			PlayResultModel playResultModel = gamePlayer.playGame(new ThreeNumbers(inputNumber));
-			
-			System.out.println(playResultModel.getResultMessage());
-			
-			isFinish = finishGame(playResultModel.isFinish(), inputScanner);
+			int inputNumber = takeNumber("숫자를입력해주세요: ", inputScanner);
+			playGame(gamePlayer, inputNumber);
+			isFinish = finishGame(gamePlayer, inputScanner);
 		}
 	}
 	
-	static private boolean finishGame(boolean isFinishPlay, Scanner inputScanner) {
-		if (!isFinishPlay) {
+	private static int takeNumber(String message, Scanner inputScanner) {
+		System.out.println(message);
+		
+		return inputScanner.nextInt();
+	}
+	
+	private static void playGame(GamePlayer gamePlayer, int inputNumber) {
+		String resultMessage = gamePlayer.playGame(new ThreeNumbers(inputNumber));
+		
+		System.out.println(resultMessage);
+	}
+	
+	static private boolean finishGame(GamePlayer gamePlayer, Scanner inputScanner) {
+		if (!gamePlayer.isFinish()) {
 			return false;
 		}
 		
-		// reset game, when finish play
-		gamePlayer.startGame();
-		
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		
-		int inputNumber = inputScanner.nextInt();
-		
+		int inputNumber = takeNumber("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.", inputScanner);
 		if (inputNumber == 2) {
 			return true;
 		}
 		
+		// reset game, when finish play
+		gamePlayer.startGame();
+				
 		return false;
 	}
 }

@@ -1,10 +1,8 @@
 package game.baseball;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import common.models.HintModel;
 import common.models.ThreeNumbers;
@@ -63,9 +61,9 @@ public class GameCoreTest {
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
 		// 3-strike test
-//		HintModel strikeResult1 = gameCore.attack(new ThreeNumbers(123), defendNumbers);
-//		assertEquals(3, strikeResult1.getStrikeCount(), 
-//				"It should be 3-strike when defend digits equal input digits.");
+		HintModel strikeResult1 = gameCore.attack(new ThreeNumbers(123), defendNumbers);
+		assertEquals(3, strikeResult1.getStrikeCount(), 
+				"It should be 3-strike when defend digits equal input digits.");
 		
 		// 2-strike test
 		HintModel strikeResult2 = gameCore.attack(new ThreeNumbers(423), defendNumbers);
@@ -133,6 +131,7 @@ public class GameCoreTest {
 	
 	@Test
 	void test_make_defend_number_array() {
+		
 		// range test & length test
 		ThreeNumbers defendNumbers = gameCore.makeDefendNumber();
 		assertTrue(defendNumbers.getNumber(0)>0 && defendNumbers.getNumber(0)<10, "");

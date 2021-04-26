@@ -6,24 +6,29 @@ import common.models.ThreeNumbers;
 
 public class GamePlayer {
 	
-	GameCore gameCore = new GameCore();
+	private GameCore gameCore = new GameCore();
 	
 	private ThreeNumbers defendNumberArr = null; 
+	private boolean isFinish = false;
 	
 	public ThreeNumbers startGame() {
 		defendNumberArr = gameCore.makeDefendNumber();
-		
+		isFinish = false;
 		return defendNumberArr;
 	}
 	
-	public PlayResultModel playGame(ThreeNumbers attackNumbers) {
+	public String playGame(ThreeNumbers attackNumbers) {
 		HintModel hintModel = gameCore.attack(attackNumbers, defendNumberArr);
 		
 		if(hintModel.getStrikeCount() == 3) {
-			return new PlayResultModel(true, hintModel.toString());
+			isFinish = true;
 		}
 		
-		return new PlayResultModel(false, hintModel.toString());
+		return hintModel.toString();
+	}
+	
+	public boolean isFinish() {
+		return this.isFinish;
 	}
 	
 }
