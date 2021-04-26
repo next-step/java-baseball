@@ -111,7 +111,8 @@ public class GameTest {
         String userInputStringSample;
 
         try {
-            Method checkDuplicateInputMethod = game.getClass().getDeclaredMethod("checkDuplicateInput", String.class);
+            Method checkDuplicateInputMethod = game.getClass().getDeclaredMethod("checkDuplicateInput",
+                    String.class);
             checkDuplicateInputMethod.setAccessible(true);
 
             userInputStringSample = "131";
@@ -145,8 +146,9 @@ public class GameTest {
         String userInputSample;
         Boolean isNumberString;
 
-        try{
-            Method isInputIsNumberStringMethod = game.getClass().getDeclaredMethod("isInputIsNumberString", String.class);
+        try {
+            Method isInputIsNumberStringMethod = game.getClass().getDeclaredMethod("isInputIsNumberString",
+                    String.class);
             isInputIsNumberStringMethod.setAccessible(true);
 
             userInputSample = "13a";

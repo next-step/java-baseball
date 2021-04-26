@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameResultTest {
     @Test
-    public void addStrikeTest(){
+    public void addStrikeTest() {
         GameResult result = new GameResult();
 
         assertThat(result.strike).isEqualTo(0);
@@ -20,7 +20,7 @@ public class GameResultTest {
 
 
     @Test
-    public void addBallTest(){
+    public void addBallTest() {
         GameResult result = new GameResult();
 
         assertThat(result.ball).isEqualTo(0);
@@ -33,7 +33,7 @@ public class GameResultTest {
     }
 
     @Test
-    public void resultStringTest(){
+    public void resultStringTest() {
         GameResult result = new GameResult();
 
         result.strike = 3;
@@ -57,7 +57,7 @@ public class GameResultTest {
     }
 
     @Test
-    public void threeStrikeJudgeTest(){
+    public void threeStrikeJudgeTest() {
         GameResult result = new GameResult();
 
         result.strike = 3;

@@ -14,7 +14,7 @@ public class BallTest {
     private static final int[] ballValues = new int[]{1, 2, 3};
 
     @Test
-    public void getRandomNumbersTest(){
+    public void getRandomNumbersTest() {
         Ball ball = new Ball();
 
         try{
@@ -47,7 +47,7 @@ public class BallTest {
     }
 
     @Test
-    public void setBallByIntArrayTest(){
+    public void setBallByIntArrayTest() {
         Ball ball = new Ball(ballValues);
 
         int[] setBalls = ball.getNumbers();
@@ -61,7 +61,7 @@ public class BallTest {
     }
 
     @Test
-    public void setBallByStringTest(){
+    public void setBallByStringTest() {
         Ball ball = new Ball(ballString);
 
         int[] setBalls = ball.getNumbers();
@@ -75,7 +75,7 @@ public class BallTest {
 
 
     @Test
-    public void compareBallsTest(){
+    public void compareBallsTest() {
         Ball dealerBall = new Ball("123");
         Ball userBall = new Ball();
         userBall.setBallValues("132");
@@ -115,7 +115,7 @@ public class BallTest {
 
 
     @Test
-    public void markBallValuesTest(){
+    public void markBallValuesTest() {
         Ball ball = new Ball("123");
         Boolean[] valueMarking;
 
@@ -143,7 +143,7 @@ public class BallTest {
 
 
     @Test
-    public void isExistValueOnBallsTest(){
+    public void isExistValueOnBallsTest() {
         Ball ball = new Ball("123");
         Boolean[] valueMarking;
 
@@ -168,9 +168,9 @@ public class BallTest {
             e.printStackTrace();
         }
     }
-    
+
     @Test
-    public void setRandomBallsTest(){
+    public void setRandomBallsTest() {
         Ball ball = new Ball();
         ball.setRandomBalls();
 

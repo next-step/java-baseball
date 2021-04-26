@@ -9,19 +9,19 @@ public class Game {
     private GameResult gameResult;
     private Scanner scan;
 
-    public Game(){
+    public Game() {
         this.gamerBall = new Ball();
         this.dealerBall = new Ball();
         this.scan = new Scanner(System.in);
     }
 
-    public void start(){
+    public void start() {
         do{
             this.run();
         }while(this.checkRestart());
     }
 
-    public void run(){
+    public void run() {
         gameResult = new GameResult();
         dealerBall.setRandomBalls();
         do {
@@ -34,7 +34,7 @@ public class Game {
         } while(this.judgeResult(gameResult));
     }
 
-    public String getUserBallInput(){
+    public String getUserBallInput() {
         String userInput;
         do {
             userInput = this.scan.nextLine();
@@ -42,14 +42,10 @@ public class Game {
         return userInput;
     }
 
-    private Boolean checkRestart(){
+    private Boolean checkRestart() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ");
         int userInput = this.getUserRestartInput();
-
-        if (userInput == 1) {
-            return true;
-        }
-        return false;
+        return userInput == 1;
     }
 
     private Boolean judgeResult(GameResult gameResult){
@@ -79,7 +75,7 @@ public class Game {
         return false;
     }
 
-    private GameResult compareBalls(){
+    private GameResult compareBalls() {
         gameResult = dealerBall.compareBalls(gamerBall);
         return gameResult;
     }
@@ -105,7 +101,7 @@ public class Game {
         System.out.println(gameResultString);
     }
 
-    private int getUserRestartInput(){
+    private int getUserRestartInput() {
         int input;
         do {
             input = this.scan.nextInt();
@@ -120,5 +116,4 @@ public class Game {
         }
         return false;
     }
-
 }

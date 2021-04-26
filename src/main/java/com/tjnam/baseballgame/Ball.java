@@ -8,8 +8,7 @@ import java.util.Arrays;
         private int[] ballValues;
         private Boolean[] ballExists;
 
-
-        public Ball(){
+        public Ball() {
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
         }
@@ -43,7 +42,7 @@ import java.util.Arrays;
             this.markValueExist();
         }
 
-        public int[] getNumbers(){
+        public int[] getNumbers() {
             return this.ballValues;
         }
 
@@ -62,18 +61,16 @@ import java.util.Arrays;
         }
 
         private int[] getRandomNumbers() {
-            int numbers[] = new int[BALL_LENGTH];
-            boolean numberCheck[] = new boolean[BALL_RANGE];
+            int[] numbers = new int[BALL_LENGTH];
+            boolean[] numberCheck = new boolean[BALL_RANGE];
             int count=0;
             do {
                 int pick = (((int) (Math.random() * 10)) % 9) + 1;
-
-                if (numberCheck[pick] == false) {
+                if (!numberCheck[pick]) {
                     numbers[count++] = pick;
                     numberCheck[pick] = true;
                 }
             } while (count < BALL_LENGTH);
-
             return numbers;
         }
 
@@ -85,20 +82,17 @@ import java.util.Arrays;
             return false;
         }
 
-        private Boolean countBall(GameResult gameResult, int compareValue){
+        private void countBall(GameResult gameResult, int compareValue){
             if (this.checkValueIsExist(compareValue)) {
                 gameResult.addBall();
-                return true;
             }
-            return false;
         }
-
 
         public Boolean checkValueIsExist(int value){
             return this.ballExists[value];
         }
 
-        private void markValueExist(){
+        private void markValueExist() {
             Arrays.fill(this.ballExists, false);
             for (int i=0 ; i<BALL_LENGTH ; i++){
                 this.ballExists[this.ballValues[i]] = true;
