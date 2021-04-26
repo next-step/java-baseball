@@ -1,8 +1,8 @@
 package baseball.entity;
 
-import java.util.HashSet;
+import baseball.util.ValidateNumberUtil;
+
 import java.util.Objects;
-import java.util.Set;
 
 public class Computer {
     private final String selectNumber;
@@ -13,20 +13,11 @@ public class Computer {
     }
 
     private void validateLength(String selectNumber) {
-        if (selectNumber.length() != 3 || duplicateCheckNumberLength(selectNumber) != 3) {
+        if (!ValidateNumberUtil.validateNumber(selectNumber)) {
             throw new IllegalArgumentException("서로 다른 임의의 수 3개만 선택 가능 합니다.");
         }
     }
 
-    private int duplicateCheckNumberLength(String selectNumber) {
-        Set<Character> lengthCheckSet = new HashSet<>();
-
-        for (int i = 0; i < selectNumber.length(); i++) {
-            lengthCheckSet.add(selectNumber.charAt(i));
-        }
-
-        return lengthCheckSet.size();
-    }
 
     @Override
     public boolean equals(Object o) {

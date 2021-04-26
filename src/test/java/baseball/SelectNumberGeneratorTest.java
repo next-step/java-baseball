@@ -1,6 +1,7 @@
 package baseball;
 
 import baseball.entity.SelectNumberGenerator;
+import baseball.util.ValidateNumberUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,6 @@ public class SelectNumberGeneratorTest {
 
         SelectNumberGenerator selectNumber = new SelectNumberGenerator();
 
-        assertThat(selectNumber.getGenerateNumber().length() == 3).isTrue();
+        assertThat(selectNumber.generateNumber().length() == ValidateNumberUtil.NUMBER_LENGTH).isTrue();
     }
 }

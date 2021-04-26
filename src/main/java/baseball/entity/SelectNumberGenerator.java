@@ -1,8 +1,13 @@
 package baseball.entity;
 
+import baseball.util.ValidateNumberUtil;
+
 public class SelectNumberGenerator {
 
     private final String generateNumber;
+
+    private static final int GENERATE_START_NUMBER = 1;
+    private static final int GENERATE_END_NUMBER = 9;
 
     public SelectNumberGenerator(String generateNumber) {
         this.generateNumber = generateNumber;
@@ -16,7 +21,7 @@ public class SelectNumberGenerator {
         String generateNumber;
         StringBuilder stringBuilder = new StringBuilder();
 
-        while (stringBuilder.length() != 3) {
+        while (stringBuilder.length() != ValidateNumberUtil.NUMBER_LENGTH) {
             generateNumber = randomNumber();
             appendNumber(generateNumber, stringBuilder);
         }
@@ -25,7 +30,7 @@ public class SelectNumberGenerator {
     }
 
     private static String randomNumber() {
-        return String.valueOf((int) (Math.random() * 9) + 1);
+        return String.valueOf((int) (Math.random() * GENERATE_END_NUMBER) + GENERATE_START_NUMBER);
     }
 
     private static void appendNumber(String generateNumber, StringBuilder stringBuilder) {
@@ -34,7 +39,7 @@ public class SelectNumberGenerator {
         }
     }
 
-    public String getGenerateNumber() {
+    public String generateNumber() {
         return generateNumber;
     }
 
