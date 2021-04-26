@@ -3,6 +3,7 @@ package khj.baseball;
 import khj.baseball.exception.DuplicateInputException;
 import khj.baseball.exception.LengthWrongInputException;
 import khj.baseball.exception.TypeWrongInputException;
+import khj.baseball.model.Record;
 import khj.baseball.util.generator.RandomNumberStringGenerator;
 import khj.baseball.util.generator.RandomStringGenerator;
 import khj.baseball.util.input.InputProcessor;
@@ -10,7 +11,7 @@ import khj.baseball.util.input.NumberInputProcessor;
 import khj.baseball.util.match.DefaultStringMatch;
 import khj.baseball.util.match.StringMatch;
 
-public class BaseBallGames {
+public class BaseBallGames implements Game {
     private final RandomStringGenerator generator;
     private final InputProcessor inputProcessor;
     private final StringMatch match;
@@ -22,6 +23,7 @@ public class BaseBallGames {
         match = new DefaultStringMatch();
     }
 
+    @Override
     public void play() {
         String answer = generator.generatorString(checkStringSize);
         Record record = new Record();

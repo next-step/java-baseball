@@ -1,6 +1,6 @@
 package khj.baseball.util.match;
 
-import khj.baseball.Record;
+import khj.baseball.model.Record;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

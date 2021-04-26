@@ -1,4 +1,4 @@
-package khj.baseball;
+package khj.baseball.model;
 
 public class Record {
     private int strike = 0;

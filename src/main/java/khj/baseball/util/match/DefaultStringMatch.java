@@ -1,6 +1,6 @@
 package khj.baseball.util.match;
 
-import khj.baseball.Record;
+import khj.baseball.model.Record;
 
 public class DefaultStringMatch implements StringMatch {
     private Record record;
