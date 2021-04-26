@@ -14,8 +14,7 @@ public class GamePlay implements ImplGamePlay {
     @Override
     public void init() {
         /* TODO
-        *   1. 정답 생성
-        *   2. 변수 선언 */
+        *   1. 정답 생성 */
         scanner = new Scanner(System.in);
         service = new GamePlayService();
         answer = 123;

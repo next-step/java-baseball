@@ -25,7 +25,8 @@
 * 3가지 숫자 입력기(정답 123 고정 테스트)<br>(getInputNumber)
 * 게임 종료 후 재시작 숫자 입력 및 재시작<br>(replay 함수)
 2. 게임 플레이 구성
-* 게임 시작 할 때, 정답 만들기
+* 게임 시작 할 때, 정답 만들기<br>
+  (makeAnswer)
 * 정답과 입력된 숫자 결과 비교 (strike, ball 수 확인)<br>
   (checkStrike, checkBall)
 * 숫자 결과를 프린트 하고, 3 strike 의 경우 게임 종료.

@@ -5,41 +5,73 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 public class GamePlayServiceTest {
-    ImplGamePlayService implGamePlayService;
+    private static ImplGamePlayService implGamePlayService;
+
     @BeforeAll
-    public void init(){
+    public static void init(){
         implGamePlayService = (compare, input)->{return (compare==input?1:0);};
     }
 
-    @Test
-    @DisplayName("3 Strike TEST")
-    public void test1(){
-        int answer = 123;
-        int input = 123;
+    @ParameterizedTest
+    @CsvSource(value = {"123:123:3:0", "123:132:1:2" , "123:452:0:1", "123:456:0:0"}, delimiter = ':')
+    @DisplayName("Check Strike and Ball TEST")
+    public void testCheck(int answer, int input, int strike, int ball){
         int[] result = check(answer, input);
-        assertThat(result[0]).isEqualTo(3);
+
+        assertThat(result[0]).isEqualTo(strike);
+        assertThat(result[1]).isEqualTo(ball);
     }
+
     @Test
-    @DisplayName("1 Strike 2 Ball TEST")
-    public void test2(){
-        int answer = 123;
-        int input = 132;
-        int[] result = check(answer, input);
-        assertThat(result[0]).isEqualTo(1);
-        assertThat(result[1]).isEqualTo(2);
+    @DisplayName("100~1000 사이 중복 없는 3자리 수 / indent 2")
+    public void makeAnswer1(){
+        int answer = 0;
+        while(true){
+            answer = (int)(Math.random()*900+100);
+
+            int first = answer/100;
+            int second = (answer - first*100)/10;
+            int third = (answer - first*100)%10;
+
+            if(first==second || second==third || third==first){
+                continue;
+            }
+            break;
+        }
+
+        int[] test = toArray(answer);
+        assertThat(test[0]).isNotEqualTo(test[1]);
+        assertThat(test[1]).isNotEqualTo(test[2]);
+        assertThat(test[2]).isNotEqualTo(test[0]);
     }
+
     @Test
-    @DisplayName("1 Ball TEST")
-    public void test3(){
-        int answer = 123;
-        int input = 452;
-        int[] result = check(answer, input);
-        assertThat(result[0]).isEqualTo(0);
-        assertThat(result[1]).isEqualTo(1);
+    @DisplayName("Collection shuffle 1,2,3,4,5,6,7,8,9 중 3개 선택")
+    public void makeAnswer2(){
+        List<Integer> resource = new ArrayList<>();
+        for (int i = 1; i < 10; i++){
+            resource.add(i);
+        }
+        Collections.shuffle(resource);
+
+        List<Integer> answer = resource.subList(0,3);
+
+        assertThat(answer.get(0)).isNotEqualTo(answer.get(1));
+        assertThat(answer.get(1)).isNotEqualTo(answer.get(2));
+        assertThat(answer.get(2)).isNotEqualTo(answer.get(0));
     }
+
+
     private int[] check(int answer, int input){
 
         /** result[0] = strike, result[1] = ball */
