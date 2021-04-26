@@ -2,7 +2,6 @@ package baseball;
 
 import static enumType.SystemNumberType.DIGIT;
 import static enumType.GameNoticeType.GAME_WIN_MESSAGE;
-import static enumType.UmpireType.*;
 
 public class GameScore {
     
