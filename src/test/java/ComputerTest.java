@@ -13,6 +13,7 @@ public class ComputerTest {
 			+ "- 3자리 수 생성 확인"
 			+ "- 서로 다른 수 확인")
 	public void generateComputerPlayerTest() {
+		computer.generateNumbers();
 		List<Integer> numbers = computer.getComputerNumbers();
 
 		assertThat(numbers)
