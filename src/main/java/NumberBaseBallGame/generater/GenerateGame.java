@@ -3,19 +3,21 @@ package NumberBaseBallGame.generater;
 import NumberBaseBallGame.domain.BallNumberMatchResult;
 import NumberBaseBallGame.domain.BaseBallConst;
 import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.domain.ValidationCheckUtils;
+import NumberBaseBallGame.ValidationCheckUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateGame {
 	private final List<Ball> randomBalls;
+	private final GenerateClientBall pickClientBalls;
 	private final BallNumberMatcher ballNumberMatcher;
 	private final int GAMENUMBERS_LENGTH= BaseBallConst.GAMENUMBERS_LENGTH;
 
 	public GenerateGame() {
 		randomBalls = new GenerateGameNumber(GAMENUMBERS_LENGTH).getRandomBalls();
 		ballNumberMatcher = new BallNumberMatcher();
+		pickClientBalls = new GenerateClientBall(GAMENUMBERS_LENGTH);
 	}
 
 	/**
@@ -28,7 +30,7 @@ public class GenerateGame {
 	public BallNumberMatchResult playGame(String getClientNumber){
 		ValidationCheckUtils.checkInputNumber(getClientNumber);
 
-		List<Ball> clientBalls = generateClientBalls(getClientNumber);
+		List<Ball> clientBalls = pickClientBalls.generateBall(getClientNumber);
 
 		return checkMatch(clientBalls);
 	}
