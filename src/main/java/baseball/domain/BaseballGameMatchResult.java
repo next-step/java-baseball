@@ -17,4 +17,8 @@ public class BaseballGameMatchResult {
 		return matchResult.getOrDefault(baseballNumberMatch, 0);
 	}
 
+	public boolean isAllMatch(BaseballNumberMatch baseballNumberMatch) {
+		return (getMatchCount(baseballNumberMatch) == BaseballNumbers.MAX_BASEBALL_NUMBER_COUNT);
+	}
+
 }

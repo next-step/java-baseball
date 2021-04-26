@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class BaseballNumbers {
 
-	private static final int MAX_BASEBALL_NUMBER_COUNT = 3;
+	public static final int MAX_BASEBALL_NUMBER_COUNT = 3;
 
 	private final List<BaseballNumber> baseballNumbers;
 
