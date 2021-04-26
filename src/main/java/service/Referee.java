@@ -34,7 +34,22 @@ public class Referee {
     }
 
     private void setScore(char[] userInputs, List<Integer> computerValues) {
+        HashSet set = new HashSet();
+
+        for (int i = 0; i < userInputs.length; i++) {
+            int userInput = userInputs[i]-'0';
+            addScore(userInput, computerValues.get(i), strike);
+            set.add(userInput);
+            set.add(computerValues.get(i));
+        }
+
+        int ballCount = ((Bettings.bettingSize()*2) - set.size()) - strike.getCount();
+        ball.setCount(ballCount);
     }
 
-
+    private void addScore(int betting, int number, Score score){
+        if(betting == number){
+            score.addOneToCount();
+        }
+    }
 }
