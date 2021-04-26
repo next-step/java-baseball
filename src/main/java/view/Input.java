@@ -13,7 +13,7 @@ public class Input {
     public Input() {
     }
 
-    public Number threeDigitNumber() {
+    public Number number() {
         String inputNumber;
         do {
             System.out.print(Notice.INPUT_NUMBER.getMessage());

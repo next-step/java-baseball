@@ -23,7 +23,7 @@ public class BaseballGame {
         boolean isSolved = false;
 
         do {
-            isSolved = scoreMatch.compare(input.threeDigitNumber());
+            isSolved = scoreMatch.compare(input.number());
         } while (!isSolved);
 
         return input.askContinueGame();
