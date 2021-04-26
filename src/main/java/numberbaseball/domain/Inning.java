@@ -27,9 +27,15 @@ public class Inning {
     Map<Pitching, Integer> expectPitchingAndOrder = expectation.pitchingAndOrder;
     for (Map.Entry<Pitching, Integer> expectPitchingAndOrderEntry : expectPitchingAndOrder.entrySet()) {
       Count count = getPitchingMatchStatus(pitchingAndOrder, expectPitchingAndOrderEntry);
-      countsOfExpectInning.add(count);
+      addCountExceptNothing(countsOfExpectInning, count);
     }
     return new CountScore(countsOfExpectInning);
+  }
+
+  private void addCountExceptNothing(List<Count> countsOfExpectInning, Count count) {
+    if(count != NOTHING) {
+      countsOfExpectInning.add(count);
+    }
   }
 
   private Count getPitchingMatchStatus(Map<Pitching, Integer> pitchingAndOrder, Map.Entry<Pitching, Integer> expectPitchingAndOrderEntry) {

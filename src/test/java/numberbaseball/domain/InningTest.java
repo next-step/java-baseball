@@ -57,10 +57,10 @@ class InningTest {
                       new CountScore(List.of(Count.STRIKE, Count.STRIKE, Count.STRIKE))),
         Arguments.of(List.of(new Pitching(2), new Pitching(6), new Pitching(1)),
                       List.of(new Pitching(2), new Pitching(1), new Pitching(4)),
-                      new CountScore(List.of(Count.STRIKE, Count.BALL, Count.NOTHING))),
+                      new CountScore(List.of(Count.STRIKE, Count.BALL))),
         Arguments.of(List.of(new Pitching(2), new Pitching(6), new Pitching(1)),
                       List.of(new Pitching(3), new Pitching(4), new Pitching(5)),
-                      new CountScore(List.of(Count.NOTHING, Count.NOTHING, Count.NOTHING)))
+                      new CountScore(List.of()))
     );
   }
 
