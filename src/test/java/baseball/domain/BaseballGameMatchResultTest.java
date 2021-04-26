@@ -18,4 +18,17 @@ class BaseballGameMatchResultTest {
 		}
 	}
 
+	@Test
+	@DisplayName("야구 숫자의 일치 개수가 3개이면 전체 일치한다.")
+	void allMatchIfBaseballNumberMatchIs3() {
+		BaseballGameMatchResult matchResult = new BaseballGameMatchResult();
+		for (BaseballNumberMatch numberMatch : BaseballNumberMatch.values()) {
+			for (int i = 0; i < 3; i++) {
+				matchResult.increaseMatchCount(numberMatch);
+			}
+
+			assertThat(matchResult.isAllMatch(numberMatch)).isTrue();
+		}
+	}
+
 }
