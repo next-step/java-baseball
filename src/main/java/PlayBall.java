@@ -1,14 +1,14 @@
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class PlayBall {
 
-    private UserInputNumber userInput = new UserInputNumber();
-    private CreateGameBall createBall = new CreateGameBall();
-    private CompareBall compareBall = new CompareBall();
+    private final UserInputNumber userInput = new UserInputNumber();
+    private final CreateGameBall createBall = new CreateGameBall();
+    private final CompareBall compareBall = new CompareBall();
 
-    private Scanner scan = new Scanner(System.in);
+    private final Scanner scan = new Scanner(System.in);
 
     public void gameReady() {
         List<Integer> computerBall;
