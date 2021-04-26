@@ -5,16 +5,17 @@ import java.util.Random;
 
 import common.code.HintType;
 import common.models.HintModel;
+import common.models.ThreeNumbers;
 
 public class GameCore {
 	
 	private final int DEFEND_COUNT = 3; 
 	
-	public HintModel attack(int [] attackNumberArr, int [] defendNumberArr) {
+	public HintModel attack(ThreeNumbers attackNumbers, ThreeNumbers defendNumbers) {
 		HintModel result = new HintModel();
 		
-		for(int i=0; i<attackNumberArr.length; i++) {
-			HintModel attackResult = checkAttack(attackNumberArr[i], i, defendNumberArr);
+		for(int i=0; i<ThreeNumbers.NUMBERS_SIZE; i++) {
+			HintModel attackResult = checkAttack(attackNumbers.getNumber(i), i, defendNumbers);
 			result.setStrikeCount(result.getStrikeCount()+attackResult.getStrikeCount());
 			result.setBallCount(result.getBallCount()+attackResult.getBallCount());
 		}
@@ -22,10 +23,10 @@ public class GameCore {
 		return result;
 	}
 	
-	public HintModel checkAttack(int attackNumber, int attackIndex, int[] defendNumberArr) {
+	public HintModel checkAttack(int attackNumber, int attackIndex, ThreeNumbers defendNumbers) {
 		HintModel result = new HintModel();
-		for(int i=0; i<defendNumberArr.length; i++) {
-			HintType matched = match(attackNumber, attackIndex, defendNumberArr[i], i);
+		for(int i=0; i<ThreeNumbers.NUMBERS_SIZE; i++) {
+			HintType matched = match(attackNumber, attackIndex, defendNumbers.getNumber(i), i);
 			result.calculateCount(matched);
 		}
 		
@@ -44,22 +45,19 @@ public class GameCore {
 		return HintType.BALL;
 	}
 	
-	public int[] makeDefendNumber() {
-			
+	public ThreeNumbers makeDefendNumber() {
 		ArrayList<Integer> targets = new ArrayList<Integer>();
 		for(int i=0; i<9; i++) {
 			targets.add(i+1);
 		}
-		long seed = System.currentTimeMillis();
-		Random random = new Random(seed);
 		
-		int[] result = new int[DEFEND_COUNT];
-		for(int i=0; i<DEFEND_COUNT; i++) {
-			result[i] = targets.remove(random.nextInt(targets.size()-1));
+		Random random = new Random(System.currentTimeMillis());
+		int numbers = 0;
+		for(int i=2; i>=0; i--) {
+			numbers += targets.remove(random.nextInt(targets.size()-1))*Math.pow(10, i);
 		}
 		
-		return result;
-			
+		return new ThreeNumbers(numbers);
 	}
 	
 }

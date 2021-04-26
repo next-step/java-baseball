@@ -3,6 +3,7 @@ package game.baseball;
 import java.util.Scanner;
 
 import common.models.PlayResultModel;
+import common.models.ThreeNumbers;
 
 /**
  * @author SUNJU
@@ -22,9 +23,8 @@ public class GameApp {
 			System.out.print("숫자를입력해주세요: ");
 			
 			int inputNumber = inputScanner.nextInt();
-			int[] attackNumberArr = {inputNumber/100, (inputNumber%100)/10, (inputNumber%10)};
 			
-			PlayResultModel playResultModel = gamePlayer.playGame(attackNumberArr);
+			PlayResultModel playResultModel = gamePlayer.playGame(new ThreeNumbers(inputNumber));
 			
 			System.out.println(playResultModel.getResultMessage());
 			

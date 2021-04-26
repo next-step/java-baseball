@@ -2,21 +2,22 @@ package game.baseball;
 
 import common.models.HintModel;
 import common.models.PlayResultModel;
+import common.models.ThreeNumbers;
 
 public class GamePlayer {
 	
 	GameCore gameCore = new GameCore();
 	
-	private int[] defendNumberArr = null; 
+	private ThreeNumbers defendNumberArr = null; 
 	
-	public int[] startGame() {
+	public ThreeNumbers startGame() {
 		defendNumberArr = gameCore.makeDefendNumber();
 		
 		return defendNumberArr;
 	}
 	
-	public PlayResultModel playGame(int[] attackNumberArr) {
-		HintModel hintModel = gameCore.attack(attackNumberArr, defendNumberArr);
+	public PlayResultModel playGame(ThreeNumbers attackNumbers) {
+		HintModel hintModel = gameCore.attack(attackNumbers, defendNumberArr);
 		
 		if(hintModel.getStrikeCount() == 3) {
 			return new PlayResultModel(true, hintModel.toString());

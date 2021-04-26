@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import common.models.PlayResultModel;
+import common.models.ThreeNumbers;
 
 public class GamePlayerTest {
 	
@@ -15,46 +16,34 @@ public class GamePlayerTest {
 	@Test
 	@DisplayName("game start test")
 	void test_start() {
-		int[] defendNumberArr = gamePlayer.startGame();
+		ThreeNumbers defendNumbers = gamePlayer.startGame();
 		
 		// null test
-		assertNotNull(defendNumberArr, "생성된 defend number은 null이어서는 안된다.");
-		
-		// array length test
-		assertEquals(3, defendNumberArr.length, "생성된 defend number의 개수는 3개이다.");
-		
-		// digits length test
-		for(int i=0; i<defendNumberArr.length; i++) {
-			assertTrue(defendNumberArr[i]<=9 && defendNumberArr[i]>=1, "생성된 defend number의 개수는 3개이다.");
-		}
-		
+		assertNotNull(defendNumbers, "생성된 defend number은 null이어서는 안된다.");
 	}
 	
 	@Test
 	@DisplayName("game play test")
 	void test_play() {
-		int[] attackNumberArr = new int[3];
-		int[] defendNumberArr = gamePlayer.startGame();
+		ThreeNumbers defendNumbers = gamePlayer.startGame();
 		
 		// play game
-		attackNumberArr[0] = defendNumberArr[0];
-		attackNumberArr[1] = defendNumberArr[2];
-		attackNumberArr[2] = defendNumberArr[1];
+		ThreeNumbers attackNumbers1 = new ThreeNumbers(
+				defendNumbers.getNumber(0), defendNumbers.getNumber(2), defendNumbers.getNumber(1));
 		
-		PlayResultModel playReulst1 = gamePlayer.playGame(attackNumberArr);
+		PlayResultModel playReulst1 = gamePlayer.playGame(attackNumbers1);
 		assertFalse(playReulst1.isFinish());
 		assertEquals("스트라이크1개 볼2개", playReulst1.getResultMessage());
 		
-		attackNumberArr[0] = defendNumberArr[0];
-		attackNumberArr[1] = defendNumberArr[1];
-		attackNumberArr[2] = 0;
+		ThreeNumbers attackNumbers2 = new ThreeNumbers(
+				defendNumbers.getNumber(0), defendNumbers.getNumber(1), 0);
 		
-		PlayResultModel playReulst2 = gamePlayer.playGame(attackNumberArr);
+		PlayResultModel playReulst2 = gamePlayer.playGame(attackNumbers2);
 		assertFalse(playReulst2.isFinish());
 		assertEquals("스트라이크2개", playReulst2.getResultMessage());
 		
 		// 3Strkie, finish game
-		PlayResultModel finishResult = gamePlayer.playGame(defendNumberArr);
+		PlayResultModel finishResult = gamePlayer.playGame(defendNumbers);
 		assertTrue(finishResult.isFinish());
 		
 	}
