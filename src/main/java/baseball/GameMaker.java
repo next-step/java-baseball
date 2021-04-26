@@ -9,6 +9,37 @@ import java.util.Set;
 public class GameMaker {
 	private static final int GAME_NUMBER_SIZE = 3;
 
+	public void startNewGame() {
+		Set<Integer> gameSet = generateRandomNumber();
+		System.out.println(gameSet);
+		Set<Integer> playerSet;
+		do {
+			playerSet = inputNumberUntilSuccess();
+			System.out.println(gameSet);
+			System.out.println(playerSet);
+		} while (!getWinner(gameSet, playerSet));
+
+		try {
+			restartGame();
+		} catch (RuntimeException e) {
+			System.out.println("유효하지 않은 입력입니다. 게임을 종료합니다.");
+		}
+	}
+
+	public void restartGame() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		Scanner sc = new Scanner(System.in);
+		int inputNumber = sc.nextInt();
+		if(inputNumber == 1) {
+			startNewGame();
+			return;
+		}
+		if(inputNumber == 2) {
+			System.exit(0);
+		}
+		throw new RuntimeException();
+	}
+
 	public Set<Integer> generateRandomNumber() {
 		Random random = new Random();
 		Set<Integer> numberSet = new LinkedHashSet<>();
