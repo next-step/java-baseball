@@ -19,8 +19,8 @@ public class DefaultStringMatchTest {
         assertTrue(record.isComplete(3));
     }
 
-    @ParameterizedTest(name = "정답이 맞는 지 확인한다.")
-    @CsvSource({"124,2,0", "213,1,2"})
+    @ParameterizedTest(name = "정답이 맞는 지 확인한다. {0} 입력시, {1} 스트라이크 {2} 볼")
+    @CsvSource({"124,2,0", "213,1,2", "253,1,1"})
     void matchString(String input, int strike, int ball) {
         Record record = match.matchingString(input, "123");
         assertEquals(strike, record.getStrike());
