@@ -3,10 +3,12 @@ package com.chajs226.baseball;
 import java.util.Random;
 import java.util.Scanner;
 
-enum checkRetry {RETRY, END, ERROR}
 public class BaseballGame {
 	
 	Scanner scan;
+	int strikeCount = 0;
+	int ballCount = 0;
+	boolean isRetry = true;
 	
 	public BaseballGame() {
 		scan = new Scanner(System.in);
@@ -17,68 +19,132 @@ public class BaseballGame {
 		scan.close();
 	}
 	
-	public void startGame() {
-		
-		checkRetry isRetry = checkRetry.RETRY;
-		
-		while (isRetry == checkRetry.RETRY)
-		{
-			String randomNumbers = makeRandomNumbers();
-			progressGame(randomNumbers);
-			isRetry = retryOrEndGame();
+	public void startGame() {		
+		while (isRetry == true)
+		{	
+			resetBallCount();
+			String randomNumbers = generateRandomNumbers();
+			inputNumbersAndCheck(randomNumbers);
+			isRetry = inputRetryOrEnd();
 		}
 	}
 	
-	public void progressGame(String randomNumbers) {
-		
-		boolean success = false;
-		
+	public void resetBallCount() {
+		strikeCount = 0;
+		ballCount = 0;
+	}
+	
+	public void inputNumbersAndCheck(String randomNumbers) {		
+		boolean success = false;		
 		
 		while (success == false) {
-			System.out.println("숫자를 입력해주세요 : ");
+			resetBallCount();
+			System.out.print("숫자를 입력해주세요 : ");
 			String inputNumbers = scan.next();
-			//TODO: 입력값 비교 체크. 성공 시, success = true		
-			success = true;
-			}
+			compareInputAndRandomNumber(inputNumbers, randomNumbers);
+			success = checkThreeStrike();
+		}
 	}
 	
-	public checkRetry retryOrEndGame() {
-			
-		String input = null;
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 : ");
-		input = scan.next();			
+	public boolean validateInputNumberLength(String inputNumbers) {
+		if (inputNumbers.length() != 3) {
+			return false;
+		}		
+		return true;
+	}
+	
+	public void compareInputAndRandomNumber(String inputNumbers, String randomNumbers) {		
+		if(validateInputNumberLength(inputNumbers) == false)
+			throw new RuntimeException("3자리 숫자만 입력 가능합니다.");
 		
+		String[] splitedInputNumber = inputNumbers.split("");
+		
+		for (int i=0; i<3; i++) {
+			updateBallCount(i+1, splitedInputNumber[i], randomNumbers);
+		}
+		showResultMessages();	
+	}
+	
+	public boolean checkThreeStrike() {
+		if (strikeCount == 3)
+			return true;
+		
+		return false;	
+	}
+	
+	public void showResultMessages() {
+		if (strikeCount == 3)
+			System.out.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		
+		if (strikeCount == 0 && ballCount == 0)
+			System.out.print("낫싱");
+		
+		if (strikeCount == 1 || strikeCount == 2)
+			System.out.print(strikeCount + "스트라이크 ");
+		
+		if (ballCount == 1 || ballCount == 2)
+			System.out.print(ballCount + "볼");
+				
+		System.out.print("\n");
+	}
+	
+	public void updateBallCount(int position, String inputNumber, String randomNumbers) {		
+		if( position == randomNumbers.indexOf(inputNumber) + 1)
+			strikeCount = strikeCount+1;
+		
+		if( position != randomNumbers.indexOf(inputNumber) + 1 && randomNumbers.indexOf(inputNumber) != -1 )
+			ballCount = ballCount+1;
+	}
+	
+	public boolean inputRetryOrEnd() {	
+		boolean isInput = true;
+		String inputMenu = null;
+		
+		while(isInput) {			
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 : ");
+			inputMenu = scan.next();	
+			isInput = validateInputRetry(inputMenu);
+		}		
+		return checkInputRetry(inputMenu);
+	}
+	
+	public boolean checkInputRetry(String input) {
 		if(input.equals("1"))
-			return checkRetry.RETRY;		
+			return true;		
 		
 		if(input.equals("2"))
-			return checkRetry.END;
+			return false;
 		
-		return checkRetry.ERROR;
+		return false;
 	}
 	
-	public String makeRandomNumbers() {
-		
+	public boolean validateInputRetry(String input) {
+		if(!input.equals("1") && !input.equals("2")) {
+			System.out.println("1 또는 2만 입력 가능합니다.");
+			return true;
+		}
+		return false;
+	}
+	
+	public String generateRandomNumbers() {		
 		Random rd = new Random();		
-		String getNumbers = "";
+		String generatedNumbers = "";
 		int tempNumber;
 		
-		while ( getNumbers.length() < 3 )
+		while ( generatedNumbers.length() < 3 )
 		{
 			tempNumber = rd.nextInt(8)+1;
-			getNumbers = appendNumber(getNumbers, Integer.toString(tempNumber));			
-		}
-		
-		return getNumbers;		
+			generatedNumbers = appendNumber(generatedNumbers, Integer.toString(tempNumber));			
+		}		
+		return generatedNumbers;		
 	}	
 	
-	private String appendNumber(String getNumbers, String tempNumber ) {
-		
+	public String appendNumber(String getNumbers, String tempNumber ) {		
 		if(getNumbers.length() == 0)
 			return tempNumber;
 		
-		if( (getNumbers.length() == 1 && getNumbers != tempNumber) ||
-			(getNumbers.length() == 2 && getNumbers.split("")[0] != tempNumber && getNumbers.split("")[1] != tempNumber) )				
+		if( (getNumbers.length() == 1 && !getNumbers.equals(tempNumber)) ||
+			(getNumbers.length() == 2 && !getNumbers.split("")[0].equals(tempNumber) && !getNumbers.split("")[1].equals(tempNumber)))
 			return getNumbers+tempNumber;
 		
 		return getNumbers;
