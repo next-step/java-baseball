@@ -27,6 +27,7 @@ public class BaseBallGame implements Game {
     public void play() {
         String answer = generator.generatorString(checkStringSize);
         Record record = new Record();
+
         while (!record.isComplete(checkStringSize)) {
             String checkString = inputCheckString();
             record = match.matchString(checkString, answer);
@@ -38,10 +39,12 @@ public class BaseBallGame implements Game {
 
     private String inputCheckString() {
         String input = "";
+
         do {
             System.out.print("숫자를 입력해주세요 : ");
             input = inputCatchException(input);
         } while (input.equals(""));
+
         return input;
     }
 

@@ -30,19 +30,23 @@ public class RandomNumberStringGenerator implements RandomStringGenerator {
 
     private SecureRandom getSecureRandomCatchError() {
         SecureRandom random = null;
+
         try {
             random = SecureRandom.getInstanceStrong();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
         return random;
     }
 
     private StringBuilder mergeCharacter(Set<Character> choiceCharSet) {
         StringBuilder builder = new StringBuilder();
+
         for (Character choiceChar: choiceCharSet) {
             builder.append(choiceChar);
         }
+
         return builder;
     }
 }

@@ -25,14 +25,14 @@ public class Flow {
         } while (!isStopGame(selection));
     }
 
-    private boolean isStopGame(String selection) {
-        return STOP_GAME.equals(selection);
-    }
-
     private void startGame(String selection) {
         if (isStartGame(selection)) {
             baseBallGame.play();
         }
+    }
+
+    private boolean isStopGame(String selection) {
+        return STOP_GAME.equals(selection);
     }
 
     private boolean isStartGame(String selection) {
