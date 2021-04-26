@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BaseBall implements Iterable<Ball> {
+    public static final int BALLS_LENGTH = 3;
     private final List<Ball> balls;
 
     public BaseBall(List<Ball> balls) {
@@ -39,14 +40,14 @@ public class BaseBall implements Iterable<Ball> {
     }
 
     private static void validationDuplicate(List<Ball> balls) {
-        if (balls.size() < 3) {
+        if (balls.size() < BALLS_LENGTH) {
             throw new DuplicatedNumberException("숫자는 중복되지 않아야 합니다.");
         }
     }
 
     public static BaseBall ofRandom(OneDigitNumber oneDigitNumber) {
         List<Ball> balls = new ArrayList<>();
-        while (balls.size() < 3) {
+        while (balls.size() < BALLS_LENGTH) {
             Ball ball = Ball.of(oneDigitNumber);
             if (!balls.contains(ball)) {
                 balls.add(ball);
