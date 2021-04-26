@@ -83,13 +83,21 @@ class BaseballGameTest {
         BaseballResult baseballResult = new BaseballResult(strike, ball);
         assertThat(baseballResult.toString()).isEqualTo(result);
     }
-    
+
     @DisplayName("결과 정답,오답 확인")
     @ParameterizedTest
     @CsvSource({"3,3,true", "2,1,false", "0,0,false"})
     void checkAnswer(int strike, int ball, boolean expected) {
         BaseballResult baseballResult = new BaseballResult(strike, ball);
         boolean result = baseballGame.checkAnswer(baseballResult);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("시작 입력값 확인")
+    @ParameterizedTest
+    @CsvSource({"1,true", "2,true", "3,false", "0,false"})
+    void validateStartInput(String input, boolean expected) {
+        boolean result = baseballGame.validateStartInput(input);
         assertThat(result).isEqualTo(expected);
     }
 }
