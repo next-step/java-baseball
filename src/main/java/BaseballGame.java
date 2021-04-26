@@ -122,7 +122,7 @@ public class BaseballGame {
         }
         for (int i = 1 ; i<10 ; i++){
             strikes += checkStrike(targets, inputs, i); //Strike 판정
-            //balls += checkBall(targets, inputs, i); //ball 판정
+            balls += checkBall(targets, inputs, i); //ball 판정
         }
 
         //printResult(strikes, balls); //Strikes와 balls의 갯수에 따라 결과 출력
@@ -148,4 +148,23 @@ public class BaseballGame {
         }
         return res;
     }
+    /**
+     * checkBall
+     * ball 판정
+     * 타겟 숫자맵과 입력받은 숫자맵에 해당 key(값)을 비교하여, 값이 양쪽 모두 존재하며 value(인덱스)가 다를 경우 ball로 판정한다.
+     * @param targets   대상 난수 Map
+     * @param inputs    입력받은 숫자 Map
+     * @param num       비교 값
+     * @return ball 여부
+     */
+    public int checkBall(HashMap<Integer,Integer> targets, HashMap<Integer,Integer> inputs, int num) {
+        int res=0;
+        Integer target = targets.get(num);
+        Integer input = inputs.get(num);
+        if(target!=null && input!=null && target!=input){
+            res+=1;
+        }
+        return res;
+    }
+
 }
