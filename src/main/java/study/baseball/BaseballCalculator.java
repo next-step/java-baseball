@@ -11,9 +11,6 @@ import static study.common.GameMessages.*;
 
 /**
  * <p> 야구 게임 관련 계산 클래스  </p>
- *
- * @author bo-yoon
- * created on 2021.04.25
  */
 public class BaseballCalculator {
 

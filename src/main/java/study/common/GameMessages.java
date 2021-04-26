@@ -3,8 +3,6 @@ package study.common;
 /**
  * <p> 게임 메시지 모음 </p>
  *
- * @author bo-yoon
- * created on 2021.04.24
  */
 
 public class GameMessages {
