@@ -59,7 +59,7 @@ public class BaseBall implements Iterable<Ball> {
 
     public int countBall(BaseBall inputBaseBall) {
         return balls.stream().mapToInt(inputBaseBall::countBall)
-            .sum();
+            .sum() - countStrike(inputBaseBall);
     }
 
     private int countBall(Ball ball) {
