@@ -1,8 +1,8 @@
 package baseball.domain;
 
 import baseball.exception.InvalidateBallNumberException;
-import baseball.exception.InvalidateBallNumberException.InvalidateBallNumberSizeError;
-import baseball.exception.InvalidateBallNumberException.InvalidateBallNumberValueError;
+import baseball.exception.InvalidateBallNumberSizeError;
+import baseball.exception.InvalidateBallNumberValueError;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,6 +1,7 @@
 package baseball.domain;
 
-import baseball.exception.InvalidateBallNumberException;
+import baseball.exception.InvalidateBallNumberSizeError;
+import baseball.exception.InvalidateBallNumberValueError;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -80,7 +81,7 @@ public class BallNumberTest {
 	@ParameterizedTest
 	@ValueSource(ints = {12, 1245, 12587, 5423, 92, 5716, 19245, 9157385})
 	public void ballNumberInvalidateSizeErrorTest(int ballNumbers) {
-		assertThrows(InvalidateBallNumberException.InvalidateBallNumberSizeError.class, () -> {
+		assertThrows(InvalidateBallNumberSizeError.class, () -> {
 			BallNumber ballNumber = new BallNumber(ballNumbers);
 		});
 	}
@@ -89,7 +90,7 @@ public class BallNumberTest {
 	@ParameterizedTest
 	@ValueSource(ints = {102, 130, 901, 930})
 	public void ballNumberInvalidateValueTest(int ballNumbers) {
-		assertThrows(InvalidateBallNumberException.InvalidateBallNumberValueError.class, () -> {
+		assertThrows(InvalidateBallNumberValueError.class, () -> {
 			BallNumber ballNumber = new BallNumber(ballNumbers);
 		});
 	}
