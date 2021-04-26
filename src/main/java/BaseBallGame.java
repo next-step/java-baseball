@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 public class BaseBallGame {
-	int computerPlayer = 0;
+	List<Integer> computerPlayer;
 	int userPlayer = 0;
 
 	/*
@@ -10,19 +16,17 @@ public class BaseBallGame {
 		computerPlayer = generateComputerPlayer();
 	}
 
-	private int generateComputerPlayer() {
-		int computerNumber1 = 0;
-		int computerNumber2 = 0;
-		int computerNumber3 = 0;
+	private List<Integer> generateComputerPlayer() {
+		Set<Integer> selectNumbers = new HashSet<>();
+		List<Integer> computerNumbers;
+		Random random = new Random();
 
-		while (computerNumber1 == computerNumber2
-				|| computerNumber1 == computerNumber3
-				|| computerNumber2 == computerNumber3) {
-			computerNumber1 = (int) (Math.random() * 9) + 1;
-			computerNumber2 = (int) (Math.random() * 9) + 1;
-			computerNumber3 = (int) (Math.random() * 9) + 1;
+		while (selectNumbers.size() < 3) {
+			selectNumbers.add(random.nextInt(9));
 		}
 
-		return (computerNumber1 * 100) + (computerNumber2 * 10) + computerNumber3;
+		computerNumbers = new ArrayList<>(selectNumbers);
+
+		return computerNumbers;
 	}
 }
