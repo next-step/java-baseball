@@ -1,5 +1,8 @@
 package common.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import common.code.HintType;
 
 public class HintModel {
@@ -36,15 +39,19 @@ public class HintModel {
 	
 	@Override
 	public String toString() {
-		StringBuilder resultMessage = new StringBuilder();
+		if(strikeCount+ballCount==0) {
+			return HintType.NOTHING.getHintValue();
+		}
+		
+		List<String> resultMessageArr = new ArrayList<String>();
 		
 		if(strikeCount>0) {
-			resultMessage.append(HintType.STRIKE.getHintValue()+strikeCount+"개 ");
+			resultMessageArr.add(HintType.STRIKE.getHintValue()+strikeCount+"개");
 		}
 		if(ballCount>0) {
-			resultMessage.append(HintType.BALL.getHintValue()+ballCount+"개");
+			resultMessageArr.add(HintType.BALL.getHintValue()+ballCount+"개");
 		}
 		
-		return resultMessage.toString();
+		return String.join(" ", resultMessageArr);
 	}
 }
