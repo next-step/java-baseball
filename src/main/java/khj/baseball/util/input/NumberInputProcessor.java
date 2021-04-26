@@ -1,6 +1,6 @@
 package khj.baseball.util.input;
 
-public class DefaultInputProcessor implements InputProcessor {
+public class NumberInputProcessor implements InputProcessor {
 
     @Override
     public String inputNumberString(int length) {
