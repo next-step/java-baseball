@@ -7,11 +7,19 @@ import baseball.view.ResultView;
 
 public class Game {
     public static void main(String[] args) {
+        do {
+            start();
+        } while (InputView.restartNumber() == 1);
+    }
+
+    private static void start() {
         BaseBall baseBall = BaseBall.ofRandom(new RandomNumber());
-        BaseBall inputBaseBall = BaseBall.of(InputView.numbers());
-        while (baseBall.countStrike(inputBaseBall) != 3) {
-            ResultView.printScore(baseBall.countStrike(inputBaseBall), baseBall.countBall(inputBaseBall));
-            inputBaseBall = BaseBall.of(InputView.numbers());
-        }
+        int countStrike;
+        do {
+            BaseBall inputBaseBall = BaseBall.of(InputView.numbers());
+            countStrike = baseBall.countStrike(inputBaseBall);
+            int countBall = baseBall.countBall(inputBaseBall);
+            ResultView.printScore(countStrike, countBall);
+        } while (countStrike != 3);
     }
 }
