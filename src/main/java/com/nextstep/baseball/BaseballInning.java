@@ -92,6 +92,12 @@ public class BaseballInning {
 		return 6 - union.size() - strike;
 	}
 	
+	private void setInningEndCondition(int strike) {
+		if(strike == 3) {
+			init();
+		}
+	}
+	
 	public void start() {
 		isEnd = false;
 		pitchingstrategy = makePitchingstrategy();
@@ -105,6 +111,11 @@ public class BaseballInning {
 		}
 		int strike = calculateStrike(pitchingstrategy, hittingstrategy);
 		int ball = calculateBall(pitchingstrategy, hittingstrategy);
+		setInningEndCondition(strike);
 		return "";
+	}
+	
+	public boolean isEnd() {
+		return isEnd;
 	}
 }
