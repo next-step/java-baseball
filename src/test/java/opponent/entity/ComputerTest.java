@@ -31,7 +31,6 @@ class ComputerTest {
     @DisplayName("컴퓨터가 생성한 BaseballNumbers 에 중복 숫자가 없는지 확인한다.")
     public void checkBaseballNumbersDuplicate() {
         Set<BaseballNumber> setNumbers = new HashSet<>(baseballNumbers);
-        System.out.println(setNumbers.size());
         assertThat(baseballNumbers.size()).isEqualTo(setNumbers.size());
     }
 
