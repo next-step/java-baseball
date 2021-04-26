@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import static baseball.domain.core.BaseballNosException.newDuplicateBaseballNosException;
+import static baseball.domain.core.ComparingOtherBaseballNo.ComparingProcess.registe;
+import static baseball.domain.core.ComparingOtherBaseballNo.otherBaseballNo;
 
 public class BaseballNos {
 
@@ -52,14 +54,19 @@ public class BaseballNos {
 
     public BaseballResult compareTo(BaseballNos otherBaseballNos){
         BaseballResult baseballResult = new BaseballResult();
-        for (int i = 0; i < MAX_BASEBALL_LIST_SIZE; i++) {
-            BaseballNo otherBaseballNo = otherBaseballNos.getBaseballNo(i);
-            if (isStrike(i, otherBaseballNo)){
-                baseballResult.incrementStrike();
-            }
-            if (isBall(i, otherBaseballNo)){
-                baseballResult.incrementBall();
-            }
+        for (int index = 0; index < MAX_BASEBALL_LIST_SIZE; index++) {
+//            BaseballNo otherBaseballNo = otherBaseballNos.getBaseballNo(index);
+//            if (isStrike(index, otherBaseballNo)){
+//                baseballResult.incrementStrike();
+//            }
+//            if (isBall(index, otherBaseballNo)){
+//                baseballResult.incrementBall();
+//            }
+            otherBaseballNo(index, otherBaseballNos.getBaseballNo(index))
+                    .comparing(
+                            registe(this::isStrike, baseballResult::incrementStrike),
+                            registe(this::isBall, baseballResult::incrementBall)
+                    );
         }
         return baseballResult;
     }
