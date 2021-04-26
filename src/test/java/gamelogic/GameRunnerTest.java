@@ -29,7 +29,7 @@ class GameRunnerTest {
 
 	@ParameterizedTest
 	@ValueSource(ints = {331, 555, 949})
-	void isValidAnswer_withSameDigits_False(int input)
+	void isValidAnswer_SameDigitsInputs_False(int input)
 		throws InvocationTargetException, IllegalAccessException {
 
 		boolean result = (boolean)isValidAnswerMethod.invoke(game, input);
@@ -38,7 +38,7 @@ class GameRunnerTest {
 
 	@ParameterizedTest
 	@ValueSource(ints = {321, 546, 947})
-	void isValidAnswer_withValidAnswerFormat_True(int input)
+	void isValidAnswer_ValidFormatAnswers_True(int input)
 		throws InvocationTargetException, IllegalAccessException {
 
 		boolean result = (boolean)isValidAnswerMethod.invoke(game, input);
@@ -46,7 +46,7 @@ class GameRunnerTest {
 	}
 
 	@Test
-	void generateAnswer_checkIsValidAnswer_True()
+	void generateAnswer_CallCheckIsValidAnswer_True()
 		throws InvocationTargetException, IllegalAccessException {
 		int generatedAnswer = (int)generateAnswerMethod.invoke(game);
 		boolean result = (boolean)isValidAnswerMethod.invoke(game, generatedAnswer);

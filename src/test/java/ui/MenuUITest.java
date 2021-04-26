@@ -18,29 +18,29 @@ class MenuUITest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"3", "5", "a", "%"})
-	void isValidMenuInput_withInvalidInput_False(String input) {
+	void isValidMenuInput_InvalidInputs_False(String input) {
 		assertThat(menuUI.isValidMenuInput(input)).isFalse();
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = {"1", "2"})
-	void isValidMenuInput_withValidInputType_True(String input) {
+	void isValidMenuInput_ValidInputs_True(String input) {
 		assertThat(menuUI.isValidMenuInput(input)).isTrue();
 	}
 
 	@Test
-	void getMenuInput_withOne_True() {
+	void getMenuInput_EnterOne_True() {
 		assertThat(menuUI.getMenuInput("1")).isTrue();
 	}
 
 	@Test
-	void isValidMenuInput_withTwo_False() {
+	void isValidMenuInput_EnterTwo_False() {
 		assertThat(menuUI.getMenuInput("2")).isFalse();
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = {"3", "5", "a", "%"})
-	void isValidMenuInput_withInvalidInput_True(String input) {
+	void isValidMenuInput_InvalidInputs_True(String input) {
 		assertThat(menuUI.getMenuInput(input)).isTrue();
 	}
 }
