@@ -3,85 +3,63 @@ package baseball.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BaseballNumbersTest {
 
     @Test
-    @DisplayName("null 파라미터 입력")
-    void create_inputNull() {
-        // given when then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(() -> null))
-                .withMessageMatching("숫자 정보를 입력해 주세요.");
-    }
-
-    @Test
-    @DisplayName("빈 사이즈 리스트 입력")
-    void create_inputEmpty() {
-        // given when then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(new ArrayList<>()))
-                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(ArrayList::new))
-                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
-    }
-
-    @Test
-    @DisplayName("숫자 사이즈 초과")
-    void create_greaterThanMaxSize() {
+    @DisplayName("같은 자리의 수 세기")
+    void equalsCount() {
         // given
-        List<BaseballNumber> baseballNumbers = new ArrayList<>();
-        baseballNumbers.add(new BaseballNumber(1));
-        baseballNumbers.add(new BaseballNumber(2));
-        baseballNumbers.add(new BaseballNumber(3));
-        baseballNumbers.add(new BaseballNumber(4));
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
 
-        // when then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(baseballNumbers))
-                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
+        // when
+        List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
+        BaseballNumbers base = new BaseballNumbers(numbersBase);
 
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(() -> {
-                    List<Integer> strategyResult = new ArrayList<>();
-                    strategyResult.add(1);
-                    strategyResult.add(2);
-                    strategyResult.add(3);
-                    strategyResult.add(4);
-                    return strategyResult;
-                }))
-                .withMessageMatching("숫자는 3 개로 이루어져야 합니다.");
+        List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("123");
+        BaseballNumbers target = new BaseballNumbers(numbersTarget);
+
+        // then
+        assertThat(3).isEqualTo(base.equalsCount(target));
     }
 
     @Test
-    @DisplayName("숫자 중복입력 불가")
-    void create_DuplicateNumbers() {
+    @DisplayName("다른 자리의 수 세기")
+    void containsCount() {
         // given
-        List<BaseballNumber> baseballNumbers = new ArrayList<>();
-        baseballNumbers.add(new BaseballNumber(1));
-        baseballNumbers.add(new BaseballNumber(1));
-        baseballNumbers.add(new BaseballNumber(2));
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
 
-        // when then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(baseballNumbers))
-                .withMessageMatching("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
+        // when
+        List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(3, 1, 2));
+        BaseballNumbers base = new BaseballNumbers(numbersBase);
 
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BaseballNumbers(() -> {
-                    List<Integer> strategyResult = new ArrayList<>();
-                    strategyResult.add(1);
-                    strategyResult.add(1);
-                    strategyResult.add(2);
-                    return strategyResult;
-                }))
-                .withMessageMatching("중복된 숫자가 존재합니다. 입력값을 확인해 주세요.");
+        List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("123");
+        BaseballNumbers target = new BaseballNumbers(numbersTarget);
+
+        // then
+        assertThat(3).isEqualTo(base.containsCount(target));
+    }
+
+    @Test
+    @DisplayName("숫자가 서로 다른 경우")
+    void notEquals() {
+        // given
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
+
+        // when
+        List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(3, 1, 2));
+        BaseballNumbers base = new BaseballNumbers(numbersBase);
+
+        List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("789");
+        BaseballNumbers target = new BaseballNumbers(numbersTarget);
+
+        // then
+        assertThat(0).isEqualTo(base.equalsCount(target));
+        assertThat(0).isEqualTo(base.containsCount(target));
     }
 
 }
