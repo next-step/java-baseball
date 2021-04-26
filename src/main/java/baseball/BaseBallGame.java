@@ -1,7 +1,6 @@
 package baseball;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -70,7 +69,7 @@ public class BaseBallGame {
 		// 초기화
 		strike = 0;
 		ball = 0;   
-		StringBuffer sb = new StringBuffer();
+		
 		
 		for(int i=0; i<comNum.length; i++){
 			for(int j=0; j<userNum.length; j++){
@@ -88,6 +87,14 @@ public class BaseBallGame {
 			}
 		}
 
+		// 힌트 메소드 호출
+		showHint();
+	}
+
+	//  입력수와 상대방수 힌트 메소드
+	public void showHint(){
+		StringBuffer sb = new StringBuffer();
+
 		sb.append(userNum[0]).append(userNum[1]).append(userNum[2]).append(" 을 제시한 경우 : ");
 		
 		if (strike != 0 && ball == 0){
@@ -102,7 +109,28 @@ public class BaseBallGame {
 			sb.append(strike).append("스트라이크 ").append(ball).append("볼");
 		}
 		
+		if (strike == 0 && ball == 0){
+			sb.append("낫싱");
+		}
+
 		System.out.println(sb.toString());
+	}
+
+	// 게임 다시 시작 및 종료 체크 메소드
+	public void checkRematchGame(){
+		Scanner scan = new Scanner(System.in);
+		System.out.print("종료할까요?(y|n)");
+
+		char c = scan.next().charAt(0);
+
+		if (c == 'y' || c == 'Y') {
+			System.out.println("Game Over");
+			System.exit(0);
+		} 
+		if (c == 'n' || c == 'N') {
+			System.out.println("게임을 다시 시작합니다!");
+			gameStart();
+		}
 	}
 
     public void gameStart(){
@@ -113,20 +141,18 @@ public class BaseBallGame {
 		// 확인용
 		System.out.println("난수값 => " + comNum[0] + " " + comNum[1] + " " + comNum[2]);
 		
-		do{
+		while(true){
 			inputUserNum(); 	// 사용자 입력 메서드 호출
 			checkBallCount();  	// 볼카운트하는 메서드 호출
-		}while(strike!=3);  	// 3 스트라이크가 될 때까지 반복
-		
-		// 다시 시작하시겠습니까?
+
+			if(strike == 3){
+				checkRematchGame();
+			}
+		}
 	}
 
     public static void main(String[] args) {
-
-        BaseBallGame bbg = new BaseBallGame();
+		BaseBallGame bbg = new BaseBallGame();
         bbg.gameStart();
     }
-
-    
-    
 }
