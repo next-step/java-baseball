@@ -5,3 +5,14 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현 기능
+
+1. Junit String 관련 테스트 코드 작성.
+2. Junit Set 관련 테스트 코드 작성.
+3. 랜덤 숫자 생성 로직 코드 작성.
+4. 콘솔창에 사용할 UI 로직 작성.
+5. 게임 시작 로직 작성.
+6. 입력 받은 숫자값 검증 로직 작성.
+7. 게임 룰에 따른 결과값 반환.
+8. 맞쳤을 경우 재시작 or 종료 로직 개발.
