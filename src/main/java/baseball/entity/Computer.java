@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Computer {
 
+    public static final String INVALID_NUMBER_MESSAGE = "서로 다른 임의의 수 3개만 선택 가능 합니다.";
     private final String selectNumber;
 
     public Computer(String selectNumber) {
@@ -18,7 +19,7 @@ public class Computer {
 
     private void validateLength(String selectNumber) {
         if (ValidateNumberUtil.validateNumber(selectNumber)) {
-            throw new IllegalArgumentException("서로 다른 임의의 수 3개만 선택 가능 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
         }
     }
 

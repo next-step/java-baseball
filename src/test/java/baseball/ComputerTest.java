@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static baseball.entity.Computer.INVALID_NUMBER_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -32,7 +33,7 @@ public class ComputerTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Computer(selectNumber))
-                .withMessageMatching("서로 다른 임의의 수 3개만 선택 가능 합니다.");
+                .withMessageMatching(INVALID_NUMBER_MESSAGE);
     }
 
     @Test
@@ -42,7 +43,7 @@ public class ComputerTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Computer(selectNumber))
-                .withMessageMatching("서로 다른 임의의 수 3개만 선택 가능 합니다.");
+                .withMessageMatching(INVALID_NUMBER_MESSAGE);
     }
 
     @Test
