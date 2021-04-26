@@ -168,5 +168,30 @@ public class BallTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    public void setRandomBallsTest(){
+        Ball ball = new Ball();
+        ball.setRandomBalls();
 
+        try {
+            Field ballValuesAttribute = ball.getClass().getDeclaredField("ballValues");
+            ballValuesAttribute.setAccessible(true);
+
+            int[] ballValue = (int[])ballValuesAttribute.get(ball);
+            assertThat(ballValue.length).isEqualTo(3);
+            assertThat(ballValue[0]).isNotEqualTo(ballValue[1]);
+            assertThat(ballValue[1]).isNotEqualTo(ballValue[2]);
+            assertThat(ballValue[0]).isNotEqualTo(ballValue[2]);
+
+            assertThat(ballValue[0]).isGreaterThan(0)
+                    .isLessThan(10);
+            assertThat(ballValue[1]).isGreaterThan(0)
+                    .isLessThan(10);
+            assertThat(ballValue[2]).isGreaterThan(0)
+                    .isLessThan(10);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 }
