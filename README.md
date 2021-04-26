@@ -5,3 +5,11 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+---
+
+## 기능 구현
+1. 중복되지 않는 3자리 난수 생성
+2. 점수 체크
+3. 사용자 입력/출력 로직
+4. 종료 및 재시작 기능 추가
