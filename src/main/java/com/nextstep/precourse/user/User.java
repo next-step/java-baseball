@@ -7,7 +7,7 @@ import com.nextstep.precourse.util.PrintMessageEnum;
 public class User {
 	private Scanner scanner = new Scanner(System.in);
 
-	public String setUserInputNumberArray() {
+	public String getUserInputNumber() {
 		System.out.println(PrintMessageEnum.ENTER_A_NUMBER.getMessage());
 		return scanner.nextLine();
 	}
