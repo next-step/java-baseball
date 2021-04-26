@@ -64,6 +64,19 @@ public class BaseBallGame implements Game {
             return;
         }
 
-        System.out.println(record.getStrike() + " 스트라이크 " + record.getBall() +  " 볼");
+        printStrike(record);
+        printBall(record);
+    }
+
+    private void printStrike(Record record) {
+        if (record.getStrike() > 0) {
+            System.out.println(record.getStrike() + " 스트라이크");
+        }
+    }
+
+    private void printBall(Record record) {
+        if (record.getBall() > 0) {
+            System.out.println(record.getBall() +  " 볼");
+        }
     }
 }
