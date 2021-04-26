@@ -22,11 +22,10 @@ public class BaseballController {
             resultView.printScore(computer);
         }
         resultView.printEndMessage();
-        chooseEndType();
+        chooseEndType(inputView.inputChooseType());
     }
 
-    private void chooseEndType() {
-        String type = inputView.inputChooseType();
+    private void chooseEndType(final String type) {
         EndType endType = EndType.findEndType(type);
         if (endType.equals(EndType.SYSTEM_EXIT)) {
             System.exit(0);
