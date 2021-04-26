@@ -29,4 +29,10 @@ public class BaseballGameResultPrinterTest {
         Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {0,2}), "2 볼");
         Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {0,3}), "3 볼");
     }
+
+    @Test
+    public void printBaseballGameResultPrintFinal() {
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {1,1}), "1 스트라이크 1 볼");
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {1,2}), "1 스트라이크 2 볼");
+    }
 }
