@@ -7,7 +7,6 @@
 package baseball.model;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 public class InningResult {
 
@@ -66,20 +65,7 @@ public class InningResult {
 
 	@Override
 	public String toString() {
-		StringJoiner joiner = new StringJoiner(" ");
-
-		if (this.strike == 0 && this.ball == 0) {
-			return joiner.add("nothing").toString();
-		}
-
-		if (this.strike > 0) {
-			joiner.add(String.valueOf(this.strike)).add("스트라이크");
-		}
-
-		if (this.ball > 0) {
-			joiner.add(String.valueOf(this.ball)).add("볼");
-		}
-
-		return joiner.toString();
+		return "InningResult [strike=" + strike + ", ball=" + ball + "]";
 	}
+
 }

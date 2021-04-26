@@ -12,7 +12,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InningResultTest {
@@ -65,17 +64,6 @@ class InningResultTest {
 
 		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
 		Assertions.assertThat(this.inningResult.isEndGame()).isTrue();
-	}
-
-	@ParameterizedTest
-	@CsvSource(value = { "123:3 스트라이크", "321:1 스트라이크 2 볼", "456:nothing", "125:2 스트라이크" }, delimiter = ':')
-	@DisplayName("randomBaseballNumber, userBaseNumber를 비교하여 inning result 확인")
-	void testJudgementInningResultToString(String userInput, String expected) {
-
-		UserBaseballNumber userNumber = new UserBaseballNumber(userInput);
-
-		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
-		assertEquals(expected, this.inningResult.toString());
 	}
 
 }
