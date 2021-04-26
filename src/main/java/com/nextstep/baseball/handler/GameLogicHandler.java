@@ -75,11 +75,6 @@ public class GameLogicHandler {
         return numOfStrikes;
     }
 
-    public int checkBalls(int source, int target) {
-        int numOfBalls = 0;
-        return numOfBalls;
-    }
-
     private int makeCompareNum(int source, int div) {
         int result = source / div;
         return result % 10;
@@ -87,5 +82,41 @@ public class GameLogicHandler {
 
     private int isEqual(int source, int target) {
         return source == target ? 1 : 0;
+    }
+
+    public int checkBalls(int source, int target) {
+        int numOfBalls = 0;
+        for (int i = 1 ; i <= INPUT_LENGTH; i++) {
+            numOfBalls += compareWithTarget(source, i, target);
+        }
+        return numOfBalls;
+    }
+
+    private int compareWithTarget(int source, int index, int target) {
+        int result = 0;
+
+        List<Integer> indexList = makeInitIndexForCompare();
+        indexList.remove(new Integer(index));
+        for (int i : indexList) {
+            result += isEqual(makeCompareNumByIndex(source, index), makeCompareNumByIndex(target, i));
+        }
+
+        return result;
+    }
+
+    private int makeCompareNumByIndex(int source, int index) {
+        int div = 100;
+        for (int i = 1; i < index; i++) {
+            div /= 10;
+        }
+        return makeCompareNum(source, div);
+    }
+
+    private List<Integer> makeInitIndexForCompare() {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= INPUT_LENGTH; i++) {
+            list.add(i);
+        }
+        return list;
     }
 }
