@@ -32,22 +32,26 @@ public class BaseballGameMachine {
         opponent.createAnswer();
 
         while (true) {
-            compareInputAnswer();
+            Map<ResultType, Integer> compareResult = compareInputAnswer();
         }
     }
 
     /**
      * 사용자에게 답을 입력받아 상대에게 비교하도록 메시지 전송
+     *
+     * @return 상대에게 전달받은 결과
      */
-    private void compareInputAnswer() {
+    private Map<ResultType, Integer> compareInputAnswer() {
         try {
             System.out.print("숫자를 입력해 주세요 : ");
             int answer = scanner.nextInt();
+            return opponent.compare(answer);
         } catch (InputMismatchException e) {
             System.out.println("숫자를 입력해 주세요.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
 
