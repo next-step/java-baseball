@@ -22,4 +22,11 @@ public class BaseballGameResultPrinterTest {
         Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {2,0}), "2 스트라이크");
         Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {3,0}), "3 스트라이크");
     }
+
+    @Test
+    public void printBaseballGameResultPrintBalls() {
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {0,1}), "1 볼");
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {0,2}), "2 볼");
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {0,3}), "3 볼");
+    }
 }
