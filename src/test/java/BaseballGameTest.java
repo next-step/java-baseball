@@ -162,4 +162,27 @@ public class BaseballGameTest {
 		return getResult(totalStrikeScore, totalBallScore);
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"1:true", "2:false"}, delimiter = ':')
+	@DisplayName("게임 재시작 테스트")
+	public void continueGameTest(String inputText, boolean expected) {
+		assertThat(continueGame(inputText)).isEqualTo(expected);
+	}
+	
+	private boolean continueGame(String inputText) {
+
+//		while (!"1".equals(inputText) && !"2".equals(inputText)) {
+//			System.out.println(BaseballGameConstant.CONTINUE_GAME);
+//		}
+		
+		if ("1".equals(inputText)) {
+			return true;
+		}
+		return quitGame( inputText );
+	}
+	
+	private boolean quitGame(String inputText) {
+		return !"2".equals(inputText);
+	}
+	
 }

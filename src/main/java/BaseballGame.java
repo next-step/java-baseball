@@ -180,4 +180,34 @@ public class BaseballGame {
 		
 		return false;
 	}
+	
+	/**
+	 * 게임 재시작을 체크합니다.
+	 *
+	 * @param scanner
+	 * @return boolean
+	 */
+	private boolean continueGame(Scanner scanner) {
+		String inputText = "";
+		
+		while (!"1".equals(inputText) && !"2".equals(inputText)) {
+			System.out.println(BaseballGameConstant.CONTINUE_GAME);
+			inputText = scanner.nextLine();
+		}
+		
+		if ("1".equals(inputText)) {
+			return true;
+		}
+		return quitGame( inputText );
+	}
+	
+	/**
+	 * 게임을 종료합니다.
+	 *
+	 * @param inputText
+	 * @return boolean
+	 */
+	private boolean quitGame(String inputText) {
+		return !"2".equals(inputText);
+	}
 }
