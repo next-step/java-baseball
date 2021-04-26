@@ -2,7 +2,7 @@ import domain.BaseballNumberScore;
 import domain.BaseballNumbers;
 import domain.BaseballResult;
 import domain.ContinuePlay;
-import util.BaseballNumberGenerator;
+import domain.BaseballNumberGenerator;
 import util.TransStringNumberToNumberListUtil;
 import view.InputView;
 import view.ResultView;
