@@ -12,7 +12,7 @@ public class ValidateNumberUtil {
         return selectNumber.length() != NUMBER_LENGTH || duplicateCheckNumberLength(selectNumber) != NUMBER_LENGTH;
     }
 
-    public static int duplicateCheckNumberLength(String selectNumber) {
+    private static int duplicateCheckNumberLength(String selectNumber) {
         Set<Character> lengthCheckSet = new HashSet<>();
 
         for (int i = 0; i < selectNumber.length(); i++) {

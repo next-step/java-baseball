@@ -16,13 +16,19 @@ public class Computer {
         this.selectNumber = selectNumber;
     }
 
+    private void validateLength(String selectNumber) {
+        if (ValidateNumberUtil.validateNumber(selectNumber)) {
+            throw new IllegalArgumentException("서로 다른 임의의 수 3개만 선택 가능 합니다.");
+        }
+    }
+
     public CompareResult compareNumber(String inputNumber) {
         Set<Character> inputNumberSet = new HashSet<>();
         int strike = 0;
         int totalSameCount = 0;
 
         for (int i = 0; i < selectNumber.length(); i++) {
-            strike += stringCount(inputNumber, i);
+            strike += strikeCount(inputNumber, i);
             inputNumberSet.add(inputNumber.charAt(i));
         }
 
@@ -33,7 +39,7 @@ public class Computer {
         return new CompareResult(strike, totalSameCount - strike);
     }
 
-    private int stringCount(String inputNumber, int index) {
+    private int strikeCount(String inputNumber, int index) {
         if (selectNumber.charAt(index) == inputNumber.charAt(index)) {
             return 1;
         }
@@ -45,12 +51,6 @@ public class Computer {
             return 1;
         }
         return 0;
-    }
-
-    private void validateLength(String selectNumber) {
-        if (ValidateNumberUtil.validateNumber(selectNumber)) {
-            throw new IllegalArgumentException("서로 다른 임의의 수 3개만 선택 가능 합니다.");
-        }
     }
 
     @Override

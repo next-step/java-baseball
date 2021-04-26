@@ -11,4 +11,12 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static int restartInput() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를입 력하세요");
+        return scanner.nextInt();
+    }
+
+    public static void enterInput() {
+        scanner.nextLine();
+    }
 }

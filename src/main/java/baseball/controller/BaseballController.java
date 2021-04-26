@@ -7,30 +7,54 @@ import baseball.util.ValidateNumberUtil;
 import baseball.view.InputView;
 import baseball.view.ResultView;
 
+import static baseball.util.ValidateNumberUtil.NUMBER_LENGTH;
+
 public class BaseballController {
-    private final static SelectNumberGenerator selectNumber = new SelectNumberGenerator();
-    private final static Computer computer = new Computer(selectNumber.generateNumber());
+
+    private static final int GAME_RESTART_OPTION = 1;
+    private static final int GAME_END_OPTION = 2;
 
     public static void start() {
-        baseballGame();
+
+        int continueOption = GAME_RESTART_OPTION;
+
+        while (continueOption == GAME_RESTART_OPTION) {
+
+            SelectNumberGenerator selectNumber = new SelectNumberGenerator();
+
+            baseballGame(new Computer(selectNumber.generateNumber()));
+
+            continueOption = baseballGameContinueOption();
+            InputView.enterInput();
+        }
     }
 
-    private static void baseballGame(){
+    private static void baseballGame(Computer computer) {
         String inputNumber = InputView.gameNumberInput();
 
         if (ValidateNumberUtil.validateNumber(inputNumber)) {
             ResultView.invalidNumberMessage();
-            baseballGame();
+            baseballGame(computer);
         }
 
         CompareResult compareResult = computer.compareNumber(inputNumber);
         ResultView.resultPrint(compareResult);
 
-        if (compareResult.strikeCount() == 3) {
+        if (compareResult.strikeCount() == NUMBER_LENGTH) {
             return;
         }
 
-        baseballGame();
+        baseballGame(computer);
+    }
+
+    private static int baseballGameContinueOption() {
+        int continueOption = InputView.restartInput();
+
+        if ((continueOption == GAME_RESTART_OPTION) || (continueOption == GAME_END_OPTION)) {
+            return continueOption;
+        }
+
+        return baseballGameContinueOption();
     }
 
 }
