@@ -1,6 +1,7 @@
 package com.nextstep.baseball.handler;
 
 import com.nextstep.baseball.enums.ErrorMessages;
+import com.nextstep.baseball.util.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,35 +33,8 @@ public class GameLogicHandler {
     }
 
     public int makeRandomNumberForGame() {
-        List<Integer> list = makeRandomNumberList();
-        return makeRandomNumListToSum(list);
-    }
-
-    private List<Integer> makeRandomNumberList() {
-        List<Integer> randomNumList = new ArrayList<>();
-        while (randomNumList.size() < 3) {
-            addRandomNumberNotDuplicated(randomNumList);
-        }
-        return randomNumList;
-    }
-
-    private void addRandomNumberNotDuplicated(List<Integer> randomNumList) {
-        Random random = new Random();
-        int num = random.nextInt(9) + 1;
-
-        if (!randomNumList.contains(num)) {
-            randomNumList.add(num);
-        }
-    }
-
-    private int makeRandomNumListToSum(List<Integer> randomNumList) {
-        int result = 0;
-        int mul = 100;
-        for (int i : randomNumList) {
-            result += i * mul;
-            mul /= 10;
-        }
-        return result;
+        List<Integer> list = NumberUtil.makeRandomNumberList(INPUT_LENGTH);
+        return NumberUtil.makeDigitListToNum(list);
     }
 
     public int checkStrikes(int source, int target) {
@@ -68,7 +42,7 @@ public class GameLogicHandler {
         int div = 100;
 
         for (int i = 0 ; i < INPUT_LENGTH; i++) {
-            numOfStrikes += isEqual(makeCompareNum(source, div), makeCompareNum(target, div));
+            numOfStrikes += NumberUtil.isEqual(makeCompareNum(source, div), makeCompareNum(target, div));
             div = div / 10;
         }
 
@@ -78,10 +52,6 @@ public class GameLogicHandler {
     private int makeCompareNum(int source, int div) {
         int result = source / div;
         return result % 10;
-    }
-
-    private int isEqual(int source, int target) {
-        return source == target ? 1 : 0;
     }
 
     public int checkBalls(int source, int target) {
@@ -98,7 +68,7 @@ public class GameLogicHandler {
         List<Integer> indexList = makeInitIndexForCompare();
         indexList.remove(new Integer(index));
         for (int i : indexList) {
-            result += isEqual(makeCompareNumByIndex(source, index), makeCompareNumByIndex(target, i));
+            result += NumberUtil.isEqual(makeCompareNumByIndex(source, index), makeCompareNumByIndex(target, i));
         }
 
         return result;
