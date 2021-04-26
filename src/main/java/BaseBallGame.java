@@ -1,7 +1,9 @@
 public class BaseBallGame {
     private boolean isRunning;
+    Message message;
 
-    public BaseBallGame() {
+    public BaseBallGame(Message message) {
+        this.message = message;
         this.resetGame();
     }
 
