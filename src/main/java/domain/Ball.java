@@ -2,9 +2,10 @@ package domain;
 
 import java.util.List;
 
-public class Strike {
-    public static int checkStrike(List<Integer> input, List<Integer> randomNumber) {
+public class Ball {
+    public static int checkBall(List<Integer> input, List<Integer> randomNumber) {
         int count = 0;
+
         for (int i = 0; i < randomNumber.size(); i++) {
             count = calculateCount(input, randomNumber, count, i);
         }
@@ -13,7 +14,7 @@ public class Strike {
     }
 
     private static int calculateCount(List<Integer> input, List<Integer> randomNumber, int count, int i) {
-        if (input.get(i).equals(randomNumber.get(i))) {
+        if (input.contains(randomNumber.get(i)) && !input.get(i).equals(randomNumber.get(i))) {
             count++;
         }
         return count;
