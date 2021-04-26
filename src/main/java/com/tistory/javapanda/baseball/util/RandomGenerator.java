@@ -9,17 +9,20 @@ public class RandomGenerator {
 
     private RandomGenerator() {}
 
-    private static int getNumber() throws NoSuchAlgorithmException {
-        return SecureRandom.getInstance("SHA1PRNG").nextInt(9) + 1;
+    public static int getNumber() {
+        int number = 0;
+        try {
+            number = SecureRandom.getInstance("SHA1PRNG").nextInt(9) + 1;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return number;
     }
 
-    public static Set<Integer> getNumbers() throws NoSuchAlgorithmException {
+    public static Set<Integer> getNumbers() {
         Set<Integer> computerNumbers = new HashSet<>();
         while (computerNumbers.size() < 3) {
-            int number = getNumber();
-            if (!computerNumbers.contains(number)) {
-                computerNumbers.add(number);
-            }
+            computerNumbers.add(getNumber());
         }
         return computerNumbers;
     }
