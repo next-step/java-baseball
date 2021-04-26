@@ -1,7 +1,9 @@
 package baseball.domain.dto;
 
 import baseball.domain.PitchingResultStatus;
+import baseball.exceptions.InvalidBallNumbersSizeException;
 
+import java.util.Collection;
 import java.util.Map;
 
 import static baseball.domain.PitchingResultStatus.*;
@@ -19,7 +21,20 @@ public class BaseballResultResponse {
     }
 
     public static BaseballResultResponse of(Map<PitchingResultStatus, Integer> pitchingResult) {
+        validateParamMap(pitchingResult);
         return new BaseballResultResponse(pitchingResult, isAllStrikeBool(pitchingResult), isAllNothing(pitchingResult));
+    }
+
+    private static void validateParamMap(Map<PitchingResultStatus, Integer> pitchingResult) {
+        int sum = 0;
+
+        for (Integer value : pitchingResult.values()) {
+            sum += value;
+        }
+
+        if (sum != 3) {
+            throw new InvalidBallNumbersSizeException();
+        }
     }
 
     private static boolean isAllNothing(Map<PitchingResultStatus, Integer> pitchingResult) {
