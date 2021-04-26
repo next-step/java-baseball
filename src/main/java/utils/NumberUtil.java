@@ -1,5 +1,9 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static enumType.SystemNumberType.*;
 
 public class NumberUtil {
@@ -11,18 +15,17 @@ public class NumberUtil {
     
     
     public Integer[] splitIntegerToArray(int number) {
-        int divisor = 1;
-        int digit   = DIGIT.getNumber();
+        List<Integer> list = new ArrayList<>();
         
-        Integer[] eachNumber = new Integer[digit];
-        
-        for (int i = 0; i < digit; i++) {
-            divisor       = (int) Math.pow(10, digit - i - 1);
-            eachNumber[i] = number / divisor;
-            number        = number % (eachNumber[i] * divisor);
+        while(number != 0) {
+            list.add(number % 10);
+            number /= 10;
         }
+        Collections.reverse(list);
         
-        return eachNumber;
+        Integer[] array = list.toArray(new Integer[list.size()]);
+        
+        return array;
     }
     
     
