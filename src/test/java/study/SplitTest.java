@@ -29,7 +29,14 @@ class SplitTest {
             split.checkValidText();
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자와 ,(comma)가 아닌 문자가 있습니다.");
+    }
 
+    @Test
+    @DisplayName("문자열 하나만 있을 경우 테스트")
+    void splitOneTextTest() {
+        this.inputText = "1";
+        Split split = new Split(inputText);
+        assertThat(split.splitByComma()).containsExactly("1");
     }
 
 
