@@ -63,7 +63,7 @@ public class Main {
 		strikeCnt = BallCount.strikeCheck(arrAutoNum, arrBallNum);//스트라이크 카운트 함수
 		if(strikeCnt == 3){
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-			
+			finalCheck();
 		}
 		ballCnt = BallCount.ballCheck(arrAutoNum, arrBallNum);//볼 카운트 함수
 		printCompareNum(strikeCnt, ballCnt);
@@ -71,7 +71,27 @@ public class Main {
 	
 	public static void printCompareNum(int strikeCnt, int ballCnt){
 		MessagePrint.printMessage(strikeCnt, ballCnt);
-		
+		inputNum();
 	}
+	
+	//마지막 종료 체크 함수
+		public static void finalCheck(){
+			System.out.println("게임을 새로 시작하려면1, 종료하려면 2을 입력하세요.");
+			Scanner sc = new Scanner(System.in);
+			String finalNum  = sc.next();
+			finalNumCheck(finalNum);
+			
+			if(finalNum.equals("1")){
+				autoNumCreate();
+			}
+			System.exit(0);
+		}
+		
+		//게임 종료 질문 답 체크 함수
+		public static void finalNumCheck(String finalNum){
+			if(!finalNum.equals("1") && !finalNum.equals("2")){
+				finalCheck();
+			}
+		}
 	
 }
