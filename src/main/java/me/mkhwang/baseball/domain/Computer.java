@@ -20,6 +20,7 @@ public class Computer {
 
     public Computer() {
         makeBallCount();
+        System.out.println(this.ballNumber);
     }
 
     private void makeBallCount() {
