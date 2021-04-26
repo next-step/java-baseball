@@ -48,6 +48,10 @@ public class BaseBallGame {
         for (int i = 0; i < answer.length; i++) {
             // answer[i]
         }
+
+        if (strike == 3) {
+            message.gameOver();
+        }
     }
 
     private int[] createIntArray(String input) {
