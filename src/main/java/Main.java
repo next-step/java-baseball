@@ -1,14 +1,11 @@
+import static game.GameConstant.*;
+
 import game.GameMachine;
-import game.ResultStatus;
+import game.GameResultStatus;
 
 import java.util.Scanner;
 
 public class Main {
-
-    public final static int RESTART = 1;
-    public final static int EXIT = 2;
-    public final static int NONE = -1;
-    public final static int ANSWER = 3;
 
     public static void main(String[] args) {
         GameMachine gameMachine = GameMachine.of();
@@ -16,20 +13,25 @@ public class Main {
 
         boolean isExit = false;
         while (!isExit) {
-            isExit = runningGame(gameMachine);
+            isExit = runGame(gameMachine);
         }
     }
 
-    private static boolean runningGame(GameMachine gameMachine) {
+    /**
+     * 게임 실행
+     * @param gameMachine 게임머신
+     * @return 전체 종료 플래그
+     */
+    private static boolean runGame(GameMachine gameMachine) {
         try {
             Scanner sc = new Scanner(System.in);
-            System.out.println("숫자를 입력해주세요 : ");
-            String[] input = sc.nextLine().split(" ");
+            System.out.println(INFO_INPUT_NUMBER);
+            String[] input = sc.nextLine().split(DELIMITER);
             gameMachine.isValid(input);
 
             int[] result = gameMachine.check(input);
             System.out.println(gameMachine.print(result));
-            return checkAnswer(gameMachine, result);
+            return checkResult(gameMachine, result);
 
         } catch (IllegalStateException | IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -37,22 +39,33 @@ public class Main {
         return false;
     }
 
-    private static boolean checkAnswer(GameMachine gameMachine, int[] result) {
-        if (result[ResultStatus.STRIKE.getIndex()] == ANSWER) {
-            System.out.println("모두 맞히졌습니다.");
-            return restart(gameMachine);
+    
+    /**
+     * 결과 확인 
+     * @param gameMachine 게임머신
+     * @param result 결과
+     * @return 비교 결과
+     */
+    private static boolean checkResult(GameMachine gameMachine, int[] result) {
+        if (result[GameResultStatus.STRIKE.getIndex()] == ANSWER) {
+            System.out.println(INFO_ANSWER_RESULT);
+            return reGame(gameMachine);
         }
         return false;
     }
 
-    private static boolean restart(GameMachine gameMachine) {
+    /**
+     * 게임 재시작, 종료 설정
+     * @param gameMachine 게임머신
+     * @return 게임 재시작 플래그
+     */
+    private static boolean reGame(GameMachine gameMachine) {
         Scanner sc = new Scanner(System.in);
         int option = NONE;
 
         while (option == NONE) {
-            System.out.println("게임을 새로 시작하려면 1, 종려하려면 2를 입력하세요.");
-            String input = sc.nextLine();
-            option = selectOption(input);
+            System.out.println(INFO_QUESTION_RESTART);
+            option = selectOption(sc.nextLine());
         }
 
         if (option == RESTART) {
@@ -62,6 +75,11 @@ public class Main {
         return option == EXIT;
     }
 
+    /**
+     * 옵션 선택 검사
+     * @param input 사용자 입력
+     * @return 옵션 선택 결과
+     */
     private static int selectOption(String input) {
         String regExp = "^[1-2]";
         if (input.matches(regExp)) {
