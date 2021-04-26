@@ -3,7 +3,6 @@ package techcamp.baseball;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import techcamp.baseball.Calculation;
 import techcamp.baseball.domain.Answer;
 import techcamp.baseball.domain.Question;
 import techcamp.baseball.setting.Config;

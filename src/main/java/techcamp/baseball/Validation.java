@@ -18,7 +18,7 @@ public class Validation {
     }
 
     /* 입력된 값이 설정된 자리 수의 범위인지 확인 */
-    public boolean isAllowableDigit(int number){
+    public boolean isAllowableDigit(int number) {
         return number >= Config.NUMBERS_MIN && number <= Config.NUMBERS_MAX;
     }
 
