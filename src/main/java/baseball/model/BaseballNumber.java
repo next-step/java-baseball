@@ -59,7 +59,6 @@ public class BaseballNumber {
         if (!checkValid()) {
             throw new BaseballNumberFormatException(input);
         }
-
     }
 
     private boolean checkValid() {
@@ -107,33 +106,27 @@ public class BaseballNumber {
 
         public Builder radix(int radix) {
             this.radix = radix;
-
             return this;
         }
 
         public Builder size(int size) {
             this.size = size;
-
             return this;
         }
 
         public Builder random(RandomNumberGenerator rng) {
             this.rng = rng;
-
             return this;
         }
 
         private Builder addRandomNumber() {
-            if (this.number == null) {
-                this.number = new BaseballNumber(this.size, this.radix);
-            }
+            this.checkNullNumberThenInit();
 
             if (this.index >= this.number.size) {
                 return this;
             }
 
             do {
-//                 this.number.numbers[this.index] = (int) (Math.random() * (this.number.radix - 1)) + 1;
                 this.number.numbers[this.index] = (this.rng.generateRandomNumber(this.number.radix) % (this.number.radix - 1)) + 1;
             } while(this.number.numbers[this.index] == 0
                     || this.isChecked[this.number.numbers[this.index]]);
@@ -151,17 +144,13 @@ public class BaseballNumber {
         }
 
         public Builder addAll() {
-            if (this.number == null) {
-                this.number = new BaseballNumber(this.size, this.radix);
-            }
+            this.checkNullNumberThenInit();
 
             return this.addRandomNumber(this.number.size - this.index);
         }
 
         public BaseballNumber build() {
-            if (this.number == null) {
-                this.number = new BaseballNumber(this.size, this.radix);
-            }
+            this.checkNullNumberThenInit();
 
             this.isChecked = new boolean[this.number.radix];
 
@@ -170,6 +159,12 @@ public class BaseballNumber {
             }
 
             return this.number;
+        }
+
+        private void checkNullNumberThenInit() {
+            if (this.number == null) {
+                this.number = new BaseballNumber(this.size, this.radix);
+            }
         }
     }
 }

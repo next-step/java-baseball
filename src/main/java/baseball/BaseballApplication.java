@@ -6,24 +6,15 @@ import baseball.controller.impl.BaseballController;
 import baseball.view.BaseballView;
 import baseball.view.impl.BaseballViewImpl;
 
-import java.util.Locale;
-
 public class BaseballApplication {
-    private static BaseballConfig config
-            = BaseballConfig.builder()
-                                .size(3)
-                                .radix(16)
-                                .tryCount(0)
-//                                .locale(Locale.ENGLISH)
-                                .build();
-    private static BaseballView baseballView = new BaseballViewImpl(config);
-    private static BaseballControllerTemplate baseballControllerTemplate = new BaseballController(baseballView);
-
     public static void main(String[] args) {
-        BaseballApplication.run(BaseballApplication.class, args);
+        BaseballConfig config = BaseballConfig.builder().build();
+        BaseballView baseballView = new BaseballViewImpl(config);
+        BaseballControllerTemplate baseballController = new BaseballController(baseballView);
+
+        baseballController.run(config);
     }
 
-    static public <T> void run(Class<T> clazz, String[] args) {
-        baseballControllerTemplate.run(config);
-    }
+
+
 }

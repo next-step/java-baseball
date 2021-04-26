@@ -82,7 +82,7 @@ public class BaseballNumberTest {
 
     @ParameterizedTest(name = "new BaseballNumber(input, size, radix) [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]" )
     @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideRandomBaseballNumber"
+            "baseball.model.TestParametersProvider#provideRandomBaseballNumberOfAllSizeAndAllRadix"
     })
     public void test3_1_baseballNumber_constructor_generate_number(String input, int size, int radix) {
         BaseballNumber baseballNumber = new BaseballNumber(input, size, radix);
@@ -92,7 +92,7 @@ public class BaseballNumberTest {
 
     @ParameterizedTest(name = "new BaseballNumber(input) [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
     @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideRandomBaseballNumberDefault"
+            "baseball.model.TestParametersProvider#provideRandomBaseballNumberOfDefaultSizeAndDefaultRadix"
     })
     public void test3_2_baseballNumber_constructor_generate_number(String input) {
         BaseballNumber baseballNumber = new BaseballNumber(input);

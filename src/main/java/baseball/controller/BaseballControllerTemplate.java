@@ -35,7 +35,7 @@ public abstract class BaseballControllerTemplate {
         BaseballResult result;
         do {
             // Unit Game Process
-            result = this.processGame();
+            result = this.unitProcessGame();
         } while (!result.isComplete());
 
         return result;
@@ -51,13 +51,13 @@ public abstract class BaseballControllerTemplate {
         // Finite Loop
         for (int i = 0; i < tryCount && (result == null || !result.isComplete()); i++) {
             // Unit Game Process
-            result = this.processGame();
+            result = this.unitProcessGame();
         }
 
         return result;
     }
 
-    public BaseballResult processGame() {
+    public BaseballResult unitProcessGame() {
         try {
             // 1. User Input Read
             BaseballNumber baseballNumber = this.readInputBaseballNumber();

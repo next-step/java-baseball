@@ -61,17 +61,23 @@ public class TestParametersProvider {
         return list;
     }
 
-    private static List<Arguments> provideRandomBaseballNumber() {
+    private static List<Arguments> provideRandomBaseballNumberOfAllSizeAndAllRadix() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <=  MAX_RADIX; radix++) {
             for (int size = MIN_SIZE; size < radix; size++) {
-                list.add(Arguments.of(provideRandomBaseballNumberString(size, radix), size, radix));
+                list.add(
+                        Arguments.of(
+                                provideRandomBaseballNumberString(size, radix),
+                                size,
+                                radix
+                        )
+                );
             }
         }
         return list;
     }
 
-    private static List<Arguments> provideRandomBaseballNumberDefault() {
+    private static List<Arguments> provideRandomBaseballNumberOfDefaultSizeAndDefaultRadix() {
         List<Arguments> list = new ArrayList<>();
         for (int i = 0; i < DEFAULT_TEST_CASE_COUNT; i++) {
             list.add(
