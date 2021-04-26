@@ -35,10 +35,9 @@ public class BaseballTest {
 
         String custNums = "123";
 
-        for(int i = 0 ; i < computerNumber.length; i++){
-            String tmp = String.valueOf(custNums.charAt(i));
-            strike += getEqual(computerNumber[i], Integer.parseInt(tmp));
-        }
+        // 스트라이크 카운트
+        countStrike(custNums);
+
 
         assertThat(strike).isEqualTo(1);
     }
@@ -49,9 +48,8 @@ public class BaseballTest {
 
         String custNums = "145";
 
-        for(int i = 0 ; i < computerNumber.length; i++){
-            getBall(i, computerNumber[i], custNums);
-        }
+        // 볼 카운트
+        countBall(custNums);
 
         assertThat(ball).isEqualTo(1);
     }
@@ -64,22 +62,13 @@ public class BaseballTest {
         StringBuffer answer = new StringBuffer();
 
         // 스트라이크 카운트
-        for(int i = 0 ; i < computerNumber.length; i++){
-            String tmp = String.valueOf(custNums.charAt(i));
-            strike += getEqual(computerNumber[i], Integer.parseInt(tmp));
-        }
+        countStrike(custNums);
         // 볼 카운트
-        for(int i = 0 ; i < computerNumber.length; i++){
-            getBall(i, computerNumber[i], custNums);
-        }
+        countBall(custNums);
 
         // 출력
-        if(strike > 0 ){
-            answer.append(strike + "스트라이크 ");
-        }
-        if(ball > 0 ){
-            answer.append(ball + "볼");
-        }
+        answer = appendStrikeStr(answer);
+        answer = appendBallStr(answer);
 
         assertThat(answer).contains("1스트라이크 2볼");
     }
@@ -92,19 +81,12 @@ public class BaseballTest {
         StringBuffer answer = new StringBuffer();
 
         // 스트라이크 카운트
-        for(int i = 0 ; i < computerNumber.length; i++){
-            String tmp = String.valueOf(custNums.charAt(i));
-            strike += getEqual(computerNumber[i], Integer.parseInt(tmp));
-        }
+        countStrike(custNums);
         // 볼 카운트
-        for(int i = 0 ; i < computerNumber.length; i++){
-            getBall(i, computerNumber[i], custNums);
-        }
+        countBall(custNums);
 
         // 출력
-        if(strike == 0 && ball == 0){
-            answer.append("포볼");
-        }
+        answer = appendFourBallStr(answer);
 
         assertThat(answer).contains("포볼");
     }
@@ -136,6 +118,54 @@ public class BaseballTest {
         return 0;
     }
 
+    /*
+        스트라이크 카운트
+     */
+    private void countStrike(String custNums){
+        for(int i = 0 ; i < computerNumber.length; i++){
+            String tmp = String.valueOf(custNums.charAt(i));
+            strike += getEqual(computerNumber[i], Integer.parseInt(tmp));
+        }
+    }
+
+    /*
+        볼 카운트
+     */
+    private void countBall(String custNums){
+        for(int i = 0 ; i < computerNumber.length; i++){
+            getBall(i, computerNumber[i], custNums);
+        }
+    }
+
+    /*
+        결과값 스트라이크 셋팅
+     */
+    private StringBuffer appendStrikeStr(StringBuffer answer){
+        if(strike > 0 ){
+            answer.append(strike + "스트라이크 ");
+        }
+        return answer;
+    }
+
+    /*
+        결과값 볼 셋팅
+     */
+    private StringBuffer appendBallStr(StringBuffer answer){
+        if(ball > 0 ){
+            answer.append(ball + "볼");
+        }
+        return answer;
+    }
+
+    /*
+        결과값 포볼 셋팅
+     */
+    private StringBuffer appendFourBallStr(StringBuffer answer){
+        if(strike == 0 && ball == 0){
+            answer.append("포볼");
+        }
+        return answer;
+    }
 
 
 
