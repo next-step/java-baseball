@@ -2,7 +2,7 @@ package com.syl.game.baseball.domain.util;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.syl.game.baseball.domain.dto.*;
+import com.syl.game.baseball.domain.entity.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

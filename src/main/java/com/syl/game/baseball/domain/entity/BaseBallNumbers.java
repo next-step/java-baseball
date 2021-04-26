@@ -1,4 +1,4 @@
-package com.syl.game.baseball.domain.dto;
+package com.syl.game.baseball.domain.entity;
 
 public class BaseBallNumbers {
     private int first;
@@ -53,7 +53,7 @@ public class BaseBallNumbers {
         return count;
     }
 
-    public int checkNothing(BaseBallNumbers inputNumbers) {
+    public int countNothing(BaseBallNumbers inputNumbers) {
         int count = 0;
         if ( !compareFirst(inputNumbers.getFirst()) && !compareSecond(inputNumbers.getFirst()) && !compareThird(inputNumbers.getFirst()) ) count += 1;
         if ( !compareFirst(inputNumbers.getSecond()) && !compareSecond(inputNumbers.getSecond()) && !compareThird(inputNumbers.getSecond()) ) count += 1;
@@ -61,15 +61,15 @@ public class BaseBallNumbers {
         return count;
     }
 
-    public boolean compareFirst(int num) {
+    private boolean compareFirst(int num) {
         return first == num;
     }
 
-    public boolean compareSecond(int num) {
+    private boolean compareSecond(int num) {
         return second == num;
     }
 
-    public boolean compareThird(int num) {
+    private boolean compareThird(int num) {
         return third == num;
     }
 }

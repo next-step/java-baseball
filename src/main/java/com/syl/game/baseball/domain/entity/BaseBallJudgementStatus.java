@@ -1,4 +1,4 @@
-package com.syl.game.baseball.domain.dto;
+package com.syl.game.baseball.domain.entity;
 
 public class BaseBallJudgementStatus {
     private int strike;

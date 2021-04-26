@@ -1,7 +1,7 @@
 package com.syl.game.baseball.domain.util;
 
-import com.syl.game.baseball.domain.dto.BaseBallJudgementStatus;
-import com.syl.game.baseball.domain.dto.BaseBallNumbers;
+import com.syl.game.baseball.domain.entity.BaseBallJudgementStatus;
+import com.syl.game.baseball.domain.entity.BaseBallNumbers;
 
 public class BaseBallGameManager {
 
@@ -27,7 +27,7 @@ public class BaseBallGameManager {
     public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
         int strike = selectedNumbers.countStrike(inputNumbers);
         int ball = selectedNumbers.countBall(inputNumbers);
-        int nothing = selectedNumbers.checkNothing(inputNumbers);
+        int nothing = selectedNumbers.countNothing(inputNumbers);
         return new BaseBallJudgementStatus(strike, ball, nothing);
     }
 
