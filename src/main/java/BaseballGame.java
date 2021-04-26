@@ -122,4 +122,19 @@ public class BaseballGame {
 		return false;
 	}
 	
+	/**
+	 * 3 Strike를 체크합니다.
+	 *
+	 * @param totalStrikeScore
+	 * @return boolean
+	 */
+	private boolean checkThreeStrike(int totalStrikeScore) {
+		if (totalStrikeScore == 3) {
+			System.out.println(totalStrikeScore + BaseballGameConstant.STRIKE);
+			System.out.println(BaseballGameConstant.CORRECT_ANSWER);
+			return true;
+		}
+		
+		return false;
+	}
 }

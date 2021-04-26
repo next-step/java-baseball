@@ -101,4 +101,21 @@ public class BaseballGameTest {
 		return false;
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"3:true", "1:false", "0:false"}, delimiter = ':')
+	@DisplayName("3스트라이크 테스트")
+	public void checkThreeStrikeTest(int totalStrikeScore, boolean expected) {
+		assertThat(checkThreeStrike(totalStrikeScore)).isEqualTo(expected);
+	}
+	
+	private boolean checkThreeStrike(int totalStrikeScore) {
+		if (totalStrikeScore == 3) {
+			System.out.println(totalStrikeScore + BaseballGameConstant.STRIKE);
+			System.out.println(BaseballGameConstant.CORRECT_ANSWER);
+			return true;
+		}
+		
+		return false;
+	}
+	
 }
