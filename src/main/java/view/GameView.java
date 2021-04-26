@@ -2,15 +2,17 @@ package view;
 
 import java.util.Scanner;
 
-import util.GameUtil;
+import validator.NumberValidator;
 
 public class GameView {
-	public static void inputNumberView() {
+	public static String inputNumberView() {
+		NumberValidator numberValidator = new NumberValidator();
 		Scanner scanner = new Scanner(System.in);
 		String inputNumber;
 		do {
 			System.out.print("숫자를 입력해주세요: ");
 			inputNumber = scanner.nextLine();
-		} while (!GameUtil.validateNumberFormat(inputNumber));
+		} while (!numberValidator.validate(inputNumber));
+		return inputNumber;
 	}
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import constant.NumberValidation;
+import validator.NumberValidator;
 
 public class GameUtil {
 	public static final int LIMIT_DIGIT = 3;
@@ -15,27 +15,12 @@ public class GameUtil {
 	public static final int MAX_DIGIT = 9;
 
 	public static String getRandomNumber() {
+		NumberValidator numberValidator = new NumberValidator();
 		String number = null;
 		do {
 			number = makeRandomNumber();
-		} while (!validateNumberFormat(number));
+		} while (!numberValidator.validate(number));
 		return number;
-	}
-
-	public static boolean validateNumberFormat(String number) {
-		boolean isRightFlag = true;
-		for (NumberValidation validation : NumberValidation.values()) {
-			isRightFlag = isRightFlag && validateByCurrentFormat(validation, number);
-		}
-		return isRightFlag;
-	}
-
-	private static boolean validateByCurrentFormat(NumberValidation validation, String number) {
-		if (!validation.getValidate().test(number)) {
-			System.out.printf("입력 값 오류: %s\n\n", validation.getErrorMsg());
-			return false;
-		}
-		return true;
 	}
 
 	private static String makeRandomNumber() {
