@@ -23,13 +23,12 @@ class BaseballNumberTest {
         assertThat(baseballNumber).isEqualTo(expectedBaseballNumber);
     }
 
-    @DisplayName("유효 범위를 초과하는 숫자를 입력하면 예외발생한다")
+    @DisplayName("유효 범위를 초과하는 숫자를 입력하면 예외가 발생한다")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 10})
     void invalid_number_exception(int number) {
-        assertThatThrownBy(() -> {
-            BaseballNumber.from(number);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> BaseballNumber.from(number))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("1부터 9까지의 숫자만 입력 가능합니다.");
     }
 }

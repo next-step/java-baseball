@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BallTest {
 
-    @DisplayName("인덱스는 불일치, 숫자는 동일하면 ball로 판단한다")
+    @DisplayName("strike가 아닐때 정답에 동일한 숫자가 있으면 ball로 판단한다")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,0", "1,3,4,1", "1,3,2,2", "3,1,2,3"})
     void count_strike(int firstNum, int secondNum, int thirdNum, int expectedCount) {
@@ -32,7 +32,7 @@ class BallTest {
         assertThat(ball.getCount()).isEqualTo(expectedCount);
     }
 
-    @DisplayName("count 초기화하면 0이 된다")
+    @DisplayName("초기화하면 count가 0이 된다")
     @Test
     void init_count() {
         // given
@@ -45,7 +45,7 @@ class BallTest {
         assertThat(ball.getCount()).isEqualTo(0);
     }
 
-    @DisplayName("0볼 일때 nothing 인지 물어보면 true를 반환, 그렇지 않을 경우 false를 반환한다")
+    @DisplayName("볼이 0일 때 nothing 인지 물어보면 true 반환, 그렇지 않을 경우 false 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,true", "1,3,4,false", "1,3,2,false", "3,1,2,false"})
     void isNothing(int firstNum, int secondNum, int thirdNum, boolean expected) {

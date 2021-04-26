@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ScoreTest {
 
-    @DisplayName("score 초기화하면 strike, ball count가 0이 된다")
+    @DisplayName("초기화하면 strike와 ball count 0이 된다")
     @Test
     void initScore() {
         // given
@@ -33,7 +33,7 @@ class ScoreTest {
         assertThat(score.getBall()).isEqualTo(0);
     }
 
-    @DisplayName("3스트라이크 일때 모두 스트라이크인지 물어보면 true 반환, 그렇지 않을 경우 false를 반환한다")
+    @DisplayName("3스트라이크 일때 모두 스트라이크인지 물어보면 true 반환, 그렇지 않을 경우 false 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,true", "1,2,4,false", "1,4,5,false", "4,5,6,false"})
     void isAllStrike(int firstNum, int secondNum, int thirdNum, boolean expected) {
@@ -52,7 +52,7 @@ class ScoreTest {
         assertThat(score.isAllStrike()).isEqualTo(expected);
     }
 
-    @DisplayName("0스트라이크 0볼일때 nothing 인지 물어보면 true 반환, 그렇지 않을 경우 false를 반환한다")
+    @DisplayName("0스트라이크 0볼일때 nothing 인지 물어보면 true 반환, 그렇지 않을 경우 false 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"4,5,6,true", "1,2,3,false", "1,4,5,false", "3,4,5,false"})
     void isNothing(int firstNum, int secondNum, int thirdNum, boolean expected) {

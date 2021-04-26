@@ -66,7 +66,7 @@ class ComputerTest {
         assertThat(computer.getBall()).isEqualTo(expectedBallCount);
     }
 
-    @DisplayName("3스트라이크 일때 모두 스트라이크인지 물어보면 true 반환한다")
+    @DisplayName("3스트라이크 일때 모두 스트라이크인지 물어보면 true 반환, 그렇지 않을 경우 false 반환한다")
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,true", "1,3,2,false"})
     void isAllStrike(int firstNum, int secondNum, int thirdNum, boolean expected) {

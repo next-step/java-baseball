@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class AnswerTest {
 
-    @DisplayName("정답이 생성됐을때 index에 해당하는 BaseballNumber를 반환한다")
+    @DisplayName("index를 입력하면 해당하는 answer 1개를 반환한다")
     @Test
     void getAnswer() {
         // given
