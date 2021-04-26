@@ -13,6 +13,8 @@ public class InputView {
 
 	private static final String INPUT_BASEBALL_NUMBERS_MESSAGE = "숫자를 입력해주세요:";
 
+	private static final String REPLAY_BASEBALL_NUMBERS_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+
 	private InputView() { }
 
 	public static BaseballNumbers inputBaseballNumbers() {
@@ -29,6 +31,12 @@ public class InputView {
 		if (!StringUtils.isNumber(value)) {
 			throw new InputValueException("입력 값이 숫자가 아닙니다.");
 		}
+	}
+
+	public static boolean inputReplayBaseBallGame() {
+		System.out.println(REPLAY_BASEBALL_NUMBERS_MESSAGE);
+
+		return "1".equals(SCANNER.nextLine());
 	}
 
 }
