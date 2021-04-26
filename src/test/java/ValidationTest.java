@@ -82,7 +82,7 @@ public class ValidationTest {
 	@Test
 	public void madeNumberDifferentTest() {
 		Predicate<String> validate = NumberValidation.IsDiffertNumber.getValidate();
-		GameManager gameManager = GameManager.getInstance();
+		GameManager gameManager = new GameManager();
 		for (int i = 0; i < 100; i++) {
 			Assertions.assertTrue(validate.test(gameManager.getAnswer()));
 		}

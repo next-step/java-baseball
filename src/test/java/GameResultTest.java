@@ -47,7 +47,7 @@ public class GameResultTest {
 		answer = "123";
 		userNumber = "123";
 		GameResult gameResult = gameManager.checkResult(answer, userNumber);
-		Assertions.assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임 종료", gameResult.getMsg());
+		Assertions.assertEquals("3 스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료", gameResult.getMsg());
 		Assertions.assertTrue(gameResult.getSuccessFlag());
 	}
 
