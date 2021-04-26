@@ -1,77 +1,58 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class BaseBall {
-    int[] answer;
-    boolean finish;
-    boolean replay;
+    private int[] answer;
+    private boolean finish;
+    private boolean replay;
+    private GameInput gameInput;
+    private GameOutput gameOutput;
+    private final static int GAME_LENGTH = 3;
+    private final static int LOWER_BOUND = 1;
+    private final static int UPPER_BOUND = 9;
 
     public void startGame() {
-        Scanner s = new Scanner(System.in);
         do {
             init();
-            playGame(s);
+            playGame();
         } while (replay);
-        s.close();
     }
 
-    private void playGame(Scanner s) {
+    private void playGame() {
         while (!finish) {
-            System.out.print("숫자를 입력해주세요 : ");
-            check(s.nextLine());
+            gameOutput.writeMessage(Message.PUTIN_NUMBER.getMessage());
+            check(gameInput.getGameInput());
         }
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-        replayGame(s);
+        gameOutput.writeMessage(String.valueOf(GAME_LENGTH), Message.ALL_STRIKES.getMessage());
+        gameOutput.writeMessage(Message.REPLAY_GUIDE.getMessage());
+        replayGame();
     }
 
-    private void replayGame(Scanner s) {
-        String input = s.nextLine();
-        while (!(input.equals("1") || input.equals("2"))) {
-            System.out.println("올바르지 않은 입력입니다.");
-            input = s.nextLine();
-        }
+    private void replayGame() {
+        String input = gameInput.getControlInput();
         replay = Integer.parseInt(input) == 1;
     }
 
     public void check(String input) {
-        if (!isInputValid(input)) {
-            return;
-        }
         Result result = new Result();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < GAME_LENGTH; i++) {
             judge(input, result, i);
         }
         showHint(result);
-        finish = result.getStrikes() == 3;
-    }
-
-    public boolean isInputValid(String input) {
-        if (input.length() != 3) {
-            System.out.println("올바르지 않은 입력입니다");
-            return false;
-        }
-        if (!((input.charAt(0) <= '9' && input.charAt(0) >= '1') &&
-                (input.charAt(1) <= '9' && input.charAt(1) >= '1') &&
-                (input.charAt(2) <= '9' && input.charAt(2) >= '1'))) {
-            System.out.println("올바르지 않은 입력입니다");
-            return false;
-        }
-        return true;
+        finish = result.getStrikes() == GAME_LENGTH;
     }
 
     public void showHint(Result result) {
-        StringBuilder sb = new StringBuilder();
+
         if (result.getStrikes() != 0) {
-            sb.append(String.format("%d 스트라이크 ", result.getStrikes()));
+            gameOutput.writeMessageInline(String.valueOf(result.getStrikes()), Message.STRIKE.getMessage() );
         }
         if (result.getBalls() != 0) {
-            sb.append(String.format("%d 볼", result.getBalls()));
+            gameOutput.writeMessageInline(String.valueOf(result.getBalls()), Message.BALL.getMessage() );
         }
         if (result.getStrikes() == 0 && result.getBalls() == 0) {
-            sb.append("낫싱");
+            gameOutput.writeMessageInline(Message.NOTHING.getMessage() );
         }
-        System.out.println(sb);
+        gameOutput.writeFlush();
     }
 
     public void judge(String input, Result result, int i) {
@@ -86,17 +67,26 @@ public class BaseBall {
 
     public void init() {
         finish = false;
-        answer = new int[3];
+        answer = new int[GAME_LENGTH];
+        genRandomAnswer();
         replay = true;
+        gameInput = GameInput.getInstance();
+        gameInput.setGameLength(GAME_LENGTH);
+        gameInput.setLowerBound(1);
+        gameInput.setUpperBound(9);
+        gameOutput = GameOutput.getInstance();
+    }
+
+    private void genRandomAnswer() {
         Random random = new Random(System.currentTimeMillis());
         int index = 0;
-        while (index < 3) {
+        while (index < GAME_LENGTH) {
             index = fillNum(random, index);
         }
     }
 
     private int fillNum(Random random, int index) {
-        int value = random.nextInt(9) + 1;
+        int value = random.nextInt(UPPER_BOUND-LOWER_BOUND+1) + LOWER_BOUND;
         if (!isContain(value)) {
             answer[index] = value;
             return index + 1;
@@ -105,7 +95,12 @@ public class BaseBall {
     }
 
     public boolean isContain(int value) {
-        return answer[0] == value || answer[1] == value || answer[2] == value;
+        for (int val : answer) {
+            if (val == value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isStrike(int index, int value) {
