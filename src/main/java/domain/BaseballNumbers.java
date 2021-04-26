@@ -5,6 +5,7 @@ import static domain.BaseballNumber.MINIMUM_BALL_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class BaseballNumbers {
@@ -40,6 +41,10 @@ public class BaseballNumbers {
   private void validate(List<BaseballNumber> baseballNumbers) {
     if(baseballNumbers.size() != BASEBALL_NUMBERS_SIZE) {
       throw new IllegalArgumentException("야구공은 3자리수로 이루어져야만 합니다.");
+    }
+
+    if(new HashSet<>(baseballNumbers).size() != baseballNumbers.size()) {
+      throw new IllegalArgumentException("야구공은 서로 다른수로 이루어져야만 합니다.");
     }
   }
 
