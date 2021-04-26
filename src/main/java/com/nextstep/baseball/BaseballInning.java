@@ -48,8 +48,38 @@ public class BaseballInning {
 		return numbers;
 	}
 	
+	private String isValidStatus(ArrayList<Integer> strategy) {
+		if(isEnd) {
+			return NOT_STARTED;
+		}
+		if(strategy.size() != 3 || strategy.contains(0)) {
+			return NOT_VALID_PARAM;
+		}
+		return "";
+	}
+	
+	private ArrayList<Integer> decodePlaceValue(int num) {
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		int devideNum = 100;
+		while(num != 0) {
+			numbers = insertUniqueNumber(numbers, num/devideNum);
+			num = num % devideNum;
+			devideNum = devideNum/10;
+		}
+		return numbers;
+	}
+	
 	public void start() {
 		isEnd = false;
 		pitchingstrategy = makePitchingstrategy();
+	}
+	
+	public String pitchAndHit(int ballCount) {
+		ArrayList<Integer> hittingstrategy = decodePlaceValue(ballCount);
+		String error = isValidStatus(hittingstrategy);
+		if(!error.equals("")) {
+			return error;
+		}
+		return "";
 	}
 }
