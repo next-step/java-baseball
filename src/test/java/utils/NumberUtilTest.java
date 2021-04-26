@@ -3,9 +3,13 @@ package utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RandomNumberUtilTest {
+public class NumberUtilTest {
 
     @Test
     @DisplayName("3자리 난수 생성 로직이 실제로 100~999 사이의 숫자를 생성하는지 확인")
@@ -28,4 +32,34 @@ public class RandomNumberUtilTest {
         
     }
     
+    
+    @Test
+    @DisplayName("list, indexOf를 활용한 strike, ball 판별 테스트")
+    public void listIndexOfTest() {
+        
+        int strikeCnt = 0;
+        int ballCnt   = 0;
+        
+        Integer[] test       = {3, 2, 7};
+        Integer[] comparison = {3, 7, 2};
+        
+        List<Integer> aList = Arrays.asList(test);
+        List<Integer> bList = Arrays.asList(comparison);
+        
+        for (int i = 0; i < aList.size(); i++) {
+            
+            int listIndex = bList.indexOf(aList.get(i));
+            
+            if (listIndex != -1 && listIndex == i) {
+                strikeCnt++;
+            }
+            
+            if (listIndex != -1 && listIndex != i) {
+                ballCnt++;
+            }
+        }
+        
+        assertThat(strikeCnt).isEqualTo(1);
+        assertThat(ballCnt).isEqualTo(2);
+    }
 }
