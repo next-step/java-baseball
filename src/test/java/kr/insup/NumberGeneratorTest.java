@@ -14,7 +14,6 @@ public class NumberGeneratorTest {
 
     private static final int TEST_TRIAL = 1000;
 
-
     @DisplayName("1~9로 이루어진 1자리 숫자를 잘 만들어내는지 확인")
     @Test
     void 숫자_한개_생성() {

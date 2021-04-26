@@ -16,6 +16,12 @@ public class NumberMatcher {
         generatedNumbers = generatedNumber.toCharArray();
     }
 
+    /**
+     * 생성자로 받은 사용자 입력 숫자와 생성된 숫자를 비교한다.
+     * totalMatch : 순서 상관 없이 몇개의 숫자가 같은지 확인
+     * strike : 숫자와 자리까지 같음
+     * ball : 숫자는 있지만 자리가 다름
+     */
     public void matchNumber() {
         totalMatch = calculateTotalMatch();
         strike = calculateStrike();
@@ -77,10 +83,18 @@ public class NumberMatcher {
         return totalMatch;
     }
 
+    /**
+     * 포볼(숫자가 같은 것이 하나도 없음)을 확인
+     * @return 포볼이면 true, 포볼이 아니면 false
+     */
     public boolean isFourBall() {
         return totalMatch == 0;
     }
 
+    /**
+     * 정답을 맞췄는지 확인
+     * @return 정답이면 true, 정답이 아니면 false
+     */
     public boolean isMatch() {
         return strike == GameOptions.HOW_MANY_DIGIT;
     }
