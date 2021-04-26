@@ -3,7 +3,32 @@ import java.util.Scanner;
 
 public class BaseBall {
 
-	public static void main(String[] args) {}
+	public static void main(String[] args) {
+		BaseBall ball = new BaseBall();
+		ball.gameStart();
+	}
+
+	/**
+	 * 게임시작
+	 */
+	public void gameStart() {
+		do {
+			game(createBaseBall());
+		} while (closeCheck());
+	}
+
+	/**
+	 * 게임 종료
+	 * @return
+	 */
+	public boolean closeCheck() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		if (scanner.nextInt() == 1) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * 1~9 사이의 서로 다른 수로 이루어진 3자리의 수(야구공) 생성
