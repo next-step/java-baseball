@@ -94,10 +94,30 @@ public class BaseBallGame {
 		}
 	}
 
+	private int continueGame() {
+		int restartOrEnd = -1;
+		while (restartOrEnd != RESTART_GAME && restartOrEnd != END_GAME) {
+			System.out.print(
+				"게임을 새로 시작하려면 " + BaseBallGame.RESTART_GAME + ", 종료하려면 " + BaseBallGame.END_GAME + "를 입력하세요");
+			String input = SCANNER.nextLine();
+			restartOrEnd = parseToNumber(input);
+		}
+		return restartOrEnd;
+	}
+
+	private void gameInit() {
+		gameStatus.setStrike(0);
+		gameStatus.setBall(0);
+		player.setNumber(null);
+	}
+
 	public int gameStart() {
-		playerNumberCheck();
-		getGameResult(computer, player);
-		printBallCount();
-		return -1;
+		while (gameStatus.getStrike() != 3) {
+			gameInit();
+			playerNumberCheck();
+			getGameResult(computer, player);
+			printBallCount();
+		}
+		return continueGame();
 	}
 }
