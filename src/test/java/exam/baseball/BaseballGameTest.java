@@ -18,11 +18,11 @@ class BaseballGameTest {
 
 		assertThat(game.isIncorrectPitchingCommand("s87"))
 		.as("check %s is incorrect", "not digit input").isTrue();
-		
+
 		assertThat(game.isIncorrectPitchingCommand("045"))
 		.as("check %s is incorrect", "contains zero").isTrue();
 
-		assertThat(game.isIncorrectPitchingCommand("99"))		
+		assertThat(game.isIncorrectPitchingCommand("99"))
 		.as("check %s is incorrect", "short length input").isTrue();
 
 		assertThat(game.isIncorrectPitchingCommand(""))
@@ -41,19 +41,19 @@ class BaseballGameTest {
 
 		assertThat(game.isIncorrectRestartCommand("3"))
 		.as("check %s is incorrect", "not code digit").isTrue();
-		
+
 		assertThat(game.isIncorrectRestartCommand("11"))
 		.as("check %s is incorrect", "too long input").isTrue();
-		
+
 		assertThat(game.isIncorrectRestartCommand("22"))
 		.as("check %s is incorrect", "too long input").isTrue();
-		
+
 		assertThat(game.isIncorrectRestartCommand("s"))
 		.as("check %s is incorrect", "not digit input").isTrue();
-		
+
 		assertThat(game.isIncorrectRestartCommand(""))
 		.as("check %s is incorrect", "empty string").isTrue();
-		
+
 		assertThat(game.isIncorrectRestartCommand(null))
 		.as("check %s is incorrect", "null").isTrue();
 	}
