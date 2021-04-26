@@ -38,12 +38,10 @@ public class BaseballGame {
             System.out.println("낫싱");
             return;
         }
-        if (judgeResult.getStrike() != 0) {
+        if (judgeResult.getStrike() != 0)
             System.out.print(judgeResult.getStrike() + " 스트라이크 ");
-        }
-        if (judgeResult.getBall() != 0) {
+        if (judgeResult.getBall() != 0)
             System.out.print(judgeResult.getBall() + "볼");
-        }
         System.out.println();
     }
 
