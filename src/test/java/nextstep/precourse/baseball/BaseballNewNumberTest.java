@@ -14,11 +14,25 @@ class BaseballNewNumberTest {
 
     @Test
     void createNewRandom() {
-        Set<Integer> newRandomSet = baseballNewNumber.newRandomNumber();
+        baseballNewNumber.newRandomNumber();
+
+        Set<Integer> newRandomSet = baseballNewNumber.newRightNumber;
 
         assertEquals(newRandomSet.size(), 3);
 
         assertFalse(newRandomSet.contains(0));
+    }
+
+    @Test
+    void createRandomArray() {
+        int[] randomArray = baseballNewNumber.randomNumberArrayInput();
+        Set<Integer> newRandomSet = baseballNewNumber.newRightNumber;
+
+        assertEquals(randomArray.length, newRandomSet.size());
+
+        for(int randomNumber : randomArray) {
+            assertTrue(newRandomSet.contains(randomNumber));
+        }
     }
 
 }
