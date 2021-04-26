@@ -62,6 +62,7 @@ public class GameUtils {
 		checkStrike(currentGame, input, 0);
 		checkBall(currentGame, input, 0);
 		result(currentGame);
+		exitGame(restart(currentGame));
 	}
 
 	private void checkStrike(Game game, String sInput, int index) {
@@ -95,6 +96,24 @@ public class GameUtils {
 			this.isEnd = true;
 		}
 		game.setZero();
+	}
+
+	private void exitGame(String restart) {
+		if (restart.equals("1")) {
+			this.isEnd = false;
+			this.isRestart = true;
+		}
+		if (restart.equals("2")) {
+			System.out.println("게임이 종료되었습니다.");
+		}
+	}
+
+	private String restart(Game game) {
+		if (this.isEnd) {
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			return scanner.nextLine();
+		}
+		return "";
 	}
 
 	public boolean isEnd() {
