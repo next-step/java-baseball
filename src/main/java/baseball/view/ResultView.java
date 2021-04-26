@@ -13,12 +13,16 @@ public class ResultView {
     }
 
     public static void resultPrint(CompareResult compareResult) {
-        if (compareResult.strikeCount() == NUMBER_LENGTH) {
-            System.out.println(compareResult.strikeCount() + " 스트라이크 ");
-            System.out.println(NUMBER_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        if (compareResult.strikeCount() == 0 && compareResult.ballCount() == 0) {
+            System.out.println("낫싱");
             return;
         }
 
         System.out.println(compareResult.strikeCount() + " 스트라이크 " + compareResult.ballCount() + " 볼");
+    }
+
+    public static void allStrikePrint() {
+        System.out.println(NUMBER_LENGTH + " 스트라이크 ");
+        System.out.println(NUMBER_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
 }

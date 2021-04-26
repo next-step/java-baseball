@@ -38,11 +38,13 @@ public class BaseballController {
         }
 
         CompareResult compareResult = computer.compareNumber(inputNumber);
-        ResultView.resultPrint(compareResult);
 
         if (compareResult.strikeCount() == NUMBER_LENGTH) {
+            ResultView.allStrikePrint();
             return;
         }
+
+        ResultView.resultPrint(compareResult);
 
         baseballGame(computer);
     }
