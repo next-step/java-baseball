@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BaseBallGame {
@@ -8,11 +9,17 @@ public class BaseBallGame {
 	private static final Scanner SCANNER = new Scanner(System.in);
 	private Computer computer;
 	private Player player;
+	private GameStatus gameStatus;
 
 	public BaseBallGame() {
 		this.computer = new Computer();
 		this.computer.setNumber(Number.getRandomNumberWithoutDuplicate());
 		this.player = new Player();
+		this.gameStatus = new GameStatus();
+	}
+
+	public GameStatus getGameStatus() {
+		return gameStatus;
 	}
 
 	private void playerNumberCheck() {
@@ -52,8 +59,38 @@ public class BaseBallGame {
 		return number;
 	}
 
+	public void getGameResult(Computer computer, Player player) {
+		List<String> playerNumberStringList = player.getNumber().numberToStringList();
+		for (int playerNumberIndex = 0; playerNumberIndex < playerNumberStringList.size(); playerNumberIndex++) {
+			int computerNumberIndex = computer.getNumber()
+				.numberToStringList()
+				.indexOf(playerNumberStringList.get(playerNumberIndex));
+			setBallCount(playerNumberIndex, computerNumberIndex);
+		}
+	}
+
+	private void setBallCount(int playerNumberIndex, int computerNumberIndex) {
+		if (computerNumberIndex != -1) {
+			countStrike(playerNumberIndex, computerNumberIndex);
+			countBall(playerNumberIndex, computerNumberIndex);
+		}
+	}
+
+	private void countStrike(int playerNumberIndex, int computerNumberIndex) {
+		if (playerNumberIndex == computerNumberIndex) {
+			gameStatus.setStrike(gameStatus.getStrike() + 1);
+		}
+	}
+
+	private void countBall(int playerNumberIndex, int computerNumberIndex) {
+		if (playerNumberIndex != computerNumberIndex) {
+			gameStatus.setBall(gameStatus.getBall() + 1);
+		}
+	}
+
 	public int gameStart() {
 		playerNumberCheck();
+		getGameResult(computer, player);
 		return -1;
 	}
 }
