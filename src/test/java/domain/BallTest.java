@@ -17,6 +17,14 @@ public class BallTest {
     }
 
     @Test
+    @DisplayName("볼 허용 범위가 0~3을 벗어나면 IllegalArgumentException를 리턴한다. (음수)")
+    public void validationNegativeBall() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ball.of(-1);
+        });
+    }
+
+    @Test
     @DisplayName("볼 점수가 맞는지 비교한다.")
     public void ballCheck() {
         assertThat(Ball.of(2).toString()).isEqualTo("2");
