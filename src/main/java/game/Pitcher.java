@@ -1,5 +1,6 @@
 package game;
 
+import common.CommonUtil;
 import common.ConstantUtil;
 
 import java.util.*;
@@ -18,18 +19,7 @@ public class Pitcher {
     }
 
     private String getInputThrowBalls() {
-        String inputThrowBalls = null;
-
-        try {
-            System.out.print("숫자를 입력해주세요 : ");
-            inputThrowBalls = scanner.next(ConstantUtil.INPUT_NUMBER_PATTERN);
-        } catch (InputMismatchException e) {
-            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-            scanner.nextLine();
-            getInputThrowBalls();
-        }
-
-        return inputThrowBalls;
+        return CommonUtil.scannerNextMessageAndPattern("숫자를 입력해주세요 : ", ConstantUtil.INPUT_NUMBER_PATTERN);
     }
 
     private List<Integer> getInputThrowBallList() {

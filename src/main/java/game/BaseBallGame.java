@@ -1,9 +1,7 @@
 package game;
 
+import common.CommonUtil;
 import common.ConstantUtil;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class BaseBallGame {
     private Referee referee;
@@ -35,19 +33,7 @@ public class BaseBallGame {
     }
 
     private String getInputIsReStart() {
-        String inputRestartGame = null;
-        Scanner scanner = new Scanner(System.in);
-
-        try {
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            inputRestartGame = scanner.next(ConstantUtil.INPUT_RESTART_PATTERN);
-        } catch (InputMismatchException e) {
-            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-            scanner.nextLine();
-            getInputIsReStart();
-        }
-
-        return inputRestartGame;
+        return CommonUtil.scannerNextMessageAndPattern("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.", ConstantUtil.INPUT_RESTART_PATTERN);
     }
 
     private boolean isReStartGame(String input) {
