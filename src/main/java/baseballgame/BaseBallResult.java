@@ -3,10 +3,12 @@ package baseballgame;
 public class BaseBallResult {
 	private int strikeCount;
 	private int containsCount;
+	private String errorMessage;
 
-	public BaseBallResult(int containsCount, int strikeCount) {
+	public BaseBallResult(int containsCount, int strikeCount, String errorMessage) {
 		this.containsCount = containsCount;
 		this.strikeCount = strikeCount;
+		this.errorMessage = errorMessage;
 	}
 
 	public int getStrikeCount() {
@@ -19,5 +21,9 @@ public class BaseBallResult {
 
 	public boolean isNothing() {
 		return strikeCount + getBallCount() == 0;
+	}
+
+	public String getErrorMessage(){
+		return errorMessage;
 	}
 }

@@ -26,7 +26,7 @@ public class BaseBallGame {
 		boolean progressStatus = true;
 		while (progressStatus) {
 			String userInput = user.setUserInputNumberArray();
-			BaseBallResult baseBallResult = referee.judgeBall(ball.getAnswerArray(), userInput);
+			BaseBallResult baseBallResult = referee.getResult(ball.getAnswerList(), userInput);
 			System.out.println(printMessage.getResultString(baseBallResult));
 			progressStatus = isThreeStrike(baseBallResult.getStrikeCount());
 			referee.initCount();
