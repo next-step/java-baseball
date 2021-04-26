@@ -55,10 +55,10 @@ public class BaseballGame {
 		do {
 			System.out.print(startComment);
 			inputNumber = getInputNumber();
-			if (validation.validate(inputNumber)) {
+			if (!validation.validate(inputNumber)) {
 				System.out.println(errorComment);
 			}
-		} while (validation.validate(inputNumber));
+		} while (!validation.validate(inputNumber));
 		return inputNumber;
 	}
 }

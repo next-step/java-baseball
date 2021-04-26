@@ -4,7 +4,7 @@ public class ThreeDigitValidation implements InputNumberValidation {
 
 	@Override
 	public boolean validate(int inputNumber) {
-		return (inputNumber < MIN_QUESTION_NUMBER || inputNumber > MAX_QUESTION_NUMBER);
+		return (MIN_QUESTION_NUMBER < inputNumber && inputNumber < MAX_QUESTION_NUMBER);
 	}
 }
 
