@@ -1,16 +1,25 @@
 package study;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang3.RandomUtils;
 
 public class Pitcher {
-	public Set<Integer> pitch(int numOfPitches) {
-		Set<Integer> pitches = new HashSet<>();
+	public List<Integer> pitch(int numOfPitches) {
+		List<Integer> pitches = new ArrayList<>(3);
 		while (pitches.size() < 3) {
-			pitches.add(RandomUtils.nextInt(1, 10));
+			nextPitch(pitches);
 		}
-		return pitches;
+		return Collections.unmodifiableList(pitches);
+	}
+
+	private void nextPitch(List<Integer> pitches) {
+		int pitch = RandomUtils.nextInt(1, 10);
+		if (pitches.contains(pitch)) {
+			return;
+		}
+		pitches.add(pitch);
 	}
 }
