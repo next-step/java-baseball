@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 public class GameRules {
+    private static int INIT_COUNT = 0;
+
     private final Map<GameRule, Integer> countOfRule = new HashMap<>();
 
     public GameRules(List<GameRule> gameRules) {
         GameRule[] values = GameRule.values();
         for(GameRule rule : values) {
-            countOfRule.put(rule, 0);
+            countOfRule.put(rule, INIT_COUNT);
         }
 
         for(GameRule rule : gameRules) {
@@ -33,7 +35,7 @@ public class GameRules {
     private void increase(GameRule gameRule) {
         Integer count = countOfRule.get(gameRule);
 
-        countOfRule.put(gameRule, count + 1);
+        countOfRule.put(gameRule, ++count);
     }
 
     public boolean isNotEndGame() {
@@ -41,6 +43,6 @@ public class GameRules {
     }
 
     public boolean isEndGame() {
-        return countOfBall() == 0 && countOfMissing() == 0;
+        return countOfBall() == INIT_COUNT && countOfMissing() == INIT_COUNT;
     }
 }
