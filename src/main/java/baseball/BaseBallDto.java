@@ -1,3 +1,5 @@
+package baseball;
+
 public class BaseBallDto {
 	public static class Result {
 		private boolean isAnswer;
