@@ -16,14 +16,14 @@ public class DeckTest {
 	List<Integer> digits = Deck.create();
 	List<Integer> deck = Deck.draw();
 
-	@DisplayName("무작위 덱 객체 생성")
+	@DisplayName("무작위 3자리 숫자 생성")
 	@Test
 	void createRandomDeck() {
 		Deck deck = Deck.createRandomDeck();
 		assertThat(deck.numbers()).hasSize(Deck.SIZE);
 	}
 
-	@DisplayName("사용자 덱 객체 생성")
+	@DisplayName("사용자 3자리 숫자 저장")
 	@Test
 	void createCustomDeck() {
 		List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
@@ -31,13 +31,13 @@ public class DeckTest {
 		assertThat(deck.numbers()).hasSize(Deck.SIZE);
 	}
 
-	@DisplayName("생성한 숫자 목록 길이: 9")
+	@DisplayName("숫자 후보 목록 9개 생성")
 	@Test
 	void digitsSize() {
 		assertThat(digits).hasSize(9);
 	}
 
-	@DisplayName("생성한 숫자 범위 확인: 1 ~ 9")
+	@DisplayName("숫자 후보 범위 확인: 1 ~ 9")
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
 	void create(int value) {
