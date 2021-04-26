@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class NumberGenerator {
 
-    private final int GENERATE_LIMIT_COUNT = 3;
-    private final int RANDOM_NUMBER_BOUND  = 10;
+    private static final int GENERATE_LIMIT_COUNT = 3;
+    private static final int RANDOM_NUMBER_BOUND  = 10;
 
-    public List<Integer> generateNumber() {
+    public static List<Integer> generateNumber() {
         List<Integer> generatedNumbers = new ArrayList<>();
 
         Random random = new Random();
@@ -20,7 +20,7 @@ public class NumberGenerator {
         return generatedNumbers;
     }
 
-    private void addNumber(List<Integer> generatedNumbers, Random rand) {
+    private static void addNumber(List<Integer> generatedNumbers, Random rand) {
         int number = rand.nextInt(RANDOM_NUMBER_BOUND);
         if (generatedNumbers.contains(number) == false) {
             generatedNumbers.add(number);
