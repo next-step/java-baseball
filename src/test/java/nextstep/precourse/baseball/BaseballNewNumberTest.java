@@ -34,5 +34,4 @@ class BaseballNewNumberTest {
             assertTrue(newRandomSet.contains(randomNumber));
         }
     }
-
 }

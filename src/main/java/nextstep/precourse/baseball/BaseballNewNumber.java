@@ -23,6 +23,17 @@ public class BaseballNewNumber {
         while(rightNumberIterator.hasNext()) {
             rightArray[index++] = rightNumberIterator.next();
         }
+        return randomNumberArraySwap(rightArray);
+    }
+
+    public int[] randomNumberArraySwap(int[] rightArray) {
+        int index = 0;
+        while(index++ < 50) {
+            int randomIndex = (int) (Math.random() * rightArray.length);
+            int temp = rightArray[0];
+            rightArray[0] = rightArray[randomIndex];
+            rightArray[randomIndex] = temp;
+        }
         return rightArray;
     }
 }
