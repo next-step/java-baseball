@@ -11,11 +11,7 @@ public class Game {
     private static final String RESTART_NUMBER_INPUT_ERROR_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private static final Scanner scanner = new Scanner(System.in);
 
-    private boolean isRunning;
-
-    public Game() {
-        isRunning = true;
-    }
+    private boolean isRunning = true;
 
     public void play() {
         while (isRunning) {
