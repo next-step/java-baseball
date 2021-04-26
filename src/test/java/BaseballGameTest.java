@@ -33,4 +33,13 @@ class BaseballGameTest {
         map.put(res,2);
         assertEquals(map.size(),3); //각 Key(값)와 Value(인덱스)가 중복되지 않을 경우 사이즈는 3
     }
+
+    /**
+     * initTargetNumbers
+     * 세 자리의 HashMap이 중복되지 않고 생성하는지 테스트
+     */
+    @Test
+    public void initTargetNumbers() {
+        assertEquals(baseballGame.initTargetNumbers().size(), 3);
+    }
 }
