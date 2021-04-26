@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+- 1~9까지의 서로 다른 3자리 수 랜덤 생성
+- 3자리 수에 대한 스트라이크와 볼 판정 확인
+- 야구 게임을 진행하기 위한 컴퓨터와 플레이어 입력 추가
