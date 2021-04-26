@@ -12,6 +12,7 @@ public class BallCounter {
     private int strikeCount = 0;
     private int ballCount = 0;
     private boolean noting = false;
+    private boolean isFinish = false;
 
     public BallCounter(String userBall, String computerBall) {
         this.userBall = userBall;
@@ -71,5 +72,26 @@ public class BallCounter {
 
     public boolean isNoting() {
         return noting;
+    }
+
+    public boolean getIsFinish() {return isFinish; }
+
+    public void printMessage() {
+
+        StringBuffer buffer = new StringBuffer();
+        if(strikeCount != 0 ){
+            buffer.append(strikeCount +" 스트라이크");
+        }
+        if(ballCount != 0){
+            buffer.append(ballCount+" 볼");
+        }
+        if(noting){
+            buffer.append("낫싱");
+        }
+        if(strikeCount == 3) {
+            buffer.append("\n3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            this.isFinish = true;
+        }
+        System.out.println(buffer);
     }
 }
