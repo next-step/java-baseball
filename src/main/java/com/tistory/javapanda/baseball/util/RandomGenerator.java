@@ -2,8 +2,8 @@ package com.tistory.javapanda.baseball.util;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RandomGenerator {
 
@@ -19,10 +19,16 @@ public class RandomGenerator {
         return number;
     }
 
-    public static Set<Integer> getNumbers() {
-        Set<Integer> computerNumbers = new HashSet<>();
+    public static List<Integer> getNumbers() {
+        List<Integer> computerNumbers = new ArrayList<>();
         while (computerNumbers.size() < 3) {
-            computerNumbers.add(getNumber());
+            int number = getNumber();
+            for (int n : computerNumbers) {
+                if(number == n) {
+                    continue;
+                }
+            }
+            computerNumbers.add(number);
         }
         return computerNumbers;
     }
