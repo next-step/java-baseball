@@ -25,32 +25,33 @@ public class SetCollectionTest {
         numbers.add(3);
     }
 
-    @Test
-    @DisplayName(value =
-            "Set의 size() 메소드를 활용해 " +
-                    "Set의 크기를 확인")
-    void Requirements1_1(){
-        int size = (int) numbers.stream().count();
-        assertTrue(numbers.size() == size);
-    }
-
-    @Test
-    @DisplayName(value =
-            "Set의 contains() 메소드를 활용해" +
-                    "1, 2, 3의 값이 존재하는지 확인")
-    void Requirements2_1(){
-        assertTrue(numbers.contains(1));
-        assertTrue(numbers.contains(2));
-        assertTrue(numbers.contains(3));
-    }
-
     @DisplayName(value =
             "junit의 ParameterizedTest를 활용해" +
                     "중복 코드를 제거")
     @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"1","2","3"})
+//    @MethodSource("provideStringsForIsBlank")   //BeforeEach보다 먼저 실행
     void Requirements2_2(String input) {
         assertNotNull(input);
 
+    }
+
+    //numbers null, because this method is faster than @BeforeEach
+    //need to static numbers
+    private Stream<Arguments> provideStringsForIsBlank() {
+        Object arguments[] = numbers.toArray();
+        Stream<Arguments> of = Stream.of(Arguments.of(arguments));
+        return of;
+    }
+
+    @DisplayName(value =
+            "입력 값에 따라 결과 값이 다른 경우에 대한 테스트" +
+                    "1,2,3 값은 contains 메소드 실행결과 true" +
+                    "4,5 값을 넣으면 false가 반환")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
+    @CsvSource(value = {"1,true","2,true","3,true","4,false","5,false"}, delimiter = ',')
+    void toLowerCase_ShouldGenerateTheExpectedLowercaseValue(Integer input, String expected) {
+        String actualValue = String.valueOf(numbers.contains(input));
+        assertEquals(expected, actualValue);
     }
 }
