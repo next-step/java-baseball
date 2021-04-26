@@ -84,6 +84,14 @@ public class BaseballInning {
 		return strike;
 	}
 	
+	private int calculateBall(ArrayList<Integer> pitter, ArrayList<Integer> hitter) {
+		int strike = calculateStrike(pitter, hitter);
+		HashSet<Integer> union = new HashSet<Integer>();
+		union.addAll(pitter);
+		union.addAll(hitter);
+		return 6 - union.size() - strike;
+	}
+	
 	public void start() {
 		isEnd = false;
 		pitchingstrategy = makePitchingstrategy();
@@ -96,6 +104,7 @@ public class BaseballInning {
 			return error;
 		}
 		int strike = calculateStrike(pitchingstrategy, hittingstrategy);
+		int ball = calculateBall(pitchingstrategy, hittingstrategy);
 		return "";
 	}
 }
