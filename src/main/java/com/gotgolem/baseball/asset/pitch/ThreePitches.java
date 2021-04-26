@@ -11,4 +11,20 @@ public class ThreePitches {
 		this.pitches = Collections.unmodifiableList(pitches);
 	}
 
+	public Ball getFirst() {
+		return pitches.get(0);
+	}
+
+	public Ball getSecond() {
+		return pitches.get(1);
+	}
+
+	public Ball getThird() {
+		return pitches.get(2);
+	}
+
+	public boolean contains(Ball ball) {
+		return pitches.contains(ball);
+	}
+
 }

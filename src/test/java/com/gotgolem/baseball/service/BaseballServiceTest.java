@@ -1,13 +1,20 @@
 package com.gotgolem.baseball.service;
 
+import static java.util.Arrays.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import com.gotgolem.baseball.asset.number.NumberGenerator;
 import com.gotgolem.baseball.asset.number.RandomNumberGenerator;
+import com.gotgolem.baseball.asset.pitch.Ball;
+import com.gotgolem.baseball.asset.pitch.PitchHint;
+import com.gotgolem.baseball.asset.pitch.ThreePitches;
 
 public class BaseballServiceTest {
 
@@ -24,6 +31,33 @@ public class BaseballServiceTest {
 	public void whenCreatePitches_thenSuccess() {
 		assertThat(service.createThreePitches())
 				.isNotNull();
+	}
+
+	@DisplayName("투구 힌트 생성 테스트")
+	@ParameterizedTest
+	@CsvSource({"1,2,3,3,1,2,0,3", "5,9,1,4,5,1,1,1", "6,8,4,6,4,2,1,1", "4,5,6,7,8,9,0,0", "5,6,7,5,6,7,3,0"})
+	public void whenComparePitches_thenExactHint(ArgumentsAccessor argumentsAccessor) {
+		final ThreePitches pitches = new ThreePitches(asList(
+				Ball.toBall(argumentsAccessor.getInteger(0)),
+				Ball.toBall(argumentsAccessor.getInteger(1)),
+				Ball.toBall(argumentsAccessor.getInteger(2))
+		));
+		final ThreePitches anotherPitches = new ThreePitches(asList(
+				Ball.toBall(argumentsAccessor.getInteger(3)),
+				Ball.toBall(argumentsAccessor.getInteger(4)),
+				Ball.toBall(argumentsAccessor.getInteger(5))
+		));
+		final int strikeCount = argumentsAccessor.getInteger(6);
+		final int ballCount = argumentsAccessor.getInteger(7);
+
+		final PitchHint pitchHint = service.getPitchHint(pitches, anotherPitches);
+		assertThat(pitchHint).isNotNull();
+		assertThat(pitchHint.getStrikeCount())
+				.as("스트라이크 개수")
+				.isEqualTo(strikeCount);
+		assertThat(pitchHint.getBallCount())
+				.as("볼 개수")
+				.isEqualTo(ballCount);
 	}
 
 }
