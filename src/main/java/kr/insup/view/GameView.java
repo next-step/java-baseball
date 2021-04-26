@@ -33,7 +33,7 @@ public class GameView {
         System.out.println("포볼 입니다");
     }
 
-    public static String printGameOver() {
+    public static String printGameOverAndAskRestart() {
         System.out.println("맞췄습니다!");
         System.out.println("게임을 종료하려면 1번");
         System.out.println("게임을 다시 시작하려면 아무키나 누르세요");

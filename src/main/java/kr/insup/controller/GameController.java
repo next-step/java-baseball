@@ -14,7 +14,7 @@ public class GameController {
             GameView.printStartMessage();
             String generatedNumber = generateNumber();
             matchNumber(generatedNumber);
-            input = GameView.printGameOver();
+            input = GameView.printGameOverAndAskRestart();
         } while (!input.equals("1"));
     }
 
@@ -25,7 +25,7 @@ public class GameController {
             String inputNumber = requestInputNumber();
             numberMatcher = new NumberMatcher(inputNumber, generatedNumber);
             numberMatcher.matchNumber();
-            getResult(numberMatcher);
+            showResult(numberMatcher);
         } while (!numberMatcher.isMatch());
     }
 
@@ -56,7 +56,7 @@ public class GameController {
         return isValid;
     }
 
-    private void getResult(NumberMatcher numberMatcher) {
+    private void showResult(NumberMatcher numberMatcher) {
         if (numberMatcher.isFourBall()) {
             GameView.printFourBall();
             return;
