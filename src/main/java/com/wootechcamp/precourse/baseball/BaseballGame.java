@@ -1,9 +1,15 @@
 package com.wootechcamp.precourse.baseball;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class BaseballGame {
+
+    private List answerList;
+    private List inputList;
+
     private Scanner scan;
 
     BaseballGame(){
@@ -18,7 +24,20 @@ public class BaseballGame {
             int answer = getAnswer();
             System.out.println("random :" + answer);
 
-            getInputNumber();
+            // 사용자로 부터 값 입력 받음
+            int input = getInputNumber();
+
+            // 비교 편의를 위해 int를 List로 변환
+            setIntegerToList(answer,input);
+
+            // 정답에 같은 숫자가 있으면 리턴
+            List sameNumbers = getSameNumbers();
+            int sameNumbersSize = sameNumbers.size();
+            System.out.println(sameNumbers.toString());
+
+            // 스트라이크 체크, 존재하는 숫자가 위치는 몇개 같은지 체크
+
+            // 스트라이크, 볼 개수 계산
 
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 
@@ -109,4 +128,31 @@ public class BaseballGame {
         return result;
     }
 
+    public void setIntegerToList(int answer, int input){
+        String answerStr = Integer.toString(answer);
+        String inputStr = Integer.toString(input);
+
+        answerList = new ArrayList();
+        inputList = new ArrayList();
+
+        for (int i = 0; i < answerStr.length(); i++) {
+            answerList.add(i,answerStr.charAt(i) - '0');
+        }
+
+        for (int i = 0; i < inputStr.length(); i++) {
+            inputList.add(i, inputStr.charAt(i) - '0');
+        }
+    }
+
+    public List getSameNumbers() {
+        List result = new ArrayList();
+
+        for(int i = 0; i < answerList.size(); i++){
+            if(inputList.contains(answerList.get(i))){
+                result.add(answerList.get(i));
+            }
+        }
+
+        return result;
+    }
 }
