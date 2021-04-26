@@ -1,5 +1,9 @@
-package me.right42.domain;
+package me.right42.service;
 
+import me.right42.domain.BallMatchResult;
+import me.right42.domain.BallNumbers;
+import me.right42.domain.Computer;
+import me.right42.domain.Gamer;
 import me.right42.domain.type.GameStatus;
 import me.right42.ui.InputView;
 

@@ -1,10 +1,10 @@
 package me.right42;
 
 import me.right42.domain.Computer;
-import me.right42.domain.Game;
 import me.right42.domain.Gamer;
-import me.right42.generator.RandomBallNumberGenerator;
 import me.right42.generator.BallNumbersGenerator;
+import me.right42.generator.RandomBallNumberGenerator;
+import me.right42.service.Game;
 
 public class Application {
 
