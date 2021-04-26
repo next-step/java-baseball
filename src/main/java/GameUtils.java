@@ -3,13 +3,17 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+
 public class GameUtils {
+	private Game currentGame;
 	private boolean isEnd;
+	private boolean isRestart;
 	private static Scanner scanner;
 
 	private static int RANDOM_MAX = 9;
 	
-	GameUtils() {
+	GameUtils(Game game) {
+		this.currentGame = game;
 		setupGame();
 	}
 
@@ -25,8 +29,8 @@ public class GameUtils {
 		while (set.size() < 3) {
 			set.add(random.nextInt(RANDOM_MAX) + 1);
 		}
-		while(set.iterator().hasNext()){
-			stringBuilder.append(set.iterator().next());
+		for(Integer integer : set){
+			stringBuilder.append(integer);
 		}
 		return stringBuilder.toString();
 	}
