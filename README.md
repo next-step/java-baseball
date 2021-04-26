@@ -48,8 +48,15 @@
 
 - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
 
----
+- - -
 
 ## 과제 진행 요구사항
 
 - AngularJS Commit Message Conventions 참고해 commit log를 남긴다.
+
+- - -
+## 기능 정리
+- 랜덤 수 생성
+- 사용자 입력 값 Validator, Convert
+- 야구게임 Play
+- 결과 메세지 생성 및 View
