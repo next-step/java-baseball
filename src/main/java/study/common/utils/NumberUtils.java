@@ -9,7 +9,6 @@ import static study.common.Constants.MAX_BASEBALL_NUMBER;
 
 /**
  * <p> 숫자 관련 Utils</p>
- *
  */
 public class NumberUtils {
 

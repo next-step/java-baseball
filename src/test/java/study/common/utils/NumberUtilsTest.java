@@ -16,9 +16,7 @@ class NumberUtilsTest {
 
         NumberUtils numberUtils = new NumberUtils();
 
-        int testNumber = numberUtils.nextInt();
-
-        assertThat(testNumber)
+        assertThat(numberUtils.nextInt())
                 .isNotNull()
                 .isBetween(123, 987);
 

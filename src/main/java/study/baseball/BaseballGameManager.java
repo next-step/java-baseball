@@ -3,9 +3,7 @@ package study.baseball;
 import java.util.Scanner;
 
 /**
- *
  * <p> 야구 게임 클래스  </p>
- *
  */
 
 public class BaseballGameManager {
@@ -18,6 +16,7 @@ public class BaseballGameManager {
     /**
      * <p> 숫자야구 게임 시작 메서드 </p>
      * 설명 : 야구게임에 필요한 메서드를 호출한다.
+     *
      * @return boolean
      */
     public static boolean startGame() {

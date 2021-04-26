@@ -6,13 +6,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static study.common.Constants.*;
-import static study.common.Constants.MIN_BASEBALL_IS_AGAIN_ANSWER;
 import static study.common.GameMessages.*;
 
 
 /**
  * <p> 야구 플레이어 클래스  </p>
- *
  */
 
 public class BaseballPlayer {
@@ -93,8 +91,8 @@ public class BaseballPlayer {
      * <p> 숫자야구 게임 계속 여부 메서드 </p>
      * 설명 : 게임을 계속할지 안할지 확인
      *
-     * @Param  scanner
      * @return boolean
+     * @Param scanner
      */
     public static boolean isContinueGame(Scanner scanner) {
 
