@@ -2,6 +2,7 @@ package com.tjnam.baseballgame;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -103,7 +104,6 @@ public class GameTest {
 
     }
 
-
     @Test
     public void duplicatedInputValidationFuncTest(){
         Game game = new Game();
@@ -139,7 +139,6 @@ public class GameTest {
         }
     }
 
-
     @Test
     public void inputIsOnNumberCharValidationTest(){
         Game game = new Game();
@@ -167,7 +166,6 @@ public class GameTest {
         }
     }
 
-
     @Test
     public void restartInputTest(){
         int restartInput;
@@ -194,4 +192,46 @@ public class GameTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void compareBallsTest(){
+        Game game = new Game();
+        try {
+            Field dealderBall = game.getClass().getDeclaredField("dealerBall");
+            dealderBall.setAccessible(true);
+
+            Field gamerBall = game.getClass().getDeclaredField("gamerBall");
+            gamerBall.setAccessible(true);
+
+            Method compareBallsMethod = game.getClass().getDeclaredMethod("compareBalls");
+            compareBallsMethod.setAccessible(true);
+
+            GameResult gameResult;
+
+
+            Ball dealerBallInstance = (Ball)dealderBall.get(game);
+            Ball gamerBallInstance = (Ball)gamerBall.get(game);
+
+            dealerBallInstance.setBallValues("123");
+            gamerBallInstance.setBallValues("123");
+            gameResult = (GameResult) compareBallsMethod.invoke(game);
+            assertThat(gameResult.strike).isEqualTo(3);
+
+            dealerBallInstance.setBallValues("123");
+            gamerBallInstance.setBallValues("132");
+            gameResult = (GameResult) compareBallsMethod.invoke(game);
+            assertThat(gameResult.strike).isEqualTo(1);
+            assertThat(gameResult.ball).isEqualTo(2);
+
+            dealerBallInstance.setBallValues("123");
+            gamerBallInstance.setBallValues("456");
+            gameResult = (GameResult) compareBallsMethod.invoke(game);
+            assertThat(gameResult.strike).isEqualTo(0);
+            assertThat(gameResult.ball).isEqualTo(0);
+
+        } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
