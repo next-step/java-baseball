@@ -1,5 +1,21 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'java'
+    id 'eclipse'
+    id "org.ec4j.editorconfig" version "0.0.3"
+    id 'checkstyle'
+}
+editorconfig {
+    includes = ['src/**', 'build.gradle']
+    excludes = ['build']
+}
+check.dependsOn editorconfigCheck
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/naver-chestyle-rules.xml")
+    configProperties = ["suppressionFile": "${rootDir}/naver-checkstyle-suppressions.xml"]
+    toolVersion = "8.41"
+}
 
 version = '1.0.0'
 sourceCompatibility = 1.8
@@ -15,4 +31,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(Test) {
+    systemProperty("file.encoding", "UTF-8")
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = "UTF-8"
 }
