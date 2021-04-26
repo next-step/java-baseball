@@ -26,7 +26,7 @@ public class Play<castArrayList> {
         return arrPlayNumber;
     }
 
-    public static ArrayList<Integer> addPlayNumber(ArrayList<Integer> arrPlayNumber, int nRandNumber) {
+    private static ArrayList<Integer> addPlayNumber(ArrayList<Integer> arrPlayNumber, int nRandNumber) {
         boolean isContain = arrPlayNumber.contains(nRandNumber);
         if (!isContain) {
             //arrayList에 포함 되지 않은 난수일 경우 add
@@ -40,7 +40,6 @@ public class Play<castArrayList> {
         try {
             String sInputNumber = sc.next();
             validateInputNumber(sInputNumber);
-
             return castStrToList(sInputNumber);
 
         } catch (IllegalArgumentException iae) {
@@ -48,24 +47,24 @@ public class Play<castArrayList> {
             return getInputNumber();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(VALIDATE_MSG_NUMBER_SIZE);
             return getInputNumber();
 
         }
     }
 
-    public static void validateInputNumber(String sInputNumber) {
+    private static void validateInputNumber(String sInputNumber) {
         validateNumberSize(sInputNumber);
         validateDuplicationNumber(sInputNumber);
     }
 
-    public static void validateNumberSize(String sInputNumber) {
+    private static void validateNumberSize(String sInputNumber) {
         if (sInputNumber.length() != NUMBER_SIZE) {
             throw new IllegalArgumentException(VALIDATE_MSG_NUMBER_SIZE);
         }
     }
 
-    public static void validateDuplicationNumber(String sInputNumber) {
+    private static void validateDuplicationNumber(String sInputNumber) {
         List<String> tempList = Arrays.asList(sInputNumber.split(""));
         Collections.sort(tempList);
         for (int i=0; i < tempList.size()-1 ;i++){
@@ -73,13 +72,13 @@ public class Play<castArrayList> {
         }
     }
 
-    public static void compareDupNumber(String str1, String str2) {
+    private static void compareDupNumber(String str1, String str2) {
         if ( str1.equals(str2) ){
             throw new IllegalArgumentException(VALIDATE_MSG_DUPLICATION_NUMBER);
         }
     }
 
-    public static List<Integer> castStrToList(String sInputNumber){
+    private static List<Integer> castStrToList(String sInputNumber){
         List<Integer> inputNumber = new ArrayList<Integer>();
         String[] arrInputNumber = sInputNumber.split("");
         for(int i=0; i < arrInputNumber.length ; i++){
@@ -88,5 +87,42 @@ public class Play<castArrayList> {
         return inputNumber;
     }
 
+
+    public static Map<String,Object> judge(List<Integer> playNumber, List<Integer> inputNumber) {
+        int strikeCount = getStrikeCount(playNumber, inputNumber);
+        int ballCount = getBallCount(playNumber, inputNumber) - strikeCount;
+        Map<String,Object> playResult = new HashMap<String,Object>();
+        playResult.put("strike", strikeCount);
+        playResult.put("ball", ballCount);
+        return playResult;
+    }
+
+    private static int getStrikeCount(List<Integer> playNumber, List<Integer> inputNumber) {
+        int strikeCount = 0;
+        for(int i=0; i < playNumber.size() ;i++){
+            strikeCount += compareStrikeNumber(playNumber.get(i), inputNumber.get(i));
+        }
+        return strikeCount;
+    }
+    private static int compareStrikeNumber(int playNumber, int inputNumber) {
+        if (playNumber == inputNumber) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private static int getBallCount(List<Integer> playNumber, List<Integer> inputNumber) {
+        int ballCount = 0;
+        for(int i=0; i < inputNumber.size() ;i++){
+            ballCount += compareBallNumber(playNumber, inputNumber.get(i));
+        }
+        return ballCount;
+    }
+    private static int compareBallNumber(List<Integer> listPlayNumber, int inputNumber) {
+        if (listPlayNumber.contains(inputNumber)) {
+            return 1;
+        }
+        return 0;
+    }
 
 }
