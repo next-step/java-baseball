@@ -53,7 +53,7 @@ public class BaseballNumbersTest {
 		assertThat(matchResult).isInstanceOf(BaseballGameMatchResult.class);
 		assertThat(matchResult.getMatchCount(BaseballNumberMatch.STRIKE)).isOne();
 		assertThat(matchResult.getMatchCount(BaseballNumberMatch.BALL)).isSameAs(2);
-		assertThat(matchResult.getMatchCount(BaseballNumberMatch.FOUR_BALL)).isZero();
+		assertThat(matchResult.getMatchCount(BaseballNumberMatch.NOTHING)).isZero();
 	}
 
 }

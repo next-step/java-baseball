@@ -27,7 +27,7 @@ class BaseballNumberTest {
 
 	@Test
 	@DisplayName("숫자가 같으면 동등한 객체이다.")
-	void sameBaseballNumberIfNumberSame() {
+	void equalsToBaseballNumberIfNumberSame() {
 		BaseballNumber baseballNumber = new BaseballNumber(1);
 		BaseballNumber otherBaseballNumber = new BaseballNumber(1);
 
