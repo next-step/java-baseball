@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class BaseBall {
 
@@ -33,6 +34,37 @@ public class BaseBall {
 	public int createRandom() {
 		Random random = new Random();
 		return random.nextInt(9) + 1;
+	}
+
+	/**
+	 * 사용자 UI
+	 * @return 사용자가 입력한 값
+	 */
+	public String userBall() {
+		Scanner scanner = new Scanner(System.in);
+		String value = "";
+		do {
+			System.out.print("숫자를 입력해주세요 : ");
+			value = scanner.nextLine();
+		} while (userInputcheck(value));
+		return value;
+	}
+
+	/**
+	 * 사용자가 입력한 값 체크 (중복값, 3자리 숫자 체크)
+	 * @param value
+	 * @return 잘못입력하면 true, 맞게 입력하면 false
+	 */
+	public boolean userInputcheck(String value) {
+		boolean result = value.matches("^[1-9]{3}$");
+		if (result
+			&& ((0 != value.lastIndexOf(value.charAt(0) + "")) || (1 != value.lastIndexOf(value.charAt(1) + "")))) {
+			result = false;
+		}
+		if (!result) {
+			System.out.println("\n잘못 입력하셨습니다.");
+		}
+		return !result;
 	}
 
 }

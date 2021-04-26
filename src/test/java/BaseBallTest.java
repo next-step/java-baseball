@@ -26,5 +26,14 @@ public class BaseBallTest {
 		BaseBall baseBall = new BaseBall();
 		assertThat(baseBall.createBaseBall().length()).isEqualTo(3);
 	}
+	
+	@Test
+	@DisplayName("사용자가 입력한 값 체크 (중복값, 3자리 숫자 체크) / 잘못입력하면 true, 맞게 입력하면 false")
+	public void userInputcheck() {
+		BaseBall baseBall = new BaseBall();
+		assertThat(baseBall.userInputcheck("123")).isFalse();
+		assertThat(baseBall.userInputcheck("212")).isTrue();
+		assertThat(baseBall.userInputcheck("1234")).isTrue();
+	}
 
 }
