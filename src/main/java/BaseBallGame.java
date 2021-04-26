@@ -16,7 +16,7 @@ public class BaseBallGame {
 		computerPlayer = generateComputerPlayer();
 	}
 
-	private List<Integer> generateComputerPlayer() {
+	public List<Integer> generateComputerPlayer() {
 		Set<Integer> selectNumbers = new HashSet<>();
 		List<Integer> computerNumbers;
 		Random random = new Random();
@@ -29,4 +29,5 @@ public class BaseBallGame {
 
 		return computerNumbers;
 	}
+
 }
