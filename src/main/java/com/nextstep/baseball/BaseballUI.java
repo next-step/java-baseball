@@ -17,4 +17,13 @@ public class BaseballUI {
 	public void printResult(String result) {
 		System.out.println(result);
 	}
+	
+	public boolean isContinue() {
+		System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
+		int count = sc.nextInt();
+		if(count == 1) {
+			return true;
+		}
+		return false;
+	}
 }
