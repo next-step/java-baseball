@@ -68,9 +68,10 @@ public class Balls {
     }
 
     private static List<Ball> createRandomBalls() {
+        RandomGenerator randomGenerator = new RandomGenerator();
         List<Ball> result = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
-            result.add(new Ball(RandomGenerator.value()));
+            result.add(new Ball(randomGenerator.indexToValue(i)));
         }
         return result;
     }

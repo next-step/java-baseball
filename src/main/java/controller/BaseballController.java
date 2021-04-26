@@ -17,23 +17,32 @@ public class BaseballController {
     }
 
     public void run() {
-        boolean isEnd = false;
+        boolean isFinish = false;
 
-        while (!isEnd) {
+        while (!isFinish) {
             Balls inputBalls = inputView.balls();
 
             Score score = randomBalls.matchToScore(inputBalls);
 
             resultView.printScore(score);
 
-            isEnd = restart(score);
+            isFinish = isFinish(score);
         }
     }
 
-    private boolean restart(Score score) {
+    private boolean isFinish(Score score) {
         if (score.isFinish()) {
-
+            resultView.printFinish();
+            boolean isRestart = inputView.restart();
+            reset(isRestart);
+            return !isRestart;
         }
         return false;
+    }
+
+    private void reset(boolean isRestart) {
+        if (isRestart) {
+            randomBalls = new Balls();
+        }
     }
 }
