@@ -2,15 +2,17 @@ package baseballgame;
 
 public class PrintMessage {
 
-	public void printEnterUserNumber() {
-		System.out.println(PrintMessageEnum.ENTER_A_NUMBER.getMessage());
-	}
-
 	public String getResultString(BaseBallResult result) {
 		StringBuilder stringBuilder = new StringBuilder();
+
+		if(result.getErrorMessage() != null){
+			return result.getErrorMessage();
+		}
+
 		if(result.isNothing()){
 			return getNothingString();
 		}
+
 		stringBuilder.append(getStrikeString(result.getStrikeCount()));
 		stringBuilder.append(getBallString(result.getBallCount()));
 
