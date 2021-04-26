@@ -1,6 +1,12 @@
-package baseballgame;
+package com.nextstep.precourse.baseballgame;
 
 import java.util.Scanner;
+
+import com.nextstep.precourse.computer.BaseBallResult;
+import com.nextstep.precourse.computer.Referee;
+import com.nextstep.precourse.computer.Ball;
+import com.nextstep.precourse.util.PrintMessageEnum;
+import com.nextstep.precourse.user.User;
 
 public class BaseBallGame {
 	private Ball ball;
@@ -18,6 +24,7 @@ public class BaseBallGame {
 	public void runGame() {
 		do {
 			ball.makeRandomlyThreeDigitAnswer();
+			System.out.println(ball.getAnswerList());
 			startGame();
 		} while (isGameOver());
 	}

@@ -1,4 +1,4 @@
-package baseballgame;
+package com.nextstep.precourse.util;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -20,8 +20,8 @@ public class InputValidator {
 	}
 
 	private void validateInputHasCharacter(String userInput) {
-		if (!userInput.matches("^[0-9]*$")) {
-			throw new IllegalArgumentException("입력값은 숫자여야 합니다.");
+		if (!userInput.matches("^[1-9]*$")) {
+			throw new IllegalArgumentException("입력값은 1~9까지의 숫자여야 합니다.");
 		}
 	}
 

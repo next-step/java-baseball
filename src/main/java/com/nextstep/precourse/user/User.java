@@ -1,6 +1,8 @@
-package baseballgame;
+package com.nextstep.precourse.user;
 
 import java.util.Scanner;
+
+import com.nextstep.precourse.util.PrintMessageEnum;
 
 public class User {
 	private Scanner scanner = new Scanner(System.in);

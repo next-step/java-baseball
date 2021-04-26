@@ -1,7 +1,9 @@
-package baseballgame;
+package com.nextstep.precourse.computer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.nextstep.precourse.util.InputValidator;
 
 public class Referee {
 	private int containsCount = 0;

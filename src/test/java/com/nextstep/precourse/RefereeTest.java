@@ -1,4 +1,4 @@
-package baseballgame;
+package com.nextstep.precourse;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,6 +8,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.nextstep.precourse.computer.BaseBallResult;
+import com.nextstep.precourse.computer.Referee;
 
 public class RefereeTest {
 	private Referee referee;

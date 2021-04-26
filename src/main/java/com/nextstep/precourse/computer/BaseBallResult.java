@@ -1,4 +1,4 @@
-package baseballgame;
+package com.nextstep.precourse.computer;
 
 public class BaseBallResult {
 	private int strikeCount;

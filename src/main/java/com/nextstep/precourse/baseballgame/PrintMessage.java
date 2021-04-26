@@ -1,4 +1,7 @@
-package baseballgame;
+package com.nextstep.precourse.baseballgame;
+
+import com.nextstep.precourse.computer.BaseBallResult;
+import com.nextstep.precourse.util.PrintMessageEnum;
 
 public class PrintMessage {
 

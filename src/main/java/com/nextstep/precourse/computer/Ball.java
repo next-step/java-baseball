@@ -1,4 +1,4 @@
-package baseballgame;
+package com.nextstep.precourse.computer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

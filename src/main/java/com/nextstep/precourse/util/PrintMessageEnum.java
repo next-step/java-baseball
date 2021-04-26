@@ -1,4 +1,4 @@
-package baseballgame;
+package com.nextstep.precourse.util;
 
 public enum PrintMessageEnum {
 	STRIKE("%,d 스트라이크 "),
