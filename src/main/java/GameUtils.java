@@ -60,6 +60,7 @@ public class GameUtils {
 			return;
 		}
 		checkStrike(currentGame, input, 0);
+		checkBall(currentGame, input, 0);
 	}
 
 	private void checkStrike(Game game, String sInput, int index) {
@@ -72,6 +73,18 @@ public class GameUtils {
 			game.addStrike();
 		}
 		checkStrike(game, sInput, index + 1);
+	}
+
+	private void checkBall(Game game, String sInput, int index) {
+		if (index == 3) {
+			return;
+		}
+		char cInput = sInput.charAt(index);
+		char cTarget = game.getAnswer().charAt(index);
+		if (cInput != cTarget && game.getAnswer().contains(Character.toString(cInput))) {
+			game.addBall();
+		}
+		checkBall(game, sInput, index + 1);
 	}
 
 	public boolean isEnd() {
