@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+1. 게임 객체 생성
+2. 컴퓨터 정답 생성
+3. 수 입력
+4. 결과 출력
+5. 게임종료 및 재시작 
