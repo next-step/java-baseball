@@ -52,6 +52,7 @@ public class BaseballGame {
    if(!isThreeDigitNumbers(userAnswer)) continue;
    duringBaseball = !isGameOver(userAnswer.toCharArray());
   }
+  if(continueGame()) playBaseball();
  }
  
  /**
@@ -161,5 +162,20 @@ public class BaseballGame {
   if(ball != 0) System.out.print(ball + " 볼");
   if(strike == 0 && ball == 0) System.out.print("낫싱");
   System.out.println();
+ }
+ 
+ /**
+  * 게임을 계속 진행할 것인지 체크<br/>
+  * &emsp;- 1 입력 시 상대방(컴퓨터)의 정답 설정 과정부터 다시 게임 시작<br/>
+  * &emsp;- 2 입력 시 게임 종료(프로그램 종료)
+  * @return - 게임을 계속 진행할 경우 true, 아닌 경우 false 반환
+  * @since 2021. 04. 26
+  */
+ public static boolean continueGame() {
+  System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+  System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+  if(SCANNER.nextInt() == 1) return true;
+  System.out.println("");
+  return false;
  }
 }
