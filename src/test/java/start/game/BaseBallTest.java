@@ -8,11 +8,15 @@ import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class BaseBallTest {
     private BaseBallImpl game;
+    private int count = 0;
+    private boolean isRange = true;
+    private int number = 0;
+    Set<Integer> digits;
+    
     
     @BeforeEach
     public void setting() {
@@ -24,35 +28,51 @@ public class BaseBallTest {
     public void getOneDigitNumberTest() {
         int[] numIndex = new int[9];
         int count = 0;
+        
         while( count < 10000 ) {
             int number = game.getOneDigitNumber(1, 9);
             numIndex[number - 1] = 1;
             count++;
         }
         
+        chekArrayHasNumber(numIndex);
+       
+    }
+    
+    @Test
+    @DisplayName(value = "1과 9사이의 숫자 중  중복되지 않는 3자리의 수가 뽑혀야 한다.")
+    public void getNonDuplicatedThreeDigitNumberTest() {
+        count = 0;
+        isRange = true;
+        number = 0;
+        digits = new HashSet<>(Arrays.asList(1, 2, 3));
+        getTenThousandData();
+        checkDuplicatedNumber();
+        checkNumberRange();
+    }
+    
+    private void chekArrayHasNumber( int[] numIndex ) {
         for( int data : numIndex ) {
             assertThat(data)
             .isEqualTo(1);
         }
     }
     
-    @Test
-    @DisplayName(value = "1과 9사이의 숫자 중  중복되지 않는 3자리의 수가 뽑혀야 한다.")
-    public void getNonDuplicatedThreeDigitNumberTest() {
-        int count = 0;
-        boolean isRange = true;
-        int number = 0;
-        Set<Integer> digits = new HashSet<>(Arrays.asList(1, 2, 3));
+    private void getTenThousandData() {
         while( count < 10000 && isRange && digits.size() == 3 ) {
             number = game.getNonDuplicatedThreeDigitNumber(1, 9);
             digits = getDigit( number );
             isRange = checkMinMaxDigits( digits, 1, 9 );
             count++;
         }
-        
+    }
+    
+    private void checkDuplicatedNumber() {
         assertThat(digits.size())
             .isEqualTo(3);
-        
+    }
+    
+    private void checkNumberRange() {
         assertThat(isRange)
             .isEqualTo(true);
     }
