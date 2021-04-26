@@ -134,4 +134,57 @@ class BaseballGameTest {
         );
     }
 
+    /**
+     * checkNumbers
+     * 타겟 map과 입력 map을 비교하여 종료 가능 여부(3스트라이크) 확인하는지 테스트
+     * @param targets 타겟 난수 map
+     * @param inputs 플레이어로부터 입력받은 map
+     * @param expected 예측 결과
+     */
+    @ParameterizedTest
+    @MethodSource("provideCheckNumbersParameters")
+    public void checkNumbers(HashMap<Integer,Integer> targets, HashMap<Integer,Integer> inputs,boolean expected) {
+        assertEquals(baseballGame.checkNumbers(targets,inputs),expected);
+    }
+
+    private static Stream<Arguments> provideCheckNumbersParameters(){
+        HashMap<Integer,Integer> target1 = new HashMap<>();
+        HashMap<Integer,Integer> inputs1 = new HashMap<>();
+        target1.put(1,0);
+        target1.put(2,1);
+        target1.put(3,2);
+        inputs1.put(1,0);
+        inputs1.put(2,1);
+        inputs1.put(3,2);
+        HashMap<Integer,Integer> target2 = new HashMap<>();
+        HashMap<Integer,Integer> inputs2 = new HashMap<>();
+        target2.put(1,0);
+        target2.put(2,1);
+        target2.put(3,2);
+        inputs2.put(2,0);
+        inputs2.put(3,1);
+        inputs2.put(4,2);
+        HashMap<Integer,Integer> target3 = new HashMap<>();
+        HashMap<Integer,Integer> inputs3 = new HashMap<>();
+        target3.put(1,0);
+        target3.put(2,1);
+        target3.put(3,2);
+        inputs3.put(4,0);
+        inputs3.put(5,1);
+        inputs3.put(6,2);
+        HashMap<Integer,Integer> target4 = new HashMap<>();
+        HashMap<Integer,Integer> inputs4 = new HashMap<>();
+        target4.put(1,0);
+        target4.put(2,1);
+        target4.put(3,2);
+        inputs3.put(4,0);
+        inputs3.put(5,1);
+
+        return Stream.of(
+                Arguments.of(target1,inputs1,true),
+                Arguments.of(target2,inputs2,false),
+                Arguments.of(target3,inputs3,false),
+                Arguments.of(target4,inputs4,false)
+        );
+    }
 }
