@@ -26,6 +26,18 @@ public class BallMatchResult {
 		this.match.put(ballMatchType, this.match.get(ballMatchType) + 1);
 	}
 
+	public int getStrikeCount(){
+		return match.get(BallMatchType.STRIKE);
+	}
+
+	public int getBallCount(){
+		return match.get(BallMatchType.STRIKE);
+	}
+
+	public int getNothingCount(){
+		return match.get(BallMatchType.NOTHING);
+	}
+
 	public void printMatchInfo() {
 		Integer strikeCount = match.get(BallMatchType.STRIKE);
 		Integer ballCount = match.get(BallMatchType.BALL);
