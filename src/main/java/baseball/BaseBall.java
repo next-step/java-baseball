@@ -1,29 +1,39 @@
 package baseball;
 
-import java.util.ArrayList;
-
 public class BaseBall {
 
-    public ArrayList<Integer> getRandomValue() {
-        ArrayList<Integer> randomValueArray = new ArrayList<>();
+    public String getRandomValue() {
+        String randomValue;
+        boolean validateValue;
 
         do {
-            int randomValue = (int) (Math.random() * 9 + 1);
-            boolean isDuplicateValue = checkDuplicateValue(randomValueArray, randomValue);
-            insertValue(isDuplicateValue, randomValueArray, randomValue);
-        } while (randomValueArray.size() < 3);
+            randomValue = String.valueOf((int) (Math.random() * 999 + 100));
+            validateValue = validateNumber(randomValue);
+        } while (!validateValue);
 
-        return randomValueArray;
+        return randomValue;
     }
 
-    public boolean checkDuplicateValue(ArrayList<Integer> randomValueArray, int randomValue) {
-        return randomValueArray.size() == 0 || !randomValueArray.contains(randomValue);
-    }
+    public boolean validateNumber(String validateToData) {
+        boolean isDuplicate = true;
+        int i = 0, size = validateToData.length();
 
-    private void insertValue(boolean isDuplicateValue, ArrayList<Integer> randomValueArray, int randomValue) {
-        if (isDuplicateValue) {
-            randomValueArray.add(randomValue);
+        while (isDuplicate && i < size - 1) {
+            isDuplicate = validateInLoop(i++, validateToData);
         }
+
+        return isDuplicate;
+    }
+
+    private boolean validateInLoop(int i, String validateToData) {
+        boolean checkDuplicateData = true;
+        int j = i + 1, size = validateToData.length();
+
+        while (checkDuplicateData && j < size) {
+            checkDuplicateData = validateToData.charAt(i) != validateToData.charAt(j++);
+        }
+
+        return checkDuplicateData;
     }
 
 }
