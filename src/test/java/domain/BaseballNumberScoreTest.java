@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +22,7 @@ class BaseballNumberScoreTest {
     }
 
     private BaseballNumbers makeNormalBaseballNumber(int number1, int number2, int number3) {
-        List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2, number3));
+        List<Integer> initNumbers = Arrays.asList(number1, number2, number3);
         return BaseballNumbers.create(initNumbers);
     }
 

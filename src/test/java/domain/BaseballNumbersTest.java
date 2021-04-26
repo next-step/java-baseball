@@ -1,11 +1,9 @@
 package domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +15,7 @@ class BaseballNumbersTest {
 
 
     private BaseballNumbers makeNormalBaseballNumber(int number1, int number2, int number3) {
-        List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2, number3));
+        List<Integer> initNumbers = Arrays.asList(number1, number2, number3);
         return BaseballNumbers.create(initNumbers);
     }
 
@@ -36,7 +34,7 @@ class BaseballNumbersTest {
     @ParameterizedTest
     @CsvSource(value = {"8,7"}, delimiter = ',')
     void createBaseballNumbersExceptionTest(int number1, int number2) {
-        List<Integer> initNumbers = new ArrayList<>(Arrays.asList(number1, number2));
+        List<Integer> initNumbers = Arrays.asList(number1, number2);
         assertThatThrownBy(() -> {
             BaseballNumbers.create(initNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
