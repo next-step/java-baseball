@@ -8,8 +8,6 @@ import java.lang.reflect.Method;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import baseballgame.domain.User;
-
 class UserTest {
 
 	@DisplayName("입력값 유효성 체크 : 문자 입력")
@@ -39,4 +37,5 @@ class UserTest {
 			e.printStackTrace();
 		}
 	}
+
 }
