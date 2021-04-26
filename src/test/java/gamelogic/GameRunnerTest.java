@@ -31,7 +31,6 @@ class GameRunnerTest {
 	@ValueSource(ints = {331, 555, 949})
 	void isValidAnswer_SameDigitsInputs_False(int input)
 		throws InvocationTargetException, IllegalAccessException {
-
 		boolean result = (boolean)isValidAnswerMethod.invoke(game, input);
 		assertThat(result).isFalse();
 	}
@@ -40,7 +39,6 @@ class GameRunnerTest {
 	@ValueSource(ints = {321, 546, 947})
 	void isValidAnswer_ValidFormatAnswers_True(int input)
 		throws InvocationTargetException, IllegalAccessException {
-
 		boolean result = (boolean)isValidAnswerMethod.invoke(game, input);
 		assertThat(result).isTrue();
 	}

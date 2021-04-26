@@ -2,11 +2,15 @@ package gamelogic;
 
 import java.util.Random;
 
+import ui.GameplayUI;
+
 public class GameRunner {
 	private final Random random = new Random();
+	GameplayUI gameplayUI = new GameplayUI();
 
 	public void runNewGame() {
 		int ans = generateAnswer();
+		gameplayUI.printInputRequest();
 	}
 
 	private int generateAnswer() {
