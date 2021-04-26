@@ -11,7 +11,4 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static void invalidNumberMessage(){
-        System.out.println("중복 없는 세 자릿수를 입력해 주세요");
-    }
 }

@@ -2,20 +2,35 @@ package baseball.controller;
 
 import baseball.entity.Computer;
 import baseball.entity.SelectNumberGenerator;
+import baseball.model.CompareResult;
 import baseball.util.ValidateNumberUtil;
 import baseball.view.InputView;
+import baseball.view.ResultView;
 
 public class BaseballController {
+    private final static SelectNumberGenerator selectNumber = new SelectNumberGenerator();
+    private final static Computer computer = new Computer(selectNumber.generateNumber());
+
     public static void start() {
-        SelectNumberGenerator selectNumber = new SelectNumberGenerator();
+        baseballGame();
+    }
 
-        Computer computer = new Computer(selectNumber.generateNumber());
-
+    private static void baseballGame(){
         String inputNumber = InputView.gameNumberInput();
 
-        ValidateNumberUtil.validateNumber(inputNumber);
+        if (ValidateNumberUtil.validateNumber(inputNumber)) {
+            ResultView.invalidNumberMessage();
+            baseballGame();
+        }
 
+        CompareResult compareResult = computer.compareNumber(inputNumber);
+        ResultView.resultPrint(compareResult);
 
+        if (compareResult.strikeCount() == 3) {
+            return;
+        }
 
+        baseballGame();
     }
+
 }

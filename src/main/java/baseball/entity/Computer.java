@@ -48,7 +48,7 @@ public class Computer {
     }
 
     private void validateLength(String selectNumber) {
-        if (!ValidateNumberUtil.validateNumber(selectNumber)) {
+        if (ValidateNumberUtil.validateNumber(selectNumber)) {
             throw new IllegalArgumentException("서로 다른 임의의 수 3개만 선택 가능 합니다.");
         }
     }

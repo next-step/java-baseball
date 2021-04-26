@@ -9,7 +9,7 @@ public class ValidateNumberUtil {
     public static final int NUMBER_LENGTH = 3;
 
     public static boolean validateNumber(String selectNumber) {
-        return selectNumber.length() == NUMBER_LENGTH && duplicateCheckNumberLength(selectNumber) == NUMBER_LENGTH;
+        return selectNumber.length() != NUMBER_LENGTH || duplicateCheckNumberLength(selectNumber) != NUMBER_LENGTH;
     }
 
     public static int duplicateCheckNumberLength(String selectNumber) {
