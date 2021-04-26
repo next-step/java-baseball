@@ -1,3 +1,4 @@
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -33,6 +34,31 @@ public class GameUtils {
 			stringBuilder.append(integer);
 		}
 		return stringBuilder.toString();
+	}
+
+	private static String input() {
+		System.out.print("숫자를 입력해주세요:");
+		String input = scanner.nextLine();
+		return input;
+	}
+
+	private boolean InputValidation(String input) {
+		if(input.length() != 3){
+			System.out.println("숫자 3개를 입력해주세요.");
+			return false;
+		}
+		if(!isNumeric(input)){
+			System.out.println("유효하지 않는 숫자입니다.");
+			return false;
+		}
+		return  true;
+	}
+
+	public void run() {
+		String input = input();
+		if(!InputValidation(input)){
+			return;
+		}
 	}
 
 	public boolean isEnd() {
