@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,4 +63,27 @@ public class NumberUtilTest {
         assertThat(strikeCnt).isEqualTo(1);
         assertThat(ballCnt).isEqualTo(2);
     }
+    
+    
+    @Test
+    @DisplayName("int형 변수를 분해하여 하나씩 array로 넣는 로직 테스트")
+    public void intToArrayTest() {
+        
+        int number = 923;
+        
+        List<Integer> list = new ArrayList<>();
+
+        while(number != 0) {
+            list.add(number % 10);
+            number /= 10;
+        }
+        Collections.reverse(list);
+
+        Integer[] array = list.toArray(new Integer[list.size()]);
+
+        assertThat(array[0]).isEqualTo(9);
+        assertThat(array[1]).isEqualTo(2);
+        assertThat(array[2]).isEqualTo(3);
+    }
+    
 }
