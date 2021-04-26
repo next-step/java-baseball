@@ -8,6 +8,7 @@ import baseball.domain.BaseballResult;
 import baseball.domain.Computer;
 import baseball.domain.Player;
 import baseball.enums.GameState;
+import baseball.exception.InvalidateBallNumberException;
 import baseball.service.BaseballRule;
 
 public class BaseballGame {
@@ -40,7 +41,11 @@ public class BaseballGame {
 	private static void inputPlayerNumber() {
 		System.out.println(PrintMessage.INPUT_NUMBER_MESSAGE);
 		int playerBallNumber = scanner.nextInt();
-		player.setBallNumber(new BallNumber(playerBallNumber));
+		try {
+			player.setBallNumber(new BallNumber(playerBallNumber));
+		}catch (InvalidateBallNumberException exception){
+			System.out.println(exception.getMessage());
+		}
 	}
 
 	private static void checkWin() {
