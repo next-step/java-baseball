@@ -1,6 +1,13 @@
+package kr.insup.controller;
+
+import kr.insup.domain.InputNumberValidator;
+import kr.insup.domain.NumberGenerator;
+import kr.insup.domain.NumberMatcher;
+import kr.insup.view.GameView;
+
 public class GameController {
 
-    void gameControl() {
+    public void startGame() {
         String input;
 
         do {

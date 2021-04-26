@@ -1,5 +1,7 @@
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
+package kr.insup.view;
+
+import kr.insup.domain.GameOptions;
+
 import java.util.Scanner;
 
 public class GameView {

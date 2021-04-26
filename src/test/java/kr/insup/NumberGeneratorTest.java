@@ -1,9 +1,12 @@
+package kr.insup;
+
+import kr.insup.domain.GameOptions;
+import kr.insup.domain.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

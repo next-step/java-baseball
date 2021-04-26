@@ -1,5 +1,6 @@
+package kr.insup.domain;
+
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class InputNumberValidator {

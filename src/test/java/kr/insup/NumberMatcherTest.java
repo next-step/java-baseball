@@ -1,3 +1,6 @@
+package kr.insup;
+
+import kr.insup.domain.NumberMatcher;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
