@@ -28,13 +28,13 @@ public class Computer {
     }
   }
 
-  public BallRecord resultOf(List<Number> playerNumbers) {
+  public BallRecord resultOf(Player player) {
     BallRecord ballRecord = BallRecord.create();
 
     for (int i = 0; i < values.size(); i++) {
       Number value = values.get(i);
-      boolean isExistNumber = playerNumbers.contains(value);
-      boolean isSameDigit = value.equals(playerNumbers.get(i));
+      boolean isExistNumber = player.existNumber(value);
+      boolean isSameDigit = i == player.getDigit(value);
 
       ballRecord = ballRecord.plusCount(StrikeZone.valueOf(isExistNumber, isSameDigit));
     }
