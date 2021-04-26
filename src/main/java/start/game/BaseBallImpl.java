@@ -22,8 +22,33 @@ public class BaseBallImpl implements BaseBall {
         String[] userNumberDigts = castNumberToStringArrays( userNumber );
         int strikeCount = getStrikeCountFrom( quizNumberDigts, userNumberDigts );
         int ballCount = getBallCountFrom( quizNumberDigts, userNumberDigts );
+        boolean isFinished = checkStrikeAndBall( strikeCount, ballCount );
     }
     
+    protected boolean checkStrikeAndBall( int strikeCount, int ballCount ) {
+        if( strikeCount == 3 ) {
+            return true;
+        }
+        
+        showNothingInfo(strikeCount, ballCount);
+        showBallAndStrikeInfo(strikeCount, ballCount);
+       
+        return false;
+    }
+    
+    protected void showNothingInfo( int strikeCount, int ballCount ) {
+        if( strikeCount == 0 && ballCount == 0  ) {
+            ui.nothing();
+        }
+    }
+    
+    protected void showBallAndStrikeInfo( int strikeCount, int ballCount ) {
+        if( strikeCount != 0 || ballCount != 0  ) {
+            ui.strikeAndBall(strikeCount, ballCount);
+        }
+    }
+    
+
     protected String[] castNumberToStringArrays( int quizNumber ) {
         return String.valueOf(quizNumber).split("");
     }

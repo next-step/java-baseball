@@ -25,6 +25,14 @@ public class BaseBallTest {
     
     @Test
     @DisplayName(value = "입력받은 수를 Strig 배열로 반환한다.")
+    private void checkStrikeAndBallTest() {
+        assertThat(game.checkStrikeAndBall(3, 0)).isEqualTo(true);
+        assertThat(game.checkStrikeAndBall(2, 0)).isEqualTo(false);
+        assertThat(game.checkStrikeAndBall(0, 0)).isEqualTo(false);
+    }
+    
+    @Test
+    @DisplayName(value = "입력받은 수를 Strig 배열로 반환한다.")
     private void castNumberToStringArraysTest() {
         String[] digits = game.castNumberToStringArrays(123);
         assertThat(digits).containsExactly("1", "2","3");

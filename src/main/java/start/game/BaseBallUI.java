@@ -14,4 +14,11 @@ public class BaseBallUI {
         return scanner.nextInt();
     }
     
+    public void nothing() {
+        System.out.print( "낫싱" );
+    }
+    
+    public void strikeAndBall( int strike, int ball ) {
+        System.out.print( strike + " 스트라이크 " + ball + " 볼" );
+    }
 }
