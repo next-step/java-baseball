@@ -12,7 +12,7 @@ public class BaseBallImpl implements BaseBall {
     }
     
     protected int getNonDuplicatedThreeDigitNumber( int min, int max ) {
-        List<Integer> list = new LinkedList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
+        List<Integer> list = new LinkedList<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9));
         int result = 0;
         for( int index = 0; index < 3; index++ ) {
             int number = getOneDigitNumber(1, max-index);
@@ -23,6 +23,6 @@ public class BaseBallImpl implements BaseBall {
     } 
     
     protected int getOneDigitNumber( int min, int max ) {
-        return (int)( ( Math.random() * ( max - min ) ) + min );
+        return (int)( ( Math.random() * ( max - min + 1) ) + min );
     } 
 }
