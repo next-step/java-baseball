@@ -1,4 +1,4 @@
 package com.syl.game.baseball.domain.player;
 
-public class Person extends Player{
+public class BaseBallPerson extends BaseBallPlayer {
 }

@@ -1,7 +1,9 @@
 package com.syl.game.baseball.domain.player;
 
-public abstract class Player {
-    // Input number.
+public abstract class BaseBallPlayer {
+    // Select 3 numbers
 
-    // Judge the number inputed by other player.
+    // Input numbers
+
+    // return Strike / ball / nothing
 }

@@ -1,5 +1,5 @@
 package com.syl.game.baseball.domain.player;
 
-public interface Selectable {
+public interface BaseBallAi {
     // Generate random numbers.
 }
