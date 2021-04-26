@@ -25,8 +25,17 @@ public class GamePlayServiceTest {
     @ParameterizedTest
     @CsvSource(value = {"123:123:3:0", "123:132:1:2" , "123:452:0:1", "123:456:0:0"}, delimiter = ':')
     @DisplayName("Check Strike and Ball TEST")
-    public void testCheck(int answer, int input, int strike, int ball){
+    public void testCheck1(int answer, int input, int strike, int ball){
         int[] result = check(answer, input);
+
+        assertThat(result[0]).isEqualTo(strike);
+        assertThat(result[1]).isEqualTo(ball);
+    }
+    @ParameterizedTest
+    @CsvSource(value = {"123:123:3:0", "123:132:1:2" , "123:452:0:1", "123:456:0:0"}, delimiter = ':')
+    @DisplayName("Check Strike and Ball TEST")
+    public void testCheck2(int answer, int input, int strike, int ball){
+        int[] result = check(toList(answer), toList(input));
 
         assertThat(result[0]).isEqualTo(strike);
         assertThat(result[1]).isEqualTo(ball);
@@ -35,7 +44,7 @@ public class GamePlayServiceTest {
     @Test
     @DisplayName("100~1000 사이 중복 없는 3자리 수 / indent 2")
     public void makeAnswer1(){
-        int answer = 0;
+        int answer;
         while(true){
             answer = (int)(Math.random()*900+100);
 
@@ -74,7 +83,7 @@ public class GamePlayServiceTest {
 
     private int[] check(int answer, int input){
 
-        /** result[0] = strike, result[1] = ball */
+        /* result[0] = strike, result[1] = ball */
         int[] result = {0,0};
 
         int[] ansArray = toArray(answer);
@@ -84,6 +93,29 @@ public class GamePlayServiceTest {
             result[1] += implGamePlayService.compareTo(ansArray[i], inpArray[(i+1)%3]);
             result[1] += implGamePlayService.compareTo(ansArray[i], inpArray[(i+2)%3]);
         }
+        return result;
+    }
+
+    private int[] check(List<Integer> answer, List<Integer> input){
+
+        /* result[0] = strike, result[1] = ball */
+        int[] result = {0,0};
+
+        for(int i = 0 ; i < answer.size(); i++){
+            result[0] += implGamePlayService.compareTo(answer.get(i), input.get(i%3));
+            result[1] += implGamePlayService.compareTo(answer.get(i), input.get((i+1)%3));
+            result[1] += implGamePlayService.compareTo(answer.get(i), input.get((i+2)%3));
+        }
+        return result;
+    }
+    private List<Integer> toList(int number){
+        List<Integer> result = new ArrayList<>();
+        int first = number/100;
+        int second = (number - first*100)/10;
+        int third = (number - first*100)%10;
+        result.add(first);
+        result.add(second);
+        result.add(third);
         return result;
     }
     private int[] toArray(int number){
