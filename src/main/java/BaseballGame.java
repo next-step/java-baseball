@@ -88,4 +88,12 @@ public class BaseballGame {
         }
         return false;
     }
+
+    public boolean validateStartInput(String startInput) {
+        if("1".equals(startInput)||"2".equals(startInput)){
+            return true;
+        }
+        System.out.println(RESTART_INPUT_PRINT);
+        return false;
+    }
 }
