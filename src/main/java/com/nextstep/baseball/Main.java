@@ -53,5 +53,25 @@ public class Main {
 			System.out.println("정해진 규칙에 맞지 않은 숫자입니다.");
 			inputNum();
 		}
+		compareNum();
 	}
+	
+	public static void compareNum(){
+		String arrAutoNum[] = autoNum.split("");//숫자를 배열로 리턴
+		String arrBallNum[] = ballNum.split("");//숫자를 배열로 리턴
+		
+		strikeCnt = BallCount.strikeCheck(arrAutoNum, arrBallNum);//스트라이크 카운트 함수
+		if(strikeCnt == 3){
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			
+		}
+		ballCnt = BallCount.ballCheck(arrAutoNum, arrBallNum);//볼 카운트 함수
+		printCompareNum(strikeCnt, ballCnt);
+	}
+	
+	public static void printCompareNum(int strikeCnt, int ballCnt){
+		MessagePrint.printMessage(strikeCnt, ballCnt);
+		
+	}
+	
 }
