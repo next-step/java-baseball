@@ -96,4 +96,22 @@ public class BaseballGame {
         System.out.println(RESTART_INPUT_PRINT);
         return false;
     }
+
+    public void startGame(){
+        boolean startFlag = true;
+        while (startFlag) {
+            playGame(createRandomNumber());
+            String startInput = reStartGamePrint();
+            startFlag = reStartGame(startInput);
+        }
+    }
+
+    public void playGame(List<Integer> randomNumber){
+        BaseballResult baseballResult = new BaseballResult();
+        while(!checkAnswer(baseballResult)) {
+            List<Integer> userNumber = inputUserNumber();
+            baseballResult = calculateResult(randomNumber, userNumber);
+            printResult(baseballResult);
+        }
+    }
 }
