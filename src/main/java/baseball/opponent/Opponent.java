@@ -127,6 +127,7 @@ public class Opponent {
     }
 
     /**
+     * 스트라이크와 볼의 개수를 기준으로 정답 비교 결과를 생성
      *
      * @param strikeCount 스트라이크 개수
      * @param ballCount 볼 개수
