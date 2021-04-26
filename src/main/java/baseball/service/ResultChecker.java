@@ -1,6 +1,6 @@
-package study.baseball.service;
+package baseball.service;
 
-import study.baseball.enums.GameStatus;
+import baseball.enums.GameStatus;
 
 import java.util.List;
 

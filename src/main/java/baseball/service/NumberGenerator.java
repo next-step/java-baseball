@@ -1,4 +1,4 @@
-package study.baseball.service;
+package baseball.service;
 
 import java.util.ArrayList;
 import java.util.List;

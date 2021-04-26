@@ -1,4 +1,4 @@
-package study.baseball.service;
+package baseball.service;
 
 import java.util.Scanner;
 

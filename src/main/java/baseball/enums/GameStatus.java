@@ -1,4 +1,4 @@
-package study.baseball.enums;
+package baseball.enums;
 
 public enum GameStatus {
     PLAY("1") {

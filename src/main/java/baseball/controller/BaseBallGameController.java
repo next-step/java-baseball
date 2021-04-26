@@ -1,8 +1,8 @@
-package study.baseball.controller;
+package baseball.controller;
 
-import study.baseball.service.InputSupplier;
-import study.baseball.service.ResultChecker;
-import study.baseball.enums.GameStatus;
+import baseball.enums.GameStatus;
+import baseball.service.InputSupplier;
+import baseball.service.ResultChecker;
 
 import java.util.ArrayList;
 import java.util.List;
