@@ -34,4 +34,32 @@ public class BaseballServiceTest {
         assertThat(set.size() == 3).isTrue();
     }
 
+    @Test
+    public void 게임_완료_조건_확인() {
+        baseball.setOpponentNumber(BaseUtil.getRandomNumber());
+        List<Integer> userNumber = new ArrayList<>();
+        for (Integer number : baseball.getOpponentNumber()) {
+            userNumber.add(number);
+        }
+        baseball.setUserNumber(userNumber);
+        baseball.compare();
+
+        assertThat(baseball.isStrike()).isTrue();
+    }
+
+    @Test
+    public void 볼_스트라이크_확인() {
+        baseball.setOpponentNumber(BaseUtil.getRandomNumber());
+        List<Integer> userNumber = new ArrayList<>();
+        for (Integer number : baseball.getOpponentNumber()) {
+            userNumber.add(number);
+        }
+        Collections.reverse(userNumber);
+        baseball.setUserNumber(userNumber);
+        baseball.compare();
+
+        assertThat(baseball.getBall() == 2).isTrue();
+        assertThat(baseball.getStrike() == 1).isTrue();
+    }
+
 }

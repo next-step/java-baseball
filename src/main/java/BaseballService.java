@@ -15,6 +15,7 @@ public class BaseballService {
         while (isPlay) {
             baseball.init();
             baseball.setUserNumber(getUserNumber());
+            baseball.compare();
         }
     }
 
