@@ -31,12 +31,8 @@ public class BaseballViewImpl extends BaseballView {
 
     public void printGameResult(BaseballResult baseballResult) {
         MessageKey messageKey = baseballResult.isComplete() ? MessageKey.successGameResultFormat : MessageKey.failedGameResultFormat;
-//        if (baseballResult.isComplete()) {
-//            this.printFormatMessage(MessageKey.successGameResultFormat.getKey(), baseballResult.getStrike());
-//            return;
-//        }
 
-          this.printFormatMessage(messageKey.getKey(), baseballResult.getStrike());
+        this.printFormatMessage(messageKey.getKey(), baseballResult.getStrike());
     }
 
     public void printAskingReGame() {
@@ -46,7 +42,6 @@ public class BaseballViewImpl extends BaseballView {
     @Override
     public void printException(Exception e) {
         this.printFormatMessage(MessageKey.exceptionMessageFormat.getKey(), e);
-        e.printStackTrace();
     }
 
     public String readInputPrompt() {
