@@ -22,14 +22,7 @@ class BaseballNumberGeneratorTest {
 
 	@BeforeEach
 	void setUp() {
-		this.target = new BaseballNumberGenerator();
-	}
-
-	@Test
-	@DisplayName("Baseball random number 객체를 생성하는지 확인합니다.")
-	void testRandomBaseballNumberNotNull() {
-		BaseballNumber randomBaseballNumber = this.target.getRandomBaseballNumber();
-		Assertions.assertThat(randomBaseballNumber).isNotNull();
+		this.target = BaseballNumberGenerator.getInstance();
 	}
 
 	@Test
@@ -41,7 +34,7 @@ class BaseballNumberGeneratorTest {
 		for (int i = 1; i < 10; i++) {
 			numbers.add(i);
 		}
-		
+
 		List<Integer> randomNumbers = randomBaseballNumber.getNumbers();
 		int first = randomNumbers.get(0);
 		int second = randomNumbers.get(1);
@@ -54,5 +47,12 @@ class BaseballNumberGeneratorTest {
 		Assertions.assertThat(first == second).isFalse();
 		Assertions.assertThat(second == third).isFalse();
 		Assertions.assertThat(first == third).isFalse();
+	}
+
+	@Test
+	@DisplayName("Baseball random number 객체를 생성하는지 확인합니다.")
+	void testRandomBaseballNumberNotNull() {
+		BaseballNumber randomBaseballNumber = this.target.getRandomBaseballNumber();
+		Assertions.assertThat(randomBaseballNumber).isNotNull();
 	}
 }

@@ -7,21 +7,22 @@
 package baseball.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 import baseball.model.BaseballNumber;
 
 public class BaseballNumberGenerator {
 
-	/** random index max bound */
-	private static final int INDEX_MAX_BOUND = 9;
-
 	/** 1~9 까지의 선택가능한 숫자를 저장 */
 	private final List<Integer> baseballNumbers = new ArrayList<>();
 
-	public BaseballNumberGenerator() {
+	private BaseballNumberGenerator() {
 		this.initBaseballNumbers();
+	}
+
+	public static BaseballNumberGenerator getInstance() {
+		return LazyHolder.INSTANCE;
 	}
 
 	/**
@@ -31,26 +32,28 @@ public class BaseballNumberGenerator {
 	 */
 	public BaseballNumber getRandomBaseballNumber() {
 
-		int first = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND));
-		int second = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND - 1));
-		int third = this.baseballNumbers.remove(this.getRandomIndex(INDEX_MAX_BOUND - 2));
+		List<Integer> extractNumbers = this.getRandomNumberList();
 
 		BaseballNumber randomBaseballNumber = new BaseballNumber();
-		randomBaseballNumber.addNumber(first);
-		randomBaseballNumber.addNumber(second);
-		randomBaseballNumber.addNumber(third);
-
+		for (int i = 0; i < extractNumbers.size(); i++) {
+			randomBaseballNumber.addNumber(extractNumbers.get(i));
+		}
 		return randomBaseballNumber;
 	}
 
-	private int getRandomIndex(int bound) {
-		return ThreadLocalRandom.current().nextInt(bound);
+	private List<Integer> getRandomNumberList() {
+		Collections.shuffle(this.baseballNumbers);
+		return this.baseballNumbers.subList(0, 3);
 	}
 
 	private void initBaseballNumbers() {
 		for (int i = 1; i < 10; i++) {
 			this.baseballNumbers.add(i);
 		}
+	}
+
+	private static class LazyHolder {
+		private static final BaseballNumberGenerator INSTANCE = new BaseballNumberGenerator();
 	}
 
 }

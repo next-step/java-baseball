@@ -9,10 +9,10 @@ package baseball.model;
 import baseball.exception.BaseballException;
 
 public class UserBaseballNumber extends BaseballNumber {
-	private static final String NUMERIC_REGEX = "^[1-9][1-9][1-9]$";
+	private static final String INPUT_NUMBER_REGEX = "[1-9]{3}";
 
 	public UserBaseballNumber(String userInput) {
-		if (userInput.matches(NUMERIC_REGEX) == false) {
+		if (userInput.matches(INPUT_NUMBER_REGEX) == false) {
 			throw new BaseballException("1~9 범위의 세자리 숫자를 입력하세요.");
 		}
 		int inputNumber = Integer.parseInt(userInput);

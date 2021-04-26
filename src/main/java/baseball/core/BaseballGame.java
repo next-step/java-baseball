@@ -14,8 +14,6 @@ import baseball.view.OutputView;
 
 public class BaseballGame {
 
-	private final BaseballNumberGenerator baseballNumberGenerator;
-
 	private final BaseballNumber randomBaseballNumber;
 
 	private final InputView inputView;
@@ -25,9 +23,7 @@ public class BaseballGame {
 	public BaseballGame(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
 		this.outputView = outputView;
-
-		this.baseballNumberGenerator = new BaseballNumberGenerator();
-		this.randomBaseballNumber = this.baseballNumberGenerator.getRandomBaseballNumber();
+		this.randomBaseballNumber = BaseballNumberGenerator.getInstance().getRandomBaseballNumber();
 	}
 
 	/**

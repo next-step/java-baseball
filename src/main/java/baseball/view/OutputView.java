@@ -10,11 +10,13 @@ import baseball.model.InningResult;
 
 public class OutputView extends View {
 
-	public void printInningResult(InningResult inningResult) {
-		out.println(inningResult.toString());
-	}
+	private static final String END_GAME_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
 
 	public void printEndGame() {
-		out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		out.println(END_GAME_MESSAGE);
+	}
+
+	public void printInningResult(InningResult inningResult) {
+		out.println(inningResult.toString());
 	}
 }

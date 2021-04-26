@@ -20,16 +20,21 @@ public class InningResult {
 		this.ball = 0;
 	}
 
+	public int getBall() {
+		return this.ball;
+	}
+
+	public int getStrike() {
+		return this.strike;
+	}
+
 	/**
 	 * 3스트라이크인지 확인하여 게임종료여부 반환
 	 * 
 	 * @return 게임종료여부
 	 */
 	public boolean isEndGame() {
-		if (this.strike == 3) {
-			return true;
-		}
-		return false;
+		return this.strike == 3;
 	}
 
 	public void judgeInningResult(BaseballNumber randomBaseballNumber, UserBaseballNumber userBaseballNumber) {
@@ -59,11 +64,6 @@ public class InningResult {
 		this.strike++;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		StringJoiner joiner = new StringJoiner(" ");

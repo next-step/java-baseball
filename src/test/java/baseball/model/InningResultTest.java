@@ -31,6 +31,21 @@ class InningResultTest {
 	}
 
 	@ParameterizedTest
+	@ValueSource(strings = "135")
+	@DisplayName("임의 숫자가 123, 사용자 입력이 135일때 1 strike, 1 ball count 확인")
+	void testCheckInningResultValues(String userInput) {
+
+		UserBaseballNumber userNumber = new UserBaseballNumber(userInput);
+
+		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
+		int ball = this.inningResult.getBall();
+		int strike = this.inningResult.getStrike();
+
+		assertEquals(1, ball);
+		assertEquals(1, strike);
+	}
+
+	@ParameterizedTest
 	@ValueSource(strings = { "875", "435", "652" })
 	@DisplayName("3 strike 아닐 때 게임 종료 false 반환 확인")
 	void testIsEndGameFalse(String userInput) {
@@ -55,11 +70,12 @@ class InningResultTest {
 	@ParameterizedTest
 	@CsvSource(value = { "123:3 스트라이크", "321:1 스트라이크 2 볼", "456:nothing", "125:2 스트라이크" }, delimiter = ':')
 	@DisplayName("randomBaseballNumber, userBaseNumber를 비교하여 inning result 확인")
-	void testJudgementInningResult(String userInput, String expected) {
+	void testJudgementInningResultToString(String userInput, String expected) {
 
 		UserBaseballNumber userNumber = new UserBaseballNumber(userInput);
 
 		this.inningResult.judgeInningResult(this.randomBaseballNumber, userNumber);
 		assertEquals(expected, this.inningResult.toString());
 	}
+
 }
