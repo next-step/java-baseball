@@ -18,7 +18,7 @@ public class InputMessage {
 			return null;
 		}
 		if(!hasValidLength(input, Numbers.MAX_SIZE)) {
-			OutputMessage.printMessage(Message.NOTICE_ERROR_SIZE);
+			 OutputMessage.printMessage(Message.NOTICE_ERROR_SIZE);
 			return null;
 		}
 		if(!isAllValidNumber(input)) {
