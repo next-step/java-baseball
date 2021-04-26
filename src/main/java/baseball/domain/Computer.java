@@ -58,6 +58,10 @@ public class Computer {
         return score.isAllStrike();
     }
 
+    public boolean isNothing() {
+        return score.isNothing();
+    }
+
     public int getStrike() {
         return score.getStrike();
     }
