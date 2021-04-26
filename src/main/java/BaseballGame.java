@@ -1,8 +1,23 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class BaseballGame {
 
 	final static Random r = new Random();
+
+    static boolean running = true;
+
+    public void run(){
+        String answer = generateNumbers();
+        String guess = "";
+        Scanner sc = new Scanner(System.in);
+        while(running){
+            System.out.print("숫자를 입력해주세요:");
+            guess = sc.next();
+            System.out.println(guess(answer,guess));
+        }
+        sc.close();
+    }
 
 	public String generateNumbers(){
 		return generateNumbers(null,3);
@@ -49,6 +64,7 @@ public class BaseballGame {
 
 
 		if(strike==3){
+            running = false;
 			return "3개의 숫자를 모두 맞히셨습니다! 게임종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 		}
 
