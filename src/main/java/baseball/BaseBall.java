@@ -1,5 +1,9 @@
 package baseball;
 
+import java.util.HashMap;
+
+import static baseball.GameResult.*;
+
 public class BaseBall {
 
     public String getRandomValue() {
@@ -25,6 +29,17 @@ public class BaseBall {
         return isDuplicate;
     }
 
+    public HashMap<GameResult, Integer> play(String attack, String defence) {
+        HashMap<GameResult, Integer> resultMap = new HashMap<>();
+
+        for (int i = 0; i < attack.length(); i++) {
+            GameResult key = getGameResult(i, attack, defence);
+            resultMap.put(key, resultMap.getOrDefault(key, 0) + 1);
+        }
+
+        return resultMap;
+    }
+
     private boolean validateInLoop(int i, String validateToData) {
         boolean checkDuplicateData = true;
         int j = i + 1, size = validateToData.length();
@@ -36,4 +51,15 @@ public class BaseBall {
         return checkDuplicateData;
     }
 
+    private GameResult getGameResult(int i, String attack, String defence) {
+        if (attack.charAt(i) == defence.charAt(i)) {
+            return STRIKE;
+        }
+
+        if (defence.contains("" + attack.charAt(i))) {
+            return BALL;
+        }
+
+        return NOTHING;
+    }
 }
