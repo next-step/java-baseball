@@ -16,7 +16,7 @@ public class Game {
 
 	public void start() {
 		GameStatus gameStatus = GameStatus.START;
-		BallNumbers goal = computer.generateBall();
+		BallNumbers goal = computer.getQuestion();
 
 		while(GameStatus.START.equals(gameStatus)) {
 			gameStatus = playOneGame(goal);
@@ -27,7 +27,7 @@ public class Game {
 		BallNumbers answer = gamer.getAnswer();
 		BallMatchResult matchResult = ballMatch(answer, goal);
 
-		while(!matchResult.isAllStrike()) {
+		while(!matchResult.isGameComplete()) {
 			answer = gamer.getAnswer();
 			matchResult = ballMatch(answer, goal);
 		}

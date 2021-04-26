@@ -18,7 +18,7 @@ public class BallMatchResult {
 		match.put(BallMatchType.NOTHING, 0);
 	}
 
-	public boolean isAllStrike() {
+	public boolean isGameComplete() {
 		return this.match.get(BallMatchType.STRIKE).equals(ALL_STRIKE_COUNT);
 	}
 

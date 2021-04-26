@@ -10,7 +10,7 @@ public class Computer {
 		this.ballNumberGenerator = ballNumberGenerator;
 	}
 
-	public BallNumbers generateBall() {
+	public BallNumbers getQuestion() {
 		return ballNumberGenerator.generate();
 	}
 }
