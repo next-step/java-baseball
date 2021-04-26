@@ -58,16 +58,22 @@ class BallNumbersTest {
 		BallMatchResult ballMatchResult = ballNumbers1.compareTo(ballNumbers2);
 
 		assertThat(ballMatchResult.isGameComplete()).isTrue();
+		assertThat(ballMatchResult.getStrikeCount()).isEqualTo(3);
+		assertThat(ballMatchResult.getBallCount()).isEqualTo(0);
+		assertThat(ballMatchResult.getNothingCount()).isEqualTo(0);
 	}
 
 	@Test
 	@DisplayName("다른 BallNumbers compareTo 테스트")
 	void anotherCompareToTest(){
 		BallNumbers ballNumbers1 = BallNumbers.create(Arrays.asList(1, 2, 3));
-		BallNumbers ballNumbers2 = BallNumbers.create(Arrays.asList(1, 2, 4));
+		BallNumbers ballNumbers2 = BallNumbers.create(Arrays.asList(1, 4, 2));
 
 		BallMatchResult ballMatchResult = ballNumbers1.compareTo(ballNumbers2);
 
 		assertThat(ballMatchResult.isGameComplete()).isFalse();
+		assertThat(ballMatchResult.getStrikeCount()).isEqualTo(1);
+		assertThat(ballMatchResult.getBallCount()).isEqualTo(1);
+		assertThat(ballMatchResult.getNothingCount()).isEqualTo(1);
 	}
 }
