@@ -8,13 +8,7 @@ public class Computer {
 		this.answer = answer;
 	}
 
-	public BaseballResult answerCheck(String userInputNum) {
-		BaseballSet userInputBaseballSet = BaseballSet.from(userInputNum);
-		BaseballResult result = getResult(userInputBaseballSet);
-		return result;
-	}
-
-	private BaseballResult getResult(BaseballSet userInputBaseballSet) {
+	public BaseballResult checkBaseballNumber(BaseballSet userInputBaseballSet) {
 		int strike = getStrikeCountFrom(userInputBaseballSet);
 		int ball = getBallCountFrom(userInputBaseballSet);
 		return new BaseballResult(strike, ball);

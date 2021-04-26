@@ -16,8 +16,8 @@ public class BaseballGame {
 		BaseballResult baseballResult;
 
 		do {
-			String userInputNum = BaseballNumberInput.input();
-			baseballResult = computer.answerCheck(userInputNum);
+			BaseballSet userInputBaseballSet = BaseballSet.from(BaseballNumberInput.input());
+			baseballResult = computer.checkBaseballNumber(userInputBaseballSet);
 			Output.baseballResultPrint(baseballResult);
 		} while (!baseballResult.isCorrectAnswer());
 

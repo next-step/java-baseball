@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import basballgame.game.BaseballResult;
 import basballgame.game.BaseballSet;
 import basballgame.game.Computer;
+import basballgame.ui.input.BaseballNumberInput;
 
 public class ComputerTest {
 
@@ -48,10 +49,9 @@ public class ComputerTest {
 		"123, 3, 0",
 	})
 	public void Computer_answerCheck_Test(String inputString, int strike, int ball) {
-
 		assertNotNull(inputString);
-
-		BaseballResult result = computer.answerCheck(inputString);
+		BaseballSet userInputBaseballSet = BaseballSet.from(inputString);
+		BaseballResult result = computer.checkBaseballNumber(userInputBaseballSet);
 		assertTrue(result.getStrike() == strike);
 		assertTrue(result.getBall() == ball);
 	}
