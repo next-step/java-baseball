@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
-	final static Random r = new Random();
+    final static Random r = new Random();
 
     static boolean running = true;
 

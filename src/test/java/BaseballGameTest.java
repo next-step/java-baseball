@@ -134,6 +134,17 @@ public class BaseballGameTest{
 		assertEquals("1스트라이크 2볼", output);
 	}
 
+	@Test
+	public void couldFinishWhenThreeStrike(){
+		String answer = "123";
+		String threestrike_guess = "123";
+		BaseballGame game = new BaseballGame();
+		game.guess(answer,threestrike_guess);
+
+		assertFalse(game.running);
+
+	}
+
 
 
 
