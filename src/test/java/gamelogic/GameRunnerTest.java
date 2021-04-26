@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class GameTest {
+class GameRunnerTest {
 
-	private static Game game;
+	private static GameRunner game;
 	private static Method isValidAnswerMethod;
 	private static Method generateAnswerMethod;
 
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
-		game = new Game();
+		game = new GameRunner();
 
-		isValidAnswerMethod = Game.class.getDeclaredMethod("isValidAnswer", int.class);
+		isValidAnswerMethod = GameRunner.class.getDeclaredMethod("isValidAnswer", int.class);
 		isValidAnswerMethod.setAccessible(true);
 
-		generateAnswerMethod = Game.class.getDeclaredMethod("generateAnswer");
+		generateAnswerMethod = GameRunner.class.getDeclaredMethod("generateAnswer");
 		generateAnswerMethod.setAccessible(true);
 	}
 

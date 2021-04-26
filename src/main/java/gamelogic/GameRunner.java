@@ -2,7 +2,7 @@ package gamelogic;
 
 import java.util.Random;
 
-public class Game {
+public class GameRunner {
 	private final Random random = new Random();
 
 	public void runNewGame() {

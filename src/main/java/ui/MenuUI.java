@@ -1,9 +1,9 @@
 package ui;
 
-import gamelogic.Game;
+import gamelogic.GameRunner;
 
 public class MenuUI {
-	Game game = new Game();
+	GameRunner game = new GameRunner();
 
 	public boolean getMenuInput(String input) {
 		if (!isValidMenuInput(input)) {
