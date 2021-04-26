@@ -61,6 +61,7 @@ public class GameUtils {
 		}
 		checkStrike(currentGame, input, 0);
 		checkBall(currentGame, input, 0);
+		result(currentGame);
 	}
 
 	private void checkStrike(Game game, String sInput, int index) {
@@ -85,6 +86,15 @@ public class GameUtils {
 			game.addBall();
 		}
 		checkBall(game, sInput, index + 1);
+	}
+
+	private void result(Game game) {
+		System.out.println(game.getStrike() + " 스트라이크 " + game.getBall() + "볼");
+		if (game.getStrike() == 3) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			this.isEnd = true;
+		}
+		game.setZero();
 	}
 
 	public boolean isEnd() {
