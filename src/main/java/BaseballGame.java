@@ -45,7 +45,7 @@ public class BaseballGame {
 			console.setMessage(iae.getMessage());
 			requestMorePitching();
 		}
-		return (pitchingCondition.equals("1") ? true : false);
+		return (pitchingCondition.equals("1"));
 	}
 
 	private String requestKeyword() {
