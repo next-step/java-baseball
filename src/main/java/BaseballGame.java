@@ -10,8 +10,8 @@ public class BaseballGame {
 
 	public String guess(String answerNumbers, String guessNumbers){
 
-		int ball = 0;
 		int strike = 0;
+		int ball = 0;
 
 		String[] splitedAnswerNumbers = answerNumbers.split("");
 		String[] splitedGuessNumbers = guessNumbers.split("");
@@ -30,7 +30,7 @@ public class BaseballGame {
 			ball+=1;
 		}
 
-		return strike==3?"3개의 숫자를 모두 맞히셨습니다! 게임종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.":(strike==0 && ball==0?"낫싱":(strike>0?strike + "스트라이크":"")+(ball>0?ball + "볼":""));
+		return output(strike,ball);
 	}
 
 	private String generateNumbers(String all,int length){
@@ -46,5 +46,22 @@ public class BaseballGame {
 		int number = r.nextInt(10);
 		if(number==0) return generateNumberNotZero();
 		return number+"";
+	}
+
+	private String output(int strike, int ball){
+
+		if(strike==0 && ball==0){
+			return "낫싱";
+		}
+
+
+		if(strike==3){
+			return "3개의 숫자를 모두 맞히셨습니다! 게임종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+		}
+
+		String strikeOutput = strike>0? strike + "스트라이크":"";
+		String ballOutput = ball>0?ball + "볼":"";
+
+		return strikeOutput + ballOutput;
 	}
 }
