@@ -9,6 +9,10 @@ public class Computer {
 	private int strikeCount;
 	private int ballCount;
 
+	public List<Integer> getComputerNumbers() {
+		return computerNumbers;
+	}
+
 	public int getStrikeCount() {
 		return strikeCount;
 	}
