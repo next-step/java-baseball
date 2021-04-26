@@ -1,4 +1,4 @@
-package util;
+package domain;
 
 import domain.BaseballNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
