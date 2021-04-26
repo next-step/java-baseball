@@ -30,10 +30,20 @@ class BaseballNumbersTest {
         assertThat(baseballNumbers.numberOfRound(3)).isEqualTo(7);
     }
 
-    @DisplayName("BaseballNumber 객체 생성 실패확인")
+    @DisplayName("BaseballNumber 객체 생성 실패확인(갯수가 다를때)")
     @ParameterizedTest
     @CsvSource(value = {"8,7"}, delimiter = ',')
     void createBaseballNumbersExceptionTest(int number1, int number2) {
+        List<Integer> initNumbers = Arrays.asList(number1, number2);
+        assertThatThrownBy(() -> {
+            BaseballNumbers.create(initNumbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("BaseballNumber 객체 생성 실패확인(범위가 잘못되었을때)")
+    @ParameterizedTest
+    @CsvSource(value = {"8,7,-1"}, delimiter = ',')
+    void baseballNumbersInvalidRangeExceptionTest(int number1, int number2) {
         List<Integer> initNumbers = Arrays.asList(number1, number2);
         assertThatThrownBy(() -> {
             BaseballNumbers.create(initNumbers);
