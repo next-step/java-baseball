@@ -33,7 +33,7 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
     public int containsCount(BaseballNumbers attackNumbers) {
         int containsCount = 0;
         for (BaseballNumber attackNumber : attackNumbers) {
-            containsCount = getContainsCount(attackNumber);
+            containsCount += getContainsCount(attackNumber);
         }
         return containsCount;
     }
