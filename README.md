@@ -7,6 +7,7 @@
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
 ## 기능 목록
+### 기능 정의
 * 초기화
   * 1~9 서로 다른 3자리 난수 생성
 * 숫자 입력
@@ -28,3 +29,20 @@
   * 잘못된 양식일 경우 "재시작 여부 입력" 과정 반복
   * 1 일 경우 "초기화" 과정부터 반복
   * 2 일 경우 종료
+
+### 구현 목록
+* Config
+  * Game Config (관련 설정 값 저장)
+  * Game Context (인스턴스 관리)
+* Controller
+  * Game Controller (게임의 진행상태에 따라 관련된 service와 view를 control)
+* Domain
+  * Game Model (난수, 진행상태 값 저장)
+  * BallCount Model (스트라이크, 볼 횟수 저장)
+* View
+  * 사용자 숫자 입력, 결과 출력 View
+  * 재시작 입력, 결과 출력 View
+* Service
+  * Game Service (난수 생성, 난수와 사용자 입력값 비교)
+* App
+  * App 구동
