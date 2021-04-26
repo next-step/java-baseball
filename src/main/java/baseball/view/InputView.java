@@ -14,8 +14,17 @@ public class InputView {
         System.out.print(printString);
     }
 
+    public void println(String printString) {
+        System.out.println(printString);
+    }
+
     public String question(String questionString) {
         this.print(questionString);
+        return this.scanner.nextLine();
+    }
+
+    public String questionLn(String questionString) {
+        this.println(questionString);
         return this.scanner.nextLine();
     }
 

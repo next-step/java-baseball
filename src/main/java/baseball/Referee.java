@@ -13,7 +13,6 @@ public class Referee {
             generateRandomWithoutDuplicate(randomList);
         }
         this.enemyNumbers = new Numbers(randomList);
-        System.out.println("this.enemyNumbers = " + this.enemyNumbers);
     }
 
     public Map<String, Integer> decide(List<Integer> playerNumbersList) {
@@ -31,7 +30,9 @@ public class Referee {
         if (randomList.contains(randomNumber) || randomNumber == 0) {
             generateRandomWithoutDuplicate(randomList);
         }
-        System.out.println("randomNumber = " + randomNumber);
+        if (randomList.size() == 3) {
+            return;
+        }
         randomList.add(randomNumber);
     }
 }
