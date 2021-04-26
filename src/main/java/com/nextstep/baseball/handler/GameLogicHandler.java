@@ -119,4 +119,11 @@ public class GameLogicHandler {
         }
         return list;
     }
+
+    public int[] checkStrikesAndBalls(int source, int target) {
+        int[] result = new int[2];
+        result[0] = checkStrikes(source, target);
+        result[1] = checkBalls(source, target);
+        return result;
+    }
 }

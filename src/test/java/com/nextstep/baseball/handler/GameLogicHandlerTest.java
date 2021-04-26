@@ -143,4 +143,40 @@ public class GameLogicHandlerTest {
                 Arguments.of(842, 428)
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("provideSourceAndTargetNumber_3Ball")
+    public void checkStrikesAndBalls_3Ball(int source, int target) {
+        assertThat(gameLogicHandler.checkStrikesAndBalls(source, target))
+                .contains(0, 3);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideSourceAndTargetNumber_3Strike")
+    public void checkStrikesAndBalls_3Strikes(int source, int target) {
+        assertThat(gameLogicHandler.checkStrikesAndBalls(source, target))
+                .contains(3, 0);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideSourceAndTargetNumber_2Ball")
+    public void checkStrikesAndBalls_2Ball(int source, int target) {
+        assertThat(gameLogicHandler.checkStrikesAndBalls(source, target))
+                .contains(0, 2);
+    }
+
+    private static Stream<Arguments> provideSourceAndTargetNumber_1Strike_2Ball() {
+        return Stream.of(
+                Arguments.of(123, 213),
+                Arguments.of(251, 215),
+                Arguments.of(842, 482)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideSourceAndTargetNumber_1Strike_2Ball")
+    public void checkStrikesAndBalls_1Strike_2Ball(int source, int target) {
+        assertThat(gameLogicHandler.checkStrikesAndBalls(source, target))
+                .contains(1, 2);
+    }
 }
