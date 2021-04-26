@@ -16,8 +16,8 @@ public class BaseballNumberString {
     }
 
     private void isThreeDigitNumber(String numberString) {
-        if (numberString.length() != MAX_BASEBALLS.getValue() ||
-                !Pattern.matches(VALID_BASEBALL_NUMBER_RANGE, numberString)) {
+        if (numberString.length() != MAX_BASEBALLS.getValue()
+                || !Pattern.matches(VALID_BASEBALL_NUMBER_RANGE, numberString)) {
             throw new IllegalArgumentException(INVALID_ANSWER.content());
         }
     }
