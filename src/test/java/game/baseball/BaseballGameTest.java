@@ -99,9 +99,9 @@ public class BaseballGameTest {
     @ParameterizedTest
     @MethodSource("provideArgumentsForPrintCompareResult")
     @DisplayName("생성된 퀴즈 리스트와 입력받은 특정 순서의 수를 비교하여 볼 체크")
-    public void printCompareResult(int strikeCount,int ballCount,String expected){
+    public void printResult(int strikeCount,int ballCount,String expected){
         BaseballGame baseballGame = new BaseballGame();
-        String result = baseballGame.printCompareResult(strikeCount,ballCount);
+        String result = baseballGame.printResult(strikeCount,ballCount);
         assertThat(result).isEqualTo(expected);
     }
 }
