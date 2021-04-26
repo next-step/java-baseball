@@ -8,4 +8,8 @@ public class UserBallInput {
     public UserBallInput(int maxLen){
         this.maxLen = maxLen;
     }
+
+    public String UserBallInputRead() {
+        return "123";
+    }
 }
