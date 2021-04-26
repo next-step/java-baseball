@@ -100,4 +100,12 @@ class BaseballGameTest {
         boolean result = baseballGame.validateStartInput(input);
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("게임 재진행/종료 확인")
+    @ParameterizedTest
+    @CsvSource({"1,true", "2,false", "3,false", "0,false"})
+    void reStartGame(String startInput, boolean expected) {
+        boolean result = baseballGame.reStartGame(startInput);
+        assertThat(result).isEqualTo(expected);
+    }
 }
