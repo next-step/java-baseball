@@ -1,8 +1,6 @@
 package game.baseball;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,14 +8,25 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseballTest {
-    private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originOut = System.out;
     private static Baseball baseball;
 
     @BeforeAll
     public static void initial() {
         baseball = new Baseball();
+    }
+
+    @BeforeEach
+    public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(originOut);
+    }
+
 
     @DisplayName("컴퓨터 숫자가 3자리 인지 확인")
     @Test
