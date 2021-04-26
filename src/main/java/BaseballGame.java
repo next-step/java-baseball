@@ -32,10 +32,7 @@ public class BaseballGame {
 
     private boolean isContinuePlay() {
         ContinuePlay continuePlay = ContinuePlay.create(inputView.isContinue());
-        if (continuePlay.isContinuePlay()) {
-            return true;
-        }
-        return false;
+        return continuePlay.isContinuePlay();
     }
 
     private void playRound(BaseballNumberScore baseballNumberScore) {
