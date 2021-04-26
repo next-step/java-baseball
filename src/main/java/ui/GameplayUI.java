@@ -8,15 +8,13 @@ public class GameplayUI {
 
 	public void printStrike(int strike) {
 		if (strike != 0) {
-			String message = String.format("%d 스트라이크 ", strike);
-			System.out.println(message);
+			System.out.printf("%d 스트라이크%n", strike);
 		}
 	}
 
 	public void printBall(int ball) {
 		if (ball != 0) {
-			String message = String.format("%d 볼", ball);
-			System.out.println(message);
+			System.out.printf("%d 볼%n", ball);
 		}
 	}
 
