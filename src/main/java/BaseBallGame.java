@@ -29,12 +29,16 @@ public class BaseBallGame {
             System.out.println("Input Number : ");
             String input = sc.next();
             String[] inputArray = input.split("");
-            for(int i = 0; i < userArray.length; i++) {
-                userArray[i] = Integer.parseInt(inputArray[i]);
-            }
+            convertStringToNumber(inputArray);
         } while (isUserNumberDuplicate());
 
         return;
+    }
+
+    void convertStringToNumber(String[] inputArray) {
+        for(int i = 0; i < userArray.length; i++) {
+            userArray[i] = Integer.parseInt(inputArray[i]);
+        }
     }
 
     boolean isUserNumberDuplicate() {
