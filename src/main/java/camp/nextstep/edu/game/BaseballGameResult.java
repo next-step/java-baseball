@@ -14,6 +14,10 @@ public class BaseballGameResult {
         return strike;
     }
 
+    public int getBall() {
+        return ball;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
