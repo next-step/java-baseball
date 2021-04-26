@@ -1,12 +1,11 @@
 package baseball.state;
 
-import java.util.Scanner;
-
 import baseball.Game;
+import baseball.io.Display;
+import baseball.io.Keyboard;
 
 public class MenuState implements State {
 
-	private Scanner scanner = new Scanner(System.in);
 	private Game game;
 
 	public MenuState(Game game) {
@@ -15,12 +14,16 @@ public class MenuState implements State {
 
 	@Override
 	public boolean action() {
-		if (shallWePlayTheGame()) {
+		boolean coin = insert();
+		if (coin) {
 			start();
-			hint();
-			return true;
 		}
-		return false;
+		return coin;
+	}
+
+	private boolean insert() {
+		Display.start();
+		return !Keyboard.read().equals("n");
 	}
 
 	public void start() {
@@ -28,13 +31,4 @@ public class MenuState implements State {
 		game.onInningState();
 	}
 
-	private boolean shallWePlayTheGame() {
-		System.out.println("\n새 게임을 시작하겠습니까? (Y/n):");
-		String select = scanner.nextLine();
-		return !select.equals("n");
-	}
-
-	private void hint() {
-		System.out.printf("힌트: %s\n", game.getOpponent());
-	}
 }

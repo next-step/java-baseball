@@ -1,15 +1,14 @@
 package baseball.state;
 
 import java.util.List;
-import java.util.Scanner;
 
 import baseball.Converter;
 import baseball.Game;
+import baseball.io.Display;
+import baseball.io.Keyboard;
 
 public class InningState implements State {
 
-	private Scanner scanner = new Scanner(System.in);
-	private Converter converter = new Converter();
 	private Game game;
 
 	public InningState(Game game) {
@@ -18,18 +17,20 @@ public class InningState implements State {
 
 	@Override
 	public boolean action() {
-		String raw = pitch();
-
-		if (!Converter.isNumber(raw)) {
-			return true;
+		Display.pitch();
+		String raw = Keyboard.read();
+		if (isThreeDigits(raw)) {
+			guess(raw);
 		}
-
-		if (Converter.toNumber(raw) < 100) {
-			return true;
-		}
-
-		guess(raw);
 		return true;
+	}
+
+	public boolean isThreeDigits(String raw) {
+		if (raw.length() == 3 && Converter.isNumber(raw) && Converter.toNumber(raw) > 99) {
+			return true;
+		}
+		Display.notThreeDigits();
+		return false;
 	}
 
 	public void guess(String raw) {
@@ -38,12 +39,4 @@ public class InningState implements State {
 		game.onDecisionState();
 	}
 
-	private String pitch() {
-		System.out.println("\n세자리 숫자를 입력하세요:");
-		return scanner.nextLine();
-	}
-
-	private void alert() {
-		System.out.println("세자리 숫자가 아닙니다.");
-	}
 }

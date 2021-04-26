@@ -9,11 +9,10 @@ import baseball.state.State;
 
 public class Game {
 
+	private State state;
 	private State menuState;
 	private State inningState;
 	private State decisionState;
-
-	private State state;
 
 	private Player player;
 	private Player opponent;
@@ -22,7 +21,6 @@ public class Game {
 		menuState = new MenuState(this);
 		inningState = new InningState(this);
 		decisionState = new DecisionState(this);
-
 		state = menuState;
 	}
 

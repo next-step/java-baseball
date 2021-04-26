@@ -18,7 +18,8 @@ public final class Deck {
 	}
 
 	public static Deck createRandomDeck() {
-		return new Deck(draw());
+		List<Integer> deck = draw();
+		return new Deck(deck);
 	}
 
 	public static Deck createCustomDeck(List<Integer> deck) {

@@ -29,7 +29,7 @@ public class ConverterTest {
 	@DisplayName("문자열 -> 숫자 변환 불가")
 	@ParameterizedTest
 	@ValueSource(strings = {"text", ""})
-	void isNotNumber(String str) {
+	void notNumber(String str) {
 		assertThat(Converter.isNumber(str)).isFalse();
 	}
 
