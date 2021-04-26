@@ -1,8 +1,11 @@
 package khj.baseball;
 
+import khj.baseball.flow.Flow;
+
 public class Main {
     public static void main(String[] args) {
-        BaseBallGames baseBallGames = new BaseBallGames();
-        baseBallGames.play();
+        Flow flow = new Flow(new BaseBallGame());
+
+        flow.start();
     }
 }

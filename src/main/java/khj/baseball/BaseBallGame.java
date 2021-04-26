@@ -11,13 +11,13 @@ import khj.baseball.util.input.NumberInputProcessor;
 import khj.baseball.util.match.DefaultStringMatch;
 import khj.baseball.util.match.StringMatch;
 
-public class BaseBallGames implements Game {
+public class BaseBallGame implements Game {
     private final RandomStringGenerator generator;
     private final InputProcessor inputProcessor;
     private final StringMatch match;
     private int checkStringSize = 3;
 
-    public BaseBallGames () {
+    public BaseBallGame() {
         generator = new RandomNumberStringGenerator();
         inputProcessor = new NumberInputProcessor();
         match = new DefaultStringMatch();
