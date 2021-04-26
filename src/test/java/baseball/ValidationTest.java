@@ -23,37 +23,37 @@ public class ValidationTest {
     }
 
     @DisplayName("입력이 null 인지 - 실패 케이스")
-    @Test
-    public void 입력값이Null확인_기능(){
+    @ParameterizedTest
+    @ValueSource(strings = {})
+    public void 입력값이Null확인_기능(String input){
 
-        String input = null;
         assertTrue(getCheckNull(input), "입력이 null 이다");
 
     }
 
     @DisplayName("입력이 null 인지 - 성공 케이스")
-    @Test
-    public void 입력값이Null확인_기능_성공(){
+    @ParameterizedTest
+    @ValueSource(strings = {"TES"})
+    public void 입력값이Null확인_기능_성공(String input){
 
-        String input = "TES";
         assertTrue(getCheckNull(input), "입력이 null 이다");
 
     }
 
     @DisplayName("입력값의 문자열 길이 - 실패 케이스")
-    @Test
-    public void 입력값의길이확인_기능(){
+    @ParameterizedTest
+    @ValueSource(strings = {"TEST"})
+    public void 입력값의길이확인_기능(String input){
 
-        String input = "TEST";
         assertTrue(getInputLength(input, 3), "입력값의 길이가 안맞다.");
 
     }
 
     @DisplayName("입력값의 문자열 길이 - 성공 케이스")
-    @Test
-    public void 입력값의길이확인_기능_성공(){
+    @ParameterizedTest
+    @ValueSource(strings = {"TES"})
+    public void 입력값의길이확인_기능_성공(String input){
 
-        String input = "TES";
         assertTrue(getInputLength(input, 3), "입력값의 길이가 안맞다.");
 
     }
@@ -77,20 +77,18 @@ public class ValidationTest {
     }
 
     @DisplayName("문자열이 서로 다른 숫자로 이루어져 있는지 - 성공 케이스")
-    @Test
-    public void 문자열_서로다른숫자확인_기능_성공(){
-
-        String input = "123";
+    @ParameterizedTest
+    @ValueSource(strings = {"123"})
+    public void 문자열_서로다른숫자확인_기능_성공(String input){
 
         assertTrue(getCheckDiffInt(input), "서로 다른 숫자가 아니다. : {} " + input );
 
     }
 
     @DisplayName("문자열이 서로 다른 숫자로 이루어져 있는지 - 실패 케이스")
-    @Test
-    public void 문자열_서로다른숫자확인_기능(){
-
-        String input = "122";
+    @ParameterizedTest
+    @ValueSource(strings = {"TES"})
+    public void 문자열_서로다른숫자확인_기능(String input){
 
         assertTrue(getCheckDiffInt(input), "서로 다른 숫자가 아니다. : {} " + input );
 
@@ -99,38 +97,50 @@ public class ValidationTest {
     /*
         널 체크.
      */
-    private boolean getCheckNull(String input){
-        return input != null ? true : false;
+    public static boolean getCheckNull(String input){
+        if (input != null) {
+            return true;
+        }
+        BaseballUtil.outMessageN(BaseballConst.ANSWER_NULL);
+        return false;
     }
 
     /*
         문자열의 길이 비교 기능
      */
-    private boolean getInputLength(String input, int length){
-        return input.length() == length ? true : false;
+    public static boolean getInputLength(String input, int length){
+        if (input.length() == length) {
+            return true;
+        }
+        BaseballUtil.outMessageN(BaseballConst.ANSWER_LENGTH_NOT);
+        return false;
     }
 
     /*
         정수의 크기가 알맞는지 (1 ~ 9)
      */
-    private boolean getCheckInt(int input){
-        return (input > 0 && input < 10) ? true : false;
+    public static boolean getCheckInt(int input){
+        if (input > 0 && input < 10) {
+            return true;
+        }
+        BaseballUtil.outMessageN(BaseballConst.ANSWER_NUM_SIZE);
+        return false;
+
     }
 
     /*
         서로 다른 숫자인지 확인.
      */
-    private boolean getCheckDiffInt(String str){
+    public static boolean getCheckDiffInt(String str){
         char[] chars = str.toCharArray();
         Set<Character> set = new HashSet<>();
-
         for(int i = 0; i < chars.length; i++){
             set.add(chars[i]);
         }
-
-        if(set.size() != chars.length)
+        if(set.size() != chars.length){
+            BaseballUtil.outMessageN(BaseballConst.ANSWER_DIFF);
             return false;
-
+        }
         return true;
     }
 

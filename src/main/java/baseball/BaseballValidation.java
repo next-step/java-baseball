@@ -5,6 +5,9 @@ import java.util.Set;
 
 public class BaseballValidation {
 
+    /*
+        타자 유효성 검사.
+     */
     public static boolean validInputStr(String string){
 
         getCheckNull(string);
@@ -25,7 +28,7 @@ public class BaseballValidation {
             return true;
         }
         BaseballUtil.outMessageN(BaseballConst.ANSWER_NULL);
-        return false;
+        throw new IllegalArgumentException();
     }
 
     /*
@@ -36,7 +39,7 @@ public class BaseballValidation {
             return true;
         }
         BaseballUtil.outMessageN(BaseballConst.ANSWER_LENGTH_NOT);
-        return false;
+        throw new IllegalArgumentException();
     }
 
     /*
@@ -47,7 +50,8 @@ public class BaseballValidation {
             return true;
         }
         BaseballUtil.outMessageN(BaseballConst.ANSWER_NUM_SIZE);
-        return false;
+        throw new IllegalArgumentException();
+
     }
 
     /*
@@ -61,7 +65,7 @@ public class BaseballValidation {
         }
         if(set.size() != chars.length){
             BaseballUtil.outMessageN(BaseballConst.ANSWER_DIFF);
-            return false;
+            throw new IllegalArgumentException();
         }
         return true;
     }
