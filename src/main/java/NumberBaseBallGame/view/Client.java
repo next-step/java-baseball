@@ -32,15 +32,15 @@ public class Client {
 				continue;
 			}
 			System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
-			System.out.println("게임을새로시작하려면1,종료하려면 2를입력하세요. : ");
+			System.out.println("게임을새로시작하려면1,종료하려면 2를입력하세요. (아무키나 누르시면 종료됩니다.) : ");
 
 			String isContinue = scanner.nextLine();
 
-			if(isContinue.equals("2")){
-				System.exit(0);
-			}
 			if(isContinue.equals("1")){
 				generateGame = new GenerateGame();
+			}
+			if(!isContinue.equals("1")){
+				System.exit(0);
 			}
 		}
 	}
@@ -53,7 +53,7 @@ public class Client {
 			message += (BaseBallStatus.STRIKE.getMessage()+matchResult.getStrikeCount()+"볼");
 		}
 		if(matchResult.getBallCount()>0){
-			message += (matchResult.getStrikeCount()+BaseBallStatus.BALL.getMessage());
+			message += (matchResult.getBallCount()+BaseBallStatus.BALL.getMessage());
 		}
 		return message;
 	}
