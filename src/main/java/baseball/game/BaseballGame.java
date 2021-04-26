@@ -21,11 +21,18 @@ public class BaseballGame implements Game {
 
 	public void play() {
 		printInPut();
-		ScannerUtil.getUserInput();
+		String hitterNum = ScannerUtil.getUserInput();
+		BaseballScore baseballScore = new BaseballScore(pitcherNum, hitterNum);
+		String scoreStr = baseballScore.getScoreStr();
+		printResult(scoreStr);
 	}
 
 	private void printInPut() {
 		System.out.print("숫자를입력해주세요:");
+	}
+
+	private void printResult(String result) {
+		System.out.println(result);
 	}
 
 	private String generateNum(int size) {
