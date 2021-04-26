@@ -2,6 +2,7 @@ package view;
 
 import java.util.Scanner;
 
+import dto.GameResult;
 import validator.NumberValidator;
 
 public class GameView {
@@ -14,5 +15,10 @@ public class GameView {
 			inputNumber = scanner.nextLine();
 		} while (!numberValidator.validate(inputNumber));
 		return inputNumber;
+	}
+
+	public static boolean resultView(GameResult gameResult) {
+		System.out.println(gameResult.getMsg());
+		return gameResult.getSuccessFlag();
 	}
 }
