@@ -3,6 +3,7 @@ package ui.type;
 public enum GameMessage {
 
 	INPUT_DATA("숫자를 입력해주세요 : "),
+	INPUT_RESTART_GAME("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."),
 	OUTPUT_STRIKE("스트라이크"),
 	OUTPUT_BALL("볼"),
 	OUTPUT_NOTHING("낫싱"),

@@ -13,6 +13,6 @@ public enum GameCommand {
 	}
 
 	public boolean isRestart(){
-		return	RESTART.code == this.code;
+		return this == RESTART;
 	}
 }

@@ -24,7 +24,8 @@ public class BaseBallGamerAction implements GamerAction {
 	 */
 	@Override
 	public InputDataDto inputData() {
-		int inputData = nextInt(GameMessage.INPUT_DATA);
+		printConsole(GameMessage.INPUT_DATA);
+		Integer inputData = nextInt();
 		InputDataDto inputDataDto =  createInputDataVO(inputData);
 		if(Objects.nonNull(inputData)
 		   && validateInputData(inputDataDto)){
@@ -33,10 +34,9 @@ public class BaseBallGamerAction implements GamerAction {
 		return null;
 	}
 
-	private Integer nextInt(GameMessage gameMessage){
+	private Integer nextInt(){
 		Integer inputData = 0;
 		try {
-			printConsole(gameMessage);
 			inputData = scanner.nextInt();
 		} catch(Exception e){
 			return null;
@@ -73,6 +73,11 @@ public class BaseBallGamerAction implements GamerAction {
 	 */
 	@Override
 	public GameCommand inputCommand() {
-		return null;
+		printConsoleWithLine(GameMessage.INPUT_RESTART_GAME.getMessage());
+		Integer inputData = nextInt();
+		if(inputData == 1){
+			return GameCommand.RESTART;
+		}
+		return GameCommand.FINISH;
 	}
 }
