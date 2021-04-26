@@ -25,4 +25,4 @@
   - QuestionInterface
     - 역할 : 3자리의 수 생성할 때 확장성을 고려하여 생성한 인터페이스 (현재는 컴퓨터가 랜덤으로 3개의 숫자를 생성해주지만, 사용자가 직접 입력하여 숫자를 생성할 수 있음을 고려)
 
-<img src="https://github.com/JungwooSim/java-baseball-precourse/tree/master/img/UML-class.png" width="500px;" />
+<img src="https://github.com/JungwooSim/java-baseball-precourse/blob/master/img/UML-class.png" width="500px;" />
