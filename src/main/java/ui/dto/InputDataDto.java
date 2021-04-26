@@ -46,5 +46,9 @@ public class InputDataDto {
 		Digit(final int index){
 			this.index = index;
 		}
+
+		public int getIndex(){
+			return this.index;
+		}
 	}
 }

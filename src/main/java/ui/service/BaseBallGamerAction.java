@@ -24,7 +24,7 @@ public class BaseBallGamerAction implements GamerAction {
 	 */
 	@Override
 	public InputDataDto inputData() {
-		int inputData = nextInt();
+		int inputData = nextInt(GameMessage.INPUT_DATA);
 		InputDataDto inputDataDto =  createInputDataVO(inputData);
 		if(Objects.nonNull(inputData)
 		   && validateInputData(inputDataDto)){
@@ -33,16 +33,27 @@ public class BaseBallGamerAction implements GamerAction {
 		return null;
 	}
 
-	private Integer nextInt(){
+	private Integer nextInt(GameMessage gameMessage){
 		Integer inputData = 0;
 		try {
-			printConsole(GameMessage.INPUT_DATA);
+			printConsole(gameMessage);
 			inputData = scanner.nextInt();
 		} catch(Exception e){
 			return null;
 		}
 		return inputData;
 	}
+
+
+	/**
+	 * 콘솔에 message를 출력한다.
+	 * @param message
+	 */
+	@Override
+	public void printConsoleWithLine(String message) {
+		System.out.println(message);
+	}
+
 
 	private void printConsole(final GameMessage message){
 		System.out.print(message.getMessage());

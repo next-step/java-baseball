@@ -6,4 +6,5 @@ import ui.dto.InputDataDto;
 public interface GamerAction {
 	InputDataDto inputData();
 	GameCommand inputCommand();
+	void printConsoleWithLine(final String message);
 }
