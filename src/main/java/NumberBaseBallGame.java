@@ -15,24 +15,26 @@ public class NumberBaseBallGame {
 	private final static IInitializer initializer = new Initializer(MAX_DIGIT_NUMBER);
 	private final static IMatchingSystem matchingSystem = new MatchingSystem(MAX_DIGIT_NUMBER);
 
+	private static Map<Integer, Integer> computerNumber = initializer.initComputerNumber();
+
 	public static void main(String[] args) {
-		final Map<Integer, Integer> computerNumber = initializer.initComputerNumber();
+
 		boolean gameOver = false;
 		while (!gameOver) {
-			gameOver = runningGameStage(computerNumber);
+			gameOver = runningGameStage();
 		}
 	}
 
 	/**
 	 * 게임 스테이지를 진행
 	 */
-	private static boolean runningGameStage(final Map<Integer, Integer> computerNumber) {
+	private static boolean runningGameStage() {
 		System.out.print("숫자를 입력해주세요 : ");
 		try {
-			final BallCount ballCount = matchingSystem.match(
-				computerNumber, initializer.initPlayerNumber(new Scanner(System.in).nextInt()));
-			printBallCount(ballCount);
-			return ballCount.getStrike() == 3;
+			return checkGameOver(printBallCount(matchingSystem.match(
+				computerNumber,
+				initializer.initPlayerNumber(new Scanner(System.in).nextInt())
+			)));
 		} catch (InvalidValueException | InputMismatchException e) {
 			System.out.println("유효하지 않은 숫자입니다!");
 			return false;
@@ -42,16 +44,43 @@ public class NumberBaseBallGame {
 	/**
 	 * 볼 카운트 출력
 	 */
-	private static void printBallCount(final BallCount ballCount) {
-		if (ballCount.getStrike() == 0 && ballCount.getBall() == 0) {
-			System.out.println("낫싱");
-			return;
-		}
+	private static BallCount printBallCount(final BallCount ballCount) {
 		StringBuilder stringBuilder = new StringBuilder();
+		if (ballCount.getStrike() == 0 && ballCount.getBall() == 0)
+			stringBuilder.append("낫싱");
 		if (ballCount.getStrike() != 0)
 			stringBuilder.append(ballCount.getStrike()).append(" 스트라이크 ");
 		if (ballCount.getBall() != 0)
 			stringBuilder.append(ballCount.getBall()).append(" 볼");
 		System.out.println(stringBuilder.toString().trim());
+		return ballCount;
+	}
+
+	/**
+	 * 게임 종료 여부 확인
+	 */
+	private static boolean checkGameOver(final BallCount ballCount) {
+		final boolean gameOver = ballCount.getStrike() == 3;
+		boolean isNewGame = false;
+		if (gameOver) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			isNewGame = isNewGame();
+		}
+		if (isNewGame) {
+			computerNumber = initializer.initComputerNumber();
+		}
+		return gameOver && !isNewGame;
+	}
+
+	/**
+	 * 게임을 새로 시작할지 정한다.
+	 */
+	private static boolean isNewGame() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		try {
+			return new Scanner(System.in).nextInt() == 1;
+		} catch (InputMismatchException e) {
+			return false;
+		}
 	}
 }
