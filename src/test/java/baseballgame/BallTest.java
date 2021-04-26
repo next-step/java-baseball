@@ -18,7 +18,7 @@ public class BallTest {
 	@BeforeEach
 	void setUpRandomAnswerBall() {
 		ball.makeRandomlyThreeDigitAnswer();
-		answerList = ball.getAnswerArray();
+		answerList = ball.getAnswerList();
 	}
 
 	@Test

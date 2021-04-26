@@ -15,7 +15,7 @@ public class Ball {
 		}
 	}
 
-	public List<Integer> getAnswerArray() {
+	public List<Integer> getAnswerList() {
 		List<Integer> answerList = new ArrayList<>(answerSet);
 		return answerList;
 	}
