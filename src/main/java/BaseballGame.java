@@ -125,7 +125,7 @@ public class BaseballGame {
             balls += checkBall(targets, inputs, i); //ball 판정
         }
 
-        //printResult(strikes, balls); //Strikes와 balls의 갯수에 따라 결과 출력
+        printResult(strikes, balls); //Strikes와 balls의 갯수에 따라 결과 출력
         res = (strikes==3) && (balls == 0);
 
         return res;
@@ -165,6 +165,28 @@ public class BaseballGame {
             res+=1;
         }
         return res;
+    }
+    /**
+     * printResult
+     * Strikes와 balls의 갯수에 따라 결과 출력
+     * @param strikes   스트라이크 횟수
+     * @param balls     볼 횟수
+     */
+    public void printResult(int strikes, int balls) {
+        String res = new String();
+        if(strikes>0){
+            res += "" + strikes + "스트라이크 ";
+        }
+        if(balls>0){
+            res += "" + balls + "볼 ";
+        }
+        if(strikes==0 && balls==0){
+            res = "포볼";
+        }
+        if(strikes==3 && balls==0){
+            res = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
+        }
+        System.out.println(res);
     }
 
 }
