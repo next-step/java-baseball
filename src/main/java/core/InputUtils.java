@@ -11,6 +11,22 @@ import java.util.TreeSet;
 public class InputUtils {
 
 	/***
+	 * Description: input이 1이면 새로 시작, 2면 종료
+	 * @param input user input
+	 * @return (T / F)
+	 */
+	public boolean isGameRestart(Integer input) {
+
+		boolean result = false;
+
+		if (input.equals(1)) {
+			result = true;
+		}
+
+		return result;
+	}
+
+	/***
 	 * Description: input str을 받아서 int[]로 변환하는 method
 	 *
 	 * @param input input str(from scanner)`
@@ -23,15 +39,11 @@ public class InputUtils {
 		Set<Integer> resultSet = new TreeSet<>();
 		Integer[] result = new Integer[inputSize];
 
-		if (input.trim().length() != inputSize || !input.trim().matches("[1-9].*")) {
-			throw new IllegalArgumentException("게임엔 서로 다른 숫자[1-9] 3자리만 입력 가능합니다.");
-		}
-
 		for (int idx = 0; idx < input.trim().length(); idx++) {
 			resultSet.add(Integer.parseInt(String.valueOf(input.charAt(idx))));
 		}
 
-		if (resultSet.size() != inputSize) {
+		if (input.trim().length() != inputSize || !input.trim().matches("[1-9].*") || resultSet.size() != inputSize) {
 			throw new IllegalArgumentException("게임엔 서로 다른 숫자[1-9] 3자리만 입력 가능합니다.");
 		}
 
