@@ -9,8 +9,11 @@ repositories {
 }
 
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
-    testCompile('org.assertj:assertj-core:3.19.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-junit', version: '2.0.0.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
 test {
