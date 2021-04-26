@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
- * Description :
+ * Description : Input str -> Integer [] 변환 test class
  *
  * Created by jychoi on 2021/04/26.
  */
@@ -21,12 +21,12 @@ class InputUtilsTest {
 	}
 
 	@Test
-	@DisplayName("input str -> int[] 정상 입력 케이스")
+	@DisplayName("input str -> Integer[] 정상 입력 케이스")
 	void parseInput() {
 
 		String given = "123";
-		int[] when = inputUtils.parseInput(given, 3);
-		int[] then = new int[] {1, 2, 3};
+		Integer[] when = inputUtils.parseInput(given, 3);
+		Integer[] then = new Integer[] {1, 2, 3};
 		assertThat(when).isEqualTo(then);
 	}
 
@@ -43,6 +43,14 @@ class InputUtilsTest {
 	void parseInputThrowException2() {
 
 		String given = "023";
+		assertThrows(IllegalArgumentException.class, () -> inputUtils.parseInput(given, 3));
+	}
+
+	@Test
+	@DisplayName("input에 중복 문자 들어간 경우 iae")
+	void parseInputThrowException3() {
+
+		String given = "122";
 		assertThrows(IllegalArgumentException.class, () -> inputUtils.parseInput(given, 3));
 	}
 }

@@ -1,5 +1,8 @@
 package core;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 /**
  * Description : input 관련 util class
  *
@@ -15,18 +18,23 @@ public class InputUtils {
 	 * @return (int[]) 입력된 숫자들의 배열
 	 * @throws IllegalArgumentException 잘못된 포맷 혹은 잘못된 길이의 input이 올 경우 iae
 	 */
-	public int[] parseInput(String input, Integer inputSize) throws IllegalArgumentException {
+	public Integer[] parseInput(String input, Integer inputSize) throws IllegalArgumentException {
 
-		int[] result = new int[inputSize];
+		Set<Integer> resultSet = new TreeSet<>();
+		Integer[] result = new Integer[inputSize];
 
 		if (input.trim().length() != inputSize || !input.trim().matches("[1-9].*")) {
-			throw new IllegalArgumentException("게임엔 [1-9]숫자 3자리만 입력 가능합니다.");
+			throw new IllegalArgumentException("게임엔 서로 다른 숫자[1-9] 3자리만 입력 가능합니다.");
 		}
 
 		for (int idx = 0; idx < input.trim().length(); idx++) {
-			result[idx] = Integer.parseInt(String.valueOf(input.charAt(idx)));
+			resultSet.add(Integer.parseInt(String.valueOf(input.charAt(idx))));
 		}
 
-		return result;
+		if (resultSet.size() != inputSize) {
+			throw new IllegalArgumentException("게임엔 서로 다른 숫자[1-9] 3자리만 입력 가능합니다.");
+		}
+
+		return resultSet.toArray(result);
 	}
 }
