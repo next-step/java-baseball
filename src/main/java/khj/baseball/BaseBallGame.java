@@ -15,7 +15,7 @@ public class BaseBallGame implements Game {
     private final RandomStringGenerator generator;
     private final InputProcessor inputProcessor;
     private final StringMatch match;
-    private int checkStringSize = 3;
+    private final int CHECK_STRING_SIZE = 3;
 
     public BaseBallGame() {
         generator = new RandomNumberStringGenerator();
@@ -25,12 +25,12 @@ public class BaseBallGame implements Game {
 
     @Override
     public void play() {
-        String answer = generator.generatorString(checkStringSize);
+        String answer = generator.generatorString(CHECK_STRING_SIZE);
         Record record = new Record();
 
-        while (!record.isComplete(checkStringSize)) {
+        while (!record.isComplete(CHECK_STRING_SIZE)) {
             String checkString = inputCheckString();
-            record = match.matchString(checkString, answer);
+            record = match.matchingString(checkString, answer);
             printResult(record);
         }
 
@@ -50,11 +50,11 @@ public class BaseBallGame implements Game {
 
     private String inputCatchException(String input) {
         try {
-            input = inputProcessor.inputNumberString(checkStringSize);
+            input = inputProcessor.inputNumberString(CHECK_STRING_SIZE);
         } catch (TypeWrongInputException e) {
             System.out.println("[ERROR] 숫자를 입력해주세요.");
         } catch (LengthWrongInputException e) {
-            System.out.println("[ERROR] " + checkStringSize + "자리 숫자를 입력해주세요.");
+            System.out.println("[ERROR] " + CHECK_STRING_SIZE + "자리 숫자를 입력해주세요.");
         } catch (DuplicateInputException e) {
             System.out.println("[ERROR] 중복된 숫자를 입력하셨습니다.");
         }

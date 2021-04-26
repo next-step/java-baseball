@@ -6,7 +6,7 @@ public class DefaultStringMatch implements StringMatch {
     private Record record;
 
     @Override
-    public Record matchString(String expected, String actual) {
+    public Record matchingString(String expected, String actual) {
         record = new Record();
         char[] inputStrArr = expected.toCharArray();
 

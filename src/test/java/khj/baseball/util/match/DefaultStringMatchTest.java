@@ -15,14 +15,14 @@ public class DefaultStringMatchTest {
     @DisplayName("문자열 두개를 비교 같을 경우 완료 처리한다.")
     @Test
     void matchStringIsComplete() {
-        Record record = match.matchString("123", "123");
+        Record record = match.matchingString("123", "123");
         assertTrue(record.isComplete(3));
     }
 
     @ParameterizedTest(name = "정답이 맞는 지 확인한다.")
     @CsvSource({"124,2,0", "213,1,2"})
     void matchString(String input, int strike, int ball) {
-        Record record = match.matchString(input, "123");
+        Record record = match.matchingString(input, "123");
         assertEquals(strike, record.getStrike());
         assertEquals(ball, record.getBall());
     }
@@ -30,7 +30,7 @@ public class DefaultStringMatchTest {
     @DisplayName("문자열이 전부 맞지 않으면 낫싱인지 확인한다.")
     @Test
     void matchStringIsNoting() {
-        Record record = match.matchString("123", "456");
+        Record record = match.matchingString("123", "456");
         assertTrue(record.isNoting());
     }
 }
