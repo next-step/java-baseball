@@ -5,20 +5,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String NUMBER_MESSAGE = "숫자를 입력해주세요 : ";
     private static final Scanner scanner = new Scanner(System.in);
 
     public List<Integer> inputNumbers() {
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(NUMBER_MESSAGE);
         String number = scanner.nextLine();
         return toIntegers(number);
     }
 
     private List<Integer> toIntegers(String number) {
         String[] digits = number.split("");
-        List<Integer> baseBallNumbers = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
         for (String digit : digits) {
-            baseBallNumbers.add(Integer.valueOf(digit));
+            numbers.add(Integer.valueOf(digit));
         }
-        return baseBallNumbers;
+        return numbers;
     }
 }
