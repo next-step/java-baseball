@@ -21,7 +21,7 @@ class ComputerTest {
         ballCount = 3;
     }
 
-    @DisplayName("임의의_수_생성기능_구현")
+    @DisplayName("임의의 수 생성기능 구현")
     @Test
     void 임의의_수_생성() {
 
