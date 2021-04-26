@@ -16,9 +16,9 @@ class ValidationTest {
         String testValue3 = "abcd";
 
         // then
-        assertThat(Validation.checkNumberData(testValue1)).isTrue();
-        assertThat(Validation.checkNumberData(testValue2)).isFalse();
-        assertThat(Validation.checkNumberData(testValue3)).isFalse();
+        assertThat(Validation.isNumberData(testValue1)).isTrue();
+        assertThat(Validation.isNumberData(testValue2)).isFalse();
+        assertThat(Validation.isNumberData(testValue3)).isFalse();
     }
 
     @Test
@@ -32,12 +32,11 @@ class ValidationTest {
         String testValue3 = "123";
         String testValue4 = "1234";
 
-
         // then
-        assertThat(Validation.checkNumberLength(testValue1, LENGTH_OF_NUMBER)).isFalse();
-        assertThat(Validation.checkNumberLength(testValue2, LENGTH_OF_NUMBER)).isFalse();
-        assertThat(Validation.checkNumberLength(testValue3, LENGTH_OF_NUMBER)).isTrue();
-        assertThat(Validation.checkNumberLength(testValue4, LENGTH_OF_NUMBER)).isFalse();
+        assertThat(Validation.isCorrectLength(testValue1, LENGTH_OF_NUMBER)).isFalse();
+        assertThat(Validation.isCorrectLength(testValue2, LENGTH_OF_NUMBER)).isFalse();
+        assertThat(Validation.isCorrectLength(testValue3, LENGTH_OF_NUMBER)).isTrue();
+        assertThat(Validation.isCorrectLength(testValue4, LENGTH_OF_NUMBER)).isFalse();
 
     }
 
@@ -49,8 +48,8 @@ class ValidationTest {
         String testValue2 = "11234";
 
         // then
-        assertThat(Validation.checkContainDuplicateNumber(testValue1)).isFalse();
-        assertThat(Validation.checkContainDuplicateNumber(testValue2)).isTrue();
+        assertThat(Validation.isContainDuplicateNumber(testValue1)).isFalse();
+        assertThat(Validation.isContainDuplicateNumber(testValue2)).isTrue();
     }
 
     @Test
