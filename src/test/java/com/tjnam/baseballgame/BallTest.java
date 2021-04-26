@@ -8,14 +8,14 @@ import java.lang.reflect.Method;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BallsTest {
+public class BallTest {
 
     private static final String ballString = "123";
     private static final int[] ballValues = new int[]{1, 2, 3};
 
     @Test
     public void getRandomNumbersTest(){
-        Balls ball = new Balls();
+        Ball ball = new Ball();
 
         try{
             Method getRandomNumbersMethod = ball.getClass().getDeclaredMethod("getRandomNumbers");
@@ -48,12 +48,12 @@ public class BallsTest {
 
     @Test
     public void setBallByIntArrayTest(){
-        Balls ball = new Balls(ballValues);
+        Ball ball = new Ball(ballValues);
 
         int[] setBalls = ball.getNumbers();
         assertThat(setBalls).isEqualTo(ballValues);
 
-        ball = new Balls();
+        ball = new Ball();
         ball.setBallValues(ballValues);
         setBalls = ball.getNumbers();
         assertThat(setBalls).isEqualTo(ballValues);
@@ -62,12 +62,12 @@ public class BallsTest {
 
     @Test
     public void setBallByStringTest(){
-        Balls ball = new Balls(ballString);
+        Ball ball = new Ball(ballString);
 
         int[] setBalls = ball.getNumbers();
         assertThat(setBalls).isEqualTo(ballValues);
 
-        ball = new Balls();
+        ball = new Ball();
         ball.setBallValues(ballString);
         setBalls = ball.getNumbers();
         assertThat(setBalls).isEqualTo(ballValues);
@@ -76,8 +76,8 @@ public class BallsTest {
 
     @Test
     public void compareBallsTest(){
-        Balls dealerBall = new Balls("123");
-        Balls userBall = new Balls();
+        Ball dealerBall = new Ball("123");
+        Ball userBall = new Ball();
         userBall.setBallValues("132");
 
         GameResult comparedResult = dealerBall.compareBalls(userBall);
@@ -116,7 +116,7 @@ public class BallsTest {
 
     @Test
     public void markBallValuesTest(){
-        Balls ball = new Balls("123");
+        Ball ball = new Ball("123");
         Boolean[] valueMarking;
 
         try {
@@ -144,7 +144,7 @@ public class BallsTest {
 
     @Test
     public void isExistValueOnBallsTest(){
-        Balls ball = new Balls("123");
+        Ball ball = new Ball("123");
         Boolean[] valueMarking;
 
         try {
@@ -168,4 +168,5 @@ public class BallsTest {
             e.printStackTrace();
         }
     }
+
 }

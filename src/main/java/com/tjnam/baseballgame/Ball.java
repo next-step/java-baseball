@@ -2,25 +2,25 @@ package com.tjnam.baseballgame;
 
 import java.util.Arrays;
 
-    public class Balls {
+    public class Ball {
         final int BALL_LENGTH = 3;
         final int BALL_RANGE = 10;
         private int[] ballValues;
         private Boolean[] ballExists;
 
 
-        public Balls(){
+        public Ball(){
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
         }
 
-        public Balls(int[] selection) {
+        public Ball(int[] selection) {
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
             this.setBallValues(selection);
         }
 
-        public Balls(String numbers) {
+        public Ball(String numbers) {
             this.ballValues = new int[BALL_LENGTH];
             this.ballExists = new Boolean[BALL_RANGE];
             this.setBallValues(numbers);
@@ -47,7 +47,7 @@ import java.util.Arrays;
             return this.ballValues;
         }
 
-        public GameResult compareBalls(Balls compareTarget){
+        public GameResult compareBalls(Ball compareTarget){
             GameResult gameResult = new GameResult();
 
             int[] targetBallValue = compareTarget.getNumbers();

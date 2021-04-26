@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Game {
 
-    private Balls dealerBall;
-    private Balls gamerBall;
+    private Ball dealerBall;
+    private Ball gamerBall;
     private GameResult gameResult;
     private Scanner scan;
 
     public Game(){
-        this.gamerBall = new Balls();
-        this.dealerBall = new Balls();
+        this.gamerBall = new Ball();
+        this.dealerBall = new Ball();
         this.scan = new Scanner(System.in);
     }
 
