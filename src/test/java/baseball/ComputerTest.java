@@ -28,13 +28,13 @@ class ComputerTest {
 	@ParameterizedTest
 	@CsvSource(
 		value = {
-			"7,1,3;1,2,3;1;1",
-			"7,1,3;1,4,5;0;1",
-			"7,1,3;6,7,1;0;2",
-			"7,1,3;2,1,6;1;0",
-			"7,1,3;7,1,3;3;0",
+			"7,1,3:1,2,3:1:1",
+			"7,1,3:1,4,5:0:1",
+			"7,1,3:6,7,1:0:2",
+			"7,1,3:2,1,6:1:0",
+			"7,1,3:7,1,3:3:0",
 		},
-		delimiter = ';'
+		delimiter = ':'
 	)
 	void judge(
 		@ConvertWith(IntArrayConverter.class) int[] guess,
