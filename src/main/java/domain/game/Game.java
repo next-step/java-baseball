@@ -36,7 +36,7 @@ public class Game {
 			umpire.makeJudgement(answer, guess);
 		}
 		umpire.askAnotherRound();
-		if(offensePlayer.decideWhetherContinueGame() != GameStatus.ONGOING.getCode()){
+		if(offensePlayer.decideWhetherContinueGame() == GameStatus.FINISHED.getCode()){
 			status = GameStatus.FINISHED;
 		}
 
