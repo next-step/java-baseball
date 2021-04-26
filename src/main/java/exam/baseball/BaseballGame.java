@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 public class BaseballGame implements Game {
 
 	private final Supplier<String> userCommandSupplier;
+
 	public BaseballGame(Supplier<String> userCommandSupplier) {
 		this.userCommandSupplier = userCommandSupplier;
 	}
