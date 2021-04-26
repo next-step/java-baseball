@@ -1,6 +1,7 @@
 package domain.participants;
 
 import domain.Numbers;
+import domain.game.GameStatus;
 import view.InputMessage;
 
 public class OffensePlayer {
@@ -31,11 +32,10 @@ public class OffensePlayer {
     }
 
     public int decideWhetherContinueGame() {
-        int code = -1;
-        while(code == -1){
+        int code;
+        do{
             code = inputMessage.getDecisionCode();
-        }
+        }while(code != GameStatus.ONGOING.getCode() && code != GameStatus.FINISHED.getCode());
         return code;
-
     }
 }
