@@ -1,7 +1,7 @@
 package baseball.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -15,14 +15,14 @@ public class BallRecord {
   }
 
   public static BallRecord create() {
-    return new BallRecord(new HashMap<>());
+    return new BallRecord(new EnumMap<>(StrikeZone.class));
   }
 
   public BallRecord plusCount(StrikeZone strikeZone) {
-    Map<StrikeZone, Integer> result = new HashMap<>();
+    Map<StrikeZone, Integer> result = new EnumMap<>(StrikeZone.class);
     result.putAll(values);
 
-    Integer count = getCount(strikeZone);
+    int count = getCount(strikeZone);
     result.put(strikeZone, ++count);
     return new BallRecord(result);
   }

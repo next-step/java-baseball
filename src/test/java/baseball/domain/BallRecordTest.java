@@ -3,7 +3,7 @@ package baseball.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +22,7 @@ class BallRecordTest {
             .plusCount(StrikeZone.BALL);
 
     // then
-    Map<StrikeZone, Integer> expected = new HashMap<>();
+    Map<StrikeZone, Integer> expected = new EnumMap<>(StrikeZone.class);
     expected.put(StrikeZone.STRIKE, 2);
     expected.put(StrikeZone.BALL, 1);
 
