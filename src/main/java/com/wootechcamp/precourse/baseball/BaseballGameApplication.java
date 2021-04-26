@@ -5,7 +5,7 @@ public class BaseballGameApplication {
 
     public static void main (String[] args){
 
-        BaseBallGame baseBallGame = new BaseBallGame();
+        BaseballGame baseBallGame = new BaseballGame();
         baseBallGame.gameStart();
     }
 }

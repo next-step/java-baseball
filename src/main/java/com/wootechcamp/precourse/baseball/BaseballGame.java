@@ -3,10 +3,10 @@ package com.wootechcamp.precourse.baseball;
 import java.util.Random;
 import java.util.Scanner;
 
-public class BaseBallGame {
+public class BaseballGame {
     private Scanner scan;
 
-    BaseBallGame(){
+    BaseballGame(){
         scan = new Scanner(System.in);
     }
 
