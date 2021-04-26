@@ -1,18 +1,39 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import java.util.List;
+import static org.assertj.core.api.Assertions.fail;
+
+import java.util.*;
 
 class ComputerNumTest {
+    int START = 1;
+    int END = 10;
+
     @Test
     @DisplayName("컴퓨터 수를 설정할 1-9의 숫자 리스트를 확인한다")
     void setDefaultNumCheckTest(){
-        int START = 1;
-        int END = 10;
         ComputerNum computerNum = new ComputerNum();
         List<Integer> defaultNum = computerNum.setDefaultNum();
         for(int i = START; i < END; i++){
             assertThat(defaultNum.contains(i)).isTrue();
         }
     }
+
+    @Test
+    @DisplayName("1-9 리스트의 index 범위 내에서 랜덤한 수를 뽑아 리스트의 인덱스가 맞는지 확인한다")
+    void pickRandomNumTest(){
+        List<Integer> numList = new ArrayList<>();
+        for(int i = START; i < END; i++){
+            numList.add(i);
+        }
+        for(int i = 0; i < 100; i++){
+            Integer pickRandomNum = ComputerNum.pickRandomNum(numList);
+            try {
+                numList.get(pickRandomNum);
+            } catch (IndexOutOfBoundsException t) {
+                fail("Fail picRandomNum");
+            }
+        }
+    }
+
 }
