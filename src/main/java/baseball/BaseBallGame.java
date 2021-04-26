@@ -65,18 +65,58 @@ public class BaseBallGame {
 		}while(inputUser != 0);
 	}
 
+	// 볼 체크 메서드
+	public void checkBallCount(){
+		// 초기화
+		strike = 0;
+		ball = 0;   
+		StringBuffer sb = new StringBuffer();
+		
+		for(int i=0; i<comNum.length; i++){
+			for(int j=0; j<userNum.length; j++){
+				if(comNum[i] == userNum[j]){  
+
+					if(i == j){// 값이 같고 첨자가 같으면 스트라이크
+						strike++;
+						continue;
+					}
+
+					if (i != j){ // 값은 같은데 첨자가 다르면 볼
+						ball++;
+					}
+				}
+			}
+		}
+
+		sb.append(userNum[0]).append(userNum[1]).append(userNum[2]).append(" 을 제시한 경우 : ");
+		
+		if (strike != 0 && ball == 0){
+			sb.append(strike).append("스트라이크");
+		}
+
+		if (strike == 0 && ball != 0){
+			sb.append(ball).append("볼");
+		}
+
+		if (strike != 0 && ball != 0){
+			sb.append(strike).append("스트라이크 ").append(ball).append("볼");
+		}
+		
+		System.out.println(sb.toString());
+	}
+
     public void gameStart(){
 		
         // 컴퓨터 수 난수 생성
 		createComNum();
 		
 		// 확인용
-		System.out.println("난수값 => " + userNum[0] + " " + userNum[1] + " " + userNum[2]);
+		System.out.println("난수값 => " + comNum[0] + " " + comNum[1] + " " + comNum[2]);
 		
 		do{
-			inputUserNum(); // 사용자 입력 메서드 호출
-			// ballCount();  // 볼카운트하는 메서드 호출
-		}while(strike!=3);  // 3 스트라이크가 될 때까지 반복
+			inputUserNum(); 	// 사용자 입력 메서드 호출
+			checkBallCount();  	// 볼카운트하는 메서드 호출
+		}while(strike!=3);  	// 3 스트라이크가 될 때까지 반복
 		
 		// 다시 시작하시겠습니까?
 	}
