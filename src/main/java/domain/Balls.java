@@ -5,17 +5,17 @@ import util.RandomGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumberBalls {
+public class Balls {
     private static final String SIZE_ERROR = "숫자볼 개수는 3 입니다";
     private static final int SIZE = 3;
 
-    private final List<NumberBall> numberBalls;
+    private final List<Ball> numberBalls;
 
-    public NumberBalls() {
+    public Balls() {
         this(createNumberBalls());
     }
 
-    public NumberBalls(List<NumberBall> numberBalls) {
+    public Balls(List<Ball> numberBalls) {
         validSize(numberBalls);
         this.numberBalls = numberBalls;
     }
@@ -28,7 +28,7 @@ public class NumberBalls {
         return numberBalls.size();
     }
 
-    public Score matchToScore(NumberBalls inputBalls) {
+    public Score matchToScore(Balls inputBalls) {
         int strike = 0;
         int ball = 0;
 
@@ -41,26 +41,26 @@ public class NumberBalls {
         return new Score(strike, ball);
     }
 
-    private boolean isBall(int i, NumberBall numberBall, boolean isStrike) {
+    private boolean isBall(int i, Ball numberBall, boolean isStrike) {
         if (!isStrike) {
             return numberBalls.contains(numberBall);
         }
         return false;
     }
 
-    private boolean isStrike(int index, NumberBall pitchBall) {
+    private boolean isStrike(int index, Ball pitchBall) {
         return numberBalls.get(index).equals(pitchBall);
     }
 
-    private static List<NumberBall> createNumberBalls() {
-        List<NumberBall> result = new ArrayList<>();
+    private static List<Ball> createNumberBalls() {
+        List<Ball> result = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
-            result.add(new NumberBall(RandomGenerator.value()));
+            result.add(new Ball(RandomGenerator.value()));
         }
         return result;
     }
 
-    private void validSize(List<NumberBall> numberBalls) {
+    private void validSize(List<Ball> numberBalls) {
         if (numberBalls.size() != SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR);
         }

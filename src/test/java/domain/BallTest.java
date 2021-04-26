@@ -7,21 +7,21 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("숫자볼")
-public class NumberBallTest {
+public class BallTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,8,9})
     @DisplayName("범위는 1~9")
-    public void numberBallRangeOneToNine(int number) throws Exception {
-        NumberBall numberBall = new NumberBall(number);
-        assertThat(numberBall.toInt()).isEqualTo(number);
+    public void ballRangeOneToNine(int number) throws Exception {
+        Ball ball = new Ball(number);
+        assertThat(ball.toInt()).isEqualTo(number);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, 10})
     @DisplayName("범위는 1~9 벗어나면 에러")
-    public void numberBallRangeError(int number) throws Exception {
-        assertThatThrownBy(() -> new NumberBall(number))
+    public void ballRangeError(int number) throws Exception {
+        assertThatThrownBy(() -> new Ball(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

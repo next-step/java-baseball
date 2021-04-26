@@ -2,7 +2,6 @@ package domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -13,32 +12,32 @@ import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("점수")
 public class ScoreTest {
-    private NumberBalls randomBalls;
+    private Balls randomBalls;
 
     @BeforeEach
     public void setUp() {
-        List<NumberBall> balls = new ArrayList<>();
-        balls.add(new NumberBall(1));
-        balls.add(new NumberBall(2));
-        balls.add(new NumberBall(3));
+        List<Ball> balls = new ArrayList<>();
+        balls.add(new Ball(1));
+        balls.add(new Ball(2));
+        balls.add(new Ball(3));
 
-        randomBalls = new NumberBalls(balls);
+        randomBalls = new Balls(balls);
     }
 
-    public NumberBalls createInputBalls(String inputText) {
-        List<NumberBall> result = new ArrayList<>();
+    public Balls createInputBalls(String inputText) {
+        List<Ball> result = new ArrayList<>();
         String[] split = inputText.split(",");
         for (int i = 0; i < split.length; i++) {
-            result.add(new NumberBall(Integer.parseInt(split[i])));
+            result.add(new Ball(Integer.parseInt(split[i])));
         }
-        return new NumberBalls(result);
+        return new Balls(result);
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1,4,5|1|0", "1,2,4|2|0", "1,2,3|3|0", "1,4,2|1|1", "3,1,2|0|3" }, delimiter = '|')
     @DisplayName("점수 확인")
     public void score(String inputText, int strike, int ball) throws Exception {
-        NumberBalls inputBalls = createInputBalls(inputText);
+        Balls inputBalls = createInputBalls(inputText);
 
         Score resultScore = randomBalls.matchToScore(inputBalls);
         Score oneStrikeScore = new Score(strike, ball);
