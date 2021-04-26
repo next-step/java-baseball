@@ -73,4 +73,26 @@ class BaseballNumbersTest {
         assertThat(baseballNumbers.getSize()).isEqualTo(3);
     }
 
+    @ParameterizedTest(name = "getPosition 테스트")
+    @CsvSource({
+            "1, 9, 7"
+            , "2, 8, 1"
+    })
+    void getPositionTest(int input1, int input2, int input3) {
+        // given
+        BaseballNumber first = new BaseballNumber(input1);
+        BaseballNumber second = new BaseballNumber(input2);
+        BaseballNumber third = new BaseballNumber(input3);
+        List<BaseballNumber> inputValues = Arrays.asList(first, second, third);
+
+        // when
+        BaseballNumbers baseballNumbers = new BaseballNumbers(inputValues);
+
+        // then
+        assertThat(baseballNumbers.getPosition(first)).isEqualTo(0);
+        assertThat(baseballNumbers.getPosition(second)).isEqualTo(1);
+        assertThat(baseballNumbers.getPosition(third)).isEqualTo(2);
+    }
+
+
 }

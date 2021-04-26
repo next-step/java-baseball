@@ -3,10 +3,7 @@ package baseball.domain;
 import baseball.exception.BaseballNumbersHasDuplicationException;
 import baseball.exception.BaseballNumbersHasInvalidLength;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static baseball.domain.BaseballGameRule.COUNT_OF_BASEBALL_NUMBERS;
 
@@ -69,5 +66,26 @@ public class BaseballNumbers {
 
     public int getSize() {
         return baseballNumbers == null ? 0 : baseballNumbers.size();
+    }
+
+    public int getPosition(BaseballNumber targetBaseballNumber) {
+        return searchTargetNumberPosition(baseballNumbers.iterator(), targetBaseballNumber);
+    }
+
+    private int searchTargetNumberPosition(Iterator<BaseballNumber> iterator, BaseballNumber targetNumber) {
+        int idx = 0;
+        int position = -1;
+        while (iterator.hasNext() && position == -1) {
+            position = getIdx(idx++, targetNumber, iterator.next());
+        }
+        return position;
+    }
+
+    private int getIdx(int idx, BaseballNumber targetNumber, BaseballNumber number) {
+        return targetNumber.equals(number) ? idx : -1;
+    }
+
+    public boolean contains(BaseballNumber targetBaseballNumber) {
+        return baseballNumbers.contains(targetBaseballNumber);
     }
 }

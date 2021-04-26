@@ -14,7 +14,7 @@ class BaseballNumbersComparatorTest {
             "197, 197"
             , "281, 281"
     })
-    void test(String input1, String input2) {
+    void treeStrikeTest(String input1, String input2) {
         // given
         BaseballNumbers computerNumber = new BaseballNumbers(input1);
         BaseballNumbers playerNumber = new BaseballNumbers(input2);
@@ -24,5 +24,23 @@ class BaseballNumbersComparatorTest {
 
         // then
         assertThat(score.getStrike()).isEqualTo(3);
+    }
+
+    @ParameterizedTest(name = "1볼 1스트라이크 테스트")
+    @CsvSource({
+            "197, 189"
+            , "197, 617"
+    })
+    void oneBallOneStrikeTest(String input1, String input2) {
+        // given
+        BaseballNumbers computerNumber = new BaseballNumbers(input1);
+        BaseballNumbers playerNumber = new BaseballNumbers(input2);
+
+        // when
+        Score score = BaseballNumbersComparator.getScore(computerNumber, playerNumber);
+
+        // then
+        assertThat(score.getBall()).isEqualTo(1);
+        assertThat(score.getStrike()).isEqualTo(1);
     }
 }
