@@ -32,7 +32,7 @@ public class NumberBaseBall {
 		while (true) {
 			uiSystem.display("\tagain-다시하기\n\texit-종료하기");
 
-			String input = uiSystem.systemInput();
+			String input = uiSystem.gameInput();
 			String command = input.trim().toLowerCase();
 			if (SystemCommand.contains(command)) {
 				return SystemCommand.canAgain(command);

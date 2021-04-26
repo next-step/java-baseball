@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 import baseball.ui.UiSystem;
 
+/**
+ * 콘솔 ui를 사용하기위한 객체
+ */
 public class ConsoleUiSystem implements UiSystem {
-	private boolean debug = true;
 	private final Scanner scanner = new Scanner(System.in);
 
 	// check validation
@@ -15,20 +17,8 @@ public class ConsoleUiSystem implements UiSystem {
 	}
 
 	@Override
-	public String systemInput() {
-		return scanner.nextLine();
-	}
-
-	@Override
 	public void display(String data) {
 		System.out.println(data);
-	}
-
-	@Override
-	public void debug(String data) {
-		if (debug) {
-			System.out.println(data);
-		}
 	}
 
 }

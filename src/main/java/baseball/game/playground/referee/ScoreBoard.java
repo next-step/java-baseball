@@ -27,11 +27,11 @@ public class ScoreBoard {
 	// UI 시스템에 스코어링 결과를 출력한다
 	public void display(UiSystem uiSystem) {
 
-		String judgeDisplay = "Judge: " + board;
+		String judgeDisplay = "[Judge]\n" + "\t" + board;
 		uiSystem.display(judgeDisplay);
 
 		if (gameOver) {
-			uiSystem.display("게임 오버");
+			uiSystem.display("게임 셋!!");
 		}
 	}
 }

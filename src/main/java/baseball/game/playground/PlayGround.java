@@ -20,6 +20,10 @@ public class PlayGround {
 		return playing;
 	}
 
+	/**
+	 * 게임 시작
+	 * @param uiSystem ui 표현을 위한 시스템
+	 */
 	public void playBall(UiSystem uiSystem) {
 
 		this.playing = true;
@@ -35,7 +39,7 @@ public class PlayGround {
 
 	public void update() {
 
-		while (isPlaying()) {
+		while (this.playing) {
 
 			String pitcherNum = this.pitcher.throwing();
 			String hitterNum = this.hitter.swing();

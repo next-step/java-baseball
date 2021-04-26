@@ -40,7 +40,7 @@ class ScoreBoardTest {
 
 		// Then
 		assertThat(scoreBoard.getBoard()).isEqualTo(scoring);
-		assertThat(uiSystem.getDisplayData()).contains("Judge: ");
+		assertThat(uiSystem.getDisplayData()).contains("[Judge]");
 	}
 
 }

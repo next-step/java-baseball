@@ -2,11 +2,13 @@ package baseball.ui.impl;
 
 import baseball.ui.UiSystem;
 
+/**
+ * 테스트 & 디버깅용으로 사용하는 UI 시스템 Fake 객체
+ */
 public class TestUiSystem implements UiSystem {
 
 	// test only
 	private String gameInput;
-	private String systemInput;
 	private String displayData;
 
 	public String getGameInput() {
@@ -15,14 +17,6 @@ public class TestUiSystem implements UiSystem {
 
 	public void setGameInput(String gameInput) {
 		this.gameInput = gameInput;
-	}
-
-	public String getSystemInput() {
-		return systemInput;
-	}
-
-	public void setSystemInput(String systemInput) {
-		this.systemInput = systemInput;
 	}
 
 	public String getDisplayData() {
@@ -39,18 +33,8 @@ public class TestUiSystem implements UiSystem {
 	}
 
 	@Override
-	public String systemInput() {
-		return systemInput;
-	}
-
-	@Override
 	public void display(String data) {
 		displayData = data;
-	}
-
-	@Override
-	public void debug(String data) {
-
 	}
 
 }
