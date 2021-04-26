@@ -16,8 +16,8 @@ class MatchingSystemTest {
 	final static int MAX_DIGIT_NUMBER = 3;
 	private final IMatchingSystem matchingSystem = new MatchingSystem(MAX_DIGIT_NUMBER);
 
-	@Test
 	@DisplayName("게임 매칭 결과 테스트")
+	@Test
 	void testMatch() {
 
 		/// region given

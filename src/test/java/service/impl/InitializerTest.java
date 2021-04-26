@@ -18,12 +18,12 @@ class InitializerTest {
 	final static int MAX_DIGIT_NUMBER = 3;
 	private final IInitializer initializer = new Initializer(MAX_DIGIT_NUMBER);
 
-	@Test
 	@DisplayName("컴퓨터 초기 숫자 세팅 테스트")
+	@Test
 	void testInitComputerNumber() {
 
 		/// region given
-		final int expectedSize = 3;
+		final int expectedSize = MAX_DIGIT_NUMBER;
 		/// endregion
 
 		/// region when
@@ -73,7 +73,7 @@ class InitializerTest {
 		/// region then
 		assertNotNull(actualPlayerNumber);
 		assertEquals(expectedPlayerNumber.length, actualPlayerNumber.length);
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < MAX_DIGIT_NUMBER; i++) {
 			assertEquals(expectedPlayerNumber[i], actualPlayerNumber[i]);
 		}
 		/// endregion
