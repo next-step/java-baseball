@@ -9,7 +9,7 @@ public class OffensePlayer {
     private Numbers guessNumbers;
     private InputMessage inputMessage;
 
-    public OffensePlayer(){
+    public OffensePlayer() {
         inputMessage = new InputMessage();
     }
 
@@ -17,7 +17,7 @@ public class OffensePlayer {
         guessNumbers = new Numbers();
         char[] input = receiveValidDataFromInput();
 
-        for(int i=0;i<Numbers.MAX_SIZE;i++){
+        for (int i=0; i<Numbers.MAX_SIZE; i++) {
             guessNumbers.add(Character.getNumericValue(input[i]));
         }
         return guessNumbers;
@@ -25,7 +25,7 @@ public class OffensePlayer {
 
     private char[] receiveValidDataFromInput() {
         char[] input = null;
-        while(input == null){
+        while (input == null) {
             input = inputMessage.getInput();
         }
         return input;
@@ -33,9 +33,9 @@ public class OffensePlayer {
 
     public int decideWhetherContinueGame() {
         int code;
-        do{
+        do {
             code = inputMessage.getDecisionCode();
-        }while(code != GameStatus.ONGOING.getCode() && code != GameStatus.FINISHED.getCode());
+        } while (code != GameStatus.ONGOING.getCode() && code != GameStatus.FINISHED.getCode());
         return code;
     }
 }

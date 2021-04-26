@@ -12,7 +12,7 @@ public class GameTest {
 
 	@DisplayName("Game 객체 생성 시, 다른 객체들도 생성됨")
 	@Test
-	void createParticipantsWhenGameConstructed(){
+	void createParticipantsWhenGameConstructed() {
 		//Given+When
 		Game game = new Game();
 
@@ -24,7 +24,7 @@ public class GameTest {
 
 	@DisplayName("Game 객체 생성 시, status가 ONGOING으로 설정됨")
 	@Test
-	void setStatusWhenGameConstructed(){
+	void setStatusWhenGameConstructed() {
 		//Given+When
 		Game game = new Game();
 

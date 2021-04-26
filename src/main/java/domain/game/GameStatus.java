@@ -6,7 +6,7 @@ public enum GameStatus {
 
 	private int code;
 
-	GameStatus(int code){
+	GameStatus(int code) {
 		this.code = code;
 	}
 	public int getCode() {

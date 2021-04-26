@@ -13,7 +13,7 @@ public class DefensePlayer {
     public Numbers decideAnswerNumber() {
         answer = new Numbers();
         int digit;
-        while(answer.length()<Numbers.MAX_SIZE){
+        while (answer.length()<Numbers.MAX_SIZE) {
             digit = generateRandomNumber();
             answer.add(digit);
         }
@@ -23,9 +23,9 @@ public class DefensePlayer {
     private int generateRandomNumber() {
         Random random = new Random();
         int generatedNumber;
-        do{
+        do {
             generatedNumber = random.nextInt(Numbers.MAX_NUMBER)+1;
-        }while(isDuplicated(generatedNumber));
+        } while (isDuplicated(generatedNumber));
 
         return generatedNumber;
     }

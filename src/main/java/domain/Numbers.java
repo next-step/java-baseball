@@ -11,14 +11,16 @@ public class Numbers {
 
 	private final List<Integer> digits;
 
-	public Numbers(){
+	public Numbers() {
 		this.digits = new ArrayList<>();
 	}
 
 	public void add(int digit) {
-		if(!canAddNewDigit()) return;
+		if (!canAddNewDigit()) {
+			return;
+		}
 
-		if(isBetweenRange(digit)){
+		if (isBetweenRange(digit)) {
 			digits.add(digit);
 		}
 	}
@@ -27,13 +29,15 @@ public class Numbers {
 		return digits.size()<MAX_SIZE;
 	}
 
-	private boolean isBetweenRange(int digit){
-		return digit>=MIN_NUMBER && digit<=MAX_NUMBER;
+	private boolean isBetweenRange(int digit) {
+		return (digit>=MIN_NUMBER && digit<=MAX_NUMBER);
 	}
 
-	public List<Integer> getDigits() { return digits; }
+	public List<Integer> getDigits() {
+		return digits;
+	}
 
-	public int length(){
+	public int length() {
 		return digits.size();
 	}
 

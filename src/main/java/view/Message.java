@@ -16,7 +16,7 @@ public enum Message{
 
 	private String text;
 
-	Message(String text){
+	Message(String text) {
 		this.text = text;
 	}
 

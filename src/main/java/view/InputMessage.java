@@ -7,21 +7,21 @@ import domain.game.GameStatus;
 public class InputMessage {
 	private Scanner scanner;
 
-	public InputMessage(){
+	public InputMessage() {
 		this.scanner = new Scanner(System.in);
 	}
 
-	public char[] getInput(){
+	public char[] getInput() {
 		char[] input = scanner.nextLine().toCharArray();
-		if(isNull(input)) {
+		if (isNull(input)) {
 			OutputMessage.printMessage(Message.NOTICE_ERROR_NULL);
 			return null;
 		}
-		if(!hasValidLength(input, Numbers.MAX_SIZE)) {
+		if (!hasValidLength(input, Numbers.MAX_SIZE)) {
 			 OutputMessage.printMessage(Message.NOTICE_ERROR_SIZE);
 			return null;
 		}
-		if(!isAllValidNumber(input)) {
+		if (!isAllValidNumber(input)) {
 			OutputMessage.printMessage(Message.NOTICE_ERROR_INVALID_VALUE);
 			return null;
 		}
@@ -32,7 +32,7 @@ public class InputMessage {
 	private boolean isAllValidNumber(char[] input) {
 		boolean isAllValid = true;
 		int index = 0;
-		while(isAllValid && index <Numbers.MAX_SIZE){
+		while (isAllValid && index <Numbers.MAX_SIZE) {
 			isAllValid = isValid(input[index++]);
 		}
 		return isAllValid;
@@ -40,7 +40,7 @@ public class InputMessage {
 
 	private boolean isValid(char c) {
 		int number = Character.getNumericValue(c);
-		return number>=Numbers.MIN_NUMBER && number<=Numbers.MAX_NUMBER;
+		return (number>=Numbers.MIN_NUMBER && number<=Numbers.MAX_NUMBER);
 	}
 
 	private boolean hasValidLength(char[] input, int maxSize) {
@@ -53,22 +53,23 @@ public class InputMessage {
 
 	public int getDecisionCode() {
 		char[] code = scanner.nextLine().toCharArray();
-		if(isNull(code)) {
+		if (isNull(code)) {
 			OutputMessage.printMessage(Message.NOTICE_ERROR_NULL);
 			return -1;
 		}
-		if(!isValidCode(code)){
+		if (!isValidCode(code)) {
 			OutputMessage.printMessage(Message.NOTICE_ERROR_INVALID_STATUS_CODE);
 			return -1;
 		}
 		return Character.getNumericValue(code[0]);
 
 	}
+
 	private boolean isValidCode(char[] code) {
 		boolean hasValidCode = false;
 		int codeNumericValue = Character.getNumericValue(code[0]);
-		if(code.length ==1 &&
-			(codeNumericValue == GameStatus.ONGOING.getCode() || codeNumericValue == GameStatus.FINISHED.getCode())) {
+		if (code.length ==1
+			&& (codeNumericValue == GameStatus.ONGOING.getCode() || codeNumericValue == GameStatus.FINISHED.getCode())) {
 			hasValidCode = true;
 		}
 		return hasValidCode;

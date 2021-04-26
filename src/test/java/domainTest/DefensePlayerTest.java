@@ -13,7 +13,7 @@ public class DefensePlayerTest {
 
 	@DisplayName("answer리스트 내부에 숫자 3개가 들어가 있는지 점검")
 	@Test
-	void getAnswer_ContainsThreeNumber(){
+	void getAnswer_ContainsThreeNumber() {
 		//Given
 		DefensePlayer defensePlayer = new DefensePlayer();
 

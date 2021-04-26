@@ -19,7 +19,7 @@ public class UmpireTest {
 
 	@DisplayName("심판의 판정로직 테스트 : Case 1. 낫씽")
 	@Test
-	void makeJudgement_AnswerGuessAllDifferent_ResultShouldBeNothing(){
+	void makeJudgement_AnswerGuessAllDifferent_ResultShouldBeNothing() {
 
 
 		//Given
@@ -43,7 +43,7 @@ public class UmpireTest {
 
 	@DisplayName("심판의 판정로직 테스트 : Case 2. Ball")
 	@Test
-	void makeJudgement_AnswerGuessBall_ResultOneBall(){
+	void makeJudgement_AnswerGuessBall_ResultOneBall() {
 		//Given
 		Numbers answer = new Numbers();
 		Numbers guess = new Numbers();
@@ -66,7 +66,7 @@ public class UmpireTest {
 
 	@DisplayName("심판의 판정로직 테스트 : Case 3. Strike")
 	@Test
-	void makeJudgement_AnswerGuessStrike_ResultTwoStrike(){
+	void makeJudgement_AnswerGuessStrike_ResultTwoStrike() {
 		//Given
 		Numbers answer = new Numbers();
 		Numbers guess = new Numbers();
@@ -89,7 +89,7 @@ public class UmpireTest {
 
 	@DisplayName("다음 라운드 진행여부 물어볼 때, score 초기화")
 	@Test
-	void askAnotherRound_initAllScores(){
+	void askAnotherRound_initAllScores() {
 		//Given
 		Numbers answer = new Numbers();
 		Numbers guess = new Numbers();

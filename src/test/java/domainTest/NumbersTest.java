@@ -15,7 +15,7 @@ public class NumbersTest {
 
 	@DisplayName("digits 리스트 내부의 숫자들이 순서대로 담겨있는지 점검")
 	@Test
-	void getDigits_ContainsNumberInExactOrder_returnTrue(){
+	void getDigits_ContainsNumberInExactOrder_returnTrue() {
 		//Given
 		Numbers numbers = new Numbers();
 
@@ -31,7 +31,7 @@ public class NumbersTest {
 
 	@DisplayName("digits 리스트의 크기가 3을 넘으면 숫자 추가 불가능")
 	@Test
-	void add_SizeIsAlreadyThree_cannotAdd(){
+	void add_SizeIsAlreadyThree_cannotAdd() {
 		//Given
 		Numbers numbers = new Numbers();
 
@@ -48,7 +48,7 @@ public class NumbersTest {
 
 	@DisplayName("1~9사이의 숫자가 아니면 리스트에 추가되지 않음")
 	@Test
-	void add_OutofRangeNumber_notAdded(){
+	void add_OutofRangeNumber_notAdded() {
 		//Given
 		Numbers numbers = new Numbers();
 
@@ -63,7 +63,7 @@ public class NumbersTest {
 
 	@DisplayName("Digits 리스트의 사이즈를 리턴함")
 	@Test
-	void length_returnLengthofDigits(){
+	void length_returnLengthofDigits() {
 		//Given
 		Numbers numbers = new Numbers();
 

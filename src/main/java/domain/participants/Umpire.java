@@ -17,7 +17,7 @@ public class Umpire {
 
     public void makeJudgement(Numbers answer, Numbers guess) {
         initScore();
-        for(int i=0;i<Numbers.MAX_SIZE;i++){
+        for (int i=0; i<Numbers.MAX_SIZE; i++){
             compareEachDigit(answer,guess,i);
         }
         noticeResult();
@@ -25,7 +25,9 @@ public class Umpire {
 
     private void compareEachDigit(Numbers answer, Numbers guess, int idx) {
         boolean isStrike = checkStrike(answer, guess, idx);
-        if(!isStrike) checkBall(answer, guess, idx);
+        if (!isStrike) {
+            checkBall(answer, guess, idx);
+        }
     }
 
     private void noticeResult() {
@@ -33,11 +35,13 @@ public class Umpire {
     }
 
     private void checkBall(Numbers answer, Numbers guess, int idx) {
-        if(answer.getDigits().contains(guess.getDigits().get(idx))) ball++;
+        if (answer.getDigits().contains(guess.getDigits().get(idx))) {
+            ball++;
+        }
     }
 
     private boolean checkStrike(Numbers answer, Numbers guess, int idx) {
-        if(answer.getDigits().get(idx) == guess.getDigits().get(idx)) {
+        if (answer.getDigits().get(idx) == guess.getDigits().get(idx)) {
             strike++;
             return true;
         }
@@ -53,7 +57,7 @@ public class Umpire {
         return strike;
     }
 
-    public int getBall(){
+    public int getBall() {
         return ball;
     }
 
