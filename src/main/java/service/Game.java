@@ -14,4 +14,13 @@ public class Game {
                 .toCharArray();
         bettings.setUserInputs(userInputs);
     }
+    
+    public static boolean isGameOver() {
+        Notice.NOTICE_WIN.print();
+        String option = ui.getAnswerByNotice(Notice.ASK_CONTINUE_GAME);
+        if("1".equals(option)){
+            return true;
+        }
+        return false;
+    }
 }
