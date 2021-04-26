@@ -1,4 +1,6 @@
-package NumberBaseBallGame.domain;
+package NumberBaseBallGame;
+
+import NumberBaseBallGame.domain.BaseBallConst;
 
 import java.util.HashSet;
 import java.util.Set;
