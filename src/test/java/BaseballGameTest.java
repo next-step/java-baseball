@@ -118,4 +118,26 @@ public class BaseballGameTest {
 		return false;
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"1:2:false", "0:0:false", "3:0:true"}, delimiter = ':')
+	@DisplayName("결과 값 산출 테스트")
+	public void getResultTest(int totalStrikeScore, int totalBallScore, boolean expected) {
+		assertThat(getResult(totalStrikeScore, totalBallScore)).isEqualTo(expected);
+	}
+	
+	private boolean getResult(int totalStrikeScore, int totalBallScore) {
+		if (checkNothing(totalStrikeScore, totalBallScore)) {
+			return false;
+		}
+		
+		if (checkThreeStrike(totalStrikeScore)) {
+			return true;
+		}
+		
+		String result = totalStrikeScore + BaseballGameConstant.STRIKE
+								+ totalBallScore + BaseballGameConstant.BALL;
+		System.out.println(result);
+		return false;
+	}
+	
 }

@@ -108,6 +108,28 @@ public class BaseballGame {
 	}
 	
 	/**
+	 * 스트라이크, 볼 점수로 결과를 냅니다.
+	 *
+	 * @param totalStrikeScore
+	 * @param totalBallScore
+	 * @return boolean
+	 */
+	private boolean getResult(int totalStrikeScore, int totalBallScore) {
+		if (checkNothing(totalStrikeScore, totalBallScore)) {
+			return false;
+		}
+		
+		if (checkThreeStrike(totalStrikeScore)) {
+			return true;
+		}
+		
+		String result = totalStrikeScore + BaseballGameConstant.STRIKE
+								+ totalBallScore + BaseballGameConstant.BALL;
+		System.out.println(result);
+		return false;
+	}
+	
+	/**
 	 * 낫싱을 체크합니다.
 	 *
 	 * @param totalStrikeScore
