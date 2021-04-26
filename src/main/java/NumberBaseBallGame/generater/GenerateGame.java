@@ -38,21 +38,4 @@ public class GenerateGame {
 	private BallNumberMatchResult checkMatch(List<Ball> clientBalls) {
 		return ballNumberMatcher.matchNumber(clientBalls, randomBalls);
 	}
-
-	/**
-	 * 고객 Ball 생성
-	 *  TODO : 행위 분리
-	 *
-	 * @param getClientNumber
-	 * @return
-	 */
-	private List<Ball> generateClientBalls(String getClientNumber) {
-		List<Ball> balls = new ArrayList<>();
-		for (char item : getClientNumber.toCharArray()){
-			Ball aBall = new Ball(item);
-			balls.add(aBall);
-		}
-		return balls;
-	}
-
 }
