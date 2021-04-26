@@ -9,4 +9,8 @@ public enum Comments {
 	Comments(String comment) {
 		this.comment = comment;
 	}
+
+	public String getComment() {
+		return comment;
+	}
 }

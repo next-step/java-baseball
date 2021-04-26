@@ -4,6 +4,6 @@ public class ExitOrRestartValidation implements InputNumberValidation {
 
 	@Override
 	public boolean validate(int inputNumber) {
-		return (inputNumber != RESTART_GAME || inputNumber != EXIT_GAME);
+		return !(inputNumber == RESTART_GAME || inputNumber == EXIT_GAME);
 	}
 }

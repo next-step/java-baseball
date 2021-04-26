@@ -2,36 +2,30 @@ import java.util.Scanner;
 
 public class BaseballGame {
 	private static final int EXIT_GAME = 2;
-	private Answer answer;
-	private Question question;
 
-	public BaseballGame(Answer answer, Question question) {
-		this.answer = answer;
-		this.question = question;
-	}
-
-	public void main(String[] args) {
+	public static void main(String[] args) {
 		boolean isGameContinue;
 		do {
 			tryQuestions();
-			int userDecision = validateAndGetInputNumber(Comments.DECISION.toString()
-				, Comments.EXIT_RESTART_ERROR.toString()
+			int userDecision = validateAndGetInputNumber(Comments.DECISION.getComment()
+				, Comments.EXIT_RESTART_ERROR.getComment()
 				, new ExitOrRestartValidation());
 			isGameContinue = (userDecision == EXIT_GAME) ? false : true;
 		} while (isGameContinue);
 	}
 
-	public int getInputNumber() {
+	public static int getInputNumber() {
 		Scanner scanner = new Scanner(System.in);
 		while (!scanner.hasNextInt()) {
-			System.out.println(Comments.INPUT_NUMBER.toString());
+			System.out.println(Comments.INPUT_NUMBER.getComment());
 			scanner.next();
 		}
 		return scanner.nextInt();
 	}
 
-	public void tryQuestions() {
+	public static void tryQuestions() {
 		boolean isWrongQuestion;
+		Answer answer = new Answer();
 		answer.setAnswer(answer.generateRandomNumber());
 		do {
 			Question question = getQuestion();
@@ -45,16 +39,17 @@ public class BaseballGame {
 		return new Feedback().compare(answer.getAnswer(), question.getUserQuestion());
 	}
 
-	public Question getQuestion() {
+	public static Question getQuestion() {
+		Question question = new Question();
 		question.init();
-		int questionNumber = validateAndGetInputNumber(Comments.INPUT_NUMBER.toString()
-			, Comments.THREE_DIGIT_ERROR.toString()
+		int questionNumber = validateAndGetInputNumber(Comments.INPUT_NUMBER.getComment()
+			, Comments.THREE_DIGIT_ERROR.getComment()
 			, new ThreeDigitValidation());
 		question.setUserQuestion((questionNumber / 100) % 10, (questionNumber / 10) % 10, questionNumber % 10);
 		return question;
 	}
 
-	public int validateAndGetInputNumber(String startComment, String errorComment,
+	public static int validateAndGetInputNumber(String startComment, String errorComment,
 		InputNumberValidation validation) {
 		int inputNumber;
 		do {
