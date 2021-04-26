@@ -18,12 +18,41 @@ public class BaseBallImpl implements BaseBall {
     public void start() {
         int quizNumber = getNonDuplicatedThreeDigitNumber( 1, 10 );
         int userNumber = ui.getNumber();
-        int strikeCount = getStrikeCountFrom( quizNumber, userNumber );
+        String[] quizNumberDigts = castNumberToStringArrays( quizNumber );
+        String[] userNumberDigts = castNumberToStringArrays( userNumber );
+        int strikeCount = getStrikeCountFrom( quizNumberDigts, userNumberDigts );
+        int ballCount = getBallCountFrom( quizNumberDigts, userNumberDigts );
     }
     
-    protected int getStrikeCountFrom(int quizNumber, int userNumber) {
-        String[] quizNumberDigts = String.valueOf(quizNumber).split("");
-        String[] userNumberDigts = String.valueOf(userNumber).split("");
+    protected String[] castNumberToStringArrays( int quizNumber ) {
+        return String.valueOf(quizNumber).split("");
+    }
+
+    protected int getBallCountFrom( String[] quizNumberDigts, String[] userNumberDigts ) {
+        int result = 0;
+        for( int userIndex = 0; userIndex < userNumberDigts.length; userIndex++ ) {
+            result += ballCountWithUserIndex( quizNumberDigts, userNumberDigts, userIndex );
+        }
+        return result;
+    }
+    
+    protected int ballCountWithUserIndex( String[] quizNumberDigts, String[] userNumberDigts, int userIndex ) {
+        int result = 0;
+        for( int quizIndex = 0; quizIndex < 3 && result != 1; quizIndex++ ) {
+            result = ballCountWithUserIndexAndQuizIndex( quizNumberDigts, userNumberDigts, userIndex, quizIndex );
+        }
+        return result;
+    }
+    
+    protected int ballCountWithUserIndexAndQuizIndex( String[] quizNumberDigts, String[] userNumberDigts, int userIndex, int quizIndex ) {
+        int result = 0;
+        if( userIndex != quizIndex ) {
+            result = numberCompare(userNumberDigts[userIndex], quizNumberDigts[quizIndex]);
+        }
+        return result;
+    }
+
+    protected int getStrikeCountFrom( String[] quizNumberDigts, String[] userNumberDigts ) {
         int result = 0;
         for( int index = 0; index < userNumberDigts.length; index++ ) {
             result += numberCompare( userNumberDigts[index], quizNumberDigts[index] );
