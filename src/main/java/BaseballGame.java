@@ -114,4 +114,20 @@ public class BaseballGame {
             printResult(baseballResult);
         }
     }
+
+    public String reStartGamePrint(){
+        System.out.println(RESTART_INPUT_PRINT);
+        String startInput = sc.nextLine();
+        while (!validateStartInput(startInput)) {
+            startInput = sc.nextLine();
+        }
+        return startInput;
+    }
+
+    public boolean reStartGame(String startInput){
+        if ("1".equals(startInput)){
+            return true;
+        }
+        return false;
+    }
 }
