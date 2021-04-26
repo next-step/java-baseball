@@ -1,11 +1,13 @@
 package ui.service;
 
+import ui.exception.GamePlayException;
 import ui.type.GameCommand;
 import ui.dto.InputDataDto;
 import ui.type.GameMessage;
-
-import java.util.Objects;
+import util.ConverterUtil;
 import java.util.Scanner;
+
+import static ui.type.GamePlayExceptionType.INPUT_DATA_IS_NOT_VALID;
 
 /**
  * Gamer Acting
@@ -25,25 +27,37 @@ public class BaseBallGamerAction implements GamerAction {
 	@Override
 	public InputDataDto inputData() {
 		printConsole(GameMessage.INPUT_DATA);
-		Integer inputData = nextInt();
-		InputDataDto inputDataDto =  createInputDataVO(inputData);
-		if(Objects.nonNull(inputData)
-		   && validateInputData(inputDataDto)){
-			return inputDataDto;
-		}
-		return null;
+		String inputData = next();
+		InputDataValidator.preValidateInputData(inputData); // 선검사
+		Integer pickedNumber = ConverterUtil.convertStringToInteger(inputData); // Type 변환
+		InputDataDto inputDataDto = createInputDataVO(pickedNumber); // 객체 생성
+		InputDataValidator.postValidateInputData(inputDataDto); // 후검사
+		return inputDataDto;
 	}
 
-	private Integer nextInt(){
-		Integer inputData = 0;
+	/**
+	 * 사용자(게이머)에게 게임 재시작 or 종료를 콘솔로 입력받는다.
+	 * @return
+	 */
+	@Override
+	public GameCommand inputCommand() {
+		printConsoleWithLine(GameMessage.INPUT_RESTART_GAME.getMessage());
+		String inputData = next();
+		int command = ConverterUtil.convertStringToInteger(inputData);
+		if(command == 1){
+			return GameCommand.RESTART;
+		}
+		return GameCommand.FINISH;
+	}
+
+	private String next(){
 		try {
-			inputData = scanner.nextInt();
+			String inputData = scanner.next();
+			return inputData;
 		} catch(Exception e){
-			return null;
+			throw GamePlayException.getInstance(INPUT_DATA_IS_NOT_VALID);
 		}
-		return inputData;
 	}
-
 
 	/**
 	 * 콘솔에 message를 출력한다.
@@ -54,30 +68,11 @@ public class BaseBallGamerAction implements GamerAction {
 		System.out.println(message);
 	}
 
-
 	private void printConsole(final GameMessage message){
 		System.out.print(message.getMessage());
 	}
 
-	private boolean validateInputData(InputDataDto inputData){
-		return false == inputData.containZero(); // 0값을 포함하면 입력값 오류
-	}
-
 	private InputDataDto createInputDataVO(int inputData){
 		return InputDataDto.getInstance(inputData);
-	}
-
-	/**
-	 * 사용자(게이머)에게 게임 재시작 or 종료를 콘솔로 입력받는다.
-	 * @return
-	 */
-	@Override
-	public GameCommand inputCommand() {
-		printConsoleWithLine(GameMessage.INPUT_RESTART_GAME.getMessage());
-		Integer inputData = nextInt();
-		if(inputData == 1){
-			return GameCommand.RESTART;
-		}
-		return GameCommand.FINISH;
 	}
 }

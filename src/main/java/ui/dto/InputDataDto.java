@@ -2,7 +2,6 @@ package ui.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class InputDataDto {
 	private List<Integer> numbers = new ArrayList<>();
@@ -24,8 +23,7 @@ public class InputDataDto {
 	 * @param inputData
 	 * @return
 	 */
-	public static InputDataDto getInstance(Integer inputData){
-		if(Objects.isNull(inputData)) return null;
+	public static InputDataDto getInstance(int inputData){
 		InputDataDto inputDataDto = new InputDataDto();
 		int digit = 100;
 		for(int i = 0; i < 3; i++){

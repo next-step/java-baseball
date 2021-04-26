@@ -1,7 +1,12 @@
+import ui.exception.GamePlayException;
 
 public class BaseBallGame {
 
 	public static void main(String[] args){
-		new BaseBallGameManager().run();
+		try {
+			new BaseBallGameManager().run();
+		} catch (GamePlayException ex){
+			System.out.println(ex.getMessage());
+		}
 	}
 }
