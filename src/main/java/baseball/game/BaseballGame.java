@@ -20,11 +20,15 @@ public class BaseballGame implements Game {
 	}
 
 	public void play() {
-		printInPut();
-		String hitterNum = ScannerUtil.getUserInput();
-		BaseballScore baseballScore = new BaseballScore(pitcherNum, hitterNum);
-		String scoreStr = baseballScore.getScoreStr();
-		printResult(scoreStr);
+		boolean isAnswer = false;
+
+		while (!isAnswer) {
+			printInPut();
+			BaseballScore baseballScore = new BaseballScore(pitcherNum, ScannerUtil.getUserInput());
+			printResult(baseballScore.getScoreStr());
+			isAnswer = baseballScore.isAnswer();
+		}
+		printGameEnd();
 	}
 
 	private void printInPut() {
@@ -33,6 +37,10 @@ public class BaseballGame implements Game {
 
 	private void printResult(String result) {
 		System.out.println(result);
+	}
+
+	private void printGameEnd() {
+		System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
 	}
 
 	private String generateNum(int size) {
