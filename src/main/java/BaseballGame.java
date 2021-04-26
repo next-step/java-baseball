@@ -87,4 +87,24 @@ public class BaseballGame {
 		return 0;
 	}
 	
+	/**
+	 * 볼을 체크합니다.
+	 *
+	 * @param strikeScore
+	 * @param randomNumberArr
+	 * @param insertNumber
+	 * @return int
+	 */
+	private int checkBall(int strikeScore, String[] randomNumberArr, String insertNumber ) {
+		if (strikeScore > 0) {
+			return 0;
+		}
+		
+		if (Arrays.asList(randomNumberArr).contains(insertNumber)) {
+			return 1;
+		}
+		
+		return 0;
+	}
+	
 }

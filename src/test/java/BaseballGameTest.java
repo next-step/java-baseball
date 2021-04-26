@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseballGameTest {
@@ -60,6 +62,25 @@ public class BaseballGameTest {
 	
 	private int checkStrike(String randomNumber, String insertNumber) {
 		if (randomNumber.equals(insertNumber)) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	@ParameterizedTest
+	@CsvSource( value = {"0:3:1", "1:1:0"}, delimiter = ':')
+	@DisplayName("볼 테스트")
+	public void checkBallTest(int strikeScore, String insertNumber, int expected) {
+		String[] randomNumberArr = {"1", "3", "5"};
+		assertThat(checkBall( strikeScore, randomNumberArr, insertNumber )).isEqualTo(expected);
+	}
+	
+	private int checkBall(int strikeScore, String[] randomNumberArr, String insertNumber ) {
+		if (strikeScore > 0) {
+			return 0;
+		}
+		
+		if ( Arrays.asList(randomNumberArr).contains(insertNumber)) {
 			return 1;
 		}
 		return 0;
