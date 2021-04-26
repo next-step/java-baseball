@@ -41,5 +41,17 @@ public class BaseballGame {
 		double randomNumber = Math.random() * 1000;
 		return String.format("%.0f", randomNumber);
 	}
-		
+	
+	/**
+	 * 입력한 문자열이 유효한 문자열인지 체크합니다.
+	 *
+	 * @param insertText
+	 * @return boolean
+	 * @author 최원준
+	 */
+	private boolean validateInsertText(String insertText) {
+		String regExp = "^[0-9]{3}$";
+		return insertText.matches(regExp);
+	}
+	
 }
