@@ -1,7 +1,7 @@
 package baseball.ui;
 
 public interface UiSystem {
-	String gameInput();
+    String gameInput();
 
-	void display(String data);
+    void display(String data);
 }
