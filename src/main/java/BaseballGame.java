@@ -55,7 +55,7 @@ public class BaseballGame {
 		String strikeOutput = strike>0? strike + "스트라이크":"";
 		String ballOutput = ball>0?ball + "볼":"";
 
-		return strikeOutput + ballOutput;
+		return strikeOutput + (strikeOutput.length()>0 && ballOutput.length()>0 ? " ":"") + ballOutput;
 	}
 
 	private int[] checkNumbers(String guessNumber,String answerNumbers, int index, int[] count) {

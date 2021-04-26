@@ -124,5 +124,17 @@ public class BaseballGameTest{
 	}
 
 
+	@Test
+	public void outputWhenOneStrikeTwoBall(){
+		String answer = "123";
+		String one_strike_two_ball_guess = "132";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,one_strike_two_ball_guess);
+
+		assertEquals("1스트라이크 2볼", output);
+	}
+
+
+
 
 }
