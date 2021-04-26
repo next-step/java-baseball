@@ -10,30 +10,38 @@ public class BaseballGame {
     private boolean foundCorrectAnswer;
 
     public void startGame() {
-        answerNumberString = baseball.makeBaseballNumberString();
+        answerNumberString = baseball.makeAnswerNumber();
 
         foundCorrectAnswer = false;
         while (!foundCorrectAnswer) {
-            System.out.print("숫자를 입력해주세요 : ");
-            int inputNumber = scanner.nextInt();
-
-            this.judgeInputNumber(inputNumber);
+            Judgement judgement = judge(getInput());
+            System.out.println(baseball.makeResultStringOf(judgement));
+            finishIfAllStrike(judgement);
         }
     }
 
-    private void judgeInputNumber(int inputNumber) {
-        if (baseball.isValidBaseballInputNumber(inputNumber)) {
-            int strikes = baseball.countStrikes(answerNumberString, Integer.toString(inputNumber));
-            int balls = baseball.countBalls(answerNumberString, Integer.toString(inputNumber));
-
-            String result = baseball.makeComparisonResultString(new BaseballComparisonResult(strikes, balls));
-            System.out.println(result);
-            checkStrikeAll(strikes);
-        }
+    private String getInput() {
+        System.out.print("숫자를 입력해주세요 : ");
+        return Integer.toString(scanner.nextInt());
     }
 
-    private void checkStrikeAll(int strikes) {
-        if (strikes == 3) {
+    private Judgement judge(String input) {
+        if (baseball.isValidInput(input)) {
+            return new Judgement(countStrikes(input), countBalls(input));
+        }
+        return new Judgement(0, 0);
+    }
+
+    private int countStrikes(String input) {
+        return baseball.countStrikes(answerNumberString, input);
+    }
+
+    private int countBalls(String input) {
+        return baseball.countBalls(answerNumberString, input);
+    }
+
+    private void finishIfAllStrike(Judgement judgement) {
+        if (judgement.strikeAll()) {
             foundCorrectAnswer = true;
             checkFinishOrNot();
         }

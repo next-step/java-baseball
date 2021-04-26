@@ -1,11 +1,11 @@
 package baseball;
 
-public class BaseballComparisonResult {
+public class Judgement {
 
     public int strikeCount;
     public int ballCount;
 
-    public BaseballComparisonResult(int strikeCount, int ballCount) {
+    public Judgement(int strikeCount, int ballCount) {
         this.strikeCount = strikeCount;
         this.ballCount = ballCount;
     }
