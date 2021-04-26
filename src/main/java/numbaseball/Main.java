@@ -1,6 +1,6 @@
 package numbaseball;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +9,13 @@ public class Main {
 
     public static void startGame(){
         //3자리 난수 arrayList 생성
-        ArrayList<Integer> arrPlayNum = Play.createNumber();
+        List<Integer> PlayNumber = Play.createPlayNumber();
+        Ui.startPlayGame();
+        List<Integer> nInputNumber = Play.getInputNumber();
+        System.out.println(PlayNumber);
+        System.out.println(nInputNumber);
+
+
     }
 }
 
