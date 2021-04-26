@@ -13,7 +13,7 @@ public class UserInput {
     private static final String RESTART_NOT_MATCHING_NUMBER_MESSAGE = "잘못된 답변을 입력하셨습니다. 재 입력해주세요.";
     private static final String BALL_MESSAGE = "볼";
     private static final String STRIKE_MESSAGE = "스트라이크";
-    private static final String NOTTING_BALL_COUNT_MEESSAGE = "맞은 숫자가 없습니다. 다른 숫자를 기입해보세요.";
+    private static final String NOT_MATCHING_BALL_COUNT_MESSAGE = "맞은 숫자가 없습니다. 다른 숫자를 기입해보세요.";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -47,7 +47,7 @@ public class UserInput {
         String ballMessage = baseballMatchingBallCount(ball);
 
         if(StringUtils.isEmpty(strikeMessage) && StringUtils.isEmpty(ballMessage)){
-            System.out.println(NOTTING_BALL_COUNT_MEESSAGE);
+            System.out.println(NOT_MATCHING_BALL_COUNT_MESSAGE);
         }
 
         return strikeMessage + ballMessage;
