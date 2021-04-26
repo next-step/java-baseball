@@ -16,7 +16,7 @@ public class BaseBallImpl implements BaseBall {
 
     @Override
     public void start() {
-        int quizNumber = getNonDuplicatedThreeDigitNumber( 1, 10 );
+        int quizNumber = getNonDuplicatedThreeDigitNumber( 1, 9 );
         boolean isFinished = false;
         while( !isFinished ) {
             isFinished = startOneGame( quizNumber );
