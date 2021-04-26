@@ -16,6 +16,6 @@
 * print : 결과 표시
 
 #### 모델
-Score
+baseball.domain.Score
 * strike : strike count
 * ball : ball count

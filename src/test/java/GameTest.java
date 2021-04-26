@@ -1,5 +1,7 @@
+import baseball.domain.Score;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import baseball.service.Game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

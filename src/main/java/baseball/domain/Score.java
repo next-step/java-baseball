@@ -1,3 +1,5 @@
+package baseball.domain;
+
 public class Score {
 
     int strike;

@@ -1,3 +1,8 @@
+package baseball.service;
+
+import baseball.domain.Score;
+import baseball.exception.IllegalPositionException;
+
 import java.util.Random;
 
 public class Game {
