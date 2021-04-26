@@ -46,6 +46,20 @@ public class Computer {
 		}
 	}
 
+	public boolean isRetry() {
+		if (strike == 3) {
+			return false;
+		}
+
+		clearScore();
+		return true;
+	}
+
+	public void clearScore() {
+		strike = 0;
+		ball = 0;
+	}
+
 	public int getStrike() {
 		return strike;
 	}
