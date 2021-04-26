@@ -34,7 +34,7 @@ public class BaseballNumbers {
     }
 
     private void checkRange(int number) {
-        if(number < 1 || number  > 9) {
+        if (number < 1 || number > 9) {
             throw new IllegalArgumentException(INVALID_BASEBALL_NUMBER_RANGE);
         }
     }
