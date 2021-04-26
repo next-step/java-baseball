@@ -4,11 +4,20 @@ import java.util.ArrayList;
 
 public class Baseball {
     int[] computerNumbers;
+    int[] playerNumbers;
 
     public Baseball() {
         computerNumbers = new int[BaseballConstants.BASEBALL_COUNT];
+        playerNumbers = new int[BaseballConstants.BASEBALL_COUNT];
 
         makeComputerNumbers();
+    }
+
+    public void makePlayerNumbers(int inputNumber) {
+        for (int i = BaseballConstants.BASEBALL_COUNT - 1; i >= 0; i--) {
+            playerNumbers[i] = inputNumber % 10;
+            inputNumber /= 10;
+        }
     }
 
     private void makeComputerNumbers() {

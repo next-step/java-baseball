@@ -32,4 +32,17 @@ public class BaseballTest {
         }
         assertTrue(isUnique);
     }
+
+    @DisplayName("각 자리 수가 한자리 숫자인지 확인")
+    @Test
+    public void valid_player_numbers_under_10() {
+        boolean isUnder10 = true;
+        baseball.makePlayerNumbers(456);
+        for (int i = 0; i < baseball.playerNumbers.length; i++) {
+            if (baseball.playerNumbers[i] >= 10) {
+                isUnder10 = false;
+            }
+        }
+        assertTrue(isUnder10);
+    }
 }
