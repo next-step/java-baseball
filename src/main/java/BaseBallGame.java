@@ -137,20 +137,14 @@ public class BaseBallGame {
     private void restartOrExit(String choice) {
         if (Select.RESTART.isSelected(choice)) {
             setStatus(Status.PROGRESS);
-            return;
         }
 
         if (Select.EXIT.isSelected(choice)) {
-            exit();
+            setStatus(Status.EXIT);
         }
     }
 
-    /**
-     * 게임 종료
-     */
-    private void exit() {
-        setStatus(Status.EXIT);
-
+    public void exit() {
         try {
             br.close();
         } catch (IOException e) {

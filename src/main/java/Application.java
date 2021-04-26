@@ -9,5 +9,7 @@ public class Application {
             game.inputNumberAndGuess();
             game.afterSuccess();
         }
+
+        game.exit();
     }
 }
