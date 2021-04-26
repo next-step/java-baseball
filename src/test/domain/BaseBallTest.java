@@ -11,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BaseBallTest {
     private BaseBall baseBall;
-
+    private BaseBall opponent;
     @BeforeEach
-    void initilaze() {
+    void initialize() {
         baseBall = null;
+        opponent = null;
     }
 
     @DisplayName("숫자 범위가 [1, 9] 에서 벗어난 경우를 잘 감지하는지 확인한다.")
@@ -32,7 +33,7 @@ class BaseBallTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
     void isObjectCreated(int number) {
-        baseBall = BaseBall.fromNumber(number);
+        baseBall = BaseBall.fromNumAndLocation(number, 0);
         assertTrue(baseBall.getClass() == BaseBall.class);
     }
 

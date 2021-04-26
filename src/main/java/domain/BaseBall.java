@@ -44,12 +44,5 @@ public class BaseBall {
         return this.location == location;
     }
 
-    public int ballScore(BaseBall answer) {
-        if(!isSameLocation(answer.location)) {
-            return isEqualNumber(answer);
-        }
-        return 0;
-    }
-
 
 }
