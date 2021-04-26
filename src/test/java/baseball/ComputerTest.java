@@ -1,6 +1,8 @@
 package baseball;
 
 import baseball.entity.Computer;
+import baseball.model.CompareResult;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,15 +10,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class ComputerTest {
+    private Computer computer;
+    private String initSelectedNumber;
+
+    @BeforeEach
+    void setup(){
+        initSelectedNumber = "257";
+        computer = new Computer(initSelectedNumber);
+    }
 
     @Test
     @DisplayName("컴퓨터 생성")
     public void createComputer(){
-        String selectNumber = "257";
-
-        Computer computer = new Computer(selectNumber);
-
-        assertThat(computer.equals(new Computer(selectNumber))).isTrue();
+        assertThat(computer.equals(new Computer(initSelectedNumber))).isTrue();
     }
 
     @Test
@@ -37,5 +43,17 @@ public class ComputerTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Computer(selectNumber))
                 .withMessageMatching("서로 다른 임의의 수 3개만 선택 가능 합니다.");
+    }
+
+    @Test
+    @DisplayName("숫자 비교")
+    public void compareNumber(){
+
+        String selectNumber = "235";
+
+        CompareResult compareResult = computer.compareNumber(selectNumber);
+
+        assertThat(compareResult.strikeCount() == 1).isTrue();
+        assertThat(compareResult.ballCount() == 1).isTrue();
     }
 }
