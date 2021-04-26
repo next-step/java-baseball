@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("숫자")
+@DisplayName("숫자볼")
 public class NumberBallTest {
 
     @ParameterizedTest

@@ -1,6 +1,5 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,9 +35,9 @@ public class ScoreTest {
     @Test
     @DisplayName("원 스트라이크 확인")
     public void oneStrike() throws Exception {
-        NumberBalls inputBalls = createInputBalls("1,3,4");
+        NumberBalls inputBalls = createInputBalls("1,4,5");
 
-        Score resultScore = Referee.matchToScore(randomBalls, inputBalls);
+        Score resultScore = randomBalls.matchToScore(inputBalls);
         Score oneStrikeScore = new Score(1, 0);
 
         assertThat(resultScore).isEqualTo(oneStrikeScore);
@@ -46,31 +45,31 @@ public class ScoreTest {
 
     @Test
     @DisplayName("투 스트라이크 확인")
-    public void oneStrike() throws Exception {
+    public void twoStrike() throws Exception {
         NumberBalls inputBalls = createInputBalls("1,2,4");
 
-        Score resultScore = Referee.matchToScore(randomBalls, inputBalls);
-        Score oneStrikeScore = new Score(2, 0);
+        Score resultScore = randomBalls.matchToScore(inputBalls);
+        Score twoStrikeScore = new Score(2, 0);
 
-        assertThat(resultScore).isEqualTo(oneStrikeScore);
+        assertThat(resultScore).isEqualTo(twoStrikeScore);
     }
 
     @Test
     @DisplayName("쓰리 스트라이크 확인")
-    public void oneStrike() throws Exception {
+    public void threeStrike() throws Exception {
         NumberBalls inputBalls = createInputBalls("1,2,3");
 
-        Score resultScore = Referee.matchToScore(randomBalls, inputBalls);
-        Score oneStrikeScore = new Score(3, 0);
+        Score resultScore = randomBalls.matchToScore(inputBalls);
+        Score threeStrikeScore = new Score(3, 0);
 
-        assertThat(resultScore).isEqualTo(oneStrikeScore);
+        assertThat(resultScore).isEqualTo(threeStrikeScore);
     }
 
     @Test
     @DisplayName("원 볼 확인")
     public void oneBall() throws Exception {
         NumberBalls inputBalls = createInputBalls("9,8,1");
-        Score resultScore = Referee.matchToScore(randomBalls, inputBalls);
+        Score resultScore = randomBalls.matchToScore(inputBalls);
         Score oneBallScore = new Score(0, 1);
 
         assertThat(resultScore).isEqualTo(oneBallScore);

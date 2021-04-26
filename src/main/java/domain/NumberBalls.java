@@ -24,6 +24,34 @@ public class NumberBalls {
         return numberBalls.size() == size;
     }
 
+    public int size() {
+        return numberBalls.size();
+    }
+
+    public Score matchToScore(NumberBalls inputBalls) {
+        int strike = 0;
+        int ball = 0;
+
+        for (int i = 0; i < SIZE; i++) {
+            boolean isStrike = inputBalls.isStrike(i, numberBalls.get(i));
+            strike = isStrike ? strike + 1 : strike;
+            ball = inputBalls.isBall(i, numberBalls.get(i), isStrike) ? ball + 1 : ball;
+        }
+
+        return new Score(strike, ball);
+    }
+
+    private boolean isBall(int i, NumberBall numberBall, boolean isStrike) {
+        if (!isStrike) {
+            return numberBalls.contains(numberBall);
+        }
+        return false;
+    }
+
+    private boolean isStrike(int index, NumberBall pitchBall) {
+        return numberBalls.get(index).equals(pitchBall);
+    }
+
     private static List<NumberBall> createNumberBalls() {
         List<NumberBall> result = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {

@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class NumberBall {
     private static final String RANGE_ERROR = "숫자범위는 1 ~ 9 입니다.";
     private static final int MIN_NUMBER = 1;
@@ -21,5 +23,18 @@ public class NumberBall {
 
     public int toInt() {
         return numberBall;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NumberBall that = (NumberBall) o;
+        return numberBall == that.numberBall;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberBall);
     }
 }
