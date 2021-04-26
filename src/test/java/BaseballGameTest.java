@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,6 +47,38 @@ public class BaseballGameTest{
 		assertNotEquals(splitedNumbers1[0], splitedNumbers1[1]);
 		assertNotEquals(splitedNumbers1[1], splitedNumbers1[2]);
 		assertNotEquals(splitedNumbers1[0], splitedNumbers1[2]);
+	}
+
+	@Test
+	public void outputWhenResultIsOneBall(){
+		String answer = "123";
+		String oneball_guess = "__2";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,oneball_guess);
+
+		assertEquals("1볼", output);
+	}
+
+
+	@Test
+	public void outputWhenResultIsTwoBall(){
+		String answer = "123";
+		String twoball_guess = "_32";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,twoball_guess);
+
+		assertEquals("2볼", output);
+	}
+
+
+	@Test
+	public void outputWhenResultIsThreeBall(){
+		String answer = "123";
+		String threeball_guess = "312";
+		BaseballGame game = new BaseballGame();
+		String output = game.guess(answer,threeball_guess);
+
+		assertEquals("3볼", output);
 	}
 
 }
