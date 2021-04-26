@@ -11,14 +11,23 @@ public class BaseBalls {
         int number;
         for(int index = 0; index < DIGIT; index += 1) {
             number = Integer.parseInt(String.valueOf(target.charAt(index)));
-            this.baseBalls.add(BaseBall.fromNumber(number));
+            this.baseBalls.add(BaseBall.fromNumAndLocation(number, index));
         }
     }
 
-    public String scoreOfBall(BaseBalls answer) {
+    public BaseBall get(int index) {
+        return this.baseBalls.get(index);
+    }
+
+    public Integer strikeNumber(BaseBalls answer) {
+        int score = 0;
         for(int i = 0; i < DIGIT; i++) {
-
+            score += this.get(i)
+                         .isEqualNumber(answer.get(i));
         }
-        return "";
+        return score;
     }
+
+
+
 }

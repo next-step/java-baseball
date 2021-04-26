@@ -40,15 +40,16 @@ public class BaseBall {
         return FALSE;
     }
 
-    public boolean isSameLocation(BaseBall opponent) {
-        return location == opponent.location;
+    public boolean isSameLocation(int location) {
+        return this.location == location;
     }
 
     public int ballScore(BaseBall answer) {
-        if(!isSameLocation(answer)) {
+        if(!isSameLocation(answer.location)) {
             return isEqualNumber(answer);
         }
         return 0;
     }
+
 
 }
