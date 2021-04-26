@@ -25,7 +25,7 @@ public class User {
 		}
 	}
 
-	private void validateNumber(String inputValue) {
+	public void validateNumber(String inputValue) {
 		if (inputValue.length() != INPUT_MAX_LENGTH) {
 			throw new IllegalArgumentException("세자리 숫자가 아닙니다.");
 		}

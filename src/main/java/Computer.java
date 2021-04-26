@@ -25,8 +25,10 @@ public class Computer {
 	}
 
 	public void matchResult(List<Integer> userNumbers) {
-		System.out.println(computerNumbers);
 		countStrike(userNumbers);
+		if (strikeCount == 3) {
+			BaseBallGame.endGame();
+		}
 		countBall(userNumbers);
 	}
 
