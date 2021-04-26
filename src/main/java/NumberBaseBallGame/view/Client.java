@@ -1,5 +1,6 @@
 package NumberBaseBallGame.view;
 
+import NumberBaseBallGame.domain.BallNumberMatchResult;
 import NumberBaseBallGame.generater.GenerateGame;
 import NumberBaseBallGame.domain.ValidationCheckUtils;
 
@@ -24,10 +25,10 @@ public class Client {
 				continue;
 			}
 
-			GameHintAndResults gameHintAndResults = generateGame.playGame(gameNumbers);
+			BallNumberMatchResult gameHintAndResults = generateGame.playGame(gameNumbers);
 
-			if(!gameHintAndResults.isFinish()){
-				System.out.println(gameHintAndResults.getHint());
+			if(!gameHintAndResults.isAllMatch()){
+				System.out.println("msg~~ TODO");
 				continue;
 			}
 			System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
