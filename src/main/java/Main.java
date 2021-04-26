@@ -15,8 +15,9 @@ public class Main {
         gameMachine.init();
 
         boolean isExit = false;
-        while (!isExit)
+        while (!isExit) {
             isExit = runningGame(gameMachine);
+        }
     }
 
     private static boolean runningGame(GameMachine gameMachine) {
@@ -54,17 +55,18 @@ public class Main {
             option = selectOption(input);
         }
 
-        if (option == RESTART)
+        if (option == RESTART) {
             gameMachine.init();
+        }
 
         return option == EXIT;
     }
 
     private static int selectOption(String input) {
         String regExp = "^[1-2]";
-        if (input.matches(regExp))
+        if (input.matches(regExp)) {
             return Integer.parseInt(input);
-
+        }
         return NONE;
     }
 }

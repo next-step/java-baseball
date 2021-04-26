@@ -30,35 +30,39 @@ public class GameMachine {
             isRandomValue(value);
             randomSet.add(value);
         }
-        if (randomSet.size() < RANDOM_VALUE_MAX_LENGTH)
+        if (randomSet.size() < RANDOM_VALUE_MAX_LENGTH) {
             throw new IllegalStateException("중복된 값이 존재합니다");
+        }
     }
 
     private void isRandomValue(int value) {
-        if (value < 1 || value > 9)
+        if (value < 1 || value > 9) {
             throw new IllegalArgumentException("랜덤 값은 1 ~ 9까지 수여야 합니다");
+        }
     }
 
     private void isRandomValue(String value) {
         String regExp = "^[1-9]";
-        if (!value.matches(regExp))
+        if (!value.matches(regExp)) {
             throw new IllegalArgumentException("랜덤 값은 1 ~ 9까지 수여야 합니다");
+        }
     }
 
     public boolean isValid(String[] inputs) {
         Set<Integer> inputSet = new HashSet<>();
 
-        if (inputs.length != RANDOM_VALUE_MAX_LENGTH)
+        if (inputs.length != RANDOM_VALUE_MAX_LENGTH) {
             throw new IllegalArgumentException("입력된 값의 길이는 반드시 3이어야 합니다");
+        }
 
         for (String value : inputs) {
             isRandomValue(value);
             inputSet.add(Integer.parseInt(value));
         }
 
-        if (inputSet.size() < RANDOM_VALUE_MAX_LENGTH)
+        if (inputSet.size() < RANDOM_VALUE_MAX_LENGTH) {
             throw new IllegalStateException("중복된 값이 존재합니다");
-
+        }
         return true;
     }
 
@@ -90,15 +94,17 @@ public class GameMachine {
      * @return 결과에 대한 문자열
      */
     public String print(int[] result) {
-        if (result[ResultStatus.NOTING.getIndex()] == 3)
+        if (result[ResultStatus.NOTING.getIndex()] == 3) {
             return ResultStatus.NOTING.getName();
+        }
 
         StringBuilder stb = new StringBuilder();
-        if (result[ResultStatus.STRIKE.getIndex()] > 0)
+        if (result[ResultStatus.STRIKE.getIndex()] > 0) {
             stb.append(result[ResultStatus.STRIKE.getIndex()]).append(ResultStatus.STRIKE.getName()).append(" ");
-        if (result[ResultStatus.BALL.getIndex()] > 0)
+        }
+        if (result[ResultStatus.BALL.getIndex()] > 0) {
             stb.append(result[ResultStatus.BALL.getIndex()]).append(ResultStatus.BALL.getName());
-
+        }
         return stb.toString().trim();
     }
 }
