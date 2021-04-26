@@ -11,7 +11,7 @@ public class StringTest {
 
 	@Test
 	@DisplayName("요구사항 1 - split test")
-	void containsTest() {
+	void contains() {
 		String[] values = "1,2".split(",");
 
 		assertThat(values).contains("1", "2");
@@ -26,7 +26,7 @@ public class StringTest {
 
 	@Test
 	@DisplayName("요구사항 2 - substring test")
-	void equalsTest() {
+	void equals() {
 		String value = "(1,2)";
 		value = value.substring(1, value.length() - 1);
 
@@ -36,7 +36,7 @@ public class StringTest {
 
 	@Test
 	@DisplayName("요구사항 3 - charAt test")
-	void thrownTest() {
+	void thrown() {
 		String value = "abc";
 
 		assertThat(value.charAt(0)).isEqualTo('a');

@@ -29,15 +29,14 @@ public class SetTest {
 
 	@Test
 	@DisplayName("요구사항 1 - size test")
-	void sizeTest() {
+	void size() {
 		assertThat(numbers.size()).isEqualTo(3);
-		assertTrue(numbers.size() == 3);
 		assertEquals(numbers.size(), 3);
 	}
 
 	@Test
 	@DisplayName("요구사항 2 - contains test")
-	void containsTest() {
+	void contains() {
 		assertThat(numbers).contains(3, 1, 2);
 		assertThat(numbers).containsExactly(1, 2, 3);
 		assertThat(numbers.contains(1)).isTrue();
@@ -48,13 +47,13 @@ public class SetTest {
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2, 3})
 	@DisplayName("요구사항 2 - parameterizedTest")
-	void containsParameterizedTest(int input) {
+	void containsValueParameterized(int input) {
 		assertTrue(numbers.contains(input));
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false", "6:false"}, delimiter = ':')
-	void containsParameterizedTest(String input, String expected) {
+	void containsCsvParameterized(String input, String expected) {
 		assertEquals(numbers.contains(Integer.parseInt(input)), Boolean.parseBoolean(expected));
 	}
 
