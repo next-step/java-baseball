@@ -45,6 +45,10 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
         return 0;
     }
 
+    public int size() {
+        return this.baseballNumbers.size();
+    }
+
     @Override
     public Iterator<BaseballNumber> iterator() {
         return baseballNumbers.iterator();

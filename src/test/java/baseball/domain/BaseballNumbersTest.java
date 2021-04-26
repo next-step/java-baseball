@@ -62,4 +62,22 @@ class BaseballNumbersTest {
         assertThat(0).isEqualTo(base.containsCount(target));
     }
 
+    @Test
+    @DisplayName("숫자 갯수")
+    void size() {
+        // given
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
+
+        // when
+        List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(3, 1, 2));
+        BaseballNumbers numbers1 = new BaseballNumbers(numbersBase);
+
+        List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("789");
+        BaseballNumbers numbers2 = new BaseballNumbers(numbersTarget);
+
+        // then
+        assertThat(3).isEqualTo(numbers1.size());
+        assertThat(3).isEqualTo(numbers2.size());
+    }
+
 }
