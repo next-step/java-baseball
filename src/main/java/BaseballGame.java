@@ -10,10 +10,6 @@ public class BaseballGame {
 		this.console = console;
 	}
 
-	public String getAnswer() {
-		return answer;
-	}
-
 	public void playBall() {
 		boolean morePitching = true;
 
