@@ -57,8 +57,8 @@ public class GameController {
 
     private void validate(final List<String> numbers) {
         if (Validator.inValidate(numbers)) {
-            output.printValiedateNumber();
-            getUserNumbers();
+            output.printValidateNumber();
+            start();
         }
     }
 

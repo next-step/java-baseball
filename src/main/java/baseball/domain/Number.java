@@ -37,7 +37,7 @@ public class Number {
     }
 
     private static int validate(final int value) {
-        if (value < MIN_VALUE || value > MAX_VALUE) {
+        if (Validator.isOutOfRange(value)) {
             throw new NumberOutOfRangeException(value);
         }
         return value;

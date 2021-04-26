@@ -19,7 +19,7 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printValiedateNumber() {
+    public void printValidateNumber() {
         System.out.println(PLEASE_INPUT_VALID_NUMBERS);
     }
 

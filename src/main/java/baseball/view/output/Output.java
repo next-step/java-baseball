@@ -5,7 +5,7 @@ import baseball.domain.BaseballResult;
 public interface Output {
     void print(final String message);
 
-    void printValiedateNumber();
+    void printValidateNumber();
 
     void printEndMessage();
 
