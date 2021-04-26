@@ -10,7 +10,7 @@ public class BaseballTest {
 
     @ParameterizedTest
     @ValueSource(longs = {0,10,11,12})
-    void validate_number_nalue(long input){
+    void validate_number_value(long input){
         Long baseballNumber = input;
         Assertions.assertThrows(IllegalArgumentException.class, () -> Baseball.validateNumberValue(baseballNumber));
     }
