@@ -11,8 +11,8 @@ import java.util.List;
 
 public class RefereeTest {
 
-	List<Integer> playerNumbers = new ArrayList<>(Arrays.asList(1, 2, 3));
-	List<Integer> opponentNumbers = new ArrayList<>(Arrays.asList(1, 3, 9));
+	List<Integer> playerNumbers = Arrays.asList(1, 2, 3);
+	List<Integer> opponentNumbers = Arrays.asList(1, 3, 9);
 
 	@DisplayName("두 리스트 중 인덱스와 값이 같은 요소 개수")
 	@Test

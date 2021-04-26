@@ -26,7 +26,7 @@ public class DeckTest {
 	@DisplayName("사용자 3자리 숫자 저장")
 	@Test
 	void createCustomDeck() {
-		List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+		List<Integer> list = Arrays.asList(1, 2, 3);
 		Deck deck = Deck.createCustomDeck(list);
 		assertThat(deck.numbers()).hasSize(Deck.SIZE);
 	}

@@ -31,7 +31,7 @@ public final class Referee {
 		int sum = 0;
 		for (int i = 0; i < Deck.SIZE; i++) {
 			int value = player.numbers().get(i);
-			List<Integer> left = new ArrayList<>(Arrays.asList(value, value, value));
+			List<Integer> left = Arrays.asList(value, value, value);
 			left.set(i, 0);
 			sum += countEquals(left.iterator(), opponent.numbers().iterator());
 		}

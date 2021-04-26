@@ -36,7 +36,7 @@ public class ConverterTest {
 	@DisplayName("숫자 -> 숫자 리스트")
 	@Test
 	void toList() {
-		List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+		List<Integer> list = Arrays.asList(1, 2, 3);
 		assertThat(Converter.toList(123)).isEqualTo(list);
 	}
 }

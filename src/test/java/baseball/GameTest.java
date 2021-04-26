@@ -24,7 +24,7 @@ class GameTest {
 	void createPlayer() {
 		assertThat(game.getPlayer()).isNull();
 
-		List<Integer> origin = new ArrayList<>(Arrays.asList(1, 2, 3));
+		List<Integer> origin = Arrays.asList(1, 2, 3);
 		Deck deck = Deck.createCustomDeck(origin);
 		game.createPlayer(deck.numbers());
 

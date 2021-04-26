@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PlayerTest {
 
-	List<Integer> origin = new ArrayList<>(Arrays.asList(1, 2, 3));
+	List<Integer> origin = Arrays.asList(1, 2, 3);
 	Deck deck = Deck.createCustomDeck(origin);
 	Player player = new Player(deck);
 	List<Integer> numbers = player.numbers();
