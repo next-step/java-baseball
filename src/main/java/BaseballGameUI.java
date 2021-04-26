@@ -10,8 +10,22 @@ public class BaseballGameUI {
 		baseballGameLogic.makeNumber();
 
 		while (isContinue) {
-			System.out.print("숫자를입력해주세요 : ");
-			input = scanner.nextLine();
+			if (inputValidation(input = askNumbers(scanner))) {
+				continue;
+			}
 		}
+	}
+
+	private static String askNumbers(Scanner scanner) {
+		System.out.print("숫자를입력해주세요 : ");
+		return scanner.nextLine();
+	}
+
+	private static boolean inputValidation(String input) {
+		if (!BaseballGameValidator.isLengthThree(input) || !BaseballGameValidator.isNumbers(input)) {
+			return true;
+		}
+
+		return false;
 	}
 }
