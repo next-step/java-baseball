@@ -17,16 +17,20 @@ public class BaseBallImpl implements BaseBall {
     @Override
     public void start() {
         int quizNumber = getNonDuplicatedThreeDigitNumber( 1, 10 );
-        int userNumber = ui.getNumber();
-        String[] quizNumberDigts = castNumberToStringArrays( quizNumber );
-        String[] userNumberDigts = castNumberToStringArrays( userNumber );
-        int strikeCount = getStrikeCountFrom( quizNumberDigts, userNumberDigts );
-        int ballCount = getBallCountFrom( quizNumberDigts, userNumberDigts );
-        boolean isFinished = checkStrikeAndBall( strikeCount, ballCount );
+        boolean isFinished = false;
+        while( !isFinished ) {
+            int userNumber = ui.getNumber();
+            String[] quizNumberDigts = castNumberToStringArrays( quizNumber );
+            String[] userNumberDigts = castNumberToStringArrays( userNumber );
+            int strikeCount = getStrikeCountFrom( quizNumberDigts, userNumberDigts );
+            int ballCount = getBallCountFrom( quizNumberDigts, userNumberDigts );
+            isFinished = checkStrikeAndBall( strikeCount, ballCount );
+        }
     }
     
     protected boolean checkStrikeAndBall( int strikeCount, int ballCount ) {
         if( strikeCount == 3 ) {
+            showBallAndStrikeInfo(strikeCount, ballCount);
             return true;
         }
         

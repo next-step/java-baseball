@@ -15,10 +15,10 @@ public class BaseBallUI {
     }
     
     public void nothing() {
-        System.out.print( "낫싱" );
+        System.out.println( "낫싱" );
     }
     
     public void strikeAndBall( int strike, int ball ) {
-        System.out.print( strike + " 스트라이크 " + ball + " 볼" );
+        System.out.println( strike + " 스트라이크 " + ball + " 볼" );
     }
 }
