@@ -155,7 +155,7 @@ public class Opponent {
      * @return 중복되지 않는 1~9 사이의 랜덤 값
      */
     private int getNonDuplicatedRandomValue(int[] answers) {
-        int random = (int) (Math.random() * 8) + 1;
+        int random = (int) (Math.random() * 9) + 1;
 
         int[] tempAnswers = Arrays.copyOf(answers, ANSWER_LENGTH);
         Arrays.sort(tempAnswers);
