@@ -19,15 +19,23 @@ public class BaseBall implements Iterable<Ball> {
     }
 
     public static BaseBall of(String numbers) {
+        validationThreeDigit(numbers);
+        List<Ball> balls = makeBalls(numbers);
+        validationDuplicate(balls);
+        return BaseBall.of(balls);
+    }
+
+    private static void validationThreeDigit(String numbers) {
         if (numbers.length() != 3) {
             throw new NoThreeDigitException("세자리 숫자를 입력해주세요.");
         }
-        List<Ball> balls = numbers.chars()
+    }
+
+    private static List<Ball> makeBalls(String numbers) {
+        return numbers.chars()
             .mapToObj(number -> Ball.of(String.valueOf((char) number)))
             .distinct()
             .collect(Collectors.toList());
-        validationDuplicate(balls);
-        return BaseBall.of(balls);
     }
 
     private static void validationDuplicate(List<Ball> balls) {
