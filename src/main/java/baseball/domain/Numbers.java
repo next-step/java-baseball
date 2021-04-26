@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.exception.InvalidNumbersException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +37,7 @@ public class Numbers {
 
     private void validateNumbers(final List<Number> numbers) {
         if (Validator.inValidate(numbers)) {
-            throw new IllegalArgumentException(PLEASE_INPUT_VALID_NUMBERS);
+            throw new InvalidNumbersException(PLEASE_INPUT_VALID_NUMBERS);
         }
     }
 

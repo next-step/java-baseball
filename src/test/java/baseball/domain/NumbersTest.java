@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.exception.InvalidNumbersException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,23 +26,23 @@ class NumbersTest {
         assertThat(numbers1).isEqualTo(numbers2);
     }
 
-    @DisplayName("3자리의 숫자가 아니라면 IllegalArgumentException이 발생한다")
+    @DisplayName("3자리의 숫자가 아니라면 InvalidNumbersException이 발생한다")
     @ParameterizedTest
     @ValueSource(strings = {"1234", "3914", "8273", "1827"})
     void sizeTest(final String value) {
         assertThatThrownBy(() -> {
             Numbers.valueOf(value);
-        }).isInstanceOf(IllegalArgumentException.class)
+        }).isInstanceOf(InvalidNumbersException.class)
                 .hasMessage(PLEASE_INPUT_VALID_NUMBERS);
     }
 
-    @DisplayName("중복된 숫자가 있다면 IllegalArgumentException이 발생한다")
+    @DisplayName("중복된 숫자가 있다면 InvalidNumbersException이 발생한다")
     @ParameterizedTest
     @ValueSource(strings = {"112", "133", "5122", "5123"})
     void duplicateTest() {
         assertThatThrownBy(() -> {
             Numbers.valueOf(new ArrayList(Arrays.asList("1", "1", "3")));
-        }).isInstanceOf(IllegalArgumentException.class)
+        }).isInstanceOf(InvalidNumbersException.class)
                 .hasMessage(PLEASE_INPUT_VALID_NUMBERS);
     }
 
