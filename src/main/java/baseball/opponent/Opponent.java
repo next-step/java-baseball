@@ -2,6 +2,8 @@ package baseball.opponent;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 야구 게임의 상대 역할을하는 객체
@@ -27,9 +29,20 @@ public class Opponent {
      * 사용자가 입력한 답과 정답을 비교
      *
      * @param inputAnswer 사용자가 입력한 답
+     * @return 사용자의 답과 정답을 비교한 결과
      */
-    public void compare(int inputAnswer) {
+    public Map<ResultType, Integer> compare(int inputAnswer) {
         validateInputAnswer(inputAnswer);
+
+        int[] tempAnswers = Arrays.copyOf(answers, ANSWER_LENGTH);
+        int[] inputAnswers = splitAnswer(inputAnswer);
+
+        int strikeCount = calcCountStrike(tempAnswers, inputAnswers);
+        int ballCount = 0;
+        for (int nanoAnswer : inputAnswers)
+            ballCount += countBall(tempAnswers, nanoAnswer);
+
+        return createGameResult(strikeCount, ballCount);
     }
 
     /**
@@ -40,6 +53,98 @@ public class Opponent {
      */
     public int[] getAnswers() {
         return answers;
+    }
+
+    /**
+     * 스트라이크의 개수를 계산
+     *
+     * @param answers      정답 배열
+     * @param inputAnswers 사용자의 답 배열
+     * @return 스트라이크 개수
+     */
+    private int calcCountStrike(int[] answers, int[] inputAnswers) {
+        int strikeCount = 0;
+        for (int i = 0; i < answers.length; i++) {
+            int count = calcCountAnswer(answers[i], inputAnswers[i]);
+            changeArrayToZero(answers, i, isEqualsAnswer(count));
+            strikeCount += count;
+        }
+        return strikeCount;
+    }
+
+    /**
+     * 볼의 개수를 계산
+     *
+     * @param answers     정답 배열
+     * @param inputAnswer 사용자의 답
+     * @return 볼 개수
+     */
+    private int countBall(int[] answers, int inputAnswer) {
+        int ballCount = 0;
+        for (int i = 0; i < answers.length; i++) {
+            int count = calcCountAnswer(inputAnswer, answers[i]);
+            changeArrayToZero(answers, i, isEqualsAnswer(count));
+            ballCount += count;
+        }
+        return ballCount;
+    }
+
+    /**
+     * 정답과 사용자의 답이 일치하면 1을 반환
+     *
+     * @param answer      각각의 정답
+     * @param inputAnswer 각각의 사용자의 답
+     * @return 답이 같으면 1, 다르면 0
+     */
+    private int calcCountAnswer(int answer, int inputAnswer) {
+        if (answer == inputAnswer)
+            return 1;
+
+        return 0;
+    }
+
+    /**
+     * 정답과 사용자의 답이 같으면 중복 검사하게 하지 않기 위해 배열 방의 값을 0으로 변경
+     *
+     * @param answers        정답 배열
+     * @param index          배열 인덱스
+     * @param isEqualsAnswer 정답과 사용자의 답이 같다면 true, 다르면 false
+     */
+    private void changeArrayToZero(int[] answers, int index, boolean isEqualsAnswer) {
+        if (isEqualsAnswer) {
+            answers[index] = 0;
+        }
+    }
+
+    /**
+     * 각각의 스트라이크 또는 볼의 개수가 1개이면 true 반환
+     *
+     * @param count 정답 개수 (0 or 1)
+     * @return 정답이면 true, 오답이면 false
+     */
+    private boolean isEqualsAnswer(int count) {
+        return count > 0;
+    }
+
+    /**
+     *
+     * @param strikeCount 스트라이크 개수
+     * @param ballCount 볼 개수
+     * @return 비교 결과
+     */
+    private Map<ResultType, Integer> createGameResult(int strikeCount, int ballCount) {
+        Map<ResultType, Integer> compareResult = new LinkedHashMap<>();
+
+        if (strikeCount != 0)
+            compareResult.put(ResultType.STRIKE, strikeCount);
+
+        if (ballCount != 0)
+            compareResult.put(ResultType.BALL, ballCount);
+
+        if (strikeCount == 0 && ballCount == 0)
+            compareResult.put(ResultType.NOTHING, null);
+
+        return compareResult;
     }
 
     /**
