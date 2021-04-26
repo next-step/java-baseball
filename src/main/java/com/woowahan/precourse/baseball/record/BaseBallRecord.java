@@ -6,12 +6,10 @@ public class BaseBallRecord {
 
     private int strikeCount;
     private int ballCount;
-    private int recordPosition;
 
     public BaseBallRecord() {
         this.strikeCount = 0;
         this.ballCount = 0;
-        this.recordPosition = 0;
     }
 
     public int getStrikeCount() {
@@ -22,21 +20,11 @@ public class BaseBallRecord {
         return this.ballCount;
     }
 
-    public void doRecord(String[] gameNumbers, String[] inputNumbers) {
-
-        for (this.recordPosition = 0; this.recordPosition < 3; this.recordPosition++) {
-            countRecord(gameNumbers, inputNumbers);
-        }
+    public void doStrike() {
+        this.strikeCount++;
     }
 
-    private void countRecord(String[] gameNumbers, String[] inputNumbers) {
-        String inputNumber = inputNumbers[recordPosition];
-        String gameNumber = gameNumbers[recordPosition];
-
-        if (BaseBallRule.isStrike(gameNumber, inputNumber)) {
-            this.strikeCount++;
-        } else if (BaseBallRule.isBall(gameNumbers, inputNumber, recordPosition)) {
-            this.ballCount++;
-        }
+    public void doBall() {
+        this.ballCount++;
     }
 }
