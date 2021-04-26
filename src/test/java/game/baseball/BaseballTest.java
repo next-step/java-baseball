@@ -45,4 +45,16 @@ public class BaseballTest {
         }
         assertTrue(isUnder10);
     }
+
+    @DisplayName("strike 판단")
+    @Test
+    public void check_strike_count() {
+        for (int i = 0; i < baseball.computerNumbers.length; i++) {
+            baseball.playerNumbers[i] = baseball.computerNumbers[i];
+        }
+
+        baseball.checkStrikeCount();
+
+        assertEquals(baseball.strikeCount, BaseballConstants.BASEBALL_COUNT);
+    }
 }

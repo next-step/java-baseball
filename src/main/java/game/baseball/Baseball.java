@@ -5,12 +5,21 @@ import java.util.ArrayList;
 public class Baseball {
     int[] computerNumbers;
     int[] playerNumbers;
+    int strikeCount;
 
     public Baseball() {
+        strikeCount = 0;
         computerNumbers = new int[BaseballConstants.BASEBALL_COUNT];
         playerNumbers = new int[BaseballConstants.BASEBALL_COUNT];
 
         makeComputerNumbers();
+    }
+
+    public void checkStrikeCount() {
+        strikeCount = 0;
+        for (int i = 0; i < computerNumbers.length; i++) {
+            strikeCount += (computerNumbers[i] == playerNumbers[i]) ? 1 : 0;
+        }
     }
 
     public void makePlayerNumbers(int inputNumber) {
