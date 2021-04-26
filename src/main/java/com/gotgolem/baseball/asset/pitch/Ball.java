@@ -12,7 +12,7 @@ public enum Ball {
 	SCREW,
 	SLIDE;
 
-	public static Ball toPitch(int ballNumber) {
+	public static Ball toBall(int ballNumber) {
 		return values()[ballNumber - 1];
 	}
 

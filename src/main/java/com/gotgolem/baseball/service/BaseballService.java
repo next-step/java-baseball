@@ -18,9 +18,9 @@ public class BaseballService {
 	public ThreePitches createThreePitches() {
 		final int[] ballNumbers = numberGenerator.generateThreeNumbers();
 		final List<Ball> balls = Arrays.asList(
-				Ball.toPitch(ballNumbers[0]),
-				Ball.toPitch(ballNumbers[1]),
-				Ball.toPitch(ballNumbers[2])
+				Ball.toBall(ballNumbers[0]),
+				Ball.toBall(ballNumbers[1]),
+				Ball.toBall(ballNumbers[2])
 		);
 		return new ThreePitches(balls);
 	}
