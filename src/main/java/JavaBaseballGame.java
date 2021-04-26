@@ -1,9 +1,21 @@
 import java.util.*;
 
-public class JavaBaseBallGame {
+public class JavaBaseballGame {
 
     private static Scanner scanner = new Scanner(System.in);
     private final int THE_NUMBER_OF_NUM = 3;
+
+    public static void main(String[] args){
+        JavaBaseballGame javaBaseballGame = new JavaBaseballGame();
+        boolean flag = true;
+        while(flag){
+            System.out.println("숫자를 입력해주세요 : ");
+            int x = javaBaseballGame.createRandomNumber();
+            javaBaseballGame.startGame(x);
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+            flag = javaBaseballGame.isGame();
+        }
+    }
 
 
     /**
@@ -14,14 +26,14 @@ public class JavaBaseBallGame {
         int num = scanner.nextInt();
 
         if(num > 999) {
-            System.out.println("just only input 3 numbers");
+            System.out.println("3개의 숫자만 입력이 가능합니다. 다시 입력해주세요");
             return getNumberOfThree();
         }
         List<String> list = convertStringToInt(num);
         Set<String> set = new HashSet<>(list);
 
         if(set.size() != list.size()){
-            System.out.println("duplicated number!! please reinput number");
+            System.out.println("중복되는 수는 안됩니다. 다시 입력해주세요");
             return getNumberOfThree();
         }
 
@@ -120,6 +132,45 @@ public class JavaBaseBallGame {
 
         return result;
 
+    }
+
+
+    private boolean isGame() {
+        int gameButton = scanner.nextInt();
+        if (gameButton == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void startGame(int x){
+        boolean flag = true;
+        while(flag){
+            int num = getNumberOfThree();
+            flag = isFinishGame(x, num);
+
+            System.out.println(printSentence(x,num));
+        }
+    }
+
+    private String printSentence(int x, int num) {
+        StrikeBall strikeBall = getHintMap(x, num);
+        if(strikeBall.getBall() == 0 && strikeBall.getStrike() == THE_NUMBER_OF_NUM) {
+            return "3 스트라이크";
+
+        }
+
+        return strikeBall.getStrike() + "스트라이크 " + strikeBall.getBall() + "볼";
+    }
+
+    private boolean isFinishGame(int x, int num) {
+        StrikeBall strikeBall = getHintMap(x, num);
+        if(strikeBall.getBall() == 0 && strikeBall.getStrike() == THE_NUMBER_OF_NUM) {
+            return false;
+        }
+        System.out.println("3개의 숫자를 모두 맞히셨습니다!. 게임 종료");
+        return true;
     }
 
 
