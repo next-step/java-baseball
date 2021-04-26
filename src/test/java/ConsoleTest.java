@@ -1,5 +1,4 @@
 import baseball.Console;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -24,8 +23,5 @@ class ConsoleTest {
 
         assertThat(out.toString()).hasToString("숫자를 입력해주세요 : " + 123);
     }
-
-
-
 
 }
