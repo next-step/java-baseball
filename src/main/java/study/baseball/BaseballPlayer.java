@@ -138,8 +138,9 @@ public class BaseballPlayer {
     public static boolean checkValidNumber(int input) {
 
         try {
-            NumberUtils.checkDuplicateNumber(input);
             checkRange(input);
+            NumberUtils.checkDuplicateNumber(input);
+
 
         } catch (IllegalArgumentException e) {
             System.out.println(INVALID_NUMBER_MESSAGE);
