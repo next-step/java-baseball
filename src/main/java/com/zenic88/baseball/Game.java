@@ -22,6 +22,10 @@ public class Game {
 
 	public Score throwBall(Referee referee, List<Integer> computerNumber, String userNumber) {
 		Score score = new Score();
+		if (!Validation.isThreeDigitNumber(userNumber)) {
+			System.out.println("3자리 숫자만 입력해주세요.");
+			return score;
+		}
 		String[] strArr = userNumber.split("");
 		for (int i = 0; i < strArr.length; i++) {
 			referee.check(score, computerNumber, Integer.parseInt(strArr[i]), i);
@@ -37,6 +41,12 @@ public class Game {
 	}
 
 	public boolean gameRepeat() throws IOException {
-		return inputValue("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n").equals("1");
+		String inputValue = inputValue("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
+
+		if (!Validation.isRepeatValidation(inputValue)) {
+			System.out.println("1 이나 2 만 입력 가능합니다.");
+			return gameRepeat();
+		}
+		return inputValue.equals("1");
 	}
 }
