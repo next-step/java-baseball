@@ -30,16 +30,34 @@ public class JavaBaseballGame {
 		return candidate;
 	}
 
+	private void findTarget(String target) {
+		boolean isFindTarget = false;
+
+		while (!isFindTarget) {
+			String candidate = this.tryAnswer();
+			BallCounts ballCounts = referee.decideBalls(candidate, target);
+			System.out.println(ballCounts.toString());
+
+			isFindTarget = this.isFindTarget(ballCounts.getStrikeCount());
+		}
+	}
+
+	private boolean isFindTarget(int strikeCount) {
+		if (strikeCount == BASEBALL_NUMBER_LENGTH) {
+			System.out.println(BASEBALL_NUMBER_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			return true;
+		}
+
+		return false;
+	}
+
 	public static void main(String[] args) {
 		final JavaBaseballGame baseballGame = JavaBaseballGame.of();
 		final RandomNumberStringGenerator generator = baseballGame.randomNumberStringGenerator;
 		final BaseballReferee referee = baseballGame.referee;
 		final String target = generator.generate(BASEBALL_NUMBER_LENGTH);
 
-		String candidate = baseballGame.tryAnswer();
-		BallCounts ballCounts = referee.decideBalls(candidate, target);
-		System.out.println(ballCounts.toString());
-
+		baseballGame.findTarget(target);
 		// TODO(jjeda): Implement baseball game
 	}
 }
