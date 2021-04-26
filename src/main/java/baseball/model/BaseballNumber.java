@@ -133,7 +133,8 @@ public class BaseballNumber {
             }
 
             do {
-                this.number.numbers[this.index] = (int) (Math.random() * (this.number.radix - 1)) + 1;
+//                 this.number.numbers[this.index] = (int) (Math.random() * (this.number.radix - 1)) + 1;
+                this.number.numbers[this.index] = (this.rng.generateRandomNumber(this.number.radix) % (this.number.radix - 1)) + 1;
             } while(this.number.numbers[this.index] == 0
                     || this.isChecked[this.number.numbers[this.index]]);
 
