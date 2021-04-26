@@ -13,4 +13,8 @@ public class BaseballUI {
 		int count = sc.nextInt();
 		return count;
 	}
+	
+	public void printResult(String result) {
+		System.out.println(result);
+	}
 }
