@@ -46,4 +46,38 @@ public class BaseballGame {
         }
         return answer;
     }
+
+    public BaseballResult calculateResult(List<Integer> randomNumber, List<Integer> userNumber){
+        int strike = 0;
+        int ball = 0;
+        for (int i = 0; i < MAX_LEN; i++) {
+            strike += checkStrike(randomNumber.get(i), userNumber.get(i));
+            ball += checkBall(randomNumber.get(i), userNumber, i);
+        }
+        return new BaseballResult(strike, ball);
+    }
+
+    public int checkStrike(int randomNumber, int userNumber){
+        if (randomNumber == userNumber){
+            return 1;
+        }
+        return 0;
+    }
+
+    public int checkBall(int randomNumber, List<Integer> userNumber, int index) {
+        if (randomNumber == userNumber.get(0) && index != 0){
+            return 1;
+        }
+        if (randomNumber == userNumber.get(1) && index != 1){
+            return 1;
+        }
+        if (randomNumber == userNumber.get(2) && index != 2){
+            return 1;
+        }
+        return 0;
+    }
+
+    public void printResult(BaseballResult baseballResult){
+        System.out.println(baseballResult.toString());
+    }
 }
