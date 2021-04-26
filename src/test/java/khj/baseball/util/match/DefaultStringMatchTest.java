@@ -26,4 +26,11 @@ public class DefaultStringMatchTest {
         assertEquals(strike, record.getStrike());
         assertEquals(ball, record.getBall());
     }
+
+    @DisplayName("문자열이 전부 맞지 않으면 낫싱인지 확인한다.")
+    @Test
+    void matchStringIsNoting() {
+        Record record = match.matchString("123", "456");
+        assertTrue(record.isNoting());
+    }
 }
