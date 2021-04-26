@@ -18,6 +18,13 @@ public class BaseballService {
 
 	public ThreePitches createThreePitches() {
 		final int[] ballNumbers = numberGenerator.generateThreeNumbers();
+		return createThreePitches(ballNumbers);
+	}
+
+	public ThreePitches createThreePitches(int[] ballNumbers) {
+		if (ballNumbers.length != 3) {
+			throw new IllegalArgumentException();
+		}
 		final List<Ball> balls = Arrays.asList(
 				Ball.toBall(ballNumbers[0]),
 				Ball.toBall(ballNumbers[1]),

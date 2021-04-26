@@ -33,6 +33,29 @@ public class BaseballServiceTest {
 				.isNotNull();
 	}
 
+	@DisplayName("특정 투구 생성 성공 테스트")
+	@ParameterizedTest
+	@CsvSource({"1,2,3", "4,5,6", "7,8,9"})
+	public void whenCreatePitches_thenSuccess(int firstBallNumber, int secondBallNumber, int thirdBallNumber) {
+		final int[] pitchNumbers = new int[] {firstBallNumber, secondBallNumber, thirdBallNumber};
+		final ThreePitches pitches = service.createThreePitches(pitchNumbers);
+		assertThat(pitches).isNotNull();
+		assertThat(pitches.getFirst().ordinal() + 1).isEqualTo(firstBallNumber);
+		assertThat(pitches.getSecond().ordinal() + 1).isEqualTo(secondBallNumber);
+		assertThat(pitches.getThird().ordinal() + 1).isEqualTo(thirdBallNumber);
+	}
+
+	@DisplayName("특정 투구 생성 예외 테스트")
+	@Test
+	public void whenCreatePitches_thenThrow() {
+		assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> service.createThreePitches(new int[] {1}));
+		assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> service.createThreePitches(new int[] {1, 2, 3, 4}));
+		assertThatExceptionOfType(ArrayIndexOutOfBoundsException.class)
+				.isThrownBy(() -> service.createThreePitches(new int[] {0, 1, 2}));
+	}
+
 	@DisplayName("투구 힌트 생성 테스트")
 	@ParameterizedTest
 	@CsvSource({"1,2,3,3,1,2,0,3", "5,9,1,4,5,1,1,1", "6,8,4,6,4,2,1,1", "4,5,6,7,8,9,0,0", "5,6,7,5,6,7,3,0"})
