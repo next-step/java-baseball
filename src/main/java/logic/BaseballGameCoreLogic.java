@@ -1,5 +1,7 @@
 package logic;
 
+import process.GameResult;
+
 import java.util.List;
 
 public class BaseballGameCoreLogic {
@@ -13,4 +15,9 @@ public class BaseballGameCoreLogic {
     public List<Integer> getAnswer() {
         return answer.getAnswer();
     }
+
+    public GameResult calculateResult(List<Integer> question) {
+        return answer.calculateResult(question);
+    }
+
 }
