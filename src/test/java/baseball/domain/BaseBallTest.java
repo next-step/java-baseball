@@ -40,12 +40,12 @@ class BaseBallTest {
 
     @ParameterizedTest
     @CsvSource({"123, 312, 3"
-        , "123, 412, 2", "123, 234, 2", "123, 341, 2"
+        , "123, 412, 2", "123, 234, 2", "123, 341, 2", "123, 213, 2"
         , "123, 415, 1", "123, 456, 0"})
-    void countBall(int number1, int number2, int number3, int input1, int input2, int input3, int strikeCount) {
-        BaseBall baseBall = BaseBall.of(Arrays.asList(Ball.of(number1), Ball.of(number2), Ball.of(number3)));
-        BaseBall inputBaseBall = BaseBall.of(Arrays.asList(Ball.of(input1), Ball.of(input2), Ball.of(input3)));
+    void countBall(String numbers, String inputNumbers, int ballCount) {
+        BaseBall baseBall = BaseBall.of(numbers);
+        BaseBall inputBaseBall = BaseBall.of(inputNumbers);
 
-        assertThat(baseBall.countBall(inputBaseBall)).isEqualTo(strikeCount);
+        assertThat(baseBall.countBall(inputBaseBall)).isEqualTo(ballCount);
     }
 }
