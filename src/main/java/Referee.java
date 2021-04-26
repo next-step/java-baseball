@@ -11,6 +11,11 @@ public class Referee {
     this.input = input;
   }
 
+  public boolean isFinish() {
+    Map<Result, Integer> judge = judge();
+    return judge.containsKey(Result.STRIKE) && judge.get(Result.STRIKE) == 3;
+  }
+
   public Map<Result, Integer> judge() {
     Map<Result, Integer> score = new HashMap<>();
     for (int i = input.length() -1; i >= 0; i --) {

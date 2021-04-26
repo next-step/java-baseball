@@ -42,4 +42,11 @@ class RefereeTest {
     assertThat(result.containsKey(Result.BALL)).isFalse();
   }
 
+  @Test
+  @DisplayName(value = "3 strike 가 되면 finish 는 true 를 반환한다")
+  void finish() {
+    Referee referee = new Referee(369, "369");
+    assertThat(referee.isFinish()).isTrue();
+  }
+
 }
