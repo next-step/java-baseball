@@ -8,8 +8,6 @@ import java.lang.reflect.Method;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
-
-
     @Test
     public void gamerInputValidationTest(){
         Boolean isNotValidInput;
@@ -17,7 +15,7 @@ public class GameTest {
         Game game = new Game();
 
         try {
-            Method testMethod = game.getClass().getDeclaredMethod("isValidInput", String.class);
+            Method testMethod = game.getClass().getDeclaredMethod("isValidUserInput", String.class);
             testMethod.setAccessible(true);
 
             String sameNumberUserInput = "112";

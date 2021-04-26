@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BallsTest {
 
-    private static String ballString = "123";
-    private static int[] ballValues = new int[]{1, 2, 3};
+    private static final String ballString = "123";
+    private static final int[] ballValues = new int[]{1, 2, 3};
 
     @Test
     public void getRandomNumbersTest(){
@@ -107,7 +107,7 @@ public class BallsTest {
         assertThat(comparedResult.ball).isEqualTo(1);
 
         dealerBall.setBallValues("381");
-        userBall.setBallValues("189");
+        userBall.setBallValues("179");
         comparedResult = dealerBall.compareBalls(userBall);
         assertThat(comparedResult.strike).isEqualTo(0);
         assertThat(comparedResult.ball).isEqualTo(1);
