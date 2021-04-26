@@ -51,20 +51,29 @@ public class BaseballReferee {
         return ballCount;
     }
 
-    // FIXME: 줄수 제한 10
     private void printResult() {
-        ArrayList<String> result = new ArrayList<>();
+        printNothing();
+        printStrikeCount();
+        printBallCount();
+        System.out.println();
+    }
 
-        if (strikeCount == 0 && ballCount == 0) {
-            result.add(NOTHING);
-        }
+    private void printStrikeCount() {
         if (strikeCount > 0) {
-            result.add(strikeCount + STRIKE);
+            System.out.print(strikeCount + STRIKE + " ");
         }
+    }
+
+    private void printBallCount() {
         if (ballCount > 0) {
-            result.add(ballCount + BALL);
+            System.out.print(ballCount + BALL);
         }
-        System.out.println(String.join(" ", result));
+    }
+
+    private void printNothing() {
+        if (strikeCount == 0 && ballCount == 0) {
+            System.out.println(NOTHING);
+        }
     }
 
     private void strike(int index) {
