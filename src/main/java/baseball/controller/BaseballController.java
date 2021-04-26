@@ -25,7 +25,6 @@ public class BaseballController {
             baseballGame(new Computer(selectNumber.generateNumber()));
 
             continueOption = baseballGameContinueOption();
-            InputView.enterInput();
         }
     }
 
@@ -35,6 +34,7 @@ public class BaseballController {
         if (ValidateNumberUtil.validateNumber(inputNumber)) {
             ResultView.invalidNumberMessage();
             baseballGame(computer);
+            return;
         }
 
         CompareResult compareResult = computer.compareNumber(inputNumber);
