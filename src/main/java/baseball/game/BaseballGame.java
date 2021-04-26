@@ -1,5 +1,7 @@
 package baseball.game;
 
+import static baseball.util.PrinterUtil.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,22 +27,10 @@ public class BaseballGame implements Game {
 		while (!isAnswer) {
 			printInPut();
 			BaseballScore baseballScore = new BaseballScore(pitcherNum, ScannerUtil.getUserInput());
-			printResult(baseballScore.getScoreStr());
+			printMessage(baseballScore.getScoreStr());
 			isAnswer = baseballScore.isAnswer();
 		}
 		printGameEnd();
-	}
-
-	private void printInPut() {
-		System.out.print("숫자를입력해주세요:");
-	}
-
-	private void printResult(String result) {
-		System.out.println(result);
-	}
-
-	private void printGameEnd() {
-		System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
 	}
 
 	private String generateNum(int size) {
