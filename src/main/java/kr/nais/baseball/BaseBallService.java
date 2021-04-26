@@ -3,8 +3,10 @@ package kr.nais.baseball;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import kr.nais.util.StringUtil;
 
@@ -34,15 +36,44 @@ public class BaseBallService {
 	public void play() {
 		boolean isOut;
 		do {
-			System.out.print("숫자를 입력해주세요 : ");
-			List<Character> pitching = StringUtil.convertStringToListCharacter(scanner.nextLine());
-
+			List<Character> pitching = this.inputText();
 			isOut = this.pitchingResult(pitching);
-
 		} while (!isOut);
 
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
+
+	public List<Character> inputText() {
+		List<Character> pitching;
+		do {
+			System.out.print("숫자를 입력해주세요 : ");
+			String input = scanner.nextLine();
+			pitching = StringUtil.convertStringToListCharacter(input);
+
+			if (!isValidCharacterList(pitching)) {
+				pitching = null;
+				System.out.println("입력값이 유효하지 않습니다. 다시 입력해 주세요!(유효 숫자 범위: 1 ~ 9, 3자리, 중복 허용안함)");
+			}
+		} while (pitching == null);
+
+		return pitching;
+	}
+
+	/**
+	 *  입력값 유효성 검사 - 입력값 3자리, 유효 문자
+	 * @param characterList 입력값
+	 * @return 유효성 결과 판단
+	 */
+	public boolean isValidCharacterList(List<Character> characterList) {
+		List<Character> characters = new ArrayList<>(
+			Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9'));
+		
+		//중복 제거
+		Set<Character> set = new HashSet<>(characterList);
+
+		return set.size() == 3 && characters.containsAll(set);
+	}
+
 
 	/**
 	 * 타자 상대 결과
@@ -76,7 +107,7 @@ public class BaseBallService {
 			printBoard.add(ballCount[1] + " 볼");
 		}
 		if (printBoard.isEmpty()) {
-			printBoard.add("낫아웃");
+			printBoard.add("낫씽");
 		}
 
 		return String.join(" ", printBoard);
@@ -105,7 +136,26 @@ public class BaseBallService {
 	 * @return 재시작 여부
 	 */
 	public boolean isReplay() {
-		System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		return scanner.nextInt() == 1;
+		String replayValue;
+		do {
+			System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 : ");
+			replayValue = scanner.nextLine();
+
+			if(!isValidReplayInput(replayValue)) {
+				System.out.println("입력값이 잘못 되었습니다. 1 또는 2만 입력하세요!");
+				replayValue = null;
+			}
+		} while (replayValue == null);
+
+		return "1".equals(replayValue);
+	}
+
+	/**
+	 *
+	 * @param replayValue 리플레이 입력값
+	 * @return 유효성 검사
+	 */
+	public boolean isValidReplayInput(String replayValue) {
+		return Arrays.asList("1", "2").contains(replayValue);
 	}
 }
