@@ -20,11 +20,12 @@ public class BaseballSet {
 	}
 
 	public static BaseballSet from(String userInputNumber) {
-		int first = userInputNumber.charAt(0) - '0';
-		int second = userInputNumber.charAt(1) - '0';
-		int third = userInputNumber.charAt(2) - '0';
+		int first = Integer.parseInt(String.valueOf(userInputNumber.charAt(0)));
+		int second = Integer.parseInt(String.valueOf(userInputNumber.charAt(1)));
+		int third = Integer.parseInt(String.valueOf(userInputNumber.charAt(2)));
 		return new BaseballSet(first, second, third);
 	}
+
 
 	public int getFirst() {
 		return first;
