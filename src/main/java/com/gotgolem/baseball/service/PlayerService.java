@@ -62,7 +62,7 @@ public class PlayerService {
 	}
 
 	private boolean containsNonDigit(String str) {
-		return str.matches("^\\D*$");
+		return !str.matches("^\\d*$");
 	}
 
 	private boolean hasDuplicateCharacters(String str) {

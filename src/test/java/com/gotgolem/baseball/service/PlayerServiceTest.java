@@ -45,7 +45,7 @@ public class PlayerServiceTest {
 	@DisplayName("Pitches 객체 생성 예외 테스트")
 	@ParameterizedTest
 	@NullAndEmptySource
-	@ValueSource(strings = {"31a3", "223", "012", "933", "1234", "12"})
+	@ValueSource(strings = {"a14", "43b", "31a3", "223", "012", "933", "1234", "12"})
 	public void whenParsePitchesString_thenThrow(String pitchesString) {
 		assertThatExceptionOfType(PlayerInputException.class)
 				.isThrownBy(() -> service.parsePitchesString(pitchesString));
