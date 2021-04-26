@@ -29,10 +29,10 @@
 - `타자(Batter)`: 시스템에서 입력받은 문자열을 활용한 `볼들(Balls)`을 가진다. (사용자)
 
 - `심판(Referee)`: `선수(Player)`들의 `볼들(Balls)`을 비교하는 역할을 한다.
-    - [ ] `판정(Judgment)`한 결과로 `판정 보고서(Judgment Report)`를 만든다.
-    - [ ] 위치와 숫자가 같다면 `Strike`로 `판정(Judgment)`한다.
-    - [ ] 위치가 다르고 숫자만 같다면 `Ball`로 `판정(Judgment)`한다.
-    - [ ] 그 외에는 `Miss`로 `판정(Judgment)`한다.
+    - [x] `판정(Judgment)`한 결과로 `판정 보고서(Judgment Report)`를 만든다.
+    - [x] 위치와 숫자가 같다면 `Strike`로 `판정(Judgment)`한다.
+    - [x] 위치가 다르고 숫자만 같다면 `Ball`로 `판정(Judgment)`한다.
+    - [x] 그 외에는 `Miss`로 `판정(Judgment)`한다.
 
 - `판정 보고서(Judgment Report)`
     - `판정(Judgment)`에 대한 결과를 나타낸다.
