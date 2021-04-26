@@ -17,7 +17,7 @@ public class BaseballAnswerTest {
 	}
 	
 	@Test
-	@DisplayName("Á¤´ä°ªÀÇ ÀÚ¸´¼ö´Â ¼¼ÀÚ¸® ÀÌ´Ù.")
+	@DisplayName("ì •ë‹µê°’ì˜ ìë¦¿ìˆ˜ëŠ” ì„¸ìë¦¬ ì´ë‹¤.")
 	void answerSizeTest() {
 
 		assertThat(answer.getAnswer().size()).isEqualTo(0);
@@ -29,7 +29,7 @@ public class BaseballAnswerTest {
 	}
 	
 	@Test
-	@DisplayName("Á¤´ä°ªÀº ¼­·Î Áßº¹µÇÁö ¾Ê´Â´Ù.(Set ÀÚ·á±¸Á¶´Â Áßº¹ Çã¿ë ¾ÈÇÔ)")
+	@DisplayName("ì •ë‹µê°’ì€ ì„œë¡œ ì¤‘ë³µë˜ì§€ ì•ŠëŠ”ë‹¤.(Set ìë£Œêµ¬ì¡°ëŠ” ì¤‘ë³µ í—ˆìš© ì•ˆí•¨)")
 	void answerGenerateSizeTest() {
 		
 		answer.generate();
@@ -39,7 +39,7 @@ public class BaseballAnswerTest {
 	}
 	
 	@Test
-	@DisplayName("Á¤´ä°ªÀÇ ¿ä¼Ò´Â 1~9 ¹üÀ§ ÀÌ´Ù.")
+	@DisplayName("ì •ë‹µê°’ì˜ ìš”ì†ŒëŠ” 1~9 ë²”ìœ„ ì´ë‹¤.")
 	void answerNumberShouldBe1To9Test() {
 		
 		answer.generate();

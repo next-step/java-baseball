@@ -8,11 +8,12 @@ import java.util.Set;
 
 
 /**
- * ¼ıÀÚ¾ß±¸ °ÔÀÓ Á¤´ä°ª »ı¼º Å¬·¡½º.
- * »ç¿ë¹æ¹ı : BaseballAnswer answer = new Answer();
+ * ìˆ«ìì•¼êµ¬ ê²Œì„ ì •ë‹µê°’ ìƒì„± í´ë˜ìŠ¤.
+ * ì‚¬ìš©ë°©ë²• : BaseballAnswer answer = new Answer();
  * @author eoz
  * @version 1.0
  */
+
 
 public class BaseballAnswer {
 	private static final int BEGIN_NUMBER = 1;
@@ -20,9 +21,9 @@ public class BaseballAnswer {
 	private static final int BALL_COUNT = 3;
 	
 	/**
-    * ÄÄÇ»ÅÍ°¡ ÀÓÀÇ·Î »ı¼ºÇÑ 3°³ÀÇ Á¤¼ö¸¦ ´ã´Â ÄÃ·º¼Ç
-    * Áßº¹ ÀúÀåÀ» ¹æÁöÇÏ±â À§ÇØ Set ÀÚ·á±¸Á¶ ¼±ÅÃ
-    */
+	* ì»´í“¨í„°ê°€ ì„ì˜ë¡œ ìƒì„±í•œ 3ê°œì˜ ì •ìˆ˜ë¥¼ ë‹´ëŠ” ì»¬ë ‰ì…˜
+	* ì¤‘ë³µ ì €ì¥ì„ ë°©ì§€í•˜ê¸° ìœ„í•´ Set ìë£Œêµ¬ì¡°
+	*/
 	private Set<Integer> answer = new LinkedHashSet<Integer>();
 	
 	public BaseballAnswer() {
@@ -30,7 +31,7 @@ public class BaseballAnswer {
 	}
 
 	/**
-	* 1~9 »çÀÌÀÇ ÀÚ¿¬¼ö 3°³¸¦ ÀÓÀÇ·Î »ı¼ºÇÏ¿© ÀúÀå ÇÑ´Ù.
+	* 1~9 ì‚¬ì´ì˜ ìì—°ìˆ˜ 3ê°œë¥¼ ì„ì˜ë¡œ ìƒì„±í•˜ì—¬ ì €ì¥ í•œë‹¤.
 	*/
 	public void generate() {
 		List<Integer> numberCandidates = getNumberCandidates();
@@ -56,7 +57,8 @@ public class BaseballAnswer {
 	}
 	
 	/**
-	* Á¤´ä°ªÀ» ´Ù½Ã »ı¼ºÇÑ´Ù.
+	* ì •ë‹µê°’ì„ ë‹¤ì‹œ ìƒì„±í•œë‹¤.
+	* @param boolean doReset- true: ì •ë‹µê°’ì„ ë‹¤ì‹œ ìƒì„±í•œë‹¤. false: ë‹¤ì‹œ ìƒì„±í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	*/
 	public void shouldReset(boolean doReset) {	
 		if(doReset) {
