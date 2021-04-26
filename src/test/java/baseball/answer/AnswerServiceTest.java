@@ -26,11 +26,13 @@ class AnswerServiceTest {
 	@DisplayName("컴퓨터가 저장하는 정답이 서로다른 숫자 3개인지 확인")
 	void buildAnswer() {
 		List<Integer> answer = answerService.buildAnswer();
-		HashSet<Integer> answerSet = new HashSet<>(answer);
 
 		assertThat(answer.size())
-			.isEqualTo(BASEBALL_ANSWER_SIZE)
-			.isEqualTo(answerSet.size());
+			.isEqualTo(BASEBALL_ANSWER_SIZE);
+
+		HashSet<Integer> answerSet = new HashSet<>(answer);
+		assertThat(answerSet.size())
+			.isEqualTo(BASEBALL_ANSWER_SIZE);
 	}
 
 }

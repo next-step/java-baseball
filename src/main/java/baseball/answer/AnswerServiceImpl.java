@@ -1,5 +1,7 @@
 package baseball.answer;
 
+import static baseball.BaseBallApplication.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,7 +13,7 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public List<Integer> buildAnswer() {
 		Set<Integer> set = new HashSet<>();
-		while (set.size() < 3) {
+		while (set.size() < BALL_COUNT) {
 			int random = (int)(Math.random() * 8) + 1;
 			set.add(random);
 		}
