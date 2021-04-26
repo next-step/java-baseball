@@ -2,6 +2,7 @@ plugins {
     id 'org.ec4j.editorconfig' version '0.0.3'
 }
 
+apply plugin: 'checkstyle'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
@@ -25,3 +26,9 @@ editorconfig {
     excludes = ['build']
 }
 check.dependsOn editorconfigCheck
+
+checkstyle {
+    maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
+    configFile = file("${rootDir}/naver-chestyle-rules.xml")
+    toolVersion ="8.24"  // checkstyle 버전 8.24 이상 선언
+}
