@@ -2,54 +2,67 @@ package com.baseball.rule;
 
 import java.util.ArrayList;
 
-import com.baseball.exception.GameException;
-import com.baseball.message.ValidateMessage;
-
 public class BallComparator {
 
-	private final static int LENGTH = 3;
+	private ArrayList<Integer> generatorNumbers;
+	private ArrayList<Integer> playerNumbers;
 
-	private String inputText;
-	private ArrayList<Integer> inputNumbers;
+	private int strike;
+	private int ball;
 
-	private ArrayList<Integer> generatedNumbers;
+	public BallComparator(ArrayList<Integer> generatorNumbers, ArrayList<Integer> playerNumbers) {
+		this.generatorNumbers = generatorNumbers;
+		this.playerNumbers = playerNumbers;
 
-	public BallComparator(String inputText, ArrayList<Integer> generatedNumbers) {
-		this.inputText = inputText.trim();
-		this.generatedNumbers = generatedNumbers;
-
-		validateInputText();
+		strike = 0;
+		ball = 0;
 	}
 
-	private void convertStringToIntList() {
-		String[] inputCharacters = this.inputText.split("");
-		this.inputNumbers = new ArrayList<Integer>();
-
-		for (String inputCharacter : inputCharacters) {
-			this.inputNumbers.add(Integer.parseInt(inputCharacter));
+	public void compareNumbers() {
+		for (int i = 0; i < generatorNumbers.size(); i++) {
+			countStrike(i);
+			countBall(i, generatorNumbers.get(i));
 		}
 	}
 
-	public void validateInputText() {
-		if (!isProperLength()) {
-			//GameException.throwValidationException(ValidateMessage.LENGTH);
-		}
-		if (!isNumeric()) {
-			//GameException.throwValidationException(ValidateMessage.NUMERIC);
+	private void countBall(int i, Integer generatorNumber) {
+		ArrayList<Integer> comparePlayerNumbers = new ArrayList<>(playerNumbers);
+		comparePlayerNumbers.remove(i);
+		if (comparePlayerNumbers.contains(generatorNumber)) {
+			ball++;
 		}
 	}
 
-	public boolean isProperLength() {
-		return this.inputText.length() == LENGTH;
+	private void countStrike(int i) {
+		if (generatorNumbers.get(i).equals(playerNumbers.get(i))) {
+			strike++;
+		}
 	}
 
-	public boolean isNumeric() {
-		try {
-			Integer.parseInt(this.inputText);
-		} catch (NumberFormatException e) {
-			return false;
+	public int getStrike() {
+		return strike;
+	}
+
+	public int getBall() {
+		return ball;
+	}
+
+	public String getResultMessage() {
+		String message = "";
+		if (strike == 0 && ball == 0) {
+			return "낫싱";
 		}
-		return true;
+		if (strike > 0) {
+			message += strike + " 스트라이크 ";
+		}
+		if (ball > 0) {
+			message += ball + " 볼 ";
+		}
+		return message;
+	}
+
+	public boolean isStrikeOut() {
+		return strike == 3;
 	}
 
 }
