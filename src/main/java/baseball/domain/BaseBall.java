@@ -19,6 +19,9 @@ public class BaseBall implements Iterable<Ball> {
     }
 
     public static BaseBall of(String numbers) {
+        if (numbers.length() != 3) {
+            throw new NoThreeDigitException("세자리 숫자를 입력해주세요.");
+        }
         List<Ball> balls = numbers.chars()
             .mapToObj(number -> Ball.of(String.valueOf((char) number)))
             .distinct()
