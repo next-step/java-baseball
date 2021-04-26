@@ -29,15 +29,20 @@ public class GenerateGameNumber {
 		Random random = new Random();
 		for (int i = 0; i < gameBallLength; i++){
 			int aRandomNumber = random.nextInt(9)+1;
-			setBallValueNumber(randomBalls,aRandomNumber);
+			i += checkDuplicate(randomBalls,aRandomNumber) ? 0 : -1;
 		}
 		return randomBalls;
 	}
-
-	private void setBallValueNumber(List<Ball> randomBalls, int aRandomNumber) {
-		if(!randomBalls.contains(aRandomNumber)){
-			Ball aBall = new Ball(aRandomNumber);
-			randomBalls.add(aBall);
+	private boolean checkDuplicate(List<Ball> randomBalls, int aRandomNumber){
+		Ball aBall = new Ball(aRandomNumber);
+		if(!randomBalls.contains(aBall)){
+			setBallValueNumber(randomBalls, aBall);
+			return true;
 		}
+		return false;
+	}
+
+	private void setBallValueNumber(List<Ball> randomBalls, Ball aBall) {
+		randomBalls.add(aBall);
 	}
 }
