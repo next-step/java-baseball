@@ -74,7 +74,7 @@ public class BallCounter {
         return noting;
     }
 
-    public boolean getIsFinish() {return isFinish; }
+    public boolean isFinish() {return isFinish; }
 
     public void printMessage() {
 
