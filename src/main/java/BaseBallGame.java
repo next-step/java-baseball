@@ -49,7 +49,9 @@ public class BaseBallGame {
             // answer[i]
         }
 
-        if (strike == 3) {
+        message.getResult(this.strike, this.ball);
+
+        if (this.strike == 3) {
             message.gameOver();
         }
     }
