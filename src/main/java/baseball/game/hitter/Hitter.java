@@ -10,9 +10,11 @@ public class Hitter {
 
     private final GameBall gameBall;
 
+    // 안정성을 위한 trade-off
     public Hitter(GameBall gameBall) {
         this.gameBall = gameBall;
     }
+
 
     public String swing() {
         return gameBall.toString();

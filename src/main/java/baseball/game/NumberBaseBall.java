@@ -26,7 +26,7 @@ public class NumberBaseBall {
         boolean isRunning = true;
         while (isRunning) {
 
-            referee.playBall(ground);
+            ground.update(referee);
             isRunning = onEventInput();
         }
         uiSystem.display("게임을 종료합니다");

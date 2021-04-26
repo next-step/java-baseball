@@ -1,6 +1,5 @@
 package baseball.game.referee;
 
-import baseball.game.ground.Ground;
 import baseball.game.scoreBoard.ScoreBoard;
 
 import java.util.ArrayList;
@@ -79,10 +78,5 @@ public class Referee {
         decorateScoreCount("%d 스트라이크", strikeCount, scoringList);
         decorateScoreCount("%d 볼", ballCount, scoringList);
         return String.join(" ", scoringList);
-    }
-
-    public void playBall(Ground ground) {
-
-        ground.update(this);
     }
 }

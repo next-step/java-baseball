@@ -11,24 +11,25 @@ public class Ground {
 
     private boolean playing = false;
     private final UiSystem uiSystem;
-
-    private Pitcher pitcher;
+    private final Pitcher pitcher;
     private Hitter hitter;
 
 
     public Ground(UiSystem uiSystem) {
         this.uiSystem = uiSystem;
+        this.pitcher = new Pitcher(uiSystem);
+        this.hitter = new Hitter(GameBall.create());
     }
 
-    /**
-     * 데이터 초기화
-     */
+
     private void init() {
-        this.pitcher = new Pitcher(uiSystem);
         this.hitter = new Hitter(GameBall.create());
         this.playing = true;
     }
 
+    // 플레이시 hitter 데이터가 두번 생성 되지만 trade off
+    // 재시작 및 테스트에 대한 무결성 & 유연함이 보장됨
+    // 성능이 느려진다면 생각할 부분, 이런 코드에서는 아니다
     public void update(Referee referee) {
 
         init();
@@ -42,6 +43,5 @@ public class Ground {
 
             this.playing = referee.nextPlay();
         }
-
     }
 }

@@ -19,6 +19,10 @@ public enum Command {
 		return command;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	/**
 	 * 명령이 존재하는지 검증
 	 *
