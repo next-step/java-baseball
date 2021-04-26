@@ -63,6 +63,7 @@ public class GameUtils {
 		checkBall(currentGame, input, 0);
 		result(currentGame);
 		exitGame(restart(currentGame));
+		isRestart();
 	}
 
 	private void checkStrike(Game game, String sInput, int index) {
@@ -114,6 +115,13 @@ public class GameUtils {
 			return scanner.nextLine();
 		}
 		return "";
+	}
+
+	private void isRestart() {
+		if (isRestart) {
+			this.currentGame = Game.createGame();
+			this.isRestart = false;
+		}
 	}
 
 	public boolean isEnd() {
