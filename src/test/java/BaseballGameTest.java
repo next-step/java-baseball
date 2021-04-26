@@ -51,4 +51,18 @@ public class BaseballGameTest {
 		return result;
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"1:3:0", "1:1:1"}, delimiter = ':')
+	@DisplayName("스트라이크 테스트")
+	public void checkStrikeTest(String randomNumber, String insertNumber, int expected) {
+		assertThat(checkStrike(randomNumber, insertNumber)).isEqualTo( expected );
+	}
+	
+	private int checkStrike(String randomNumber, String insertNumber) {
+		if (randomNumber.equals(insertNumber)) {
+			return 1;
+		}
+		return 0;
+	}
+	
 }

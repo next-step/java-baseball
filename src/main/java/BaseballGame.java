@@ -72,4 +72,19 @@ public class BaseballGame {
 		return insertText.matches(regExp);
 	}
 	
+	/**
+	 * 스트라이크를 체크합니다.
+	 *
+	 * @param randomNumberArr
+	 * @param insertNumberArr
+	 * @return int
+	 */
+	private int checkStrike(int index, String[] randomNumberArr, String[] insertNumberArr) {
+		if (randomNumberArr[index].equals(insertNumberArr[index])) {
+			return 1;
+		}
+		
+		return 0;
+	}
+	
 }
