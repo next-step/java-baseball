@@ -1,5 +1,8 @@
 package basballgame.ui.output;
 
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 import basballgame.game.BaseballResult;
 import basballgame.ui.GameMessages;
 import basballgame.ui.HintMessages;
@@ -15,21 +18,15 @@ public class Output {
 		println(GameMessages.GAME_OVER_TEXT);
 	}
 	public static void baseballResultPrint(BaseballResult result){
-			if (result.isNothing()) {
-				Output.println(HintMessages.NOTHING_TEXT);
-				return;
-			}
+		printlnWithCondition(result::isNothing, HintMessages.NOTHING_TEXT);
+		printlnWithCondition(result::onlyStrike, HintMessages.strikeMessage(result.getStrike()));
+		printlnWithCondition(result::onlyBall, HintMessages.ballMessage(result.getBall()));
+		printlnWithCondition(result::isStrikeAndBall, HintMessages.strikeAndBallMessage(result.getStrike(), result.getBall()));
+	}
 
-			if (result.onlyStrike()) {
-				Output.println(HintMessages.strikeMessage(result.getStrike()));
-				return;
-			}
-
-			if (result.onlyBall()) {
-				Output.println(HintMessages.ballMessage(result.getBall()));
-				return;
-			}
-
-			Output.println(HintMessages.strikeAndBallMessage(result.getStrike(), result.getBall()));
+	private static void printlnWithCondition(Supplier<Boolean> result, String messages) {
+		if (result.get()) {
+			Output.println(messages);
+		}
 	}
 }

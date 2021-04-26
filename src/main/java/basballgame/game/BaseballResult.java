@@ -29,6 +29,10 @@ public class BaseballResult {
 		return this.strike == 0 && this.ball == 0;
 	}
 
+	public boolean isStrikeAndBall() {
+		return this.strike > 0 && this.ball > 0;
+	}
+
 	public boolean isCorrectAnswer() {
 		return this.getStrike() == 3;
 	}
