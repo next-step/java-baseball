@@ -26,7 +26,7 @@ public class RefereeTest {
 	@DisplayName("User 가 입력한 숫자에 맞게 스트라이크 개수가 세어지는지 테스트.")
 	void countStrike() {
 		String userInput = "134";
-		BaseBallResult baseBallResult = referee.judgeBall(answerList, userInput);
+		BaseBallResult baseBallResult = referee.getResult(answerList, userInput);
 		assertEquals(baseBallResult.getStrikeCount(), 1);
 	}
 
@@ -34,7 +34,7 @@ public class RefereeTest {
 	@DisplayName("User 가 입력한 숫자에 맞게 볼 개수가 세어지는지 테스트.")
 	void countBall() {
 		String userInput = "345";
-		BaseBallResult baseBallResult = referee.judgeBall(answerList, userInput);
+		BaseBallResult baseBallResult = referee.getResult(answerList, userInput);
 		assertEquals(baseBallResult.getBallCount(), 1);
 	}
 
@@ -42,7 +42,7 @@ public class RefereeTest {
 	@DisplayName("User 가 입력한 숫자에 스트라이크와, 볼이 없으면 낫싱인지 테스트.")
 	void isZeroStrikeAndBallThenNothing() {
 		String userInput = "456";
-		BaseBallResult baseBallResult = referee.judgeBall(answerList, userInput);
+		BaseBallResult baseBallResult = referee.getResult(answerList, userInput);
 		assertTrue(baseBallResult.isNothing());
 	}
 }
