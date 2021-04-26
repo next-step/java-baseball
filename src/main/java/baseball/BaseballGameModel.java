@@ -7,13 +7,24 @@ import java.util.List;
 
 public final class BaseballGameModel {
 
+
+    public static final String GAME_RESTART = "1";
+    public static final String GAME_EXIT = "2";
     public static final int NUMBER_SIZE = 3;
 
     private String userInput;
     private String target;
+    private final NumberGenerator numberGenerator;
+    private boolean isRoundFinished = false;
+    private boolean isEnd = true;
 
     public BaseballGameModel(String userInput, NumberGenerator numberGenerator) {
+        this(numberGenerator);
         setUserInput(userInput);
+    }
+
+    public BaseballGameModel(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
         setTarget(numberGenerator.create());
     }
 
@@ -26,7 +37,7 @@ public final class BaseballGameModel {
     }
 
     public String userInput() {
-        if (hasThreeLength(userInput) == false || isOnlyInteger(userInput) == false) {
+        if (hasValidIntegerNumber(userInput) == false) {
             throw new IllegalArgumentException("3자리 숫자만 허용합니다.");
         }
 
@@ -34,31 +45,36 @@ public final class BaseballGameModel {
     }
 
     private String target() {
-        if (hasThreeLength(target) == false || isOnlyInteger(target) == false) {
+        if (hasValidIntegerNumber(target) == false) {
             throw new IllegalArgumentException("3자리 숫자만 허용합니다.");
         }
 
         return target;
     }
 
-    private boolean hasThreeLength(String userInput) {
-        return userInput.length() == NUMBER_SIZE;
+    private boolean hasValidIntegerNumber(String numberStr) {
+
+        char[] chars = numberStr.toCharArray();
+
+        return hasValidLength(numberStr)
+                && Character.isDigit(chars[0])
+                && Character.isDigit(chars[1])
+                && Character.isDigit(chars[2]);
     }
 
-    private boolean isOnlyInteger(String userInput) {
-        char[] chars = userInput.toCharArray();
-        for (char aChar : chars) {
-            if (Character.isDigit(aChar) == false) {
-                return false;
-            }
-        }
-        return true;
+    private boolean hasValidLength(String numberStr) {
+        return numberStr.length() == NUMBER_SIZE;
     }
 
     public int[] guessNumber() {
         List<Character> inputList = convertStrToList(userInput());
         List<Character> targetList = convertStrToList(target());
-        return comparing(inputList, targetList);
+        int[] result = comparing(inputList, targetList);
+        int strike = result[0];
+        if (strike == NUMBER_SIZE) {
+            isRoundFinished = true;
+        }
+        return result;
     }
 
     private int[] comparing(List<Character> input, List<Character> targetList) {
@@ -94,8 +110,9 @@ public final class BaseballGameModel {
     public String printBallCountMessages(int strike, int ball) {
         StringBuilder sb = new StringBuilder();
 
-        if (hasNonCount(strike, ball))
+        if (hasNonCount(strike, ball)) {
             return sb.append("낫씽").toString();
+        }
 
         appendMessageIfExists(strike, ball, sb, strike + " 스트라이크");
         appendMessageIfExists(ball, sb, ball + " 볼");
@@ -122,5 +139,40 @@ public final class BaseballGameModel {
 
     private boolean hasNonCount(int strike, int ball) {
         return strike == 0 && ball == 0;
+    }
+
+    public boolean isRoundFinished() {
+        if (isRoundFinished) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료.");
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        }
+        return isRoundFinished;
+    }
+
+    public void restart() {
+        setTarget(numberGenerator.create());
+        isRoundFinished = false;
+        isEnd = true;
+    }
+
+    public boolean isEnd() {
+        return isEnd;
+    }
+
+    public void end() {
+        isEnd = false;
+    }
+
+    public void selectGame(String option) {
+        option = option.trim();
+        if (option.equals(GAME_RESTART)) {
+            this.restart();
+            return;
+        }
+        if (option.equals(GAME_EXIT)) {
+            this.end();
+            return;
+        }
+        throw new IllegalArgumentException("1 또는 2를 입력하세요.");
     }
 }

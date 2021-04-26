@@ -10,6 +10,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,6 +20,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.any;
 
 class BaseballGameModelTest {
+
+    private static final String USER_INPUT = "123";
 
     BaseballGameModel sut;
     NumberGenerator numberGenerator;
@@ -28,16 +33,14 @@ class BaseballGameModelTest {
 
     @Test
     void 사용자로부터_값을_입력받는다() {
-        String userInput = "123";
-        sut = new BaseballGameModel(userInput, numberGenerator);
+        sut = new BaseballGameModel(USER_INPUT, numberGenerator);
         String value = sut.userInput();
-        assertThat(value).isEqualTo(userInput);
+        assertThat(value).isEqualTo(USER_INPUT);
     }
 
     @Test
     void 사용자로부터_입력받은_값은_3자리_숫자여야한다() {
-        String _123 = "123";
-        sut = new BaseballGameModel(_123, numberGenerator);
+        sut = new BaseballGameModel(USER_INPUT, numberGenerator);
         String value = sut.userInput();
         char[] chars = value.toCharArray();
         for (char c : chars) {
@@ -49,7 +52,9 @@ class BaseballGameModelTest {
     @ValueSource(strings = {"1", "12", "1234"})
     void 사용자_값이_3자리_숫자가_아닐경우_IllegalArgumentException_을_던진다(String input) {
         sut = new BaseballGameModel(input, numberGenerator);
-        assertThatThrownBy(() -> sut.userInput()).isInstanceOf(IllegalArgumentException.class).hasMessageMatching("3자리 숫자만 허용합니다.");
+        assertThatThrownBy(() -> sut.userInput())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("3자리 숫자만 허용합니다.");
     }
 
     @ParameterizedTest(name = "[{index}] 사용자값 {argumentsWithNames}가 숫자가 아닐 경우 IllegalArgumentException 발생한다 ")
@@ -90,7 +95,7 @@ class BaseballGameModelTest {
                 Arguments.of("123", "134", "1", "1", "한 자리 일치, 한 자리 위치 불일치"),
                 Arguments.of("123", "342", "0", "2", "두 자리 위치 불일치"),
                 Arguments.of("134", "125", "1", "0", "한 자리 일치"),
-                Arguments.of("134", "356", "0", "1","한 자리 위치 불일치"),
+                Arguments.of("134", "356", "0", "1", "한 자리 위치 불일치"),
                 Arguments.of("134", "677", "0", "0", "모든 자리 불일치")
         );
     }
@@ -115,5 +120,60 @@ class BaseballGameModelTest {
                 Arguments.of("0", "1", "1 볼"),
                 Arguments.of("0", "0", "낫씽")
         );
+    }
+
+    @Test
+    void _3_스트라이크시_게임을_종료() {
+        init(USER_INPUT, "123");
+        assertThat(sut.isRoundFinished()).isFalse();
+
+        sut.guessNumber();
+        assertThat(sut.isRoundFinished()).isTrue();
+    }
+
+    @Test
+    void 게임_종료_후_종료_메세지_출력() {
+        init(USER_INPUT, "123");
+        assertThat(sut.isRoundFinished()).isFalse();
+
+        OutputStream os = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(os);
+        System.setOut(out);
+
+        sut.guessNumber();
+        assertThat(sut.isRoundFinished()).isTrue();
+        assertThat(sut.isEnd()).isTrue();
+
+        assertThat("3개의 숫자를 모두 맞히셨습니다! 게임종료.\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n")
+                .isEqualTo(os.toString());
+    }
+
+    @Test
+    void 문제를_맞추고_나서_게임_종료() {
+        roundOneGameExit();
+
+        sut.selectGame(BaseballGameModel.GAME_RESTART);
+        assertThat(sut.isEnd()).isFalse();
+    }
+
+    @Test
+    void 문제를_맞추고_나서_게임_재시작() {
+        roundOneGameExit();
+
+        sut.selectGame(BaseballGameModel.GAME_RESTART);
+        assertThat(sut.isEnd()).isTrue();
+        assertThat(sut.isRoundFinished()).isFalse();
+    }
+
+    private void roundOneGameExit() {
+        init("124", "123");
+        assertThat(sut.isRoundFinished()).isFalse();
+        sut.guessNumber();
+
+        sut.setUserInput(USER_INPUT);
+        sut.guessNumber();
+
+        assertThat(sut.isRoundFinished()).isTrue();
+        assertThat(sut.userInput()).isEqualTo(USER_INPUT);
     }
 }

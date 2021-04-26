@@ -1,5 +1,6 @@
 package baseball.numbergenerator;
 
+import baseball.BaseballGameModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,7 +37,7 @@ class ThreeNumberGeneratorTest {
     @Test
     void 랜덤으로_숫자_3개_를_만든다() {
         String numbers = sut.create();
-        assertThat(numbers.length()).isEqualTo(3);
+        assertThat(numbers.length()).isEqualTo(BaseballGameModel.NUMBER_SIZE);
 
         for (int i = 0; i < numbers.length(); i++) {
             char actual = numbers.charAt(i);
@@ -47,7 +48,7 @@ class ThreeNumberGeneratorTest {
     @Test
     void 랜덤으로_만들어진숫자는_각_자리_수가_1_9까지의_숫자를_가진다() {
         String numbers = sut.create();
-        assertThat(numbers.length()).isEqualTo(3);
+        assertThat(numbers.length()).isEqualTo(BaseballGameModel.NUMBER_SIZE);
 
         for (int i = 0; i < numbers.length(); i++) {
             char actual = numbers.charAt(i);
@@ -71,6 +72,6 @@ class ThreeNumberGeneratorTest {
             char actual = numbers.charAt(j);
             set.add(actual);
         }
-        assertThat(set.size()).isEqualTo(3);
+        assertThat(set.size()).isEqualTo(BaseballGameModel.NUMBER_SIZE);
     }
 }
