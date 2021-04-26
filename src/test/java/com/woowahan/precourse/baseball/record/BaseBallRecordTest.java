@@ -16,15 +16,34 @@ class BaseBallRecordTest {
     }
 
     @Test
-    @DisplayName("같은 자리의 수가 동일하면 strike count가 증가하고 같은 자리는 아니지만 숫자를 포함하고 있으면 ball count 증가")
-    void doRecordTest() {
+    @DisplayName("doStrike() 실행 시 strikeCount가 1씩 증가 한다.")
+    void doStrikeTest() {
 
-        String[] gameNumber = new String[]{"3", "5", "4"};
-        String[] inputNumber = new String[]{"2", "3", "4"};
+        // given
+        baseBallRecord.doStrike();
+        baseBallRecord.doStrike();
+        baseBallRecord.doStrike();
 
-        baseBallRecord.doRecord(gameNumber, inputNumber);
+        // when
+        int strikeCount = baseBallRecord.getStrikeCount();
 
-        assertThat(baseBallRecord.getStrikeCount()).isEqualTo(1);
-        assertThat(baseBallRecord.getBallCount()).isEqualTo(1);
+        //then
+        assertThat(strikeCount).isEqualTo(3);
+    }
+
+
+    @Test
+    @DisplayName("doBall() 실행 시 ballCount가 1씩 증가 한다.")
+    void doBallTest() {
+
+        // given
+        baseBallRecord.doBall();
+        baseBallRecord.doBall();
+
+        // when
+        int ballCount = baseBallRecord.getBallCount();
+
+        //then
+        assertThat(ballCount).isEqualTo(2);
     }
 }
