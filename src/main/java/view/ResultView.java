@@ -4,14 +4,14 @@ import domain.Score;
 
 public class ResultView {
     public void printScore(Score score) {
-        System.out.println(scroeToString(score));
+        System.out.println(scoreToString(score));
     }
 
     public void printFinish() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
 
-    private String scroeToString(Score score) {
+    private String scoreToString(Score score) {
         StringBuilder builder = new StringBuilder();
 
         if (score.strike() > 0) {

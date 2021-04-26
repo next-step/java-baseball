@@ -1,16 +1,12 @@
 package util;
 
-import view.InputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class RandomGenerator {
     private static final int MAX_NUMBER = 9;
     private static final int MIN_NUMBER = 1;
-    private static final Random random = new Random();
 
     private final List<Integer> numbers;
 

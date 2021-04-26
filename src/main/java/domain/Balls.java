@@ -7,9 +7,10 @@ import java.util.List;
 
 public class Balls {
     private static final String SIZE_ERROR = "숫자볼 개수는 3 입니다";
+    private static final String DUPLICATE_ERROR = "중복되는 숫자가 존재합니다.";
     private static final int SIZE = 3;
 
-    private final List<Ball> numberBalls;
+    private final List<Ball> balls;
 
     public Balls() {
         this(createRandomBalls());
@@ -19,17 +20,10 @@ public class Balls {
         this(createInputBalls(inputText));
     }
 
-    public Balls(List<Ball> numberBalls) {
-        validSize(numberBalls);
-        this.numberBalls = numberBalls;
-    }
-
-    public boolean isSize(int size) {
-        return numberBalls.size() == size;
-    }
-
-    public int size() {
-        return numberBalls.size();
+    public Balls(List<Ball> balls) {
+        validSize(balls);
+        validDuplicate(balls);
+        this.balls = balls;
     }
 
     public Score matchToScore(Balls inputBalls) {
@@ -37,23 +31,23 @@ public class Balls {
         int ball = 0;
 
         for (int i = 0; i < SIZE; i++) {
-            boolean isStrike = inputBalls.isStrike(i, numberBalls.get(i));
+            boolean isStrike = inputBalls.isStrike(i, balls.get(i));
             strike = isStrike ? strike + 1 : strike;
-            ball = inputBalls.isBall(i, numberBalls.get(i), isStrike) ? ball + 1 : ball;
+            ball = inputBalls.isBall(i, balls.get(i), isStrike) ? ball + 1 : ball;
         }
 
         return new Score(strike, ball);
     }
 
-    private boolean isBall(int i, Ball numberBall, boolean isStrike) {
+    private boolean isBall(int i, Ball pitchBall, boolean isStrike) {
         if (!isStrike) {
-            return numberBalls.contains(numberBall);
+            return balls.contains(pitchBall);
         }
         return false;
     }
 
     private boolean isStrike(int index, Ball pitchBall) {
-        return numberBalls.get(index).equals(pitchBall);
+        return balls.get(index).equals(pitchBall);
     }
 
     private static List<Ball> createInputBalls(String inputText) {
@@ -74,6 +68,21 @@ public class Balls {
             result.add(new Ball(randomGenerator.indexToValue(i)));
         }
         return result;
+    }
+
+    private void validDuplicate(List<Ball> balls) {
+        int count = 0;
+        Ball firstBall = balls.get(0);
+        for (int i = 1; i < SIZE; i++) {
+            count = isDuplicate(firstBall, balls.get(i)) ? count + 1 : count;
+        }
+        if (count > 0) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
+        }
+    }
+
+    private boolean isDuplicate(Ball firstBall, Ball other) {
+        return firstBall.equals(other);
     }
 
     private void validSize(List<Ball> numberBalls) {

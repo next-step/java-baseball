@@ -13,13 +13,6 @@ import static org.assertj.core.api.Assertions.*;
 @DisplayName("숫자볼 모음")
 public class BallsTest {
 
-    @Test
-    @DisplayName("게임 시작 시 생성되는 숫자볼은 3개")
-    public void ballsSizeThree() throws Exception {
-        Balls balls = new Balls();
-        assertThat(balls.isSize(3)).isTrue();
-    }
-
     @ParameterizedTest
     @ValueSource(ints = {1,2,4})
     @DisplayName("볼 사이즈 3개 예외 확인")
@@ -32,4 +25,14 @@ public class BallsTest {
         assertThatThrownBy(() -> new Balls(result))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"112", "121", "998"})
+    @DisplayName("중복번호 예외 확인")
+    public void duplicateException(String inputText) throws Exception {
+        assertThatThrownBy(() -> new Balls(inputText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }
