@@ -13,7 +13,7 @@ class PitcherTest {
 	@RepeatedTest(100)
 	void testPitches() {
 		Pitcher pitcher = new Pitcher();
-		Set<Integer> pitches = pitcher.pitches(3);
+		Set<Integer> pitches = pitcher.pitch(3);
 
 		assertThat(pitches).hasSize(3)
 			.doesNotHaveDuplicates()
