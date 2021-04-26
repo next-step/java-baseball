@@ -8,9 +8,11 @@ import java.util.List;
 public final class Referee {
 
 	private static final int STRIKEOUT = Deck.SIZE;
+	private static final int COUNT = 1;
+	private static final int PASS = 0;
 
 	private static int count(int left, int right) {
-		return left == right ? 1 : 0;
+		return left == right ? COUNT : PASS;
 	}
 
 	public static int countEquals(Iterator<Integer> left, Iterator<Integer> right) {

@@ -47,7 +47,7 @@ public class RefereeTest {
 	@DisplayName("정답: 스트라이크 3")
 	@Test
 	void isAnswer() {
-		assertThat(Referee.isAnswer(3)).isTrue();
+		assertThat(Referee.isAnswer(Deck.SIZE)).isTrue();
 	}
 
 	@DisplayName("낫싱: 스트라이크 0, 볼 0")

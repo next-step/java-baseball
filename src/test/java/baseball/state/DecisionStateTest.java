@@ -2,6 +2,7 @@ package baseball.state;
 
 import static org.assertj.core.api.Assertions.*;
 
+import baseball.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class DecisionStateTest {
 	@DisplayName("정답이면 메뉴로 돌아간다.")
 	@Test
 	void isAnswer() {
-		decisionState.isAnswer(3);
+		decisionState.isAnswer(Deck.SIZE);
 		assertThat(game.currentState().getClass()).isEqualTo(MenuState.class);
 	}
 

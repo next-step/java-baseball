@@ -28,7 +28,6 @@ public final class Converter {
 		}
 
 		Collections.reverse(list);
-
 		return list;
 	}
 
