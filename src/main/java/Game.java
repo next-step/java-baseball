@@ -12,15 +12,6 @@ public class Game {
         return playerList;
     }
 
-    private static Dealer createDealer() {
-        Dealer dealer = new Dealer();
-        while (!Rule.isValid(dealer.getList())) {
-            dealer = new Dealer();
-        }
-
-        return dealer;
-    }
-
     private static int[] askPlayerList() {
         System.out.println("숫자를 입력해주세요 : ");
         int input = scanner.nextInt();
@@ -38,7 +29,7 @@ public class Game {
     }
 
     private static void play() {
-        Dealer dealer = createDealer();
+        Dealer dealer = new Dealer();
         Judge judge = new Judge();
 
         while (!Rule.doesWin(judge)) {

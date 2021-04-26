@@ -32,7 +32,10 @@ public class Dealer {
     }
 
     public Dealer() {
-        pickNumbers();
         numList = pickNumbers();
+
+        while (!Rule.isValid(numList)) {
+            numList = pickNumbers();
+        }
     }
 }
