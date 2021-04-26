@@ -48,4 +48,39 @@ class BaseballGameTest {
         }).isInstanceOf(StringIndexOutOfBoundsException.class)
                 .hasMessageContaining("String index out of range: 0");
     }
+
+    @DisplayName("게임 결과 확인")
+    @ParameterizedTest
+    @CsvSource({"436,987,낫싱", "436,463,1 스트라이크 2 볼", "528,528,3 스트라이크"})
+    void calculateResult(String randomNumber, String userNumber, String result) {
+        List<Integer> random = baseballGame.toIntegerList(randomNumber);
+        List<Integer> user = baseballGame.toIntegerList(userNumber);
+
+        BaseballResult baseballResult = baseballGame.calculateResult(random, user);
+        assertThat(baseballResult.toString()).isEqualTo(result);
+    }
+
+    @DisplayName("스트라이크 판별 함수 확인")
+    @ParameterizedTest
+    @CsvSource({"1,1,1", "1,9,0", "3,2,0"})
+    void checkStrike(int randomNumber, int userNumber, int result) {
+        int resultStrike = baseballGame.checkStrike(randomNumber,userNumber);
+        assertThat(resultStrike).isEqualTo(result);
+    }
+
+    @DisplayName("볼 판별 함수 확인")
+    @ParameterizedTest
+    @CsvSource({"1,132,1,1", "1,254,2,0", "3,223,0,1"})
+    void checkBall(int randomNumber, String userNumber, int index, int result) {
+        int resultBall = baseballGame.checkBall(randomNumber, baseballGame.toIntegerList(userNumber), index);
+        assertThat(resultBall).isEqualTo(result);
+    }
+
+    @DisplayName("결과 문구 출력 확인")
+    @ParameterizedTest
+    @CsvSource({"0,0,낫싱", "3,3,3 스트라이크", "2,1,2 스트라이크 1 볼"})
+    void printResult(int strike, int ball, String result) {
+        BaseballResult baseballResult = new BaseballResult(strike, ball);
+        assertThat(baseballResult.toString()).isEqualTo(result);
+    }
 }
