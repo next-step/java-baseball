@@ -16,14 +16,16 @@ class ComputerTest {
   @DisplayName("컴퓨터는 3자리 숫자를 가지를 생성한다.")
   void generate() {
     // given
-    NumbersRule rule = () -> Arrays.asList(1, 2, 3);
+    NumbersRule rule = () -> Arrays.asList(Number.create(1),
+            Number.create(2),
+            Number.create(3));
 
     // when
     Computer computer = Computer.generate(rule);
 
     // then
     assertThat(computer.getValues())
-            .containsExactly(1, 2, 3);
+            .containsExactly(Number.create(1), Number.create(2), Number.create(3));
   }
 
   @Test
@@ -33,7 +35,7 @@ class ComputerTest {
                       .isThrownBy(() -> Computer.generate(() -> null))
                       .withMessageMatching("\\d+ 자릿수가 아닙니다."),
               () -> assertThatIllegalArgumentException()
-                      .isThrownBy(() -> Computer.generate(() -> Arrays.asList(1, 2)))
+                      .isThrownBy(() -> Computer.generate(() -> Arrays.asList(Number.create(1), Number.create(2))))
                       .withMessageMatching("\\d+ 자릿수가 아닙니다."));
   }
 }

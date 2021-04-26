@@ -10,25 +10,25 @@ public class Computer {
   private static final int DIGIT = 3;
   private static final String ERROR_DIGIT_FORMAT = "%d 자릿수가 아닙니다.";
 
-  private final List<Integer> values;
+  private final List<Number> values;
 
-  private Computer(List<Integer> values) {
+  private Computer(List<Number> values) {
     this.values = Collections.unmodifiableList(values);
   }
 
   public static Computer generate(NumbersRule numbersRule) {
-    List<Integer> values = numbersRule.get();
+    List<Number> values = numbersRule.get();
     checkDigit(values);
     return new Computer(values);
   }
 
-  private static void checkDigit(List<Integer> values) {
+  private static void checkDigit(List<Number> values) {
     if (values == null || values.size() != DIGIT) {
       throw new IllegalArgumentException(String.format(ERROR_DIGIT_FORMAT, DIGIT));
     }
   }
 
-  public List<Integer> getValues() {
+  public List<Number> getValues() {
     return values;
   }
 
