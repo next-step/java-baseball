@@ -10,11 +10,11 @@ public class Ball {
     private final int numberBall;
 
     public Ball(int number) {
-        validRange(number);
+        validNumberRange(number);
         this.numberBall = number;
     }
 
-    private void validRange(int number) {
+    private void validNumberRange(int number) {
         if (number < MIN_NUMBER
                 || MAX_NUMBER < number) {
             throw new IllegalArgumentException(RANGE_ERROR);

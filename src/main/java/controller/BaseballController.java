@@ -21,11 +21,8 @@ public class BaseballController {
 
         while (!isFinish) {
             Balls inputBalls = inputView.balls();
-
             Score score = randomBalls.matchToScore(inputBalls);
-
             resultView.printScore(score);
-
             isFinish = isFinish(score);
         }
     }

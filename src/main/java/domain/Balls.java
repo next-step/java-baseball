@@ -33,13 +33,13 @@ public class Balls {
         for (int i = 0; i < SIZE; i++) {
             boolean isStrike = inputBalls.isStrike(i, balls.get(i));
             strike = isStrike ? strike + 1 : strike;
-            ball = inputBalls.isBall(i, balls.get(i), isStrike) ? ball + 1 : ball;
+            ball = inputBalls.isBall(isStrike, balls.get(i)) ? ball + 1 : ball;
         }
 
         return new Score(strike, ball);
     }
 
-    private boolean isBall(int i, Ball pitchBall, boolean isStrike) {
+    private boolean isBall(boolean isStrike, Ball pitchBall) {
         if (!isStrike) {
             return balls.contains(pitchBall);
         }
