@@ -27,32 +27,26 @@ public class FeedbackTest {
 
 	@Test
 	void isSameNumberTest() {
-		assertThat(feedback.isSameNumber(1, 1))
-			.isEqualTo(true);
-		assertThat(feedback.isSameNumber(1, 2))
-			.isEqualTo(false);
+		assertThat(feedback.isSameNumber(1, 1)).isEqualTo(true);
+		assertThat(feedback.isSameNumber(1, 2)).isEqualTo(false);
 	}
 
 	@Test
 	void compareSamePositionTest() {
 		int result = feedback.compareSamePosition(answerList, questionList);
-		assertThat(result)
-			.isEqualTo(1);
+		assertThat(result).isEqualTo(1);
 	}
 
 	@Test
 	void compareDifferentPositionTest() {
 		int result = feedback.compareDifferentPosition(answerList, questionList);
-		assertThat(result)
-			.isEqualTo(1);
+		assertThat(result).isEqualTo(1);
 	}
 
 	@Test
 	void compareTest() {
 		GameResult resultDto = feedback.compare(answerList, questionList);
-		assertThat(resultDto.getStrike())
-			.isEqualTo(1);
-		assertThat(resultDto.getBall())
-			.isEqualTo(1);
+		assertThat(resultDto.getStrike()).isEqualTo(1);
+		assertThat(resultDto.getBall()).isEqualTo(1);
 	}
 }
