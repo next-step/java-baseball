@@ -4,9 +4,13 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import baseball.domain.GameStatus;
+
 public class InputUtils {
 	private static final int NUMBER_LENGTH = 3;
 	private static final String INPUT_MESSAGE = "숫자를 입력해주세요 : ";
+	private static final String GAMEOVER_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	private static final String QUESTION_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public InputUtils() {
@@ -23,6 +27,25 @@ public class InputUtils {
 		checkDuplicate(result);
 
 		return result;
+	}
+
+	public static GameStatus getGameStatus() {
+		System.out.println(GAMEOVER_MESSAGE);
+		System.out.println(QUESTION_MESSAGE);
+
+		int answer = scanner.nextInt();
+
+		checkValidAnswer(answer);
+
+		return chooseStatus(answer);
+	}
+
+	private static GameStatus chooseStatus(int answer) {
+		if (answer == 2) {
+			return GameStatus.GAMEOVER;
+		}
+
+		return GameStatus.NEW;
 	}
 
 	private static void checkValidAnswer(int answer) {
