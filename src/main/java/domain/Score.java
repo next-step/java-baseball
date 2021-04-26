@@ -21,6 +21,18 @@ public class Score {
         }
     }
 
+    public int strike() {
+        return strike;
+    }
+
+    public int ball() {
+        return ball;
+    }
+
+    public boolean isFinish() {
+        return strike == MAX_COUNT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

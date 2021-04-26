@@ -12,7 +12,11 @@ public class Balls {
     private final List<Ball> numberBalls;
 
     public Balls() {
-        this(createNumberBalls());
+        this(createRandomBalls());
+    }
+
+    public Balls(String inputText) {
+        this(createInputBalls(inputText));
     }
 
     public Balls(List<Ball> numberBalls) {
@@ -52,7 +56,18 @@ public class Balls {
         return numberBalls.get(index).equals(pitchBall);
     }
 
-    private static List<Ball> createNumberBalls() {
+    private static List<Ball> createInputBalls(String inputText) {
+        List<Ball> result = new ArrayList<>();
+
+        for (int i = 0; i < inputText.length(); i++) {
+            int number = Integer.parseInt(inputText.substring(i, i + 1));
+            result.add(new Ball(number));
+        }
+
+        return result;
+    }
+
+    private static List<Ball> createRandomBalls() {
         List<Ball> result = new ArrayList<>();
         for (int i = 0; i < SIZE; i++) {
             result.add(new Ball(RandomGenerator.value()));
