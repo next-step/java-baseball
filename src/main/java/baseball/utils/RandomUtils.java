@@ -1,7 +1,7 @@
 package baseball.utils;
 
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -39,7 +39,7 @@ public class RandomUtils {
 	}
 
 	private static Set<Integer> getResultSet(final int min, final int max) {
-		Set<Integer> resultSet = new HashSet<>();
+		Set<Integer> resultSet = new LinkedHashSet<>();
 
 		while (resultSet.size() != NUMBER_LENGTH) {
 			resultSet.add(RANDOM.nextInt(max - min + 1) + min);
