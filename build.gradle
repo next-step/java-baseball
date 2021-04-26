@@ -1,3 +1,7 @@
+plugins {
+    id 'org.ec4j.editorconfig' version '0.0.3'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
@@ -16,3 +20,8 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+editorconfig {
+    excludes = ['build']
+}
+check.dependsOn editorconfigCheck
