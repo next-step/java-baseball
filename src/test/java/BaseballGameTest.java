@@ -86,4 +86,19 @@ public class BaseballGameTest {
 		return 0;
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"3:0:false", "0:0:true", "1:2:false"}, delimiter = ':')
+	@DisplayName("낫싱 테스트")
+	public void checkNothingTest(int totalStrikeScore, int totalBallScore, boolean expected) {
+		assertThat(checkNothing(totalStrikeScore, totalBallScore)).isEqualTo(expected);
+	}
+	
+	private boolean checkNothing(int totalStrikeScore, int totalBallScore ) {
+		if (totalStrikeScore == 0 && totalBallScore == 0) {
+			System.out.println(BaseballGameConstant.NOTHING);
+			return true;
+		}
+		return false;
+	}
+	
 }

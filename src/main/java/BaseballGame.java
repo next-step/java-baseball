@@ -107,4 +107,19 @@ public class BaseballGame {
 		return 0;
 	}
 	
+	/**
+	 * 낫싱을 체크합니다.
+	 *
+	 * @param totalStrikeScore
+	 * @param totalBallScore
+	 * @return boolean
+	 */
+	private boolean checkNothing(int totalStrikeScore, int totalBallScore ) {
+		if (totalStrikeScore == 0 && totalBallScore == 0) {
+			System.out.println(BaseballGameConstant.NOTHING);
+			return true;
+		}
+		return false;
+	}
+	
 }
