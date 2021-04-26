@@ -8,31 +8,34 @@ import org.junit.jupiter.api.Test;
 
 class BaseBallRuleTest {
 
-    private String gameNumber1;
-    private String inputNumber1;
-    private String gameNumber2;
-    private String inputNumber2;
+    private String[] gameNumbers;
 
     @BeforeEach
     void init() {
-        this.gameNumber1 = "3";
-        this.inputNumber1 = "3";
-        this.gameNumber2 = "3";
-        this.inputNumber2 = "4";
+        this.gameNumbers = new String[] {"5", "4", "3"};
     }
 
     @Test
-    @DisplayName("gameNumber와 inputNumber가 같으면 isStrike는 true 다르면 isStrike는 false")
+    @DisplayName("동일한 자리의 gameNumber와 inputNumber가 같으면 isStrike는 true 다르면 isStrike는 false")
     void isStrikeTest() {
-        assertThat(BaseBallRule.isStrike(gameNumber1, inputNumber1)).isTrue();
-        assertThat(BaseBallRule.isStrike(gameNumber2, inputNumber2)).isFalse();
+
+        String firstInputNumber = "7";
+        String secondInputNumber = "4";
+
+        assertThat(BaseBallRule.isStrike(this.gameNumbers[0], firstInputNumber)).isFalse();
+        assertThat(BaseBallRule.isStrike(this.gameNumbers[1], secondInputNumber)).isTrue();
     }
 
     @Test
-    @DisplayName("gameNumber와 inputNumber가 같으면 isBall은 false 다르면 isBall은 true")
+    @DisplayName("inputNumber가 strike가 아니고 gameNumbers에 inputNumber가 포함되어 있으면 ball")
     void isBallTest() {
-        assertThat(BaseBallRule.isBall(gameNumber1, inputNumber1)).isFalse();
-        assertThat(BaseBallRule.isBall(gameNumber2, inputNumber2)).isTrue();
-    }
 
+        String firstInputNumber = "3";
+        String secondInputNumber = "8";
+        String thirdInputNumber = "4";
+
+        assertThat(BaseBallRule.isBall(this.gameNumbers, firstInputNumber, 0)).isTrue();
+        assertThat(BaseBallRule.isBall(this.gameNumbers, secondInputNumber, 1)).isFalse();
+        assertThat(BaseBallRule.isBall(this.gameNumbers, thirdInputNumber, 2)).isTrue();
+    }
 }
