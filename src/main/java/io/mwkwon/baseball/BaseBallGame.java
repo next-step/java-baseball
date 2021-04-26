@@ -55,10 +55,11 @@ public class BaseBallGame {
      * 사용자가 입력한 데이터에 대한 유효성 검사
      * @param inputString: 사용자 입력 String
      * @param regex: 유효성 체크를 위한 정규 표현식
+     * @param strLength: 유효성 체크를 위한 문자열 길이 값
      * @return: 사용 가능 입력 String인 경우 true, 아닌 경우 false
      */
-    public boolean validInputString(String inputString, String regex) {
-        if (inputString == null) {
+    public boolean validInputString(String inputString, String regex, int strLength) {
+        if (inputString.length() != strLength) {
             return false;
         }
         String targetString = this.removeDuplicateString(inputString);
@@ -69,7 +70,7 @@ public class BaseBallGame {
 
     /**
      * 게임 계속 진행여부 확인
-     * @param continueFlag: 게임 계속 진행여부 확인 flag 값
+     * @param continueFlag : 게임 계속 진행여부 확인 flag 값
      * @return continueFlag == "1" true, continueFlag  == "2" false
      */
     public boolean isContinueGame(String continueFlag) {
