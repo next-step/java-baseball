@@ -19,6 +19,11 @@ public class BaseBallService {
 		scanner = new Scanner(System.in);
 	}
 
+	public BaseBallService(List<Character> answer) {
+		scanner = new Scanner(System.in);
+		this.answer = answer;
+	}
+
 	/**
 	 * 게임 정답 생성
 	 */
@@ -65,6 +70,9 @@ public class BaseBallService {
 	 * @return 유효성 결과 판단
 	 */
 	public boolean isValidCharacterList(List<Character> characterList) {
+		if(characterList == null)
+			return false;
+
 		List<Character> characters = new ArrayList<>(
 			Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9'));
 		
@@ -82,6 +90,10 @@ public class BaseBallService {
 	 * @return 삼진 여부
 	 */
 	public boolean pitchingResult(List<Character> pitching) {
+		if(!isValidCharacterList(pitching)) {
+			return false;
+		}
+
 		int[] ballCount = new int[2]; //스트라이크, 볼 숫자
 
 		for (Character ball : pitching) {
