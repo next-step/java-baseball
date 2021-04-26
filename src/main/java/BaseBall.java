@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class BaseBall {
     private int[] result={0,0}; // result[0] strike, result[1] ball
@@ -18,12 +19,17 @@ public class BaseBall {
         BaseBall baseBall = new BaseBall();
         //랜덤 정답 생성
         baseBall.answer = baseBall.getAnswer();
-        //예상 답
-        String input = "123";
-        String[] question = input.split("");
-        baseBall.result = baseBall.updateResult(baseBall, question);
-        System.out.println(baseBall.answer);
-        System.out.println(baseBall.result[0]+" 스트라이크 "+baseBall.result[1]+ " 볼");
+        Scanner sc = new Scanner(System.in);
+        while(baseBall.result[0]<3){
+            baseBall = baseBall.initResult(baseBall);
+            System.out.println("숫자를 입력해주세요.");
+            String input = sc.nextLine();
+            String[] question = input.split("");
+            baseBall.result = baseBall.updateResult(baseBall, question);
+            baseBall.printTextResult(baseBall.result);
+            baseBall = baseBall.checkEnd(baseBall, sc);
+        }
+        sc.close();
     }
 
     //답안 생성
@@ -56,5 +62,47 @@ public class BaseBall {
             baseBall.result = this.referee(baseBall.answer,check, i, baseBall.result);
         }
         return baseBall.result;
+    }
+
+    //종료 확인
+    public BaseBall checkEnd(BaseBall baseBall, Scanner sc){
+        if(baseBall.result[0]==3){
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            baseBall = this.continueGame(baseBall, sc);
+        }
+        return baseBall;
+    }
+
+    //종료 명령어 받기
+    public BaseBall continueGame(BaseBall baseBall, Scanner sc){
+        String exit = sc.nextLine();
+        return exit.equals("1") ? this.initBasBall(baseBall) : baseBall;
+    }
+
+    //결과값 텍스트 출력
+    public void printTextResult(int[] result ){
+        String resultText ="";
+        if(result[0] >0){
+            resultText = result[0]+" 스트라이크 ";
+        }
+        if(result[1]>0){
+            resultText = resultText + result[1]+"볼";
+        }
+        System.out.println(resultText);
+    }
+
+    //결과값 초기화
+    public BaseBall initResult(BaseBall baseBall){
+        int[] initResult = {0,0};
+        baseBall.result = initResult;
+        return baseBall;
+    }
+
+    //야구게임 초기화
+    public BaseBall initBasBall(BaseBall baseBall){
+        baseBall.answer = this.getAnswer();
+        baseBall = this.initResult(baseBall);
+        return baseBall;
     }
 }
