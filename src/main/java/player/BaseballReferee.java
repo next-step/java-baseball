@@ -12,8 +12,8 @@ public class BaseballReferee {
     private static final String STRIKE = "스트라이크";
     private static final String NOTHING = "낫싱";
 
-    private static int strikeCount = 0;
-    private static int ballCount = 0;
+    private int strikeCount = 0;
+    private int ballCount = 0;
 
     public BaseballReferee(List<Integer> hitterNumbers, List<Integer> pitcherNumbers) {
         this.hitterNumbers = hitterNumbers;
