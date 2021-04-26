@@ -2,7 +2,7 @@ package baseball.domain;
 
 public enum BaseballNumberMatch {
 
-	STRIKE("스트라이크"), BALL("볼"), FOUR_BALL("포볼");
+	STRIKE("스트라이크"), BALL("볼"), NOTHING("낫싱");
 
 	private final String name;
 

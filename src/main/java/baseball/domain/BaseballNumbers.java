@@ -54,7 +54,7 @@ public class BaseballNumbers {
 			return BaseballNumberMatch.BALL;
 		}
 
-		return BaseballNumberMatch.FOUR_BALL;
+		return BaseballNumberMatch.NOTHING;
 	}
 
 }
