@@ -2,27 +2,45 @@ package baseball;
 
 import java.util.Scanner;
 
-public class BaseballPlay extends Baseball {
+import domain.Game;
+import domain.User;
+import template.BaseballTemplate;
 
-	public String USER_NUMBER = "";
+/**
+ * 
+ * @author 이충선
+ *
+ */
+public class BaseballPlay extends BaseballTemplate {
+
 	public boolean gameExit = false;
-	
 	public boolean numberCheck = false;
+	public Game game = null;
+	public User user = null;
+	public BaseballSwingRslt swing = null;
 	
 	@Override
 	public void start() {
-		
+		game = new Game();
+		user = new User();
 	}
 
 	@Override
 	public void play() {
-		Scanner sc = new Scanner(System.in);
-		
+		swing = new BaseballSwingRslt(game, user);
+		String rsltMessage = "";
+		while(game.getGameStauts() == 1) {
+			user.swingNumber();
+			String rsltMsg = swing.swingRslt();
+			System.out.println(rsltMsg);
+		}
 	}
 
 	@Override
 	public boolean end() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		
 		Scanner sc = new Scanner(System.in);
 		int statue = sc.nextInt();
 		

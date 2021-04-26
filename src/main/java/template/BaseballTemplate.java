@@ -1,6 +1,6 @@
-package baseball;
+package template;
 
-public abstract class Baseball {
+public abstract class BaseballTemplate {
 	
 	public abstract void start();
 	public abstract void play();
