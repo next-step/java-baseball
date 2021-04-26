@@ -1,7 +1,7 @@
 package NumberBaseBallGame;
 
 import NumberBaseBallGame.domain.Ball;
-import NumberBaseBallGame.domain.GenerateGameNumber;
+import NumberBaseBallGame.generater.GenerateGameNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 

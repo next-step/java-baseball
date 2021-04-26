@@ -1,4 +1,4 @@
-package NumberBaseBallGame;
+package NumberBaseBallGame.domain;
 
 public class BaseBallConst {
 	public static final int GAMENUMBERS_LENGTH = 3;

@@ -1,4 +1,6 @@
-package NumberBaseBallGame.domain;
+package NumberBaseBallGame.generater;
+
+import NumberBaseBallGame.domain.Ball;
 
 import java.util.ArrayList;
 import java.util.List;
