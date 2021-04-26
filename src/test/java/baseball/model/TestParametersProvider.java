@@ -2,10 +2,8 @@ package baseball.model;
 
 import org.junit.jupiter.params.provider.Arguments;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -174,7 +172,6 @@ public class TestParametersProvider {
         String result = "";
         for (int i = 0; i < length; i++) {
             do {
-//                result = CHARACTERS[random.nextInt(CHARACTERS.length)];
                 result = String.valueOf(provideRandomCharacter());
             } while(!filter.apply(result.charAt(0)));
 
@@ -300,6 +297,4 @@ public class TestParametersProvider {
     public static Character provideRandomAlphabeticCharacter() {
         return provideRandomCharacter(Character::isAlphabetic);
     }
-
-
 }
