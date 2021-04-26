@@ -23,8 +23,12 @@ public final class StringUtil {
   }
 
   public static String defaultString(String str) {
+    return defaultString(str, "");
+  }
+
+  public static String defaultString(String str, String defaultStr) {
     if (isBlank(str)) {
-      return "";
+      return defaultStr;
     }
     return str;
   }
