@@ -12,6 +12,9 @@ public class UserInterface {
 		do {
 			System.out.println("게임을 시작합니다.");
 
+			Game game = new BaseballGame();
+			game.play();
+
 			System.out.println("게임 종료");
 
 		} while (continueOrStop(receiveNumber()));
