@@ -15,7 +15,8 @@ import service.IInitializer;
 
 class InitializerTest {
 
-	private final IInitializer initializer = new Initializer();
+	final static int MAX_DIGIT_NUMBER = 3;
+	private final IInitializer initializer = new Initializer(MAX_DIGIT_NUMBER);
 
 	@Test
 	@DisplayName("컴퓨터 초기 숫자 세팅 테스트")
