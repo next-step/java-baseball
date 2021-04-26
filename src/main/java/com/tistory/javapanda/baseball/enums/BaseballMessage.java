@@ -11,4 +11,8 @@ public enum BaseballMessage {
         this.message = message;
     }
 
+    public String getMessage() {
+        return this.message;
+    }
+
 }
