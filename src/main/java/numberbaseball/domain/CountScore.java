@@ -4,25 +4,35 @@ import java.util.*;
 
 public class CountScore {
 
-  private static final Integer STRIKE_SCORE_CAN_GAME_OVER = 3;
+  private static final Integer SCORE_PER_INNING = 3;
+  private static final Integer SCORE_COUNT_STARTING_VALUE = 1;
 
   private final Map<Count, Integer> countAndScore;
   public CountScore(List<Count> countsOfExpectInning) {
+    this.countAndScore = groupBy(countsOfExpectInning);
+  }
+
+  private Map<Count, Integer> groupBy(List<Count> countsOfExpectInning) {
     Map<Count, Integer> countCollected = new EnumMap<>(Count.class);
     for (Count countOfExpect : countsOfExpectInning) {
       calculateScore(countCollected, countOfExpect);
     }
-    this.countAndScore = countCollected;
+    return countCollected;
   }
 
   private void calculateScore(Map<Count, Integer> countScoreMap, Count countOfExpect) {
-    if(countScoreMap.computeIfPresent(countOfExpect, (count, integer) -> ++integer) == null) {
-      countScoreMap.put(countOfExpect, 1);
+    Integer nonNullScoreOnlyKeyExist = countScoreMap.computeIfPresent(countOfExpect, (count, integer) -> ++integer);
+    if(nonNullScoreOnlyKeyExist == null) {
+      countScoreMap.put(countOfExpect, SCORE_COUNT_STARTING_VALUE);
     }
   }
 
   public boolean isGameOverScore() {
-    return STRIKE_SCORE_CAN_GAME_OVER.equals(countAndScore.get(Count.STRIKE));
+    return SCORE_PER_INNING.equals(countAndScore.get(Count.STRIKE));
+  }
+
+  public Map<Count, Integer> getCountAndScore() {
+    return countAndScore;
   }
 
   @Override
