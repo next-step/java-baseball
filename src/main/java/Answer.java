@@ -10,9 +10,18 @@ public class Answer {
 		Set<Integer> generatedNumbersInSet = new HashSet<Integer>();
 
 		while (generatedNumbersInSet.size() != 3) {
-			generatedNumbersInSet.add((int)(Math.random() * 10));
+			int randomNumber = (int)((Math.random() * 9) + 1);
+			generatedNumbersInSet.add(randomNumber);
 		}
 		List<Integer> generatedNumbersInList = new ArrayList<>(generatedNumbersInSet);
 		return generatedNumbersInList;
+	}
+
+	public List<Integer> getAnswer() {
+		return this.answer;
+	}
+
+	public void setAnswer(List<Integer> generatedAnswer) {
+		this.answer = generatedAnswer;
 	}
 }
