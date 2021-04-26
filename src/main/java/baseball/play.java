@@ -12,7 +12,7 @@ public class play {
 
         boolean isPlaying = true;
 
-        while (isPlaying){
+        while (isPlaying) {
             isPlaying = playInning();
         }
 
@@ -22,21 +22,33 @@ public class play {
         Inning inning = Inning.newInning();
         boolean isOver = false;
         Scanner sc = new Scanner(System.in);
-        while (!isOver){
+        while (!isOver) {
             System.out.printf("숫자를 입력해주세요 : ");
-           int[] guess = inputNum(sc);
+            String guess = inputNum(sc);
             isOver = inning.pitch(guess);
         }
 
         return sc.nextInt() == 1;
     }
 
-    private static int[] inputNum(Scanner sc) {
-        int[] inputNumbers = new int[3];
-        for (int i = 0; i < inputNumbers.length; i++) {
-            inputNumbers[i] = sc.nextInt();
+    private static String inputNum(Scanner sc) {
+        boolean rightNumber = false;
+        String inputNumbers = "";
+        while (!rightNumber) {
+            inputNumbers = sc.next();
+            rightNumber = checkInput(inputNumbers);
         }
+
         return inputNumbers;
+    }
+
+    private static boolean checkInput(String input) {
+
+        if (input.matches("^\\d{3}")) {
+            return true;
+        }
+        System.out.println("3자리 숫자를 입력해주세요.");
+        return false;
     }
 
 }

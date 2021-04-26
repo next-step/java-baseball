@@ -35,11 +35,11 @@ public class Inning {
     }
 
 
-    public boolean pitch(int[] guess) {
+    public boolean pitch(String guess) {
         strike = 0;
         ball = 0;
-        for (int i = 0; i < guess.length; i++) {
-            countPitch(answer, guess[i], i);
+        for (int i = 0; i < guess.length(); i++) {
+            countPitch(answer,guess.charAt(i) - '0', i);
         }
         printMessage();
 
