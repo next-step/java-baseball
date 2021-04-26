@@ -13,6 +13,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+/**
+ * 야구게임 기능 단위 테스트<br/>
+ * @author In Mook, Jeong
+ * @since 2021.04.25
+ */
 public class BaseballGameTest {
  private static List<Integer> ANSWER_LIST = new ArrayList<Integer>();
  

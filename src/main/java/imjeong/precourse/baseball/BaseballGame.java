@@ -19,9 +19,9 @@ public class BaseballGame {
   * @since 2021. 04. 25
   */
  public static void main(String[] args) {
-	 setScanner();
-	 playBaseball();
-	 closeScanner();
+  setScanner();
+  playBaseball();
+  closeScanner();
  }
  
  /**
@@ -49,7 +49,8 @@ public class BaseballGame {
   boolean duringBaseball = true;
   while(duringBaseball) {
    String userAnswer = getUserAnswer();
-   duringBaseball = isThreeDigitNumbers(userAnswer);
+   if(!isThreeDigitNumbers(userAnswer)) continue;
+   duringBaseball = !isGameOver(userAnswer.toCharArray());
   }
  }
  
@@ -59,7 +60,7 @@ public class BaseballGame {
   * @since 2021. 04. 25
   */
  public static void setBaseballAnswer() {
- ANSWER_LIST.clear();
+  ANSWER_LIST.clear();
   while(ANSWER_LIST.size() < 3) {
    int answer = (int) (Math.random() * 9 + 1);
    if(!ANSWER_LIST.contains(answer)) ANSWER_LIST.add(answer);
@@ -85,6 +86,7 @@ public class BaseballGame {
   * &emsp;- 예시 2) 사용자 입력 값이 144이면 14 값 반환<br/>
   * @param userAnswer
   * @return - 중복이 제거된 사용자 입력 값을 반환
+  * @since 2021. 04. 25
   */
  public static String getDeduplicatedUserAnswer(String userAnswer) {
   String deduplicatedUserAnswer = "";
@@ -105,10 +107,43 @@ public class BaseballGame {
   * &emsp;&emsp;- 예시 5) 사용자 입력 값이 abc이면 false 반환<br/>
   * @param userAnswer
   * @return - 사용자가 입력한 값이 3자리 숫자인지 여부 판단
+  * @since 2021. 04. 25
   */
  public static boolean isThreeDigitNumbers(String userAnswer) {
   boolean isThreeDigitNumbers = false;
   if(userAnswer.matches("[1-9]{3}")) isThreeDigitNumbers=true;
   return isThreeDigitNumbers;
+ }
+ 
+ /**
+  * 게임이 종료되었는지 확인<br/>
+  * &emsp;- Strike 갯수가 3이면 Game 종료, 아니면 계속 Game 진행
+  * @param userAnswerChar
+  * @return - Strike 갯수가 3과 일치하면 true, 일치하지 않으면 false 반환
+  * @since 2021. 04. 26
+  */
+ public static boolean isGameOver(char[] userAnswerChar) {
+  int strikeCount = checkBaseballResult(userAnswerChar);
+  return (strikeCount == 3);
+ }
+ 
+ /**
+  * 사용자가 입력한 값이 컴퓨터의 값과 일치하는지 확인<br/>
+  * &emsp;- 사용자가 입력한 값이 컴퓨터의 값에 포함이 되는 경우<br/>
+  * &emsp;&emsp;- 값이 저장된 위치(Index)가 같으면 Strike 갯수 1 증가<br/>
+  * &emsp;&emsp;- 값이 저장된 위치(Index)가 같지 않으면 ball 갯수 1 증가<br/>
+  * &emsp;- 사용자가 입력한 값이 컴퓨터의 값에 포함되지 않는 경우 Strike=0, ball=0<br/>
+  * @param userAnswerChar
+  * @return - 총 Strike 갯수 반환
+  * @since 2021. 04. 26
+  */
+ public static int checkBaseballResult(char[] userAnswerChar) {
+  int strike = 0, ball = 0;
+  for(int i=0; i<userAnswerChar.length; i++) {
+   int userAnswer = Character.getNumericValue(userAnswerChar[i]);
+   if(ANSWER_LIST.contains(userAnswer) && userAnswer == ANSWER_LIST.get(i)) strike++;
+   if(ANSWER_LIST.contains(userAnswer) && userAnswer != ANSWER_LIST.get(i)) ball++;
+  }
+  return strike;
  }
 }
