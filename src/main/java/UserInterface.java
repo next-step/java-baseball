@@ -18,6 +18,21 @@ public class UserInterface {
     return input;
   }
 
+  public void answerTo(Map<Result, Integer> score) {
+    if (score.size() == 0) {
+      System.out.println(Result.NOTHING.getMessage());
+      return;
+    }
+    answerTo(convertScoreToMessage(score));
+  }
+
+  private void answerTo(String message) {
+    if (message.length() == 0) {
+      return;
+    }
+    System.out.println(message);
+  }
+
   protected String convertScoreToMessage(Map<Result, Integer> score) {
     StringBuilder answer = new StringBuilder();
     writeMessageBy(score, Result.STRIKE, answer);
