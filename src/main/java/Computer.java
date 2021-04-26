@@ -62,6 +62,6 @@ public class Computer {
 	}
 
 	public void showHint() {
-		System.out.println(strikeCount + "스트라이크 " + ballCount + "볼");
+		System.out.println(strikeCount + " 스트라이크 " + ballCount + "볼");
 	}
 }
