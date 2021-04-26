@@ -140,4 +140,26 @@ public class BaseballGameTest {
 		return false;
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"345:false", "333:false", "321:true"}, delimiter = ':')
+	@DisplayName("점수 산출 테스트")
+	public void scorePointsTest(String insertNumber, boolean expected) {
+		String randomNumber = "321";
+		assertThat(scorePoints(randomNumber, insertNumber)).isEqualTo(expected);
+	}
+	
+	private boolean scorePoints(String randomNumber, String insertNumber) {
+		String[] randomNumberArr = randomNumber.split("");
+		String[] insertNumberArr = insertNumber.split( "");
+		
+		int totalStrikeScore = 0;
+		int totalBallScore = 0;
+		for (int i=0; i<insertNumberArr.length; i++) {
+			int roundStrikeScore = checkStrike(randomNumberArr[i], insertNumberArr[i]);
+			totalStrikeScore += roundStrikeScore;
+			totalBallScore += checkBall(roundStrikeScore, randomNumberArr, insertNumberArr[i]);
+		}
+		return getResult(totalStrikeScore, totalBallScore);
+	}
+	
 }

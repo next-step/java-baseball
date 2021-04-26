@@ -73,6 +73,27 @@ public class BaseballGame {
 	}
 	
 	/**
+	 * 난수와 입력된 숫자를 비교하여 점수를 매깁니다.
+	 *
+	 * @param randomNumber
+	 * @param insertNumber
+	 * @return boolean
+	 */
+	private boolean scorePoints(String randomNumber, String insertNumber) {
+		String[] randomNumberArr = randomNumber.split("");
+		String[] insertNumberArr = insertNumber.split( "");
+		
+		int totalStrikeScore = 0;
+		int totalBallScore = 0;
+		for (int i=0; i<insertNumberArr.length; i++) {
+			int roundStrikeScore = checkStrike( i, randomNumberArr, insertNumberArr);
+			totalStrikeScore += roundStrikeScore;
+			totalBallScore += checkBall(roundStrikeScore, randomNumberArr, insertNumberArr[i]);
+		}
+		return getResult(totalStrikeScore, totalBallScore);
+	}
+	
+	/**
 	 * 스트라이크를 체크합니다.
 	 *
 	 * @param randomNumberArr
