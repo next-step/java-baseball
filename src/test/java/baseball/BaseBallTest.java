@@ -41,4 +41,18 @@ public class BaseBallTest {
         expected.put(GameResult.NOTHING, 3);
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("게임의 승리여부를 판단하는 테스트")
+    public void winOrLoseTest() {
+        HashMap<GameResult, Integer> expected = new HashMap<>();
+        expected.put(GameResult.STRIKE, 3);
+        assertThat(baseBall.judgeGameResult(expected)).isTrue();
+
+        expected = new HashMap<>();
+        expected.put(GameResult.STRIKE, 1);
+        expected.put(GameResult.BALL, 1);
+        expected.put(GameResult.NOTHING, 1);
+        assertThat(baseBall.judgeGameResult(expected)).isFalse();
+    }
 }

@@ -40,6 +40,10 @@ public class BaseBall {
         return resultMap;
     }
 
+    public boolean judgeGameResult(HashMap<GameResult, Integer> resultGameMap) {
+        return resultGameMap.get(STRIKE) == 3;
+    }
+
     private boolean validateInLoop(int i, String validateToData) {
         boolean checkDuplicateData = true;
         int j = i + 1, size = validateToData.length();
