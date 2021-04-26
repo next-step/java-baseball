@@ -31,4 +31,13 @@ public class NumberBaseBallGame {
 
 		return true;
 	}
+
+	public static int[] playerInputNumbersToArray(int playerInput) {
+		String numbers = String.valueOf(playerInput);
+		int[] playerInputNumbers = new int[numbers.length()];
+		for (int i = 0; i < numbers.length(); i++) {
+			playerInputNumbers[i] = Integer.parseInt(numbers.substring(i, i + 1));
+		}
+		return playerInputNumbers;
+	}
 }

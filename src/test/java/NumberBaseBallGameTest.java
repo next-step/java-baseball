@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,10 +26,17 @@ class NumberBaseBallGameTest {
 	}
 
 	@Test
-	@DisplayName("플레이어가 입력한 숫자의 길이와 중복을 확인한다")
+	@DisplayName("플레이어가 입력한 숫자 배열의 길이와 중복을 확인한다")
 	public void playerNumberValidateTest() {
 		int[] playerInputNumbers = {1, 2, 3};
-
 		assertEquals(true, NumberBaseBallGame.playerNumberValidate(playerInputNumbers));
+	}
+
+	@Test
+	@DisplayName("플레이어가 입력한 숫자를 숫자 배열로 생성한다")
+	public void playerInputNumbersToArrayTest() {
+		int input = 543;
+		int[] intArray = {5,4,3};
+		assertArrayEquals(intArray, NumberBaseBallGame.playerInputNumbersToArray(input));
 	}
 }
