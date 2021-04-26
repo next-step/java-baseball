@@ -41,7 +41,7 @@ public class NumberGeneratorTest {
     @DisplayName("서로 다른 숫자로 만들어졌는지 확인")
     @Test
     void 서로_다른_숫자() {
-        for(int i = 0; i< TEST_TRIAL; i++){
+        for (int i = 0; i < TEST_TRIAL; i++) {
             //given
             String number = NumberGenerator.generateNumber();
             //when
@@ -51,7 +51,7 @@ public class NumberGeneratorTest {
         }
     }
 
-    Set<Character> getCharacters(String number){
+    Set<Character> getCharacters(String number) {
         Set<Character> words = new HashSet<>();
         for (char c : number.toCharArray()) {
             words.add(c);
