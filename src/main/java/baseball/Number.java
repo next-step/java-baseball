@@ -8,17 +8,18 @@ public class Number {
 
     public Number() {
 
-        firstNumber = (int) Math.floor(Math.random()*(9-1)+1);
-        secondNumber = (int) Math.floor(Math.random()*(9-1)+1);
-        thirdNumber = (int) Math.floor(Math.random()*(9-1)+1);
+        firstNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+        secondNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+        thirdNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
 
         while (secondNumber == firstNumber) {
-            secondNumber = (int) Math.floor(Math.random()*(9-1)+1);
+            secondNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
         }
 
         while (thirdNumber == firstNumber || thirdNumber == secondNumber) {
-            thirdNumber = (int) Math.floor(Math.random()*(9-1)+1);
+            thirdNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
         }
+
     }
 
     public int getFirstNumber() {

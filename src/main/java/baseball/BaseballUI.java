@@ -12,11 +12,10 @@ public class BaseballUI {
     public boolean startGame() {
 
         referee = new Referee();
-
         System.out.print("숫자를 입력해주세요.");
         int inputValue = sc.nextInt();
 
-        if(!baseballService.validateInputValue(inputValue)) {
+        if (!baseballService.validateInputValue(inputValue)) {
             return true;
         }
 
@@ -56,15 +55,15 @@ public class BaseballUI {
 
         String result = "";
 
-        if(referee.getStrike() != 0) {
+        if (referee.getStrike() != 0) {
             result = result + referee.getStrike() + "스트라이크 ";
         }
 
-        if(referee.getBall() != 0) {
+        if (referee.getBall() != 0) {
             result = result + referee.getBall() + "볼 ";
         }
 
-        if(result.equals("")) {
+        if (result.equals("")) {
             result = "낫싱";
         }
 
