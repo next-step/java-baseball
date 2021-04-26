@@ -1,9 +1,12 @@
-package baseball;
+package controller;
+
+import baseball.BaseballPlay;
+import template.BaseballTemplate;
 
 public class BaseballPlayMain {
 
 	public static void main(String[] args) {
-		Baseball game = null;
+		BaseballTemplate game = null;
 		
 		boolean gameStauts = true;
 		while(gameStauts) {
