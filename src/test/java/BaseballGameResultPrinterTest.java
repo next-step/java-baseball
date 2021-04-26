@@ -15,4 +15,11 @@ public class BaseballGameResultPrinterTest {
     public void printBaseballGameResultPrintNothing() {
         Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {0,0}), "낫싱");
     }
+
+    @Test
+    public void printBaseballGameResultPrintStrikes() {
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {1,0}), "1 스트라이크");
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {2,0}), "2 스트라이크");
+        Assertions.assertEquals(baseballGameResultPrinter.baseballGameResultPrint(new int[] {3,0}), "3 스트라이크");
+    }
 }
