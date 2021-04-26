@@ -185,4 +185,23 @@ public class BaseballGameTest {
 		return !"2".equals(inputText);
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"123:123", "123:345"}, delimiter = ':')
+	@DisplayName("게임 테스트")
+	public void playGameTest(String randomNumber, String insertNumber) {
+		playGame( randomNumber, insertNumber );
+	}
+	
+	private void playGame(String randomNumber, String insertNumber) {
+//		boolean isWin = false;
+
+//		while (!isWin) {
+//			System.out.print(BaseballGameConstant.REQ_ENTER_NUMBER);
+//			isWin = scorePoints(randomNumber, insertNumber);
+//		}
+		
+		System.out.print(BaseballGameConstant.REQ_ENTER_NUMBER);
+		scorePoints(randomNumber, insertNumber);
+	}
+	
 }

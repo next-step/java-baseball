@@ -33,6 +33,23 @@ public class BaseballGame {
 	}
 	
 	/**
+	 * 숫자가 일치할때까지 게임을 진행합니다.
+	 *
+	 * @param scanner
+	 * @author 최원준
+	 */
+	private void playGame(Scanner scanner) {
+		String randomNumber = createRandomNumber();
+		boolean isWin = false;
+		
+		while (!isWin) {
+			System.out.print(BaseballGameConstant.REQ_ENTER_NUMBER);
+			String insertNumber = insertNumber(scanner);
+			isWin = scorePoints(randomNumber, insertNumber);
+		}
+	}
+	
+	/**
 	 * 3자리의 난수를 생성합니다.
 	 *
 	 * @return String
