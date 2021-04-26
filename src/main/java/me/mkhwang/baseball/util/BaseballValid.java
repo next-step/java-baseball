@@ -11,17 +11,59 @@ import java.util.Map;
 public class BaseballValid {
 
     private static final int BALL_LENGTH = 3;
+    private static final char MIN_NUMBER = '1';
+    private static final char MAX_NUMBER = '9';
 
-    public static boolean isBaseballValidLength(String ballNumber) {
+    public boolean isBaseballLengthValid(String ballNumber) {
         return ballNumber.length() == BALL_LENGTH;
     }
 
-    public static boolean isBaseballValidDuplicate(String ballNumber) {
+    public boolean isBaseballDuplicateValid(String ballNumber) {
+        boolean valid = true;
         char[] ballNumberArr = ballNumber.toCharArray();
-        Map<Character, Integer> ballCountDuplicateMap = new HashMap<>();
-        for (char ballCountChar : ballNumberArr) {
-            ballCountDuplicateMap.put(ballCountChar, ballCountDuplicateMap.getOrDefault(ballCountChar,0)+1);
+        for (char validNumber : ballNumberArr) {
+            valid = isDuplicateNumber(valid, ballNumber, validNumber);
         }
-        return ballCountDuplicateMap.size() == BALL_LENGTH;
+        return valid;
     }
+
+    private String firstCharIgnore(String ballNumber, char validNumber) {
+        String testNum = ballNumber.replaceFirst(String.valueOf(validNumber),"");
+        return testNum;
+    }
+
+    private boolean isDuplicateNumber(boolean valid, String ballNumber, char validNumber) {
+        if(!valid) {
+            return false;
+        }
+
+        String testNum = firstCharIgnore(ballNumber, validNumber);
+        if(testNum.contains(String.valueOf(validNumber))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isBaseballTextValid(String text) {
+        boolean valid = true;
+        char[] textArr = text.toCharArray();
+        for (char validNumber : textArr) {
+             valid = isValidNumber(valid, validNumber);
+        }
+        return valid;
+    }
+
+    private boolean isValidNumber(boolean valid, char validNumber) {
+        if(!valid){
+            return false;
+        }
+
+        if(validNumber < MIN_NUMBER || validNumber > MAX_NUMBER){
+            valid = false;
+        }
+
+        return valid;
+    }
+
 }

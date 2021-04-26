@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class User {
 
     private String ballNumber;
+    private BaseballValid baseballValid = new BaseballValid();
 
     public void insertBallNumberForUser() {
         Scanner scanner = new Scanner(System.in);
@@ -28,8 +29,10 @@ public class User {
         this.ballNumber = ballCount;
     }
 
-    private boolean isValid(String ballNumber) {
-        return BaseballValid.isBaseballValidLength(ballNumber) && BaseballValid.isBaseballValidDuplicate(ballNumber);
+    public boolean isValid(String ballNumber) {
+        return baseballValid.isBaseballTextValid(ballNumber)
+                && baseballValid.isBaseballLengthValid(ballNumber)
+                && baseballValid.isBaseballDuplicateValid(ballNumber);
     }
 
     public String getBallNumber() {
