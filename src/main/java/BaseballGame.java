@@ -9,15 +9,15 @@ public class BaseballGame {
     BaseballGame() {
     }
 
-    public void play() {
+    public void start() {
         boolean isContinue = false;
 
         do {
-            isContinue = start();
+            isContinue = play();
         } while (isContinue);
     }
 
-    public boolean start() {
+    public boolean play() {
         Number randomNumber = NumberUtil.generateRandomNumber();
         ScoreMatch scoreMatch = new ScoreMatch(randomNumber);
         boolean isSolved = false;
