@@ -14,10 +14,10 @@ public class BallNumberMatcher {
 		);
 	}
 	private int matchStrike(List<Ball> clientBalls, List<Ball> targetBalls){
-		int gameLength = targetBalls.size();
+		int gameLength = targetBalls.size(); // 길이를 더 우아하게 제한할 수 없을까?
 		int strikeCount = 0;
 		for(int i = 0; i < gameLength; i++){
-			strikeCount = targetBalls.get(i).equals(clientBalls.get(i)) ? ++strikeCount :strikeCount;
+			strikeCount = targetBalls.get(i).equals(clientBalls.get(i)) ? ++strikeCount : strikeCount;
 		}
 		return strikeCount;
 	}
@@ -34,7 +34,7 @@ public class BallNumberMatcher {
 		boolean contains = targetBalls.contains(ball);
 		if (contains){
 			int indexOf = targetBalls.indexOf(ball);
-			return indexOf!= index;
+			return indexOf != index;
 		}
 		return false;
 	}
