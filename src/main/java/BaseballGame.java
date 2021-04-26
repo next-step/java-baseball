@@ -52,7 +52,7 @@ public class BaseballGame {
         while(!res){
             System.out.print("숫자를 입력해주세요: ");
             inputs = scn.next();
-            //inputed_numbers = convertStringToNumbers(inputs); //입력받은 String을 각 자리값과 인덱스를 갖는 HashMap으로 변환하는 메소드
+            inputed_numbers = convertStringToNumbers(inputs); //입력받은 String을 각 자리값과 인덱스를 갖는 HashMap으로 변환하는 메소드
 
             //res = checkNumbers(target_numbers, inputed_numbers); //경기의 종료 여부를 판별하는 메소드
         }
@@ -87,5 +87,20 @@ public class BaseballGame {
         }
         return rand_number;
     }
+    /**
+     * convertStringToNumbers
+     * 입력받은 String을 각 자리값과 인덱스를 갖는 HashMap으로 변환
+     * 입력받은 숫자의 길이, 중복 여부는 해당 메소드에서 판별하지 않는다.
+     * @param str 입력받은 숫자
+     * @return res 자리값을 키, 인덱스를 값으로 갖는 HashMap
+     */
+    public HashMap<Integer, Integer> convertStringToNumbers(String str){
+        HashMap<Integer, Integer> res = new HashMap<>();
+        str = str.trim();
+        for(int i = 0; i<str.length(); i++){
+            res.put(str.charAt(i)-'0', i);
+        }
 
+        return res;
+    }
 }
