@@ -28,6 +28,11 @@ public class BaseballGame {
 
     private static boolean playGame() {
         ResultVo resultVo = calculateScore(getValue());
+        int strike = resultVo.getStrike();
+        if (checkAllStrike(strike)) {
+            return false;
+        }
+        printResult(resultVo.getBall(), strike);
         return true;
     }
 
@@ -38,6 +43,43 @@ public class BaseballGame {
             computerSet.add(random.nextInt(10));
         }
         return computerSet;
+    }
+
+    private static void printResult(int ball, int strike) {
+        if (ball + strike == 0) {
+            System.out.println(NOTHING.getName());
+            return;
+        }
+        String result = ball > 0 ? String.format("%d %s ", ball, BALL.getName()) : "";
+        result += strike > 0 ? String.format("%d %s ", strike, STRIKE.getName()) : "";
+        System.out.println(result);
+    }
+
+    private static boolean checkAllStrike(int strike) {
+        if (strike != 3) {
+            return false;
+        }
+        System.out.println(GAME_END_MESSAGE);
+        System.out.println(NOTICE_MESSAGE);
+        return isExitGame();
+    }
+
+    private static boolean isExitGame() {
+        try {
+            int input = scanner.nextInt();
+            if (!RETRY.isEqualTo(input) && !END.isEqualTo(input)) {
+                System.out.println(ERROR_MESSAGE);
+                return isExitGame();
+            }
+            if (END.isEqualTo(input)) {
+                return true;
+            }
+            computerSet = getComputerSet();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
     }
 
     private static ResultVo calculateScore(Set<Integer> playerSet) {
