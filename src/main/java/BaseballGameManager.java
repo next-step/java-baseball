@@ -10,13 +10,11 @@ public class BaseballGameManager {
 
 	public static void main(String[] args) {
 		BaseballGameManager baseballGame = new BaseballGameManager(new Questioner(), new UserInterface());
-		while (baseballGame.execute() == 1) {
-		}
+		while (baseballGame.execute() == 1);
 	}
 
 	public int execute() {
 		final int question = questioner.makeProblem();
-		System.out.println(question);
 		String userInput;
 		boolean retry = true;
 		while (retry) {
