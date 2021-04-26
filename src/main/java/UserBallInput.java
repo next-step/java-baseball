@@ -23,8 +23,21 @@ public class UserBallInput {
         return compareStr.length() == compareLen;
     }
 
+    private boolean compareString(String compareStr) {
+        return Pattern.matches("^[1-9]", compareStr);
+    }
+
+    public boolean isValidatedDigital(String compareStr) {
+        boolean isDigital = true;
+        for (int i=0; i<compareStr.length(); i++)
+            isDigital = isDigital ? compareString(compareStr.charAt(i) + "") : false;
+        return isDigital;
+    }
+
     private boolean validateInput(String inputBall) {
         if (!isValidatedLength(inputBall, BaseballGame.DEFAULT_LEN))
+            return false;
+        if(!isValidatedDigital(inputBall))
             return false;
         return true;
     }

@@ -22,9 +22,8 @@ public class UserBallInputTest {
 
     @Test
     public void isValidatedDigit1To9() {
-        for (int i=0; i<InputBall.length(); i++)
-            Assertions.assertTrue(Pattern.matches("^[1-9]", InputBall.charAt(i) + ""));
-
+        Assertions.assertEquals(userBallInput.userBallInputRead("456"),"456");
+        Assertions.assertEquals(userBallInput.userBallInputRead("1A4"),"FALSE");
     }
 
     private int getStrNumber(String str, char c) {
