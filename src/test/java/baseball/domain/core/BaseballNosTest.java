@@ -1,6 +1,5 @@
 package baseball.domain.core;
 
-import baseball.domain.BaseballResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

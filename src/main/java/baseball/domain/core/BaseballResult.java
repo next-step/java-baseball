@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.domain.core;
 
 import java.util.Objects;
 
@@ -17,7 +17,7 @@ public final class BaseballResult {
         this.ball = ball;
     }
 
-    public boolean isPerfect(){
+    public boolean isPerfectMatch(){
         return MAX_BASEBALL_LIST_SIZE == strike;
     }
 
@@ -25,11 +25,11 @@ public final class BaseballResult {
         return (0 == strike) && (0 == ball);
     }
 
-    public int incrementStrike(){
+    int incrementStrike(){
         return ++strike;
     }
 
-    public int incrementBall(){
+    int incrementBall(){
         return ++ball;
     }
 

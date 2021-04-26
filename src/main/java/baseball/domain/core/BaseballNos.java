@@ -1,7 +1,5 @@
 package baseball.domain.core;
 
-import baseball.domain.BaseballResult;
-
 import java.util.HashSet;
 import java.util.List;
 
