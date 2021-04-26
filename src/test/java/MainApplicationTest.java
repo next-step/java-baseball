@@ -17,11 +17,13 @@ public class MainApplicationTest {
     List<Character> test2 = new LinkedList<>(Arrays.asList('1', '1', '2'));
     List<Character> test3 = new LinkedList<>(Arrays.asList('1', '1', '1'));
     List<Character> test4 = new LinkedList<>(Arrays.asList('0', '2', '3'));
+    List<Character> test5 = new LinkedList<>(Arrays.asList('ㄱ', '2', '3'));
 
     assertThat(mainApplication.validateInputNumber(test1)).isEqualTo(true);
     assertThat(mainApplication.validateInputNumber(test2)).isEqualTo(false);
     assertThat(mainApplication.validateInputNumber(test3)).isEqualTo(false);
     assertThat(mainApplication.validateInputNumber(test4)).isEqualTo(false);
+    assertThat(mainApplication.validateInputNumber(test5)).isEqualTo(false);
   }
 
   @Test

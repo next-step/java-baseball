@@ -46,10 +46,14 @@ public class MainApplication {
 
   // 입력값 검증
   public boolean validateInputNumber(List<Character> inputNumber) {
+    List<Character> numbers =
+        new LinkedList<>(Arrays.asList('1', '2', '3', '4', '5', '6', '7', '8', '9'));
     Set<Character> characterSet = new HashSet<>(inputNumber);
 
-    if (characterSet.contains('0')) {
-      return false;
+    for (char c : inputNumber) {
+      if (!numbers.contains(c)) {
+        return false;
+      }
     }
 
     return characterSet.size() == 3;
