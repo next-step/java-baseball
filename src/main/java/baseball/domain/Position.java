@@ -3,22 +3,19 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Position {
+    private static final int MINIMUM_POSITION = 0;
     public static final Position NOT_FOUND = new Position();
 
-    private int position = Integer.MIN_VALUE;
+    private Integer position = Integer.MIN_VALUE;
 
     private Position() {}
 
     public Position(int position) {
-        if(position < 0) {
+        if(position < MINIMUM_POSITION) {
             throw new IllegalArgumentException("음수의 위치는 존재하지 않습니다.");
         }
 
         this.position = position;
-    }
-
-    public int getPosition() {
-        return position;
     }
 
     @Override
