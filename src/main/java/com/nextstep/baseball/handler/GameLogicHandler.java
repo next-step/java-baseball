@@ -63,16 +63,21 @@ public class GameLogicHandler {
         return result;
     }
 
-    public int checkStrike(int source, int target) {
-        int numOfStrike = 0;
+    public int checkStrikes(int source, int target) {
+        int numOfStrikes = 0;
         int div = 100;
 
         for (int i = 0 ; i < INPUT_LENGTH; i++) {
-            numOfStrike += isEqual(makeCompareNum(source, div), makeCompareNum(target, div));
+            numOfStrikes += isEqual(makeCompareNum(source, div), makeCompareNum(target, div));
             div = div / 10;
         }
 
-        return numOfStrike;
+        return numOfStrikes;
+    }
+
+    public int checkBalls(int source, int target) {
+        int numOfBalls = 0;
+        return numOfBalls;
     }
 
     private int makeCompareNum(int source, int div) {
