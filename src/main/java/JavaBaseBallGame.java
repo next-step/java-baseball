@@ -92,4 +92,35 @@ public class JavaBaseBallGame {
             return 1;
         return 0;
     }
+
+    /**
+     * 임의의 세자리 숫자 구하는 method
+     * @return 임의의 세자리 숫자
+     */
+    private int createRandomNumber() {
+        Random rn = new Random();
+        Set<Integer> sSet = new HashSet<>();
+        while(sSet.size() < THE_NUMBER_OF_NUM){
+            sSet.add(rn.nextInt(9) + 1);
+        }
+        System.out.println(sSet);
+        int result = getRealNumber(sSet);
+        System.out.println(result);
+        return result;
+
+    }
+
+    private int getRealNumber(Set<Integer> sSet) {
+        List<Integer> list = new ArrayList<>(sSet);
+        Collections.reverse(list);
+        int result = list.get(0);
+        for (int i=1;i <list.size(); i++){
+            result += list.get(i) * Math.pow(10,i);
+        }
+
+        return result;
+
+    }
+
+
 }
