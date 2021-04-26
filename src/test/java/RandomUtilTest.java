@@ -1,7 +1,9 @@
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RandomUtilTest {
     private RandomUtil randomUtil=new RandomUtil();
@@ -19,6 +21,15 @@ class RandomUtilTest {
         }catch(Exception e){
             assertThat(randomUtil.getRandom(0,1000000)).isNotEqualTo(randomUtil.getRandom(0,1000000));
         }
+    }
+
+    @Test
+    void assertValidateDuplicatedNumList(){
+        List<Integer> duplicatedList= Lists.newArrayList(0,1,2,3,3,4,5,5);
+        assertThat(randomUtil.IsDuplicatedNumList(duplicatedList)).isTrue();
+
+        List<Integer> notDuplicatedList=Lists.newArrayList(0,1,2,3,4,5,6);
+        assertThat(randomUtil.IsDuplicatedNumList(notDuplicatedList)).isFalse();
     }
 
 }
