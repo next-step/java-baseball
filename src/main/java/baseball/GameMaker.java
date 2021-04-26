@@ -41,9 +41,14 @@ public class GameMaker {
 
 	public Set<Integer> toSetNumber(int number) {
 		Set<Integer> numberSet = new LinkedHashSet<>();
-		while (number > 0) {
-			numberSet.add(number % 10);
-			number = number / 10;
+		int reverseNumber = 0;
+		while (number != 0) {
+			reverseNumber = reverseNumber * 10 + number % 10;
+			number /= 10;
+		}
+		while (reverseNumber > 0) {
+			numberSet.add(reverseNumber % 10);
+			reverseNumber /= 10;
 		}
 		return numberSet;
 	}
@@ -78,19 +83,25 @@ public class GameMaker {
 		return ballCount;
 	}
 
+	public void getScore(int matchCount, int containCount) {
+		int strikeCount = getStrike(matchCount);
+		int ballCount =  getBall(matchCount, containCount);
+		if (strikeCount == 0 && ballCount == 0) {
+			System.out.print("낫싱");
+		}
+	}
+
 	public boolean getWinner(Set<Integer> gameSet, Set<Integer> playerSet) {
 		int matchCount = countMatch(gameSet, playerSet);
+		int containCount = countContain(gameSet, playerSet);
 		if (matchCount == GAME_NUMBER_SIZE) {
 			System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임종료\n", GAME_NUMBER_SIZE);
 			return true;
 		}
-		if (getStrike(matchCount) == 0 && getBall(matchCount, countContain(gameSet, playerSet)) == 0) {
-			System.out.print("낫싱");
-		}
+		getScore(matchCount, containCount);
 		System.out.println();
 		return false;
 	}
-
 
 	public int countContain(Set<Integer> gameSet, Set<Integer> playerSet) {
 		int containCount = 0;
