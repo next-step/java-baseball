@@ -11,18 +11,36 @@ public class UserBallInputTest {
     @BeforeEach
     public void setUp() {
         userBallInput = new UserBallInput(BaseballGame.DEFAULT_LEN);
-        InputBall = userBallInput.UserBallInputRead();
+        InputBall = userBallInput.userBallInputRead("123");
     }
 
     @Test
-    public void isValidatedLength() {
-        Assertions.assertEquals(InputBall.length(), BaseballGame.DEFAULT_LEN);
+    public void isValidatedLength3() {
+        Assertions.assertEquals(userBallInput.userBallInputRead("123"),"123");
+        Assertions.assertEquals(userBallInput.userBallInputRead("1234"),"FALSE");
     }
 
     @Test
-    public void isValidatedDigit() {
+    public void isValidatedDigit1To9() {
         for (int i=0; i<InputBall.length(); i++)
             Assertions.assertTrue(Pattern.matches("^[1-9]", InputBall.charAt(i) + ""));
+
+    }
+
+    private int getStrNumber(String str, char c) {
+        int cnt = 0;
+
+        for(int i=0;i<str.length();i++)
+            cnt += str.charAt(i) == c ? 1 : 0;
+
+        return cnt;
+    }
+
+    @Test
+    public void isValidatedUnique() {
+
+        for(int i=0;i<InputBall.length();i++)
+            Assertions.assertEquals(getStrNumber(InputBall, InputBall.charAt(i)), 1);
 
     }
 }

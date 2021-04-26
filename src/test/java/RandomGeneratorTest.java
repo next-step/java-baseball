@@ -26,11 +26,11 @@ public class RandomGeneratorTest {
 
     }
 
-    public boolean compareBalls(String s1, String s2) {
+    private boolean compareBalls(String s1, String s2) {
         return s1.equals(s2);
     }
 
-    public boolean containBalls(String[] containArr, String findValue, int index) {
+    private boolean containBalls(String[] containArr, String findValue, int index) {
 
         boolean isContained = false;
 
@@ -51,7 +51,7 @@ public class RandomGeneratorTest {
         }
     }
 
-    public int getStrNumber(String str, char c) {
+    private int getStrNumber(String str, char c) {
         int cnt = 0;
 
         for(int i=0;i<str.length();i++)
