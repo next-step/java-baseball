@@ -5,6 +5,7 @@ import com.gotgolem.baseball.asset.number.RandomNumberGenerator;
 import com.gotgolem.baseball.asset.pitch.PitchHint;
 import com.gotgolem.baseball.asset.pitch.ThreePitches;
 import com.gotgolem.baseball.asset.player.Player;
+import com.gotgolem.baseball.exception.PlayerInputException;
 import com.gotgolem.baseball.service.BaseballService;
 import com.gotgolem.baseball.service.ConsoleUiService;
 import com.gotgolem.baseball.service.PlayerService;
@@ -49,13 +50,31 @@ public class GameManager {
 	}
 
 	private void requestGameState() {
+		boolean requestSuccess = false;
+		while (!requestSuccess) {
+			requestSuccess = changeGameStateByPlayer();
+		}
+	}
+
+	private boolean changeGameStateByPlayer() {
 		final String gameStateString = consoleUiService.requestContinue();
-		gameState = playerService.parseGameStateString(gameStateString);
+		try {
+			gameState = playerService.parseGameStateString(gameStateString);
+			return true;
+		} catch (PlayerInputException e) {
+			consoleUiService.printGuideMessage(e.getMessage());
+		}
+		return false;
 	}
 
 	private ThreePitches requestPitches() {
 		final String pitchesString = consoleUiService.requestPitches();
-		return playerService.parsePitchesString(pitchesString);
+		try {
+			return playerService.parsePitchesString(pitchesString);
+		} catch (PlayerInputException e) {
+			consoleUiService.printGuideMessage(e.getMessage());
+			return null;
+		}
 	}
 
 	private PitchHint getPitchHint(ThreePitches target, ThreePitches comparison) {

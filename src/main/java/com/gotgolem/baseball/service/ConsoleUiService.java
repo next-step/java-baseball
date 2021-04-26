@@ -28,10 +28,15 @@ public class ConsoleUiService {
 	public void printPitchHint(int strikeCount, int ballCount) {
 		if (strikeCount == 0 && ballCount == 0) {
 			System.out.println("낫싱");
+			return;
 		}
 		final String strikeMessage = strikeCount > 0 ? (strikeCount + "스트라이크 ") : "";
 		final String ballMessage = ballCount > 0 ? (ballCount + "볼") : "";
 		System.out.println(strikeMessage + ballMessage);
+	}
+
+	public void printGuideMessage(String guideMessage) {
+		System.out.println(guideMessage);
 	}
 
 }
