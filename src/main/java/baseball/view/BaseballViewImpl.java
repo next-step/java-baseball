@@ -2,12 +2,14 @@ package baseball.view;
 
 import baseball.domain.dto.BaseballResultResponse;
 import baseball.exceptions.DuplicateBallNumberException;
+import baseball.exceptions.InvalidBallNumberException;
 import baseball.exceptions.InvalidBallNumbersSizeException;
 import baseball.exceptions.InvalidInputValueException;
 
 import java.util.List;
 
 public class BaseballViewImpl implements BaseballView {
+    public static final String REQUIRED_VALID_INPUT_NUMBER = "입력하신 숫자가 유효하지 않습니다. 다시 입력해주세요.";
     private final InputView inputView;
     private final ResultView resultView;
 
@@ -20,8 +22,8 @@ public class BaseballViewImpl implements BaseballView {
     public List<Integer> questionNumbers() {
         try {
             return inputView.questionNumbers();
-        } catch (InvalidBallNumbersSizeException | DuplicateBallNumberException ie) {
-            System.out.println("입력하신 숫자가 유효하지 않습니다. 다시 입력해주세요.");
+        } catch (InvalidBallNumbersSizeException | DuplicateBallNumberException | InvalidBallNumberException ie) {
+            System.out.println(REQUIRED_VALID_INPUT_NUMBER);
             return questionNumbers();
         }
     }

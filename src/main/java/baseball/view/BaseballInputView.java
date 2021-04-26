@@ -1,6 +1,7 @@
 package baseball.view;
 
 import baseball.exceptions.DuplicateBallNumberException;
+import baseball.exceptions.InvalidBallNumberException;
 import baseball.exceptions.InvalidBallNumbersSizeException;
 import baseball.exceptions.InvalidInputValueException;
 
@@ -8,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+
+import static baseball.domain.BallNumber.VALID_MAX_NUMBER;
+import static baseball.domain.BallNumber.VALID_MIN_NUMBER;
 
 public class BaseballInputView implements InputView {
 
@@ -29,8 +33,8 @@ public class BaseballInputView implements InputView {
     }
 
     @Override
-    public List<Integer> questionNumbers() throws InvalidBallNumbersSizeException, DuplicateBallNumberException {
-        System.out.println(QUESTION_NUMBERS);
+    public List<Integer> questionNumbers() throws InvalidBallNumbersSizeException, DuplicateBallNumberException, InvalidBallNumberException {
+        System.out.print(QUESTION_NUMBERS);
         int number = scanner.nextInt();
 
         List<Integer> splitResult = splitNumbers(number);
@@ -62,6 +66,15 @@ public class BaseballInputView implements InputView {
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.isEmpty() || numbers.size() != BALL_EXACT_SIZE) {
             throw new InvalidBallNumbersSizeException();
+        }
+        for (Integer number : numbers) {
+            validateBallNumber(number);
+        }
+    }
+
+    private void validateBallNumber(Integer number) {
+        if (number < VALID_MIN_NUMBER || number > VALID_MAX_NUMBER) {
+            throw new InvalidBallNumberException();
         }
     }
 
