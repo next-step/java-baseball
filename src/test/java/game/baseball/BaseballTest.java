@@ -4,14 +4,19 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseballTest {
-    static Baseball baseball;
+    private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private static Baseball baseball;
 
     @BeforeAll
     public static void initial() {
         baseball = new Baseball();
+        System.setOut(new PrintStream(outContent));
     }
 
     @DisplayName("컴퓨터 숫자가 3자리 인지 확인")
@@ -70,5 +75,39 @@ public class BaseballTest {
 
         assertEquals(baseball.ballCount, BaseballConstants.BASEBALL_COUNT);
         assertEquals(baseball.strikeCount, 0);
+    }
+
+    @DisplayName("3 strike 판단")
+    @Test
+    public void is_3_strike() {
+        baseball.strikeCount = 2;
+        assertTrue(baseball.isNotThreeStrike());
+    }
+
+    @DisplayName("게임 결과 출력 - 낫싱")
+    @Test
+    public void print_game_result_nothing() {
+        baseball.strikeCount = 0;
+        baseball.ballCount = 0;
+        baseball.printGameResult();
+        assertEquals("낫싱\r\n", outContent.toString());
+    }
+
+    @DisplayName("게임 결과 출력 - 1스트라이크 2볼")
+    @Test
+    public void print_game_result_1strike_2ball() {
+        baseball.strikeCount = 1;
+        baseball.ballCount = 2;
+        baseball.printGameResult();
+        assertEquals("1 스트라이크 2 볼\r\n", outContent.toString());
+    }
+
+    @DisplayName("게임 결과 출력 - 게임 종료")
+    @Test
+    public void print_game_result_3strike() {
+        baseball.strikeCount = 3;
+        baseball.ballCount = 0;
+        baseball.printGameResult();
+        assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임 종료\r\n", outContent.toString());
     }
 }

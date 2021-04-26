@@ -7,12 +7,14 @@ import java.util.Scanner;
 public class GameController {
     public static void main(String[] args) {
         Baseball baseball = new Baseball();
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("숫자를 입력해주세요 :");
+            int inputNumber = scanner.nextInt();
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("숫자를 입력해주세요 :");
-        int inputNumber = scanner.nextInt();
-
-        baseball.makePlayerNumbers(inputNumber);
-        baseball.checkStrikeAndBallCount();
+            baseball.makePlayerNumbers(inputNumber);
+            baseball.checkStrikeAndBallCount();
+            baseball.printGameResult();
+        } while (baseball.isNotThreeStrike());
     }
 }

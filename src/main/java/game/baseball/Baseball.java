@@ -17,6 +17,24 @@ public class Baseball {
         makeComputerNumbers();
     }
 
+    public void printGameResult() {
+        if (strikeCount == 0 && ballCount == 0) {
+            System.out.println("낫싱");
+            return;
+        }
+
+        if (strikeCount == 3) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return;
+        }
+
+        System.out.println(strikeCount + " 스트라이크 " + ballCount + " 볼");
+    }
+
+    public boolean isNotThreeStrike() {
+        return strikeCount != BaseballConstants.BASEBALL_COUNT;
+    }
+
     public void checkStrikeAndBallCount() {
         checkStrikeCount();
         checkBallCount();
