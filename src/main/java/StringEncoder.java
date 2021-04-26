@@ -1,4 +1,3 @@
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 public class StringEncoder {

@@ -1,6 +1,3 @@
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-
 public class Judge {
     public int strike;
     public int ball;
