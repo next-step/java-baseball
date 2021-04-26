@@ -31,4 +31,24 @@ public class BaseballGameTest {
 		return insertText.matches(regExp);
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"123:true", "qwe:false", "1f2:false", "'':false", "1111:false"}, delimiter = ':')
+	@DisplayName("숫자 입력 테스트")
+	void insertNumberTest(String insertText, boolean expected) {
+		assertThat(insertNumber(insertText).length() == 0).isEqualTo(expected);
+	}
+	
+	private String insertNumber(String insertText) {
+		String result = "";
+		
+		while(!validateInsertText(insertText)) {
+			result = BaseballGameConstant.ENTER_CORRECT_NUMBER;
+			System.out.println(BaseballGameConstant.ENTER_CORRECT_NUMBER);
+			System.out.print(BaseballGameConstant.REQ_ENTER_NUMBER);
+			insertText = "123";
+		}
+		
+		return result;
+	}
+	
 }

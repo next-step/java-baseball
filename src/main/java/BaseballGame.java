@@ -43,6 +43,24 @@ public class BaseballGame {
 	}
 	
 	/**
+	 * 숫자를 입력합니다.
+	 *
+	 * @param scanner
+	 * @return String
+	 */
+	private String insertNumber(Scanner scanner) {
+		String insertText = scanner.nextLine();
+		
+		while (!validateInsertText(insertText)) {
+			System.out.println(BaseballGameConstant.ENTER_CORRECT_NUMBER);
+			System.out.print(BaseballGameConstant.REQ_ENTER_NUMBER);
+			
+			insertText = scanner.nextLine();
+		}
+		return insertText;
+	}
+	
+	/**
 	 * 입력한 문자열이 유효한 문자열인지 체크합니다.
 	 *
 	 * @param insertText
