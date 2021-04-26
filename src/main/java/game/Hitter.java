@@ -13,10 +13,10 @@ public class Hitter {
     }
 
     public Hitter() {
-        this.ballList = createRandomBallList();
+        this.ballList = generateRandomBallList();
     }
 
-    private List<Integer> createRandomBallList() {
+    private List<Integer> generateRandomBallList() {
         Set<Integer> randomNumberSet = new LinkedHashSet<>();
         Random random = new Random();
 
