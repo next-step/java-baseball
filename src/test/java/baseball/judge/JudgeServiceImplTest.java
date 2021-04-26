@@ -41,6 +41,34 @@ class JudgeServiceImplTest {
 	}
 
 	@Test
+	@DisplayName("질문입력값이 비정상일경우를 체크하여 true 정상일경우 false를 리턴해준다")
+	void fourBallByIncorrectInputDataTest() {
+		List<String> question1 = Arrays.asList("");
+		List<String> question2 = Arrays.asList();
+		List<String> question3 = Arrays.asList("1", "2");
+		try {
+			Method fourBallByIncorrectInputData = judgeService.getClass()
+				.getDeclaredMethod("fourBallByIncorrectInputData", List.class);
+			fourBallByIncorrectInputData.setAccessible(true);
+
+			Object failCase1 = fourBallByIncorrectInputData.invoke(judgeService, question1);
+			Object failCase2 = fourBallByIncorrectInputData.invoke(judgeService, question2);
+			Object successCase = fourBallByIncorrectInputData.invoke(judgeService, question3);
+
+			assertThat(failCase1).isEqualTo(true);
+			assertThat(failCase2).isEqualTo(true);
+			assertThat(successCase).isEqualTo(false);
+
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
 	@DisplayName("주어진 숫자로 볼카운트를 계산한다. 정답객체 전체탐색")
 	void compareWithAnswerTest() {
 		BallCount ballCount1 = new BallCount(0, 0);

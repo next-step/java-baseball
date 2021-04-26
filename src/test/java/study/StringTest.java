@@ -37,11 +37,8 @@ public class StringTest {
 	@Test
 	@DisplayName("'(1,2)' 값이 주어졌을 때 String의 substring()메소드를 활용해 ()을 제거하고 '1,2를 반환 하도록 구현한다'")
 	void substringString() {
-		// given
 		String target = "(1,2)";
-		// when
 		String substring = target.substring(1, 4);
-		// then
 		assertThat(substring).isEqualTo("1,2");
 	}
 

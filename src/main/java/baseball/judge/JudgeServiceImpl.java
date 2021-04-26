@@ -11,7 +11,7 @@ public class JudgeServiceImpl implements JudgeService {
 
 	@Override
 	public Judge judgeQuestion(List<Integer> answer, List<String> question) {
-		if (question.size() < 1) {
+		if (fourBallByIncorrectInputData(question)) {
 			return new Judge(FOUR_BALL, false);
 		}
 		BallCount ballCount = new BallCount(0, 0);
@@ -22,6 +22,16 @@ public class JudgeServiceImpl implements JudgeService {
 		return new Judge(ballCountMessage, ballCount.getStrike() == BALL_COUNT);
 	}
 
+	private boolean fourBallByIncorrectInputData(List<String> question) {
+		if (question.size() < 1) {
+			return true;
+		}
+		if (question.get(0).isEmpty() && question.size() == 1) {
+			return true;
+		}
+		return false;
+	}
+
 	private void compareWithAnswer(BallCount ballCount, List<Integer> answer, String questionNumber,
 		int questionIndex) {
 		if (!Character.isDigit(questionNumber.charAt(0))) {
@@ -30,7 +40,6 @@ public class JudgeServiceImpl implements JudgeService {
 		for (int j = 0; j < answer.size(); j++) {
 			computeBallCount(ballCount, answer, j, questionNumber, questionIndex);
 		}
-		return;
 	}
 
 	private void computeBallCount(BallCount ballCount, List<Integer> answer, int answerIndex, String questionNumber,
@@ -38,7 +47,6 @@ public class JudgeServiceImpl implements JudgeService {
 		if (Integer.parseInt(questionNumber) != answer.get(answerIndex)) {
 			return;
 		}
-
 		if (questionIndex == answerIndex) {
 			ballCount.increaseStrike();
 			return;

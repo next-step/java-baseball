@@ -22,7 +22,7 @@ public class PlayServiceImpl implements PlayService {
 
 	@Override
 	public void playBall() {
-		List answer = answerService.buildAnswer();
+		List<Integer> answer = answerService.buildAnswer();
 		boolean roop = true;
 		while (roop) {
 			List<String> question = questionService.inputQuestion();
