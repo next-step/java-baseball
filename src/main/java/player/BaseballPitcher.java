@@ -16,22 +16,25 @@ public class BaseballPitcher {
         throwingBall();
     }
 
-    // FIXME: 줄수 제한 10
     public void throwingBall() {
         System.out.print(INPUT_NUMBER_MESSAGE);
         String input = scan.nextLine();
-        String[] splitInput = input.split("");
+        String[] splitString = input.split("");
 
-        ArrayList<Integer> numbers = new ArrayList<>();
-        for (String str : splitInput) {
-            numbers.add(parseNumber(str));
-        }
-
+        List<Integer> numbers = parseNumbers(splitString);
         new ValidateNumbers(numbers).checkAllConditions();
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    private List<Integer> parseNumbers(String[] splitString) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String str : splitString) {
+            numbers.add(parseNumber(str));
+        }
         return numbers;
     }
 
