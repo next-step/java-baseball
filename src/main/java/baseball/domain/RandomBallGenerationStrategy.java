@@ -1,6 +1,11 @@
 package baseball.domain;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class RandomBallGenerationStrategy implements BallGenerationStrategy{
     private static final int RANDOM_PADDING = 1;
