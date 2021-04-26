@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class BaseballNumber {
   static final int MINIMUM_BALL_NUMBER = 1;
@@ -20,10 +21,30 @@ public class BaseballNumber {
     this.ballNumber = ballNumber;
   }
 
+  public boolean is(int number) {
+    return ballNumber == number;
+  }
+
   public int getBallNumber() {
     return ballNumber;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    BaseballNumber that = (BaseballNumber) o;
+    return ballNumber == that.ballNumber;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(ballNumber);
+  }
 
   private static void validate(int number) {
     if (number < MINIMUM_BALL_NUMBER || number > MAXIMUM_BALL_NUMBER) {
