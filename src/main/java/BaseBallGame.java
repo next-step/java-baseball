@@ -10,6 +10,13 @@ public class BaseBallGame {
         userArray = new int[3];
     }
 
+    void gamePlay() {
+        generateNumber(); // 숫자 생성
+        do {
+            getUserNumber();  // 숫자 입력
+        } while (!checkGameResult()); // 결과 체크
+    }
+
     void generateNumber() {
         List<Integer> baseBallNum = new ArrayList<Integer>();
         for(int i = 1 ; i <= 9 ; i++) {
