@@ -26,6 +26,21 @@ public class BaseballReferee {
 		return !hasDuplicatedNumber(inputString);
 	}
 
+	public BallCounts decideBalls(String candidate, String target) {
+		int strikeCount = 0;
+		int ballCount = 0;
+
+		for (int i = 0; i < BASEBALL_NUMBER_LENGTH; i++) {
+			char digit = candidate.charAt(i);
+			int index = target.indexOf(digit);
+
+			strikeCount += countStrike(index, i);
+			ballCount += countBall(index, i);
+		}
+
+		return BallCounts.of(strikeCount, ballCount);
+	}
+
 	private boolean isAllDigitValidRange(String inputString) {
 		final String regex = "[1-9]+";
 
@@ -48,5 +63,21 @@ public class BaseballReferee {
 		}
 
 		return characters.size() != BASEBALL_NUMBER_LENGTH;
+	}
+
+	private int countStrike(int foundedIndex, int charAt) {
+		if (foundedIndex == charAt) {
+			return 1;
+		}
+
+		return 0;
+	}
+
+	private int countBall(int foundedIndex, int charAt) {
+		if (foundedIndex != -1 && foundedIndex != charAt) {
+			return 1;
+		}
+
+		return 0;
 	}
 }

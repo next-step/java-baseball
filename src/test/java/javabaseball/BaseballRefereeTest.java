@@ -5,7 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ArgumentConversionException;
+import org.junit.jupiter.params.converter.ArgumentConverter;
+import org.junit.jupiter.params.converter.ConvertWith;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BaseballRefereeTest {
@@ -80,5 +85,41 @@ class BaseballRefereeTest {
 		// then
 		assertEquals(3, numberString.length());
 		assertFalse(isFare);
+	}
+
+	@DisplayName("정상적으로 스트라이크, 볼 판단")
+	@ParameterizedTest
+	// slash separated ball counts: ${strike}/${ball}
+	@CsvSource({"456, 0/0", "154, 1/0", "234, 0/2", "312, 0/3", "523, 2/0", "213, 1/2", "123, 3/0"})
+	void decideBalls_shouldReturnCorrect(
+		String candidate, @ConvertWith(SlashBallCountConverter.class) BallCounts expectedBallCounts) {
+		// given
+		String target = "123";
+
+		// when
+		BallCounts decidedBallCounts = referee.decideBalls(candidate, target);
+
+		// then
+		assertTrue(decidedBallCounts.getBallCount() + decidedBallCounts.getStrikeCount() <= 3);
+		assertEquals(expectedBallCounts, decidedBallCounts);
+	}
+
+	static class SlashBallCountConverter implements ArgumentConverter {
+
+		@Override
+		public Object convert(Object source, ParameterContext context) throws ArgumentConversionException {
+			if (!(source instanceof String)) {
+				throw new IllegalArgumentException("The argument should be a string: " + source);
+			}
+			try {
+				String[] parts = ((String)source).split("/");
+				int strikeCount = Integer.parseInt(parts[0]);
+				int ballCount = Integer.parseInt(parts[1]);
+
+				return BallCounts.of(strikeCount, ballCount);
+			} catch (Exception e) {
+				throw new IllegalArgumentException("Failed to convert", e);
+			}
+		}
 	}
 }

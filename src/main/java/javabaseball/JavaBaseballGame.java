@@ -22,9 +22,11 @@ public class JavaBaseballGame {
 	public static void main(String[] args) {
 		final JavaBaseballGame baseballGame = JavaBaseballGame.of();
 		final RandomNumberStringGenerator generator = baseballGame.randomNumberStringGenerator;
-		final String answer = generator.generate(BASEBALL_NUMBER_LENGTH);
+		final BaseballReferee referee = baseballGame.referee;
+		final String target = generator.generate(BASEBALL_NUMBER_LENGTH);
 
 		String candidate = baseballGame.tryAnswer();
+		BallCounts ballCounts = referee.decideBalls(candidate, target);
 
 		// TODO(jjeda): Implement baseball game
 	}
