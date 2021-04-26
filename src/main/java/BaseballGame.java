@@ -67,10 +67,25 @@ public class BaseballGame {
         HashMap<Integer, Integer> res = new HashMap<>();
         int temp_number = 0;
         for (int i = 0; i < LEN; i++) {
-            //temp_number = getRandomNumber(res); //한자릿수 난수 추출
+            temp_number = getRandomNumber(res); //한자릿수 난수 추출
             res.put(temp_number, i);
         }
         System.out.println("타겟 숫자 : " + res);
         return res;
     }
+    /**
+     * getRandomNumber
+     * 한 자릿수 난수 추출
+     * 중복되는 숫자가 나올 경우, 재귀를 통해 다시 추출하도록 한다.
+     * @param res 기존에 추출한 랜덤 숫자 HashMap
+     * @return 한자리 난수
+     */
+    public int getRandomNumber(HashMap<Integer, Integer> res) {
+        int rand_number = (int)(Math.random()*9+1);
+        if(res.get(rand_number)!=null){
+            rand_number = this.getRandomNumber(res);
+        }
+        return rand_number;
+    }
+
 }
