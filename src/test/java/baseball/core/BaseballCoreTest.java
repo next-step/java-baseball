@@ -86,7 +86,7 @@ public class BaseballCoreTest {
 	}
 
 	@DisplayName(value = "2. Ball Count")
-	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected balls.")
+	@ParameterizedTest(name = "{index} - {0} : playerInputs. {1} : expected balls.")
 	@Order(2)
 	@CsvSource(value = {"123,456,789;1,2,0", "147,258,369;1,1,1", "987,624,351;0,3,0"}, delimiter = ';')
 	public void testCountBall(String playerInputs, String expectedScores) throws
@@ -124,7 +124,7 @@ public class BaseballCoreTest {
 	}
 
 	@DisplayName(value = "3. Strike Count")
-	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected strikes.")
+	@ParameterizedTest(name = "{index} - {0} : playerInputs. {1} : expected strikes.")
 	@Order(3)
 	@CsvSource(value = {"143,256,789;0,2,0", "147,258,369;0,3,0", "987,624,351;0,0,1"}, delimiter = ';')
 	public void testCountStrike(String playerInputs, String expectedScores) throws
@@ -162,7 +162,7 @@ public class BaseballCoreTest {
 	}
 
 	@DisplayName(value = "4. Final Score")
-	@ParameterizedTest(name = "{index} - {0} are a List of playerInputs. {1} are a List of expected strikes. {2} are a List of expected balls.")
+	@ParameterizedTest(name = "{index} - {0} : playerInputs. {1} : expected strikes. {2} : expected balls.")
 	@Order(4)
 	@CsvSource(value = {"142,182,582;0,0,0;1,2,3", "148,428,852;1,1,1;0,1,2", "147,258;0,3;0,0"}, delimiter = ';')
 	public void testFinalScore(String playerInputs, String expectedStrikeScores, String expectedBallScores) throws
@@ -202,13 +202,19 @@ public class BaseballCoreTest {
 		for (int i = 0; i < playerInputsArr.length; i++) {
 			ScoreCode scoreCode = (ScoreCode) finalScore.invoke(this.core, playerInputsArr[i]);
 
-			assertThat(scoreCode.getStrike()).isEqualTo(Integer.parseInt(expectedStrikeScoresArr[i]));
-			assertThat(scoreCode.getBall()).isEqualTo(Integer.parseInt(expectedBallScoresArr[i]));
+			Field strikeField = scoreCode.getClass().getDeclaredField("strike");
+			strikeField.setAccessible(true);
+
+			Field ballField = scoreCode.getClass().getDeclaredField("ball");
+			ballField.setAccessible(true);
+
+			assertThat(strikeField.get(scoreCode)).isEqualTo(Integer.parseInt(expectedStrikeScoresArr[i]));
+			assertThat(ballField.get(scoreCode)).isEqualTo(Integer.parseInt(expectedBallScoresArr[i]));
 		}
 	}
 
 	@DisplayName(value = "5. Reset Game when start new game.")
-	@ParameterizedTest(name = "{index} - {0} is 'isEndGame'. {1} is same previous game.")
+	@ParameterizedTest(name = "{index} - {0} : isEndGame. {1} : same previous game.")
 	@Order(5)
 	@CsvSource(value = {"false;true", "true;false"}, delimiter = ';')
 	public void testResetGameWhenNewGame(boolean isEndGame, boolean isSamePrevGame) throws
@@ -241,7 +247,7 @@ public class BaseballCoreTest {
 	}
 
 	@DisplayName(value = "6. Reset Game when start new game.")
-	@ParameterizedTest(name = "{index} - {0} is player input. {1} is expected result.")
+	@ParameterizedTest(name = "{index} - {0} : player input. {1} : expected result.")
 	@Order(6)
 	@CsvSource(value = {"123;false", "258;true"}, delimiter = ';')
 	public void testCheckWinGame(String playerInput, boolean expectedResult) throws
