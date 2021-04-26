@@ -1,9 +1,18 @@
 package com.syl.game.baseball.domain.entity;
 
 public class BaseBallNumbers {
+
     private int first;
     private int second;
     private int third;
+
+    public BaseBallNumbers() {}
+
+    public BaseBallNumbers(int first, int second, int third) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+    }
 
     public int getFirst() {
         return first;
@@ -27,14 +36,6 @@ public class BaseBallNumbers {
 
     public void setThird(int third) {
         this.third = third;
-    }
-
-    public boolean validateNumber(int number) {
-        boolean result = false;
-        if ( 1<= number && number <= 9 ) {
-            result = true;
-        }
-        return result;
     }
 
     public int countStrike(BaseBallNumbers inputNumbers) {
@@ -72,4 +73,5 @@ public class BaseBallNumbers {
     private boolean compareThird(int num) {
         return third == num;
     }
+
 }
