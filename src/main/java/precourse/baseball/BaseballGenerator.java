@@ -14,21 +14,21 @@ public class BaseballGenerator {
     public Baseballs createRandomBaseballs() {
         List<precourse.baseball.Baseball> basket = new ArrayList<>();
         for (int number = MIN_NUMBER.getValue(); number <= MAX_NUMBER.getValue(); number++) {
-            basket.add(new precourse.baseball.Baseball(number));
+            basket.add(new Baseball(number));
         }
 
         Collections.shuffle(basket);
 
-        return new precourse.baseball.Baseballs(basket.subList(DEFAULT_POSITION, MAX_BASEBALLS.getValue()));
+        return new Baseballs(basket.subList(DEFAULT_POSITION, MAX_BASEBALLS.getValue()));
     }
 
-    public precourse.baseball.Baseballs createBaseballs(String answer) {
+    public Baseballs createBaseballs(String answer) {
         List<precourse.baseball.Baseball> basket = new ArrayList<>();
         for (int i = 0; i < MAX_BASEBALLS.getValue(); i++) {
-            basket.add(new precourse.baseball.Baseball(answer.charAt(i) - ASCII_ZERO));
+            basket.add(new Baseball(answer.charAt(i) - ASCII_ZERO));
         }
 
-        return new precourse.baseball.Baseballs(basket);
+        return new Baseballs(basket);
     }
 
 }

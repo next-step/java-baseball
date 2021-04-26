@@ -1,5 +1,6 @@
 package precourse.game;
 
+import static precourse.constant.BaseballGameMessage.*;
 import static precourse.constant.BaseballSpecification.*;
 
 import java.util.regex.Pattern;
@@ -17,7 +18,7 @@ public class BaseballNumberString {
     private void isThreeDigitNumber(String numberString) {
         if (numberString.length() != MAX_BASEBALLS.getValue() ||
                 !Pattern.matches(VALID_BASEBALL_NUMBER_RANGE, numberString)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ANSWER.content());
         }
     }
 

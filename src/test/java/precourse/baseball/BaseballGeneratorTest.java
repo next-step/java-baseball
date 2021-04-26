@@ -1,6 +1,7 @@
 package precourse.baseball;
 
 import static org.assertj.core.api.Assertions.*;
+import static precourse.constant.BaseballGameMessage.*;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -49,7 +50,9 @@ class BaseballGeneratorTest {
     void invalidBaseballs(String answer) {
         precourse.baseball.BaseballGenerator generator = new precourse.baseball.BaseballGenerator();
 
-        assertThatIllegalArgumentException().isThrownBy(() -> generator.createBaseballs(answer));
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> generator.createBaseballs(answer))
+            .withMessage(INVALID_ANSWER.content());
     }
 
 }

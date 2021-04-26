@@ -1,5 +1,6 @@
 package precourse.game;
 
+import static precourse.constant.BaseballGameMessage.*;
 import static precourse.constant.BaseballSpecification.*;
 
 import java.util.StringJoiner;
@@ -8,7 +9,6 @@ import precourse.baseball.Baseballs;
 
 public class BaseballGameResult {
 
-    private static final String CORRECT_ANSWER = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
     private static final String NOTHING_IN_KOREAN = "낫싱";
     private static final String STRIKE_IN_KOREAN = "스트라이크";
     private static final String BALL_IN_KOREAN = "볼";
@@ -28,7 +28,7 @@ public class BaseballGameResult {
 
     public String getResult() {
         if (isCorrect()) {
-            return CORRECT_ANSWER;
+            return CORRECT_ANSWER.content();
         }
 
         if (isNothing()) {

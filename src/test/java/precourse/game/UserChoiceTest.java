@@ -2,6 +2,7 @@ package precourse.game;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static precourse.constant.BaseballGameMessage.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,7 +39,9 @@ class UserChoiceTest {
 	@ValueSource(strings = {"0", "5", "10"})
 	@DisplayName("사용자 선택 시 입력값이 1 또는 2가 아니면 예외가 발생한다.")
 	void invalidUserChoice(String choice) {
-		assertThatIllegalArgumentException().isThrownBy(() -> new UserChoice(choice));
+		assertThatIllegalArgumentException()
+			.isThrownBy(() -> new UserChoice(choice))
+			.withMessage(INVALID_ANSWER.content());
 	}
 
 }

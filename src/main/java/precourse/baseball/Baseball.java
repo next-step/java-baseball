@@ -1,5 +1,6 @@
 package precourse.baseball;
 
+import static precourse.constant.BaseballGameMessage.*;
 import static precourse.constant.BaseballSpecification.*;
 
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class Baseball {
 
     private void validateNumber(int number) {
         if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ANSWER.content());
         }
     }
 

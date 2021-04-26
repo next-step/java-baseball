@@ -1,6 +1,7 @@
 package precourse.baseball;
 
 import static org.assertj.core.api.Assertions.*;
+import static precourse.constant.BaseballGameMessage.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,9 @@ public class BaseballTest {
     @ParameterizedTest(name = "숫자 : {0}")
     @ValueSource(ints = {0, 10, 100})
     void invalidNumber(int invalidNumber) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new precourse.baseball.Baseball(invalidNumber));
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> new precourse.baseball.Baseball(invalidNumber))
+            .withMessage(INVALID_ANSWER.content());
     }
 
 }

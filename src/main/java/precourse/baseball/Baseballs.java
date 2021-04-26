@@ -1,5 +1,6 @@
 package precourse.baseball;
 
+import static precourse.constant.BaseballGameMessage.*;
 import static precourse.constant.BaseballSpecification.*;
 
 import java.util.HashSet;
@@ -69,14 +70,14 @@ public class Baseballs {
 
     private void validateSize(List<precourse.baseball.Baseball> basket) {
         if (basket.size() != MAX_BASEBALLS.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ANSWER.content());
         }
     }
 
     private void validateDuplication(List<precourse.baseball.Baseball> basket) {
         Set<precourse.baseball.Baseball> nonDuplicateBasket = new HashSet<>(basket);
         if (nonDuplicateBasket.size() != MAX_BASEBALLS.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ANSWER.content());
         }
     }
 

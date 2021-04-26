@@ -1,5 +1,7 @@
 package precourse.game;
 
+import static precourse.constant.BaseballGameMessage.*;
+
 import java.util.regex.Pattern;
 
 public class UserChoice {
@@ -25,7 +27,7 @@ public class UserChoice {
     private void isOneDigitNumber(String choice) {
         if (choice.length() != 1
                 || !Pattern.matches(VALID_CHOICE_NUMBER_RANGE, choice)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ANSWER.content());
         }
     }
 
