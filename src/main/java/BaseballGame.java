@@ -1,4 +1,4 @@
-import domain.BaseballNumberScore;
+import domain.BaseballReferee;
 import domain.BaseballNumbers;
 import domain.BaseballResult;
 import view.ContinuePlay;
@@ -21,10 +21,10 @@ public class BaseballGame {
     private void gameStart() {
         boolean continueGame = true;
         while (continueGame) {
-            BaseballNumberScore baseballNumberScore = new BaseballNumberScore(
+            BaseballReferee baseballReferee = new BaseballReferee(
                     BaseballNumbers.create(BaseballNumberGenerator.generator())
             );
-            playRound(baseballNumberScore);
+            playRound(baseballReferee);
 
             continueGame = isContinuePlay();
         }
@@ -35,11 +35,11 @@ public class BaseballGame {
         return continuePlay.isContinuePlay();
     }
 
-    private void playRound(BaseballNumberScore baseballNumberScore) {
+    private void playRound(BaseballReferee baseballReferee) {
         boolean gameover = false;
 
         while (!gameover) {
-            BaseballResult baseballResult = baseballNumberScore.judge(getPlayerNumber());
+            BaseballResult baseballResult = baseballReferee.judge(getPlayerNumber());
 
             gameover = roundResult(baseballResult);
         }

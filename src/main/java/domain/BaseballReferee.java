@@ -1,11 +1,11 @@
 package domain;
 
 
-public class BaseballNumberScore {
+public class BaseballReferee {
 
     private BaseballNumbers numbers;
 
-    public BaseballNumberScore(BaseballNumbers numbers) {
+    public BaseballReferee(BaseballNumbers numbers) {
         this.numbers = numbers;
     }
 
