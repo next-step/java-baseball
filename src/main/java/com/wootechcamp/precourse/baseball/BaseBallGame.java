@@ -44,7 +44,6 @@ public class BaseBallGame {
 
     public int getAnswer(){
         int first = generateRandomNumber();
-        first = first * 100;
 
         int second = -1;
         while(true){
@@ -53,7 +52,6 @@ public class BaseBallGame {
                 break;
             }
         }
-        second = second * 10;
 
         int third = -1;
         while(true){
@@ -63,7 +61,7 @@ public class BaseBallGame {
             }
         }
 
-        int result = first + second + third;
+        int result = first * 100 + second * 10 + third;
 
         return result;
     }
