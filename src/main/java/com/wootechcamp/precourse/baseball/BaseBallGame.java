@@ -10,7 +10,7 @@ public class BaseBallGame {
 
         while (true){
 
-            int answer = getRandomNumber();
+            int answer = getAnswer();
             System.out.println("random :" + answer);
 
             System.out.print("숫자를 입력해 주세요 : ");
@@ -31,12 +31,39 @@ public class BaseBallGame {
         }
     }
 
-    public int getRandomNumber() {
+    public int generateRandomNumber() {
         Random random = new Random();
-        int low = 100;
-        int high = 1000;
+        while(true){
+            int result = random.nextInt(10);
 
-        int result = random.nextInt(high-low) + low;
+            if(result != 0){
+                return result;
+            }
+        }
+    }
+
+    public int getAnswer(){
+        int first = generateRandomNumber();
+        first = first * 100;
+
+        int second = -1;
+        while(true){
+            second = generateRandomNumber();
+            if(first != second){
+                break;
+            }
+        }
+        second = second * 10;
+
+        int third = -1;
+        while(true){
+            third = generateRandomNumber();
+            if(first != third && second != third){
+                break;
+            }
+        }
+
+        int result = first + second + third;
 
         return result;
     }
