@@ -46,7 +46,7 @@ public class GameResult {
 
     private void printStrikeAndBall() {
         if (getStrikeCount() != 0) {
-            System.out.print(getStrikeCount() + " 스트라이크");
+            System.out.print(getStrikeCount() + " 스트라이크 ");
         }
         if (getBallCount() != 0) {
             System.out.print(getBallCount() + " 볼");

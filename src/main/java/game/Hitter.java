@@ -1,5 +1,6 @@
 package game;
 
+import common.CommonUtil;
 import common.ConstantUtil;
 
 import java.util.*;
@@ -14,6 +15,10 @@ public class Hitter {
 
     public Hitter() {
         this.ballList = generateRandomBallList();
+    }
+
+    public Hitter(String input) {
+        this.ballList = CommonUtil.getInputStringToIntegerList(input);
     }
 
     private List<Integer> generateRandomBallList() {

@@ -16,6 +16,10 @@ public class Pitcher {
         this.throwBallList = getInputThrowBallList();
     }
 
+    public Pitcher(String input) {
+        this.throwBallList = CommonUtil.getInputStringToIntegerList(input);
+    }
+
     private String getInputThrowBalls() {
         return CommonUtil.scannerNextMessageAndPattern("숫자를 입력해주세요 : ", ConstantUtil.INPUT_NUMBER_PATTERN);
     }

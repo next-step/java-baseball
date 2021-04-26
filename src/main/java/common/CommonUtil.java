@@ -1,6 +1,8 @@
 package common;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class CommonUtil {
@@ -15,5 +17,15 @@ public class CommonUtil {
             scannerNextMessageAndPattern(message, pattern);
         }
         return null;
+    }
+
+    public static List<Integer> getInputStringToIntegerList(String input) {
+        List<Integer> inputThrowBallList = new ArrayList<>();
+
+        for (char inputThrowBall : input.toCharArray()) {
+            inputThrowBallList.add(Integer.parseInt(String.valueOf(inputThrowBall)));
+        }
+
+        return inputThrowBallList;
     }
 }
