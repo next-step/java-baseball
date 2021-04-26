@@ -3,7 +3,9 @@ package baseball.domain;
 import baseball.rule.NumbersRule;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Computer {
@@ -26,6 +28,25 @@ public class Computer {
     if (values == null || values.size() != DIGIT) {
       throw new IllegalArgumentException(String.format(ERROR_DIGIT_FORMAT, DIGIT));
     }
+  }
+
+  public Map<StrikeZone, Integer> resultOf(List<Number> playerNumbers) {
+    Map<StrikeZone, Integer> strikeZoneMap = new HashMap<>();
+
+    for (int i = 0; i < values.size(); i++) {
+      Number value = values.get(i);
+      boolean isExistNumber = playerNumbers.contains(value);
+      boolean isSameDigit = value.equals(playerNumbers.get(i));
+
+      plusCount(strikeZoneMap, StrikeZone.valueOf(isExistNumber, isSameDigit));
+    }
+
+    return Collections.unmodifiableMap(strikeZoneMap);
+  }
+
+  private void plusCount(Map<StrikeZone, Integer> map, StrikeZone strikeZone) {
+    Integer count = map.getOrDefault(strikeZone, 0);
+    map.put(strikeZone, ++count);
   }
 
   public List<Number> getValues() {
