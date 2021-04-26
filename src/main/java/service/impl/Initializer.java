@@ -9,9 +9,9 @@ import service.IInitializer;
 
 public class Initializer implements IInitializer {
 
-	private static int MAX_DIGIT_NUMBER = 0;
+	private static int MAX_DIGIT_NUMBER;
 
-	public Initializer(final int maxDigitNumber){
+	public Initializer(final int maxDigitNumber) {
 		MAX_DIGIT_NUMBER = maxDigitNumber;
 	}
 
@@ -20,10 +20,10 @@ public class Initializer implements IInitializer {
 	 */
 	@Override
 	public Map<Integer, Integer> initComputerNumber() {
-		// key: 숫자, value: 순서
+		// key: 숫자, value: 위치
 		Map<Integer, Integer> computerNumber = new HashMap<>();
 		while (computerNumber.size() < MAX_DIGIT_NUMBER) {
-			// key 값(숫자)이 중복되지 않은 경우에만 value 값(순서) 저장
+			// key 값(숫자)이 중복되지 않은 경우에만 value 값(위치) 저장
 			computerNumber.putIfAbsent(new Random().nextInt(9) + 1, computerNumber.size());
 		}
 		return computerNumber;

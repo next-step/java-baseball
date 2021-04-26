@@ -13,6 +13,9 @@ public class MatchingSystem implements IMatchingSystem {
 		MAX_DIGIT_NUMBER = maxDigitNumber;
 	}
 
+	/**
+	 * 컴퓨터  숫자와 플레이어가 제시한 숫자 매칭
+	 */
 	@Override
 	public BallCount match(final Map<Integer, Integer> computerNumber, final int[] playerNumber) {
 		BallCount ballCount = new BallCount();
@@ -22,13 +25,18 @@ public class MatchingSystem implements IMatchingSystem {
 		return ballCount;
 	}
 
+	/**
+	 *  볼 카운트 계산
+	 */
 	private void computeBallCount(
 		final Map<Integer, Integer> computerNumber, final int playerDigit, final int playerDigitIndex,
 		final BallCount ballCount
 	) {
+		// 동일한 숫자가 존재하는지 체크
 		final Integer computerDigitIndex = computerNumber.get(playerDigit);
 		if (computerDigitIndex == null)
 			return;
+		// 숫자의 위치도 같은지 체크
 		if (computerDigitIndex == playerDigitIndex) {
 			ballCount.addStrike();
 			return;

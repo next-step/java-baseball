@@ -15,20 +15,27 @@ public class NumberBaseBallGame {
 	private final static IInitializer initializer = new Initializer(MAX_DIGIT_NUMBER);
 	private final static IMatchingSystem matchingSystem = new MatchingSystem(MAX_DIGIT_NUMBER);
 
-	private static Map<Integer, Integer> computerNumber = initializer.initComputerNumber();
+	private static Map<Integer, Integer> computerNumber;
 
 	public static void main(String[] args) {
+		runningGame();
+	}
 
+	/**
+	 * 게임 실행
+	 */
+	private static void runningGame() {
+		computerNumber = initializer.initComputerNumber();
 		boolean gameOver = false;
 		while (!gameOver) {
-			gameOver = runningGameStage();
+			gameOver = nextTurn();
 		}
 	}
 
 	/**
-	 * 게임 스테이지를 진행
+	 * 다음 턴 시작
 	 */
-	private static boolean runningGameStage() {
+	private static boolean nextTurn() {
 		System.out.print("숫자를 입력해주세요 : ");
 		try {
 			return checkGameOver(printBallCount(matchingSystem.match(
@@ -73,7 +80,7 @@ public class NumberBaseBallGame {
 	}
 
 	/**
-	 * 게임을 새로 시작할지 정한다.
+	 * 게임을 새로 시작할지 질의
 	 */
 	private static boolean isNewGame() {
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
