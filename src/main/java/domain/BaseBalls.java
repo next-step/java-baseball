@@ -28,6 +28,25 @@ public class BaseBalls {
         return score;
     }
 
+    private int locationOf(BaseBall baseBall) {
+        return this.baseBalls.indexOf(baseBall);
+    }
+
+    private int isBall(BaseBall baseball) {
+        if(baseball.isSameLocation(locationOf(baseball))) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public Integer ballNumber(BaseBalls answer) {
+        int score = 0;
+        for(int i = 0; i < DIGIT; i++) {
+            score += isBall(answer.get(i));
+        }
+        return score;
+
+    }
 
 
 }
