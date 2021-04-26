@@ -7,6 +7,7 @@ import static numberbaseball.domain.Count.NOTHING;
 
 public class Inning {
 
+  private static final int FIRST_INDEX = 0;
   private static final int PITCHING_COUNT_PER_INNING = 3;
   private static final String PLEASE_INPUT_N_DIGITS_INTEGER = "%d 자리 수를 입력해주세요.";
   private static final String PLEASE_INPUT_DIFFERENT_PITCHING_EACH_OTHER = "각 자리수가 서로 다르게 입력해주세요.";
@@ -52,7 +53,7 @@ public class Inning {
   private Map<Pitching, Integer> transformToPitchingAndOrderMap(List<Pitching> pitchingCollection) {
     Map<Pitching, Integer> pitchingAndOrderMap = new HashMap<>();
     int pitchingCollectionSize = pitchingCollection.size();
-    for(int index = 0; index < pitchingCollectionSize; index++) {
+    for(int index = FIRST_INDEX; index < pitchingCollectionSize; index++) {
       Pitching pitching = pitchingCollection.get(index);
       throwExceptionIfDuplicatePitching(pitchingAndOrderMap, pitching);
       pitchingAndOrderMap.put(pitching, index);
