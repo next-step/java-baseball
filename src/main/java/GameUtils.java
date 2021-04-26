@@ -59,6 +59,19 @@ public class GameUtils {
 		if(!InputValidation(input)){
 			return;
 		}
+		checkStrike(currentGame, input, 0);
+	}
+
+	private void checkStrike(Game game, String sInput, int index) {
+		if (index == 3) {
+			return;
+		}
+		char cInput = sInput.charAt(index);
+		char cAnswer = game.getAnswer().charAt(index);
+		if (cInput == cAnswer) {
+			game.addStrike();
+		}
+		checkStrike(game, sInput, index + 1);
 	}
 
 	public boolean isEnd() {
