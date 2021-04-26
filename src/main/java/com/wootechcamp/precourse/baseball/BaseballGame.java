@@ -1,6 +1,5 @@
 package com.wootechcamp.precourse.baseball;
 
-import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -178,6 +177,7 @@ public class BaseballGame {
     public void printResult(int ballNum, int strikeNum){
         if(ballNum <= 0 && strikeNum <= 0){
             System.out.println("낫싱");
+            return;
         }
 
         StringBuilder result = new StringBuilder();
