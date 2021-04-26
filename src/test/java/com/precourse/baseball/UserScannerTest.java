@@ -6,18 +6,18 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class UserScannerTest {
 	private final UserScanner userScanner = new UserScanner();
 
-	@Test
+	@ParameterizedTest
+	@CsvSource({"1,1", "5,5", "9,9"})
 	@DisplayName("char형 문자 int형으로 변환")
-	public void testCharToInt() {
-		char[] numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-		for (int i = 0; i < numbers.length; i++) {
-			int number = userScanner.charToInt(numbers[i]);
-			assertThat(number).isEqualTo(i);
-		}
+	public void testCharToInt(char input, int output) {
+		int number = userScanner.charToInt(input);
+		assertThat(number).isEqualTo(output);
 	}
 
 	@Test
@@ -25,7 +25,6 @@ public class UserScannerTest {
 	public void testGenerateList() {
 		String str = "987";
 		List<Integer> numbers = userScanner.generateList(str);
-		System.out.println(numbers);
 		assertThat(numbers).containsExactly(9, 8, 7);
 	}
 }
