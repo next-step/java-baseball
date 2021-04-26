@@ -15,7 +15,7 @@ public class Game {
         this.computerBalls = generationStrategy.generate(BALL_SIZE);
     }
 
-    public GameRules match(Balls balls) {
+    public Score match(Balls balls) {
         if(balls.size() != BALL_SIZE) {
             throw new IllegalArgumentException(String.format("매칭할 공의 개수는 %d개 여야 합니다.", BALL_SIZE));
         }

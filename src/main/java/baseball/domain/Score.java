@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GameRules {
+public class Score {
     private static final int INIT_COUNT = 0;
 
     private final Map<GameRule, Integer> countOfRule = new HashMap<>();
 
-    public GameRules(List<GameRule> gameRules) {
+    public Score(List<GameRule> gameRules) {
         GameRule[] values = GameRule.values();
         for(GameRule rule : values) {
             countOfRule.put(rule, INIT_COUNT);

@@ -52,7 +52,7 @@ public class GameTest {
     public void 공을_받아_게임결과를_볼_수_있다(MatchingPackage matchingPackage) {
         Game game = new Game((size) -> new Balls(Ball.of(7), Ball.of(1), Ball.of(3)));
 
-        GameRules match = game.match(matchingPackage.getDest());
+        Score match = game.match(matchingPackage.getDest());
 
         assertThat(match.countOfStrike()).isEqualTo(matchingPackage.getCountOfStrike());
         assertThat(match.countOfBall()).isEqualTo(matchingPackage.getCountOfBall());

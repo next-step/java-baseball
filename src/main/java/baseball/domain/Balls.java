@@ -20,7 +20,7 @@ public class Balls {
         this.balls = balls;
     }
 
-    public GameRules match(Balls destBalls) {
+    public Score match(Balls destBalls) {
         List<GameRule> gameRules = new ArrayList<>();
         for(int i = 0; i<balls.size(); i++) {
             Ball ball = balls.get(i);
@@ -31,7 +31,7 @@ public class Balls {
             gameRules.add(GameRule.of(ballPosition, destBallPosition));
         }
 
-        return new GameRules(gameRules);
+        return new Score(gameRules);
     }
 
     public Position findPositionByBall(Ball ball) {

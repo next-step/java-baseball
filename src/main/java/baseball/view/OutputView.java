@@ -1,28 +1,28 @@
 package baseball.view;
 
 import baseball.domain.Game;
-import baseball.domain.GameRules;
+import baseball.domain.Score;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
-    public static void gameStatus(GameRules gameRules) {
-        if(gameRules.isEndGame()) {
+    public static void gameStatus(Score score) {
+        if(score.isEndGame()) {
             endGame();
             return;
         }
 
-        gameRules(gameRules);
+        gameRules(score);
     }
 
-    public static void gameRules(GameRules gameRules) {
+    public static void gameRules(Score score) {
         List<String> messages = new ArrayList<>();
 
-        if(gameRules.countOfStrike() > 0) {
-            messages.add(String.format("%d 스트라이크", gameRules.countOfStrike()));
-        }else if(gameRules.countOfBall() > 0) {
-            messages.add(String.format("%d 볼", gameRules.countOfBall()));
+        if(score.countOfStrike() > 0) {
+            messages.add(String.format("%d 스트라이크", score.countOfStrike()));
+        }else if(score.countOfBall() > 0) {
+            messages.add(String.format("%d 볼", score.countOfBall()));
         }
 
         if(messages.isEmpty()) {

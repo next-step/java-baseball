@@ -51,7 +51,7 @@ public class BallsTest {
     @MethodSource("createMatchingPackageSource")
     @DisplayName("공들과 공들은 매칭하여, 결과를 도출 할 수 있다.")
     public void 공들과_공들은_매칭하여_결과를_도출_할_수_있다(MatchingPackage matchingPackage) {
-        GameRules match = matchingPackage.getSource().match(matchingPackage.getDest());
+        Score match = matchingPackage.getSource().match(matchingPackage.getDest());
 
         assertThat(match.countOfStrike()).isEqualTo(matchingPackage.getCountOfStrike());
         assertThat(match.countOfBall()).isEqualTo(matchingPackage.getCountOfBall());
