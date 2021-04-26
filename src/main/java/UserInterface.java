@@ -18,6 +18,13 @@ public class UserInterface {
     return input;
   }
 
+  public int replayOnNot() {
+    System.out.println(messages[1]);
+    String code = scanner.next();
+    NumberFormatValidator.checkParseToInteger(code);
+    return Integer.parseInt(code);
+  }
+
   public void answerTo(Map<Result, Integer> score) {
     if (score.size() == 0) {
       System.out.println(Result.NOTHING.getMessage());
