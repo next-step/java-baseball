@@ -3,15 +3,7 @@ import java.util.Scanner;
 public class BaseballGame {
     private Scanner scanner = new Scanner(System.in);
     private boolean isSolved = false;
-    private int question;
-
-    public BaseballGame() {
-        init();
-    }
-
-    private void init() {
-        question = 123; // TODO 문제 출제
-    }
+    private Question question = new Question();
 
     private boolean isPlaying() {
         if (!isSolved) {
