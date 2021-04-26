@@ -33,9 +33,19 @@ public class BaseBallGame {
 
     public void checkAnswer(String input) {
         if (this.isNumber(input) && this.checkInputThreeLength(input)) {
-
+            int[] answer = this.createIntArray(input);
         }
         this.setRunning(false);
+    }
+
+    private int[] createIntArray(String input) {
+        int[] result = new int[3];
+
+        for (int i = 0; i < input.length() ; i++) {
+            result[i] = Integer.parseInt(String.valueOf(input.charAt(i)));
+        }
+
+        return result;
     }
 
     private boolean isNumber(String input) {
