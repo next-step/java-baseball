@@ -49,5 +49,6 @@ public class BaseballGameRunner {
   }
 
   void exit(HintCounter hintCounter) {
+    ResultView.printEndComment(hintCounter);
   }
 }
