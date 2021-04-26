@@ -10,4 +10,8 @@ public class BaseballGameResultPrinter {
         this.maxLen = maxLen;
     }
 
+    public String baseballGameResultPrint(int[] result) {
+        return "낫싱";
+    }
+
 }
