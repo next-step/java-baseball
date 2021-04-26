@@ -27,7 +27,6 @@ public class BaseballController {
         if (nextProcess == CONTINUE.flagNumber()) {
             startGame();
         }
-        stopGame();
     }
 
     private void loopQuestion(BallNumbers computedNumbers) {
@@ -38,10 +37,6 @@ public class BaseballController {
         if (!response.isAllStrike()) {
             loopQuestion(computedNumbers);
         }
-    }
-
-    private void stopGame() {
-        System.exit(0);
     }
 
 }
