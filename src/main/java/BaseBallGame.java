@@ -49,5 +49,32 @@ public class BaseBallGame {
         return false;
     }
 
+    int checkStrikeNumber() {
+        int count = 0;
+        if(generatedArray[0] == userArray[0]) {
+            count++;
+        }
+        if(generatedArray[1] == userArray[1]) {
+            count++;
+        }
+        if(generatedArray[2] == userArray[2]) {
+            count++;
+        }
+        return count;
+    }
+
+    int checkBallNumber() {
+        int count = 0;
+        if(generatedArray[0] == userArray[1] || generatedArray[0] == userArray[2]) {
+            count++;
+        }
+        if(generatedArray[1] == userArray[0] || generatedArray[1] == userArray[2]) {
+            count++;
+        }
+        if(generatedArray[2] == userArray[0] || generatedArray[2] == userArray[1]) {
+            count++;
+        }
+        return count;
+    }
 
 }
