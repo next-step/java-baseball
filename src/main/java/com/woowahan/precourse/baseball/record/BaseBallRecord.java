@@ -1,7 +1,5 @@
 package com.woowahan.precourse.baseball.record;
 
-import com.woowahan.precourse.baseball.rule.BaseBallRule;
-
 public class BaseBallRecord {
 
     private int strikeCount;
