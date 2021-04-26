@@ -13,6 +13,8 @@ public class BaseballGameUI {
 			if (inputValidation(input = askNumbers(scanner))) {
 				continue;
 			}
+
+			System.out.println(baseballGameLogic.getScore(input));
 		}
 	}
 
