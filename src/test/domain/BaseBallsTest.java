@@ -30,7 +30,7 @@ class BaseBallsTest {
         assertTrue(baseBalls.getClass() == BaseBalls.class);
     }
 
-    @DisplayName("strike 점수 총합이 0, 1, 2, 3 인 경우에 대해 결과가 잘 나오는지 확인")
+    @DisplayName("같은 자리에 같은 숫자인 개수가  0, 1, 2, 3 인 경우에 대해 값이 잘 나오는지 확인")
     @Test
     @ParameterizedTest
     @CsvSource({"123,3", "124, 2", "145, 1", "341, 0"})
@@ -39,6 +39,17 @@ class BaseBallsTest {
         opponent = new BaseBalls(opponent_one);
         assertTrue(baseBalls.strikeNumber(opponent) == score);
     }
+
+    @DisplayName("서로 다른 자리에 같은 숫자인 개수가  0, 1, 2, 3 인 경우에 대해 값이 잘 나오는지 확인")
+    @Test
+    @ParameterizedTest
+    @CsvSource({"312,3", "251, 2", "167, 1", "456, 0"})
+    void checkCalculateTotalBallScoreWell(String opponent_one, int score) {
+        baseBalls = new BaseBalls("123");
+        opponent = new BaseBalls(opponent_one);
+        assertTrue(baseBalls.ballNumber(opponent) == score);
+    }
+
 
 
 
