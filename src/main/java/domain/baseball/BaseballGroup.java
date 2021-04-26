@@ -1,9 +1,8 @@
 package domain.baseball;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.*;
 
 public class BaseballGroup {
 
@@ -22,6 +21,31 @@ public class BaseballGroup {
         this.baseballValues = baseballValues;
     }
 
+    public BaseballGroup(String baseballValues){
+        validateStringCheck(baseballValues);
+        List<Baseball> baseballList = convertStringNumberToListBaseball(baseballValues);
+
+        validateNumberSize(baseballList);
+        validateDuplicateNumberValue(baseballList);
+        this.baseballValues = baseballList;
+    }
+
+    private void validateStringCheck(String baseballValues) {
+        if(StringUtils.isEmpty(baseballValues)){
+            throw new IllegalArgumentException("잘못된 숫자 값이 입력되었습니다.");
+        }
+    }
+
+    private List<Baseball> convertStringNumberToListBaseball(String baseballValues){
+        String[] baseballStringValues = baseballValues.split("");
+
+        List<Baseball> baseballs = new ArrayList<>();
+        for(String baseballNumber : baseballStringValues){
+            baseballs.add(new Baseball(Long.valueOf(baseballNumber)));
+        }
+
+        return baseballs;
+    }
 
     // domain.baseball 내에 value로 넘어온 값의 Size 체크
     public static void validateNumberSize(List<Baseball> baseballValues) {

@@ -18,7 +18,7 @@ public class BaseballService {
     private static int strike;
     private static int ball;
 
-    private void isSetInfo(){
+    public static void isSetInfo(){
         strike = 0;
         ball = 0;
         user = null;
@@ -28,6 +28,14 @@ public class BaseballService {
     private void isResetBallCount(){
         strike = 0;
         ball = 0;
+    }
+
+    public static int getBall() {
+        return ball;
+    }
+
+    public static int getStrike() {
+        return strike;
     }
 
     public void baseballGameStart(){
@@ -97,7 +105,7 @@ public class BaseballService {
     }
 
     // 넘어온 값으로 strike && ball을 counting 하는 역할을 담당.
-    private void isCountingGameResult(Baseball userInputBaseball ,Baseball computerRandomBaseball ,List<Baseball> computerBaseballList){
+    public static void isCountingGameResult(Baseball userInputBaseball, Baseball computerRandomBaseball, List<Baseball> computerBaseballList){
         if(!isStrikeCheck(userInputBaseball,computerRandomBaseball)){
             isBallCheck(userInputBaseball,computerBaseballList);
         }
@@ -105,7 +113,7 @@ public class BaseballService {
 
 
     // Strike 여부 확인
-    private boolean isStrikeCheck(Baseball userInputBaseball ,Baseball computerRandomBaseball){
+    public static boolean isStrikeCheck(Baseball userInputBaseball ,Baseball computerRandomBaseball){
         boolean checkStrike = false;
 
         if(userInputBaseball.equals(computerRandomBaseball)){
@@ -118,7 +126,7 @@ public class BaseballService {
 
 
     // Ball 여부 확인
-    private boolean isBallCheck(Baseball userInputBaseball ,List<Baseball> computerBaseballList){
+    public static boolean isBallCheck(Baseball userInputBaseball ,List<Baseball> computerBaseballList){
         boolean checkBall = false;
 
         if(computerBaseballList.contains(userInputBaseball)){

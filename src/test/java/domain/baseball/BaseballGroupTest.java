@@ -1,48 +1,37 @@
 package domain.baseball;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class BaseballGroupTest {
 
-    private List<Baseball> baseballList;
 
     @ParameterizedTest
-    @ValueSource(longs = {0,10,11,12})
-    void baseball_group_validate_number_size(){
-        baseballList = new ArrayList<>();
-        baseballList.add(new Baseball((long) 2));
-        baseballList.add(new Baseball((long)3));
-        baseballList.add(new Baseball((long)1));
-        baseballList.add(new Baseball((long)4));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> BaseballGroup.validateNumberSize(baseballList));
+    @ValueSource(strings = {"1234", "4567", "7891"})
+    void baseball_group_validate_number_size(String baseballValues){
+        assertThatThrownBy(() -> {
+            BaseballGroup baseballGroup = new BaseballGroup(baseballValues);
+            BaseballGroup.validateNumberSize(baseballGroup.getBaseballList());
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage(String.format("야구 게임의 입력 숫자는 %d 개를 입력해주세요.",BaseballGroup.getRandomLength()));
+
     }
 
-    @Test
-    void validate_duplicate_number_value(){
-        baseballList = new ArrayList<>();
-        baseballList.add(new Baseball((long)2));
-        baseballList.add(new Baseball((long)2));
-        baseballList.add(new Baseball((long)3));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> BaseballGroup.validateDuplicateNumberValue(baseballList));
+    @ParameterizedTest
+    @ValueSource(strings = {"122", "525", "331"})
+    void validate_duplicate_number_value(String baseballValues){
+        assertThatThrownBy(() -> {
+            BaseballGroup baseballGroup = new BaseballGroup(baseballValues);
+            BaseballGroup.validateDuplicateNumberValue(baseballGroup.getBaseballList());
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("야구 게임의 입력 숫자는 중복 될 수 없습니다.");
     }
 
-    @Test
-    void create_baseball_group(){
-        baseballList = new ArrayList<>();
-        baseballList.add(new Baseball((long)1));
-        baseballList.add(new Baseball((long)2));
-        baseballList.add(new Baseball((long)3));
-
-        BaseballGroup baseballGroup = new BaseballGroup(baseballList);
-
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "456", "789"})
+    void create_baseball_group(String baseballValues){
+        BaseballGroup baseballGroup = new BaseballGroup(baseballValues);
         assertThat(baseballGroup.baseballValueSize()).isEqualTo(3);
 
     }
