@@ -1,7 +1,8 @@
 public enum Result {
 
   STRIKE("스트라이크"),
-  BALL("볼");
+  BALL("볼"),
+  NOTHING("낫싱");
 
   Result(String message) {
     this.message = message;
