@@ -18,4 +18,9 @@ public class ComputerNum {
         double random = Math.random();
         return (int)(random * defaultNum.size());
     }
+
+    public static List<Integer> outNumInList(List<Integer> defaultNum, int randomNum) {
+        defaultNum.remove(randomNum);
+        return defaultNum;
+    }
 }
