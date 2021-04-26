@@ -1,23 +1,29 @@
 package com.baseball.game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.baseball.message.UIMessage;
+import com.baseball.rule.BallGenerator;
 
 public class BaseBallGame {
 
-	private void startGame(){
+	private void startGame() {
 		//
-		boolean onGame= true;
+		boolean onGame = true;
 
-		while(onGame){
+		while (onGame) {
 			startInning();
 
-			//TODO 게임 재개 여부 확인
-			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			//게임 재개 여부 확인
+			System.out.println(UIMessage.RESUME_INFO);
+
 			Scanner scanner = new Scanner(System.in);
 			String resumeText = scanner.nextLine();
-			if("1".equals(resumeText)){
+
+			if ("1".equals(resumeText)) {
 				onGame = true;
-			} else if("2".equals(resumeText)){
+			} else if ("2".equals(resumeText)) {
 				onGame = false;
 			}
 		}
@@ -26,26 +32,29 @@ public class BaseBallGame {
 	private void startInning() {
 		//TODO 3자리 숫자 생성
 		String testInput = "123";// 삭제 예정
+		// BallGenerator ballGenerator = new BallGenerator();
+		// ArrayList<Integer> generatedNumbers = (ArrayList<Integer>)ballGenerator.generateNumber();
 
 		boolean strikeout = false;
-		while(!strikeout){
+		while (!strikeout) {
 			// infoMessage
-			System.out.print("숫자를 입력해 주세요:");
+			System.out.print(UIMessage.TRY_INFO);
 
 			Scanner scanner = new Scanner(System.in);
-			String numbers =  scanner.nextLine();
+			String numbers = scanner.nextLine();
 
 			//TODO 입력값 유효성 검증
 
 			//TODO strike,ball 판단
 
-			if(testInput.equals(numbers)){
+			//FIX 정답 여부 확인
+			if (testInput.equals(numbers)) {
 				strikeout = true;
 			}
 		}
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		//
 		BaseBallGame game = new BaseBallGame();
 		game.startGame();
