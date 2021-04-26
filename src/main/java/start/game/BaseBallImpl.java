@@ -19,13 +19,20 @@ public class BaseBallImpl implements BaseBall {
         int quizNumber = getNonDuplicatedThreeDigitNumber( 1, 10 );
         boolean isFinished = false;
         while( !isFinished ) {
-            int userNumber = ui.getNumber();
-            String[] quizNumberDigts = castNumberToStringArrays( quizNumber );
-            String[] userNumberDigts = castNumberToStringArrays( userNumber );
-            int strikeCount = getStrikeCountFrom( quizNumberDigts, userNumberDigts );
-            int ballCount = getBallCountFrom( quizNumberDigts, userNumberDigts );
-            isFinished = checkStrikeAndBall( strikeCount, ballCount );
+            isFinished = startOneGame( quizNumber );
         }
+        boolean isReset = ui.getReset();
+        
+    }
+    
+    protected boolean startOneGame( int quizNumber ) {
+        int userNumber = ui.getNumber();
+        String[] quizNumberDigts = castNumberToStringArrays( quizNumber );
+        String[] userNumberDigts = castNumberToStringArrays( userNumber );
+        int strikeCount = getStrikeCountFrom( quizNumberDigts, userNumberDigts );
+        int ballCount = getBallCountFrom( quizNumberDigts, userNumberDigts );
+
+        return checkStrikeAndBall( strikeCount, ballCount );
     }
     
     protected boolean checkStrikeAndBall( int strikeCount, int ballCount ) {
@@ -52,7 +59,6 @@ public class BaseBallImpl implements BaseBall {
         }
     }
     
-
     protected String[] castNumberToStringArrays( int quizNumber ) {
         return String.valueOf(quizNumber).split("");
     }
