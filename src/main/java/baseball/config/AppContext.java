@@ -1,4 +1,4 @@
 package baseball.config;
 
-public class GameConfig {
+public class AppContext {
 }

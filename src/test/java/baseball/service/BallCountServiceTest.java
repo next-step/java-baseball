@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.config.AppConfig;
 import baseball.domain.BallCount;
 import baseball.error.DuplicateCharactersException;
 import baseball.error.NonNumericCharactersException;
@@ -20,7 +21,7 @@ class BallCountServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		ballCountService = new BallCountService();
+		ballCountService = new BallCountService(new AppConfig());
 	}
 
 	@Test

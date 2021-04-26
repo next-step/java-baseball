@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.config.AppConfig;
 import baseball.domain.BallCount;
 import baseball.error.DuplicateCharactersException;
 import baseball.error.NonNumericCharactersException;
@@ -8,16 +9,22 @@ import java.util.*;
 
 public class BallCountService {
 
-	private final int NUMBER_LENGTH = 3;
-	private final int MIN_NUMBER = 1;
-	private final int MAX_NUMBER = 9;
+	private final int RANDOM_NUMBER_LENGTH;
+	private final int MAX_RANDOM_NUMBER;
+	private final int MIN_RANDOM_NUMBER;
+
+	public BallCountService(AppConfig appConfig) {
+		this.RANDOM_NUMBER_LENGTH = appConfig.getRandomNumberLength();
+		this.MAX_RANDOM_NUMBER = appConfig.getMaxRandomNumber();
+		this.MIN_RANDOM_NUMBER = appConfig.getMinRandomNumber();
+	}
 
 	public List<Integer> generateNumbers() {
 		Random random = new Random();
 		Set<Integer> numbers = new LinkedHashSet<>();
 		do {
-			numbers.add(random.nextInt(MAX_NUMBER) + MIN_NUMBER);
-		} while (numbers.size() < NUMBER_LENGTH);
+			numbers.add(random.nextInt(MAX_RANDOM_NUMBER) + MIN_RANDOM_NUMBER);
+		} while (numbers.size() < RANDOM_NUMBER_LENGTH);
 		return new ArrayList<>(numbers);
 	}
 
@@ -34,7 +41,7 @@ public class BallCountService {
 	}
 
 	private void validateNumericCharacters(String input) {
-		if (!input.matches(String.format("^[%d-%d]{%d}$", MIN_NUMBER, MAX_NUMBER, NUMBER_LENGTH))) {
+		if (!input.matches(String.format("^[%d-%d]{%d}$", MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER, RANDOM_NUMBER_LENGTH))) {
 			throw new NonNumericCharactersException();
 		}
 	}

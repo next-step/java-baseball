@@ -1,5 +1,6 @@
 package baseball.service;
 
+import baseball.config.AppConfig;
 import baseball.error.NonRestartCharactersException;
 import org.assertj.core.api.ThrowableTypeAssert;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +16,7 @@ class RestartServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		restartService = new RestartService();
+		restartService = new RestartService(new AppConfig());
 	}
 
 	@Test
