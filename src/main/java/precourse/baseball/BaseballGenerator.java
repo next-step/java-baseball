@@ -12,7 +12,7 @@ public class BaseballGenerator {
     private static final int ASCII_ZERO = 48;
 
     public Baseballs createRandomBaseballs() {
-        List<precourse.baseball.Baseball> basket = new ArrayList<>();
+        List<Baseball> basket = new ArrayList<>();
         for (int number = MIN_NUMBER.getValue(); number <= MAX_NUMBER.getValue(); number++) {
             basket.add(new Baseball(number));
         }
@@ -23,7 +23,7 @@ public class BaseballGenerator {
     }
 
     public Baseballs createBaseballs(String answer) {
-        List<precourse.baseball.Baseball> basket = new ArrayList<>();
+        List<Baseball> basket = new ArrayList<>();
         for (int i = 0; i < MAX_BASEBALLS.getValue(); i++) {
             basket.add(new Baseball(answer.charAt(i) - ASCII_ZERO));
         }
