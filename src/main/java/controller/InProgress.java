@@ -8,7 +8,7 @@ public class InProgress implements Game{
   }
 
   @Override
-  public void execute(BaseBallGameRunner runner) {
+  public void execute(BaseballGameRunner runner) {
     runner.pitchBaseBall();
   }
 }
