@@ -29,7 +29,7 @@ public class DiscriminationTest {
     @ParameterizedTest
     @CsvSource(value = "124 : 123", delimiter = ':')
     public void matchSrikeTest(String systemNumber, String userNumber) {
-        discrimination.match(systemNumber, userNumber);
+        assertThat(discrimination.match(systemNumber, userNumber)).isTrue();
 
     }
 
@@ -37,7 +37,7 @@ public class DiscriminationTest {
     @ParameterizedTest
     @CsvSource(value = "124 : 143", delimiter = ':')
     public void matchBallTest(String systemNumber, String userNumber) {
-        discrimination.match(systemNumber, userNumber);
+        assertThat(discrimination.match(systemNumber, userNumber)).isTrue();
 
     }
 }

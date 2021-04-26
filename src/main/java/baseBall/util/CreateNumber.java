@@ -13,10 +13,9 @@ public class CreateNumber {
         return String.valueOf(random.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER);
     }
 
-    public StringBuilder generateNumbers() {
+    public String generateNumbers() {
         StringBuilder numbers = new StringBuilder();
         while(numbers.length() < MAX_LENGTH) {
-
             String temp = generateRandomNumber();
 
             if (numbers.indexOf(temp) == -1) {
@@ -24,7 +23,7 @@ public class CreateNumber {
             }
         }
 
-        return numbers;
+        return numbers.toString();
     }
 
 }

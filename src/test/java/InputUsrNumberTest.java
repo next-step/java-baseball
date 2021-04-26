@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class InputUsrNumberTest {
 
+
+
     private InputUserNumber inputUserNumber = new InputUserNumber();
 
     @DisplayName("사용자 입력 숫자 길이 체크 테스트")
