@@ -13,5 +13,6 @@ public class GameController {
         int inputNumber = scanner.nextInt();
 
         baseball.makePlayerNumbers(inputNumber);
+        baseball.checkStrikeAndBallCount();
     }
 }

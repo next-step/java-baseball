@@ -6,16 +6,38 @@ public class Baseball {
     int[] computerNumbers;
     int[] playerNumbers;
     int strikeCount;
+    int ballCount;
 
     public Baseball() {
         strikeCount = 0;
+        ballCount = 0;
         computerNumbers = new int[BaseballConstants.BASEBALL_COUNT];
         playerNumbers = new int[BaseballConstants.BASEBALL_COUNT];
 
         makeComputerNumbers();
     }
 
-    public void checkStrikeCount() {
+    public void checkStrikeAndBallCount() {
+        checkStrikeCount();
+        checkBallCount();
+    }
+
+    private boolean isBall(int index, int computerNumber) {
+        boolean isBall = false;
+        for (int i = 0; i < playerNumbers.length; i++) {
+            isBall = (computerNumber == playerNumbers[i] && i != index  || isBall) ? true : false;
+        }
+        return isBall;
+    }
+
+    private void checkBallCount() {
+        ballCount = 0;
+        for (int i = 0; i < computerNumbers.length; i++) {
+            ballCount += isBall(i, computerNumbers[i]) ? 1 : 0;
+        }
+    }
+
+    private void checkStrikeCount() {
         strikeCount = 0;
         for (int i = 0; i < computerNumbers.length; i++) {
             strikeCount += (computerNumbers[i] == playerNumbers[i]) ? 1 : 0;
