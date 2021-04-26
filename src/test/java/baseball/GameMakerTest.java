@@ -47,7 +47,7 @@ class GameMakerTest {
 		InputStream in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 
-		assertThat(gameMaker.inputNumber()).isEqualTo(gameSet);
+		assertThat(gameMaker.inputNumber().toString()).isEqualTo(gameSet.toString());
 	}
 
 	@DisplayName("플레이어 입력 유효성 체크 테스트")
@@ -82,7 +82,6 @@ class GameMakerTest {
 			playerSet.add(Integer.parseInt(s));
 		}
 
-
 		int matchCount = gameMaker.countMatch(gameSet, playerSet);
 		int countContain = gameMaker.countContain(gameSet, playerSet);
 		int strikeCount = gameMaker.getStrike(matchCount);
@@ -93,27 +92,15 @@ class GameMakerTest {
 	}
 
 	@DisplayName("플레이어 승리 판별 테스트")
-	@Test
-	void getWinner() {
+	@ParameterizedTest
+	@CsvSource(value = {"1,2,3:true",  "3,6,9:false", "3,2,1:false"}, delimiter = ':')
+	void getWinner(String playerNumber, boolean result) {
+		String[] playerNumberList = playerNumber.split(",");
 		Set<Integer> playerSet = new LinkedHashSet<>();
-		playerSet.add(1);
-		playerSet.add(2);
-		playerSet.add(3);
+		for(String s : playerNumberList){
+			playerSet.add(Integer.parseInt(s));
+		}
 
-		assertThat(gameMaker.getWinner(gameSet, playerSet)).isTrue();
-
-		playerSet.clear();
-		playerSet.add(3);
-		playerSet.add(6);
-		playerSet.add(9);
-
-		assertThat(gameMaker.getWinner(gameSet, playerSet)).isFalse();
-
-		playerSet.clear();
-		playerSet.add(3);
-		playerSet.add(2);
-		playerSet.add(1);
-
-		assertThat(gameMaker.getWinner(gameSet, playerSet)).isFalse();
+		assertThat(gameMaker.getWinner(gameSet, playerSet)).isEqualTo(result);
 	}
 }
