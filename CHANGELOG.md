@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/frostnight/java-baseball-precourse/compare/v1.0.1...v1.1.0) (2021-04-26)
+
+
+### Features
+
+* standard version 도입 ([dacec72](https://github.com/frostnight/java-baseball-precourse/commit/dacec72b459b23cc9852c9d44fe138c02829c960))
+
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
 
 ### Docs
 
