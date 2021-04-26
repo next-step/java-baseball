@@ -51,7 +51,7 @@ public class NumberBaseBallGame {
 		if (ballCount.getStrike() != 0)
 			stringBuilder.append(ballCount.getStrike()).append(" 스트라이크 ");
 		if (ballCount.getBall() != 0)
-			stringBuilder.append(ballCount.getStrike()).append(" 볼");
+			stringBuilder.append(ballCount.getBall()).append(" 볼");
 		System.out.println(stringBuilder.toString().trim());
 	}
 }
