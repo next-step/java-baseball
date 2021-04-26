@@ -10,27 +10,16 @@ public class BaseballGame {
 
 	public String guess(String answerNumbers, String guessNumbers){
 
-		int strike = 0;
-		int ball = 0;
+		int[] count = {0,0};
 
-		String[] splitedAnswerNumbers = answerNumbers.split("");
 		String[] splitedGuessNumbers = guessNumbers.split("");
 
 		int i = -1;
 		for(String guessNumber : splitedGuessNumbers){
-			i++;
-			if(answerNumbers.indexOf(guessNumber) < 0){
-				continue;
-			}
-
-			if(guessNumber.equals(splitedAnswerNumbers[i])){
-				strike+=1;
-				continue;
-			}
-			ball+=1;
+			count = checkNumbers(guessNumber, answerNumbers, ++i, count);
 		}
 
-		return output(strike,ball);
+		return output(count);
 	}
 
 	private String generateNumbers(String all,int length){
@@ -48,7 +37,11 @@ public class BaseballGame {
 		return number+"";
 	}
 
-	private String output(int strike, int ball){
+
+	private String output(int[] count){
+
+		int strike = count[0];
+		int ball = count[1];
 
 		if(strike==0 && ball==0){
 			return "낫싱";
@@ -64,4 +57,19 @@ public class BaseballGame {
 
 		return strikeOutput + ballOutput;
 	}
+
+	private int[] checkNumbers(String guessNumber,String answerNumbers, int index, int[] count) {
+		String[] splitedAnswerNumbers = answerNumbers.split("");
+		if(answerNumbers.indexOf(guessNumber) < 0){
+				return count;
+		}
+
+		if(guessNumber.equals(splitedAnswerNumbers[index])){
+				count[0]+=1;
+				return count;
+		}
+		count[1]+=1;
+		return count;
+	}
+
 }
