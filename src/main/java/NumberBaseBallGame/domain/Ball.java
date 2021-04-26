@@ -1,4 +1,4 @@
-package NumberBaseBallGame.Domain;
+package NumberBaseBallGame.domain;
 
 import NumberBaseBallGame.BaseBallConst;
 

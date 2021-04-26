@@ -1,8 +1,8 @@
-package NumberBaseBallGame.View;
+package NumberBaseBallGame.view;
 
-import NumberBaseBallGame.Domain.GameHintAndResults;
-import NumberBaseBallGame.Domain.GenerateGame;
-import NumberBaseBallGame.Domain.ValidationCheckUtils;
+import NumberBaseBallGame.domain.GameHintAndResults;
+import NumberBaseBallGame.domain.GenerateGame;
+import NumberBaseBallGame.domain.ValidationCheckUtils;
 
 import java.util.Scanner;
 

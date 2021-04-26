@@ -1,4 +1,7 @@
-package NumberBaseBallGame.Domain;
+package NumberBaseBallGame.domain;
+
+import java.util.Map;
+import java.util.Set;
 
 public class GameHintAndResults {
 	private boolean finish;
