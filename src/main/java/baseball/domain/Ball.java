@@ -23,9 +23,7 @@ public class Ball {
 
     public static Ball of(int number) {
         if(number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
-            String exceptionMessage = String.format("공의 숫자는 %d 이상 %d 이하 입니다.", MINIMUM_NUMBER, MAXIMUM_NUMBER);
-
-            throw new IllegalArgumentException(exceptionMessage);
+            throw new IllegalArgumentException(String.format("공의 숫자는 %d 이상 %d 이하 입니다.", MINIMUM_NUMBER, MAXIMUM_NUMBER));
         }
 
         return BALLS[number];
