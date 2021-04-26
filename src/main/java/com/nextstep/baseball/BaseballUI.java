@@ -8,11 +8,8 @@ public class BaseballUI {
 		sc = new Scanner(System.in);
 	}
 	
-	public void printToInputNumber() {
+	public int getUserBallCount() {
 		System.out.println("숫자를입력해주세요:");
-	}
-	
-	public int getUserInputNumber() {
 		int count = sc.nextInt();
 		return count;
 	}
