@@ -15,4 +15,12 @@ public class Record {
     public boolean isComplete(int length) {
         return strike == length;
     }
+
+    public void addStrike() {
+        ++strike;
+    }
+
+    public void addBall() {
+        ++ball;
+    }
 }

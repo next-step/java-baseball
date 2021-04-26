@@ -22,7 +22,7 @@ public class DefaultStringMatchTest {
     @ParameterizedTest(name = "정답이 맞는 지 확인한다.")
     @CsvSource({"124,2,0", "213,1,2"})
     void matchString(String input, int strike, int ball) {
-        Record record = match.matchString("123", input);
+        Record record = match.matchString(input, "123");
         assertEquals(strike, record.getStrike());
         assertEquals(ball, record.getBall());
     }
