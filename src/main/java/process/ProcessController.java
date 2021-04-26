@@ -12,6 +12,5 @@ public class ProcessController {
 
     public void inputValueByUser() {
         String inputValue = presentator.presentInputNumber();
-        System.out.println("inputValue = " + inputValue);
     }
 }
