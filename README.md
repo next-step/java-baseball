@@ -26,11 +26,14 @@
 * launch - 게임실행
 
 ### BaseballGame
-* excute - 게임 프로세스 관여
+* execute - 게임 프로세스 관여
 * makeQuiz - Quiz생성(중복되지않는 3개의 숫자 생성)
 * receiveInput - 사용자Input받기(사용자에게 3자리의 수 입력받기)
 * compareQuizAndInput - 사용자Input,Quiz 값비교(입력받은 3자리의 수와 생성된 3자리의 수 비교)
-* printCompareResult - 비교 결과 출력(스트라이크,볼,낫싱 구분 출력)
+* checkStrike - 사용자Input,Quiz 값비교(입력받은 3자리의 수 중 하나와 생성된 3자리를 비교하여 스트라이크 체크)
+* checkBall - 사용자Input,Quiz 값비교(입력받은 3자리의 수 중 하나와 생성된 3자리를 비교하여 볼 체크)
+* printResult - 비교 결과 출력(스트라이크,볼,낫싱 구분 출력)
+* makeResult - 비교 결과 문자 생성(스트라이크,볼 구분 생성)
 * checkRetry - 재시작여부 확인(사용자 입력값을 통해 재시작 여부 확인)
 
 ### RandomNumberGenerator
@@ -39,5 +42,3 @@
 * addNumberIntoList - 리스트에 숫자 추가
 * checkDuplication - 중복 체크
 
-### Converter
-* convertStringArrayToIntegerList - String 배열을 Integer 리스트로 변환
