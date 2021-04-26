@@ -35,16 +35,23 @@ public class BaseBallService {
 
     public int getBall(List<Integer> inputNumbers) {
         int ball = 0;
-        Map<Integer, Integer> ballCount = new HashMap<>();
-        for (int i = 0; i < randomNumbers.size(); i++) {
-            ballCount.put(randomNumbers.get(i), ballCount.getOrDefault(randomNumbers.get(i), 0)+1);
-        }
+        Map<Integer, Integer> ballCount = getBallCount(inputNumbers);
         for (int i = 0; i<inputNumbers.size(); i++) {
-            if(randomNumbers.get(i) != inputNumbers.get(i) && ballCount.containsKey(inputNumbers.get(i))) {
+            if (ballCount.containsKey(inputNumbers.get(i))) {
                 ball++;
             }
         }
         return ball;
+    }
+
+    private Map<Integer, Integer> getBallCount(List<Integer> inputNumbers) {
+        Map<Integer, Integer> ballCount = new HashMap<>();
+        for (int i = 0; i < randomNumbers.size(); i++) {
+            if (randomNumbers.get(i) != inputNumbers.get(i)) {
+                ballCount.put(randomNumbers.get(i), ballCount.getOrDefault(randomNumbers.get(i), 0)+1);
+            }
+        }
+        return ballCount;
     }
 
     public List<Integer> validateInputNumbers() {
@@ -61,7 +68,8 @@ public class BaseBallService {
             if (!Character.isDigit(input.charAt(i))) {
                 throw new IllegalArgumentException("숫자를 입력해주세요.");
             }
-            inputNumbers.add(input.charAt(i)+'0');
+            int number = Integer.parseInt(""+input.charAt(i));
+            inputNumbers.add(number);
         }
         return inputNumbers;
     }
