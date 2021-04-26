@@ -1,19 +1,16 @@
 package baseball;
 
-public class Converter {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-	public Converter() {
-	}
+public final class Converter {
 
-	public boolean isThreeDigits(String raw) {
-		return raw.length() == 3 && isNumber(raw) && toNumber(raw) > 99;
-	}
-
-	public int toNumber(String raw) {
+	public static int toNumber(String raw) {
 		return Integer.parseInt(raw);
 	}
 
-	public boolean isNumber(String raw) {
+	public static boolean isNumber(String raw) {
 		try {
 			toNumber(raw);
 		} catch (NumberFormatException e) {
@@ -22,14 +19,17 @@ public class Converter {
 		return true;
 	}
 
-	public int[] toArray(int number) {
-		int[] array = new int[3];
+	public static List<Integer> toList(int number) {
+		List<Integer> list = new ArrayList<>();
 
-		for (int i = 2; i >= 0; i--) {
-			array[i] = number % 10;
+		while (number > 0) {
+			list.add(number % 10);
 			number /= 10;
 		}
 
-		return array;
+		Collections.reverse(list);
+
+		return list;
 	}
+
 }

@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.List;
+
 import baseball.state.DecisionState;
 import baseball.state.InningState;
 import baseball.state.MenuState;
@@ -13,7 +15,7 @@ public class Game {
 
 	private State state;
 
-	private Player player = new Player();
+	private Player player;
 	private Player opponent;
 
 	public Game() {
@@ -28,28 +30,28 @@ public class Game {
 		return state.action();
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	public void createPlayer(List<Integer> deck) {
+		this.player = new Player(Deck.createCustomDeck(deck));
 	}
 
-	public void setOpponent(Player opponent) {
-		this.opponent = opponent;
+	public void createOpponent() {
+		this.opponent = new Player(Deck.createRandomDeck());
 	}
 
-	public State getState() {
+	public void onMenuState() {
+		this.state = this.menuState;
+	}
+
+	public void onInningState() {
+		this.state = this.inningState;
+	}
+
+	public void onDecisionState() {
+		this.state = this.decisionState;
+	}
+
+	public State currentState() {
 		return this.state;
-	}
-
-	public State getMenuState() {
-		return this.menuState;
-	}
-
-	public State getInningState() {
-		return this.inningState;
-	}
-
-	public State getDecisionState() {
-		return this.decisionState;
 	}
 
 	public Player getPlayer() {

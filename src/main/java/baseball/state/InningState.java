@@ -1,5 +1,6 @@
 package baseball.state;
 
+import java.util.List;
 import java.util.Scanner;
 
 import baseball.Converter;
@@ -19,23 +20,22 @@ public class InningState implements State {
 	public boolean action() {
 		String raw = pitch();
 
-		if (isThreeDigits(raw)) {
-			guess(raw);
+		if (!Converter.isNumber(raw)) {
+			return true;
 		}
+
+		if (Converter.toNumber(raw) < 100) {
+			return true;
+		}
+
+		guess(raw);
 		return true;
 	}
 
 	public void guess(String raw) {
-		game.getPlayer().setNumbers(converter.toArray(converter.toNumber(raw)));
-		game.setState(game.getDecisionState());
-	}
-
-	public boolean isThreeDigits(String raw) {
-		if (converter.isThreeDigits(raw)) {
-			return true;
-		}
-		alert();
-		return false;
+		List<Integer> numbers = Converter.toList(Converter.toNumber(raw));
+		game.createPlayer(numbers);
+		game.onDecisionState();
 	}
 
 	private String pitch() {

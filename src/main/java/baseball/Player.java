@@ -1,28 +1,26 @@
 package baseball;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Player {
 
-	private int[] numbers;
+	private Deck deck;
 
-	public Player() {
+	public Player(Deck deck) {
+		this.deck = deck;
 	}
 
-	public Player(int[] numbers) {
-		this.numbers = numbers;
+	public Deck getDeck() {
+		return this.deck;
 	}
 
-	public void setNumbers(int[] numbers) {
-		this.numbers = numbers;
-	}
-
-	public int[] getNumbers() {
-		return numbers;
+	public List<Integer> numbers() {
+		return deck.numbers();
 	}
 
 	@Override
 	public String toString() {
-		return Arrays.toString(numbers);
+		return this.numbers().toString();
 	}
+
 }

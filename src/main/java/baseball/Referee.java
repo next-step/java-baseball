@@ -1,41 +1,47 @@
 package baseball;
 
-public class Referee {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-	public Referee() {
-	}
+public final class Referee {
 
-	private int isSame(int left, int right) {
+	private static final int STRIKEOUT = Deck.SIZE;
+
+	private static int count(int left, int right) {
 		return left == right ? 1 : 0;
 	}
 
-	public int countStrikes(int[] player, int[] opponent) {
-		int count = 0;
-
-		for (int i = 0; i < 3; i++) {
-			count += isSame(player[i], opponent[i]);
+	public static int countEquals(Iterator<Integer> left, Iterator<Integer> right) {
+		int sum = 0;
+		while (left.hasNext() && right.hasNext()) {
+			sum += count(left.next(), right.next());
 		}
-
-		return count;
+		return sum;
 	}
 
-	public int countBall(int[] player, int[] opponent) {
-		int count = 0;
+	public static int countStrikes(Deck player, Deck opponent) {
+		return countEquals(player.numbers().iterator(), opponent.numbers().iterator());
+	}
 
-		for (int i = 0; i < 3; i++) {
-			int[] cmp = {player[i], player[i], player[i]};
-			cmp[i] = 0;
-			count += countStrikes(cmp, opponent);
+	public static int countBalls(Deck player, Deck opponent) {
+		int sum = 0;
+		for (int i = 0; i < Deck.SIZE; i++) {
+			int value = player.numbers().get(i);
+			List<Integer> left = new ArrayList<>(Arrays.asList(value, value, value));
+			left.set(i, 0);
+			sum += countEquals(left.iterator(), opponent.numbers().iterator());
 		}
-
-		return count;
+		return sum;
 	}
 
-	public boolean isAnswer(int strikes) {
-		return strikes == 3;
+	public static boolean isAnswer(int strikes) {
+		return strikes == STRIKEOUT;
 	}
 
-	public boolean isNothing(int strikes, int ball) {
+	public static boolean isNothing(int strikes, int ball) {
 		return strikes == 0 && ball == 0;
 	}
+
 }

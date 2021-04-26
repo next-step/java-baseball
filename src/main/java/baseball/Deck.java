@@ -1,39 +1,50 @@
 package baseball;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Deck {
+public final class Deck {
 
-	public Deck() {
+	public static final int SIZE = 3;
+
+	private static final int BEGIN = 1;
+	private static final int END = 10;
+
+	private List<Integer> deck;
+
+	private Deck(List<Integer> deck) {
+		this.deck = deck;
 	}
 
-	private List<Integer> create() {
-		int value = 1;
+	public static Deck createRandomDeck() {
+		return new Deck(draw());
+	}
 
-		Integer[] deck = new Integer[9];
-		for (int i = 0; i < 9; i++, value++) {
-			deck[i] = value;
+	public static Deck createCustomDeck(List<Integer> deck) {
+		return new Deck(deck);
+	}
+
+	public List<Integer> numbers() {
+		return this.deck;
+	}
+
+	public static List<Integer> create() {
+		List<Integer> digits = new ArrayList<>(END - BEGIN);
+		for (int i = BEGIN; i < END; i++) {
+			digits.add(i);
 		}
-
-		return Arrays.asList(deck);
+		return digits;
 	}
 
-	private List<Integer> shuffle(List<Integer> deck) {
-		Collections.shuffle(deck);
-		return deck;
+	public static void shuffle(List<Integer> digits) {
+		Collections.shuffle(digits);
 	}
 
-	public int[] draw() {
-		List<Integer> deck = shuffle(create());
-
-		int[] numbers = new int[3];
-		for (int i = 0; i < 3; i++) {
-			numbers[i] = deck.get(i);
-		}
-
-		return numbers;
+	public static List<Integer> draw() {
+		List<Integer> digits = create();
+		shuffle(digits);
+		return digits.subList(0, SIZE);
 	}
 
 }

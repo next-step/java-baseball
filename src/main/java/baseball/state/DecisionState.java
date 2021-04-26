@@ -5,7 +5,6 @@ import baseball.Referee;
 
 public class DecisionState implements State {
 
-	private Referee referee = new Referee();
 	private Game game;
 
 	public DecisionState(Game game) {
@@ -14,27 +13,14 @@ public class DecisionState implements State {
 
 	@Override
 	public boolean action() {
-		int strikes = referee.countStrikes(game.getPlayer().getNumbers(), game.getOpponent().getNumbers());
-		int balls = referee.countBall(game.getPlayer().getNumbers(), game.getOpponent().getNumbers());
+		int strikes = Referee.countStrikes(game.getPlayer().getDeck(), game.getOpponent().getDeck());
+		int balls = Referee.countBalls(game.getPlayer().getDeck(), game.getOpponent().getDeck());
 
 		count(strikes, balls);
 		isAnswer(strikes);
 		isNothing(strikes, balls);
 
 		return true;
-	}
-
-	public void isAnswer(int strikes) {
-		game.setState(game.getInningState());
-
-		if (referee.isAnswer(strikes)) {
-			game.setState(game.getMenuState());
-			correct();
-		}
-	}
-
-	private void correct() {
-		System.out.println("정답입니다!");
 	}
 
 	private void count(int strikes, int balls) {
@@ -49,8 +35,20 @@ public class DecisionState implements State {
 		}
 	}
 
+	public void isAnswer(int strikes) {
+		game.onInningState();
+		if (Referee.isAnswer(strikes)) {
+			game.onMenuState();
+			correct();
+		}
+	}
+
+	private void correct() {
+		System.out.println("정답입니다!");
+	}
+
 	private void isNothing(int strikes, int balls) {
-		if (referee.isNothing(strikes, balls)) {
+		if (Referee.isNothing(strikes, balls)) {
 			System.out.println("낫싱");
 		}
 	}

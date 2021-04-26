@@ -2,40 +2,41 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ConverterTest {
 
-	Converter converter = new Converter();
-
-	@Test
-	void isThreeDigits() {
-		assertThat(converter.isThreeDigits("100")).isTrue();
-		assertThat(converter.isThreeDigits("999")).isTrue();
-
-		assertThat(converter.isThreeDigits("000")).isFalse();
-		assertThat(converter.isThreeDigits("099")).isFalse();
-		assertThat(converter.isThreeDigits("1000")).isFalse();
-
-		assertThat(converter.isThreeDigits("")).isFalse();
-		assertThat(converter.isThreeDigits("text")).isFalse();
-	}
-
+	@DisplayName("문자열 -> 숫자 변환")
 	@Test
 	void toNumber() {
-		assertThat(converter.toNumber("123")).isEqualTo(123);
+		assertThat(Converter.toNumber("123")).isEqualTo(123);
 	}
 
-	@Test
-	void isNumber() {
-		assertThat(converter.isNumber("123")).isTrue();
-		assertThat(converter.isNumber("text")).isFalse();
-		assertThat(converter.isNumber("")).isFalse();
+	@DisplayName("문자열 -> 숫자 변환 가능")
+	@ParameterizedTest
+	@ValueSource(strings = {"123"})
+	void isNumber(String str) {
+		assertThat(Converter.isNumber(str)).isTrue();
 	}
 
+	@DisplayName("문자열 -> 숫자 변환 불가")
+	@ParameterizedTest
+	@ValueSource(strings = {"text", ""})
+	void isNotNumber(String str) {
+		assertThat(Converter.isNumber(str)).isFalse();
+	}
+
+	@DisplayName("숫자 -> 숫자 리스트")
 	@Test
-	void toArray() {
-		assertThat(converter.toArray(123)).isEqualTo(new int[] {1, 2, 3});
-		assertThat(converter.toArray(456)).isEqualTo(new int[] {4, 5, 6});
+	void toList() {
+		List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
+		assertThat(Converter.toList(123)).isEqualTo(list);
 	}
 }

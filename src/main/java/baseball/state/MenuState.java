@@ -2,9 +2,7 @@ package baseball.state;
 
 import java.util.Scanner;
 
-import baseball.Deck;
 import baseball.Game;
-import baseball.Player;
 
 public class MenuState implements State {
 
@@ -26,14 +24,8 @@ public class MenuState implements State {
 	}
 
 	public void start() {
-		setOpponent();
-		game.setState(game.getInningState());
-	}
-
-	public void setOpponent() {
-		Deck deck = new Deck();
-		Player opponent = new Player(deck.draw());
-		game.setOpponent(opponent);
+		game.createOpponent();
+		game.onInningState();
 	}
 
 	private boolean shallWePlayTheGame() {
