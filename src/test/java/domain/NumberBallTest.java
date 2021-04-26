@@ -17,5 +17,11 @@ public class NumberBallTest {
         assertThat(numberBall.toInt()).isEqualTo(number);
     }
 
-
+    @ParameterizedTest
+    @ValueSource(ints = {0, 10})
+    @DisplayName("범위는 1~9 벗어나면 에러")
+    public void numberBallRangeError(int number) throws Exception {
+        assertThatThrownBy(() -> new NumberBall(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
