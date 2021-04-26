@@ -15,11 +15,15 @@ public class BaseBallGame {
     }
 
     public void resetGame() {
-        this.strike = 0;
-        this.ball = 0;
+        resetStrikeBall();
         this.answer = this.createAnswer();
 
         this.setRunning(true);
+    }
+
+    private void resetStrikeBall() {
+        this.strike = 0;
+        this.ball = 0;
     }
 
     public boolean isRunning() {
