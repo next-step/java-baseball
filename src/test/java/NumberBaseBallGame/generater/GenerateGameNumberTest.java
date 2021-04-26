@@ -1,4 +1,4 @@
-package NumberBaseBallGame;
+package NumberBaseBallGame.generater;
 
 import NumberBaseBallGame.domain.Ball;
 import NumberBaseBallGame.generater.GenerateGameNumber;
