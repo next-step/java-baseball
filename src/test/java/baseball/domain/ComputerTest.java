@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,12 +52,12 @@ class ComputerTest {
     Computer computer = Computer.generate(() -> Arrays.asList(Number.create(1), Number.create(2), Number.create(3)));
 
     // when
-    Map<StrikeZone, Integer> strikeZoneMap = computer.resultOf(playerNumbers);
+    BallRecord ballRecord = computer.resultOf(playerNumbers);
 
     // then
     assertAll(
-            () -> assertThat(strikeZoneMap.getOrDefault(StrikeZone.STRIKE, 0)).isEqualTo(countOfStrike),
-            () -> assertThat(strikeZoneMap.getOrDefault(StrikeZone.BALL, 0)).isEqualTo(countOfBall)
+            () -> assertThat(ballRecord.getCount(StrikeZone.STRIKE)).isEqualTo(countOfStrike),
+            () -> assertThat(ballRecord.getCount(StrikeZone.BALL)).isEqualTo(countOfBall)
     );
   }
 
