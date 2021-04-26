@@ -7,16 +7,16 @@ public class OverlapNumberPolicy implements ConditionPolicy {
 
 	@Override
 	public boolean isSatisfied(String inputString) {
-		boolean overlapNumber = true;
+		boolean overlap = true;
 
 		for (int j = inputString.length() - 1; j > 0; j--) {
 			int foundIndex = inputString.substring(0, j).indexOf(inputString.charAt(j));
 
 			if (foundIndex > -1) {
-				overlapNumber = false;
+				overlap = false;
 				break;
 			}
 		}
-		return overlapNumber;
+		return overlap;
 	}
 }

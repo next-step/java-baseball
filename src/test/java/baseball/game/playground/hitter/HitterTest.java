@@ -10,7 +10,7 @@ import baseball.game.playground.gameball.GameBall;
 class HitterTest {
 
 	@Test
-	@DisplayName("타자 생성시 전달받은 임의의 번호를 swing을 통해 표현할수 있다")
+	@DisplayName("타자 생성시 전달받은 임의의 번호를 swing을 반환할 수 있다")
 	void should_hasRandomNumber_When_create() {
 
 		// Given

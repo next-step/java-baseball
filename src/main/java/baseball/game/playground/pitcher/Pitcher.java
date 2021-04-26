@@ -1,7 +1,7 @@
 package baseball.game.playground.pitcher;
 
 import baseball.game.playground.gameball.GameBall;
-import baseball.game.playground.gameball.validatitor.GameBallValidator;
+import baseball.game.playground.gameball.validatitor.InputStringValidator;
 import baseball.ui.UiSystem;
 
 /**
@@ -29,7 +29,7 @@ public class Pitcher {
 		while (true) {
 			uiSystem.display("숫자를 입력해 주세요: ");
 			String inputString = uiSystem.gameInput();
-			if (!GameBallValidator.isSatisfied(inputString)) {
+			if (!InputStringValidator.isSatisfied(inputString)) {
 				uiSystem.display("올바르지 않은 입력입니다. 다시 입력해 주세요");
 				continue;
 			}

@@ -20,8 +20,8 @@ class PlayGroundTest {
 	}
 
 	@Test
-	@DisplayName("게임 시작을 요청 시 플레이 상태가 된다")
-	void should_conditionRunningIsTrue_When_start() {
+	@DisplayName("게임 시작 요청 시 플레이 상태가 된다")
+	void should_runningIsTrue_When_start() {
 
 		// Given
 		uiSystem.setGameInput("123");

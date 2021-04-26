@@ -5,7 +5,7 @@ import baseball.game.playground.gameball.validatitor.condition.impl.DigitNumberP
 import baseball.game.playground.gameball.validatitor.condition.impl.NumberValuePolicy;
 import baseball.game.playground.gameball.validatitor.condition.impl.OverlapNumberPolicy;
 
-public class GameBallValidator {
+public class InputStringValidator {
 
 	private static final ConditionPolicy[] conditionPolicies = new ConditionPolicy[] {
 		new DigitNumberPolicy(),
@@ -23,7 +23,7 @@ public class GameBallValidator {
 		return true;
 	}
 
-	public static void checkValidation(String string) {
+	public static void check(String string) {
 
 		boolean validation = isSatisfied(string);
 		if (!validation) {

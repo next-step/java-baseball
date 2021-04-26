@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import baseball.game.playground.gameball.validatitor.GameBallValidator;
+import baseball.game.playground.gameball.validatitor.InputStringValidator;
 
 /**
  * 번호의 범위는 최소 1, 최대 9로 제한된다
@@ -81,7 +81,7 @@ public class GameBall {
 	public static GameBall create(Integer number) {
 
 		String stringNumber = String.valueOf(number);
-		GameBallValidator.checkValidation(stringNumber);
+		InputStringValidator.check(stringNumber);
 		GameNumber[] numbers = createBallNumbers(stringNumber);
 		return new GameBall(numbers);
 
@@ -90,17 +90,17 @@ public class GameBall {
 	// 문자열로 생성
 	public static GameBall create(String string) {
 
-		GameBallValidator.checkValidation(string);
+		InputStringValidator.check(string);
 		GameNumber[] numbers = createBallNumbers(string);
 		return new GameBall(numbers);
 	}
 
 	// 볼 번호 생성
-	private static GameNumber[] createBallNumbers(String stringNumber) {
+	private static GameNumber[] createBallNumbers(String inputString) {
 
 		GameNumber[] numbers = new GameNumber[Policy.DIGIT_NUMBER];
-		for (int i = 0; i < stringNumber.length(); i++) {
-			numbers[i] = GameNumber.create(stringNumber.charAt(i));
+		for (int i = 0; i < inputString.length(); i++) {
+			numbers[i] = GameNumber.create(inputString.charAt(i));
 		}
 		return numbers;
 	}

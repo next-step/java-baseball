@@ -4,7 +4,7 @@ import baseball.game.playground.gameball.GameBall;
 import baseball.game.playground.hitter.Hitter;
 import baseball.game.playground.pitcher.Pitcher;
 import baseball.game.playground.referee.Referee;
-import baseball.game.playground.referee.judgement;
+import baseball.game.playground.referee.ScoreBoard;
 import baseball.ui.UiSystem;
 
 public class PlayGround {
@@ -34,26 +34,17 @@ public class PlayGround {
 	}
 
 	public void update() {
+
 		while (isPlaying()) {
-			String throwingNumber = this.pitcher.throwing();
-			String swingNumber = this.hitter.swing();
 
-			judgement judgement = this.referee.judgement(throwingNumber, swingNumber);
-			judgement.display(uiSystem);
+			String pitcherNum = this.pitcher.throwing();
+			String hitterNum = this.hitter.swing();
 
-			onNext(judgement);
+			ScoreBoard scoreBoard = this.referee.judgement(pitcherNum, hitterNum);
+			scoreBoard.display(uiSystem);
+
+			this.playing = this.referee.nextPlay();
 		}
 
 	}
-
-	private void onNext(judgement judgement) {
-
-		if (!judgement.isGameOver()) {
-			return;
-		}
-
-		this.playing = false;
-		uiSystem.display("게임 오버!!!");
-	}
-
 }
