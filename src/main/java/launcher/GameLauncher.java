@@ -8,6 +8,6 @@ public class GameLauncher {
         this.game = game;
     }
     public void launch(){
-        game.excute();
+        game.execute();
     }
 }
