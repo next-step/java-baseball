@@ -101,5 +101,37 @@ class BaseballGameTest {
         );
     }
 
+    /**
+     * checkBall
+     * 타겟 난수 map, 입력 map을 해당 숫자와 비교하여 볼 여부 확인하는지 테스트
+     * @param targets 타겟 난수 map
+     * @param inputs 플레이어로부터 입력받은 map
+     * @param num 비교 대상 숫자 1~9
+     * @param expected 예측 결과
+     */
+    @ParameterizedTest
+    @MethodSource("provideCheckBallParameters")
+    public void checkBall(HashMap<Integer,Integer> targets, HashMap<Integer,Integer> inputs, int num, int expected) {
+        assertEquals(baseballGame.checkBall(targets,inputs,num),expected);
+    }
+
+    private static Stream<Arguments> provideCheckBallParameters(){
+        HashMap<Integer,Integer> target1 = new HashMap<>();
+        HashMap<Integer,Integer> inputs1 = new HashMap<>();
+        target1.put(1,0);
+        target1.put(2,1);
+        target1.put(3,2);
+        inputs1.put(2,0);
+        inputs1.put(3,1);
+        inputs1.put(5,2);
+
+
+        return Stream.of(
+                Arguments.of(target1,inputs1,1,0),
+                Arguments.of(target1,inputs1,2,1),
+                Arguments.of(target1,inputs1,3,1),
+                Arguments.of(target1,inputs1,4,0)
+        );
+    }
 
 }
