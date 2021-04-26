@@ -1,22 +1,23 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BaseBallGame {
-	Computer computer = new Computer();
-	User user = new User();
+	private static Computer computer = new Computer();
+	private static User user = new User();
 
-	private List<Integer> userNumbers = new ArrayList<>();
+	private static List<Integer> userNumbers = new ArrayList<>();
+	private static Scanner sc = new Scanner(System.in);
 
 	/*
 	 * 숫자야구게임 시작
 	 * */
-	public void start() {
+	public static void start() {
 		computer.generateNumbers();
 
 		while (true) {
 			user.generateNumbers();
 			userNumbers = user.getUserNumbers();
-			System.out.println(userNumbers);
 			computer.matchResult(userNumbers);
 			if (computer.getStrikeCount() != 3) {
 				computer.showHint();
