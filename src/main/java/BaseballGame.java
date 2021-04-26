@@ -54,7 +54,7 @@ public class BaseballGame {
             inputs = scn.next();
             inputed_numbers = convertStringToNumbers(inputs); //입력받은 String을 각 자리값과 인덱스를 갖는 HashMap으로 변환하는 메소드
 
-            //res = checkNumbers(target_numbers, inputed_numbers); //경기의 종료 여부를 판별하는 메소드
+            res = checkNumbers(target_numbers, inputed_numbers); //경기의 종료 여부를 판별하는 메소드
         }
     }
     /**
@@ -100,6 +100,33 @@ public class BaseballGame {
         for(int i = 0; i<str.length(); i++){
             res.put(str.charAt(i)-'0', i);
         }
+
+        return res;
+    }
+    /**
+     * checkNumbers
+     * 경기의 종료 여부 판별
+     * 입력 받은 숫자의 허용 여부(길이 3, 중복 불허) 및
+     * 스트라이크, 볼 개수를 체크하여 경기의 종료 여부를 판별한다.
+     * @param targets   대상 난수 Map
+     * @param inputs    입력받은 숫자 Map
+     * @return 게임 완료 여부
+     */
+    public boolean checkNumbers(HashMap<Integer,Integer> targets, HashMap<Integer,Integer> inputs) {
+        boolean res = false;
+        int strikes = 0;
+        int balls = 0;
+        if(inputs.size()!=LEN){
+            System.out.println("입력한 숫자의 개수가 맞지 않거나 중복이 존재합니다. 다시 입력해주세요");
+            return false;
+        }
+        for (int i = 1 ; i<10 ; i++){
+            //strikes += checkStrike(targets, inputs, i); //Strike 판정
+            //balls += checkBall(targets, inputs, i); //ball 판정
+        }
+
+        //printResult(strikes, balls); //Strikes와 balls의 갯수에 따라 결과 출력
+        res = (strikes==3) && (balls == 0);
 
         return res;
     }
