@@ -27,4 +27,40 @@ public class UserScannerTest {
 		List<Integer> numbers = userScanner.generateList(str);
 		assertThat(numbers).containsExactly(9, 8, 7);
 	}
+
+	@Test
+	@DisplayName("1, 2 이외의 값 입력시 에러 발생")
+	public void testScanMenuNumberException() {
+		assertThatThrownBy(() -> {
+			userScanner.checkMenuNum("3");
+		}).isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("값 범위");
+	}
+
+	@Test
+	@DisplayName("입력값의 길이가 3이 아닐 경우 에러 발생")
+	public void testLengthException() {
+		assertThatThrownBy(() -> {
+			userScanner.generateList("1234");
+		}).isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("값 길이");
+	}
+
+	@Test
+	@DisplayName("입력값에 중복된 값이 있을 경우 에러 발생")
+	public void testUniqueException() {
+		assertThatThrownBy(() -> {
+			userScanner.generateList("778");
+		}).isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("값 중복");
+	}
+
+	@Test
+	@DisplayName("입력값에 중복된 값이 있을 경우 에러 발생")
+	public void testRangeException() {
+		assertThatThrownBy(() -> {
+			userScanner.generateList("120");
+		}).isInstanceOf(RuntimeException.class)
+			.hasMessageContaining("값 범위");
+	}
 }

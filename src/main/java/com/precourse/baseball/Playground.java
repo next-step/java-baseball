@@ -42,6 +42,7 @@ public class Playground {
 	 */
 	public void selectMenu() {
 		System.out.println(Constants.END_MESSAGE);
-		menuNumber = userScanner.scanMenuNumber();
+		String number = userScanner.scanMenuNumber();
+		menuNumber = Integer.parseInt(number);
 	}
 }
