@@ -11,7 +11,7 @@ public class BaseballGameResultPrinter {
     }
 
     public String baseballGameResultPrint(int[] result) {
-        return "낫싱";
+        return result[0] == result[1] && result[0] == 0 ? "낫싱" : result[0] + " 스트라이크";
     }
 
 }
