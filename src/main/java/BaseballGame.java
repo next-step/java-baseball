@@ -1,7 +1,7 @@
 import domain.BaseballNumberScore;
 import domain.BaseballNumbers;
 import domain.BaseballResult;
-import domain.ContinuePlay;
+import view.ContinuePlay;
 import domain.BaseballNumberGenerator;
 import util.TransStringNumberToNumberListUtil;
 import view.InputView;
