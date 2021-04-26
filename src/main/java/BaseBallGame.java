@@ -30,4 +30,8 @@ public class BaseBallGame {
 
         return input;
     }
+
+    public void checkAnswer(String input) {
+        this.setRunning(false);
+    }
 }

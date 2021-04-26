@@ -5,7 +5,7 @@ public class Main {
 
         while(baseBallGame.isRunning()) {
             String input = baseBallGame.getInput();
-            baseBallGame.setRunning(false);
+            baseBallGame.checkAnswer(input);
         }
     }
 }
