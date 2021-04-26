@@ -23,21 +23,43 @@ public class UserBallInput {
         return compareStr.length() == compareLen;
     }
 
-    private boolean compareString(String compareStr) {
+    private boolean compareDigital(String compareStr) {
         return Pattern.matches("^[1-9]", compareStr);
     }
 
-    public boolean isValidatedDigital(String compareStr) {
+    private boolean isValidatedDigital(String compareStr) {
         boolean isDigital = true;
         for (int i=0; i<compareStr.length(); i++)
-            isDigital = isDigital ? compareString(compareStr.charAt(i) + "") : false;
+            isDigital = isDigital ? compareDigital(compareStr.charAt(i) + "") : false;
         return isDigital;
+    }
+
+    private int getStrNumber(String compareStr, char compareChr) {
+        int cnt = 0;
+
+        for(int i=0;i<compareStr.length();i++)
+            cnt += compareStr.charAt(i) == compareChr ? 1 : 0;
+
+        return cnt;
+    }
+
+    private boolean compareUnique(String compareStr, char compareChr) {
+        return getStrNumber(compareStr,compareChr) == 1;
+    }
+
+    private boolean isValidatedUnique(String compareStr) {
+        boolean isUnique = true;
+        for(int i=0;i<compareStr.length();i++)
+            isUnique = isUnique ? compareUnique(compareStr, compareStr.charAt(i)) : false;
+        return isUnique;
     }
 
     private boolean validateInput(String inputBall) {
         if (!isValidatedLength(inputBall, BaseballGame.DEFAULT_LEN))
             return false;
         if(!isValidatedDigital(inputBall))
+            return false;
+        if(!isValidatedUnique(inputBall))
             return false;
         return true;
     }
