@@ -18,7 +18,7 @@ public class Pitching {
             pitchingResult.setResult(true);
             return pitchingResult;
         }else if(strike==0 && ball==0){
-            pitchingResult.setNothing(false);
+            pitchingResult.setNothing(true);
             return pitchingResult;
         }
 

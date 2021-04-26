@@ -50,7 +50,7 @@ public class PitchingTest {
 
         PitchingResult pitchingResult = pitching.getPitchingResult(pitches, baseball);
         assertEquals(false, pitchingResult.isResult());
-        assertEquals(false, pitchingResult.isNothing());
+        assertEquals(true, pitchingResult.isNothing());
         assertEquals(0, pitchingResult.getStrike());
         assertEquals(0, pitchingResult.getBall());
     }
