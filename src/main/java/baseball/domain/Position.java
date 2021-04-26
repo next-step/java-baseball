@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Position {
     private static final int MINIMUM_POSITION = 0;
+
     public static final Position NOT_FOUND = new Position();
 
     private Integer position = Integer.MIN_VALUE;
