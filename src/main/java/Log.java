@@ -7,7 +7,7 @@ public enum Log {
     BALL("%d 볼"),
     NOTHING("낫싱"),
 
-    SUCCESS("\n%d 개의 숫자를 모두 맞히셨습니다! 게임 종료\n"),
+    SUCCESS("%d 개의 숫자를 모두 맞히셨습니다! 게임 종료\n"),
     ASK_RESTART_OR_EXIT("게임을 새로 시작하려면 1, 종료하려면 2 를 입력하세요."),
     ;
 

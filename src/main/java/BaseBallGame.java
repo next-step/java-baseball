@@ -100,22 +100,20 @@ public class BaseBallGame {
      * @param result    플레이어 값과 정답을 비교한 결과
      */
     private void printResult(Result result) {
-        if (computer.isCorrectAnswer()) {
-            setStatus(Status.SUCCESS);
-            Log.STRIKE.printCount(result.getStrikeCount());
-            Log.SUCCESS.printFormat(computer.getNumberSize());
-            return;
-        }
-
-        printWrongAnswerCount(result);
-    }
-
-    private void printWrongAnswerCount(Result result) {
         if (result.isNothing()) {
             Log.NOTHING.println();
             return;
         }
 
+        printResultCount(result);
+
+        if (computer.isCorrectAnswer()) {
+            setStatus(Status.SUCCESS);
+            Log.SUCCESS.printFormat(computer.getNumberSize());
+        }
+    }
+
+    private void printResultCount(Result result) {
         Log.STRIKE.printCount(result.getStrikeCount());
         Log.BALL.printCount(result.getBallCount());
         System.out.println();
