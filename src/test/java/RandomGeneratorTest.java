@@ -21,10 +21,9 @@ public class RandomGeneratorTest {
 
     @Test
     public void isValidatedDigit() {
-        for (int i=0; i<randomBalls.length(); i++) {
-            int num = randomBalls.charAt(i) - '0';
+        for (int i=0; i<randomBalls.length(); i++)
             Assertions.assertTrue(Pattern.matches("^[1-9]", randomBalls.charAt(i) + ""));
-        }
+
     }
 
     public boolean compareBalls(String s1, String s2) {
