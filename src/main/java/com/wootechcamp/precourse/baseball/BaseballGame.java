@@ -43,13 +43,39 @@ public class BaseballGame {
             // 결과 출력
             printResult(ballNum, strikeNum);
 
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-
-            int onOff = scan.nextInt();
-            if(onOff == 2) {
-                break;
+            // 다음 메뉴 선택
+            int menuNum = getMenuNum();
+            if(menuNum == 2){
+                return;
             }
         }
+    }
+
+    public int getMenuNum() {
+
+        int menuNum = -1;
+        while (true) {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+            if(!scan.hasNextInt()){
+                scan.next();
+                System.out.println("숫자가 아닙니다.");
+                continue;
+            }
+
+            menuNum = scan.nextInt();
+            if(isOneOrTwo(menuNum)){
+                return menuNum;
+            }
+        }
+    }
+
+
+    public boolean isOneOrTwo(int input) {
+        if(input == 1 || input == 2){
+            return true;
+        }
+        return false;
     }
 
     public int getInputNumber(){
