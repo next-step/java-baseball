@@ -47,7 +47,7 @@ public class BaseballGame {
             return;
         }
 
-        //target_numbers = this.initTargetNumbers(); //etRandomNumber을 반복하여 타겟 숫자 HashMap을 생성하는 메소드
+        target_numbers = this.initTargetNumbers(); //getRandomNumber을 반복하여 타겟 숫자 HashMap을 생성하는 메소드
 
         while(!res){
             System.out.print("숫자를 입력해주세요: ");
@@ -57,5 +57,20 @@ public class BaseballGame {
             //res = checkNumbers(target_numbers, inputed_numbers); //경기의 종료 여부를 판별하는 메소드
         }
     }
-
+    /**
+     * initTargetNumbers
+     * getRandomNumber를 반복하여 타겟 숫자 HashMap을 생성
+     * 중복되지 않는 난수를 추출하였으므로, 타겟 HashMap은 size 3 을 갖는다.
+     * @return 타겟 숫자 HashMap
+     */
+    public HashMap<Integer, Integer> initTargetNumbers() {
+        HashMap<Integer, Integer> res = new HashMap<>();
+        int temp_number = 0;
+        for (int i = 0; i < LEN; i++) {
+            //temp_number = getRandomNumber(res); //한자릿수 난수 추출
+            res.put(temp_number, i);
+        }
+        System.out.println("타겟 숫자 : " + res);
+        return res;
+    }
 }
