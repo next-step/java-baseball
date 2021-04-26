@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class BaseBallGame {
     private boolean isRunning;
     Message message;
@@ -17,5 +19,15 @@ public class BaseBallGame {
 
     public void setRunning(boolean running) {
         isRunning = running;
+    }
+
+    public String getInput() {
+        message.getInput();
+
+        Scanner sc = new Scanner(System.in);
+
+        String input = sc.next();
+
+        return input;
     }
 }

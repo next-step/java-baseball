@@ -4,7 +4,7 @@ public class Main {
         BaseBallGame baseBallGame = new BaseBallGame(message);
 
         while(baseBallGame.isRunning()) {
-            baseBallGame.resetGame();
+            String input = baseBallGame.getInput();
             baseBallGame.setRunning(false);
         }
     }
