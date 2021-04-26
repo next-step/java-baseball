@@ -46,7 +46,7 @@ public class Game {
     }
 
     private int checkStrike(int numbers, int count, int pos) {
-        if (getNumber(numbers, pos) == getNumber(opponent, pos))
+        if (match(getNumber(numbers, pos) , pos))
             count++;
         return count;
     }
