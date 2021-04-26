@@ -23,6 +23,28 @@ public class BaseBallTest {
         game = new BaseBallImpl();
     }
     
+
+    @Test
+    @DisplayName(value = "퀴즈 숫자와 사용자가 입력한 숫자를 비교하여 스트라이크 수를 확인한다.")
+    public void getStrikeCountFromTest() {
+        assertThat(game.getStrikeCountFrom(123, 123)).isEqualTo(3);
+        assertThat(game.getStrikeCountFrom(123, 124)).isEqualTo(2);
+        assertThat(game.getStrikeCountFrom(123, 143)).isEqualTo(2);
+        assertThat(game.getStrikeCountFrom(123, 523)).isEqualTo(2);
+        assertThat(game.getStrikeCountFrom(123, 453)).isEqualTo(1);
+        assertThat(game.getStrikeCountFrom(123, 425)).isEqualTo(1);
+        assertThat(game.getStrikeCountFrom(123, 157)).isEqualTo(1);
+        assertThat(game.getStrikeCountFrom(123, 789)).isEqualTo(0);
+    }
+    
+    @Test
+    @DisplayName(value = "입력 받은 문자열을 비교하여 같으면 1을 다르면 0을 반환한다.")
+    public void numberCompareTest() {
+        assertThat(game.numberCompare("1","2")).isEqualTo(0);
+        assertThat(game.numberCompare("1","1")).isEqualTo(1);
+    }
+    
+    
     @Test
     @DisplayName(value = "1과 9사이의 숫자가 뽑혀야 한다.")
     public void getOneDigitNumberTest() {

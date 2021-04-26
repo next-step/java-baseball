@@ -16,9 +16,25 @@ public class BaseBallImpl implements BaseBall {
 
     @Override
     public void start() {
+        int quizNumber = getNonDuplicatedThreeDigitNumber( 1, 10 );
         int userNumber = ui.getNumber();
+        int strikeCount = getStrikeCountFrom( quizNumber, userNumber );
     }
     
+    protected int getStrikeCountFrom(int quizNumber, int userNumber) {
+        String[] quizNumberDigts = String.valueOf(quizNumber).split("");
+        String[] userNumberDigts = String.valueOf(userNumber).split("");
+        int result = 0;
+        for( int index = 0; index < userNumberDigts.length; index++ ) {
+            result += numberCompare( userNumberDigts[index], quizNumberDigts[index] );
+        }
+        return result;
+    }
+    
+    protected int numberCompare( String first, String second ) {
+        return first.equals( second ) ? 1 : 0 ;
+    }
+
     protected int getNonDuplicatedThreeDigitNumber( int min, int max ) {
         List<Integer> list = new LinkedList<>(Arrays.asList(0,1,2,3,4,5,6,7,8,9));
         int result = 0;
