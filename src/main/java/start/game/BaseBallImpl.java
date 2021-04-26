@@ -5,10 +5,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BaseBallImpl implements BaseBall {
+    
+    private BaseBallUI ui;
+    
+    public BaseBallImpl() {}
+    
+    public BaseBallImpl(BaseBallUI ui) {
+        this.ui = ui;
+    }
 
     @Override
     public void start() {
-        
+        int userNumber = ui.getNumber();
     }
     
     protected int getNonDuplicatedThreeDigitNumber( int min, int max ) {
