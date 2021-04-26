@@ -6,7 +6,6 @@ import com.syl.game.baseball.domain.entity.BaseBallNumbers;
 public class BaseBallGameManager {
 
     private String currentPlayer;
-
     private static BaseBallGameManager instance;
 
     public static BaseBallGameManager getInstance() {
