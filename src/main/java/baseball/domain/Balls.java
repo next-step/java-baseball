@@ -3,6 +3,8 @@ package baseball.domain;
 import java.util.*;
 
 public class Balls {
+    private static int NOT_FOUND_INDEX = -1;
+
     private final List<Ball> balls;
 
     public Balls(Ball ...balls) {
@@ -35,7 +37,7 @@ public class Balls {
     public Position findPositionByBall(Ball ball) {
         int position = balls.indexOf(ball);
 
-        if(position == -1) {
+        if(position == NOT_FOUND_INDEX) {
             return Position.NOT_FOUND;
         }
 
