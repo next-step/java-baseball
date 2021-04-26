@@ -5,3 +5,19 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 구현할 기능 목록
+
+* 임의 숫자 선정 기능
+    * 1~9 랜덤 숫자 뽑기 func
+    * 같은수 validate func
+
+* input handling
+    * 사용자 input validate func
+
+* 게임 비교 로직
+    * 각 자리값 비교 func
+    * 다른 자리값 비교 func
+    
+* 기능 연동 및 서비스 메인    
+    * 결과 return 및 재사용
