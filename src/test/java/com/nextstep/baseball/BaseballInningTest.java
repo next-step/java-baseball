@@ -182,4 +182,16 @@ class BaseballInningTest {
 		String answer = inning.pitchAndHit(arrayToInt(getPitchingstrategy()));
 		assertThat(answer).isEqualTo("3" + inning.STRIKE);
 	}
+	
+	@Test
+	@DisplayName("3스트라이크로 종료 여부 확인")
+	void end() {
+		inning.start();
+		boolean isEnd = inning.isEnd();
+		assertThat(isEnd).isEqualTo(false);
+		int pitchingstrategy = arrayToInt(getPitchingstrategy());
+		inning.pitchAndHit(pitchingstrategy);
+		isEnd = inning.isEnd();
+		assertThat(isEnd).isEqualTo(true);
+	}
 }
