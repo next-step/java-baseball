@@ -8,16 +8,16 @@ public class Validation {
 	// 사용자가 입력한 정답의 유효성 검증
 	public static boolean isValidAnswer(String userAnswer) {
 		if (userAnswer.length() == 3 && isNumeric(userAnswer) && !isDuplicated(userAnswer)) {
-			return false;
+			return true;
 		}
 
 		System.out.println(MESSAGE_INVALID_VALUE);
-		return true;
+		return false;
 	}
 
-	// 숫자로 이루어진 문자열인지 검증
+	// 1부터 9까지의 숫자로 이루어진 문자열인지 검증
 	public static boolean isNumeric(String value) {
-		return value.matches("[+-]?\\d*(\\.\\d+)?");
+		return value.matches("^[1-9]+$");
 	}
 
 	// 입력된 숫자끼리 서로 중복이 있는지 검증
@@ -30,6 +30,14 @@ public class Validation {
 		}
 
 		return valueSet.size() < valueArray.length;
+	}
+
+	public static boolean isValidToRestart(String value) {
+		if ("1".equals(value) || "2".equals(value)) {
+			return true;
+		}
+		System.out.print(MESSAGE_INVALID_VALUE);
+		return false;
 	}
 }
 
