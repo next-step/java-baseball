@@ -1,7 +1,5 @@
 package baseball.domain;
 
-import baseball.domain.BallNumber;
-
 public class BaseballResult {
 
 	private int strikeCount;
