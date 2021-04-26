@@ -92,7 +92,25 @@ public class BaseBallGame {
 
         if (this.strike == 3) {
             message.gameOver();
+            this.askContinue();
+            return;
         }
+
+        this.resetStrikeBall();
+    }
+
+    private void askContinue() {
+        message.askContinue();
+
+        Scanner sc = new Scanner(System.in);
+
+        String input = sc.next();
+
+        if (this.isNumber(input) && input.equals("1")) {
+            this.resetGame();
+            return;
+        }
+        this.setRunning(false);
     }
 
     private void checkNumber(int number, int index) {
