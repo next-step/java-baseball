@@ -1,24 +1,30 @@
+import java.util.HashSet;
 import java.util.Random;
 
 public class Dealer {
     private int[] numList;
 
-    private void pickNumbers() {
-        numList = new int[3];
+    private HashSet<Integer> generateRandomNumbers() {
         Random random = new Random();
-        numList[0] = random.nextInt(9) + 1;
+        HashSet<Integer> hashSet = new HashSet<>();
 
-        numList[1] = random.nextInt(9) + 1;
-
-        while (numList[1] == numList[0]) {
-            numList[1] = random.nextInt(9) + 1;
+        while (hashSet.size() < 3) {
+            hashSet.add(random.nextInt(9) + 1);
         }
 
-        numList[2] = random.nextInt(9) + 1;
+        return hashSet;
+    }
 
-        while ((numList[2] == numList[0]) || (numList[2] == numList[1])) {
-            numList[2] = random.nextInt(9) + 1;
+    private int[] pickNumbers() {
+        int [] pickedNumbers = new int[3];
+        HashSet<Integer> pickedSet = generateRandomNumbers();
+        int i = 0;
+
+        for (Integer num : pickedSet) {
+            pickedNumbers[i++] = num;
         }
+
+        return pickedNumbers;
     }
 
     public int[] getList() {
@@ -27,5 +33,6 @@ public class Dealer {
 
     public Dealer() {
         pickNumbers();
+        numList = pickNumbers();
     }
 }
