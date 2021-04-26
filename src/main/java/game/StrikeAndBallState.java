@@ -22,6 +22,16 @@ public class StrikeAndBallState implements GameState {
 		BaseballNumbers computerBaseballNumbers = game.getComputer().getNumbers();
 		BaseballNumbers userBaseballNumbers = game.getUser().getNumbers();
 
+		if (isStrikeAndBall(computerBaseballNumbers, userBaseballNumbers)) {
+			game.setGameState(RunningState.getInstance());
+			game.progress();
+			return;
+		}
+		game.setGameState(NothingState.getInstance());
+		game.progress();
+	}
+
+	private boolean isStrikeAndBall(BaseballNumbers computerBaseballNumbers, BaseballNumbers userBaseballNumbers) {
 		int strikeCount = 0;
 		int ballCount = 0;
 
@@ -31,15 +41,24 @@ public class StrikeAndBallState implements GameState {
 		}
 		ballCount -= strikeCount;
 
-		if (strikeCount + ballCount == 0) {
-			game.setGameState(NothingState.getInstance());
-			game.progress();
-			return;
+		if (strikeCount + ballCount > 0) {
+			printStrikeAndBall(strikeCount, ballCount);
+			return true;
+		}
+		return false;
+
+	}
+
+	private void printStrikeAndBall(int strikeCount, int ballCount) {
+		if (strikeCount > 0) {
+			outputManager.print(strikeCount + " 스트라이크 ");
 		}
 
-		outputManager.print(strikeCount + " 스트라이크 " + ballCount + "볼" + "\n");
-		game.setGameState(RunningState.getInstance());
-		game.progress();
+		if (ballCount > 0) {
+			outputManager.print(ballCount + "볼");
+		}
+
+		outputManager.print("\n");
 	}
 
 	private int countEquals(Integer computerNumber, Integer userNnumber) {
