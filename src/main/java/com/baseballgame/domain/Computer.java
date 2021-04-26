@@ -26,6 +26,7 @@ public class Computer {
 		}
 
 		answerNumber = randomNumberSet.stream()
+			.unordered()
 			.map(randomNumber -> randomNumber.toString())
 			.reduce("", (a, b) -> a + b);
 	}
@@ -44,6 +45,7 @@ public class Computer {
 
 		if (isThreeStrike(baseBallCounterIntegerMap)){
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 			return true;
 		}
 
@@ -52,13 +54,31 @@ public class Computer {
 	}
 
 	private void printScoreResult(Map<BaseBallCounter, Integer> baseBallCounterIntegerMap) {
+
+		makeOutData(baseBallCounterIntegerMap);
+
 		for (BaseBallCounter key : baseBallCounterIntegerMap.keySet()){
-			System.out.printf("%s $s ", key, baseBallCounterIntegerMap.get(key));
+			System.out.printf("%d %s ", baseBallCounterIntegerMap.get(key), key);
 		}
 		System.out.println();
 	}
 
+	private void makeOutData(Map<BaseBallCounter, Integer> baseBallCounterIntegerMap) {
+		Set<BaseBallCounter> keySet = baseBallCounterIntegerMap.keySet();
+		int countOfStrikeAndBall = 0;
+
+		for (BaseBallCounter key : baseBallCounterIntegerMap.keySet()) {
+			countOfStrikeAndBall += baseBallCounterIntegerMap.get(key);
+		}
+
+		baseBallCounterIntegerMap.put(BaseBallCounter.OUT, answerNumber.length() - countOfStrikeAndBall);
+	}
+
 	private boolean isThreeStrike(Map<BaseBallCounter, Integer> baseBallCounterIntegerMap) {
+		if (!baseBallCounterIntegerMap.containsKey(BaseBallCounter.STRIKE)){
+			return false;
+		}
+
 		int strikeCount = baseBallCounterIntegerMap.get(BaseBallCounter.STRIKE);
 		if (!Objects.isNull(strikeCount) && strikeCount == 3) {
 			return true;

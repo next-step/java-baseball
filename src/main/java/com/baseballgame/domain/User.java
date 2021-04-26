@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.baseballgame.common.InputUtil;
 import com.baseballgame.common.UserRequest;
 
 /**
@@ -24,11 +25,11 @@ public class User {
 	 * 사용자 요청 제출
 	 * @return
 	 */
-	public UserRequest submitUserRequest(){
-		String userRequest = inputWithScanner();
+	public String submitUserRequest(){
+		String userRequest = InputUtil.inputWithScanner();
 
 		if(isValidateUserRequestInput(userRequest)){
-			return UserRequest.resolve(userRequest);
+			return userRequest;
 		}
 		return submitUserRequest();
 	}
@@ -51,7 +52,7 @@ public class User {
 	 * @return
 	 */
 	private String inputAnswer() {
-		String answer = inputWithScanner();
+		String answer = InputUtil.inputWithScanner();
 		if (isValidateAnswerInput(answer)) {
 			return answer;
 		}
@@ -71,8 +72,4 @@ public class User {
 		return false;
 	}
 
-	private String inputWithScanner(){
-		Scanner scanner = new Scanner(System.in);
-		return scanner.next();
-	}
 }
