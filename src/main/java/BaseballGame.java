@@ -80,4 +80,12 @@ public class BaseballGame {
     public void printResult(BaseballResult baseballResult){
         System.out.println(baseballResult.toString());
     }
+
+    public boolean checkAnswer(BaseballResult baseballResult){
+        if (baseballResult.getStrike() == 3){
+            System.out.println(CORRECT_PRINT);
+            return true;
+        }
+        return false;
+    }
 }
