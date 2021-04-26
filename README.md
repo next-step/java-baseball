@@ -2,8 +2,8 @@
 
 ## 게임 설명
 
-- 기본적으로1부터9까지서로다른수로이루어진3자리의수를맞추는게임이다.
-- 같은수가같은자리에있으면스트라이크,다른자리에있으면볼,같은수가전혀없으면포볼또는낫싱이란힌트를 얻고,그힌트를이용해서먼저상대방(컴퓨터)의수를맞추면승리한다
+- 기본적으로 1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 맞추는 게임이다.
+- 같은 수가 같은 자리에 있으면 스트라이크,다른자리에 있으면 볼,같은 수가 전혀 없으면 포볼 또는 낫싱이란 힌트를 얻고,그 힌트를 이용해서 먼저 상대방(컴퓨터)의 수를 맞추면 승리한다
     - 예시) 상대방(컴퓨터)의수가425일때,123을제시한경우:1스트라이크,456을제시한경우:1스트라이크1볼, 789를제시한경우:낫싱
 
 ## 게임 방법
@@ -18,7 +18,49 @@
     * 결과 출력
     * 게임 진행 여부 입력
 2. 게임 core 로직 실행
-    * 스트라이크, 볼 개수 및 낫싱체크
+    * 스트라이크, 볼 여부 확인 및 개수 계산
     * 랜덤 숫자 생성 
 	
 ## 디렉토리 구조
+```
+  baseball-precourse
+    │  .classpath
+    │  .gitignore
+    │  .project
+    │  build.gradle
+    │  gradlew
+    │  gradlew.bat
+    │  README.md
+    │      
+    ├─src
+        ├─main
+        │  └─java
+        │      ├─common
+        │      │  ├─code
+        │      │  │      GameErrorCode.java    공통 에러 코드
+        │      │  │      HintType.java         hint type 코드
+        │      │  │      
+        │      │  ├─exception
+        │      │  │      GameException.java    공통 Exception
+        │      │  │      
+        │      │  └─models
+        │      │          HintModel.java       hint type object
+        │      │          ThreeNumbers.java    three number object
+        │      │          
+        │      └─game
+        │          └─baseball
+        │                  GameApp.java        output/input(view)
+        │                  GameCore.java       game core logic
+        │                  GamePlayer.java     game start/stop
+        │                  
+        └─test
+            └─java
+                ├─common
+                │  └─models
+                │          ThreeNumbersTest.java
+                │          
+                └─game
+                    └─baseball
+                            GameCoreTest.java
+                            GamePlayerTest.java
+```

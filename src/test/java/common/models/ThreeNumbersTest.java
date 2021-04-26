@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import common.code.GameErrorCode;
 import common.exception.GameException;
@@ -24,34 +23,38 @@ public class ThreeNumbersTest {
 		// 음수
 		assertThatThrownBy(()->{
 			new ThreeNumbers(-123);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		// 3자리수 이하
 		assertThatThrownBy(()->{
 			new ThreeNumbers(12);
-		}, "numbers 개수는 3개여야한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number 개수는 3개여야한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(1);
-		}, "numbers 개수는 3개여야한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number 개수는 3개여야한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		// 3자리수 이상
 		assertThatThrownBy(()->{
 			new ThreeNumbers(1234);
-		}, "numbers 개수는 3개여야한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number 개수는 3개여야한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		// 중복
 		assertThatThrownBy(()->{
 			new ThreeNumbers(111);
-		}, "numbers는 각 자리가 중복되어서는 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_NON_UNIQUE_ERROR.getErrorMessage());
+		}, "number는 각 자리가 중복되어서는 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_NON_UNIQUE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
-			new ThreeNumbers(101);
-		}, "numbers는 각 자리가 중복되어서는 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_NON_UNIQUE_ERROR.getErrorMessage());
+			new ThreeNumbers(121);
+		}, "number는 각 자리가 중복되어서는 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_NON_UNIQUE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(221);
-		}, "numbers는 각 자리가 중복되어서는 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_NON_UNIQUE_ERROR.getErrorMessage());
+		}, "number는 각 자리가 중복되어서는 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_NON_UNIQUE_ERROR.getErrorMessage());
+		
+		assertThatThrownBy(()->{
+			new ThreeNumbers(103);
+		}, "number에 0이 포함되면 안된다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		
 		// ** ThreeNumbers(int number1,int number2,int number3) ** //
@@ -64,27 +67,27 @@ public class ThreeNumbersTest {
 		// 음수
 		assertThatThrownBy(()->{
 			new ThreeNumbers(-1,2,3);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(1,-2,3);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(1,2,-3);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(-1,-2,3);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(1,-2,-3);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		assertThatThrownBy(()->{
 			new ThreeNumbers(-1,-2,-3);
-		}, "numbers는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}, "number는 양수만 허용한다.").isInstanceOf(GameException.class).hasMessageContaining(GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		
 		// 1자리수 이상
 		assertThatThrownBy(()->{

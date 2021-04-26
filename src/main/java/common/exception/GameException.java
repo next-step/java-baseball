@@ -27,4 +27,8 @@ public class GameException extends RuntimeException{
 		this.gameErrorCode = gameErrorCode;
 	}
 
+	public GameErrorCode getGameErrorCode() {
+		return gameErrorCode;
+	}
+	
 }

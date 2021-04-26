@@ -3,7 +3,8 @@ package common.code;
 public enum GameErrorCode {
 	
 	NUMBER_RANGE_ERROR("0001","Range of number is wrong."),
-	NUMBER_NON_UNIQUE_ERROR("0003", "The number must be unique.");
+	NUMBER_NON_UNIQUE_ERROR("0002", "The number must be unique."),
+	INPUT_INVALID_FORMAT_ERROR("0003", "Invalid input format");
 	
 	private String errorCode;
 	private String errorMessage;

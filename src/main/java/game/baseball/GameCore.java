@@ -25,14 +25,14 @@ public class GameCore {
 	public HintModel checkAttack(int attackNumber, int attackIndex, ThreeNumbers defendNumbers) {
 		HintModel result = new HintModel();
 		for(int i=0; i<ThreeNumbers.NUMBERS_SIZE; i++) {
-			HintType matched = match(attackNumber, attackIndex, defendNumbers.getNumber(i), i);
+			HintType matched = checkStrikeOrBall(attackNumber, attackIndex, defendNumbers.getNumber(i), i);
 			result.calculateCount(matched);
 		}
 		
 		return result;
 	}
 	
-	private HintType match(int attackNumber, int attackIndex, int defendNumber, int defendIndex) {
+	private HintType checkStrikeOrBall(int attackNumber, int attackIndex, int defendNumber, int defendIndex) {
 		if (attackNumber != defendNumber) {
 			return null;
 		}
@@ -44,7 +44,7 @@ public class GameCore {
 		return HintType.BALL;
 	}
 	
-	public ThreeNumbers makeDefendNumber() throws GameException {
+	public ThreeNumbers makeDefendNumbers() throws GameException {
 		ArrayList<Integer> targets = new ArrayList<Integer>();
 		for(int i=0; i<9; i++) {
 			targets.add(i+1);

@@ -1,9 +1,10 @@
 package game.baseball;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import common.models.HintModel;
 import common.models.ThreeNumbers;
 
@@ -12,6 +13,7 @@ public class GameCoreTest {
 	GameCore gameCore = new GameCore();
 	
 	@Test
+	@DisplayName("strike or ball check test")
 	void test_attack_check() {
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
@@ -56,90 +58,89 @@ public class GameCoreTest {
 	}
 	
 	@Test
+	@DisplayName("strike test")
 	void test_strike() {
 		
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
 		// 3-strike test
 		HintModel strikeResult1 = gameCore.attack(new ThreeNumbers(123), defendNumbers);
-		assertEquals(3, strikeResult1.getStrikeCount(), 
-				"It should be 3-strike when defend digits equal input digits.");
+		assertEquals(3, strikeResult1.getStrikeCount(), "같은 위치, 같은 값일 경우 strike 이다.");
 		
 		// 2-strike test
 		HintModel strikeResult2 = gameCore.attack(new ThreeNumbers(423), defendNumbers);
-		assertEquals(2, strikeResult2.getStrikeCount(), 
-				"It should be 2-strike when defend digits contains 2 input digits in the same position.");
+		assertEquals(2, strikeResult2.getStrikeCount(), "같은 위치, 같은 값일 경우 strike 이다.");
 		
 		// 1-strike test
 		HintModel strikeResult3 = gameCore.attack(new ThreeNumbers(453), defendNumbers);
-		assertEquals(1, strikeResult3.getStrikeCount(), 
-				"It should be 1-strike when defend digits contains 1 input digits in the same position.");
+		assertEquals(1, strikeResult3.getStrikeCount(), "같은 위치, 같은 값일 경우 strike 이다.");
 		
 		// 0-strike test
 		HintModel strikeResult4 = gameCore.attack(new ThreeNumbers(456), defendNumbers);
-		assertEquals(0, strikeResult4.getStrikeCount(), 
-				"It should be 0-strike when defend digits contains 0 input digits in the same position.");
+		assertEquals(0, strikeResult4.getStrikeCount(), "같은 위치, 같은 값일 경우 strike 이다.");
 	}
 	
 	@Test
+	@DisplayName("ball test")
 	void test_ball() {
 		
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 				
 		// 3-ball test
 		HintModel ballResult1 = gameCore.attack(new ThreeNumbers(312), defendNumbers);
-		assertEquals(3, ballResult1.getBallCount(), 
-				"It should be 3-ball when defend digits contains 3 input digits in the different position.");
+		assertEquals(3, ballResult1.getBallCount(),"다른 위치, 같은 값일 경우 ball 이다.");;
 		
 		// 2-ball test
 		HintModel ballResult2 = gameCore.attack(new ThreeNumbers(412), defendNumbers);
-		assertEquals(2, ballResult2.getBallCount(), 
-				"It should be 2-ball when defend digits contains 2 input digits in the different position.");
+		assertEquals(2, ballResult2.getBallCount(),"다른 위치, 같은 값일 경우 ball 이다.");
 		
 		// 1-ball test
 		HintModel ballResult3 = gameCore.attack(new ThreeNumbers(452), defendNumbers);
-		assertEquals(1, ballResult3.getBallCount(), 
-				"It should be 1-ball when defend digits contains 1 input digits in the different position.");
+		assertEquals(1, ballResult3.getBallCount(),"다른 위치, 같은 값일 경우 ball 이다.");
 		
 		// 0-ball test
 		HintModel ballResult4 = gameCore.attack(new ThreeNumbers(456), defendNumbers);
-		assertEquals(0, ballResult4.getBallCount(), 
-				"It should be 0-ball when defend digits contains 0 input digits in the different position.");
+		assertEquals(0, ballResult4.getBallCount(),"다른 위치, 같은 값일 경우 ball 이다.");
 		
 	}
 	
 	@Test
+	@DisplayName("nothing test")
 	void test_nothing() {
 		// nothing test
 		HintModel nothingResult = gameCore.attack(new ThreeNumbers(456), new ThreeNumbers(123));
-		assertEquals(0, nothingResult.getBallCount()+nothingResult.getBallCount(), 
-				"It should be nothing when defend digits contains 0 input digits.");
+		assertEquals(0, nothingResult.getBallCount()+nothingResult.getBallCount(),
+				"포함되는 숫자가 전혀 없을 경우 nothing 이다.");
 	}
 	
 	@Test
+	@DisplayName("all mixed hints test")
 	void test_strike_and_ball() {
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
 		// 1-strike, 1-ball test
 		HintModel strikeBallResult = gameCore.attack(new ThreeNumbers(134), defendNumbers);
 		assertEquals(1, strikeBallResult.getStrikeCount(), 
-				"It should be 1-strike when defend digits contains 1 input digits in the same position.");
+				"1은 같은 포지션에 같은 값으로 1-strike이다.");
 		assertEquals(1, strikeBallResult.getBallCount(), 
-				"It should be 1-ball when defend digits contains 1 input digits in the different position.");
+				"3은 다른 포지션에 같은 값으로 1-ball이다.");
 		
+		// 1-strike, 2-ball test
+		HintModel strikeBallResult2 = gameCore.attack(new ThreeNumbers(132), defendNumbers);
+		assertEquals(1, strikeBallResult2.getStrikeCount(), 
+				"1은 같은 포지션에 같은 값으로 1-strike이다.");
+		assertEquals(2, strikeBallResult2.getBallCount(), 
+				"3,2은 다른 포지션에 같은 값으로 1-ball이다.");
 	}
 	
 	@Test
+	@DisplayName("making defend number test")
 	void test_make_defend_number_array() {
-		
 		// range test & length test
-		ThreeNumbers defendNumbers = gameCore.makeDefendNumber();
+		ThreeNumbers defendNumbers = gameCore.makeDefendNumbers();
 		assertTrue(defendNumbers.getNumber(0)>0 && defendNumbers.getNumber(0)<10, "");
 		assertTrue(defendNumbers.getNumber(1)>0 && defendNumbers.getNumber(1)<10, "");
 		assertTrue(defendNumbers.getNumber(2)>0 && defendNumbers.getNumber(2)<10, "");
-		assertThrows(Exception.class, ()->{
-			defendNumbers.getNumber(3);
-		}, "defend number 개수는 3개여야한다.");
 		
 		// unique test
 		int first = defendNumbers.getNumber(0);

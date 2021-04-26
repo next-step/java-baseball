@@ -1,8 +1,10 @@
 package game.baseball;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import common.models.PlayResultModel;
+import common.code.GameErrorCode;
+import common.exception.GameException;
 import common.models.ThreeNumbers;
 
 /**
@@ -17,6 +19,7 @@ public class GameApp {
 	public static void main(String[] args) {
 		Scanner inputScanner = new Scanner(System.in);
 		GamePlayer gamePlayer = new GamePlayer();
+		gamePlayer.startGame();
 		boolean isFinish = false;
 		
 		while(!isFinish) {
@@ -27,9 +30,15 @@ public class GameApp {
 	}
 	
 	private static int takeNumber(String message, Scanner inputScanner) {
-		System.out.println(message);
-		
-		return inputScanner.nextInt();
+		System.out.print(message);
+		int intputNumber = 0;
+		try {
+			intputNumber = inputScanner.nextInt();
+		}catch(InputMismatchException ime) {
+			throw new GameException(GameErrorCode.INPUT_INVALID_FORMAT_ERROR
+					,GameErrorCode.INPUT_INVALID_FORMAT_ERROR.getErrorMessage());
+		}
+		return intputNumber;
 	}
 	
 	private static void playGame(GamePlayer gamePlayer, int inputNumber) {
