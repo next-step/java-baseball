@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
 
 
 public class BaseBallGame {
@@ -25,4 +22,32 @@ public class BaseBallGame {
 
         return;
     }
+
+    void getUserNumber() {
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Input Number : ");
+            String input = sc.next();
+            String[] inputArray = input.split("");
+            for(int i = 0; i < userArray.length; i++) {
+                userArray[i] = Integer.parseInt(inputArray[i]);
+            }
+        } while (isUserNumberDuplicate());
+
+        return;
+    }
+
+    boolean isUserNumberDuplicate() {
+        if(
+            userArray[0] == userArray[1]
+         || userArray[0] == userArray[2]
+         || userArray[2] == userArray[1]) {
+            System.out.println("3개의 숫자는 서로 다른 수가 되어야 합니다. 다시 입력하세요.");
+            return true;
+        }
+
+        return false;
+    }
+
+
 }
