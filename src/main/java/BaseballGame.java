@@ -7,9 +7,8 @@ public class BaseballGame {
 		boolean isGameContinue;
 		do {
 			tryQuestions();
-			int userDecision = validateAndGetInputNumber(Comments.DECISION.getComment()
-				, Comments.EXIT_RESTART_ERROR.getComment()
-				, new ExitOrRestartValidation());
+			int userDecision = validateAndGetInputNumber(Comments.DECISION.getComment(),
+				Comments.EXIT_RESTART_ERROR.getComment(), new ExitOrRestartValidation());
 			isGameContinue = (userDecision == EXIT_GAME) ? false : true;
 		} while (isGameContinue);
 	}
@@ -42,9 +41,8 @@ public class BaseballGame {
 	public static Question getQuestion() {
 		Question question = new Question();
 		question.init();
-		int questionNumber = validateAndGetInputNumber(Comments.INPUT_NUMBER.getComment()
-			, Comments.THREE_DIGIT_ERROR.getComment()
-			, new ThreeDigitValidation());
+		int questionNumber = validateAndGetInputNumber(Comments.INPUT_NUMBER.getComment(),
+			Comments.THREE_DIGIT_ERROR.getComment(), new ThreeDigitValidation());
 		question.setUserQuestion((questionNumber / 100) % 10, (questionNumber / 10) % 10, questionNumber % 10);
 		return question;
 	}
@@ -55,10 +53,14 @@ public class BaseballGame {
 		do {
 			System.out.print(startComment);
 			inputNumber = getInputNumber();
-			if (!validation.validate(inputNumber)) {
-				System.out.println(errorComment);
-			}
+			printErrorComment(!validation.validate(inputNumber), errorComment);
 		} while (!validation.validate(inputNumber));
 		return inputNumber;
+	}
+
+	private static void printErrorComment(boolean condition, String errorComment) {
+		if (condition) {
+			System.out.println(errorComment);
+		}
 	}
 }
