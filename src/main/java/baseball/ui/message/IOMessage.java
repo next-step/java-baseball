@@ -6,7 +6,9 @@ public enum IOMessage {
     STRIKE(" 스트라이크 "),
     BALL(" 볼 "),
     NOTHING("낫싱"),
-    CORRECT_ANSWER_MESSAGE("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    CORRECT_ANSWER_MESSAGE("3개의 숫자를 모두 맞히셨습니다! 게임 종료"),
+    ASK_REPLAY_MESSAGE("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."),
+    END("게임이 종료 되었습니다.");
 
     private final String message;
 

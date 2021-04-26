@@ -1,15 +1,21 @@
 package baseball.domain.player;
 
 public enum PlayStatus {
-    PLAY(true), STOP(false);
+    PLAY("1"), STOP("2");
 
-    private final boolean isPlaying;
+    private final String value;
 
-    PlayStatus(boolean isPlaying) {
-        this.isPlaying = isPlaying;
+    PlayStatus(String value) {
+        this.value = value;
     }
 
-    public boolean isPlaying() {
-        return isPlaying;
+    public String getValue() {
+        return value;
+    }
+
+    public static PlayStatus getPlayStatus(String value) {
+        for (PlayStatus v : values())
+            if (v.getValue().equalsIgnoreCase(value)) return v;
+        throw new IllegalArgumentException();
     }
 }

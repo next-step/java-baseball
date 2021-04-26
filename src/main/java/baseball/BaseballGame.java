@@ -5,12 +5,14 @@ import baseball.domain.BaseballNumbersComparator;
 import baseball.domain.BaseballNumbersProvider;
 import baseball.domain.Score;
 import baseball.domain.player.Computer;
+import baseball.domain.player.PlayStatus;
 import baseball.domain.player.Player;
 import baseball.ui.BaseballIO;
 
 import static baseball.domain.BaseballGameRule.COUNT_OF_BASEBALL_NUMBERS;
 import static baseball.domain.player.PlayStatus.PLAY;
 import static baseball.ui.message.IOMessage.CORRECT_ANSWER_MESSAGE;
+import static baseball.ui.message.IOMessage.END;
 
 public class BaseballGame {
 
@@ -24,10 +26,36 @@ public class BaseballGame {
     private static void startGame() {
         computer = new Computer(generateComputerNumber());
         Player player = new Player(PLAY);
+        initPlayerNumbers();
         while (player.isPlaying()) {
             playingGame();
-            // TODO 진행여부 묻고, 상태 변경
-            //player.setPlayStatus(STOP);
+            askReplay(player);
+            reStartGame(player);
+        }
+    }
+
+    private static void reStartGame(Player player) {
+        if (player.isPlaying()) {
+            startGame();
+            return;
+        }
+        BaseballIO.printlnMessage(END.getMessage());
+    }
+
+    private static void askReplay(Player player) {
+        String response = null;
+        do {
+            response = BaseballIO.askReplay();
+        } while (!isValidResponse(player, response));
+        player.setPlayStatus(PlayStatus.getPlayStatus(response));
+    }
+
+    private static boolean isValidResponse(Player player, String response) {
+        try {
+            PlayStatus.getPlayStatus(response);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 
@@ -62,11 +90,15 @@ public class BaseballGame {
 
     private static void generatePlayerNumber() {
         try {
-            playerNumbers = new BaseballNumbers(BaseballIO.readInput());
+            playerNumbers = new BaseballNumbers(BaseballIO.requirePlayerNumber());
         } catch (Exception e) {
-            playerNumbers.setNull();
+            initPlayerNumbers();
             BaseballIO.printlnMessage(e.getMessage());
         }
+    }
+
+    private static void initPlayerNumbers() {
+        playerNumbers = null;
     }
 
     private static BaseballNumbers generateComputerNumber() {

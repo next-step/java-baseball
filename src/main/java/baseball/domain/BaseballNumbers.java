@@ -89,7 +89,4 @@ public class BaseballNumbers {
         return baseballNumbers.contains(targetBaseballNumber);
     }
 
-    public void setNull(){
-        baseballNumbers = null;
-    }
 }

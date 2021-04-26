@@ -8,7 +8,7 @@ public class BaseballIO {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String readInput() {
+    public static String requirePlayerNumber() {
         printMessage(REQUIRE_NUMBER_MESSAGE.getMessage());
         return scanner.next();
     }
@@ -33,5 +33,10 @@ public class BaseballIO {
             message.append(NOTHING.getMessage());
         }
         printlnMessage(message.toString());
+    }
+
+    public static String askReplay() {
+        printlnMessage(ASK_REPLAY_MESSAGE.getMessage());
+        return scanner.next();
     }
 }

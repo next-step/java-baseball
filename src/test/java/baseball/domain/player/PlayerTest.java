@@ -14,6 +14,6 @@ class PlayerTest {
         // when
         Player player = new Player(PlayStatus.PLAY);
         // then
-        assertThat(player.isPlaying()).isEqualTo(PlayStatus.PLAY.isPlaying());
+        assertThat(player.isPlaying()).isEqualTo(true);
     }
 }

@@ -9,7 +9,7 @@ public class Player {
     }
 
     public boolean isPlaying() {
-        return playStatus.isPlaying();
+        return playStatus == PlayStatus.PLAY;
     }
 
     public void setPlayStatus(PlayStatus playStatus) {
