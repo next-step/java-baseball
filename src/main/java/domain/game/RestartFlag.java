@@ -1,15 +1,16 @@
 package domain.game;
 
-public enum RestartOrder {
+public enum RestartFlag {
 	RESTART(1),
 	EXIT(2);
 
 	private int order;
-	RestartOrder(int order) {
+
+	RestartFlag(int order) {
 		this.order = order;
 	}
 
-	public static RestartOrder detect(int order) {
+	public static RestartFlag detect(int order) {
 		if (order == RESTART.order) {
 			return RESTART;
 		} else if (order == EXIT.order) {

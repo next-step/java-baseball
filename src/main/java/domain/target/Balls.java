@@ -1,11 +1,12 @@
 package domain.target;
 
+import constant.GameRule;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Balls {
-	public static final int BALL_COUNT = 3;
 	private List<Ball> ballList = new ArrayList<>();
 
 	public static Balls createNewTargetBalls() {
@@ -22,13 +23,13 @@ public class Balls {
 	}
 
 	private void validateBallList(List<Ball> ballList) {
-		if (ballList.size() != BALL_COUNT) {
-			throw new IllegalArgumentException("Balls 의 크기는" + BALL_COUNT + "이어야 합니다.");
+		if (ballList.size() != GameRule.BALL_COUNT) {
+			throw new IllegalArgumentException("Balls 의 크기는" + GameRule.BALL_COUNT + "이어야 합니다.");
 		}
 	}
 
 	private void setUpBalls() {
-		while (ballList.size() != BALL_COUNT) {
+		while (ballList.size() != GameRule.BALL_COUNT) {
 			ifBallsNotContainsAdd(BallGenerator.generateRandomBall());
 		}
 	}

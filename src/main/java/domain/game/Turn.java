@@ -1,5 +1,6 @@
 package domain.game;
 
+import constant.GameRule;
 import domain.target.Ball;
 import domain.target.Balls;
 
@@ -16,7 +17,7 @@ public class Turn {
 	private void count(Balls inputBalls, Balls targetBalls) {
 		List<Ball> targetBallList = targetBalls.getBallList();
 		List<Ball> inputBallList = inputBalls.getBallList();
-		for (int i = 0; i < Balls.BALL_COUNT; i++) {
+		for (int i = 0; i < GameRule.BALL_COUNT; i++) {
 			ifBallAddBallCount(inputBallList, targetBallList, i);
 			ifStrikeAddStrikeCount(inputBallList, targetBallList, i);
 		}

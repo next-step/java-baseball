@@ -1,5 +1,6 @@
 package domain.target;
 
+import constant.GameRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +16,7 @@ public class BallTest {
 		//when, then
 		assertThatThrownBy(() -> new Ball(number))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining("숫자는" + Ball.MIN_NUMBER_OF_BALL + "~" + Ball.MAX_NUMBER_OF_BALL + "사이 입니다.");
+			.hasMessageContaining("숫자는" + GameRule.MIN_NUMBER_OF_BALL + "~" + GameRule.MAX_NUMBER_OF_BALL + "사이 입니다.");
 
 	}
 

@@ -1,5 +1,6 @@
 package domain.target;
 
+import constant.GameRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,8 @@ public class BallGeneratorTest {
 
 		//then
 		assertThat(number)
-			.isGreaterThanOrEqualTo(Ball.MIN_NUMBER_OF_BALL)
-			.isLessThanOrEqualTo(Ball.MAX_NUMBER_OF_BALL);
+			.isGreaterThanOrEqualTo(GameRule.MIN_NUMBER_OF_BALL)
+			.isLessThanOrEqualTo(GameRule.MAX_NUMBER_OF_BALL);
 	}
 
 	@Test

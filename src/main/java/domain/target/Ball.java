@@ -1,10 +1,10 @@
 package domain.target;
 
+import constant.GameRule;
+
 import java.util.Objects;
 
 public class Ball {
-	public static final int MAX_NUMBER_OF_BALL = 9;
-	public static final int MIN_NUMBER_OF_BALL = 1;
 	private int number;
 
 	public Ball(int number) {
@@ -13,8 +13,8 @@ public class Ball {
 	}
 
 	private void validate(int number) {
-		if (number > MAX_NUMBER_OF_BALL || number < MIN_NUMBER_OF_BALL) {
-			throw new IllegalArgumentException("숫자는" + MIN_NUMBER_OF_BALL + "~" + MAX_NUMBER_OF_BALL + "사이 입니다.");
+		if (number > GameRule.MAX_NUMBER_OF_BALL || number < GameRule.MIN_NUMBER_OF_BALL) {
+			throw new IllegalArgumentException("숫자는" + GameRule.MIN_NUMBER_OF_BALL + "~" + GameRule.MAX_NUMBER_OF_BALL + "사이 입니다.");
 		}
 	}
 

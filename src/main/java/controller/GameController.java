@@ -1,8 +1,9 @@
 package controller;
 
+import constant.GameMessage;
 import domain.game.Game;
 import domain.game.GameMaster;
-import domain.game.RestartOrder;
+import domain.game.RestartFlag;
 import domain.game.TurnResult;
 import domain.target.BallGenerator;
 import domain.target.Balls;
@@ -10,35 +11,37 @@ import ui.Input;
 import ui.Output;
 
 public class GameController {
-	private RestartOrder restartOrder = RestartOrder.RESTART;
+	private RestartFlag restartFlag;
+	private GameMaster gameMaster;
 
 	public void play() {
+		gameMaster = new GameMaster();
 		do {
 			playGame();
-		} while (restartOrder != RestartOrder.EXIT);
+		} while (restartFlag != RestartFlag.EXIT);
 	}
 
 	private void playGame() {
-		Game game = GameMaster.startNewGame();
+		Game game = gameMaster.startNewGame();
 		do {
-			Output.showMessage(Output.REQUEST_INPUT_MESSAGE);
+			Output.showMessage(GameMessage.REQUEST_INPUT_MESSAGE);
 			Balls inputBalls = BallGenerator.generateBallsByNumber(Input.getClientRequest());
-			TurnResult turnResult = GameMaster.playTurn(inputBalls, game);
-			Output.showMessage(processTurnResult(turnResult, game));
+			TurnResult turnResult = gameMaster.playTurn(inputBalls);
+			Output.showMessage(processTurnResult(turnResult));
 		} while (!game.isCleared());
-		Output.showMessage(Output.SUCCESS_MESSAGE);
+		Output.showMessage(GameMessage.SUCCESS_MESSAGE);
 		requestRestart();
 	}
 
 	private void requestRestart() {
-		Output.showMessage(Output.REQUEST_RESTART_MESSAGE);
-		restartOrder = RestartOrder.detect(Input.getClientRequest());
+		Output.showMessage(GameMessage.REQUEST_RESTART_MESSAGE);
+		restartFlag = RestartFlag.detect(Input.getClientRequest());
 	}
 
-	private String processTurnResult(TurnResult turnResult, Game game) {
+	private String processTurnResult(TurnResult turnResult) {
 		StringBuilder stringBuilder = new StringBuilder();
 		if (turnResult.isNothing()) {
-			return Output.NOTHING;
+			return GameMessage.NOTHING;
 		}
 		appendBallMessage(turnResult.getBallCount(), stringBuilder);
 		appendStrikeMessage(turnResult.getStrikeCount(), stringBuilder);
@@ -47,13 +50,13 @@ public class GameController {
 
 	private void appendBallMessage(int ballCount, StringBuilder stringBuilder) {
 		if (ballCount != 0) {
-			stringBuilder.append(ballCount).append(Output.BALL);
+			stringBuilder.append(ballCount).append(GameMessage.BALL);
 		}
 	}
 
 	private void appendStrikeMessage(int strikeCount, StringBuilder stringBuilder) {
 		if (strikeCount != 0) {
-			stringBuilder.append(strikeCount).append(Output.STRIKE);
+			stringBuilder.append(strikeCount).append(GameMessage.STRIKE);
 		}
 	}
 }

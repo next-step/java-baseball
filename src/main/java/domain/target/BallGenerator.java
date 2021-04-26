@@ -1,5 +1,7 @@
 package domain.target;
 
+import constant.GameRule;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +11,7 @@ public class BallGenerator {
 
 	public static Ball generateRandomBall() {
 		Random random = new Random();
-		return new Ball(random.nextInt(Ball.MAX_NUMBER_OF_BALL) + Ball.MIN_NUMBER_OF_BALL);
+		return new Ball(random.nextInt(GameRule.MAX_NUMBER_OF_BALL) + GameRule.MIN_NUMBER_OF_BALL);
 	}
 
 	public static Balls generateBallsByNumber(int number) {
@@ -23,8 +25,8 @@ public class BallGenerator {
 	}
 
 	private static void validateBallsNumber(int number) {
-		if (number >= Math.pow(10, Balls.BALL_COUNT) || number < Math.pow(10, Balls.BALL_COUNT - 1)) {
-			throw new IllegalArgumentException("숫자는" + Balls.BALL_COUNT + "자리 수 입니다.");
+		if (number >= Math.pow(10, GameRule.BALL_COUNT) || number < Math.pow(10, GameRule.BALL_COUNT - 1)) {
+			throw new IllegalArgumentException("숫자는 " + GameRule.BALL_COUNT + "자리 수 입니다.");
 		}
 	}
 

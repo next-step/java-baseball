@@ -1,5 +1,7 @@
 package ui;
 
+import constant.GameRule;
+
 import java.util.Scanner;
 
 public class Input {
@@ -9,8 +11,7 @@ public class Input {
 		try {
 			return Integer.parseInt(readLine());
 		} catch (NumberFormatException e) {
-			Output.showMessage("숫자만 입력하세요.");
-			return getClientRequest();
+			throw new NumberFormatException("입력은 숫자입니다.");
 		}
 	}
 

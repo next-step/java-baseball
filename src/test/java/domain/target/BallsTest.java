@@ -1,5 +1,6 @@
 package domain.target;
 
+import constant.GameRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -51,6 +52,6 @@ public class BallsTest {
 		//when, then
 		assertThatThrownBy(() -> new Balls(inputBalls))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining("Balls 의 크기는" + Balls.BALL_COUNT + "이어야 합니다.");
+			.hasMessageContaining("Balls 의 크기는" + GameRule.BALL_COUNT + "이어야 합니다.");
 	}
 }
