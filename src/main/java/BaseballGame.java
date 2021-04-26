@@ -11,6 +11,12 @@ public class BaseballGame {
 	public void playBall() {
 		Scanner scanner = startUI();
 		
+		boolean isContinue = true;
+		while (isContinue) {
+			playGame(scanner);
+			isContinue = continueGame(scanner);
+		}
+		
 		endUI(scanner);
 	}
 	

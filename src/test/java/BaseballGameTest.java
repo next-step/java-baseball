@@ -204,4 +204,21 @@ public class BaseballGameTest {
 		scorePoints(randomNumber, insertNumber);
 	}
 	
+	@ParameterizedTest
+	@CsvSource( value = {"123:123", "123:345"}, delimiter = ':')
+	@DisplayName("야구게임 전체 테스트")
+	public void playBallTest(String randomNumber, String inputNumber) {
+		playBall(randomNumber, inputNumber);
+	}
+	
+	public void playBall(String randomNumber, String inputNumber) {
+		String inputText = "2";
+		
+		boolean isContinue = true;
+		while (isContinue) {
+			playGame(randomNumber, inputNumber);
+			isContinue = continueGame(inputText);
+		}
+	}
+	
 }
