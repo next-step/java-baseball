@@ -83,13 +83,29 @@ public class BaseBallGame {
 
     private void check(int[] answer) {
         for (int i = 0; i < answer.length; i++) {
-            // answer[i]
+            this.checkNumber(answer[i], i);
         }
 
         message.getResult(this.strike, this.ball);
 
         if (this.strike == 3) {
             message.gameOver();
+        }
+    }
+
+    private void checkNumber(int number, int index) {
+        for (int i = 0; i < this.answer.length; i++) {
+            this.checkStrikeBall(number, index, this.answer[i] , i);
+        }
+    }
+
+    private void checkStrikeBall(int number, int index, int answer_number, int answer_index) {
+        if (number == answer_number && index == answer_index) {
+            this.strike++;
+        }
+
+        if (number == answer_number && index != answer_index) {
+            this.ball++;
         }
     }
 
