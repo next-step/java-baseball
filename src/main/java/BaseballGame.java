@@ -31,5 +31,15 @@ public class BaseballGame {
 	private void endUI(Scanner scanner) {
 		scanner.close();
 	}
+	
+	/**
+	 * 3자리의 난수를 생성합니다.
+	 *
+	 * @return String
+	 */
+	private String createRandomNumber() {
+		double randomNumber = Math.random() * 1000;
+		return String.format("%.0f", randomNumber);
+	}
 		
 }
