@@ -3,6 +3,7 @@ import java.util.*;
 public class JavaBaseBallGame {
 
     private static Scanner scanner = new Scanner(System.in);
+    private final int THE_NUMBER_OF_NUM = 3;
 
 
     /**
@@ -41,5 +42,54 @@ public class JavaBaseBallGame {
 
         return resultList;
 
+    }
+
+    /**
+     * 임의의 세자리 숫자와 입력한 숫자를 비교하는 method
+     * @param gameNum
+     * @param num
+     * @return
+     */
+    private StrikeBall getHintMap(int gameNum, int num) {
+        if( gameNum == num){
+            return new StrikeBall(THE_NUMBER_OF_NUM, 0);
+        }
+        List<String> xString = convertStringToInt(gameNum);
+        List<String> numString = convertStringToInt(num);
+        int strike = 0;
+        int ball = 0;
+
+        for(int i = 0; i < xString.size(); i++ ){
+            strike += getStrike(xString.get(i), numString.get(i));
+            ball += getBall(xString, numString.get(i),i);
+        }
+
+        return new StrikeBall(strike,ball);
+
+    }
+
+    /**
+     * 스트라이크 체크 method
+     * @param x
+     * @param n
+     * @return
+     */
+    private int getStrike(String x, String n) {
+        if(x.equalsIgnoreCase(n))
+            return 1;
+        return 0;
+    }
+
+    /**
+     * 볼 체크 method
+     * @param xString
+     * @param n
+     * @param index
+     * @return
+     */
+    private int getBall(List<String> xString, String n, int index) {
+        if(index != xString.indexOf(n) && xString.indexOf(n) >= 0)
+            return 1;
+        return 0;
     }
 }
