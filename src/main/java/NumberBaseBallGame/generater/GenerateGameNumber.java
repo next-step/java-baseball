@@ -36,8 +36,7 @@ public class GenerateGameNumber {
 
 	private void setBallValueNumber(List<Ball> randomBalls, int aRandomNumber) {
 		if(!randomBalls.contains(aRandomNumber)){
-			Ball aBall = new Ball();
-			aBall.setValueNumber(aRandomNumber);
+			Ball aBall = new Ball(aRandomNumber);
 			randomBalls.add(aBall);
 		}
 	}

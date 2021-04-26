@@ -19,15 +19,6 @@ public class GenerateGame {
 	}
 
 	/**
-	 *
-	 *
-	 * @return
-	 */
-	public List<Ball> getGameNumbers() {
-		return randomBalls;
-	}
-
-	/**
 	 * 게임 시작!
 	 *  사용자 입력과 게임 값을 비교
 	 *
@@ -48,6 +39,7 @@ public class GenerateGame {
 
 	/**
 	 * 고객 Ball 생성
+	 *  TODO : 행위 분리
 	 *
 	 * @param getClientNumber
 	 * @return
@@ -55,8 +47,7 @@ public class GenerateGame {
 	private List<Ball> generateClientBalls(String getClientNumber) {
 		List<Ball> balls = new ArrayList<>();
 		for (char item : getClientNumber.toCharArray()){
-			Ball aBall = new Ball();
-			aBall.setValueNumber(item);
+			Ball aBall = new Ball(item);
 			balls.add(aBall);
 		}
 		return balls;

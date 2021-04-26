@@ -5,11 +5,17 @@ public class Ball {
 	public static final int BALL_NUMBER_MAX = BaseBallConst.INPUT_RANGE_MAX;
 	private int valueNumber;
 
-	public int getValueNumber() {
-		return valueNumber;
+	public Ball(int valueNumber) {
+		if (valueNumber<BALL_NUMBER_MIN){
+			throw new IllegalArgumentException("입력값은 1이상이여야 합니다.");
+		}
+		if (valueNumber>BALL_NUMBER_MAX){
+			throw new IllegalArgumentException("입력값은 9이하이여야 합니다.");
+		}
+		this.valueNumber = valueNumber;
 	}
 
-	public void setValueNumber(int valueNumber) {
-		this.valueNumber = valueNumber;
+	public int getValueNumber() {
+		return valueNumber;
 	}
 }
