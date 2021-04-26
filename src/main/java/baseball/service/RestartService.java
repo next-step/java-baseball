@@ -8,7 +8,7 @@ public class RestartService {
 	private final String EXIT = "2";
 
 	public boolean isRestart(String input) {
-		if (!input.matches(String.format("^[%d|%d]{1}$", RESTART, EXIT))) {
+		if (!input.matches(String.format("^[%s|%s]{1}$", RESTART, EXIT))) {
 			throw new NonRestartCharactersException();
 		}
 		return RESTART.equals(input);
