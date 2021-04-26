@@ -3,6 +3,7 @@ package baseball.state;
 import java.util.List;
 
 import baseball.Converter;
+import baseball.Deck;
 import baseball.Game;
 import baseball.io.Display;
 import baseball.io.Keyboard;
@@ -19,14 +20,14 @@ public class InningState implements State {
 	public boolean action() {
 		Display.pitch();
 		String raw = Keyboard.read();
-		if (isThreeDigits(raw)) {
+		if (isValid(raw)) {
 			guess(raw);
 		}
 		return true;
 	}
 
-	public boolean isThreeDigits(String raw) {
-		if (raw.length() == 3 && Converter.isNumber(raw) && Converter.toNumber(raw) > 99) {
+	public boolean isValid(String raw) {
+		if (Converter.isNumber(raw) && String.valueOf(Converter.toNumber(raw)).length() == Deck.SIZE) {
 			return true;
 		}
 		Display.notThreeDigits();

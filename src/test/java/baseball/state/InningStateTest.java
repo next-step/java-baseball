@@ -24,15 +24,15 @@ class InningStateTest {
 
 	@DisplayName("3자리 숫자 변환 가능")
 	@Test
-	void isThreeDigits() {
-		assertThat(inningState.isThreeDigits("123")).isTrue();
+	void valid() {
+		assertThat(inningState.isValid("123")).isTrue();
 	}
 
 	@DisplayName("3자리 숫자 변환 불가")
 	@ParameterizedTest
 	@ValueSource(strings = {"1234", "001", "text", ""})
-	void notThreeDigits(String str) {
-		assertThat(inningState.isThreeDigits(str)).isFalse();
+	void notValid(String str) {
+		assertThat(inningState.isValid(str)).isFalse();
 	}
 
 	@DisplayName("숫자 입력: 사용자를 생성하고 판정 상태로 간다.")
