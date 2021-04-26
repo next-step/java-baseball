@@ -17,6 +17,16 @@ public class BaseBallGame {
         } while (!checkGameResult()); // 결과 체크
     }
 
+    boolean againGame() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+        String input = sc.next();
+        if(input.equals("1")) {
+            return true;
+        }
+        return false;
+    }
+
     void generateNumber() {
         List<Integer> baseBallNum = new ArrayList<Integer>();
         for(int i = 1 ; i <= 9 ; i++) {
