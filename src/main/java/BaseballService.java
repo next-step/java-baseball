@@ -16,7 +16,24 @@ public class BaseballService {
             baseball.init();
             baseball.setUserNumber(getUserNumber());
             baseball.compare();
+            isPlay = baseball.isStrike() ? confirmEndOfGame(baseball) : outputResult(baseball);
         }
+    }
+
+    private boolean confirmEndOfGame(Baseball baseball) {
+        boolean isRestart = false;
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시직하려면 1, 종료하려면 2를 입력하세요.");
+        initScanner();
+        if (scanner.nextInt() == 1) {
+            baseball.setOpponentNumber(BaseUtil.getRandomNumber());
+            isRestart = true;
+        }
+        return isRestart;
+    }
+
+    private boolean outputResult(Baseball baseball) {
+        System.out.println(baseball.toString());
+        return true;
     }
 
     private void initScanner() {
