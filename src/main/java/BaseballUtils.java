@@ -56,4 +56,10 @@ public class BaseballUtils {
 
 		return i < tartgetIndex;
 	}
+
+	public void chekckPitchingCondition(final String strValue) {
+		if (strValue == null || (!strValue.equals("1") && !strValue.equals("2"))) {
+			throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+		}
+	}
 }

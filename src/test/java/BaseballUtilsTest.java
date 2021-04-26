@@ -98,7 +98,6 @@ class BaseballUtilsTest {
 	public void isNotExistsDupNumbers() {
 		// gevin
 		// when
-
 		// then
 		assertThatCode(() -> {
 				baseballUtils.checkNotExistsDupNumbers("123");
@@ -119,5 +118,31 @@ class BaseballUtilsTest {
 		assertThatCode(() -> {
 				baseballUtils.checkNotExistsDupNumbers("1234");
 			}).doesNotThrowAnyException();
+	}
+
+
+	@Test
+	public void chekckPitchingConditionTest() {
+		// gevin
+		// when
+		// then
+		assertThatCode(() -> {
+				baseballUtils.chekckPitchingCondition("1");
+			}).doesNotThrowAnyException();
+		assertThatCode(() -> {
+				baseballUtils.chekckPitchingCondition("2");
+			}).doesNotThrowAnyException();
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.chekckPitchingCondition("22");
+			});
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.chekckPitchingCondition(null);
+			});
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.chekckPitchingCondition("");
+			});
+		assertThatIllegalArgumentException().isThrownBy(() -> {
+				baseballUtils.chekckPitchingCondition("hello");
+			});
 	}
 }

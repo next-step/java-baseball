@@ -4,8 +4,7 @@ public class BaseballMain {
 		BaseballConsole console = new BaseballConsole();
 		BaseballGame game = new BaseballGame(console);
 
-		game.initGame();
-		game.playGame();
+		game.playBall();
 	}
 
 }

@@ -14,6 +14,16 @@ public class BaseballGame {
 		return answer;
 	}
 
+	public void playBall() {
+		boolean morePitching = true;
+
+		while(morePitching) {
+			initGame();
+			playGame();
+			morePitching = requestMorePitching();
+		}
+	}
+
 	public void initGame() {
 		answer = baseballUtils.cerateAnswer();
 	}
@@ -25,6 +35,17 @@ public class BaseballGame {
 			attackKeyword = requestKeyword();
 			isOut = callJudge(attackKeyword);
 		}
+	}
+
+	public boolean requestMorePitching() {
+		String pitchingCondition = console.getMessage("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
+		try {
+			baseballUtils.chekckPitchingCondition(pitchingCondition);
+		} catch (IllegalArgumentException iae) {
+			console.setMessage(iae.getMessage());
+			requestMorePitching();
+		}
+		return (pitchingCondition.equals("1") ? true : false);
 	}
 
 	private String requestKeyword() {
