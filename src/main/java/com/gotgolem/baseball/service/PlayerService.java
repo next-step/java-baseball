@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.gotgolem.baseball.asset.game.GameState;
 import com.gotgolem.baseball.asset.pitch.ThreePitches;
+import com.gotgolem.baseball.asset.player.Player;
 import com.gotgolem.baseball.exception.PlayerInputException;
 
 public class PlayerService {
@@ -25,6 +26,10 @@ public class PlayerService {
 		gameStateString = removeWhitespaces(gameStateString);
 		validateGameStateString(gameStateString);
 		return gameStateString.equals("1") ? GameState.START : GameState.END;
+	}
+
+	public void changePlayerPitches(Player player) {
+		player.changePitches(baseballService.createThreePitches());
 	}
 
 	private void validatePitchesString(String pitchesString) {

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -14,6 +15,7 @@ import com.gotgolem.baseball.asset.number.NumberGenerator;
 import com.gotgolem.baseball.asset.number.RandomNumberGenerator;
 import com.gotgolem.baseball.asset.pitch.Ball;
 import com.gotgolem.baseball.asset.pitch.ThreePitches;
+import com.gotgolem.baseball.asset.player.Player;
 import com.gotgolem.baseball.exception.PlayerInputException;
 
 public class PlayerServiceTest {
@@ -64,6 +66,14 @@ public class PlayerServiceTest {
 	public void whenParseGameStateString_thenThrow(String gameStateString) {
 		assertThatExceptionOfType(PlayerInputException.class)
 				.isThrownBy(() -> service.parseGameStateString(gameStateString));
+	}
+
+	@DisplayName("상대방(컴퓨터)의 투구 저장 테스트")
+	@Test
+	public void savePitchesOfComputerPlayer() {
+		final Player computer = new Player();
+		service.changePlayerPitches(computer);
+		assertThat(computer.getPitches()).isNotNull();
 	}
 
 }
