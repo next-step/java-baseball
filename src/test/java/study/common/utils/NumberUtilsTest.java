@@ -1,6 +1,7 @@
 package study.common.utils;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NumberUtilsTest {
 
-    @Test
+
+    @RepeatedTest(200)
     @DisplayName("숫자 생성이 규칙에 맞게 되었는지 테스트")
     public void 숫자_범위_테스트() {
 

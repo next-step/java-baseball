@@ -81,7 +81,7 @@ public class BaseballPlayer {
      */
     public static void checkRange(int input) {
         /** 범위가 초과할시 */
-        while ((input >= MAX_BASEBALL_NUMBER_RANGE) || (input <= MIN_BASEBALL_NUMBER_RANGE)) {
+        while ((input > MAX_BASEBALL_NUMBER_RANGE) || (input < MIN_BASEBALL_NUMBER_RANGE)) {
             throw new IllegalArgumentException();
         }
     }
