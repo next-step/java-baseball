@@ -4,6 +4,7 @@ public class Message {
     private final String NOT_THREE_NUMBER = "숫자 3자리를 입력해주세요.";
     private final String NOTHING = "낫싱";
     private final String GAME_OVER = "3개의 숫자를 모두 맞히셨습니다. 게임종료";
+    private final String ASK_CONTINUE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
     /**
      * 입력 받기 메세지
@@ -38,6 +39,13 @@ public class Message {
      */
     public void gameOver() {
         System.out.println(this.GAME_OVER);
+    }
+
+    /**
+     * 게임 계속 여부 메세지
+     */
+    public void askContinue() {
+        System.out.println(this.ASK_CONTINUE);
     }
 
     /**

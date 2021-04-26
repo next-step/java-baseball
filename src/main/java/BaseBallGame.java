@@ -81,7 +81,6 @@ public class BaseBallGame {
             int[] answer = this.createIntArray(input);
             this.check(answer);
         }
-        this.setRunning(false);
     }
 
     private void check(int[] answer) {
