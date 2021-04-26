@@ -9,7 +9,7 @@ public class CommandLine implements PlayerInterface {
 
     private static CommandLine commandLine = new CommandLine();
     private static final Scanner sc = new Scanner(System.in);
-    
+
     private CommandLine() {}
 
     public static CommandLine getInstance() {
@@ -18,14 +18,14 @@ public class CommandLine implements PlayerInterface {
 
     @Override
     public String inputNumber() {
-        String inputValue = "";
+        String inputValue;
 
-        while (!Validation.checkNumberData(inputValue)
-                || !Validation.checkNumberLength(inputValue, MainLauncher.LENGTH_OF_NUMBER)
-                || Validation.checkContainDuplicateNumber(inputValue)) {
+        do {
             System.out.print(Message.USER_INPUT.getMsg());
             inputValue = sc.nextLine();
-        }
+        } while (!Validation.isNumberData(inputValue)
+                || !Validation.isCorrectLength(inputValue, MainLauncher.LENGTH_OF_NUMBER)
+                || Validation.isContainDuplicateNumber(inputValue));
 
         return inputValue;
     }
@@ -34,17 +34,38 @@ public class CommandLine implements PlayerInterface {
     public void printCountMessage(int strikeCount, int ballCount) {
         StringBuilder sb = new StringBuilder();
 
+        getStrikeMessage(strikeCount, sb);
+        getBallMessage(ballCount, sb);
+        getNothingMessage(sb);
+
+        System.out.println(sb.toString());
+    }
+
+    /*
+     * strike 에 해당하는 경우가 있을 경우 메시지 생성
+     */
+    private void getStrikeMessage(int strikeCount, StringBuilder sb) {
         if (strikeCount > 0) {
-            sb.append(String.valueOf(strikeCount)).append(Message.STRIKE.getMsg());
+            sb.append(strikeCount).append(Message.STRIKE.getMsg());
         }
+    }
+
+    /*
+     * ball 에 해당하는 경우가 있을 경우 메시지 생성
+     */
+    private void getBallMessage(int ballCount, StringBuilder sb) {
         if (ballCount > 0) {
-            sb.append(String.valueOf(ballCount)).append(Message.BALL.getMsg());
+            sb.append(ballCount).append(Message.BALL.getMsg());
         }
+    }
+
+    /*
+     * strike 와 ball 아무것도 없는 경우 '낫싱' 메시지 생성
+     */
+    private void getNothingMessage(StringBuilder sb) {
         if (sb.length() == 0) {
             sb.append(Message.NOTHING.getMsg());
         }
-
-        System.out.println(sb.toString());
     }
 
     @Override
@@ -54,13 +75,14 @@ public class CommandLine implements PlayerInterface {
 
     @Override
     public boolean checkContinue() {
-        String inputValue = "";
+        String inputValue;
 
-        while (!Validation.checkEndingValue(inputValue)) {
+        do {
             System.out.println(Message.RESTART.getMsg());
             inputValue = sc.nextLine();
-        }
+        } while (!Validation.checkEndingValue(inputValue));
 
         return "1".equals(inputValue);
     }
+
 }

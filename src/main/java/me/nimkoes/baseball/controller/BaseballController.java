@@ -4,7 +4,6 @@ import me.nimkoes.baseball.MainLauncher;
 import me.nimkoes.baseball.service.BaseballService;
 import me.nimkoes.baseball.view.PlayerInterface;
 
-
 public class BaseballController {
 
     private final PlayerInterface playerInterface;

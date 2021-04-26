@@ -35,13 +35,23 @@ public class BaseballService {
      * 새로운 난수 생성
      */
     private String generateRandomNumber() {
-        Set<Integer> integers = new LinkedHashSet<>();
+        Set<Integer> randomIntSet = new LinkedHashSet<>();
         StringBuilder sb = new StringBuilder();
 
-        while (integers.size() < MainLauncher.LENGTH_OF_NUMBER) {
-            integers.add(random.nextInt(10));
+        while (randomIntSet.size() < MainLauncher.LENGTH_OF_NUMBER) {
+            randomIntSet.add(random.nextInt(10));
         }
-        for (Integer integer : integers) {
+
+        return setToString(randomIntSet);
+    }
+
+    /*
+     * 순서가 있는 정수로 이루어진 Set 데이터를 문자열로 만들어 반환
+     */
+    private String setToString(Set<Integer> randomIntSet) {
+        StringBuilder sb = new StringBuilder();
+
+        for (Integer integer : randomIntSet) {
             sb.append(integer);
         }
 
