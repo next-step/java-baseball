@@ -27,7 +27,8 @@ public class BaseballGame {
     }
 
     private static boolean playGame() {
-        return false;
+        ResultVo resultVo = calculateScore(getValue());
+        return true;
     }
 
     private static LinkedHashSet<Integer> getComputerSet() {
@@ -39,4 +40,52 @@ public class BaseballGame {
         return computerSet;
     }
 
+    private static ResultVo calculateScore(Set<Integer> playerSet) {
+        Iterator<Integer> computerIterator = computerSet.iterator();
+        Iterator<Integer> playerIterator = playerSet.iterator();
+        ResultVo resultVo = new ResultVo();
+        while (computerIterator.hasNext()) {
+            getScore(computerIterator.next(), playerIterator.next(), resultVo);
+        }
+        return resultVo;
+    }
+
+    private static void getScore(int computerValue, int playerValue, ResultVo resultVo) {
+        if (computerValue == playerValue) {
+            resultVo.setStrike(resultVo.getStrike() + 1);
+            return;
+        }
+        if (computerSet.contains(playerValue)) {
+            resultVo.setBall(resultVo.getBall() + 1);
+        }
+    }
+
+    private static Set<Integer> getValue() throws NumberFormatException {
+        System.out.println(INPUT_REQUIRE_MESSAGE);
+        Set<Integer> playerSet = new LinkedHashSet<>();
+        String[] splitValue = scanner.nextLine().split("");
+        if (validateInput(playerSet, splitValue)) {
+            return getValueRetry();
+        }
+        if (playerSet.size() != 3) {
+            return getValueRetry();
+        }
+        return playerSet;
+    }
+
+    private static boolean validateInput(Set<Integer> playerSet, String[] splitValue) {
+        try {
+            for (String num : splitValue) {
+                playerSet.add(Integer.parseInt(num));
+            }
+        } catch (NumberFormatException e) {
+            return true;
+        }
+        return false;
+    }
+
+    private static Set<Integer> getValueRetry() {
+        System.out.println(ERROR_MESSAGE);
+        return getValue();
+    }
 }
