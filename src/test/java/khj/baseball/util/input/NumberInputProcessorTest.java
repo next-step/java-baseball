@@ -13,7 +13,7 @@ import java.io.ByteArrayInputStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class NumberInputProcessorTest {
+class NumberInputProcessorTest {
     InputProcessor inputProcessor = new NumberInputProcessor();
 
     @ParameterizedTest(name = "파라미터로 넘긴 값 {arguments}이 넘어오는 지 확인")

@@ -1,8 +1,7 @@
 package khj.baseball.util.generator;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class RandomNumberStringGenerator implements RandomStringGenerator {
@@ -20,24 +19,12 @@ public class RandomNumberStringGenerator implements RandomStringGenerator {
     private Set<Character> createRandomCharacterSet(int length) {
         Set<Character> choiceCharSet = new HashSet<>();
 
-        SecureRandom random = getSecureRandomCatchError();
+        Random random = new Random();
         while (choiceCharSet.size() < length) {
             choiceCharSet.add(availableCharacters[random.nextInt(availableCharacters.length)]);
         }
 
         return choiceCharSet;
-    }
-
-    private SecureRandom getSecureRandomCatchError() {
-        SecureRandom random = null;
-
-        try {
-            random = SecureRandom.getInstanceStrong();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return random;
     }
 
     private StringBuilder mergeCharacter(Set<Character> choiceCharSet) {

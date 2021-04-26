@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DefaultStringMatchTest {
+class DefaultStringMatchTest {
     StringMatch match = new DefaultStringMatch();
 
     @DisplayName("문자열 두개를 비교 같을 경우 완료 처리한다.")

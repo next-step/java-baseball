@@ -10,7 +10,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RandomNumberStringGeneratorTest {
+class RandomNumberStringGeneratorTest {
     RandomStringGenerator generator = new RandomNumberStringGenerator();
 
     @ParameterizedTest(name = "파라미터로 넘긴 {arguments} 만큼의 랜덤 문자열을 만드는 지 검사")

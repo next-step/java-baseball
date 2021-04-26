@@ -1,6 +1,5 @@
 package khj.baseball.flow;
 
-import khj.baseball.BaseBallGame;
 import khj.baseball.Game;
 
 import java.util.Scanner;
