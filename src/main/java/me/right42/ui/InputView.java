@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class InputView {
 
+	private InputView() {}
+
 	public static String inputNumber() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("숫자를 입력해주세요 : ");
