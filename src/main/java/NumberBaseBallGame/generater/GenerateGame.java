@@ -5,7 +5,6 @@ import NumberBaseBallGame.domain.BaseBallConst;
 import NumberBaseBallGame.domain.Ball;
 import NumberBaseBallGame.ValidationCheckUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateGame {
@@ -32,10 +31,6 @@ public class GenerateGame {
 
 		List<Ball> clientBalls = pickClientBalls.generateBall(getClientNumber);
 
-		return checkMatch(clientBalls);
-	}
-
-	private BallNumberMatchResult checkMatch(List<Ball> clientBalls) {
 		return ballNumberMatcher.matchNumber(clientBalls, randomBalls);
 	}
 }
