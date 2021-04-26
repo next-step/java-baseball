@@ -33,4 +33,13 @@ class UserTest {
         user.insertBallNumberForUser();
         assertEquals(expected, user.getBallNumber());
     }
+
+    @Test
+    void isValid_test() {
+        String ballNumber = "122";
+        provideInput(ballNumber);
+        User user = new User();
+        boolean valid = user.isValid(ballNumber);
+        assertEquals(false, valid);
+    }
 }
