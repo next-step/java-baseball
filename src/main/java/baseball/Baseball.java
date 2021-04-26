@@ -100,7 +100,7 @@ public class Baseball {
     }
 
     private int countIfBall(int i, int sameIndex) {
-        if (i == sameIndex && sameIndex != -1) {
+        if (i != sameIndex && sameIndex != -1) {
             return 1;
         }
         return 0;
