@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+import baseball.util.ScannerUtil;
+
 public class BaseballGame implements Game {
 
 	private String pitcherNum;
@@ -18,7 +20,12 @@ public class BaseballGame implements Game {
 	}
 
 	public void play() {
+		printInPut();
+		ScannerUtil.getUserInput();
+	}
 
+	private void printInPut() {
+		System.out.print("숫자를입력해주세요:");
 	}
 
 	private String generateNum(int size) {
