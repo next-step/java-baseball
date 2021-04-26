@@ -29,7 +29,7 @@ public class ValidationTest {
     void validationNumberofCharactersTest() {
         String pitching = "1234567";
         ValidationResult validationResult = validation.validationPitching(pitching);
-        assertEquals("3자리까지만 입력 가능합니다. 다시 입력해주세요.", validationResult.message);
+        assertEquals("1~9 숫자 3자리 입력 가능합니다. 다시 입력해주세요.", validationResult.message);
     }
 
     @Test
