@@ -424,15 +424,4 @@ The following rules in the Naver coding convention cannot be checked by this con
         </module>
     </module>
 
-    <!--- Suppression -->
-    <module name="SuppressionFilter">
-        <property name="file" value="${config_loc}/naver-checkstyle-suppressions.xml"/>
-        <property name="optional" value="true"/>
-    </module>
-
-    <!--- Exclude module-info.java -->
-    <module name="BeforeExecutionExclusionFileFilter">
-        <property name="fileNamePattern" value="module\-info\.java$"/>
-    </module>
-
 </module>
