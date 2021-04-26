@@ -33,32 +33,31 @@ public class BaseballNos {
         return baseballNos.size();
     }
 
-    BaseballNo get(int index){
+    BaseballNo getBaseballNo(int index){
         return baseballNos.get(index);
     }
 
-    private boolean isStrike(int index, BaseballNos otherBaseballNos){
-        final BaseballNo currentBaseballNo = baseballNos.get(index);
-        final BaseballNo opponentBaseballNo = otherBaseballNos.get(index);
-
-        return currentBaseballNo.equals(opponentBaseballNo);
+    boolean isFoundIndex(BaseballNo baseballNo){
+        return baseballNos.contains(baseballNo);
     }
 
-    private boolean isBall(int index, BaseballNos otherBaseballNos){
-        final BaseballNo opponentBaseballNo = otherBaseballNos.get(index);
-        final int NOT_FOUND_INDEX = -1;
-        final int foundIndex = baseballNos.indexOf(opponentBaseballNo);
+    private boolean isStrike(int index, BaseballNo otherBaseballNo){
+        return getBaseballNo(index).equals(otherBaseballNo);
+    }
 
-        return (NOT_FOUND_INDEX != foundIndex) && (index != foundIndex);
+    private boolean isBall(int index, BaseballNo otherBaseballNo){
+        final int foundIndex = baseballNos.indexOf(otherBaseballNo);
+        return isFoundIndex(otherBaseballNo) && (index != foundIndex);
     }
 
     public BaseballResult compareTo(BaseballNos otherBaseballNos){
         BaseballResult baseballResult = new BaseballResult();
         for (int i = 0; i < MAX_BASEBALL_LIST_SIZE; i++) {
-            if (isStrike(i, otherBaseballNos)){
+            BaseballNo otherBaseballNo = otherBaseballNos.getBaseballNo(i);
+            if (isStrike(i, otherBaseballNo)){
                 baseballResult.incrementStrike();
             }
-            if (isBall(i, otherBaseballNos)){
+            if (isBall(i, otherBaseballNo)){
                 baseballResult.incrementBall();
             }
         }
