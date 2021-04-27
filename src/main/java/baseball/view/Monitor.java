@@ -32,7 +32,7 @@ public class Monitor {
     }
 
     public void showWin() {
-        System.out.println(Message.WIN);
+        System.out.printf(Message.WIN, BaseballConfig.BALL_COUNT);
     }
 
     public void notNumber() {
