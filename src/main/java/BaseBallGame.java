@@ -41,6 +41,19 @@ public class BaseBallGame {
         }
     }
 
+    // TODO : 유저가 입력한 값을 체크하여 결과 메시지를 생성하고, 게임 종료 여부 반환
+    public int checkAnswer(String answer){
+        String [] answerArray = answer.split("");
+//        System.out.println(answerArray[0] + answerArray[1] + answerArray[2]);
+        for(int i=0; i<answerArray.length; i++) {
+            checkStrike(answerArray[i], i);
+            checkBall(answerArray[i], i);
+        }
+        makeResultMessage(checkResultModel);
+        checkEndGame(checkResultModel);
+        return isEnd;
+    }
+
 
 
 }
