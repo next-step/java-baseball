@@ -2,6 +2,8 @@ package baseball;
 
 import baseball.numbergenerator.NumberGenerator;
 import baseball.numbergenerator.ThreeNumberGenerator;
+import baseball.view.BaseballGameConsoleView;
+import baseball.view.BaseballGameView;
 
 import java.util.Scanner;
 
@@ -9,24 +11,24 @@ public class Application {
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
+
+        BaseballGameView view = new BaseballGameConsoleView();
         NumberGenerator generator = new ThreeNumberGenerator();
         BaseballGameModel model = new BaseballGameModel(generator);
-        runGameLoop(model, scanner);
+        runGameLoop(model, view, scanner);
     }
 
-    private static void runGameLoop(BaseballGameModel model, Scanner scanner) {
+    private static void runGameLoop(BaseballGameModel model, BaseballGameView view, Scanner scanner) {
         while (isGameEnd(model)) {
-            processGame(model, scanner);
+            processGame(model, view, scanner);
         }
     }
 
-    private static void processGame(BaseballGameModel model, Scanner scanner) {
+    private static void processGame(BaseballGameModel model, BaseballGameView view, Scanner scanner) {
+        view.showAskingForInputMessage();
         model.setUserInput(scanner.nextLine());
-        int[] result = model.guessNumber();
-        int strike = result[0];
-        int ball = result[1];
-        System.out.println(model.printBallCountMessages(strike, ball));
-        if (model.isRoundFinished()) {
+        view.showBallCountMessage(model.guessNumber());
+        if (view.showFinishMessage(model.isRoundFinished())) {
             model.selectGame(scanner.nextLine());
         }
     }

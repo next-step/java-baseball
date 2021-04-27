@@ -7,13 +7,13 @@ import java.util.List;
 
 public final class BaseballGameModel {
 
-
     public static final String GAME_RESTART = "1";
     public static final String GAME_EXIT = "2";
     public static final int NUMBER_SIZE = 3;
 
     private String userInput;
     private String target;
+
     private final NumberGenerator numberGenerator;
     private boolean isRoundFinished = false;
     private boolean isEnd = true;
@@ -107,45 +107,7 @@ public final class BaseballGameModel {
         return number;
     }
 
-    public String printBallCountMessages(int strike, int ball) {
-        StringBuilder sb = new StringBuilder();
-
-        if (hasNonCount(strike, ball)) {
-            return sb.append("낫씽").toString();
-        }
-
-        appendMessageIfExists(strike, ball, sb, strike + " 스트라이크");
-        appendMessageIfExists(ball, sb, ball + " 볼");
-
-        return sb.toString();
-    }
-
-    private void appendMessageIfExists(int strike, int ball, StringBuilder sb, String str) {
-        if (isNotZero(strike)) {
-            sb.append(str);
-            appendMessageIfExists(ball, sb, " ");
-        }
-    }
-
-    private void appendMessageIfExists(int ball, StringBuilder sb, String message) {
-        if (isNotZero(ball)) {
-            sb.append(message);
-        }
-    }
-
-    private boolean isNotZero(int num) {
-        return num != 0;
-    }
-
-    private boolean hasNonCount(int strike, int ball) {
-        return strike == 0 && ball == 0;
-    }
-
     public boolean isRoundFinished() {
-        if (isRoundFinished) {
-            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료.");
-            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        }
         return isRoundFinished;
     }
 
