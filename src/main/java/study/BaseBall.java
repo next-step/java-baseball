@@ -17,12 +17,11 @@ public class BaseBall {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		BaseBall baseBall = new BaseBall(sc);
-		Pitcher pitcher = new Pitcher();
 		Batter batter = new Batter();
 
 		int playState = 1;
 		while (playState == 1) {
-			baseBall.newGame(pitcher);
+			baseBall.newGame();
 			baseBall.playGame(batter);
 
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
@@ -30,8 +29,8 @@ public class BaseBall {
 		}
 	}
 
-	private void newGame(Pitcher pitcher) {
-		pitches = pitcher.pitch(3);
+	private void newGame() {
+		pitches = Pitcher.pitch(3);
 		inningCount = 1;
 	}
 
