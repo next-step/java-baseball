@@ -8,7 +8,7 @@ public class Baseball {
         }
     }
 
-    private static void runGame() {
+    public static void runGame() {
         String source = RandomString.generate(3);
         boolean finished = false;
         while (!finished) {
@@ -16,7 +16,7 @@ public class Baseball {
         }
     }
 
-    private static String getTarget(String source) {
+    public static String getTarget(String source) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("숫자를 입력해주세요:");
@@ -28,7 +28,7 @@ public class Baseball {
         return target;
     }
 
-    private static boolean gameFinished(String source) {
+    public static boolean gameFinished(String source) {
         int strike = 0;
         int ball = 0;
         String target = getTarget(source);
@@ -39,7 +39,7 @@ public class Baseball {
         }
         return finished(strike, ball);
     }
-    private static boolean finished(int strike, int ball){
+    public static boolean finished(int strike, int ball){
         if (strike == 3) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
             return true;
@@ -49,14 +49,14 @@ public class Baseball {
         return false;
     }
 
-    private static int calculateStrike(char source, char target) {
+    public static int calculateStrike(char source, char target) {
         if (source == target) {
             return 1;
         }
         return 0;
     }
 
-    private static int calculateBall(String source, String target, int index) {
+    public static int calculateBall(String source, String target, int index) {
         if (source.substring(0, index).contains(target.substring(index, index + 1))) {
             return 1;
         }
@@ -66,13 +66,13 @@ public class Baseball {
         return 0;
     }
 
-    private static boolean runNewGame() {
+    public static boolean runNewGame() {
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().equals("1");
     }
 
-    private static void printGameResult(int strike, int ball) {
+    public static void printGameResult(int strike, int ball) {
         if (strike > 0) {
             System.out.print(strike + " 스트라이크 ");
         }
