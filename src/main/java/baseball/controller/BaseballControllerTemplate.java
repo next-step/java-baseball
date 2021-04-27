@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.config.BaseballConfig;
+import baseball.constants.BaseballConstant;
 import baseball.model.BaseballNumber;
 import baseball.model.BaseballResult;
 
@@ -27,7 +28,7 @@ public abstract class BaseballControllerTemplate {
     }
 
     public void initGame() {
-        this.initGame(BaseballNumber.DEFAULT_NUMBERS_SIZE, BaseballNumber.DEFAULT_NUMBER_RADIX);
+        this.initGame(BaseballConstant.DEFAULT_NUMBERS_SIZE, BaseballConstant.DEFAULT_NUMBER_RADIX);
     }
 
     public BaseballResult startGame() {
