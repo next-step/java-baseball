@@ -1,5 +1,8 @@
 package input;
 
+import message.Message;
+import output.OutputApi;
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -9,11 +12,11 @@ public class InputApi {
     /*
         입력 메서드
      */
-    public static String input(String message, String condition){
+    public static String input(Message message, String condition){
         String inStr;
         Scanner scanner = new Scanner(System.in);
         do{
-            System.out.print(message);
+            OutputApi.output(message);
             inStr = scanner.nextLine();
         }while(!checkValidIn(inStr, condition));
         return inStr;

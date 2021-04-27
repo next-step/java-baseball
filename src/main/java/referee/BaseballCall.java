@@ -2,6 +2,7 @@ package referee;
 
 import input.InputApi;
 import message.Message;
+import output.OutputApi;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,10 +17,10 @@ public class BaseballCall {
         int ball = cntBall(player, counter, strike);
         boolean ret = false;
         if(strike == 3) {
-            System.out.println(Message.GAME_OVER.getMessage());
+            OutputApi.output(Message.GAME_OVER);
             return true;
         }
-        System.out.println(strike + " 스트라이크 " + ball + " 볼 ");
+        OutputApi.outputBallCount(strike, ball);
         return false;
     }
 

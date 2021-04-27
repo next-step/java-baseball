@@ -19,7 +19,7 @@ public class BaseballGameApplication {
     private static void gameStart(String counter){
         boolean gameOver = false;
         while(!gameOver){
-            String player = InputApi.input(Message.INPUT.getMessage(), "number");
+            String player = InputApi.input(Message.INPUT, "number");
             gameOver = BaseballCall.callMethod(player, counter);
         }
     }
@@ -28,6 +28,6 @@ public class BaseballGameApplication {
         새 게임 여부 확인 메서드
      */
     private static boolean newGame(){
-        return InputApi.input(Message.NEW_GAME.getMessage(), "start").equals("1");
+        return InputApi.input(Message.NEW_GAME, "start").equals("1");
     }
 }
