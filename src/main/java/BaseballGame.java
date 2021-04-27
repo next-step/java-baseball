@@ -20,15 +20,22 @@ public class BaseballGame {
 	}
 
 	private void playBaseballGame(){
-		String randomNumbers = getRandomNumbers();
-		String input = getInput();
+		while (true) {
+			String randomNumbers = getRandomNumbers();
+			String input = getInput();
+			System.out.println("Random Numbers: " + randomNumbers);
 
-		Score score = getScore(randomNumbers, input);
-		showScore(score);
-		// TODO: check Game status
-
-		System.out.println("Random Numbers: " + randomNumbers);
+			Score score = getScore(randomNumbers, input);
+			showScore(score);
+			// TODO: check Game status
+			isGamePass(score);
+		}
 	}
+
+	public boolean isGamePass(Score score){
+		return false;
+	}
+
 
 	public Score getScore(String input, String randomNumbers){
 		Score score = new Score();

@@ -131,4 +131,41 @@ public class BaseballGameTest {
 		assertThat(0).isEqualTo(result.getBallCount());
 		assertThat(3).isEqualTo(result.getStrikeCount());
 	}
+
+
+	@Test
+	@DisplayName("isGamePass Test 1")
+	void testIsGamePass() {
+		BaseballGame baseballGame = new BaseballGame();
+		Score score = new Score(0,0);
+
+		assertThat(false).isEqualTo(baseballGame.isGamePass(score));
+	}
+
+	@Test
+	@DisplayName("isGamePass Test 2")
+	void testIsGamePass2() {
+		BaseballGame baseballGame = new BaseballGame();
+		Score score = new Score(1,2);
+
+		assertThat(false).isEqualTo(baseballGame.isGamePass(score));
+	}
+
+	@Test
+	@DisplayName("isGamePass Test3")
+	void testIsGamePass3() {
+		BaseballGame baseballGame = new BaseballGame();
+		Score score = new Score(3,0);
+
+		assertThat(false).isEqualTo(baseballGame.isGamePass(score));
+	}
+
+	@Test
+	@DisplayName("isGamePass Test4")
+	void testIsGamePass4() {
+		BaseballGame baseballGame = new BaseballGame();
+		Score score = new Score(0,3);
+
+		assertThat(true).isEqualTo(baseballGame.isGamePass(score));
+	}
 }
