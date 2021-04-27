@@ -1,9 +1,8 @@
 package com.baseball.rule;
 
-import java.util.ArrayList;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -11,26 +10,18 @@ import org.junit.jupiter.params.provider.CsvSource;
 class BallPlayerTest {
 
 	@ParameterizedTest
-	@CsvSource(value = {"f12:true", "f123:false", "1,2,3:false", "1:false", "123:true"}, delimiter = ':')
-	@DisplayName("유효성 검증 : 길이 테스")
+	@CsvSource(value = {"f12:false", "f123:false", "1,2,3:false", "1:false", "123:true"}, delimiter = ':')
+	@DisplayName("유효성 검증 : 3자리 숫자 테스트")
 	public void isProperLengthTest(String inputText, boolean expectedResults) {
 		//GIVEN
 		BallPlayer BallPlayer = new BallPlayer(inputText);
 
 		//WHEN, THEN
-		Assertions.assertEquals(BallPlayer.isProperLength(), expectedResults);
+		assertThatThrownBy(() -> {
+			Assertions.assertEquals(BallPlayer.isThreeDigits(), expectedResults);
+		}).isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("유효성 체크 :");
+
 	}
-
-	@ParameterizedTest
-	@CsvSource(value = {"f12:false", "f123:false", "1,2,3:false", "1:true", "123:true"}, delimiter = ':')
-	@DisplayName("유효성 검증 : 숫자 형식 테스트")
-	public void isNumericTest(String inputText, boolean expectedResults) {
-		//GIVEN
-		BallPlayer BallPlayer = new BallPlayer(inputText);
-
-		//WHEN, THEN
-		Assertions.assertEquals(BallPlayer.isNumeric(), expectedResults);
-	}
-
 
 }

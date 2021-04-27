@@ -1,6 +1,8 @@
 package com.baseball.rule;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.baseball.exception.GameException;
 import com.baseball.message.ValidateMessage;
@@ -11,6 +13,10 @@ public class BallPlayer {
 
 	private String inputText;
 	private ArrayList<Integer> inputNumbers;
+
+	public BallPlayer() {
+		this("");
+	}
 
 	public BallPlayer(String inputText) {
 		this.inputText = inputText.trim();
@@ -23,7 +29,13 @@ public class BallPlayer {
 		return inputNumbers;
 	}
 
-	private void convertStringToIntList() {
+	public void validateInputText() {
+		if (!isThreeDigits()) {
+			GameException.throwValidationException(ValidateMessage.THREE_DIGITS);
+		}
+	}
+
+	public void convertStringToIntList() {
 		String[] inputCharacters = this.inputText.split("");
 		this.inputNumbers = new ArrayList<>();
 
@@ -32,25 +44,11 @@ public class BallPlayer {
 		}
 	}
 
-	public void validateInputText() {
-		if (!isProperLength()) {
-			GameException.throwValidationException(ValidateMessage.LENGTH);
-		}
-		if (!isNumeric()) {
-			GameException.throwValidationException(ValidateMessage.NUMERIC);
-		}
+	public boolean isThreeDigits() {
+		Pattern pattern = Pattern.compile("^[1-9]{" + LENGTH + ",}$");
+		Matcher matcher = pattern.matcher(this.inputText);
+
+		return matcher.matches();
 	}
 
-	public boolean isProperLength() {
-		return this.inputText.length() == LENGTH;
-	}
-
-	public boolean isNumeric() {
-		try {
-			Integer.parseInt(this.inputText);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-		return true;
-	}
 }
