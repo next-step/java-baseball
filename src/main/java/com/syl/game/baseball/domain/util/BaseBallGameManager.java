@@ -31,6 +31,15 @@ public class BaseBallGameManager {
     }
 
     /**
+     * 3스트라이크 확인.
+     * @param strikeCnt
+     * @return
+     */
+    public boolean isThreeStrike(int strikeCnt) {
+        return strikeCnt == 3;
+    }
+
+    /**
      * 현재 플레이어를 가져온다.
      * @return 현재 플레이어
      */

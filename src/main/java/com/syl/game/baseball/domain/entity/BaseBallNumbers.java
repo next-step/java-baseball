@@ -74,4 +74,12 @@ public class BaseBallNumbers {
         return third == num;
     }
 
+    @Override
+    public String toString() {
+        return "BaseBallNumbers{" +
+                "first=" + first +
+                ", second=" + second +
+                ", third=" + third +
+                '}';
+    }
 }

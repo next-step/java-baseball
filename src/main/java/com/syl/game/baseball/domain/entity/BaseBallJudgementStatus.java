@@ -38,6 +38,7 @@ public class BaseBallJudgementStatus {
     @Override
     public String toString() {
         if (nothing == 3) return "포볼";
-        return strike + " 스트라이크" + ball + " 볼";
+        if (ball == 0) return strike + "스트라이크";
+        return strike + "스트라이크 " + ball + "볼";
     }
 }
