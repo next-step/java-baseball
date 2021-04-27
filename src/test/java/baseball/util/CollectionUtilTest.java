@@ -3,10 +3,12 @@ package baseball.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class CollectionUtilTest {
 
@@ -36,5 +38,14 @@ class CollectionUtilTest {
     assertThat(actual)
             .containsExactly(1, 2, 3, 4, 5)
             .hasSize(5);
+  }
+
+  @Test
+  @DisplayName("null이거나 컬렉션이 비어있을 경우 true를 반환한다.")
+  void isEmpty() {
+    assertAll(
+            () -> assertThat(CollectionUtil.isEmpty(null)).isTrue(),
+            () -> assertThat(CollectionUtil.isEmpty(new ArrayList<>())).isTrue()
+    );
   }
 }

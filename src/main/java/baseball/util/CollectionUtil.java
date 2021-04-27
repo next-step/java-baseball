@@ -29,4 +29,8 @@ public final class CollectionUtil {
     }
     return distinctList;
   }
+
+  public static <T> boolean isEmpty(Collection<T> collection) {
+    return collection == null || collection.isEmpty();
+  }
 }
