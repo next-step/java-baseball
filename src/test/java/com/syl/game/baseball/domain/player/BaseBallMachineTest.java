@@ -14,15 +14,9 @@ public class BaseBallMachineTest {
 
     @BeforeEach
     public void setUp() {
-        machineNumbers = new BaseBallNumbers();
-        machineNumbers.setFirst(1);
-        machineNumbers.setSecond(2);
-        machineNumbers.setThird(3);
+        machineNumbers = new BaseBallNumbers(123);
 
-        threeStrikeNumbers = new BaseBallNumbers();
-        threeStrikeNumbers.setFirst(1);
-        threeStrikeNumbers.setSecond(2);
-        threeStrikeNumbers.setThird(3);
+        threeStrikeNumbers = new BaseBallNumbers(123);
     }
     @Test
     public void generateRandomNumbersTest() {

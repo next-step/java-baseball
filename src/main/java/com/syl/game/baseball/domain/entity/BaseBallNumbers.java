@@ -6,12 +6,12 @@ public class BaseBallNumbers {
     private int second;
     private int third;
 
-    public BaseBallNumbers() {}
-
-    public BaseBallNumbers(int first, int second, int third) {
-        this.first = first;
-        this.second = second;
-        this.third = third;
+    public BaseBallNumbers(int numbers) {
+        if ( 123 <= numbers && numbers <= 987 ) {
+            this.first = numbers / 100;
+            this.second = (numbers % 100) / 10;
+            this.third = (numbers % 100) % 10;
+        }
     }
 
     public int getFirst() {
@@ -87,10 +87,13 @@ public class BaseBallNumbers {
     }
 
     private boolean isValidNumber(int num) {
-        if (compareFirst(num) || compareSecond(num) || compareThird(num)) return false;
-        if (num <=1 || num >= 9) return false;
-        return true;
+        return !compareFirst(num) && !compareSecond(num) && !compareThird(num);
     }
+
+    public boolean isValidStatus() {
+        return first != 0 && second != 0 && third != 0;
+    }
+
     @Override
     public String toString() {
         return "BaseBallNumbers{" +

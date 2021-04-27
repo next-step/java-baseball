@@ -45,10 +45,10 @@ public abstract class BaseBallPlayer {
      */
     private BaseBallNumbers setNumbers() {
         scanner = new Scanner(System.in);
-        baseBallNumbers = new BaseBallNumbers();
-        while( baseBallNumbers.setFirst(scanner.nextInt()) );
-        while( baseBallNumbers.setSecond(scanner.nextInt()) );
-        while( baseBallNumbers.setThird(scanner.nextInt()) );
+        do {
+            int numbers = scanner.nextInt();
+            baseBallNumbers = new BaseBallNumbers(numbers);
+        } while (!baseBallNumbers.isValidStatus());
         return baseBallNumbers;
     }
 }

@@ -18,35 +18,12 @@ public class BaseBallGameManagerTest {
 
     @BeforeEach
     public void setUp() {
-        machineNumbers = new BaseBallNumbers();
-        machineNumbers.setFirst(1);
-        machineNumbers.setSecond(2);
-        machineNumbers.setThird(3);
-
-        threeStrikeNumbers = new BaseBallNumbers();
-        threeStrikeNumbers.setFirst(1);
-        threeStrikeNumbers.setSecond(2);
-        threeStrikeNumbers.setThird(3);
-
-        oneStrikeNumbers = new BaseBallNumbers();
-        oneStrikeNumbers.setFirst(1);
-        oneStrikeNumbers.setSecond(4);
-        oneStrikeNumbers.setThird(5);
-
-        oneBallNumbers = new BaseBallNumbers();
-        oneBallNumbers.setFirst(4);
-        oneBallNumbers.setSecond(1);
-        oneBallNumbers.setThird(5);
-
-        threeBallNumbers = new BaseBallNumbers();
-        threeBallNumbers.setFirst(3);
-        threeBallNumbers.setSecond(1);
-        threeBallNumbers.setThird(2);
-
-        nothingNumbers = new BaseBallNumbers();
-        nothingNumbers.setFirst(4);
-        nothingNumbers.setSecond(5);
-        nothingNumbers.setThird(6);
+        machineNumbers = new BaseBallNumbers(123);
+        threeStrikeNumbers = new BaseBallNumbers(123);
+        oneStrikeNumbers = new BaseBallNumbers(145);
+        oneBallNumbers = new BaseBallNumbers(415);
+        threeBallNumbers = new BaseBallNumbers(312);
+        nothingNumbers = new BaseBallNumbers(456);
     }
 
     @Test

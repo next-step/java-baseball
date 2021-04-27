@@ -44,10 +44,10 @@ public class BaseBallMachine extends BaseBallPlayer implements BaseBallAi {
     @Override
     public BaseBallNumbers GenerateRandomNumbers() {
         Random random = new Random();
-        BaseBallNumbers baseBallNumbers = new BaseBallNumbers();
-        baseBallNumbers.setFirst(random.nextInt(9) + 1);
-        while ( baseBallNumbers.setSecond(random.nextInt(9) + 1) );
-        while ( baseBallNumbers.setThird(random.nextInt(9) + 1) );
+        BaseBallNumbers baseBallNumbers;
+        do {
+            baseBallNumbers = new BaseBallNumbers(random.nextInt(987)+1);
+        } while (!baseBallNumbers.isValidStatus());
         return baseBallNumbers;
     }
 }
