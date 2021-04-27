@@ -24,7 +24,7 @@ public class NumbersTest {
 	@ParameterizedTest
 	@CsvSource(value = {"123:123:3:0", "123:124:2:0", "123:132:1:2", "321:314:1:1", "123:312:0:3",
 			"123:314:0:2", "123:345:0:1", "123:456:0:0"}, delimiter = ':')
-	public void compareNumbers_ValidNumber_Success(String rightNumberString, String inputNumberString, Integer strikeCount, Integer ballCount) {
+	public void compareNumbers_ValidNumber_GetRightHints(String rightNumberString, String inputNumberString, Integer strikeCount, Integer ballCount) {
 		final Numbers rightNumbers = new Numbers(createNumberCandidateList(rightNumberString));
 		final Numbers inputNumbers = new Numbers(createNumberCandidateList(inputNumberString));
 		final Hints hints = rightNumbers.compareTo(inputNumbers);
