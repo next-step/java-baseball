@@ -1,5 +1,6 @@
 package baseballgame.game;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,10 @@ public class GameNumber {
     private void checkValidation(List<Integer> numberList) {
         checkRedundantValidation(numberList);
         checkSizeValidation(numberList);
+        checkBoundaryValidation(numberList);
+    }
+
+    private void checkBoundaryValidation(List<Integer> numberList) {
         for (int number : numberList) {
             checkBoundaryValidation(number);
         }
@@ -52,8 +57,18 @@ public class GameNumber {
         return new GameNumber(numberList);
     }
 
-    @Override
-    public String toString() {
-        return "GameNumber{numberList=" + numberList + '}';
+    public GameResult compare(GameNumber inputGameNumber) {
+        final List<MatchResult> matchResultList = new ArrayList<>();
+        for (int i=0; i<numberList.size(); ++i) {
+            final MatchResult matchResult = inputGameNumber.match(i, numberList.get(i));
+            matchResultList.add(matchResult);
+        }
+        return GameResult.of(matchResultList);
+    }
+
+    private MatchResult match(int position, int number) {
+        final boolean valueMatched = numberList.contains(number);
+        final boolean positionMatched = valueMatched && numberList.indexOf(number) == position;
+        return MatchResult.of(valueMatched, positionMatched);
     }
 }

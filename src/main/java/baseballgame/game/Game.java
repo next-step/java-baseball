@@ -7,4 +7,7 @@ public class Game {
         this.answerGameNumber = GameNumber.generateRandomly();
     }
 
+    public GameResult submit(GameNumber inputGameNumber) {
+        return answerGameNumber.compare(inputGameNumber);
+    }
 }
