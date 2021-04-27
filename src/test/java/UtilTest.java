@@ -20,4 +20,15 @@ class UtilTest {
         String sampleWord2 = "z";
         assertThat(Util.checkContains(sampleStr, sampleWord2)).isZero();
     }
+
+    @Test
+    @DisplayName("비어있는 문자열을 입력받는 경우 그대로, 비어있지 않은 문자열을 입력받는 경우 공백이 한칸 추가된 결과값을 반환하는지 검사한다")
+    void setEmptyMsgTest() {
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder test = stringBuilder.append("test");
+        assertThat(Util.setEmptyMsg(test).toString()).hasToString("test ");
+
+        StringBuilder stringBuilderEmpty = new StringBuilder();
+        assertThat(Util.setEmptyMsg(stringBuilderEmpty).toString()).isEmpty();
+    }
 }
