@@ -15,4 +15,11 @@ public class Util {
         return 0;
     }
 
+    public static StringBuilder setEmptyMsg(StringBuilder msg){
+        if(msg.length() > 0){
+            msg.append(" ");
+        }
+        return msg;
+    }
+
 }
