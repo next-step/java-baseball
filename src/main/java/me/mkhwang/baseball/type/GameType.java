@@ -7,7 +7,10 @@ package me.mkhwang.baseball.type;
  */
 public enum GameType {
     GAME_START(1),
-    GAME_END(2);
+    GAME_END(2),
+    BALL_LENGTH(3),
+    MIN_NUMBER(1),
+    MAX_NUMBER(9);
 
     private int type;
 
