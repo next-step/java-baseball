@@ -69,4 +69,43 @@ class MainTest {
 
         assertThat(strikeCount).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("Test Baseball Ball Number")
+    void TEST_getBallCount() {
+
+        String userBaseballStr = "123";
+        String commRandomNum = "981";
+
+        // Check Ball
+        int ballCount = Main.getBallCount(userBaseballStr, commRandomNum);
+        System.out.println(ballCount + "볼");
+        assertThat(ballCount).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Test Baseball Ball Number")
+    void TEST_getBallCount2() {
+
+        String userBaseballStr = "123";
+        String commRandomNum = "381";
+
+        // Check Ball
+        int ballCount = Main.getBallCount(userBaseballStr, commRandomNum);
+        System.out.println(ballCount + "볼");
+        assertThat(ballCount).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Test Baseball Ball Number")
+    void TEST_getBallCount3() {
+
+        String userBaseballStr = "123";
+        String commRandomNum = "231";
+
+        // Check Ball
+        int ballCount = Main.getBallCount(userBaseballStr, commRandomNum);
+        System.out.println(ballCount + "볼");
+        assertThat(ballCount).isEqualTo(3);
+    }
 }

@@ -46,7 +46,40 @@ public class Main {
         int strikeCount = getStrikeCount(userBaseballStr, commRandomNum);
         System.out.println(strikeCount + "스트라이크");
 
+        // Check Ball
+        int ballCount = getBallCount(userBaseballStr, commRandomNum);
+        System.out.println(ballCount + "볼");
+
         return isGameRunning;
+    }
+
+    public static int getBallCount(String userBaseballStr, String commRandomNum) {
+        int ballCnt = 0;
+
+        for (int i = 0; i < userBaseballStr.length(); i++) {
+            int userNum = userBaseballStr.charAt(i) - '0';
+            ballCnt += compareBallCount(userNum, commRandomNum);
+        }
+
+        return ballCnt;
+    }
+
+    private static int compareBallCount(int userNum, String commRandomNum) {
+
+        boolean isBall = false;
+
+        for (int i = 0; i < commRandomNum.length() && !isBall; i++) {
+            int commNum = commRandomNum.charAt(i) - '0';
+
+            isBall = verifyBall(userNum, commNum);
+        }
+
+        if (isBall) return 1;
+        else return 0;
+    }
+
+    private static boolean verifyBall(int userNum, int commNum) {
+        return userNum == commNum;
     }
 
     static int getStrikeCount(String userBaseballStr, String commRandomNum) {
@@ -66,6 +99,25 @@ public class Main {
     private static int compareStrikeNum(int userNum, int commNum) {
         if (userNum == commNum) return 1;
         else return 0;
+    }
+
+    private static boolean compareNum(int userNum, int index) {
+
+        String userRandomNum = getRandomNumStr();
+
+        for (int i = 0; i < userRandomNum.length(); i++) {
+            int comNum = userRandomNum.charAt(i) - '0';
+
+            verifyNum(comNum, i);
+        }
+
+        return false;
+    }
+
+    private static boolean verifyNum(int comNum, int i) {
+
+
+        return false;
     }
 
 
