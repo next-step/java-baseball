@@ -14,4 +14,8 @@ public class BaseballNumberFormatException extends RuntimeException {
     public BaseballNumberFormatException(int input) {
         super("Invalid Input Number " + input);
     }
+
+    public BaseballNumberFormatException(int size, int radix) {
+        super(String.format("Invalid Size or Radix. size=%d, radix=%d", size, radix));
+    }
 }
