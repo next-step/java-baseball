@@ -5,18 +5,21 @@ public class BaseballGame {
 	final int NUMBER_SIZE = 3;
 
 	public static void main(String[] args){
+		BaseballGame baseballGame = new BaseballGame();
+		baseballGame.startGame();
+	}
+
+	public void startGame() {
 		do{
 			// TODO: play Baseball game
-			BaseballGame baseballGame = new BaseballGame();
-			baseballGame.playBaseballGame();
+			playBaseballGame();
 
 			// TODO: select to replay game
 			break;
 		}while(true);
 	}
 
-
-	public void playBaseballGame(){
+	private void playBaseballGame(){
 		String randomNumbers = getRandomNumbers();
 		String input = getInput();
 
@@ -29,7 +32,7 @@ public class BaseballGame {
 		System.out.println("Random Numbers: " + randomNumbers);
 	}
 
-	public Score getScore(String input, String randomNumbers){
+	private Score getScore(String input, String randomNumbers){
 		Score score = new Score();
 		for(int i = 0; i < NUMBER_SIZE; i++){
 			if(isStrike(input.charAt(i), randomNumbers.charAt(i))) {
@@ -44,17 +47,17 @@ public class BaseballGame {
 		return score;
 	}
 
-	public boolean isStrike(char input, char randomNumber){
+	private boolean isStrike(char input, char randomNumber){
 		return false;
 	}
-	public boolean isBall(char input, String randomNumbers){
+	private boolean isBall(char input, String randomNumbers){
 		return false;
 	}
 
-	public void showScore(Score score){
+	private void showScore(Score score){
 	}
 
-	public String getRandomNumbers(){
+	private String getRandomNumbers(){
 		StringBuilder randomNumber = new StringBuilder();
 		for(int i = 0; i < NUMBER_SIZE; ){
 			String r = (int)((Math.random() * 9) + 1) + "";
@@ -66,7 +69,7 @@ public class BaseballGame {
 		return randomNumber.toString();
 	}
 
-	public String getInput(){
+	private String getInput(){
 		String input;
 		Scanner scanner = new Scanner(System.in);
 		input = scanner.nextLine();
