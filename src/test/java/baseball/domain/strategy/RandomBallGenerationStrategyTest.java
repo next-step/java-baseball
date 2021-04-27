@@ -1,5 +1,9 @@
-package baseball.domain;
+package baseball.domain.strategy;
 
+import baseball.domain.Ball;
+import baseball.domain.Balls;
+import baseball.domain.Position;
+import baseball.domain.strategy.RandomBallGenerationStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

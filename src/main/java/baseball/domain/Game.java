@@ -1,5 +1,8 @@
 package baseball.domain;
 
+import baseball.domain.strategy.BallGenerationStrategy;
+import baseball.domain.strategy.RandomBallGenerationStrategy;
+
 public class Game {
     public static final int BALL_SIZE = 3;
 

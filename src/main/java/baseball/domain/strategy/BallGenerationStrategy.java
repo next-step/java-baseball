@@ -1,4 +1,6 @@
-package baseball.domain;
+package baseball.domain.strategy;
+
+import baseball.domain.Balls;
 
 @FunctionalInterface
 public interface BallGenerationStrategy {

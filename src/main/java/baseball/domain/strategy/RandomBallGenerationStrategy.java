@@ -1,4 +1,7 @@
-package baseball.domain;
+package baseball.domain.strategy;
+
+import baseball.domain.Ball;
+import baseball.domain.Balls;
 
 import java.util.ArrayList;
 import java.util.Collections;
