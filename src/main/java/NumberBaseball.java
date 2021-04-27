@@ -12,6 +12,29 @@ public class NumberBaseball {
 	private static final Scanner scanner = new Scanner(System.in);
 	private static String answer;
 
+	public static void main(String[] args) {
+		boolean isReplay;
+		do {
+			playGame();
+			isReplay = askReplay();
+		} while (isReplay);
+	}
+
+	/**
+	 * @methodName  : playGame
+	 * @author      : Sunghwa Lee
+	 * @description : Play the game until get the correct answer
+	 */
+	private static void playGame() {
+		answer = BaseballCalculator.getRandomAnswer(maxDigit);
+		boolean isCorrectAnswer = false;
+
+		while (!isCorrectAnswer) {
+			System.out.println("숫자를 입력해주세요: ");
+			isCorrectAnswer = scoreInput();
+		}
+	}
+
 	/**
 	 * @methodName  : scoreInput
 	 * @author      : Sunghwa Lee
