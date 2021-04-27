@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
@@ -14,6 +15,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class ComputerTest {
 
+	@DisplayName("1~9 사이의 숫자 중 3개를 중복되지 않게 뽑는다.")
 	@RepeatedTest(10)
 	void chooseNumbers() {
 		int numberLength = 3;
@@ -25,6 +27,7 @@ class ComputerTest {
 		assertFalse(isDuplicated);
 	}
 
+	@DisplayName("추측 숫자와 답 숫자가 주어졌을 때, 스트라이크 & 볼 정보를 가진 판정 데이터를 반환한다.")
 	@ParameterizedTest
 	@CsvSource(
 		value = {

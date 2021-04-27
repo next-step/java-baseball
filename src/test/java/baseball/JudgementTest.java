@@ -2,11 +2,13 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class JudgementTest {
 
+	@DisplayName("판정 데이터로 출력할 메세지를 만든다.")
 	@ParameterizedTest
 	@CsvSource(
 		value = {
@@ -30,6 +32,7 @@ class JudgementTest {
 		assertThat(actual).isEqualTo(expected);
 	}
 
+	@DisplayName("판정 데이터가 주어졌을 때, 모두 스트라이크인지 여부를 반환한다.")
 	@ParameterizedTest
 	@CsvSource(
 		value = {
