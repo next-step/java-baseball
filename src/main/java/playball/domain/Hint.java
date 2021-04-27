@@ -57,11 +57,15 @@ public enum Hint {
             List<Ball> mine = myBalls.getBalls();
             List<Ball> yours = yourBalls.getBalls();
 
-            if (!mine.containsAll(yours)) {
-                return mine.size();
+            for (Ball ball : mine) {
+                answer += compareEachBall(ball, yours);
             }
 
             return answer;
+        }
+
+        private Integer compareEachBall(Ball myBall, List<Ball> yours) {
+            return !yours.contains(myBall) ? 1 : 0;
         }
     };
 
