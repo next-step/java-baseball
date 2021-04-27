@@ -1,6 +1,9 @@
+package com.tech.baseball;
+
 public class Main {
 
-    static final BaseballGame game = new BaseballGame();
+    static BaseballGame game = new BaseballGame();
+
     public static void main(String[] args) {
         boolean isStartGame = true;
 

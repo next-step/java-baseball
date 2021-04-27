@@ -1,3 +1,5 @@
+package com.tech.baseball.vo;
+
 public class BaseballGameResult {
 
     private int strike;
@@ -33,13 +35,4 @@ public class BaseballGameResult {
         return sb.toString();
     }
 
-    public boolean isNothing(){
-        if(strike == 0 && ball == 0) return true;
-        return false;
-    }
-
-    public boolean isFinish(){
-        if(strike == 3) return true;
-        return false;
-    }
 }
