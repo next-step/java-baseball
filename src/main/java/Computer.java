@@ -9,10 +9,6 @@ public class Computer {
         return answer.getNumber().length();
     }
 
-    public boolean isCorrectAnswer() {
-        return answer.isCorrect();
-    }
-
     public Result compareNumberWith(String input) {
         Result result = new Result();
 
@@ -39,7 +35,7 @@ public class Computer {
         result.increaseStrikeCount();
 
         if (result.getStrikeCount() == getNumberSize()) {
-            answer.setCorrect();
+            result.doSuccess();
         }
     }
 }
