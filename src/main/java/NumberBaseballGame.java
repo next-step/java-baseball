@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import util.NumberBaseballGameCommand;
 import util.NumberBaseballGameGuessCalculator;
 import util.NumberBaseballGameUiUtil;
 import util.NumberBaseballGameNumbersGenerator;
@@ -9,7 +10,9 @@ public class NumberBaseballGame extends Game {
 	void launch() {
 		Scanner sc = new Scanner(System.in);
 
-		runARound(NumberBaseballGameNumbersGenerator.generateUniqueNumbers(3), sc);
+        do {
+            runARound(NumberBaseballGameNumbersGenerator.generateUniqueNumbers(3), sc);
+        } while (!NumberBaseballGameCommand.isTerminate(NumberBaseballGameUiUtil.getUserCommand(sc)));
 
 		sc.close();
 	}

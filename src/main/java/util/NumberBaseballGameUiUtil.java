@@ -5,6 +5,17 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class NumberBaseballGameUiUtil {
+	static public int getUserCommand(Scanner sc) {
+		int input = 0;
+
+		do {
+			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+			input = sc.nextInt();
+		} while (!NumberBaseballGameCommand.validateCommand(input));
+
+		return input;
+	}
+	
 	static public int[] getUserInputNumber(Scanner sc) {
 		String input;
 
