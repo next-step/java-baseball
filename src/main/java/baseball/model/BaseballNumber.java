@@ -4,6 +4,9 @@ import baseball.exception.BaseballNumberFormatException;
 import baseball.util.random.RandomNumberGenerator;
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import static baseball.constants.BaseballConstant.*;
 
 @Getter
@@ -101,6 +104,25 @@ public class BaseballNumber {
 
     private static int convertToInteger(char c, int radix) {
         return Character.isDigit(c) ? c - '0' : Character.toUpperCase(c) - 'A' + 10;
+    }
+
+    public BaseballResult compareTo(BaseballNumber baseballNumber) {
+        return BaseballResult.calcResult(this, baseballNumber);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseballNumber that = (BaseballNumber) o;
+        return size == that.size && radix == that.radix && Arrays.equals(numbers, that.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(size, radix);
+        result = 31 * result + Arrays.hashCode(numbers);
+        return result;
     }
 
     public String toString() {

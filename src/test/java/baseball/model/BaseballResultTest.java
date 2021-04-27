@@ -21,6 +21,8 @@ public class BaseballResultTest {
         BaseballNumber right = BaseballNumber.builder().size(size).radix(radix).build();
         BaseballResult baseballResult = BaseballResult.calcResult(left, right);
 
+        assertThat(baseballResult.getStrike()).isEqualTo(left.compareTo(right).getStrike());
+        assertThat(baseballResult.getBall()).isEqualTo(left.compareTo(right).getBall());
         assertThat(left.getSize()).isEqualTo(right.getSize());
         assertThat(baseballResult).isNotNull();
         assertThat(baseballResult.toString()).isNotNull().hasSizeGreaterThan(1);
