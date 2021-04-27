@@ -57,10 +57,7 @@ public class Answer {
     }
 
     private boolean isCompletelySame(List<Integer> question, int i) {
-        if (question.get(i) == (answer.get(i))) {
-            return true;
-        }
-        return false;
+        return question.get(i) == (answer.get(i));
     }
 
     public static List<Integer> convertStringToAnswerFormat(String inputValue) {
