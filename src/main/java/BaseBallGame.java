@@ -39,6 +39,10 @@ public class BaseBallGame implements Game {
 		boolean result = false;
 		int strike = callStrike(numbers, inputNumbers);
 		int ball = callBall(numbers, inputNumbers);
+		printMsg(makeGameResult(strike, ball));
+		if (strike == 3) {
+			result = true;
+		}
 		return result;
 	}
 
