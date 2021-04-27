@@ -41,7 +41,8 @@ public abstract class BaseBallPlayer {
      * @return
      */
     public BaseBallJudgementStatus speakJudgement(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
-        BaseBallJudgementStatus baseBallJudgementStatus = BaseBallGameManager.getInstance().judgeStrikeOrBallOrNothing(selectedNumbers, inputNumbers);
+        BaseBallGameManager baseBallGameManager = new BaseBallGameManager();
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(selectedNumbers, inputNumbers);
         return baseBallJudgementStatus;
     }
 }

@@ -5,18 +5,6 @@ import com.syl.game.baseball.domain.entity.BaseBallNumbers;
 
 public class BaseBallGameManager {
 
-    private String currentPlayer;
-    private static BaseBallGameManager instance;
-
-    public static BaseBallGameManager getInstance() {
-        synchronized (BaseBallGameManager.class) {
-            if (instance == null) {
-                instance = new BaseBallGameManager();
-            }
-            return instance;
-        }
-    }
-
     /**
      * 스트라이크, 볼, 포볼을 판단한다.
      * @param selectedNumbers
@@ -31,29 +19,12 @@ public class BaseBallGameManager {
     }
 
     /**
-     * 3스트라이크 확인.
+     * 3 스트라이크 확인.
      * @param strikeCnt
      * @return
      */
     public boolean isThreeStrike(int strikeCnt) {
         return strikeCnt == 3;
     }
-
-    /**
-     * 현재 플레이어를 가져온다.
-     * @return 현재 플레이어
-     */
-    public String getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    /**
-     * 현재 플레이어를 세팅한다.
-     * @param playerName
-     */
-    public void setCurrentPlayer(String playerName) {
-        currentPlayer = playerName;
-    }
-
 
 }

@@ -13,6 +13,8 @@ public class BaseBallGameManagerTest {
     private BaseBallNumbers oneBallNumbers;
     private BaseBallNumbers threeBallNumbers;
     private BaseBallNumbers nothingNumbers;
+    private BaseBallGameManager baseBallGameManager;
+
 
     @BeforeEach
     public void setUp() {
@@ -48,35 +50,9 @@ public class BaseBallGameManagerTest {
     }
 
     @Test
-    public void T01_인스턴스가_생성되었는지_확인() {
+    public void T01_1스트라이크_판정() {
         //Given
-        BaseBallGameManager baseBallGameManager = null;
-
-        //When
-        baseBallGameManager = BaseBallGameManager.getInstance();
-
-        //Then
-        assertNotNull(baseBallGameManager);
-    }
-
-    @Test
-    public void T02_인스턴스가_유일한지_확인() {
-        //Given
-        BaseBallGameManager baseBallGameManager = null;
-        BaseBallGameManager baseBallGameManager2 = null;
-
-        //When
-        baseBallGameManager = BaseBallGameManager.getInstance();
-        baseBallGameManager2 = BaseBallGameManager.getInstance();
-
-        //Then
-        assertSame(baseBallGameManager, baseBallGameManager2);
-    }
-
-    @Test
-    public void T03_1스트라이크_판정() {
-        //Given
-        BaseBallGameManager baseBallGameManager = BaseBallGameManager.getInstance();
+        baseBallGameManager = new BaseBallGameManager();
 
         //When
         BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(machineNumbers, oneStrikeNumbers);
@@ -86,9 +62,9 @@ public class BaseBallGameManagerTest {
     }
 
     @Test
-    public void T04_3스트라이크_판정() {
+    public void T02_3스트라이크_판정() {
         //Given
-        BaseBallGameManager baseBallGameManager = BaseBallGameManager.getInstance();
+        baseBallGameManager = new BaseBallGameManager();
 
         //When
         BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(machineNumbers, threeStrikeNumbers);
@@ -98,9 +74,9 @@ public class BaseBallGameManagerTest {
     }
 
     @Test
-    public void T05_1볼_판정() {
+    public void T03_1볼_판정() {
         //Given
-        BaseBallGameManager baseBallGameManager = BaseBallGameManager.getInstance();
+        baseBallGameManager = new BaseBallGameManager();
 
         //When
         BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(machineNumbers, oneBallNumbers);
@@ -110,9 +86,9 @@ public class BaseBallGameManagerTest {
     }
 
     @Test
-    public void T06_3볼_판정() {
+    public void T04_3볼_판정() {
         //Given
-        BaseBallGameManager baseBallGameManager = BaseBallGameManager.getInstance();
+        baseBallGameManager = new BaseBallGameManager();
 
         //When
         BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(machineNumbers, threeBallNumbers);
@@ -122,24 +98,14 @@ public class BaseBallGameManagerTest {
     }
 
     @Test
-    public void T07_4볼_판정() {
+    public void T05_4볼_판정() {
         //Given
-        BaseBallGameManager baseBallGameManager = BaseBallGameManager.getInstance();
+        baseBallGameManager = new BaseBallGameManager();
 
         //When
         BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(machineNumbers, nothingNumbers);
 
         //Then
         assertSame(3, baseBallJudgementStatus.getNothing());
-    }
-
-    @Test
-    void getCurrentPlayerTest() {
-
-    }
-
-    @Test
-    void setCurrentPlayerTest() {
-
     }
 }
