@@ -9,6 +9,10 @@ public class Game {
 
     private static final int BALL_COUNT = 3;
 
+    private static final Computer computer = new Computer();
+    private static final User user = new User();
+    private static final Score score = new Score();
+
     public static void main(String[] args) {
         Game game = new Game();
         boolean shutDown = false;
@@ -21,9 +25,7 @@ public class Game {
     }
 
     public void start(){
-        Computer computer = new Computer();
-        User user = new User();
-        Score score = new Score();
+
         List<Integer> computerBalls = computer.ready(BALL_COUNT);
         boolean isWin = false;
         while (!isWin) {
@@ -31,6 +33,7 @@ public class Game {
             score.init();
             int[] userBalls = user.ready(BALL_COUNT);
             isWin = score(computerBalls, userBalls, score);
+            System.out.println(score.getFinalScore());
         }
     }
 

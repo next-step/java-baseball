@@ -36,11 +36,9 @@ public class Score {
 
     public boolean judge() {
         if (isNothing()) {
-            this.finalScore =  Message.NOTHING.getMessage();
             return false;
         }
         if (isAllStrike()) {
-            this.finalScore =  Message.WIN.getMessage();
             return true;
         }
         this.finalScore =  isStrikeAndBall();
@@ -49,6 +47,7 @@ public class Score {
 
     public boolean isNothing() {
         if(this.strike == 0 && this.ball == 0) {
+            this.finalScore =  Message.NOTHING.getMessage();
             return true;
         }
         return false;
@@ -56,6 +55,7 @@ public class Score {
 
     public boolean isAllStrike() {
         if (this.strike == 3) {
+            this.finalScore =  Message.WIN.getMessage();
             return true;
         }
         return false;
