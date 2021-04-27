@@ -6,7 +6,7 @@
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
-##프로그래밍 요구사항 - 메소드 분리
+## 프로그래밍 요구사항 - 메소드 분리
 * 자바 코드 컨벤션을 지키면서 프로그래밍 - [자바코드컨벤션](https://naver.github.io/hackday-conventions-java/)
 * 들여쓰기 depth가 2가 넘지않도록, 1만 허용
 * java8에 추가된 stream api를 사용하지 않을 것
