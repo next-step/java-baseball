@@ -29,15 +29,6 @@ public class NumberFormatValidator {
 		return hasZero(String.valueOf(number));
 	}
 
-	private static boolean isParseInteger(String input) {
-		for (char c : input.toCharArray()) {
-			if (c <= '0' || c > '9') {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	private static boolean hasSameNumber(int random) {
 		Set<Integer> numbers = new HashSet<>();
 		while (random > 0) {
