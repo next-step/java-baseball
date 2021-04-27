@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -8,7 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MainTest {
 
     @Test
-    void test() {
+    @DisplayName("Test Baseball Random Number")
+    void TEST_getRandomNumStr() {
         String randomNumStr = Main.getRandomNumStr();
         StringBuilder baseballNum = new StringBuilder();
         Set baseballNumSet = new HashSet();
