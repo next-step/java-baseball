@@ -34,6 +34,12 @@ public class GameStarter {
 		while (totalCount++ < NUMBER_OF_DIGIT) {
 			System.out.print("숫자를 입력해주세요 : ");
 			List<Integer> userInput = processInput(scanner.nextLine().split("{1}"));
+			StringBuilder result = resultReader.deriveResult(answer, userInput);
+			System.out.println(result.toString());
+			if (result.toString().equals("3 스트라이크 ")) {
+				System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+				break;
+			}
 		}
 	}
 

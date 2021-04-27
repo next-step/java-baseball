@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.w3c.dom.ranges.RangeException;
 
@@ -47,5 +48,21 @@ public class CoreTest {
 			gameStarter.processInput(splitInput);
 		})
 			.isInstanceOf(RangeException.class);
+	}
+
+	@CsvSource({"123,563"})
+	@ParameterizedTest
+	public void index_duplication_test(String answer, String userInput) {
+		int count = 0;
+		String[] answerArray = answer.split("{1}");
+		String[] userInputArray = userInput.split("{1}");
+		for (int i = 0; i < 3; i++) {
+			int answerCurrentNumber = Integer.parseInt(answerArray[i]);
+			int userCurrentNumber = Integer.parseInt(userInputArray[i]);
+			if (answerCurrentNumber == userCurrentNumber) {
+				count++;
+			}
+		}
+		assertEquals(1, count);
 	}
 }
