@@ -13,11 +13,11 @@ public class UserScannerTest {
 	private final UserScanner userScanner = new UserScanner();
 
 	@ParameterizedTest
-	@CsvSource({"1,1", "5,5", "9,9"})
-	@DisplayName("char형 문자 int형으로 변환")
-	public void testCharToInt(char input, int output) {
+	@CsvSource(value = {"1:1", "2:2", "3:3", "4:4", "5:5", "6:6", "7:7", "8:8", "9:9",}, delimiter = ':')
+	@DisplayName("char형 데이터 int형으로 변환")
+	public void testCharToInt(char input, int expected) {
 		int number = userScanner.charToInt(input);
-		assertThat(number).isEqualTo(output);
+		assertThat(number).isEqualTo(expected);
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class UserScannerTest {
 	@DisplayName("1, 2 이외의 값 입력시 에러 발생")
 	public void testScanMenuNumberException() {
 		assertThatThrownBy(() -> {
-			userScanner.checkMenuNum("3");
+			userScanner.getMenuNum("3");
 		}).isInstanceOf(RuntimeException.class)
 			.hasMessageContaining("값 범위");
 	}
