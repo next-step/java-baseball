@@ -15,13 +15,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BaseballControllerTest {
+class BaseballGameControllerTest {
 
-    private BaseballController controller;
+    private BaseballGameController controller;
 
     @BeforeEach
     void setUp() {
-        controller = new BaseballController();
+        controller = new BaseballGameController();
     }
 
     @Test

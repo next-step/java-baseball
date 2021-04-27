@@ -5,11 +5,11 @@ import baseball.controller.dto.BaseballGameResponse;
 import baseball.domain.BaseballGame;
 import baseball.service.BaseballGameService;
 
-public class BaseballController {
+public class BaseballGameController {
 
     private final BaseballGameService service;
 
-    public BaseballController() {
+    public BaseballGameController() {
         service = new BaseballGameService();
     }
 

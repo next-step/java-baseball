@@ -1,4 +1,4 @@
-import baseball.controller.BaseballController;
+import baseball.controller.BaseballGameController;
 import baseball.controller.dto.BaseballGameResponse;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -7,7 +7,7 @@ public class BaseballGameApplication {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static final BaseballController controller = new BaseballController();
+    private static final BaseballGameController controller = new BaseballGameController();
 
     public static void main(String[] args) {
         do {
