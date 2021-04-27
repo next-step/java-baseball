@@ -78,4 +78,57 @@ public class BaseballGameTest {
 
 		assertThat(false).isEqualTo(result);
 	}
+
+
+	@Test
+	@DisplayName("GetScore Test 1")
+	void testGetScore1() {
+		BaseballGame baseballGame = new BaseballGame();
+		String input = "123";
+		String randomNumbers = "825";
+
+		Score result = baseballGame.getScore(input, randomNumbers);
+
+		assertThat(0).isEqualTo(result.getBallCount());
+		assertThat(1).isEqualTo(result.getStrikeCount());
+	}
+
+	@Test
+	@DisplayName("GetScore Test 2")
+	void testGetScore2() {
+		BaseballGame baseballGame = new BaseballGame();
+		String input = "564";
+		String randomNumbers = "456";
+
+		Score result = baseballGame.getScore(input, randomNumbers);
+
+		assertThat(3).isEqualTo(result.getBallCount());
+		assertThat(0).isEqualTo(result.getStrikeCount());
+	}
+
+	@Test
+	@DisplayName("GetScore Test 3")
+	void testGetScore3() {
+		BaseballGame baseballGame = new BaseballGame();
+		String input = "623";
+		String randomNumbers = "561";
+
+		Score result = baseballGame.getScore(input, randomNumbers);
+
+		assertThat(1).isEqualTo(result.getBallCount());
+		assertThat(0).isEqualTo(result.getStrikeCount());
+	}
+
+	@Test
+	@DisplayName("GetScore Test 4")
+	void testGetScore4() {
+		BaseballGame baseballGame = new BaseballGame();
+		String input = "893";
+		String randomNumbers = "893";
+
+		Score result = baseballGame.getScore(input, randomNumbers);
+
+		assertThat(0).isEqualTo(result.getBallCount());
+		assertThat(3).isEqualTo(result.getStrikeCount());
+	}
 }

@@ -32,7 +32,7 @@ public class BaseballGame {
 		System.out.println("Random Numbers: " + randomNumbers);
 	}
 
-	private Score getScore(String input, String randomNumbers){
+	public Score getScore(String input, String randomNumbers){
 		Score score = new Score();
 		for(int i = 0; i < NUMBER_SIZE; i++){
 			if(isStrike(input.charAt(i), randomNumbers.charAt(i))) {
