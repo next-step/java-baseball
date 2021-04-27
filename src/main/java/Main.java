@@ -38,14 +38,14 @@ public class Main {
     }
 
     private static List<Integer> generateGoalValue(){
-        List<Integer> goalValueSet = new ArrayList<>();
+        List<Integer> goalValueList = new ArrayList<>();
         do {
             int randomValue = random.nextInt(8) + 1;
-            if (!goalValueSet.contains(randomValue)) {
-                goalValueSet.add(randomValue);
+            if (!goalValueList.contains(randomValue)) {
+                goalValueList.add(randomValue);
             }
-        } while (goalValueSet.size() < 3);
-        return goalValueSet;
+        } while (goalValueList.size() < 3);
+        return goalValueList;
     }
 
     private static List<Integer> getUserInputValue(int userInput){
