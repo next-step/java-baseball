@@ -12,7 +12,7 @@ public class BaseballNumberFactory {
     private final List<String> ALL_RANDOM_NUMBERS = new ArrayList<>();
 
     public BaseballNumberFactory() {
-        for(int i = MIN_RANDOM_NUMBER; i <= MAX_RANDOM_NUMBER; ++i) {
+        for (int i = MIN_RANDOM_NUMBER; i <= MAX_RANDOM_NUMBER; ++i) {
             this.ALL_RANDOM_NUMBERS.add(String.valueOf(i));
         }
     }
