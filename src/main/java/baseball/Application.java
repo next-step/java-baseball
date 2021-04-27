@@ -43,9 +43,21 @@ public class Application {
         }
     }
 
+    private boolean restart() {
+        int restart = monitor.askRestart();
+        if (restart == 1) {
+            init();
+            return true;
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
         Application app = new Application();
-        app.start();
+
+        do {
+            app.start();
+        } while (app.restart());
     }
 }
