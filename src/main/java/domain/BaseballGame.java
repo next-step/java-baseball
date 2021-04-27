@@ -2,15 +2,21 @@ package domain;
 
 import common.Const;
 import util.InputValidators;
-import util.RandomNumberGenerator;
 import view.ViewLayer;
 
 import java.util.*;
 
 public class BaseballGame {
 
-    private ViewLayer viewLayer = new ViewLayer();
-    private boolean playStatus = true;
+    private ViewLayer viewLayer;
+    private List<Integer> randomNumbers;
+    private boolean playStatus;
+
+    public BaseballGame(List<Integer> randomNumbers, ViewLayer viewLayer, boolean playStatus) {
+        this.randomNumbers = randomNumbers;
+        this.viewLayer = viewLayer;
+        this.playStatus = playStatus;
+    }
 
     public void init() {
         do {
@@ -19,8 +25,6 @@ public class BaseballGame {
     }
 
     public void start() {
-
-        List<Integer> randomNumbers = RandomNumberGenerator.makeBaseballNumber();
 
         while (playStatus) {
             viewLayer.outValue("3자리 숫자 입력: ");
