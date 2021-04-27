@@ -51,7 +51,7 @@ public class BaseballGame {
 		return input == randomNumber ? true : false;
 	}
 	public boolean isBall(char input, String randomNumbers){
-		return false;
+		return randomNumbers.contains(input+"") ? true : false;
 	}
 
 	private void showScore(Score score){
