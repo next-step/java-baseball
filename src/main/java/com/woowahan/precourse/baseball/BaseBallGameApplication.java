@@ -1,6 +1,8 @@
 package com.woowahan.precourse.baseball;
 
 import com.woowahan.precourse.baseball.domain.BaseBallGame;
+import com.woowahan.precourse.baseball.domain.GameResult;
+import com.woowahan.precourse.baseball.domain.GameStatus;
 import com.woowahan.precourse.baseball.view.GameMessage;
 
 

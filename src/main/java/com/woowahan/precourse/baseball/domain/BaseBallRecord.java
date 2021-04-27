@@ -1,4 +1,4 @@
-package com.woowahan.precourse.baseball.record;
+package com.woowahan.precourse.baseball.domain;
 
 public class BaseBallRecord {
 

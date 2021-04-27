@@ -1,4 +1,4 @@
-package com.woowahan.precourse.baseball;
+package com.woowahan.precourse.baseball.domain;
 
 public class GameResult {
     private boolean victory;

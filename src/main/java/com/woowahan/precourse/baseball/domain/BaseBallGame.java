@@ -1,8 +1,5 @@
 package com.woowahan.precourse.baseball.domain;
 
-import com.woowahan.precourse.baseball.GameResult;
-import com.woowahan.precourse.baseball.record.BaseBallRecord;
-import com.woowahan.precourse.baseball.rule.BaseBallRule;
 import com.woowahan.precourse.baseball.view.GameMessage;
 
 import java.util.HashMap;

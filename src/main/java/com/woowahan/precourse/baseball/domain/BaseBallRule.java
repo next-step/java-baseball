@@ -1,4 +1,4 @@
-package com.woowahan.precourse.baseball.rule;
+package com.woowahan.precourse.baseball.domain;
 
 public class BaseBallRule {
 
