@@ -19,7 +19,6 @@ class BaseballGameCoreLogicTest {
         // then
         assertEquals(answer.size(), Answer.ANSWER_SIZE);
         for (Integer v:answer) {
-            System.out.println("v = " + v);
             assertEquals (v>=Answer.ANSWER_LOWER_BOUND_NUMBER && v<=Answer.ANSWER_UPPER_BOUND_NUMBER, true);
         }
     }
