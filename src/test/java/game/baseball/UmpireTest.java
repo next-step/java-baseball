@@ -48,4 +48,38 @@ class UmpireTest {
 		assertThat(umpire.getBalls()).isEqualTo(1);
 		assertThat(umpire.getStrikes()).isEqualTo(1);
 	}
+
+
+
+	@ParameterizedTest
+	@DisplayName("1 스트라이크 2 볼 테스트")
+	@ValueSource(strings = {"973"})
+	public void isRight_Strike2AndBall1(String pitchNumbers) {
+		pitcher.setPitch(pitchNumbers);
+		pitcher.setPiches();
+
+		umpire.setHitter(hitter);
+		umpire.setPitcher(pitcher);
+
+		umpire.judge();
+
+		assertThat(umpire.getBalls()).isEqualTo(2);
+		assertThat(umpire.getStrikes()).isEqualTo(1);
+	}
+
+	@ParameterizedTest
+	@DisplayName("3 스트라이크")
+	@ValueSource(strings = {"379"})
+	public void isRight_3Strikes(String pitchNumbers) {
+		pitcher.setPitch(pitchNumbers);
+		pitcher.setPiches();
+
+		umpire.setHitter(hitter);
+		umpire.setPitcher(pitcher);
+
+		umpire.judge();
+
+		assertThat(umpire.getBalls()).isEqualTo(0);
+		assertThat(umpire.getStrikes()).isEqualTo(3);
+	}
 }
