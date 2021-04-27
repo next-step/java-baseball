@@ -1,4 +1,3 @@
-
 public class Game {
     private static String computerNum;
     private static String inputNum;
@@ -19,6 +18,15 @@ public class Game {
     public String getInputNum(){
         setInputNum();
         return inputNum;
+    }
+
+    public Integer strike(String computerNum, String inputNum) {
+        Integer strikeResult = 0;
+
+        for(int i = 0; i < inputNum.length(); i++){
+            strikeResult += Util.checkEqualChar(inputNum.charAt(i), computerNum.charAt(i));
+        }
+        return strikeResult;
     }
 
 }
