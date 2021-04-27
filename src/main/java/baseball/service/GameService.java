@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class GameService {
 
-    public void start(){
+    public void start() {
         Boolean runFlag = true;
 
-        while(runFlag){
+        while (runFlag) {
             ComNumber comNum = new ComNumber();
             newGame(comNum);
 
@@ -18,9 +18,9 @@ public class GameService {
     }
 
 
-    public void newGame(ComNumber comNum){
+    public void newGame(ComNumber comNum) {
         boolean continueFlag = true;
-        while(continueFlag){
+        while (continueFlag) {
             //사용자 입력
             UserNumber userNumber = new UserNumber();
             userNumber.UserNumber();
@@ -33,7 +33,7 @@ public class GameService {
     }
 
 
-    public boolean finishGame(){
+    public boolean finishGame() {
         Scanner scanner = new Scanner(System.in);
         String inputNum = scanner.nextLine();
 
