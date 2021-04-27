@@ -10,4 +10,14 @@ public class BaseBallGame {
     CheckResultModel checkResultModel = new CheckResultModel();
     int isEnd = 0;
 
+    // TODO : 1-9 numberPool 생성
+    public void createNumberPool(){
+        numberPool = new ArrayList<>();
+        for(int i=1; i<10; i++){
+            numberPool.add(i);
+        }
+    }
+
+
+
 }
