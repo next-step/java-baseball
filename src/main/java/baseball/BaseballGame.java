@@ -2,16 +2,14 @@ package baseball;
 
 import baseball.player.Computer;
 import baseball.player.User;
+import baseball.ui.BaseballGameUI;
 
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
-import static baseball.BaseballGame.BaseballType.BALL;
-import static baseball.BaseballGame.BaseballType.NOTHING;
-import static baseball.BaseballGame.BaseballType.STRIKE;
-import static baseball.BaseballGame.GameStatus.READY;
-import static baseball.BaseballGame.GameStatus.RESTART;
-import static baseball.BaseballGame.GameStatus.SHUTDOWN;
+import static baseball.BaseballGame.BaseballType.*;
+import static baseball.GameStatus.RESTART;
 
 /**
  * Created by Choen-hee Park
@@ -21,19 +19,17 @@ import static baseball.BaseballGame.GameStatus.SHUTDOWN;
  */
 
 public class BaseballGame {
-	private static final int DEFAULT_BALL_COUNT = 3;
+	private Map<BaseballType, Integer> result = new HashMap<>();
 
-	private int ballCount;
+	private BaseballGameUI baseballGameUI = new BaseballGameUI();
+
+	private final int ballCount;
 
 	public static void main(String[] args) {
-		BaseballGame baseballGame = new BaseballGame(DEFAULT_BALL_COUNT);
+		BaseballGame baseballGame = new BaseballGame(3);
 		Computer computer = new Computer();
 		User user = new User();
-		GameStatus gameStatus = READY;
-		while (gameStatus != SHUTDOWN) {
-			baseballGame.start(computer, user);
-			gameStatus = selectRestartOrExit();
-		}
+		baseballGame.start(computer, user);
 	}
 
 	public BaseballGame(int ballCount) {
@@ -42,20 +38,27 @@ public class BaseballGame {
 
 	private void start(Computer computer, User user) {
 		int[] computerBalls = computer.selectComputerBalls(ballCount);
-		while (!match(computerBalls, user.selectUserBalls(ballCount, inputUserBalls()))) {
+		while (!match(computerBalls, user.selectUserBalls(ballCount, baseballGameUI.inputUserBalls()))) {
+			baseballGameUI.print(createResultMessage(
+				result.getOrDefault(STRIKE, 0), result.getOrDefault(BALL, 0)));
 		}
-		System.out.println(ballCount + "개의 숫자를 모두 맞히셨습니다! 게임종료");
+		baseballGameUI.print(ballCount + "개의 숫자를 모두 맞히셨습니다! 게임종료");
+		if (isSelectedRestart()) {
+			start(computer, user);
+		}
+	}
+
+	private boolean isSelectedRestart() {
+		return baseballGameUI.selectRestartOrExit() == RESTART;
 	}
 
 	private boolean match(int[] computerBalls, int[] userBalls) {
-		int strike = 0;
-		int ball = 0;
+		result.clear();
 		for (int i = 0; i < ballCount; ++i) {
-			strike += tryStrike(computerBalls, userBalls, i);
-			ball   += tryBall(computerBalls, userBalls, i);
+			result.put(STRIKE, result.getOrDefault(STRIKE, 0) + tryStrike(computerBalls, userBalls, i));
+			result.put(BALL, result.getOrDefault(BALL, 0) + tryBall(computerBalls, userBalls, i));
 		}
-		System.out.println(createResultMessage(strike, ball));
-		return strike == ballCount;
+		return result.getOrDefault(STRIKE, 0) == ballCount;
 	}
 
 	private int tryStrike(int[] computerBalls, int[] userBalls, int idx) {
@@ -78,24 +81,6 @@ public class BaseballGame {
 			sb.append(ball).append(BALL.type());
 		}
 		return strike == 0 && ball == 0 ? NOTHING.type() : sb.toString();
-	}
-
-	private static GameStatus selectRestartOrExit() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextInt() == 1 ? RESTART : SHUTDOWN;
-	}
-
-	private String inputUserBalls() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("숫자를 입력해주세요: ");
-		return scanner.next();
-	}
-
-	enum GameStatus {
-		READY,
-		RESTART,
-		SHUTDOWN
 	}
 
 	enum BaseballType {
