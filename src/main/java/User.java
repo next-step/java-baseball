@@ -30,16 +30,23 @@ public class User {
 			throw new IllegalArgumentException("세자리 숫자가 아닙니다.");
 		}
 
-		int intInput = Integer.parseInt(inputValue);
-		Set<Integer> inputNumber = new LinkedHashSet<>();
-		inputNumber.add(intInput / 100); // 100의 자리
-		inputNumber.add((intInput % 100) / 10); // 10의 자리
-		inputNumber.add(intInput % 10); // 1의 자리
+		Set<Integer> inputNumber = separateNumber(inputValue);
 
 		if (inputNumber.size() != INPUT_MAX_LENGTH) {
 			throw new IllegalArgumentException("중복되는 수가 있습니다.");
 		}
 
 		userNumbers = new ArrayList<>(inputNumber);
+	}
+
+	public Set<Integer> separateNumber(String inputValue) {
+		int intInput = Integer.parseInt(inputValue);
+		Set<Integer> inputNumber = new LinkedHashSet<>();
+
+		inputNumber.add(intInput / 100); // 100의 자리
+		inputNumber.add((intInput % 100) / 10); // 10의 자리
+		inputNumber.add(intInput % 10); // 1의 자리
+
+		return inputNumber;
 	}
 }
