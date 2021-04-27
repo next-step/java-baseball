@@ -3,7 +3,6 @@ package baseball.domain;
 public class Game {
     public final static int BALL_SIZE = 3;
 
-    private final BallGenerationStrategy generationStrategy;
     private final Balls computerBalls;
 
     public Game() {
@@ -11,7 +10,6 @@ public class Game {
     }
 
     public Game(BallGenerationStrategy generationStrategy) {
-        this.generationStrategy = generationStrategy;
         this.computerBalls = generationStrategy.generate(BALL_SIZE);
     }
 
