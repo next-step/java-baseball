@@ -7,27 +7,27 @@ import com.hoomin.game.baseball.enums.HintState;
 
 /**
  * 숫자와 관련된 비즈니스로직, 생성시 유효성 체크
- * numberList는 불변
+ * numbers는 불변
  */
 public class Numbers {
 	private static final int NUMBER_SIZE = 3;
-	private final List<Integer> numberList;
+	private final List<Integer> numbers;
 
-	public Numbers(List<Integer> numberList) {
-		validateSize(numberList);
-		validateNumber(numberList);
-		validateDuplicate(numberList);
-		this.numberList = numberList;
+	public Numbers(List<Integer> numbers) {
+		validateSize(numbers);
+		validateNumber(numbers);
+		validateDuplicate(numbers);
+		this.numbers = numbers;
 	}
 
-	private void validateDuplicate(List<Integer> numberList) {
-		if (numberList.size() != new HashSet<>(numberList).size()) {
+	private void validateDuplicate(List<Integer> numbers) {
+		if (numbers.size() != new HashSet<>(numbers).size()) {
 			throw new IllegalArgumentException("중복되지 않은 숫자를 입력해야 합니다.");
 		}
 	}
 
-	private void validateNumber(List<Integer> numberList) {
-		if (numberList.contains(0)) {
+	private void validateNumber(List<Integer> numbers) {
+		if (numbers.contains(0)) {
 			throw new IllegalArgumentException("1부터 9까지의 숫자를 입력해야 합니다.");
 		}
 	}
@@ -40,17 +40,17 @@ public class Numbers {
 
 	public Hints compareTo(Numbers inputNumbers) {
 		Hints hints = new Hints();
-		for (int i = 0; i < this.numberList.size(); i++) {
-			hints.add(compareElement(i, inputNumbers.numberList));
+		for (int i = 0; i < this.numbers.size(); i++) {
+			hints.add(compareElement(i, inputNumbers.numbers));
 		}
 		return hints;
 	}
 
 	private HintState compareElement(int index, List<Integer> inputNumbers) {
-		if (this.numberList.get(index).equals(inputNumbers.get(index))) {
+		if (this.numbers.get(index).equals(inputNumbers.get(index))) {
 			return HintState.STRIKE;
 		}
-		if (this.numberList.contains(inputNumbers.get(index))) {
+		if (this.numbers.contains(inputNumbers.get(index))) {
 			return HintState.BALL;
 		}
 		return HintState.NOTHING;
