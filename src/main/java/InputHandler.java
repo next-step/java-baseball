@@ -20,7 +20,7 @@ public class InputHandler {
     }
 
     public void isValidateInputRange(int input) {
-        if (input < 100 || input > 1000) throw new IllegalArgumentException("숫자는 3자리 수여야 합니다.");
+        if (input < 100 || input >= 1000) throw new IllegalArgumentException("숫자는 3자리 수여야 합니다.");
     }
 
 }
