@@ -23,7 +23,7 @@ public class BaseballGame {
     public BaseballGame(BaseballNumberGenerator baseballNumberGenerator,
                         BaseballNumberValidator baseballNumberValidator,
                         GameChecker gameChecker, ReceivingBaseballNumber receivingBaseballNumber,
-                        ReceivingPlayAgainAnswer receivingPlayAgainAnswer, ResultScreen resultScreen){
+                        ReceivingPlayAgainAnswer receivingPlayAgainAnswer, ResultScreen resultScreen) {
         this.baseballNumberGenerator = baseballNumberGenerator;
         this.baseballNumberValidator = baseballNumberValidator;
         this.gameChecker = gameChecker;
@@ -33,31 +33,31 @@ public class BaseballGame {
     }
 
     public void play() {
-        do{
+        do {
             BaseballNumberGroup computerNumbers = baseballNumberGenerator.generate();
             play(computerNumbers);
-        }while(!isExit());
+        } while (!isExit());
     }
 
-    private void play(BaseballNumberGroup computerNumbers){
+    private void play(BaseballNumberGroup computerNumbers) {
         GameResult gameResult;
-        do{
+        do {
             BaseballNumberGroup playerNumbers = BaseballNumberGroup.of(receiveInput());
             gameResult = gameChecker.check(playerNumbers, computerNumbers);
             resultScreen.view(gameResult);
-        }while (!gameResult.isAllStrikes());
+        } while (!gameResult.isAllStrikes());
     }
 
-    private List<Integer> receiveInput(){
+    private List<Integer> receiveInput() {
         List<Integer> playerNumbers;
-        do{
+        do {
             String receivedNumbers = receivingBaseballNumber.receiveBaseballNumber();
             playerNumbers = ListConverter.convert(receivedNumbers);
-        }while (!baseballNumberValidator.isValid(playerNumbers));
+        } while (!baseballNumberValidator.isValid(playerNumbers));
         return playerNumbers;
     }
 
-    private boolean isExit(){
+    private boolean isExit() {
         return EXIT_CODE == receivingPlayAgainAnswer.receivePlayAgainAnswer();
     }
 }

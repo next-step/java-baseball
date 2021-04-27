@@ -13,7 +13,7 @@ public class BaseballNumberValidatorTest {
     private BaseballNumberValidator baseballNumberValidator;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         baseballNumberValidator = new BaseballNumberValidator();
     }
 

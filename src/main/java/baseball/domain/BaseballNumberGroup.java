@@ -6,27 +6,27 @@ import java.util.List;
 public class BaseballNumberGroup {
     private List<Integer> baseballNumbers = new ArrayList<>();
 
-    private BaseballNumberGroup(List<Integer> baseballNumbers){
+    private BaseballNumberGroup(List<Integer> baseballNumbers) {
         this.baseballNumbers.addAll(baseballNumbers);
     }
 
-    public static BaseballNumberGroup of(List<Integer> baseballNumbers){
+    public static BaseballNumberGroup of(List<Integer> baseballNumbers) {
         return new BaseballNumberGroup(baseballNumbers);
     }
 
-    public int size(){
+    public int size() {
         return this.baseballNumbers.size();
     }
 
-    public Integer get(int index){
+    public Integer get(int index) {
         return this.baseballNumbers.get(index);
     }
 
-    public boolean contains(Integer baseballNumber){
+    public boolean contains(Integer baseballNumber) {
         return this.baseballNumbers.contains(baseballNumber);
     }
 
-    public int indexOf(Integer baseballNumber){
+    public int indexOf(Integer baseballNumber) {
         return this.baseballNumbers.indexOf(baseballNumber);
     }
 }

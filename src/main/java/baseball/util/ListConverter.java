@@ -6,7 +6,7 @@ import java.util.List;
 public class ListConverter {
     public static List<Integer> convert(String value) throws IllegalArgumentException {
         Integer[] values = new Integer[value.length()];
-        for(int i = 0; i < value.length(); i++){
+        for (int i = 0; i < value.length(); i++) {
             values[i] = Character.getNumericValue(value.charAt(i));
             ifNotNumberThrowIllegalArgumentException(values[i]);
         }
@@ -14,7 +14,7 @@ public class ListConverter {
     }
 
     private static void ifNotNumberThrowIllegalArgumentException(int value) throws IllegalArgumentException {
-        if(value > 9 || value < 0){
+        if (value > 9 || value < 0) {
             throw new IllegalArgumentException();
         }
     }
