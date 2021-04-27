@@ -6,27 +6,35 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        List<Integer> goalValues = generateGoalValue();
-        System.out.println(goalValues);
-
         while (true) {
-            System.out.println("숫자를 입력해주세요 :");
-            int inputValue = in.nextInt();
-            List<Integer> inputValues = getUserInputValue(inputValue);
-            Map<String, Integer> result = getResult(goalValues, inputValues);
-            int strikeCount = result.get("strike");
-            int ballCount = result.get("ball");
+            List<Integer> goalValues = generateGoalValue();
+            System.out.println(goalValues);
 
-            if (ballCount == 0 && strikeCount == 0) {
-                System.out.println("낫싱");
-                continue;
-            }
+            while (true) {
+                System.out.print("숫자를 입력해주세요 :");
+                int inputValue = in.nextInt();
+                List<Integer> inputValues = getUserInputValue(inputValue);
+                Map<String, Integer> result = getResult(goalValues, inputValues);
+                int strikeCount = result.get("strike");
+                int ballCount = result.get("ball");
 
-            if (strikeCount == 3){
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-                break;
+                if (ballCount == 0 && strikeCount == 0) {
+                    System.out.println("낫싱");
+                    continue;
+                }
+
+                if (strikeCount == 3) {
+                    System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+                    break;
+                }
+                printResult(ballCount, strikeCount);
             }
-            printResult(ballCount, strikeCount);
+            System.out.print("게임을 새로 시작하려면1, 종료하려면 2를 입력하세요.");
+            int flag = in.nextInt();
+
+            if (flag == 2){
+                System.exit(-1);
+            }
         }
     }
 
