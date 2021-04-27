@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GameplayUI {
 
-	Scanner scan = new Scanner(System.in);
+	private final Scanner scan = new Scanner(System.in);
 
 	public void printStrike(int strike) {
 		if (strike != 0) {
@@ -22,12 +22,12 @@ public class GameplayUI {
 		System.out.println("낫싱");
 	}
 
-	public void printAnswer() {
-		System.out.println("3 스트라이크");
+	public void printRoundEndMessage() {
+		printStrike(3);
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
 
-	public String getAnswerInput() {
+	public String getUserInput() {
 		printInputRequest();
 		String userInput = "";
 		boolean isValidAnswerInput = false;

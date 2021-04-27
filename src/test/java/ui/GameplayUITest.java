@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class GameplayUITest {
+class GameplayUITest {
 
 	private static GameplayUI gameplayUI;
 	private static Method hasSameNumber;
