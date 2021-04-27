@@ -1,18 +1,30 @@
 package exam.baseball;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BaseballGame implements Game {
 
 	private final Supplier<String> userCommandSupplier;
 	private final MessagePrinter printer = new MessagePrinter();
+	final SecureRandom random = new SecureRandom();
+	static final Integer[] DEFAULT_RANGE = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 	public BaseballGame(Supplier<String> userCommandSupplier) {
 		this.userCommandSupplier = userCommandSupplier;
 	}
 
-	private String getRandomNumbers() {
-		return "123";
+	String getRandomNumbers() {
+		final List<Integer> list = new ArrayList<>(Arrays.asList(DEFAULT_RANGE));
+		StringBuilder randomNumberBuilder = new StringBuilder();
+		for (int i = 0; i < 3; ++i) {
+			Integer selected = list.remove(random.nextInt(list.size()));
+			randomNumberBuilder.append(selected.toString());
+		}
+		return randomNumberBuilder.toString();
 	}
 
 	@Override
