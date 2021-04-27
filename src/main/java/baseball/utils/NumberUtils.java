@@ -33,4 +33,11 @@ public class NumberUtils {
     public static boolean checkPlace(int number, int place) {
         return placeSize(number) == place;
     }
+
+    public static boolean containsNumber(int[] target, int number) {
+        for (int i = 0; i < target.length; i++) {
+            if (target[i] == number) return true;
+        }
+        return false;
+    }
 }

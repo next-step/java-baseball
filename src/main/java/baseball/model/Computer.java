@@ -16,7 +16,7 @@ public class Computer {
     public void generateBalls() {
         for (int i = 0; i < BaseballConfig.BALL_COUNT; i++) {
             int randomBall = (int) (Math.random() * BaseballConfig.END_BALL_NUM) + BaseballConfig.START_BALL_NUM;
-            if (!hasBall(randomBall)) {
+            if (!NumberUtils.containsNumber(balls, randomBall)) {
                 balls[i] = randomBall;
             }
         }
@@ -24,13 +24,6 @@ public class Computer {
 
     public int[] getBalls() {
         return balls;
-    }
-
-    private boolean hasBall(int ball) {
-        for (int i = 0; i < balls.length; i++) {
-            if (balls[i] == ball) return true;
-        }
-        return false;
     }
 
     private int checkBall(int playerBall, int ballIndex) {
