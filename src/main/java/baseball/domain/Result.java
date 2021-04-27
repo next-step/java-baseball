@@ -2,5 +2,6 @@ package baseball.domain;
 
 public class Result {
 	public boolean isSuccess;
-	public Hint hint;
+	public int ball;
+	public int strike;
 }

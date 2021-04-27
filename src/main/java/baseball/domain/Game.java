@@ -1,8 +1,6 @@
 package baseball.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Game {
 
@@ -12,6 +10,10 @@ public class Game {
 
 	public void start() {
 		target = generateRandomNumbers();
+
+		for (int n: target) {
+			System.out.print(n);
+		}
 	}
 
 	public int[] getTarget() {
@@ -30,9 +32,41 @@ public class Game {
 		return numbers;
 	}
 
+	private boolean countStrikeAndMark(int index, int[] targetNumbers, int[] userNumbers) {
+		boolean isStrike = targetNumbers[index] == userNumbers[index];
+		if(isStrike) userNumbers[index] = -1;
+		return isStrike;
+	}
+
+	private void countStrike(int[] numbers, Result result) {
+		for (int i = 0; i < NUMBER_LENGTH; i++) {
+			boolean isStrike = countStrikeAndMark(i, target, numbers);
+			if(isStrike) result.strike++;
+		}
+
+		if(result.strike == NUMBER_LENGTH) {
+			result.isSuccess = true;
+		}
+	}
+
+	private void countBall(int[] numbers, Result result) {
+		Set<Integer> remainNumbers = new HashSet();
+
+		int len = numbers.length;
+		for (int i = 0; i < len; i++) {
+			if(numbers[i] != -1) remainNumbers.add(numbers[i]);
+		}
+
+		for (int i = 0; i < NUMBER_LENGTH; i++) {
+			boolean isBall = remainNumbers.contains(target[i]);
+			if(isBall) result.ball++;
+		}
+	}
+
 	public Result judge(int[] numbers) {
 		Result result = new Result();
-		result.isSuccess = true;
+		countStrike(numbers, result);
+		countBall(numbers, result);
 
 		return result;
 	}
