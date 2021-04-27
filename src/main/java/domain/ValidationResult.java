@@ -1,3 +1,5 @@
+package domain;
+
 public class ValidationResult {
     String message = "";
     int[] pitches = new int[3];

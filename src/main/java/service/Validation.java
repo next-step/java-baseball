@@ -1,3 +1,7 @@
+package service;
+
+import domain.ValidationResult;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 

@@ -1,3 +1,8 @@
+package service;
+
+import domain.PitchingResult;
+import domain.ValidationResult;
+
 import java.util.Scanner;
 
 public class Game {

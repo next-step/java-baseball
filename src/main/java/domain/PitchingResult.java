@@ -1,3 +1,5 @@
+package domain;
+
 public class PitchingResult {
     int strike = 0;
     int ball = 0;

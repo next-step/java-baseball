@@ -1,5 +1,7 @@
+import domain.ValidationResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import service.Validation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +31,7 @@ public class ValidationTest {
     void validationNumberofCharactersTest() {
         String pitching = "1234567";
         ValidationResult validationResult = validation.validationPitching(pitching);
-        assertEquals("1~9 숫자 3자리 입력 가능합니다. 다시 입력해주세요.", validationResult.message);
+        assertEquals("1~9 숫자 3자리 입력 가능합니다. 다시 입력해주세요.", validationResult.getMessage());
     }
 
     @Test
@@ -37,7 +39,7 @@ public class ValidationTest {
     void validationOnlyNumberofCharactersTest() {
         String pitching = "00s";
         ValidationResult validationResult = validation.validationPitching(pitching);
-        assertEquals("1~9 숫자만 입력 가능합니다. 다시 입력해주세요.", validationResult.message);
+        assertEquals("1~9 숫자만 입력 가능합니다. 다시 입력해주세요.", validationResult.getMessage());
     }
 
     @Test
@@ -45,6 +47,6 @@ public class ValidationTest {
     void validationDuplicateNumberofCharactersTest() {
         String pitching = "111";
         ValidationResult validationResult = validation.validationPitching(pitching);
-        assertEquals("중복하지 않는 숫자로 다시 입력해주세요.", validationResult.message);
+        assertEquals("중복하지 않는 숫자로 다시 입력해주세요.", validationResult.getMessage());
     }
 }

@@ -1,3 +1,7 @@
+package service;
+
+import domain.PitchingResult;
+
 public class Pitching {
 
     public PitchingResult getPitchingResult(int[] pitches, int[] baseballNumber){

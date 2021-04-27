@@ -1,5 +1,8 @@
+import domain.PitchingResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import service.BaseballNumber;
+import service.Pitching;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
