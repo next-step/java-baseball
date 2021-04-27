@@ -44,6 +44,14 @@ public class BaseBall {
         return resultGameMap.get(STRIKE) == 3;
     }
 
+    public boolean isFinish(String finishValue) {
+        switch(finishValue) {
+            case "1" : return true;
+            case "2" : return false;
+            default : throw new IllegalArgumentException("올바른 입력값이 아닙니다. 1 혹은 2 를 입력해주세요.");
+        }
+    }
+
     private boolean validateInLoop(int i, String validateToData) {
         boolean checkDuplicateData = true;
         int j = i + 1, size = validateToData.length();
