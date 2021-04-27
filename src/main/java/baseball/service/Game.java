@@ -29,14 +29,21 @@ public class Game {
         int[] numbers = new int[3];
 
         numbers[0] = (int) (Math.random() * 9) + 1;
-        numbers[1] = (int) (Math.random() * 10);
-        numbers[2] = (int) (Math.random() * 10);
 
+        do numbers[1] = (int) (Math.random() * 10);
+        while (numbers[0] == numbers[1]);
+
+        do numbers[2] = (int) (Math.random() * 10);
+        while (numbers[0] == numbers[2] || numbers[1] == numbers[2]);
+
+        return join(numbers);
+    }
+
+    private Integer join(int[] numbers) {
         StringBuilder builder = new StringBuilder();
         builder.append(numbers[0]);
         builder.append(numbers[1]);
         builder.append(numbers[2]);
-
         return Integer.valueOf(builder.toString());
     }
 

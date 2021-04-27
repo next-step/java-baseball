@@ -2,7 +2,6 @@ import baseball.domain.Score;
 import baseball.exception.IllegalPositionException;
 import baseball.service.Game;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
@@ -63,14 +62,12 @@ class GameTest {
         assertPlay(game.play(132), 1, 2);
     }
 
-    @Disabled
     @Test
     void check_duplicate_random_number() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = game.getClass().getDeclaredMethod("createRandomNumber");
         method.setAccessible(true);
         for (int i = 0; i < 1000000; i++) {
             int number = (int) method.invoke(game);
-            System.out.println(number);
             Set<Integer> sets = new HashSet<>();
             sets.add(number / 100);
             sets.add(number / 10 % 10);
