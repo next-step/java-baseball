@@ -31,4 +31,33 @@ public class Player {
 		return false;
 	}
 
+	private boolean isStrike(int answerNumber, int findNumber) {
+		return (answerNumber == findNumber);
+	}
+
+	private boolean isBall(List<Integer> answer, int findNumber) {
+		return answer.contains(findNumber);
+	}
+
+	/*
+	 * 판정 Logic
+	 */
+	public void calculate(List<Integer> answer, List<Integer> input) {
+		init();
+		for (int index = 0; index < Game.NUMBER_LENGTH; index++) {
+			calculateByIndex(answer, index, input.get(index));
+		}
+	}
+
+	private void calculateByIndex(List<Integer> answer, int index, int findNumber) {
+		if (isStrike(answer.get(index), findNumber)) {
+			this.strikeCount++;
+			return;
+		}
+		if (isBall(answer, findNumber)) {
+			this.ballCount++;
+			return;
+		}
+	}
+
 }

@@ -25,6 +25,8 @@ public class Game {
 		do {
 			String InputStr = InputReader.getInput();
 			if (Validation.checkInputNumber(InputStr)) {
+				List<Integer> input = Converter.convertStringToIntegerList(InputStr, "");
+				player.calculate(answer, input);
 			}
 		} while (!player.isFinished());
 	}
