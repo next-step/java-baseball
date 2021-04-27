@@ -42,13 +42,14 @@ public class BaseBall {
 	 */
 	public static void start (String initNum, String cpuNum) {
 		
-		System.out.println("게임을 시작합니다.");
-		
-		/* 난수 셋팅 */
-		setGenerateNum();
-		
-		/* 숫자를 입력받는다. */
-		throwBalls(initNum, cpuNum);
+		ballCountMsg = "start";
+//		System.out.println("게임을 시작합니다.");
+//		
+//		/* 난수 셋팅 */
+//		setGenerateNum();
+//		
+//		/* 숫자를 입력받는다. */
+//		throwBalls(initNum, cpuNum);
 		
 	}
 	
@@ -275,7 +276,7 @@ public class BaseBall {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 			
 			/* 재시작 여부 확인 */
-			reGame();
+			//reGame();
 			
 		}
 		
@@ -342,29 +343,26 @@ public class BaseBall {
 	/**
 	 * reGame : 변수를 클리어하고 새 게임을 결정하는 메소드
 	 */
-	private static void reGame () {
+	public static void reGame (String initNum) {
 		
-		ballCountMsg = "reGame";
-		System.out.println(ballCountMsg);
+		//String initNum = requestSc("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 		
-//		String initNum = requestSc("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-//		
-//		if ("1".equals(initNum)) {
-//			
-//			/* 게임 재시작! */
-//			start("123", "456");
-//			
-//		}
-//		
-//		if ("2".equals(initNum)) {
-//			
-//			/* 게임 종료! */
-//			exit();
-//			
-//		}
-//		
-//		/* 그외 값 입력 시 재귀호출! */
-//		reGame();
+		if ("1".equals(initNum)) {
+			
+			/* 게임 재시작! */
+			start("123", "456");
+			
+		}
+		
+		if ("2".equals(initNum)) {
+			
+			/* 게임 종료! */
+			exit();
+			
+		}
+		
+		/* 그외 값 입력 시 재귀호출! */
+		//reGame();
 		
 	}
 	
@@ -375,14 +373,14 @@ public class BaseBall {
 	 * @return
 	 */
 	private static void exit () {
-		
-		System.out.println("굿바이.");
-		
-		/* 스캐너 크로징 */
-		sc.close();
-		
-		/* 시스템 종료 */
-		System.exit(0);
+		ballCountMsg = "exit";
+//		System.out.println("굿바이.");
+//		
+//		/* 스캐너 크로징 */
+//		sc.close();
+//		
+//		/* 시스템 종료 */
+//		System.exit(0);
 		
 	}
 	
