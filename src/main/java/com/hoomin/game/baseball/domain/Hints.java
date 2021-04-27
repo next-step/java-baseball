@@ -15,11 +15,12 @@ import com.hoomin.game.baseball.view.OutputView;
 public class Hints {
 	private final List<HintState> hintStateList;
 
-	Hints() {
+	protected Hints() {
 		this.hintStateList = new ArrayList<>();
 	}
 
 	public void add(HintState hintState) {
+		validateHintsSize();
 		hintStateList.add(hintState);
 	}
 
@@ -37,6 +38,12 @@ public class Hints {
 			count = increaseCountIfEquals(anotherHintState, item, count);
 		}
 		return count;
+	}
+
+	private void validateHintsSize() {
+		if (hintStateList.size() > 3) {
+			throw new RuntimeException("한 질문에 힌트가 3개를 넘을 수 없습니다.");
+		}
 	}
 
 	private Integer increaseCountIfEquals(HintState anotherHintState, HintState  hintState, Integer count) {
