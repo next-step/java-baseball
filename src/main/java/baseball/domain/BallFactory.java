@@ -24,9 +24,6 @@ public class BallFactory {
   public static Balls createComputerBalls() {
     Collections.shuffle(CACHE_BALLS);
     HashSet<Ball> ballsSet = new HashSet<>(CACHE_BALLS.subList(0, 3));
-    for (Ball ball : ballsSet) {
-      System.out.printf(ball.getNumber());
-    }
     return new Balls(ballsSet);
   }
 

@@ -19,10 +19,6 @@ public class Ball {
     }
   }
 
-  public String getNumber() {
-    return String.valueOf(number);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
