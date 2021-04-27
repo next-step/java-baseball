@@ -8,8 +8,8 @@ import org.apache.commons.lang3.RandomUtils;
 
 public class Pitcher {
 	public List<Integer> pitch(int numOfPitches) {
-		List<Integer> pitches = new ArrayList<>(3);
-		while (pitches.size() < 3) {
+		List<Integer> pitches = new ArrayList<>(numOfPitches);
+		while (pitches.size() < numOfPitches) {
 			nextPitch(pitches);
 		}
 		return Collections.unmodifiableList(pitches);
