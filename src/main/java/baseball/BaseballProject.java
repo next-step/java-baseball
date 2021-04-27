@@ -14,8 +14,10 @@ public class BaseballProject {
         BaseballUi ui = new BaseballUi(scanner);
         BaseballService service = new BaseballService();
 
-        initGame(ui, service);
-        continueGame(ui, service);
+        do {
+            initGame(ui, service);
+        } while (Constants.COUNTINUE.equals(ui.askContinue()));
+        //continueGame(ui, service);
 
         scanner.close();
     }
