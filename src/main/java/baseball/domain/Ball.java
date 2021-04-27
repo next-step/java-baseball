@@ -1,8 +1,10 @@
 package baseball.domain;
 
 import baseball.exception.BallException;
+import baseball.util.RegexUtil;
 
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -72,7 +74,8 @@ public class Ball {
 
 
     public void chkNumeric(String ballStr){
-        if (!ballStr.matches("[+-]?\\d*(\\.\\d+)?")){
+        Matcher matcher = RegexUtil.pattern.matcher(ballStr);
+        if (!matcher.find()){
             throw new BallException("숫자만 입력해 주세요.");
         }
     }
