@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BaseBallGame implements Game {
 	@Override
 	public void playGame() {
-
+		LinkedHashSet<String> numbers = makeNumbers();
 	}
 
 	@Override
@@ -91,5 +91,13 @@ public class BaseBallGame implements Game {
 			msg += ball + " 볼 ";
 		}
 		return msg;
+	}
+
+	public String linkedHashSetToString(LinkedHashSet<String> numbers) {
+		StringBuilder sb = new StringBuilder();
+		for (String number : numbers) {
+			sb.append(number);
+		}
+		return sb.toString();
 	}
 }
