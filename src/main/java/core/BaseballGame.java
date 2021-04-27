@@ -24,13 +24,45 @@ public class BaseballGame {
         questions.addAll(list.subList(0, 3));
     }
     
-    public void playGame(){
+    public void playGame() {
         System.out.println("숫자를 입력하세요 : ");
         String numberString = scanner.nextLine();
+
+        answer = new ArrayList<>(3);
 
         for(int i=0; i < numberString.length(); i++){
             answer.add(Integer.parseInt(numberString.substring(i, i+1)));
         }
         System.out.println(answer);
+    }
+
+    public void playGameResult() {
+        PlayResult playResult = new PlayResult();
+        for(int i = 0; i < 3; i++) {
+            playResult.countPlayResult(questions, i, answer);
+        }
+        isSolved = playResult.isSolved();
+        printGameResult(playResult);
+    }
+
+    public void printGameResult(PlayResult playResult) {
+        if(playResult.isNothing()) {
+            System.out.println("낫싱");
+            return;
+        } 
+        
+        if(playResult.isSolved()){
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return;
+}
+
+        if(playResult.getIsStrike() != 0 && playResult.getIsBall() != 0){
+            System.out.println(playResult.getIsStrike() + " 스트라이크 " + playResult.getIsBall() + " 볼");
+        } else if(playResult.getIsStrike() != 0) {
+            System.out.println(playResult.getIsStrike() + " 스트라이크");
+        } else if(playResult.getIsBall() != 0) {
+            System.out.println(playResult.getIsBall() + " 볼 ");
+        }
+        
     }
 }
