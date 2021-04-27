@@ -42,7 +42,6 @@ public class BaseBall {
     }
 
     public void showHint(Result result) {
-
         if (result.getStrikes() != 0) {
             gameOutput.writeMessageInline(String.valueOf(result.getStrikes()), Message.STRIKE.getMessage() );
         }
@@ -65,15 +64,15 @@ public class BaseBall {
         }
     }
 
-    public void init() {
+    private void init() {
         finish = false;
         answer = new int[GAME_LENGTH];
         genRandomAnswer();
         replay = true;
         gameInput = GameInput.getInstance();
         gameInput.setGameLength(GAME_LENGTH);
-        gameInput.setLowerBound(1);
-        gameInput.setUpperBound(9);
+        gameInput.setLowerBound(LOWER_BOUND);
+        gameInput.setUpperBound(UPPER_BOUND);
         gameOutput = GameOutput.getInstance();
     }
 
@@ -95,12 +94,11 @@ public class BaseBall {
     }
 
     public boolean isContain(int value) {
+        boolean returnVal = false;
         for (int val : answer) {
-            if (val == value) {
-                return true;
-            }
+            returnVal = val==value||returnVal;
         }
-        return false;
+        return returnVal;
     }
 
     public boolean isStrike(int index, int value) {

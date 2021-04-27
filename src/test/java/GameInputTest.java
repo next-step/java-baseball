@@ -33,5 +33,4 @@ public class GameInputTest {
         assertTrue(gameInput.isControlInputValid("1"));
         assertTrue(gameInput.isControlInputValid("2"));
     }
-
 }

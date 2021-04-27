@@ -23,5 +23,4 @@ public class GameOutputTest {
         gameOutput.writeMessageInline("inline","test");
         gameOutput.writeFlush();
     }
-
 }
