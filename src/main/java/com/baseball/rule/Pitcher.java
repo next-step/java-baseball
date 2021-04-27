@@ -1,7 +1,6 @@
 package com.baseball.rule;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
@@ -16,12 +15,11 @@ public class Pitcher {
 
 	public List<Integer> generateNumber() {
 		Set<Integer> randomNumberSet = new LinkedHashSet<>();
-		for (int i = 0; i < LENGTH; i++) {
+		while (true) {
 			int randomDigit = generateRandomDigit();
-			if (!randomNumberSet.contains(randomDigit)) {
-				randomNumberSet.add(randomDigit);
-			} else {
-				i--;
+			randomNumberSet.add(randomDigit);
+			if(randomNumberSet.size()>LENGTH-1) {
+				break;
 			}
 		}
 		return new ArrayList<>(randomNumberSet);
