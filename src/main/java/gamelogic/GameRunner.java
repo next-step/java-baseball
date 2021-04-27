@@ -11,13 +11,13 @@ public class GameRunner {
 		String answer = gameAnswerGenerator.generateAnswer();
 		boolean isUserInputCorrect = false;
 		while (!isUserInputCorrect) {
-			String userInput = gameplayUI.getUserInput();
-			isUserInputCorrect = checkUserInput(answer, userInput);
+			String userInput = gameplayUI.getNumberInput();
+			isUserInputCorrect = isCorrectInput(answer, userInput);
 		}
 		gameplayUI.printRoundEndMessage();
 	}
 
-	private boolean checkUserInput(String answer, String userInput) {
+	private boolean isCorrectInput(String answer, String userInput) {
 		if (answer.equals(userInput)) {
 			return true;
 		}

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class GameRunnerTest {
 
 	private static GameRunner gameRunner;
-	private static Method checkUserInput;
+	private static Method isCorrectInput;
 	private static Method checkStrike;
 	private static Method checkBall;
 
@@ -23,8 +23,8 @@ class GameRunnerTest {
 	}
 
 	private static void setReflectionForMethod() throws NoSuchMethodException {
-		checkUserInput = GameRunner.class.getDeclaredMethod("checkUserInput", String.class, String.class);
-		checkUserInput.setAccessible(true);
+		isCorrectInput = GameRunner.class.getDeclaredMethod("isCorrectInput", String.class, String.class);
+		isCorrectInput.setAccessible(true);
 
 		checkStrike = GameRunner.class.getDeclaredMethod("checkStrike", String.class, String.class);
 		checkStrike.setAccessible(true);
@@ -35,23 +35,23 @@ class GameRunnerTest {
 
 	@ParameterizedTest
 	@CsvSource(value = {"'123','123'", "'964','964'", "'528','528'"})
-	void checkUserInputIsTrue_InputsAreTrue_True(String answer, String userInput) throws
+	void isCorrectInput_InputsAreTrue_True(String answer, String userInput) throws
 		InvocationTargetException, IllegalAccessException {
-		boolean result = (boolean)checkUserInput.invoke(gameRunner, answer, userInput);
+		boolean result = (boolean)isCorrectInput.invoke(gameRunner, answer, userInput);
 		assertThat(result).isTrue();
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"'123','456'", "'964','649'", "'528','538'"})
-	void checkUserInputIsTrue_InputsAreFalse_False(String answer, String userInput) throws
+	void isCorrectInput_InputsAreFalse_False(String answer, String userInput) throws
 		InvocationTargetException, IllegalAccessException {
-		boolean result = (boolean)checkUserInput.invoke(gameRunner, answer, userInput);
+		boolean result = (boolean)isCorrectInput.invoke(gameRunner, answer, userInput);
 		assertThat(result).isFalse();
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"'123','456', 0", "'964','694',1", "'528','538',2", "'348','348',3"})
-	void PrintAndReturnStrike_ValidInputs_ReturnTrueStrike(String answer, String userInput, int strike) throws
+	void checkStrike_ValidInputs_ReturnTrueStrike(String answer, String userInput, int strike) throws
 		InvocationTargetException, IllegalAccessException {
 		int result = (int)checkStrike.invoke(gameRunner, answer, userInput);
 		assertThat(result).isEqualTo(strike);
@@ -59,7 +59,7 @@ class GameRunnerTest {
 
 	@ParameterizedTest
 	@CsvSource(value = {"'123','456', 0, 0", "'964','694', 1, 2", "'528','583', 1, 1", "'348','834', 0, 3"})
-	void PrintAndReturnBall_ValidInputs_ReturnTrueBall(String answer, String userInput, int strike, int ball) throws
+	void checkBall_ValidInputs_ReturnTrueBall(String answer, String userInput, int strike, int ball) throws
 		InvocationTargetException, IllegalAccessException {
 		int result = (int)checkBall.invoke(gameRunner, answer, userInput, strike);
 		assertThat(result).isEqualTo(ball);

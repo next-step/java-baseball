@@ -27,18 +27,18 @@ public class GameplayUI {
 		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
 
-	public String getUserInput() {
+	public String getNumberInput() {
 		printInputRequest();
 		String userInput = "";
 		boolean isValidAnswerInput = false;
 		while (!isValidAnswerInput) {
 			userInput = scan.nextLine();
-			isValidAnswerInput = checkValidInput(userInput);
+			isValidAnswerInput = isValidInput(userInput);
 		}
 		return userInput;
 	}
 
-	private boolean checkValidInput(String userInput) {
+	private boolean isValidInput(String userInput) {
 		try {
 			Integer.parseInt(userInput);
 		} catch (NumberFormatException ex) {

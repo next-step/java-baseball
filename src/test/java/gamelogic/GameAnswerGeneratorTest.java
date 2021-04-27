@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class GameAnswerGeneratorTest {
 
 	private static GameAnswerGenerator gameAnswerGenerator;
-	private static Method isValidAnswerMethod;
+	private static Method isValidAnswer;
 
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
@@ -21,15 +21,15 @@ class GameAnswerGeneratorTest {
 	}
 
 	private static void setReflectionForMethod() throws NoSuchMethodException {
-		isValidAnswerMethod = GameAnswerGenerator.class.getDeclaredMethod("isValidAnswer", int.class);
-		isValidAnswerMethod.setAccessible(true);
+		isValidAnswer = GameAnswerGenerator.class.getDeclaredMethod("isValidAnswer", int.class);
+		isValidAnswer.setAccessible(true);
 	}
 
 	@ParameterizedTest
 	@ValueSource(ints = {331, 555, 949})
 	void isValidAnswer_withSameDigits_False(int input)
 		throws InvocationTargetException, IllegalAccessException {
-		boolean result = (boolean)isValidAnswerMethod.invoke(gameAnswerGenerator, input);
+		boolean result = (boolean)isValidAnswer.invoke(gameAnswerGenerator, input);
 		assertThat(result).isFalse();
 	}
 
@@ -37,7 +37,7 @@ class GameAnswerGeneratorTest {
 	@ValueSource(ints = {321, 546, 947})
 	void isValidAnswer_withValidAnswerFormat_True(int input)
 		throws InvocationTargetException, IllegalAccessException {
-		boolean result = (boolean)isValidAnswerMethod.invoke(gameAnswerGenerator, input);
+		boolean result = (boolean)isValidAnswer.invoke(gameAnswerGenerator, input);
 		assertThat(result).isTrue();
 	}
 }
