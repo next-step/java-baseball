@@ -18,36 +18,30 @@ public class BaseBallNumbers {
         return first;
     }
 
-    private boolean setFirst(int first) {
+    private void setFirst(int first) {
         if (isValidNumber(first)) {
             this.first = first;
-            return false;
         }
-        return true;
     }
 
     public int getSecond() {
         return second;
     }
 
-    private boolean setSecond(int second) {
+    private void setSecond(int second) {
         if (isValidNumber(second)) {
             this.second = second;
-            return false;
         }
-        return true;
     }
 
     public int getThird() {
         return third;
     }
 
-    private boolean setThird(int third) {
+    private void setThird(int third) {
         if (isValidNumber(third)) {
             this.third = third;
-            return false;
         }
-        return true;
     }
 
     public int countStrike(BaseBallNumbers inputNumbers) {

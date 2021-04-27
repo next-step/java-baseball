@@ -11,14 +11,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BaseBallMachineTest {
 
     private BaseBallNumbers machineNumbers;
+    private BaseBallNumbers oneStrikeNumbers;
     private BaseBallNumbers threeStrikeNumbers;
+    private BaseBallNumbers oneBallNumbers;
+    private BaseBallNumbers threeBallNumbers;
+    private BaseBallNumbers nothingNumbers;
 
     @BeforeEach
     public void setUp() {
         machineNumbers = new BaseBallNumbers(123);
-
         threeStrikeNumbers = new BaseBallNumbers(123);
+        oneStrikeNumbers = new BaseBallNumbers(145);
+        oneBallNumbers = new BaseBallNumbers(415);
+        threeBallNumbers = new BaseBallNumbers(312);
+        nothingNumbers = new BaseBallNumbers(456);
     }
+
     @Test
     public void generateRandomNumbersTest() {
         BaseBallMachine baseBallMachine = new BaseBallMachine();
@@ -44,9 +52,70 @@ public class BaseBallMachineTest {
     }
 
     @Test
-    public void judgeStrike() {
+    public void judgeStrikeOrBallOrNothingTest() {
         BaseBallMachine baseBallMachine = new BaseBallMachine();
-        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrike(machineNumbers, threeStrikeNumbers);
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrikeOrBallOrNothing(machineNumbers, threeStrikeNumbers);
         assertSame(3, baseBallJudgementStatus.getStrike());
     }
+
+    @Test
+    public void T01_1스트라이크_판정() {
+        //Given
+        BaseBallMachine baseBallMachine = new BaseBallMachine();
+
+        //When
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrikeOrBallOrNothing(machineNumbers, oneStrikeNumbers);
+
+        //Then
+        assertSame(1, baseBallJudgementStatus.getStrike());
+    }
+
+    @Test
+    public void T02_3스트라이크_판정() {
+        //Given
+        BaseBallMachine baseBallMachine = new BaseBallMachine();
+
+        //When
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrikeOrBallOrNothing(machineNumbers, threeStrikeNumbers);
+
+        //Then
+        assertSame(3, baseBallJudgementStatus.getStrike());
+    }
+
+    @Test
+    public void T03_1볼_판정() {
+        //Given
+        BaseBallMachine baseBallMachine = new BaseBallMachine();
+
+        //When
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrikeOrBallOrNothing(machineNumbers, oneBallNumbers);
+
+        //Then
+        assertSame(1, baseBallJudgementStatus.getBall());
+    }
+
+    @Test
+    public void T04_3볼_판정() {
+        //Given
+        BaseBallMachine baseBallMachine = new BaseBallMachine();
+
+        //When
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrikeOrBallOrNothing(machineNumbers, threeBallNumbers);
+
+        //Then
+        assertSame(3, baseBallJudgementStatus.getBall());
+    }
+
+    @Test
+    public void T05_4볼_판정() {
+        //Given
+        BaseBallMachine baseBallMachine = new BaseBallMachine();
+
+        //When
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrikeOrBallOrNothing(machineNumbers, nothingNumbers);
+
+        //Then
+        assertSame(3, baseBallJudgementStatus.getNothing());
+    }
+
 }

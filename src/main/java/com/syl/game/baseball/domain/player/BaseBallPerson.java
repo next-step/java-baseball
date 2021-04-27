@@ -16,7 +16,7 @@ public class BaseBallPerson extends BaseBallPlayer {
     }
 
     @Override
-    public BaseBallJudgementStatus judgeStrike(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
-        return super.judgeStrike(selectedNumbers, inputNumbers);
+    public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
+        return super.judgeStrikeOrBallOrNothing(selectedNumbers, inputNumbers);
     }
 }

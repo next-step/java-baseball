@@ -18,7 +18,7 @@ public class BaseballGameService {
     }
 
     public BaseBallJudgementStatus judgement(BaseBallMachine machine, BaseBallNumbers machineAnswers, BaseBallNumbers inputNumbers) {
-        BaseBallJudgementStatus judgement = machine.judgeStrike(machineAnswers ,inputNumbers);
+        BaseBallJudgementStatus judgement = machine.judgeStrikeOrBallOrNothing(machineAnswers ,inputNumbers);
         return judgement;
     }
 }

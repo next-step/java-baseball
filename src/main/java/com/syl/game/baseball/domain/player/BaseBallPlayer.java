@@ -16,7 +16,6 @@ public abstract class BaseBallPlayer {
      */
     public BaseBallNumbers selectThreeNumbers() {
         return setNumbers();
-
     }
 
     /**
@@ -33,7 +32,7 @@ public abstract class BaseBallPlayer {
      * @param inputNumbers
      * @return
      */
-    public BaseBallJudgementStatus judgeStrike(BaseBallNumbers answerNumbers, BaseBallNumbers inputNumbers) {
+    public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(BaseBallNumbers answerNumbers, BaseBallNumbers inputNumbers) {
         int strike = answerNumbers.countStrike(inputNumbers);
         int ball = answerNumbers.countBall(inputNumbers);
         int nothing = answerNumbers.countNothing(inputNumbers);
