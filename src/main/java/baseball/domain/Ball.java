@@ -3,10 +3,11 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Ball {
-  private final Integer MIN = 1;
-  private final Integer MAX = 9;
+  private static final Integer MIN = 1;
+  private static final Integer MAX = 9;
 
   private final Integer number;
+
 
   public Ball(Integer number) {
     validate(number);
