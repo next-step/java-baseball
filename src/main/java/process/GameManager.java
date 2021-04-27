@@ -2,7 +2,7 @@ package process;
 
 import java.util.Scanner;
 
-import engine.Ball1;
+import engine.Ball;
 import engine.GameEngine;
 import ui.InputOutputUtil;
 
@@ -46,7 +46,7 @@ public class GameManager {
 
 	public boolean progressEachStage() {
 		try {
-			if (gameEngine.progressEachStage(new Ball1(inputOutputUtil.nextInput(), ANSWER_LENGTH))) {
+			if (gameEngine.progressEachStage(new Ball(inputOutputUtil.nextInput(), ANSWER_LENGTH))) {
 				return true;
 			}
 			printCurrentStatus(gameEngine.getStrike(), gameEngine.getBall());
