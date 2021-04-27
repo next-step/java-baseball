@@ -10,6 +10,12 @@ public class BaseBallGame {
     CheckResultModel checkResultModel = new CheckResultModel();
     int isEnd = 0;
 
+    // TODO : 기본 값 생성
+    public void init(){
+        createNumberPool();
+        makeTargetNumberList(3); // 자리수가 바뀔 경우 digit을 변경
+    }
+
     // TODO : 1-9 numberPool 생성
     public void createNumberPool(){
         numberPool = new ArrayList<>();
