@@ -48,7 +48,7 @@ public class BaseballGame {
 	}
 
 	public boolean isStrike(char input, char randomNumber){
-		return false;
+		return input == randomNumber ? true : false;
 	}
 	public boolean isBall(char input, String randomNumbers){
 		return false;
