@@ -45,6 +45,22 @@ class ConsoleTest {
     }
 
     @Test
+    void print_three_ball_score() {
+        ByteArrayOutputStream outputStream = systemOutput();
+        Score score = new Score(0, 3);
+        console.print(score);
+        assertThat(outputStream.toString()).hasToString(score.getBall() + " 볼" + NEW_LINE);
+    }
+
+    @Test
+    void print_four_ball_score() {
+        ByteArrayOutputStream outputStream = systemOutput();
+        Score score = new Score(0, 4);
+        console.print(score);
+        assertThat(outputStream.toString()).hasToString("낫싱" + NEW_LINE);
+    }
+
+    @Test
     void print_one_strike_one_ball_score() {
         ByteArrayOutputStream outputStream = systemOutput();
         Score score = new Score(1, 1);
