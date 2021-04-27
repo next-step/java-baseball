@@ -8,6 +8,7 @@ public class BallNumber {
     public static final int MAXIMUM_BALL_NUMBER = 9;
     public static final int MINIMUM_BALL_NUMBER = 1;
     public static final String BALL_VALID_RANGE = "공은 1과 9사이의 숫자만 가능합니다.";
+    public static final String INPUT_ERROR = "숫자를 3개 입력해야합니다.";
     private final int number;
 
     public BallNumber(int number) {
@@ -29,7 +30,7 @@ public class BallNumber {
         List<BallNumber> ballNumbers = new ArrayList<>();
         char[] numbers = value.toCharArray();
         if (numbers.length != 3) {
-            throw new IllegalArgumentException("숫자를 3개 입력해야합니다.");
+            throw new IllegalArgumentException(INPUT_ERROR);
         }
         for (char number : numbers) {
             ballNumbers.add(new BallNumber(number - '0'));

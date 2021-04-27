@@ -28,7 +28,8 @@ class ScoreCalculatorTest {
     void getWinState() {
         List<BallNumber> threeMatch1 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
         List<BallNumber> threeMatch2 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
-        bat = new Bat(threeMatch1);
+        BallNumbers ballNumbers = new BallNumbers(threeMatch1);
+        bat = new Bat(ballNumbers);
         ball = new Ball(new BallNumbers(threeMatch2));
 
         scoreCalculator.calculateScore(bat, ball);
@@ -41,9 +42,10 @@ class ScoreCalculatorTest {
     void getNormalState() {
         List<BallNumber> oneMatch1 = Arrays.asList(new BallNumber(4), new BallNumber(9), new BallNumber(6));
         List<BallNumber> oneMatch2 = Arrays.asList(new BallNumber(4), new BallNumber(2), new BallNumber(3));
-        Bat bat = new Bat(oneMatch1);
-        BallNumbers ballNumbers = new BallNumbers(oneMatch2);
-        Ball ball = new Ball(ballNumbers);
+        BallNumbers ballNumbers1 = new BallNumbers(oneMatch1);
+        Bat bat = new Bat(ballNumbers1);
+        BallNumbers ballNumbers2 = new BallNumbers(oneMatch2);
+        Ball ball = new Ball(ballNumbers2);
 
         scoreCalculator.calculateScore(bat, ball);
 
@@ -55,9 +57,10 @@ class ScoreCalculatorTest {
     void getNothingState() {
         List<BallNumber> noMatch1 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
         List<BallNumber> noMatch2 = Arrays.asList(new BallNumber(4), new BallNumber(5), new BallNumber(6));
-        Bat bat = new Bat(noMatch1);
-        BallNumbers ballNumbers = new BallNumbers(noMatch2);
-        Ball ball = new Ball(ballNumbers);
+        BallNumbers ballNumbers1 = new BallNumbers(noMatch1);
+        Bat bat = new Bat(ballNumbers1);
+        BallNumbers ballNumbers2 = new BallNumbers(noMatch2);
+        Ball ball = new Ball(ballNumbers2);
 
         scoreCalculator.calculateScore(bat, ball);
 
