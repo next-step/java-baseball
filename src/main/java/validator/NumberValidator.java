@@ -18,4 +18,13 @@ public class NumberValidator {
 		}
 		return true;
 	}
+
+	public boolean isNotValidEndViewInput(String inputNumber) {
+		return !NumberValidation.IsNotEmptyString.getValidate().test(inputNumber) ||
+			!validateEndViewNumber(inputNumber);
+	}
+
+	private static boolean validateEndViewNumber(String inputNumber) {
+		return inputNumber.matches("^[1-2]$");
+	}
 }

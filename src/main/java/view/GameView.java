@@ -2,13 +2,13 @@ package view;
 
 import java.util.Scanner;
 
-import constant.NumberValidation;
 import dto.GameResult;
 import validator.NumberValidator;
 
 public class GameView {
+	private static final NumberValidator numberValidator = new NumberValidator();
+
 	public static String inputNumberView() {
-		NumberValidator numberValidator = new NumberValidator();
 		Scanner scanner = new Scanner(System.in);
 		String inputNumber;
 		do {
@@ -29,16 +29,8 @@ public class GameView {
 		do {
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
 			inputNumber = scanner.nextLine();
-		} while (isNotValidEndViewInput(inputNumber));
+		} while (numberValidator.isNotValidEndViewInput(inputNumber));
 		return inputNumber.charAt(0) == '1';
 	}
 
-	private static boolean isNotValidEndViewInput(String inputNumber) {
-		return !NumberValidation.IsNotEmptyString.getValidate().test(inputNumber) ||
-			!validateEndViewNumber(inputNumber);
-	}
-
-	private static boolean validateEndViewNumber(String inputNumber) {
-		return inputNumber.matches("^[1-2]$");
-	}
 }
