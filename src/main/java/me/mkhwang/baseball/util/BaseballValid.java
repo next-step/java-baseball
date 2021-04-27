@@ -1,5 +1,7 @@
 package me.mkhwang.baseball.util;
 
+import me.mkhwang.baseball.type.GameType;
+
 /**
  * Created by mkhwang on 2021/04/25
  * Email : orange2652@gmail.com
@@ -7,12 +9,8 @@ package me.mkhwang.baseball.util;
  */
 public class BaseballValid {
 
-    private static final int BALL_LENGTH = 3;
-    private static final char MIN_NUMBER = '1';
-    private static final char MAX_NUMBER = '9';
-
     public boolean isBaseballLengthValid(String ballNumber) {
-        return ballNumber.length() == BALL_LENGTH;
+        return ballNumber.length() == GameType.BALL_LENGTH.getType();
     }
 
     public boolean isBaseballDuplicateValid(String ballNumber) {
@@ -51,16 +49,22 @@ public class BaseballValid {
         return valid;
     }
 
-    private boolean isValidNumber(boolean valid, char validNumber) {
+    private boolean isValidNumber(boolean valid, int validNumber) {
+        char minNumber = numberToChar(GameType.MIN_NUMBER.getType());
+        char maxNumber = numberToChar(GameType.MAX_NUMBER.getType());
         if(!valid){
             return false;
         }
 
-        if(validNumber < MIN_NUMBER || validNumber > MAX_NUMBER){
+        if(validNumber < minNumber || validNumber > maxNumber){
             valid = false;
         }
 
         return valid;
+    }
+
+    private char numberToChar(int number) {
+        return Character.forDigit(number, 10);
     }
 
 }
