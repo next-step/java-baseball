@@ -46,4 +46,17 @@ public class BaseBallGameTest {
 			.isNotEqualTo(target[0])
 			.isNotEqualTo(target[1]);
 	}
+
+	@Test
+	@DisplayName("스트라이크 확인")
+	void checkStrike() {
+		int[] target = {1, 2, 3};
+		int[] userInputs = {1, 2, 3};
+
+		int strike = BaseBallGame.getStrikeCount(target, userInputs);
+
+		assertThat(strike)
+			.as("Strike: %d", strike)
+			.isEqualTo(3);
+	}
 }
