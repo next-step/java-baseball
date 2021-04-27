@@ -18,15 +18,14 @@ public class BaseBallGame {
 		do {
 			Quiz quiz = new Quiz(computer.makeRightNumbers());
 			solveQuiz(quiz);
-		} while (isOnGoing());
+		} while (isOnGoing(InputView.getGameOption()));
 	}
 
-	private boolean isOnGoing() {
-		final GameOption gameOption = InputView.getGameOption();
+	protected boolean isOnGoing(GameOption gameOption) {
 		return gameOption.isOnGoing();
 	}
 
-	public void solveQuiz(Quiz quiz) {
+	protected void solveQuiz(Quiz quiz) {
 		do {
 			final Hints hints = quiz.checkNumbers(InputView.getNumbers());
 			OutputView.printHints(hints);

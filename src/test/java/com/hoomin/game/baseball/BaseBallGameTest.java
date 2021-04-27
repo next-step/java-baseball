@@ -3,8 +3,10 @@ package com.hoomin.game.baseball;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.hoomin.game.baseball.enums.GameOption;
@@ -12,16 +14,23 @@ import com.hoomin.game.baseball.enums.GameOption;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseBallGameTest {
 
-	@ParameterizedTest
-	@ValueSource(strings = {"RESTART"})
-	public void isOnGoing_RevivedRESTART_ReturnTrue(String input) {
-		assertTrue(GameOption.valueOf(input).isOnGoing());
+	private BaseBallGame baseBallGame;
+
+	@BeforeAll
+	public void beforeAll() {
+		baseBallGame = new BaseBallGame();
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"QUIT"})
-	public void isOnGoing_RevivedQUIT_ReturnFalse(String input) {
-		assertFalse(GameOption.valueOf(input).isOnGoing());
+	@EnumSource(value = GameOption.class, names = {"RESTART"})
+	public void isOnGoing_RevivedRESTART_ReturnTrue(GameOption gameOption) {
+		assertTrue(baseBallGame.isOnGoing(gameOption));
+	}
+
+	@ParameterizedTest
+	@EnumSource(value = GameOption.class, names = {"QUIT"})
+	public void isOnGoing_RevivedQUIT_ReturnFalse(GameOption gameOption) {
+		assertFalse(baseBallGame.isOnGoing(gameOption));
 	}
 
 	@ParameterizedTest
