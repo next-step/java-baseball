@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleTest {
 
-    public static final String NEW_LINE = "\r\n";
+    private static final String NEW_LINE = "\r\n";
     private Console console;
 
     @BeforeEach
@@ -60,10 +60,13 @@ class ConsoleTest {
         assertThat(outputStream.toString()).hasToString(score.getStrike() + " 스트라이크" + NEW_LINE);
     }
 
-    private ByteArrayOutputStream systemOutput() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-        return outputStream;
+    @Test
+    void print_three_strike_score() {
+        ByteArrayOutputStream outputStream = systemOutput();
+        Score score = new Score(3, 0);
+        console.print(score);
+        assertThat(outputStream.toString())
+                .hasToString(score.getStrike() + " 스트라이크" + NEW_LINE + "3개의 숫자를 모두 맞히셨습니다! 게임종료" + NEW_LINE);
     }
 
     @Disabled
@@ -73,6 +76,12 @@ class ConsoleTest {
 
         // TODO 3스트라이크 될때까지 숫자를 물어보는 기능
         console.play();
+    }
+
+    private ByteArrayOutputStream systemOutput() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        return outputStream;
     }
 
     private void systemInput(String input) {
