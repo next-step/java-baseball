@@ -59,18 +59,32 @@ public class BaseballService {
 	}
 
 	public String generateOutputMessage(int strikeCount, int ballCount) {
+		StringBuffer message = new StringBuffer();
 
-		return "";
+		if (strikeCount > 0) {
+			message.append(strikeCount);
+			message.append("스트라이크");
+		}
+
+		if (ballCount > 0) {
+			if (message.length() > 0) {
+				message.append(" ");
+			}
+			message.append(ballCount);
+			message.append("볼");
+		}
+
+		return message.toString();
 	}
 
 	public String generateAnswerOutputMessage() {
 
-		return "";
+		return "3스트라이크\n3개의숫자를모두맞히셨습니다!게임종료";
 	}
 
 	public String generateNotThingOutputMessage() {
 
-		return "";
+		return "낫싱";
 	}
 
 	public int[] validateInputAndConvert(String input) {
