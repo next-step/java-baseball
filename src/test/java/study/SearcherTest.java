@@ -23,10 +23,11 @@ class SearcherTest {
     void findCharFailTest() {
         Searcher searcher = new Searcher();
 
-        assertThatThrownBy(() -> {
-            searcher.findChar(inputText, 10);
-        }).isInstanceOf(StringIndexOutOfBoundsException.class)
-                .hasMessageContaining("찾는 index값이 문자길이 범위를 넘었습니다.");
+        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+                .isThrownBy(() -> {
+                    searcher.findChar(inputText, 4);
+                }).withMessageMatching("String index out of range: \\d+");
+
     }
 
 }

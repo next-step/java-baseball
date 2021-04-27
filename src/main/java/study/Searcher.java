@@ -10,14 +10,13 @@ public class Searcher {
 
     private void checkFindIndexLength(String inputText, int index) {
         if (0 > index || index >= inputText.length()) {
-            throw new StringIndexOutOfBoundsException("찾는 index값이 문자길이 범위를 넘었습니다.");
+            new StringIndexOutOfBoundsException("String index out of range: " + index);
         }
-
     }
 
     public char findChar(String inputText, int index) {
         checkOneMoreLength(inputText);
-        checkFindIndexLength(inputText,index);
+        checkFindIndexLength(inputText, index);
         return inputText.charAt(index);
     }
 
