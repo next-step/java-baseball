@@ -27,9 +27,9 @@ public class BaseBallNumbers {
     }
 
     public boolean setSecond(int second) {
-        if (compareFirst(second)) return false;
+        if (compareFirst(second)) return true;
         this.second = second;
-        return true;
+        return false;
     }
 
     public int getThird() {
@@ -37,10 +37,9 @@ public class BaseBallNumbers {
     }
 
     public boolean setThird(int third) {
-        System.out.println("third   "+third);
-        if (compareFirst(third) || compareSecond(third)) return false;
+        if (compareFirst(third) || compareSecond(third)) return true;
         this.third = third;
-        return true;
+        return false;
     }
 
     public int countStrike(BaseBallNumbers inputNumbers) {
