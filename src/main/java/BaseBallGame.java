@@ -38,4 +38,17 @@ public class BaseBallGame {
 	private static int getStrikeCountCondition(int target, int inputNumber, int count) {
 		return (target == inputNumber) ? count + 1 : count;
 	}
+
+	public static int getBallCount(int[] target, int[] inputNumbers) {
+		int ball = 0;
+		for (int i = 0; i < inputNumbers.length; i++) {
+			ball = getBallCountCondition(target, inputNumbers, i, ball);
+		}
+		return ball;
+	}
+
+	private static int getBallCountCondition(int[] target, int[] inputNumbers, int index, int count) {
+		return (ArrayUtils.indexOf(target, inputNumbers[index]) > -1 && target[index] != inputNumbers[index])
+			? count + 1 : count;
+	}
 }
