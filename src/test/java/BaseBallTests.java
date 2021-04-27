@@ -62,6 +62,22 @@ public class BaseBallTests {
 		
 	}
 	
+	/**
+	 * 2. 사용자 숫자입력
+	 * 2) 입력값의 유효성을 검증한다.
+	 */
+	@Test
+	public void validPlayerNumTest() {
+		
+		BaseBall bb = new BaseBall();
+		bb.start("123");
+		
+		/* 입력값이 유효한지 검증 (S) */
+		Assertions.assertTrue(!bb.isError);
+		/* 입력값이 유효한지 검증 (E) */
+		
+	}
+	
 	
 	
 }
