@@ -1,4 +1,5 @@
 import baseball.domain.Score;
+import baseball.exception.IllegalPositionException;
 import baseball.service.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -79,14 +80,42 @@ class GameTest {
     }
 
     @Test
-    void first_number_range_between_one_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void third_number_range_between_one_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Set<Integer> sets = getIntegers(3);
+        assertThat(sets).containsExactly(1, 2, 3, 4, 5, 6, 7, 8, 9).doesNotContain(0);
+    }
+
+    @Test
+    void second_number_range_between_zero_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Set<Integer> sets = getIntegers(2);
+        assertThat(sets).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    }
+
+    @Test
+    void first_number_range_between_zero_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Set<Integer> sets = getIntegers(1);
+        assertThat(sets).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    }
+
+    private Set<Integer> getIntegers(int pos) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method method = game.getClass().getDeclaredMethod("createRandomNumber");
         method.setAccessible(true);
+        Set<Integer> sets = new HashSet<>();
         for (int i = 0; i < 1000000; i++) {
             int number = (int) method.invoke(game);
-            assertThat(number / 100).isBetween(1, 9);
-            assertThat(number / 100).isNotZero();
+            sets.add(getNumberAtPos(number, pos));
         }
+        return sets;
+    }
+
+    private int getNumberAtPos(int number, int pos) {
+        if (pos == 3)
+            return number / 100;
+        else if ((pos == 2))
+            return number / 10 % 10;
+        else if (pos == 1)
+            return number % 10;
+        throw new IllegalPositionException();
     }
 
     private void assertPlay(Score score, int strike, int ball) {

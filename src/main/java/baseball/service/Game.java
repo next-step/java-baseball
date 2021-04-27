@@ -28,12 +28,14 @@ public class Game {
     private int createRandomNumber() {
         int[] numbers = new int[3];
 
-        numbers[0] = (int) (Math.random() * 8) + 1;
+        numbers[0] = (int) (Math.random() * 9) + 1;
+        numbers[1] = (int) (Math.random() * 10);
+        numbers[2] = (int) (Math.random() * 10);
 
         StringBuilder builder = new StringBuilder();
         builder.append(numbers[0]);
-        builder.append(0);
-        builder.append(0);
+        builder.append(numbers[1]);
+        builder.append(numbers[2]);
 
         return Integer.valueOf(builder.toString());
     }
