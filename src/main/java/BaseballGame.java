@@ -20,7 +20,6 @@ public class BaseballGame implements Game {
 	@Override
 	public void play() {
 		initQuestion();
-		System.out.println(rightAnswer);
 
 		List<Integer> answer;
 		while (!isCorrectAnswer(rightAnswer, answer = receiveAnswer())) {
