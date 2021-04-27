@@ -12,7 +12,15 @@ public class Score {
     public String getScore(){
         return sMessage;
     }
-    
+
+    public int getStrikeCount(){
+        return strike;
+    }
+
+    public int getBallCount(){
+        return ball;
+    }
+
     public void compare(int[] randomNumbers, int[] gamerNumbers){
         compareNumbers(randomNumbers,gamerNumbers);
         makeMessage();
@@ -39,9 +47,9 @@ public class Score {
         if(strike == 0 && ball == 0)
             sMessage = sMessage.concat("낫싱");
         if(strike > 0)
-            sMessage = sMessage.concat(strike + "스트라이크 ");
+            sMessage = sMessage.concat(strike + "스트라이크");
         if(ball > 0)
-            sMessage = sMessage.concat(ball + "볼 ");
+            sMessage = sMessage.concat(ball + "볼");
         return sMessage;
     }
 

@@ -21,4 +21,5 @@ public class GamerNumber {
             numbers[i] = Integer.parseInt(input.substring(i,i+1));
         }
     }
+
 }
