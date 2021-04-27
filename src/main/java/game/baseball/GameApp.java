@@ -78,8 +78,10 @@ public class GameApp {
 			return false;
 		}
 		
-		int inputNumber = takeNumber("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.", inputScanner);
-		if (inputNumber == 2) {
+		int inputNumber = takeNumber("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n", inputScanner);
+		boolean isContinue = isContinueGame(inputNumber);
+		
+		if (!isContinue) {
 			return true;
 		}
 		
@@ -88,4 +90,23 @@ public class GameApp {
 				
 		return false;
 	}
+	
+	/**
+	 * @brief 게임을 계속 진행 할 지 여부 판단
+	 * @param inputNumber 사용자 입력 값
+	 * @return
+	 */
+	private static boolean isContinueGame(int inputNumber) {
+		if (inputNumber != 1 && inputNumber != 2) {
+			throw new GameException(GameErrorCode.NUMBER_RANGE_ERROR
+					,GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
+		}
+		
+		if (inputNumber == 1) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 }
