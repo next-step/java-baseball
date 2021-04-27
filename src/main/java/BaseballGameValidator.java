@@ -20,4 +20,12 @@ public class BaseballGameValidator {
 
 		return false;
 	}
+
+	public static boolean isNotZeroContained(String input) {
+		if (input.indexOf('0') > -1) {
+			return false;
+		}
+
+		return true;
+	}
 }

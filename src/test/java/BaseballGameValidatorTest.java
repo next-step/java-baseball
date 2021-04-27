@@ -26,4 +26,11 @@ public class BaseballGameValidatorTest {
 		assertThat(BaseballGameValidator.isAllowedNumbers("3")).isTrue();
 		assertThat(BaseballGameValidator.isAllowedNumbers("a")).isTrue();
 	}
+
+	@Test
+	@DisplayName("0 이 포함되어 있는지 확인")
+	public void is_not_zero_contained() {
+		assertThat(BaseballGameValidator.isNotZeroContained("102")).isFalse();
+		assertThat(BaseballGameValidator.isNotZeroContained("132")).isTrue();
+	}
 }

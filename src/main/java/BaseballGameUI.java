@@ -70,10 +70,10 @@ public class BaseballGameUI {
 	}
 
 	private static boolean isInputValid(String input) {
-		if (!BaseballGameValidator.isLengthThree(input) || !BaseballGameValidator.isNumbers(input)) {
-			return false;
+		if (BaseballGameValidator.isLengthThree(input) && BaseballGameValidator.isNumbers(input) && BaseballGameValidator.isNotZeroContained(input)) {
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 }
