@@ -11,13 +11,13 @@ import java.util.Scanner;
  */
 public class BaseballGame {
 
-    private User user;
-    private Computer computer;
+    private UserBallGenerator user;
+    private ComputerBallGenerator computer;
     private GameType status;
 
     public BaseballGame() {
-        this.user = new User();
-        this.computer = new Computer();
+        this.user = new UserBallGenerator();
+        this.computer = new ComputerBallGenerator();
         this.status = GameType.GAME_START;
     }
 
@@ -38,7 +38,7 @@ public class BaseballGame {
         Scanner scanner = new Scanner(System.in);
         Integer restartFlag = scanner.nextInt();
         if(restartFlag == GameType.GAME_START.getType()){
-            this.computer = new Computer();
+            this.computer = new ComputerBallGenerator();
             return;
         }
 

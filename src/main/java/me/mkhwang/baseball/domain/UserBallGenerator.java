@@ -9,10 +9,9 @@ import java.util.Scanner;
  * Email : orange2652@gmail.com
  * Github : https://github.com/myeongkwonhwang
  */
-public class User {
+public class UserBallGenerator extends BaseballValid{
 
     private String ballNumber;
-    private BaseballValid baseballValid = new BaseballValid();
 
     public void insertBallNumberForUser() {
         Scanner scanner = new Scanner(System.in);
@@ -30,9 +29,9 @@ public class User {
     }
 
     public boolean isValid(String ballNumber) {
-        return baseballValid.isBaseballTextValid(ballNumber)
-                && baseballValid.isBaseballLengthValid(ballNumber)
-                && baseballValid.isBaseballDuplicateValid(ballNumber);
+        return isBaseballTextValid(ballNumber)
+                && isBaseballLengthValid(ballNumber)
+                && isBaseballDuplicateValid(ballNumber);
     }
 
     public String getBallNumber() {

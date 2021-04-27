@@ -1,5 +1,6 @@
 package me.mkhwang.baseball.domain;
 
+import me.mkhwang.baseball.type.GameType;
 import me.mkhwang.baseball.util.BaseballValid;
 
 import java.util.Random;
@@ -9,22 +10,17 @@ import java.util.Random;
  * Email : orange2652@gmail.com
  * Github : https://github.com/myeongkwonhwang
  */
-public class Computer {
-
-    private static final int BALL_LENGTH = 3;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 9;
+public class ComputerBallGenerator extends BaseballValid {
 
     private String ballNumber;
-    private BaseballValid baseballValid = new BaseballValid();
 
-    public Computer() {
+    public ComputerBallGenerator() {
         makeBallCount();
     }
 
     private void makeBallCount() {
         String ball = "";
-        while (ball.length() < BALL_LENGTH){
+        while (ball.length() < GameType.BALL_LENGTH.getType()){
             ball = makeBall(ball);
         }
         this.ballNumber = ball;
@@ -32,14 +28,14 @@ public class Computer {
 
     private String makeBall(String makeBall) {
         String number = extractNumber();
-        if(baseballValid.isBaseballDuplicateValid(makeBall + number)){
+        if(isBaseballDuplicateValid(makeBall + number)){
             makeBall += number;
         }
         return makeBall;
     }
 
     private String extractNumber() {
-        int i = new Random().nextInt(MAX_NUMBER) + MIN_NUMBER;
+        int i = new Random().nextInt(GameType.MAX_NUMBER.getType()) + GameType.MIN_NUMBER.getType();
         String number = String.valueOf(i);
         return number;
     }
