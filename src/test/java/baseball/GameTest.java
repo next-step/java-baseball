@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,16 +36,10 @@ class GameTest {
 
         //given
         // 3 strike
-        List<Integer> comTest1 = new ArrayList<>();
-        comTest1.add(1);
-        comTest1.add(2);
-        comTest1.add(9);
+        List<Integer> comTest1 = Arrays.asList(1, 2, 9);
 
         // 1 strike 2 ball
-        List<Integer> comTest2 = new ArrayList<>();
-        comTest2.add(6);
-        comTest2.add(8);
-        comTest2.add(3);
+        List<Integer> comTest2 = Arrays.asList(6, 8, 3);
 
         int[] userTest1 = {1, 2, 9};
         int[] userTest2 = {8, 6, 3};
@@ -74,6 +69,36 @@ class GameTest {
 
         assertThat(strikeResult.get(1)).isEqualTo(1);
         assertThat(ballResult.get(1)).isEqualTo(2);
+    }
+
+    @DisplayName("게임의 결과 출력")
+    @Test
+    void 게임결과_출력() {
+
+        //given
+        // 3 strike
+        List<Integer> comTest1 = new ArrayList<>();
+        comTest1.add(1);
+        comTest1.add(2);
+        comTest1.add(9);
+
+        int[] userTest1 = {1, 2, 9};
+
+        //when
+        score.init();
+        for (int i = 0; i < ballCount; i++) {
+            game.isStrike(comTest1.get(i), userTest1[i], score);
+            game.isBall(comTest1, userTest1[i], score, i);
+        }
+
+//        //then
+//        assertThat(strikeResult.get(0)).isEqualTo(3);
+//        assertThat(ballResult.get(0)).isEqualTo(0);
+//
+//        assertThat(strikeResult.get(1)).isEqualTo(1);
+//        assertThat(ballResult.get(1)).isEqualTo(2);
+
+
     }
 
 }

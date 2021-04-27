@@ -49,19 +49,9 @@ public class Game {
             isStrike(computerBalls.get(i), userBalls[i], score);
             isBall(computerBalls, userBalls[i], score, i);
         }
-        return judge(score);
+        return score.judge();
     }
 
-    public boolean judge(Score score) {
-        if (isNothing(score)) {
-            return false;
-        }
-        if (isAllStrike(score)) {
-            return true;
-        }
-        System.out.println(isStrikeAndBall(score));
-        return false;
-    }
 
     public void isStrike(int computerBalls, int userBalls, Score score) {
         if (computerBalls == userBalls) {
@@ -78,32 +68,4 @@ public class Game {
         }
 
     }
-
-    public boolean isNothing(Score score) {
-        if(score.getStrike() == 0 && score.getBall() == 0) {
-            System.out.println(Message.NOTHING.getMessage());
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isAllStrike(Score score) {
-        if (score.getStrike() == 3) {
-            System.out.println(Message.WIN.getMessage());
-            return true;
-        }
-        return false;
-    }
-
-    public String isStrikeAndBall(Score score) {
-        String gameResult="";
-        if (score.getStrike() > 0) {
-            gameResult += score.getStrike() + " " + Message.STRIKE.getMessage();
-        }
-        if (score.getBall() > 0) {
-            gameResult += score.getBall() + " " + Message.BALL.getMessage();
-        }
-        return gameResult;
-    }
-
 }
