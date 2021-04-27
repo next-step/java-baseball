@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.domain.BallFactory;
 import baseball.domain.Balls;
 import java.util.Scanner;
 
@@ -10,6 +11,6 @@ public class InputView {
 
   public static Balls inputNumbers() {
     System.out.println(INPUT_NUMBER);
-    return new Balls(SCANNER.next());
+    return BallFactory.createBalls(SCANNER.next());
   }
 }
