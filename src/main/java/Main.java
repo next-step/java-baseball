@@ -7,10 +7,25 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         List<Integer> goalValues = generateGoalValue();
-        int inputValue = in.nextInt();
-        List<Integer> inputValues = getUserInputValue(inputValue);
-        int ballCount = getBallCount(goalValues, inputValues);
-        int strikeCount = getStrikeCount(goalValues, inputValues);
+
+        while (true){
+            int inputValue = in.nextInt();
+            List<Integer> inputValues = getUserInputValue(inputValue);
+            int ballCount = getBallCount(goalValues, inputValues);
+            int strikeCount = getStrikeCount(goalValues, inputValues);
+
+            if (strikeCount == 3){
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+                break;
+            }
+
+            if (ballCount == 0 && strikeCount == 0){
+                System.out.println("낫싱");
+                continue;
+            }
+
+            printResult(ballCount, strikeCount);
+        }
     }
 
     private static List<Integer> generateGoalValue(){
@@ -55,5 +70,17 @@ public class Main {
             }
         }
         return strike;
+    }
+
+
+    private static void printResult(int ballCount, int strikeCount){
+        String result = "";
+        if (strikeCount > 0){
+            result += String.format("%d 스트라이크", strikeCount);
+        }
+        if (ballCount > 0){
+            result += String.format("%d볼", ballCount);
+        }
+        System.out.println(result);
     }
 }
