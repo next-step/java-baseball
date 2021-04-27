@@ -69,16 +69,16 @@ public class BallGameTest {
 
     @DisplayName(value = "Nothing 케이스에 대한 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"1,3,4"})
+    @ValueSource(strings = {"4,5,6"})
     void playNothing(String input) {
         List<Integer> playerInputNumbers = InputNumber.setBallNumber(input);
         BallGame ballGame = new BallGame();
         BaseballResult baseballResult = ballGame.getBallCount(new BaseballResult(), computerNumbers, playerInputNumbers);
 
-        assertThat(baseballResult.getBallCount()).isEqualTo(1);
-        assertThat(baseballResult.getStrikeCount()).isEqualTo(1);
+        assertThat(baseballResult.getBallCount()).isEqualTo(0);
+        assertThat(baseballResult.getStrikeCount()).isEqualTo(0);
         assertFalse(baseballResult.isEndGame());
-        assertFalse(baseballResult.isNothing());
+        assertTrue(baseballResult.isNothing());
     }
 
     @DisplayName(value = "Strike 케이스에 대한 테스트")
@@ -92,6 +92,20 @@ public class BallGameTest {
         assertThat(baseballResult.getBallCount()).isEqualTo(0);
         assertThat(baseballResult.getStrikeCount()).isEqualTo(3);
         assertTrue(baseballResult.isEndGame());
+        assertFalse(baseballResult.isNothing());
+    }
+
+    @DisplayName(value = " 동일 수자 케이스에 대한 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,1"})
+    void playSame(String input) {
+        List<Integer> playerInputNumbers = InputNumber.setBallNumber(input);
+        BallGame ballGame = new BallGame();
+        BaseballResult baseballResult = ballGame.getBallCount(new BaseballResult(), computerNumbers, playerInputNumbers);
+
+        assertThat(baseballResult.getBallCount()).isEqualTo(2);
+        assertThat(baseballResult.getStrikeCount()).isEqualTo(1);
+        assertFalse(baseballResult.isEndGame());
         assertFalse(baseballResult.isNothing());
     }
 }

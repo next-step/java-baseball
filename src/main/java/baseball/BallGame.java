@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,15 +26,16 @@ public class BallGame {
         for (int i = 0; i < dealerNumbers.size(); i++) {
 
             if (dealerNumbers.contains(playerInputNumbers.get(i))) {
-                compareJudging(baseballResult, dealerNumbers, playerInputNumbers.get(i), i);
+                compareJudging(baseballResult, dealerNumbers.get(i), playerInputNumbers.get(i));
             }
         }
 
         return baseballResult;
     }
 
-    private void compareJudging(BaseballResult baseballResult, List<Integer> dealerNumbers, Integer playerInputString, Integer i) {
-        if (dealerNumbers.indexOf(playerInputString) == i) {
+    private void compareJudging(BaseballResult baseballResult, Integer dealerString, Integer playerInputString) {
+
+        if (dealerString.equals(playerInputString)) {
             baseballResult.isStrike();
             return;
         }
