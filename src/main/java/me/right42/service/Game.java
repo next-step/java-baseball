@@ -24,6 +24,7 @@ public class Game {
 
 		while(GameStatus.START.equals(gameStatus)) {
 			gameStatus = playOneGame(goal);
+			goal = computer.getQuestion();
 		}
 	}
 
