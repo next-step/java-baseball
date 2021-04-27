@@ -82,11 +82,11 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void input() {
+    public void input() {
         input(null);
     }
 
-    private void input(String in) {
+    public void input(String in) {
         System.out.print("숫자를 입력해주세요 : ");
         input = in;
         if(in == null) {
@@ -101,7 +101,7 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void validation() {
+    public void validation() {
         if(!input.chars().allMatch(Character::isDigit)) {
             System.out.println("숫자가 아닌값을 입력하셨습니다. 다시 입력해주십시요.");
             input();
@@ -119,7 +119,7 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void check() {
+    public void check() {
         //TODO 입력한 3자리 숫자에 대해 숫자야구 게임 검증
     }
 
@@ -130,7 +130,7 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void result(int strike, int ball) {
+    public void result(int strike, int ball) {
         //TODO 입력값 검증 결과에 따른 로그 출력
     }
 
@@ -141,7 +141,7 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void restart() {
+    public void restart() {
         //TODO 재시작 여부 문의 로직
     }
 }

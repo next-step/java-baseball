@@ -3,6 +3,9 @@ package com.techcamp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +18,23 @@ class BaseballGameServiceTest {
     private static final Logger logger = LoggerFactory.getLogger(BaseballGameServiceTest.class);
 
     @Autowired
-    private BaseballGameService baseballGameService;
+    private BaseballGameService service;
 
     @BeforeEach
     void before() {
-        baseballGameService.reset();
+        service.reset();
     }
 
     @RepeatedTest(10)
     void 숫자야구_초기화_테스트() {
-        logger.info("ANSWER:" + baseballGameService.getAnswer());
+        logger.info("ANSWER:" + service.getAnswer());
     }
 
-    @Test
-    void 숫자야구_유효성검증_테스트() {
+    @ParameterizedTest
+    @EmptySource
+    @ValueSource(strings = {"123", "456", "789", "adb", "12345"})
+    void 숫자야구_유효성검증_테스트(String in) {
+        service.input(in);
     }
 
     @Test
