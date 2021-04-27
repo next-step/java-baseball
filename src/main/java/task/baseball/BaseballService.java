@@ -87,9 +87,28 @@ public class BaseballService {
 		return "낫싱";
 	}
 
-	public int[] validateInputAndConvert(String input) {
+	public List<Integer> validateInputAndConvert(String input) {
+		char[] inputArr = input.toCharArray();
 
-		return new int[3];
+		if (inputArr.length != NUM_SIZE) {
+			throw new IllegalArgumentException("잘못된 포맷 : 입력값은 3자리수 입니다.");
+		}
+
+		List<Integer> checkedInput = new ArrayList<>(NUM_SIZE);
+		for (int i = 0; i < NUM_SIZE; i++) {
+			char inputItem = inputArr[i];
+
+			if (!Character.isDigit(inputItem)) {
+				throw new IllegalArgumentException("잘못된 포맷 : 입력값은 숫자만 가능합니다.");
+
+			} else if (checkedInput.contains(Character.getNumericValue(inputItem))) {
+				throw new IllegalArgumentException("잘못된 포맷 : 입력값은 서로 중복되지 않아야 합니다.");
+
+			}
+			checkedInput.add(Character.getNumericValue(inputItem));
+		}
+
+		return checkedInput;
 	}
 
 }
