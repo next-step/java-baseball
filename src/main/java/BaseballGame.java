@@ -3,21 +3,39 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
-    final static Random r = new Random();
+	final static Random r = new Random();
 
-    static boolean running = true;
+	boolean running = true;
+	boolean exit = false;
 
-    public void run(){
-        String answer = generateNumbers();
-        String guess = "";
-        Scanner sc = new Scanner(System.in);
-        while(running){
-            System.out.print("숫자를 입력해주세요:");
-            guess = sc.next();
-            System.out.println(guess(answer,guess));
-        }
-        sc.close();
-    }
+	public void run(){
+		Scanner sc = new Scanner(System.in);
+		while(!exit){
+			play(sc);
+			continueOrExit(sc.next());
+		}
+		sc.close();
+	}
+
+	public void continueOrExit(String continuePlay){
+		if("1".equals(continuePlay)){
+			running = true;
+		}
+		if("2".equals(continuePlay)){
+			exit = true;
+		}
+	}
+
+	private void play(Scanner sc){
+		String answer = generateNumbers();
+		String guess = "";
+		while(running){
+			System.out.print("숫자를 입력해주세요:");
+			guess = sc.next();
+			System.out.println(guess);
+			System.out.println(guess(answer,guess));
+		}
+	}
 
 	public String generateNumbers(){
 		return generateNumbers(null,3);
@@ -64,7 +82,7 @@ public class BaseballGame {
 
 
 		if(strike==3){
-            running = false;
+			running = false;
 			return "3개의 숫자를 모두 맞히셨습니다! 게임종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 		}
 
@@ -77,12 +95,12 @@ public class BaseballGame {
 	private int[] checkNumbers(String guessNumber,String answerNumbers, int index, int[] count) {
 		String[] splitedAnswerNumbers = answerNumbers.split("");
 		if(answerNumbers.indexOf(guessNumber) < 0){
-				return count;
+			return count;
 		}
 
 		if(guessNumber.equals(splitedAnswerNumbers[index])){
-				count[0]+=1;
-				return count;
+			count[0]+=1;
+			return count;
 		}
 		count[1]+=1;
 		return count;

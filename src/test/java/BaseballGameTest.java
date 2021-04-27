@@ -135,7 +135,7 @@ public class BaseballGameTest{
 	}
 
 	@Test
-	public void couldFinishWhenThreeStrike(){
+	public void couldNotRunningWhenThreeStrike(){
 		String answer = "123";
 		String threestrike_guess = "123";
 		BaseballGame game = new BaseballGame();
@@ -143,6 +143,31 @@ public class BaseballGameTest{
 
 		assertFalse(game.running);
 
+	}
+
+	@Test
+	public void couldPlayGameConinueWhenTypeOne(){
+		String answer = "123";
+		String threestrike_guess = "123";
+		BaseballGame game = new BaseballGame();
+		game.guess(answer,threestrike_guess);
+		game.continueOrExit("1");
+
+		assertFalse(game.exit);
+		assertTrue(game.running);
+	}
+
+
+	@Test
+	public void couldExitGameWhenTypeTwo(){
+		String answer = "123";
+		String threestrike_guess = "123";
+		BaseballGame game = new BaseballGame();
+		game.guess(answer,threestrike_guess);
+		game.continueOrExit("2");
+
+		assertTrue(game.exit);
+		assertFalse(game.running);
 	}
 
 
