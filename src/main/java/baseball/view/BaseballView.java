@@ -52,14 +52,13 @@ public class BaseballView {
 
     private boolean askAboutReGame() {
         System.out.println(MESSAGE_RE_GAME);
-
         boolean result = false;
         int playerAnswer = sc.nextInt();
+
         if (playerAnswer == ANSWER_RE_GAME)
             result = true;
         else if (playerAnswer == ANSWER_EXIT)
             result = false;
-
         return result;
     }
 
