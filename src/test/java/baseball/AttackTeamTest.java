@@ -24,10 +24,10 @@ class AttackTeamTest {
 
 	@Test
 	void initAttackNumbers() {
-		attackTeam.initAttackNumbers();
+		attackTeam.prepareAttackNumbers();
 		String attackNumbers1 = attackTeam.getAttackNumbers();
 
-		attackTeam.initAttackNumbers();
+		attackTeam.prepareAttackNumbers();
 		String attackNumbers2 = attackTeam.getAttackNumbers();
 
 		assertThat(attackNumbers1).isNotEqualTo(attackNumbers2);
@@ -35,7 +35,7 @@ class AttackTeamTest {
 
 	@Test
 	void getAttackNumbers() {
-		attackTeam.initAttackNumbers();
+		attackTeam.prepareAttackNumbers();
 		String attackNumbers = attackTeam.getAttackNumbers();
 
 		List<Integer> attackNumberList = new ArrayList<>();
