@@ -16,7 +16,7 @@ public class BaseballGame {
         scan = new Scanner(System.in);
     }
 
-    public void gameStart() {
+    public void start() {
         System.out.println("start!");
 
         while (true){

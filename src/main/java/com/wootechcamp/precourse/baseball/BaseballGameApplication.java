@@ -6,6 +6,6 @@ public class BaseballGameApplication {
     public static void main (String[] args){
 
         BaseballGame baseBallGame = new BaseballGame();
-        baseBallGame.gameStart();
+        baseBallGame.start();
     }
 }
