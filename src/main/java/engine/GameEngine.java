@@ -6,16 +6,16 @@ public class GameEngine {
 	private int strike;
 	private int ball;
 	private int answerLength;
-	private Ball1 answer;
+	private Ball answer;
 
 	public GameEngine(int answerLength) {
 		this.strike = 0;
 		this.ball = 0;
 		this.answerLength = answerLength;
-		this.answer = new Ball1(answerLength);
+		this.answer = new Ball(answerLength);
 	}
 
-	public boolean progressEachStage(Ball1 inputBall) throws BaseballException1 {
+	public boolean progressEachStage(Ball inputBall) throws BaseballException1 {
 		resetStage();
 		compareInputWithAnswer(inputBall);
 		if (strike == 3) {
@@ -25,7 +25,7 @@ public class GameEngine {
 	}
 
 	public void resetGame() {
-		this.answer = new Ball1(answerLength);
+		this.answer = new Ball(answerLength);
 		System.out.println(answer);
 	}
 
@@ -42,16 +42,16 @@ public class GameEngine {
 		return ball;
 	}
 
-	private void compareInputWithAnswer(Ball1 inputBall) {
+	private void compareInputWithAnswer(Ball inputBall) {
 		calculateStrike(inputBall);
 		calculateBall(inputBall);
 	}
 
-	private void calculateStrike(Ball1 inputBall) {
+	private void calculateStrike(Ball inputBall) {
 		strike = answer.getStrike(inputBall);
 	}
 
-	private void calculateBall(Ball1 inputBall) {
+	private void calculateBall(Ball inputBall) {
 		ball = answer.getBall(inputBall);
 	}
 
