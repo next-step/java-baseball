@@ -5,8 +5,8 @@ import common.Const;
 public class BaseballResultMessage {
 
     private StringBuilder resultMessage = new StringBuilder();
-    private int strikeCount = 0;
-    private int ballCount   = 0;
+    private int strikeCount;
+    private int ballCount;
 
     public BaseballResultMessage(int strikeCount, int ballCount) {
         this.strikeCount = strikeCount;

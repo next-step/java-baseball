@@ -2,14 +2,13 @@ package domain;
 
 import common.Const;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballPlay {
 
-    private List<Integer> randomNumbers = new ArrayList<>();
-    private int strikeCount = 0;
-    private int ballCount   = 0;
+    private List<Integer> randomNumbers;
+    private int strikeCount;
+    private int ballCount;
 
     public BaseballPlay(List<Integer> randomNumbers) {
         this.randomNumbers = randomNumbers;

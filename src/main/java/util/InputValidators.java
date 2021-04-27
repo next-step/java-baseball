@@ -7,7 +7,7 @@ import java.util.List;
 
 public class InputValidators {
 
-    private String inputNumber = "";
+    private String inputNumber;
 
     public InputValidators(String inputNumber) {
         this.inputNumber = inputNumber;
