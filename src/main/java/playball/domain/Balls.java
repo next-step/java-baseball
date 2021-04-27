@@ -12,7 +12,7 @@ import java.util.Set;
 public class Balls {
 
     private static final Integer BALLS_SIZE = 3;
-    private static final Integer UPPER_BOUND_OF_RANDOM_BALL_NUMBER = 10;
+    private static final Integer UPPER_BOUND_OF_RANDOM_BALL_NUMBER = 9;
 
     private final List<Ball> balls;
 
