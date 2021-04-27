@@ -1,6 +1,7 @@
 package baseball.numbergenerator;
 
 import baseball.BaseballGameModel;
+import baseball.Target;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import utils.RandomUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,42 +38,39 @@ class ThreeNumberGeneratorTest {
 
     @Test
     void 랜덤으로_숫자_3개_를_만든다() {
-        String numbers = sut.create();
-        assertThat(numbers.length()).isEqualTo(BaseballGameModel.NUMBER_SIZE);
-
-        for (int i = 0; i < numbers.length(); i++) {
-            char actual = numbers.charAt(i);
+        Target numbers = sut.create();
+        List<Character> value = numbers.getValue();
+        int size = value.size();
+        assertThat(size).isEqualTo(BaseballGameModel.NUMBER_SIZE);
+        for (Character actual : value) {
             assertThat(Character.isDigit(actual)).isTrue();
         }
     }
 
     @Test
     void 랜덤으로_만들어진숫자는_각_자리_수가_1_9까지의_숫자를_가진다() {
-        String numbers = sut.create();
-        assertThat(numbers.length()).isEqualTo(BaseballGameModel.NUMBER_SIZE);
+        Target numbers = sut.create();
+        List<Character> value = numbers.getValue();
+        int size = value.size();
+        assertThat(size).isEqualTo(BaseballGameModel.NUMBER_SIZE);
 
-        for (int i = 0; i < numbers.length(); i++) {
-            char actual = numbers.charAt(i);
+        for (Character actual : value) {
             assertThat(actual).isBetween('1', '9');
         }
     }
 
     @Test
     void 중복의_숫자가_출력되지_않는다() {
-        Set<Character> set = new HashSet<>();
-
         for (int i = 0; i < 1000; i++) {
-            String numbers = sut.create();
-            checkIsDuplicateNumber(set, numbers);
-            set.clear();
+            Target target = sut.create();
+            checkIsDuplicateNumber(target);
         }
     }
 
-    private void checkIsDuplicateNumber(Set<Character> set, String numbers) {
-        for (int j = 0; j < numbers.length(); j++) {
-            char actual = numbers.charAt(j);
-            set.add(actual);
-        }
+    private void checkIsDuplicateNumber(Target numbers) {
+        List<Character> value = numbers.getValue();
+        Set<Character> set = new HashSet<>(value);
         assertThat(set.size()).isEqualTo(BaseballGameModel.NUMBER_SIZE);
+        set.clear();
     }
 }

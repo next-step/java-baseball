@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import utils.ListUtil;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BaseballGameModelTest {
 
@@ -27,44 +26,9 @@ class BaseballGameModelTest {
         numberGenerator = new ThreeNumberGenerator();
     }
 
-    @Test
-    void 사용자로부터_값을_입력받는다() {
-        sut = new BaseballGameModel(USER_INPUT, numberGenerator);
-        String value = sut.userInput();
-        assertThat(value).isEqualTo(USER_INPUT);
-    }
-
-    @Test
-    void 사용자로부터_입력받은_값은_3자리_숫자여야한다() {
-        sut = new BaseballGameModel(USER_INPUT, numberGenerator);
-        String value = sut.userInput();
-        char[] chars = value.toCharArray();
-        for (char c : chars) {
-            assertThat(Character.isDigit(c)).isTrue();
-        }
-    }
-
-    @ParameterizedTest(name = "[{index}] 사용자값 {argumentsWithNames}이 3자리 숫자가 아닐 경우 IllegalArgumentException 발생한다 ")
-    @ValueSource(strings = {"1", "12", "1234"})
-    void 사용자_값이_3자리_숫자가_아닐경우_IllegalArgumentException_을_던진다(String input) {
-        sut = new BaseballGameModel(input, numberGenerator);
-        assertThatThrownBy(() -> sut.userInput())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("3자리 숫자만 허용합니다.");
-    }
-
-    @ParameterizedTest(name = "[{index}] 사용자값 {argumentsWithNames}가 숫자가 아닐 경우 IllegalArgumentException 발생한다 ")
-    @ValueSource(strings = {"a", "abc", "abc123", "1qa"})
-    void 사용자_값이_숫자가_아닐경우_IllegalArgumentException_을_던진다(String input) {
-        sut = new BaseballGameModel(input, numberGenerator);
-        assertThatThrownBy(() -> sut.userInput())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("3자리 숫자만 허용합니다.");
-    }
-
     private void init(String input, String target) {
-        sut = new BaseballGameModel(input, numberGenerator);
-        sut.setTarget(target);
+        sut = new BaseballGameModel(UserInput.of(input), numberGenerator);
+        sut.setTarget(Target.of(ListUtil.convertStrToList(target)));
     }
 
     @ParameterizedTest(name = "사용자입력: {0}, 시스템 입력: {1} > 결과: {2}스{3}볼")
@@ -124,10 +88,10 @@ class BaseballGameModelTest {
         assertThat(sut.isRoundFinished()).isFalse();
         sut.guessNumber();
 
-        sut.setUserInput(USER_INPUT);
+        sut.setUserInput(UserInput.of(USER_INPUT));
         sut.guessNumber();
 
         assertThat(sut.isRoundFinished()).isTrue();
-        assertThat(sut.userInput()).isEqualTo(USER_INPUT);
+        assertThat(sut.userInput()).isEqualTo(UserInput.of(USER_INPUT));
     }
 }

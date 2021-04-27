@@ -2,24 +2,20 @@ package baseball;
 
 import baseball.numbergenerator.NumberGenerator;
 
-import java.util.List;
-
-import static utils.ListUtil.convertStrToList;
-
 public final class BaseballGameModel {
 
     public static final String GAME_RESTART = "1";
     public static final String GAME_EXIT = "2";
     public static final int NUMBER_SIZE = 3;
 
-    private String userInput;
-    private String target;
+    private UserInput userInput;
+    private Target target;
 
     private final NumberGenerator numberGenerator;
     private boolean isRoundFinished = false;
     private boolean isEnd = true;
 
-    public BaseballGameModel(String userInput, NumberGenerator numberGenerator) {
+    public BaseballGameModel(UserInput userInput, NumberGenerator numberGenerator) {
         this(numberGenerator);
         setUserInput(userInput);
     }
@@ -29,68 +25,43 @@ public final class BaseballGameModel {
         setTarget(numberGenerator.create());
     }
 
-    public void setUserInput(String userInput) {
+    public void setUserInput(UserInput userInput) {
         this.userInput = userInput;
     }
 
-    public void setTarget(String target) {
+    public void setTarget(Target target) {
         this.target = target;
     }
 
-    public String userInput() {
-        if (hasValidIntegerNumber(userInput) == false) {
-            throw new IllegalArgumentException("3자리 숫자만 허용합니다.");
-        }
-
+    public UserInput userInput() {
         return userInput;
     }
 
-    private String target() {
-        if (hasValidIntegerNumber(target) == false) {
-            throw new IllegalArgumentException("3자리 숫자만 허용합니다.");
-        }
-
+    private Target target() {
         return target;
     }
 
-    private boolean hasValidIntegerNumber(String numberStr) {
-
-        char[] chars = numberStr.toCharArray();
-
-        return hasValidLength(numberStr)
-                && Character.isDigit(chars[0])
-                && Character.isDigit(chars[1])
-                && Character.isDigit(chars[2]);
-    }
-
-    private boolean hasValidLength(String numberStr) {
-        return numberStr.length() == NUMBER_SIZE;
-    }
-
     public GameResult guessNumber() {
-        List<Character> inputList = convertStrToList(userInput());
-        List<Character> targetList = convertStrToList(target());
-        GameResult result = comparing(inputList, targetList);
+        GameResult result = comparing(userInput(), target());
         if ((result.isFullStrike())) {
             isRoundFinished = true;
         }
         return result;
     }
 
-    private GameResult comparing(List<Character> input, List<Character> target) {
+    private GameResult comparing(UserInput input, Target target) {
         int strike = 0, ball = 0;
-
         for (int i = 0; i < NUMBER_SIZE; i++) {
-            Character inputChar = input.get(i);
-            Character targetChar = target.get(i);
+            Character inputChar = input.getValue().get(i);
+            Character targetChar = target.getValue().get(i);
 
-            strike = addCountIfTrue(strike, inputChar == targetChar);
-            ball = addCountIfTrue(ball, inputChar != targetChar && target.contains(inputChar));
+            strike = addOneIfTrue(strike, inputChar == targetChar);
+            ball = addOneIfTrue(ball, inputChar != targetChar && target.getValue().contains(inputChar));
         }
         return new GameResult(strike, ball);
     }
 
-    private int addCountIfTrue(int number, boolean condition) {
+    private int addOneIfTrue(int number, boolean condition) {
         if (condition) {
             number = number + 1;
         }

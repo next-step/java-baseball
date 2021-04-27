@@ -26,7 +26,8 @@ public class Application {
 
     private static void processGame(BaseballGameModel model, BaseballGameView view, Scanner scanner) {
         view.showAskingForInputMessage();
-        model.setUserInput(scanner.nextLine());
+        String value = scanner.nextLine();
+        model.setUserInput(UserInput.of(value));
         view.showBallCountMessage(model.guessNumber());
         if (view.showFinishMessage(model.isRoundFinished())) {
             model.selectGame(scanner.nextLine());

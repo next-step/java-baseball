@@ -1,6 +1,8 @@
 package baseball.numbergenerator;
 
+import baseball.Target;
+
 public interface NumberGenerator {
 
-    String create();
+    Target create();
 }
