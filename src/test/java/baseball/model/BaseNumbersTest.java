@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class BaseNumbersTest {
+class BaseNumbersTest {
     String[] dumyData = {"5","4","3"};
     BaseNumbers baseNumbers = new BaseNumbers(dumyData);
 
@@ -45,7 +45,7 @@ public class BaseNumbersTest {
 
         assertThat(result.getStrike()).isEqualTo(strike);
     }
-    
+
     @ParameterizedTest
     @CsvSource(value = {"345:2", "435:3", "126:0", "530:1"}, delimiter = ':')
     @DisplayName("사용자가 입력한 숫자에 볼 포함 수 확인.")
@@ -53,6 +53,6 @@ public class BaseNumbersTest {
         BaseballResult result = baseNumbers.checkNumbers(input);
 
         assertThat(result.getBall()).isEqualTo(ball);
-    }    
-    
+    }
+
 }

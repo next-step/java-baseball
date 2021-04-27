@@ -1,8 +1,10 @@
-package baseball;
+package baseball.business;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
+import baseball.etc.Constants;
+import baseball.etc.Message;
 import baseball.model.BaseNumbers;
 import baseball.model.BaseballResult;
 
@@ -22,9 +24,11 @@ public class BaseballService {
 
         this.numberSize = size;
         this.baseNumbers = this.createRandomNumbers(size);
+
+        this.baseNumbers.getNumbers().forEach((data) -> {System.out.println(data);});
     }
 
-    /** 
+    /**
      * 야구 게임에 사용할 숫자 생성.
      * @param size 야구 게임에 사용할 숫자 사이즈.
      * @return 야구 게임에 사용할 숫자 객체.
@@ -79,5 +83,5 @@ public class BaseballService {
         }
 
         return true;
-    }    
+    }
 }

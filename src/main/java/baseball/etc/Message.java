@@ -1,4 +1,4 @@
-package baseball;
+package baseball.etc;
 
 public enum Message {
     LESS_THAN_1("1 이상 입력해 주세요."),
@@ -21,7 +21,7 @@ public enum Message {
         for (int i = 0; i < word.length; i++) {
             textTemp = textTemp.replaceFirst("\\{\\}", word[i]);
         }
-        
+
         return textTemp;
     }
 }

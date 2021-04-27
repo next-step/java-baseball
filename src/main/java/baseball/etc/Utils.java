@@ -1,4 +1,4 @@
-package baseball;
+package baseball.etc;
 
 public class Utils {
     // 생성자 사용하지 못하도록.
@@ -11,5 +11,5 @@ public class Utils {
      */
     public static int booleanToInt(boolean data) {
         return data ? 1 : 0;
-    } 
+    }
 }
