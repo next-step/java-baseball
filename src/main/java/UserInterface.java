@@ -5,22 +5,20 @@ import validator.NumberFormatValidator;
 
 public class UserInterface {
 
-	private final Scanner scanner = new Scanner(System.in);
+	private Scanner scanner = new Scanner(System.in);
 
-	private final String[] MESSAGES = {
-		"숫자를 입력해 주세요",
-		"3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
-	};
+	private static final String WELCOME_MESSAGE = "숫자를 입력해 주세요";
+	private static final String FINISH_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 	public String interactUser() {
-		System.out.println(MESSAGES[0]);
+		System.out.println(WELCOME_MESSAGE);
 		String input = scanner.next();
 		NumberFormatValidator.validate(input);
 		return input;
 	}
 
 	public int replayOnNot() {
-		System.out.println(MESSAGES[1]);
+		System.out.println(FINISH_MESSAGE);
 		String code = scanner.next();
 		NumberFormatValidator.checkParseToInteger(code);
 		return Integer.parseInt(code);
@@ -37,8 +35,9 @@ public class UserInterface {
 	protected String convertScoreToMessage(Map<Result, Integer> score) {
 		StringBuilder answer = new StringBuilder();
 		writeMessageBy(score, Result.STRIKE, answer);
-		if (!isInitMessage(answer) && hasNext(score))
+		if (!isInitMessage(answer) && hasNext(score)) {
 			answer.append(" ");
+		}
 		writeMessageBy(score, Result.BALL, answer);
 		return answer.toString();
 	}
@@ -51,8 +50,9 @@ public class UserInterface {
 	}
 
 	private void writeMessageBy(Map<Result, Integer> score, Result resultType, StringBuilder message) {
-		if (!score.containsKey(resultType))
+		if (!score.containsKey(resultType)) {
 			return;
+		}
 		message.append(score.get(resultType))
 			.append(" ")
 			.append(resultType.getMessage());

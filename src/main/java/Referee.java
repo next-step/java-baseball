@@ -29,12 +29,12 @@ public class Referee {
 		return score;
 	}
 
-	private Map<Result, Integer> scoreResult(int i, Map<Result, Integer> score) {
-		if (isStrike(question.charAt(i), input.charAt(i))) {
+	private Map<Result, Integer> scoreResult(int index, Map<Result, Integer> score) {
+		if (isStrike(question.charAt(index), input.charAt(index))) {
 			calculateMap(Result.STRIKE, score);
 			return score;
 		}
-		if (isBall(question, input.charAt(i))) {
+		if (isBall(question, input.charAt(index))) {
 			calculateMap(Result.BALL, score);
 		}
 		return score;

@@ -9,7 +9,7 @@ class RefereeTest {
 
 	@Test
 	@DisplayName(value = "1 strike 으로 판결되면 STRIKE의 value 는 1 이다.")
-	void StrikeOnlyOne() {
+	void strikeOnlyOne() {
 		Referee referee = new Referee(123, "175");
 		Map<Result, Integer> result = referee.getScore();
 		assertThat(result.get(Result.STRIKE)).isEqualTo(1);
