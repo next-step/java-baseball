@@ -106,4 +106,63 @@ class HintTest {
                 )
         );
     }
+
+    @DisplayName("HintResults 값 정상적으로 나오는지 테스트")
+    @ParameterizedTest
+    @MethodSource("provideBallsForCalculateResultsTest")
+    public void calculateResultsTest(Balls myBalls, Balls yourBalls, HintResults expected) {
+
+        // when
+        HintResults results = Hint.calculateResults(myBalls, yourBalls);
+
+        // then
+        Assertions.assertThat(results.getHintResults().size()).isEqualTo(3);
+        Assertions.assertThat(results.getHintResults().get(0).getHint())
+                .isEqualTo(expected.getHintResults().get(0).getHint());
+
+        Assertions.assertThat(results.getHintResults().get(1).getHint())
+                .isEqualTo(expected.getHintResults().get(1).getHint());
+
+        Assertions.assertThat(results.getHintResults().get(2).getHint())
+                .isEqualTo(expected.getHintResults().get(2).getHint());
+
+    }
+
+    private static Stream<Arguments> provideBallsForCalculateResultsTest() {
+        return Stream.of(
+                Arguments.of(
+                        Balls.of(Arrays.asList(Ball.of(1), Ball.of(2), Ball.of(3))),
+                        Balls.of(Arrays.asList(Ball.of(4), Ball.of(5), Ball.of(6))),
+                        HintResults.of(
+                                Arrays.asList(
+                                        HintResult.of(Hint.STRIKE, 0),
+                                        HintResult.of(Hint.BALL, 0),
+                                        HintResult.of(Hint.NOTHING, 3)
+                                )
+                        )
+                ),
+                Arguments.of(
+                        Balls.of(Arrays.asList(Ball.of(5), Ball.of(6), Ball.of(7))),
+                        Balls.of(Arrays.asList(Ball.of(5), Ball.of(7), Ball.of(6))),
+                        HintResults.of(
+                                Arrays.asList(
+                                        HintResult.of(Hint.STRIKE, 1),
+                                        HintResult.of(Hint.BALL, 2),
+                                        HintResult.of(Hint.NOTHING, 0)
+                                )
+                        )
+                ),
+                Arguments.of(
+                        Balls.of(Arrays.asList(Ball.of(6), Ball.of(2), Ball.of(7))),
+                        Balls.of(Arrays.asList(Ball.of(9), Ball.of(6), Ball.of(7))),
+                        HintResults.of(
+                                Arrays.asList(
+                                        HintResult.of(Hint.STRIKE, 1),
+                                        HintResult.of(Hint.BALL, 1),
+                                        HintResult.of(Hint.NOTHING, 1)
+                                )
+                        )
+                )
+        );
+    }
 }
