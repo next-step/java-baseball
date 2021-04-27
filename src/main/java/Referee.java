@@ -31,15 +31,18 @@ public class Referee {
 
 	private Map<Result, Integer> scoreResult(int i, Map<Result, Integer> score) {
 		if (isStrike(question.charAt(i), input.charAt(i))) {
-			score.putIfAbsent(Result.STRIKE, 0);
-			score.computeIfPresent(Result.STRIKE, (k, v) -> v + 1);
+			calculateMap(Result.STRIKE, score);
 			return score;
 		}
 		if (isBall(question, input.charAt(i))) {
-			score.putIfAbsent(Result.BALL, 0);
-			score.computeIfPresent(Result.BALL, (k, v) -> v + 1);
+			calculateMap(Result.BALL, score);
 		}
 		return score;
+	}
+
+	private void calculateMap(Result resultType, Map<Result, Integer> score) {
+		score.putIfAbsent(resultType, 0);
+		score.computeIfPresent(resultType, (k, v) -> v + 1);
 	}
 
 	private boolean isStrike(char question, char input) {
