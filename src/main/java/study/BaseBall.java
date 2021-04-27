@@ -19,19 +19,20 @@ public class BaseBall {
 	}
 
 	void playGame() {
+		System.out.println("Play Ball!!!");
 		while (isGameEnd()) {
 			playInning();
 		}
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
 
 	private void playInning() {
 		try {
 			System.out.printf("[%d] 숫자를 입력해주세요: ", this.inningCount);
-
 			List<Integer> swings = batter.swingBat(SCANNER.next());
 			this.lastScore = this.scoreBoard.countScore(swings, this.pitches);
-
 			System.out.println(this.lastScore);
+
 			inningCount++;
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
