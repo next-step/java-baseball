@@ -20,14 +20,13 @@ public class Application {
 
     private static void runGameLoop(BaseballGameModel model, BaseballGameView view, Scanner scanner) {
         while (isGameEnd(model)) {
-            processGame(model, view, scanner);
+            proceedGameProcess(model, view, scanner);
         }
     }
 
-    private static void processGame(BaseballGameModel model, BaseballGameView view, Scanner scanner) {
+    private static void proceedGameProcess(BaseballGameModel model, BaseballGameView view, Scanner scanner) {
         view.showAskingForInputMessage();
-        String value = scanner.nextLine();
-        model.setUserInput(UserInput.of(value));
+        model.setUserInput(UserInput.of(scanner.nextLine()));
         view.showBallCountMessage(model.guessNumber());
         if (view.showFinishMessage(model.isRoundFinished())) {
             model.selectGame(scanner.nextLine());
