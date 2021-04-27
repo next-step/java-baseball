@@ -39,7 +39,7 @@ class BaseballGameModelTest {
 		"123:342:0:2:두 자리 위치 불일치",
 		"134:125:1:0:한 자리 일치",
 		"134:356:0:1:한 자리 위치 불일치",
-		"134:677:0:0:모든 자리 불일치",
+		"134:678:0:0:모든 자리 불일치",
 	}, delimiter = ':')
 	@DisplayName("사용자 숫자과 시스템 숫자 비교")
 	void 사용자_숫자과_시스템_숫자_를_비교한다(String input, String target, int strikeResult, int ballResult) {
