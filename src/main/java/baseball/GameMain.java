@@ -8,10 +8,40 @@ import util.ScannerUtil;
 public class GameMain {
     public static void main(String[] args) {
         int[] com = RandomUtil.getRandom3DigitWithoutDuplicates();
-        int[] user = ScannerUtil.getUserInputAsArray();
-        boolean isAnswer = isAnswer(com, user);
-        int strikeCount = getStrikeCount(com, user);
-        int ballCount = getBallCount(com, user);
+        boolean isAnswer = false;
+        do {
+            int[] user = ScannerUtil.getUserInputAsArray();
+            isAnswer = isAnswer(com, user);
+            boolean hasNewGame = isAnswer && hasNewGame(isAnswer);
+            if (isAnswer && !hasNewGame) {
+                break;
+            }
+
+            if (isAnswer && hasNewGame) {
+                com = RandomUtil.getRandom3DigitWithoutDuplicates();
+                isAnswer = false;
+                continue;
+            }
+
+            int strikeCount = getStrikeCount(com, user);
+            int ballCount = getBallCount(com, user);
+            printStrikeAndBallCount(strikeCount, ballCount);
+        } while (!isAnswer);
+    }
+
+    static boolean hasNewGame(boolean isAnswer) {
+        if (!isAnswer) {
+            return false;
+        }
+
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+
+        int gameMode = ScannerUtil.getGameMode();
+        if (gameMode == 1) {
+            return true;
+        }
+
+        return false;
     }
 
     static boolean isAnswer(int[] com, int[] user) {
@@ -57,6 +87,11 @@ public class GameMain {
             sb.append(ballCount).append("볼");
         }
 
+        if (strikeCount == 0 && ballCount == 0) {
+            sb.append("낫싱");
+        }
+
+        sb.append("\n");
         System.out.print(sb.toString());
     }
 }

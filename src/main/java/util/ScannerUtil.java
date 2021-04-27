@@ -16,4 +16,10 @@ public class ScannerUtil {
 
 		return result;
 	}
+
+	public static int getGameMode() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		return sc.nextInt();
+	}
 }
