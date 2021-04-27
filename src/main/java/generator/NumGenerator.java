@@ -28,7 +28,7 @@ public class NumGenerator {
     /*
         중복 체크 후 임의의 한자리 숫자 반환
      */
-    public static int newNum(int[] num, Set<Integer> chkNum){
+    private static int newNum(int[] num, Set<Integer> chkNum){
         int now = 0;
         do{
             now = (int)(Math.random()*(MAX - MIN + 1)) + 1;
