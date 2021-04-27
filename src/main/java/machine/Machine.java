@@ -3,17 +3,23 @@ package machine;
 import display.Display;
 
 public class Machine {
-	private final int goalNumber;
+	private final RandomGenerator randomGenerator;
+	private int goalNumber;
 
-	public Machine(int goalNumber) {
-		this.goalNumber = goalNumber;
+	public Machine(RandomGenerator randomGenerator) {
+		this.randomGenerator = randomGenerator;
+		this.goalNumber = randomGenerator.generate();
 	}
 
-	public void makeQuestion(Display display) {
-		display.expose("숫자를 입력해주세요 : ");
+	public void question(Display display) {
+		display.exposeQuestion();
 	}
 
 	public int getGoalNumber() {
 		return goalNumber;
+	}
+
+	public void generateGoalNumber() {
+		this.goalNumber = this.randomGenerator.generate();
 	}
 }

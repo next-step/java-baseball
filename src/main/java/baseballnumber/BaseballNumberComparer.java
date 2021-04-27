@@ -1,19 +1,27 @@
 package baseballnumber;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BaseballNumberComparer {
-	private final List<BaseballNumberDigit> machineNumbers;
-	private final List<BaseballNumberDigit> playerNumbers;
+	private final BaseballNumber baseballMachineNumber;
+	private final BaseballNumber baseballPlayerNumber;
 
-	public BaseballNumberComparer(int machineNumbers,
-		int playerNumbers) {
-		this.machineNumbers = new ArrayList<>();
-		this.playerNumbers = new ArrayList<>();
+	public BaseballNumberComparer(int machineNumbers, int playerNumbers) {
+		if (isNotValidNumber(machineNumbers) || isNotValidNumber(playerNumbers)) {
+			throw new IllegalArgumentException("입력한 숫자가 입력 가능한 범위 밖입니다");
+		}
+
+		this.baseballMachineNumber = new BaseballNumber(machineNumbers);
+		this.baseballPlayerNumber = new BaseballNumber(playerNumbers);
+	}
+
+	private boolean isNotValidNumber(int machineNumbers) {
+		return machineNumbers < 123 || machineNumbers > 987;
 	}
 
 	public BaseballNumberBoard compare() {
-		return new BaseballNumberBoard(3, 0); // FIXME : 추후에 제대로 된 값 계산해서 입력하게 처리 필요
+		if (!this.baseballMachineNumber.isValid() || !this.baseballPlayerNumber.isValid()) {
+			throw new IllegalArgumentException("입력된 값이 정상적이지 않습니다");
+		}
+
+		return this.baseballMachineNumber.compare(baseballPlayerNumber);
 	}
 }

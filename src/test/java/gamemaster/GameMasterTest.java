@@ -12,6 +12,7 @@ import org.mockito.Spy;
 
 import display.Display;
 import machine.Machine;
+import machine.RandomGenerator;
 import player.Player;
 
 class GameMasterTest {
@@ -22,21 +23,28 @@ class GameMasterTest {
 	private Player player;
 	@Mock
 	private Display display;
+	@Mock
+	private RandomGenerator randomGenerator;
 
 	@BeforeEach
 	void setUp() {
 		MockitoAnnotations.openMocks(this);
-
-		Machine machine = new Machine(GOAL_NUMBER);
-		this.gameMaster = new GameMaster(machine, display);
+		this.gameMaster = makeGameMaster();
 		this.gameMaster.addPlayer(player);
+	}
+
+	private GameMaster makeGameMaster() {
+		given(randomGenerator.generate()).willReturn(GOAL_NUMBER);
+
+		Machine machine = new Machine(randomGenerator);
+		return new GameMaster(machine, display);
 	}
 
 	@Test
 	@DisplayName("플레이어가 없는 경우 에러를 던진다")
 	void throwErrorIfUserDontExist() {
 		// given
-		this.gameMaster = new GameMaster(new Machine(GOAL_NUMBER), new Display());
+		this.gameMaster = new GameMaster(new Machine(new RandomGenerator()), new Display());
 
 		// when
 
@@ -60,8 +68,8 @@ class GameMasterTest {
 	@DisplayName("정답을 맞춘 후에 유저가 게임을 종료하기로 결정하면, 게임을 종료한다")
 	void compareAndBreakGameIfUserDecideToEndGame() {
 		// given
-		given(player.answer(display)).willReturn(GOAL_NUMBER);
-		given(display.input()).willReturn(GameMaster.GAME_STOP);
+		given(display.input()).willReturn(String.valueOf(GOAL_NUMBER));
+		doReturn(GameProgress.GAME_STOP).when(player).inputAboutRestartOrStop(display);
 
 		// when
 		gameMaster.run();
@@ -74,28 +82,15 @@ class GameMasterTest {
 	@DisplayName("정답을 맞춘 후에 유저가 게임을 다시 시작하기로 결정하면, 게임을 다시 시작한다")
 	void compareAndRestartGameIfUserDecideToContinue() {
 		// given
-		doReturn(GOAL_NUMBER)
-			.doReturn(GameMaster.GAME_CONTINUE)
-			.doReturn(GOAL_NUMBER)
-			.doReturn(GameMaster.GAME_STOP).when(player).answer(display);
+		given(display.input()).willReturn(String.valueOf(GOAL_NUMBER));
+		doReturn(GameProgress.GAME_CONTINUE)
+			.doReturn(GameProgress.GAME_STOP)
+			.when(player).inputAboutRestartOrStop(display);
 
 		// when
 		gameMaster.run();
 
 		// then
-		verify(player, times(4)).answer(display);
-	}
-
-	@Test
-	@DisplayName("게임이 진행된 다음, 모든 플레이어가 exit 을 선언하면 게임이 종료된다")
-	void exitGameIfThereIsNoParticipants() {
-		doReturn(GOAL_NUMBER)
-			.doReturn(GameMaster.GAME_STOP).when(player).answer(display);
-
-		// when
-		gameMaster.run();
-
-		// then
-		verify(player, times(2)).answer(display);
+		verify(player, times(2)).inputAboutRestartOrStop(display);
 	}
 }
