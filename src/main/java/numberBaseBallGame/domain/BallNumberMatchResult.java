@@ -1,7 +1,7 @@
 package numberBaseBallGame.domain;
 
 public class BallNumberMatchResult {
-	private final int GAMENUMBERS_LENGTH= BaseBallConst.GAMENUMBERS_LENGTH;
+	public final int GAMENUMBERS_LENGTH= BaseBallConst.GAMENUMBERS_LENGTH;
 
 	private final int strikeCount;
 	private final int ballCount;
