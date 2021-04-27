@@ -1,10 +1,14 @@
 package baseballgame;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
+
+import org.w3c.dom.ranges.RangeException;
 
 public class GameStarter {
 	private final int NUMBER_OF_DIGIT = 3;
@@ -26,4 +30,21 @@ public class GameStarter {
 		answer.addAll(deduplicationAnswerNumber);
 	}
 
+	public void startGame(Scanner scanner) throws IOException {
+		while (totalCount++ < NUMBER_OF_DIGIT) {
+			System.out.print("숫자를 입력해주세요 : ");
+			List<Integer> userInput = processInput(scanner.nextLine().split("{1}"));
+		}
+	}
+
+	public List<Integer> processInput(String[] splitInput) {
+		List<Integer> userInput = new ArrayList<Integer>();
+		if (splitInput.length != 3) {
+			throw new RangeException((short)splitInput.length, "Enter a 3 digit number.");
+		}
+		for (int i = 0; i < NUMBER_OF_DIGIT; i++) {
+			userInput.add(Integer.parseInt(splitInput[i]));
+		}
+		return userInput;
+	}
 }
