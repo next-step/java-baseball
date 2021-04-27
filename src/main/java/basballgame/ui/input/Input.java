@@ -13,10 +13,15 @@ public class Input {
 		String line;
 		do {
 			Output.print(guideText);
-			line = scanner.nextLine();
+			line = readLine();
 		} while (!validator.test(line));
 
 		return line;
+	}
+
+	private static String readLine() {
+		String line = scanner.nextLine();
+		return line.trim();
 	}
 
 	public static void close() {

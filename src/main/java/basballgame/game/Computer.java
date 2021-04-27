@@ -18,7 +18,7 @@ public class Computer {
 
 	private int getStrikeCountFrom(BaseballSet userSet) {
 		int count = 0;
-		count = isStrike(answer::getFirst, userSet::getFirst) 	 ? count + 1 : count;
+		count = isStrike(answer::getFirst, userSet::getFirst) 	? count + 1 : count;
 		count = isStrike(answer::getSecond, userSet::getSecond) ? count + 1 : count;
 		count = isStrike(answer::getThird, userSet::getThird)   ? count + 1 : count;
 		return count;
