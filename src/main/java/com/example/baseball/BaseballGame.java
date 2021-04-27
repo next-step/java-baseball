@@ -124,4 +124,21 @@ public class BaseballGame {
 
         return new int[] {number1, number2, number3};
     }
+
+    public String inputContinueMessage() {
+        String inputContinueMessage;
+
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            inputContinueMessage = sc.nextLine();
+        } while (!isValidContinueMessage(inputContinueMessage));
+
+        return inputContinueMessage;
+    }
+
+    public boolean isValidContinueMessage(String inputContinueMessage) {
+        return "1".equals(inputContinueMessage)
+                || "2".equals(inputContinueMessage);
+    }
 }

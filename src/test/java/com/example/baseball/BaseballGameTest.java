@@ -74,4 +74,18 @@ class BaseballGameTest {
                 .hasSize(3)
                 .containsExactly(1, 2, 3);
     }
+
+    @Test
+    void isValidContinueMessage_ShouldReturnTrue() {
+        BaseballGame baseballGame = new BaseballGame();
+        assertThat(baseballGame.isValidContinueMessage("1")).isTrue();
+        assertThat(baseballGame.isValidContinueMessage("2")).isTrue();
+    }
+
+    @Test
+    void isValidContinueMessage_ShouldReturnFalse() {
+        BaseballGame baseballGame = new BaseballGame();
+        assertThat(baseballGame.isValidContinueMessage("3")).isFalse();
+        assertThat(baseballGame.isValidContinueMessage("aaa")).isFalse();
+    }
 }
