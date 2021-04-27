@@ -33,15 +33,17 @@ public class ResultChecker {
         MatchType matchType = getMatchType(index);
         if (matchType == MatchType.STRIKE) {
             this.strikeCount++;
-        } else if (matchType == MatchType.BALL) {
+        }
+        if (matchType == MatchType.BALL) {
             this.ballCount++;
         }
     }
 
     private MatchType getMatchType(int index) {
-        if (userNumbers.get(index) == goalNumbers.get(index))  return MatchType.STRIKE;
-        else if (goalNumbers.contains(userNumbers.get(index))) return MatchType.BALL;
-        else return MatchType.NOTHING;
+        if (userNumbers.get(index) == goalNumbers.get(index)) return MatchType.STRIKE;
+        if (goalNumbers.contains(userNumbers.get(index))) return MatchType.BALL;
+
+        return MatchType.NOTHING;
     }
 
     public void showMatchCount(List<Integer> userNumbers) {
@@ -59,9 +61,10 @@ public class ResultChecker {
 
             String flag = InputSupplier.getInput();
             this.gamePlayOrStopWithFlag(flag);
-        } else {
-            this.resetGameCount();
+            return;
         }
+
+        this.resetGameCount();
     }
 
     private void gamePlayOrStopWithFlag(String flag) {
