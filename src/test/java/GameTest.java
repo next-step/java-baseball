@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -68,4 +72,13 @@ class GameTest {
         int ballCount2 = 0;
         assertFalse(game.checkStrike(ballCount2));
     }
+
+    @ParameterizedTest
+    @CsvSource({"1,0,1 스트라이크", "2,1,2 스트라이크 1 볼", "0,0,낫싱"})
+    @DisplayName("strike count와 ball count에 따라 반환되는 메세지가 맞는지 검사한다")
+    void setResultMsgNothingTest(Integer strikeCount, Integer ballCount, String expected){
+        Game game = new Game();
+        assertThat(game.setResultMsg(strikeCount, ballCount)).hasToString(expected);
+    }
 }
+
