@@ -16,10 +16,9 @@ public class BaseballGameManager {
 
 	public int execute() {
 		final int question = questioner.makeProblem();
-		String userInput;
 		boolean retry = true;
 		while (retry) {
-			userInput = userInterface.interactUser();
+			String userInput = userInterface.interactUser();
 			Referee referee = new Referee(question, userInput);
 			retry = !referee.isFinish();
 			userInterface.answerTo(referee.getScore());
