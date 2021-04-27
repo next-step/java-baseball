@@ -4,6 +4,8 @@ import playball.exception.PlayBallIllegalArgumentException;
 
 import java.util.Objects;
 
+import static playball.exception.ExceptionMessage.INVALID_PLAY_BALL_NUMBER_MESSAGE;
+
 public class Ball {
 
     public final static Integer MIN_OF_BALL_NUMBER = 1;
@@ -23,7 +25,7 @@ public class Ball {
 
     private void validate(Integer ball) {
         if (!isValidBallNumber(ball)) {
-            throw new PlayBallIllegalArgumentException();
+            throw new PlayBallIllegalArgumentException(INVALID_PLAY_BALL_NUMBER_MESSAGE);
         }
     }
 

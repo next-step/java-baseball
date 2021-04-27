@@ -81,4 +81,10 @@ public class StringTest {
                 Arguments.of("abc", 4, "String index out of range: 4")
         );
     }
+
+    @Test
+    public void tes() {
+        String[] re = "123".split("");
+        System.out.println(re);
+    }
 }

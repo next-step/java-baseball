@@ -1,5 +1,6 @@
 package playball.domain;
 
+import playball.exception.ExceptionMessage;
 import playball.exception.PlayBallIllegalArgumentException;
 import playball.util.NumberGenerator;
 
@@ -8,6 +9,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static playball.exception.ExceptionMessage.EXCEED_PLAY_BALL_SIZE_MESSAGE;
 
 public class Balls {
 
@@ -23,7 +26,7 @@ public class Balls {
 
     private void validate(List<Ball> balls) {
         if (!isValidBallsSize(balls)) {
-            throw new PlayBallIllegalArgumentException();
+            throw new PlayBallIllegalArgumentException(EXCEED_PLAY_BALL_SIZE_MESSAGE);
         }
     }
 
