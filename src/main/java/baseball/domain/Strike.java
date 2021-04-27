@@ -21,18 +21,17 @@ public class Strike {
 
     public void countStrike(final Answer answer, final List<BaseballNumber> baseballNumbers) {
         for (int i = 0; i < Constants.BASEBALL_NUMBER_SIZE; i++) {
-            plusCount(answer.getAnswer(i), baseballNumbers.get(i));
+            BaseballNumber answerNumber = answer.getAnswer(i);
+            BaseballNumber inputNumber = baseballNumbers.get(i);
+            boolean isStrike = answerNumber.equals(inputNumber);
+            plusCount(isStrike);
         }
     }
 
-    private void plusCount(final BaseballNumber answerNumber, final BaseballNumber inputNumber) {
-        if (isStrike(answerNumber, inputNumber)) {
+    private void plusCount(boolean isStrike) {
+        if (isStrike) {
             this.count++;
         }
-    }
-
-    private boolean isStrike(final BaseballNumber answerNumber, final BaseballNumber inputNumber) {
-        return answerNumber.equals(inputNumber);
     }
 
     public void initCount() {

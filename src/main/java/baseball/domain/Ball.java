@@ -20,18 +20,17 @@ public class Ball {
 
     public void countBall(final Answer answer, final List<BaseballNumber> baseballNumbers) {
         for (int i = 0; i < Constants.BASEBALL_NUMBER_SIZE; i++) {
-            plusCount(answer.getAnswer(i), baseballNumbers, i);
+            BaseballNumber answerNumber = answer.getAnswer(i);
+            BaseballNumber inputNumber = baseballNumbers.get(i);
+            boolean isBall = !answerNumber.equals(inputNumber) && baseballNumbers.contains(answerNumber);
+            plusCount(isBall);
         }
     }
 
-    private void plusCount(final BaseballNumber answerNumber, final List<BaseballNumber> baseballNumbers, int index) {
-        if (isBall(answerNumber, baseballNumbers, index)) {
+    private void plusCount(boolean isBall) {
+        if (isBall) {
             this.count++;
         }
-    }
-
-    private boolean isBall(final BaseballNumber answerNumber, final List<BaseballNumber> baseballNumbers, int index) {
-        return !answerNumber.equals(baseballNumbers.get(index)) && baseballNumbers.contains(answerNumber);
     }
 
     public void initCount() {
