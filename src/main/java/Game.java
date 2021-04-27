@@ -21,12 +21,23 @@ public class Game {
     }
 
     public Integer strike(String computerNum, String inputNum) {
-        Integer strikeResult = 0;
+        int strikeResult = 0;
 
         for(int i = 0; i < inputNum.length(); i++){
             strikeResult += Util.checkEqualChar(inputNum.charAt(i), computerNum.charAt(i));
         }
         return strikeResult;
+    }
+
+    public Integer ball(String computerNum, String inputNum) {
+        int ballResult = 0;
+
+        String[] inputNumArr = inputNum.split("");
+
+        for(String inputNumStr:inputNumArr ){
+            ballResult += Util.checkContains(computerNum, inputNumStr);
+        }
+        return ballResult;
     }
 
 }
