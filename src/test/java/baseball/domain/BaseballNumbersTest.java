@@ -80,4 +80,31 @@ class BaseballNumbersTest {
         assertThat(3).isEqualTo(numbers2.size());
     }
 
+    @Test
+    @DisplayName("팩토리메서드 - defence number")
+    void defenceNumber() {
+        // given
+        BaseballNumbers baseballNumbers = BaseballNumbers.defenceNumber();
+
+        // when then
+        assertThat(3).isEqualTo(baseballNumbers.size());
+    }
+
+    @Test
+    @DisplayName("팩토리 메서드 - pitch number")
+    void pitchNumber() {
+        // given
+        BaseballNumbers baseballNumbers = BaseballNumbers.pitchNumber("123");
+
+        // when
+        List<BaseballNumber> pitchNumbers1 = Arrays.asList(new BaseballNumber(1), new BaseballNumber(2), new BaseballNumber(3));
+        BaseballNumbers pitch1 = new BaseballNumbers(pitchNumbers1);
+        List<BaseballNumber> pitchNumbers2 = Arrays.asList(new BaseballNumber(2), new BaseballNumber(3), new BaseballNumber(1));
+        BaseballNumbers pitch2 = new BaseballNumbers(pitchNumbers2);
+
+        // then
+        assertThat(3).isEqualTo(baseballNumbers.equalsCount(pitch1));
+        assertThat(3).isEqualTo(baseballNumbers.containsCount(pitch2));
+    }
+
 }

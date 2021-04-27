@@ -7,11 +7,23 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
 
     public static final int SIZE = 3;
     public static final int MIN_INDEX = 0;
+    private static final BaseballNumberFactory baseballNumberFactory = new BaseballNumberFactory();
 
     private final List<BaseballNumber> baseballNumbers;
 
     public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
         this.baseballNumbers = baseballNumbers;
+    }
+
+    public static BaseballNumbers defenceNumber() {
+        ShuffleNumberGenerateStrategy numberGenerateStrategy = new ShuffleNumberGenerateStrategy();
+        List<BaseballNumber> baseballNumbers = baseballNumberFactory.generateBaseballNumbers(numberGenerateStrategy);
+        return new BaseballNumbers(baseballNumbers);
+    }
+
+    public static BaseballNumbers pitchNumber(String pitchNumbers) {
+        List<BaseballNumber> baseballNumbers = baseballNumberFactory.generateBaseballNumbers(pitchNumbers);
+        return new BaseballNumbers(baseballNumbers);
     }
 
     public int equalsCount(BaseballNumbers pitchNumbers) {
