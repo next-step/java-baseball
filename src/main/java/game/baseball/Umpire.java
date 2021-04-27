@@ -42,25 +42,23 @@ public class Umpire {
 
 	public void judge() {
 		for (int i = 0; i < pitcher.getPitches().length; i++) {
-			this.balls += callBall(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i], hitter.getHittingNumbers());
-			this.strikes += callStrikes(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i]);
+			this.balls += judgeBall(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i], hitter.getHittingNumbers());
+			this.strikes += judgeStrike(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i]);
 		}
 	}
 
-	public int callBall(int pitch, int hit, Set<Integer> hits) {
-		// 포함은 하되...
+	public int judgeBall(int pitch, int hit, Set<Integer> hits) {
 		if (pitch == hit) {
 			return 0;
 		}
 
-		// ball이면
 		if (hits.contains(pitch)) {
 			return 1;
 		}
 		return 0;
 	}
 
-	public int callStrikes(int pitch, int hit) {
+	public int judgeStrike(int pitch, int hit) {
 		if (pitch == hit) {
 			return 1;
 		}
