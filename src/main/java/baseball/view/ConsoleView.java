@@ -3,7 +3,8 @@ package baseball.view;
 import baseball.domain.Game;
 import baseball.domain.Hint;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleView implements View, Closeable {
