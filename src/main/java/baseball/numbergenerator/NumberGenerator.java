@@ -4,5 +4,5 @@ import baseball.Target;
 
 public interface NumberGenerator {
 
-    Target create();
+	Target create();
 }

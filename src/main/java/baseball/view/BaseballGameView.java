@@ -4,9 +4,9 @@ import baseball.GameResult;
 
 public interface BaseballGameView {
 
-    void showBallCountMessage(GameResult result);
+	void showBallCountMessage(GameResult result);
 
-    void showAskingForInputMessage();
+	void showAskingForInputMessage();
 
-    boolean showFinishMessage(boolean roundFinished);
+	boolean showFinishMessage(boolean roundFinished);
 }
