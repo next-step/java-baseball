@@ -12,6 +12,7 @@ public class Application {
     private Monitor monitor;
 
     public Application() {
+        init();
     }
 
     private void init() {
