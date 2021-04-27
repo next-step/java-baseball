@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Computer {
 	private List<Integer> computerNumbers;
-	private int strikeCount;
-	private int ballCount;
+	private int strikeCount = 0;
+	private int ballCount = 0;
 
 	public List<Integer> getComputerNumbers() {
 		return computerNumbers;
