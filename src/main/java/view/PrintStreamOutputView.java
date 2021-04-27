@@ -2,7 +2,7 @@ package view;
 
 import java.io.PrintStream;
 
-import number.NumbersMatchResult;
+import number.HintsCount;
 
 public class PrintStreamOutputView implements OutputView {
 
@@ -20,20 +20,19 @@ public class PrintStreamOutputView implements OutputView {
 		printStream.print(INPUT_NUMBERS_MESSAGE);
 	}
 
-	public void printNumbersMatchResult(NumbersMatchResult numbersMatchResult,
-		NumberMatchResultRenderer numberMatchResultRenderer) {
-		final String resultMessage = numberMatchResultRenderer.render(numbersMatchResult);
-		printStream.println(resultMessage);
+	public void printHints(HintsCount hintsCount, HintsCountRenderer hintsCountRenderer) {
+		final String hintsMessage = hintsCountRenderer.render(hintsCount);
+		printStream.println(hintsMessage);
 	}
 
 	public void printEndGameMessage(int numberLength) {
-		String message = String.format(GAME_OVER_MESSAGE_FORMAT, numberLength);
+		final String message = String.format(GAME_OVER_MESSAGE_FORMAT, numberLength);
 		printStream.println(message);
 	}
 
-	public void printRerunGameMessage(String rerunFlag, String endFlag) {
-		String message = String.format(GAME_RERUN_MESSAGE_FORMAT, rerunFlag, endFlag);
-		printStream.println(message);
+	public void printNewGameMessage(String restartCommand, String endCommand) {
+		final String restartMessage = String.format(GAME_RERUN_MESSAGE_FORMAT, restartCommand, endCommand);
+		printStream.println(restartMessage);
 	}
 }
 

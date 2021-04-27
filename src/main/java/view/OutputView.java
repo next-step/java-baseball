@@ -1,14 +1,13 @@
 package view;
 
-import number.NumbersMatchResult;
+import number.HintsCount;
 
 public interface OutputView {
 	void printInputNumberMessage();
 
-	void printNumbersMatchResult(NumbersMatchResult numbersMatchResult,
-								NumberMatchResultRenderer numberMatchResultRenderer);
+	void printHints(HintsCount hintsCount, HintsCountRenderer hintsCountRenderer);
 
 	void printEndGameMessage(int numberLength);
 
-	void printRerunGameMessage(String rerunFlag, String endFlag);
+	void printNewGameMessage(String restartCommand, String endCommand);
 }

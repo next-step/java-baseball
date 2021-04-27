@@ -1,37 +1,34 @@
 import java.util.Random;
 
+import number.HintsCount;
 import number.IllegalNumberException;
-import number.MatchResult;
 import number.Numbers;
 import number.NumbersGenerator;
-import number.NumbersMatchResult;
 import number.RandomNumbersGenerator;
+import view.HintsCountRenderer;
 import view.InputView;
-import view.NumberMatchResultRenderer;
 import view.OutputView;
 import view.PrintStreamOutputView;
-import view.RerunController;
-import view.RerunControllerImpl;
 import view.ScannerInputView;
-import view.StrikeFirstResultRenderer;
+import view.StrikeFirstHintsCountRenderer;
 
 public class NumberBaseballGame {
-	private static final String RERUN_FLAG = "1";
-	private static final String END_FLAG = "2";
+	private static final String RESTART_COMMAND = "1";
+	private static final String END_COMMAND = "2";
 
 	private final InputView inputView;
 	private final OutputView outputView;
 	private final NumbersGenerator numbersGenerator;
-	private final NumberMatchResultRenderer numberMatchResultRenderer;
-	private final RerunController rerunController;
+	private final GameOverJudge gameOverJudge;
+	private final HintsCountRenderer hintsCountRenderer;
 
 	public NumberBaseballGame(InputView inputView, OutputView outputView, NumbersGenerator numbersGenerator,
-		NumberMatchResultRenderer numberMatchResultRenderer, RerunController rerunController) {
+		GameOverJudge gameOverJudge, HintsCountRenderer hintsCountRenderer) {
 		this.inputView = inputView;
 		this.outputView = outputView;
 		this.numbersGenerator = numbersGenerator;
-		this.numberMatchResultRenderer = numberMatchResultRenderer;
-		this.rerunController = rerunController;
+		this.gameOverJudge = gameOverJudge;
+		this.hintsCountRenderer = hintsCountRenderer;
 	}
 
 	private void run() {
@@ -39,26 +36,26 @@ public class NumberBaseballGame {
 		boolean isRunning = true;
 		while (isRunning) {
 			outputView.printInputNumberMessage();
-			Numbers otherNumbers = inputView.inputNumbers();
-			NumbersMatchResult numbersMatchResult = numbers.match(otherNumbers);
-			outputView.printNumbersMatchResult(numbersMatchResult, numberMatchResultRenderer);
-			isRunning = isGameContinue(numbersMatchResult);
+			Numbers inputNumbers = inputView.inputNumbers();
+			HintsCount hintsCount = numbers.compareNumbers(inputNumbers);
+			outputView.printHints(hintsCount, hintsCountRenderer);
+			isRunning = !gameOverJudge.isGameOver(hintsCount);
 		}
 		outputView.printEndGameMessage(Numbers.LENGTH);
-	}
-
-	private boolean isGameContinue(NumbersMatchResult numbersMatchResult) {
-		int strikeCount = numbersMatchResult.countOfResult(MatchResult.STRIKE);
-		return strikeCount != Numbers.LENGTH;
 	}
 
 	public void start() {
 		boolean isRunning = true;
 		while (isRunning) {
 			run();
-			outputView.printRerunGameMessage(rerunController.getRerunFlag(), rerunController.getEndFlag());
-			isRunning = rerunController.isRerun(inputView.inputRerunGameFlag());
+			outputView.printNewGameMessage(RESTART_COMMAND, END_COMMAND);
+			String command = inputView.inputRestartCommand();
+			isRunning = isRestart(command);
 		}
+	}
+
+	private boolean isRestart(String command) {
+		return command.equals(RESTART_COMMAND);
 	}
 
 	public static void main(String[] args) {
@@ -71,12 +68,11 @@ public class NumberBaseballGame {
 	}
 
 	private static NumberBaseballGame generateGame() {
-		NumberMatchResultRenderer numberMatchResultRenderer = new StrikeFirstResultRenderer();
+		HintsCountRenderer hintsCountRenderer = new StrikeFirstHintsCountRenderer();
 		OutputView outputView = new PrintStreamOutputView(System.out);
 		InputView inputView = new ScannerInputView(System.in);
 		NumbersGenerator numbersGenerator = new RandomNumbersGenerator(new Random());
-		RerunController reRunController = new RerunControllerImpl(RERUN_FLAG, END_FLAG);
-		return new NumberBaseballGame(inputView, outputView, numbersGenerator, numberMatchResultRenderer,
-			reRunController);
+		GameOverJudge gameOverJudge = new StrikeCountGameOverJudge();
+		return new NumberBaseballGame(inputView, outputView, numbersGenerator, gameOverJudge, hintsCountRenderer);
 	}
 }

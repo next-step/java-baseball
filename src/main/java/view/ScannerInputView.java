@@ -20,7 +20,7 @@ public class ScannerInputView implements InputView {
 	}
 
 	@Override
-	public String inputRerunGameFlag() {
+	public String inputRestartCommand() {
 		return scanner.next();
 	}
 

@@ -1,5 +1,7 @@
 package number;
 
+import static number.Hint.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -52,21 +54,25 @@ public class Numbers {
 		return new Numbers(inputNumbers);
 	}
 
-	public NumbersMatchResult match(Numbers otherNumbers) {
-		List<MatchResult> matchResults = new ArrayList<>();
+	public HintsCount compareNumbers(Numbers otherNumbers) {
+		List<Hint> hints = new ArrayList<>();
 		for (int position = FIRST_POSITION; position < numbers.size(); position++) {
 			Number number = numbers.get(position);
-			MatchResult matchResult = otherNumbers.match(number, position);
-			matchResults.add(matchResult);
+			Hint hint = otherNumbers.comparePositionOfNumber(number, position);
+			hints.add(hint);
 		}
-		return NumbersMatchResult.of(matchResults);
+		return HintsCount.of(hints);
 	}
 
-	private MatchResult match(Number otherNumber, int otherPosition) {
+	private Hint comparePositionOfNumber(Number otherNumber, int otherPosition) {
 		final int position = numbers.indexOf(otherNumber);
-		final boolean containEqualNumber = (position != NOT_MATCH_POSITION);
-		final boolean equalPosition = (position == otherPosition);
-		return MatchResult.applyMatchRules(containEqualNumber, equalPosition);
+		if (position == NOT_MATCH_POSITION) {
+			return NOTHING;
+		}
+		if (position == otherPosition) {
+			return STRIKE;
+		}
+		return BALL;
 	}
 
 	@Override

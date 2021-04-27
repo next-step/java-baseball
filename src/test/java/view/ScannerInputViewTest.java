@@ -27,6 +27,17 @@ public class ScannerInputViewTest {
 		assertThat(numbers).isEqualTo(Numbers.of(userInputNumbers));
 	}
 
+	@Test
+	@DisplayName("사용자가 입력한 재시작 명령이 나와야 한다.")
+	public void inputRestartCommand() {
+		String restartCommand = "1";
+		ScannerInputView scannerInputView = generateInputView(restartCommand);
+
+		String inputValue = scannerInputView.inputRestartCommand();
+
+		assertThat(inputValue).isEqualTo(restartCommand);
+	}
+
 	private ScannerInputView generateInputView(String userInput) {
 		InputStream inputStream = new ByteArrayInputStream(userInput.getBytes(StandardCharsets.UTF_8));
 		return new ScannerInputView(inputStream);

@@ -1,9 +1,8 @@
 package view;
 
-import number.MatchResult;
-import number.NumbersMatchResult;
+import number.HintsCount;
 
-public class StrikeFirstResultRenderer implements NumberMatchResultRenderer {
+public class StrikeFirstHintsCountRenderer implements HintsCountRenderer {
 	private static final String EMPTY = "";
 	private static final String SPACE = " ";
 	private static final String NOTHING = "낫싱";
@@ -11,9 +10,9 @@ public class StrikeFirstResultRenderer implements NumberMatchResultRenderer {
 	private static final String BALL = "볼";
 
 	@Override
-	public String render(NumbersMatchResult numbersMatchResult) {
-		int strikeCount = numbersMatchResult.countOfResult(MatchResult.STRIKE);
-		int ballCount = numbersMatchResult.countOfResult(MatchResult.BALL);
+	public String render(HintsCount hintsCount) {
+		int strikeCount = hintsCount.countOfStrike();
+		int ballCount = hintsCount.countOfBall();
 		return render(strikeCount, ballCount);
 	}
 

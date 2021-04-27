@@ -5,5 +5,5 @@ import number.Numbers;
 public interface InputView {
 	Numbers inputNumbers();
 
-	String inputRerunGameFlag();
+	String inputRestartCommand();
 }
