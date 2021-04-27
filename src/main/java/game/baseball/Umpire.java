@@ -12,6 +12,13 @@ public class Umpire {
 
 	private Pitcher pitcher;
 
+	public int getBalls() {
+		return balls;
+	}
+
+	public int getStrikes() {
+		return strikes;
+	}
 
 	public boolean isOut() {
 		return strikes == 3;
@@ -35,21 +42,29 @@ public class Umpire {
 
 	public void judge() {
 		for (int i = 0; i < pitcher.getPitches().length; i++) {
-			callBall(pitcher.getPitches()[i], hitter.getHittingNumbers());
-			callStrikes(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i]);
+			this.balls += callBall(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i], hitter.getHittingNumbers());
+			this.strikes += callStrikes(pitcher.getPitches()[i], (int) hitter.getHittingNumbers().toArray()[i]);
 		}
 	}
 
-	public void callBall(int pitch, Set<Integer> hits) {
-		if (hits.contains(pitch)) {
-			balls++;
-		}
-	}
-
-	public void callStrikes(int pitch, int hit) {
+	public int callBall(int pitch, int hit, Set<Integer> hits) {
+		// 포함은 하되...
 		if (pitch == hit) {
-			strikes++;
+			return 0;
 		}
+
+		// ball이면
+		if (hits.contains(pitch)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public int callStrikes(int pitch, int hit) {
+		if (pitch == hit) {
+			return 1;
+		}
+		return 0;
 	}
 
 	public String speakJudge() {
