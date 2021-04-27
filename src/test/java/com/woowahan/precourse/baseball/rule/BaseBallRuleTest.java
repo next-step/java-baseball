@@ -38,4 +38,22 @@ class BaseBallRuleTest {
         assertThat(BaseBallRule.isBall(this.gameNumbers, secondInputNumber, 1)).isFalse();
         assertThat(BaseBallRule.isBall(this.gameNumbers, thirdInputNumber, 2)).isTrue();
     }
+
+
+    @Test
+    @DisplayName("strike가 3이면 게임 승리이므로 승리인경우 true 승리가 아닌경우 false 반환")
+    void isVictoryTest() {
+
+        // given
+        int game1StrikeCount = 3;
+        int game2StrikeCount = 2;
+
+        // when
+        boolean game1Victory = BaseBallRule.isVictory(game1StrikeCount);
+        boolean game2Victory = BaseBallRule.isVictory(game2StrikeCount);
+
+        // then
+        assertThat(game1Victory).isTrue();
+        assertThat(game2Victory).isFalse();
+    }
 }
