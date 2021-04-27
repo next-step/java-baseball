@@ -17,11 +17,6 @@ class BaseBallTest {
     }
 
     @Test
-    void equals() {
-        assertThat(BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).isEqualTo(BaseBall.of("159"));
-    }
-
-    @Test
     void validThreeDigit() {
         assertThatThrownBy(() -> BaseBall.of("15"))
             .hasMessageMatching("세자리 숫자를 입력해주세요.")

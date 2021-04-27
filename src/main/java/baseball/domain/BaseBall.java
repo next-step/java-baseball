@@ -11,19 +11,15 @@ public class BaseBall implements Iterable<Ball> {
     public static final int BALLS_LENGTH = 3;
     private final List<Ball> balls;
 
-    public BaseBall(List<Ball> balls) {
+    private BaseBall(List<Ball> balls) {
         this.balls = balls;
-    }
-
-    public static BaseBall of(List<Ball> balls) {
-        return new BaseBall(balls);
     }
 
     public static BaseBall of(String numbers) {
         validationThreeDigit(numbers);
         List<Ball> balls = makeBalls(numbers);
         validationDuplicate(balls);
-        return BaseBall.of(balls);
+        return new BaseBall(balls);
     }
 
     private static void validationThreeDigit(String numbers) {
@@ -53,7 +49,7 @@ public class BaseBall implements Iterable<Ball> {
                 balls.add(ball);
             }
         }
-        return BaseBall.of(balls);
+        return new BaseBall(balls);
     }
 
     public int countStrike(BaseBall inputBaseBall) {
