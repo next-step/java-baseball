@@ -9,6 +9,16 @@ public class InputDevice {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    public static GameProgress inputProcessCode() {
+        GameProgress gameProgress = GameProgress.RESTART;
+        String processEntered = SCANNER.nextLine().trim();
+        int processCode = Integer.parseInt(processEntered);
+        if(processCode == 2){
+            gameProgress = GameProgress.EXIT;
+        }
+        return gameProgress;
+    }
+
     public static List<BaseballNumber> inputNumber() {
         String answerEntered = SCANNER.nextLine().trim();
         checkInputValidRange(answerEntered);
