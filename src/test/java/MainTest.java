@@ -27,4 +27,46 @@ class MainTest {
             assertThat(baseballNumSet).containsOnlyOnce(num);
         }
     }
+
+    @Test
+    @DisplayName("Test Baseball Strike Number")
+    void TEST_getStrikeCount() {
+
+        String userBaseballStr = "123";
+        String commRandomNum = "123";
+
+        // Check Strike
+        int strikeCount = Main.getStrikeCount(userBaseballStr, commRandomNum);
+        System.out.println(strikeCount + " 스트라이크");
+
+        assertThat(strikeCount).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("Test Baseball Strike Number")
+    void TEST_getStrikeCount2() {
+
+        String userBaseballStr = "123";
+        String commRandomNum = "124";
+
+        // Check Strike
+        int strikeCount = Main.getStrikeCount(userBaseballStr, commRandomNum);
+        System.out.println(strikeCount + " 스트라이크");
+
+        assertThat(strikeCount).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Test Baseball Strike Number")
+    void TEST_getStrikeCount3() {
+
+        String userBaseballStr = "123";
+        String commRandomNum = "543";
+
+        // Check Strike
+        int strikeCount = Main.getStrikeCount(userBaseballStr, commRandomNum);
+        System.out.println(strikeCount + " 스트라이크");
+
+        assertThat(strikeCount).isEqualTo(1);
+    }
 }

@@ -14,17 +14,58 @@ public class Main {
 
     static void startBaseballGame() {
 
+        boolean isGameRunning;
+        String commRandomNum = getRandomNumStr();
+        System.out.println("commRandomNum : " + commRandomNum);
+
+        do {
+            String userBaseballStr = scanUserInput(commRandomNum);
+            isGameRunning = verifyBaseballNum(userBaseballStr, commRandomNum);
+        } while (isGameRunning);
+
+        System.out.println(getRandomNumStr());
+    }
+
+    private static String scanUserInput(String commRandomNum) {
         String userBaseballStr;
         do {
             System.out.print("숫자를 입력해주세요 : ");
             Scanner sc = new Scanner(System.in);
             userBaseballStr = sc.next();
 
-            // TODO : Verify BaseBall Game Number
+        } while (!ProgramUtils.isNumeric(userBaseballStr) || userBaseballStr.length() < commRandomNum.length());
 
-        } while (!ProgramUtils.isNumeric(userBaseballStr));
+        return userBaseballStr;
+    }
 
-        System.out.println(getRandomNumStr());
+    private static boolean verifyBaseballNum(String userBaseballStr, String commRandomNum) {
+
+        boolean isGameRunning = true;
+
+        // Check Strike
+        int strikeCount = getStrikeCount(userBaseballStr, commRandomNum);
+        System.out.println(strikeCount + "스트라이크");
+
+        return isGameRunning;
+    }
+
+    static int getStrikeCount(String userBaseballStr, String commRandomNum) {
+
+        int strikeCnt = 0;
+
+        for (int i = 0; i < userBaseballStr.length(); i++) {
+            int userNum = userBaseballStr.charAt(i) - '0';
+            int commNum = commRandomNum.charAt(i) - '0';
+
+            strikeCnt += compareStrikeNum(userNum, commNum);
+        }
+
+        return strikeCnt;
+    }
+
+    private static int compareStrikeNum(int userNum, int commNum) {
+        if (userNum == commNum) return 1;
+        else return 0;
     }
 
 
