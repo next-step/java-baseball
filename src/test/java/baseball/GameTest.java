@@ -97,13 +97,12 @@ class GameTest {
             game.isStrike(comTest1.get(i), userTest1[i], score);
             game.isBall(comTest1, userTest1[i], score, i);
         }
+        score.judge();
+        String gameResult = score.getFinalScore();
 
-//        //then
-//        assertThat(strikeResult.get(0)).isEqualTo(3);
-//        assertThat(ballResult.get(0)).isEqualTo(0);
-//
-//        assertThat(strikeResult.get(1)).isEqualTo(1);
-//        assertThat(ballResult.get(1)).isEqualTo(2);
+        //then
+        assertThat(gameResult).isEqualTo(Message.WIN.getMessage());
+
 
 
     }
