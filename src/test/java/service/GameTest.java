@@ -17,7 +17,8 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 @DisplayName(value = "게임 로직 테스트")
 class GameTest {
 
-    @ParameterizedTest
+    @DisplayName(value = "사용자 입력 값과 난수가 동일한 경우 스트라이크")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"123"})
     void game(String input) {
         setSystemInputStream(input);
@@ -36,7 +37,8 @@ class GameTest {
         return new ByteArrayInputStream(input.getBytes());
     }
 
-    @ParameterizedTest
+    @DisplayName(value = "사용자 입력 값으로 게임 종료 여부 판단")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
     @ValueSource(strings = {"2", "1"})
     void isGameOver(String input) {
         setSystemInputStream(input);

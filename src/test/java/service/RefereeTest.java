@@ -3,6 +3,7 @@ package service;
 import domain.Bettings;
 import domain.Strike;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,9 +29,10 @@ class RefereeTest {
         );
     }
 
-    @ParameterizedTest
+    @DisplayName(value = "사용자 입력 값과 난수가 동일한 경우 스트라이크")
+    @ParameterizedTest(name = "{index} {displayName} message={0}")
     @MethodSource("getBettings")
-    void game(int strikeCount, List<Integer> computerValues) {
+    void compareInputsWithValues(int strikeCount, List<Integer> computerValues) {
         char[] userInputs = {'1', '2', '3'};
         Bettings bettings = new Bettings(userInputs, computerValues);
         Strike strike = REFEREE.compareInputsWithValues(bettings);
