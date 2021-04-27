@@ -4,9 +4,13 @@ public enum GameStatus {
     RESTART("1"),
     END("2");
 
-    private String status;
+    private String value;
 
-    GameStatus(String status) {
-        this.status = status;
+    GameStatus(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
     }
 }

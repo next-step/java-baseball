@@ -45,11 +45,11 @@ public class BaseBallGameApplication {
     private static void victoryGame(Scanner sc) {
         String endAnswer = sc.nextLine();
 
-        if (endAnswer.equals(GameStatus.RESTART.toString())) {
+        if (endAnswer.equals(GameStatus.RESTART.getValue())) {
             baseBallGame = new BaseBallGame();
         }
 
-        if (endAnswer.equals(GameStatus.END.toString())) {
+        if (endAnswer.equals(GameStatus.END.getValue())) {
             gameContinue = false;
         }
     }
