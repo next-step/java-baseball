@@ -17,6 +17,10 @@ public class BaseBallInningOutput extends BaseBallOutput<Inning> {
         if (inning.getStrike() == 3) {
             super.stringBuffer.append(String.join(System.lineSeparator(),inning.getBall() + " 볼"));
         }
+        
+        if(inning.getStrike() == 0 && inning.getBall() == 0) {
+            super.stringBuffer.append("낫씽");
+        }
     }
 
     @Override
