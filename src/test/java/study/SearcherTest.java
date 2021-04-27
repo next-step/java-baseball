@@ -3,7 +3,9 @@ package study;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class SearcherTest {
 
@@ -13,9 +15,12 @@ class SearcherTest {
     @DisplayName("문자를 찾는 테스트")
     void findCharSucceessTest() {
         Searcher searcher = new Searcher();
-        assertThat(searcher.findChar(inputText, 0)).isEqualTo('a');
-        assertThat(searcher.findChar(inputText, 1)).isEqualTo('b');
-        assertThat(searcher.findChar(inputText, 2)).isEqualTo('c');
+
+        assertAll(
+                () -> assertThat(searcher.findChar(inputText, 0)).isEqualTo('a'),
+                () -> assertThat(searcher.findChar(inputText, 1)).isEqualTo('b'),
+                () -> assertThat(searcher.findChar(inputText, 2)).isEqualTo('c')
+        );
     }
 
     @Test
