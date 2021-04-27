@@ -50,4 +50,11 @@ public class BaseBallGameTest {
 		assertThat(baseBallGame.compareBall('1', "123", 0) == 0).isTrue();
 		assertThat(baseBallGame.compareBall('2', "123", 0) == 1).isTrue();
 	}
+
+	@Test
+	public void makeGameResultTest(){
+		assertEquals("낫싱", baseBallGame.makeGameResult(0, 0));
+		assertEquals("1 스트라이크 ", baseBallGame.makeGameResult(1, 0));
+		assertEquals("1 스트라이크 2 볼 ", baseBallGame.makeGameResult(1, 2));
+	}
 }
