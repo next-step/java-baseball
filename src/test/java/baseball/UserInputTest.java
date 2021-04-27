@@ -1,15 +1,11 @@
 package baseball;
 
-import baseball.numbergenerator.NumberGenerator;
-import baseball.numbergenerator.ThreeNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -59,6 +55,4 @@ class UserInputTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("3자리 숫자만 허용합니다.");
     }
-
-
 }

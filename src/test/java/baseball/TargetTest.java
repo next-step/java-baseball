@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import utils.ListUtil;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class TargetTest {
 
@@ -32,5 +31,4 @@ class TargetTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("3자리 숫자만 허용합니다.");
     }
-
 }
