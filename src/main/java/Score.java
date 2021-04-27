@@ -20,5 +20,5 @@ public class Score {
 		return strikeCount;
 	}
 
-	public void setStrikeCount(int strikeCount) { 		this.strikeCount = strikeCount; }
+	public void setStrikeCount(int strikeCount) { this.strikeCount = strikeCount; }
 }
