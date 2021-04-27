@@ -8,4 +8,11 @@ public class Util {
         return 0;
     }
 
+    public static Integer checkContains(String str, String strWord){
+        if(str.contains(strWord)){
+            return 1;
+        }
+        return 0;
+    }
+
 }
