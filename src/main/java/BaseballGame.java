@@ -23,9 +23,7 @@ public class BaseballGame {
 		String randomNumbers = getRandomNumbers();
 		String input = getInput();
 
-		// TODO: get score
 		Score score = getScore(randomNumbers, input);
-		// TODO: show score
 		showScore(score);
 		// TODO: check Game status
 
@@ -55,6 +53,12 @@ public class BaseballGame {
 	}
 
 	private void showScore(Score score){
+		if(score.getStrikeCount() > 0)
+			System.out.print(score.getStrikeCount() + " 스트라이크 ");
+		if(score.getBallCount() > 0)
+			System.out.print(score.getBallCount() + " 볼");
+
+		System.out.println("");
 	}
 
 	private String getRandomNumbers(){
