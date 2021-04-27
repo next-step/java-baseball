@@ -27,6 +27,8 @@ public class BaseballService {
 
         this.numberSize = size;
         this.baseNumbers = this.createRandomNumbers(size);
+
+        this.baseNumbers.getNumbers().forEach((data) -> {System.out.println(data);});
     }
 
     /**

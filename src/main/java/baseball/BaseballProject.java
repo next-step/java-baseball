@@ -5,7 +5,9 @@ import java.util.Scanner;
 import baseball.business.BaseballService;
 import baseball.business.BaseballUi;
 import baseball.etc.Constants;
+import baseball.etc.Message;
 import baseball.model.BaseballResult;
+import baseball.model.ContinueOptions;
 
 public class BaseballProject {
 
@@ -16,8 +18,7 @@ public class BaseballProject {
 
         do {
             initGame(ui, service);
-        } while (Constants.COUNTINUE.equals(ui.askContinue()));
-        //continueGame(ui, service);
+        } while (isContinue(ui));
 
         scanner.close();
     }
@@ -59,11 +60,33 @@ public class BaseballProject {
     /**
      * 게임 재실행.
      * @param ui UI 로직 객체.
-     * @param service 일반 로직 객체.
      */
-    public static void continueGame(BaseballUi ui, BaseballService service) {
-        if (Constants.COUNTINUE.equals(ui.askContinue())) {
-            initGame(ui, service);
+    public static boolean isContinue(BaseballUi ui) {
+        ContinueOptions optionEnum;
+        boolean result = false;
+
+        do {
+            optionEnum = ContinueOptions.getOptionEnum(ui.askContinue());
+        } while (isUnkonw(ui, optionEnum));
+
+        if (ContinueOptions.CONTINUE == optionEnum) {
+            result = true;
         }
+
+        return result;
+    }
+
+    /**
+     * 게임 재실행 여부 옵션 값인지 여부 체크.
+     * @param ui UI 로직 객체.
+     * @param optionEnum 게임 재실행 여부 옵션.
+     */
+    public static boolean isUnkonw(BaseballUi ui, ContinueOptions optionEnum) {
+        if (optionEnum == ContinueOptions.UNKNOW) {
+            ui.showMessage(Message.ONLY_1_OR_2.getText());
+            return true;
+        }
+
+        return false;
     }
 }
