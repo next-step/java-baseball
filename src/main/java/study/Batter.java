@@ -44,12 +44,12 @@ public class Batter {
 	}
 
 	private void validateNumberRange(int num) {
-		if (isNumBetween1And9(num)) {
+		if (isNotBetween1And9(num)) {
 			throw new IllegalArgumentException("1 ~ 9 범위의 숫자를 입력해주세요.");
 		}
 	}
 
-	private boolean isNumBetween1And9(int num) {
+	private boolean isNotBetween1And9(int num) {
 		return num < 1 || 9 < num;
 	}
 
