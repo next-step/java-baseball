@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-import exception.BaseballException1;
+import exception.BaseballException;
 
 public class Ball {
 	private String input;
@@ -16,10 +16,10 @@ public class Ball {
 		this.numberOfLength = numberOfLength;
 		Integer.valueOf(input);
 		if (input.length() != numberOfLength) {
-			throw new BaseballException1(numberOfLength + "의 길이여야 합니다.");
+			throw new BaseballException(numberOfLength + "의 길이여야 합니다.");
 		}
 		if (numberOfLength > 10) {
-			throw new BaseballException1("10보다 작은 길이여야 합니다.");
+			throw new BaseballException("10보다 작은 길이여야 합니다.");
 		}
 		this.input = input;
 	}
