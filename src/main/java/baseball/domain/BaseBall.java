@@ -23,7 +23,7 @@ public class BaseBall implements Iterable<Ball> {
     }
 
     private static void validationThreeDigit(String numbers) {
-        if (numbers.length() != 3) {
+        if (numbers.length() != BALLS_LENGTH) {
             throw new NoThreeDigitException("세자리 숫자를 입력해주세요.");
         }
     }
