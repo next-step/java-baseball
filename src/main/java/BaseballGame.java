@@ -36,7 +36,7 @@ public class BaseballGame {
 	}
 
 	public boolean isGamePass(Score score){
-		return score.getStrikeCount() == 3;
+		return score.getStrikeCount() == NUMBER_SIZE;
 	}
 
 	public Score getScore(String input, String randomNumbers){
