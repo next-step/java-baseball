@@ -2,10 +2,6 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

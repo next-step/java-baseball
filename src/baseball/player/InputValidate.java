@@ -17,7 +17,7 @@ public class InputValidate {
 	private static void isVaildSize(String input) {		
 		if (input.length() != GameStatus.BALL_SIZE) {
 			throw new IllegalArgumentException(GameStatus.BALL_SIZE + "자리 숫자여야 합니다.");
-		}		
+		}
 	}
 	
 	// 숫자 여부
@@ -26,7 +26,7 @@ public class InputValidate {
 			Integer.parseInt(input);
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("숫자가 아닌 문자가 포함되어 있습니다.");
-		}		
+		}
 	}
 	
 	// 중복된 숫자는 없는지 여부
@@ -44,7 +44,7 @@ public class InputValidate {
 	private static void isContainZero(String input) {		
 		if (input.contains("0")) {
 			throw new IllegalArgumentException("숫자 0이 포함되어 있습니다.");
-		}		
+		}
 	}
 
 }
