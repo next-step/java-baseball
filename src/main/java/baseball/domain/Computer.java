@@ -6,26 +6,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Computer {
-  private static final int DIGIT = 3;
-  private static final String ERROR_DIGIT_FORMAT = "%d 자릿수가 아닙니다.";
-
+public class Computer extends BaseBallNumbers {
   private final List<Number> values;
 
   private Computer(List<Number> values) {
+    super(values);
     this.values = Collections.unmodifiableList(values);
   }
 
   public static Computer generate(NumbersRule numbersRule) {
     List<Number> values = numbersRule.get();
-    checkDigit(values);
     return new Computer(values);
-  }
-
-  private static void checkDigit(List<Number> values) {
-    if (values == null || values.size() != DIGIT) {
-      throw new IllegalArgumentException(String.format(ERROR_DIGIT_FORMAT, DIGIT));
-    }
   }
 
   public BallRecord resultOf(Player player) {

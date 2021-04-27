@@ -37,10 +37,10 @@ class ComputerTest {
   void generate_error() {
     assertAll(() -> assertThatIllegalArgumentException()
                     .isThrownBy(() -> Computer.generate(() -> null))
-                    .withMessageMatching("\\d+ 자릿수가 아닙니다."),
+                    .withMessageMatching("베이스 볼 숫자는 중복되지 않는 \\d+ 자릿수 숫자만 허용됩니다."),
             () -> assertThatIllegalArgumentException()
                     .isThrownBy(() -> Computer.generate(() -> Arrays.asList(Number.create(1), Number.create(2))))
-                    .withMessageMatching("\\d+ 자릿수가 아닙니다."));
+                    .withMessageMatching("베이스 볼 숫자는 중복되지 않는 \\d+ 자릿수 숫자만 허용됩니다."));
   }
 
   @ParameterizedTest

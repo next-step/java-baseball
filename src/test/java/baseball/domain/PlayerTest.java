@@ -31,10 +31,10 @@ class PlayerTest {
     assertAll(
             () -> assertThatIllegalArgumentException()
                     .isThrownBy(() -> Player.generateNumberString("111"))
-                    .withMessageMatching("\\d+ 자릿수가 아닙니다."),
+                    .withMessageMatching("베이스 볼 숫자는 중복되지 않는 \\d+ 자릿수 숫자만 허용됩니다."),
             () -> assertThatIllegalArgumentException()
                     .isThrownBy(() -> Player.generateNumberString("1234"))
-                    .withMessageMatching("\\d+ 자릿수가 아닙니다.")
+                    .withMessageMatching("베이스 볼 숫자는 중복되지 않는 \\d+ 자릿수 숫자만 허용됩니다.")
     );
   }
 
