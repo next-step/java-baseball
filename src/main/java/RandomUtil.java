@@ -8,7 +8,7 @@ public class RandomUtil {
     private Random random=new Random();
 
     public int getRandom(int min,int max){
-        return random.nextInt(min+max)+min;
+        return random.nextInt(max-min+1)+min;
     }
 
     public boolean IsDuplicatedNumList(List<Integer> numList){
