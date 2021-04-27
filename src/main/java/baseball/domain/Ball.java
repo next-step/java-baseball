@@ -10,6 +10,7 @@ import java.util.Set;
 public class Ball {
     private static final String INPUT_WITHOUT_DUPLICATE = "중복 없이 숫자를 3개 입력해주세요.";
     private static int MAX_BALL_COUNT = 3;
+
     private final Set<BallNumber> ballNumbers;
 
     public Ball(List<BallNumber> ballNumbers) {
@@ -25,36 +26,6 @@ public class Ball {
             throw new IllegalArgumentException(INPUT_WITHOUT_DUPLICATE);
         }
         return new LinkedHashSet<>(ballNumbers);
-    }
-
-    public int getMatchCount(Bat bat) {
-        List<BallNumber> shots = bat.getShots();
-        List<BallNumber> ballList = getBallList();
-        int strikeCount = 0;
-        int ballCount = 0;
-        for (int i = 0; i < shots.size(); i++) {
-            BallNumber shot = shots.get(i);
-            BallNumber generated = ballList.get(i);
-
-            strikeCount = getMatchCount(strikeCount, shot, generated);
-        }
-
-        return strikeCount;
-    }
-
-    private int getMatchCount(int matchCount, BallNumber shot, BallNumber generated) {
-        if (shot.equals(generated)) {
-            matchCount++;
-        }
-        if (!shot.equals(generated) && isBallNumberMatch(shot)) {
-            // TODO : 점수 계산기에서 점수 계산
-        }
-
-        return matchCount;
-    }
-
-    private boolean isBallNumberMatch(BallNumber ballNumber) {
-        return ballNumbers.contains(ballNumber);
     }
 
     public Set<BallNumber> getBallNumbers() {

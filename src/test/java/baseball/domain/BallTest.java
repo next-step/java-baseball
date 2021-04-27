@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BallTest {
@@ -54,15 +53,5 @@ class BallTest {
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Ball(ballNumbers));
-    }
-
-    @Test
-    void getMatch() {
-        Bat bat = new Bat(ballNumber1);
-        Ball ball = new Ball(ballNumber2);
-
-        int matchCount = ball.getMatchCount(bat);
-
-        assertThat(matchCount).isEqualTo(1);
     }
 }

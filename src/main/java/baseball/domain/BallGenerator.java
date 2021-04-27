@@ -9,6 +9,9 @@ public class BallGenerator {
     private static final int MINIMUM_BALL_NUMBER = 1;
     private static final int MAXIMUM_BALL_NUMBER = 9;
 
+    private BallGenerator() {
+    }
+
     public static List<BallNumber> getBallNumbers() {
         return shuffle(generateNumbers()).subList(0, MAX_BALL_COUNT);
     }
