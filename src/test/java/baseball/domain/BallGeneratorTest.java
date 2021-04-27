@@ -10,7 +10,7 @@ class BallGeneratorTest {
     @DisplayName("공을 랜덤하게 중복없이 3개 추출한다.")
     @Test
     public void testBallNumberCreate() {
-        assertThat(BallGenerator.getBallNumbers().size()).isSameAs(3);
+        assertThat(BallGenerator.getBallNumbers().getSize()).isSameAs(3);
     }
 
     @DisplayName("볼 숫자 범위를 생성한다.")

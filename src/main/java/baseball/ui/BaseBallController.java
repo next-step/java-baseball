@@ -3,10 +3,11 @@ package baseball.ui;
 import baseball.domain.Ball;
 import baseball.domain.BallGenerator;
 import baseball.domain.BallNumber;
+import baseball.domain.BallNumbers;
 import baseball.domain.Bat;
-import baseball.domain.ScoreCalculator;
 import baseball.domain.score.Nothing;
 import baseball.domain.score.Score;
+import baseball.domain.score.ScoreCalculator;
 import baseball.domain.score.Win;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -17,7 +18,7 @@ public class BaseBallController {
     private static final int EXIT_INPUT = 1;
 
     public void start() {
-        List<BallNumber> ballNumbers = BallGenerator.getBallNumbers();
+        BallNumbers ballNumbers = BallGenerator.getBallNumbers();
         Ball ball = new Ball(ballNumbers);
         Score score = new Nothing();
         playGame(ball, score);

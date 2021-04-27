@@ -12,8 +12,9 @@ public class BallGenerator {
     private BallGenerator() {
     }
 
-    public static List<BallNumber> getBallNumbers() {
-        return shuffle(generateNumbers()).subList(0, MAX_BALL_COUNT);
+    public static BallNumbers getBallNumbers() {
+        List<BallNumber> ballNumbers = shuffle(generateNumbers()).subList(0, MAX_BALL_COUNT);
+        return new BallNumbers(ballNumbers);
     }
 
     public static List<BallNumber> generateNumbers() {

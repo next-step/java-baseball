@@ -1,9 +1,10 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class BallNumbers {
     private static final String INPUT_WITHOUT_DUPLICATE = "중복 없이 숫자를 3개 입력해주세요.";
@@ -23,10 +24,14 @@ public class BallNumbers {
         if (set.size() != MAX_BALL_COUNT) {
             throw new IllegalArgumentException(INPUT_WITHOUT_DUPLICATE);
         }
-        return new TreeSet<>(ballNumbers);
+        return new LinkedHashSet<>(ballNumbers);
     }
 
-    public Set<BallNumber> getBallNumbers() {
-        return ballNumbers;
+    public List<BallNumber> getBallNumbers() {
+        return new ArrayList<>(ballNumbers);
+    }
+
+    public int getSize() {
+        return ballNumbers.size();
     }
 }

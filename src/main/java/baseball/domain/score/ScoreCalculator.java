@@ -1,9 +1,8 @@
-package baseball.domain;
+package baseball.domain.score;
 
-import baseball.domain.score.Normal;
-import baseball.domain.score.Nothing;
-import baseball.domain.score.Score;
-import baseball.domain.score.Win;
+import baseball.domain.Ball;
+import baseball.domain.BallNumber;
+import baseball.domain.Bat;
 
 import java.util.List;
 

@@ -1,8 +1,9 @@
-package baseball.domain;
+package baseball.domain.score;
 
-import baseball.domain.score.Normal;
-import baseball.domain.score.Nothing;
-import baseball.domain.score.Win;
+import baseball.domain.Ball;
+import baseball.domain.BallNumber;
+import baseball.domain.BallNumbers;
+import baseball.domain.Bat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class ScoreCalculatorTest {
         List<BallNumber> threeMatch1 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
         List<BallNumber> threeMatch2 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
         bat = new Bat(threeMatch1);
-        ball = new Ball(threeMatch2);
+        ball = new Ball(new BallNumbers(threeMatch2));
 
         scoreCalculator.calculateScore(bat, ball);
 
@@ -41,7 +42,8 @@ class ScoreCalculatorTest {
         List<BallNumber> oneMatch1 = Arrays.asList(new BallNumber(4), new BallNumber(9), new BallNumber(6));
         List<BallNumber> oneMatch2 = Arrays.asList(new BallNumber(4), new BallNumber(2), new BallNumber(3));
         Bat bat = new Bat(oneMatch1);
-        Ball ball = new Ball(oneMatch2);
+        BallNumbers ballNumbers = new BallNumbers(oneMatch2);
+        Ball ball = new Ball(ballNumbers);
 
         scoreCalculator.calculateScore(bat, ball);
 
@@ -54,7 +56,8 @@ class ScoreCalculatorTest {
         List<BallNumber> noMatch1 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
         List<BallNumber> noMatch2 = Arrays.asList(new BallNumber(4), new BallNumber(5), new BallNumber(6));
         Bat bat = new Bat(noMatch1);
-        Ball ball = new Ball(noMatch2);
+        BallNumbers ballNumbers = new BallNumbers(noMatch2);
+        Ball ball = new Ball(ballNumbers);
 
         scoreCalculator.calculateScore(bat, ball);
 
