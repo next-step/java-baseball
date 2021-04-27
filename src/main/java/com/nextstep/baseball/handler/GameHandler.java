@@ -1,5 +1,6 @@
 package com.nextstep.baseball.handler;
 
+import com.nextstep.baseball.enums.ErrorMessages;
 import com.nextstep.baseball.enums.GameCode;
 
 public class GameHandler {
@@ -10,15 +11,29 @@ public class GameHandler {
     private int code;
 
     public void startGame() {
-        code = GameCode.START.getCode();
-        randomNum = gameLogicHandler.makeRandomNumberForGame();
+        initCodeAndRandomNum();
 
         while (code > 0) {
-            String input = gameUiHandler.getInput();
-            int[] guessResult = gameLogicHandler.checkStrikesAndBalls(randomNum, gameLogicHandler.validateAndReturnInput(input));
-            code = gameUiHandler.printResultAndCheckContinue(guessResult);
-            checkCode();
+            executeGame();
         }
+    }
+
+    private void initCodeAndRandomNum() {
+        code = GameCode.START.getCode();
+        randomNum = gameLogicHandler.makeRandomNumberForGame();
+    }
+
+    private void executeGame() {
+        String input = gameUiHandler.getInput();
+        int num = gameLogicHandler.validateAndReturnInput(input);
+
+        ErrorMessages errorMessages = ErrorMessages.findByCode(num);
+        if (errorMessages != null) {
+            handleError(errorMessages);
+            return;
+        }
+
+        executeCheckStrikeAndBallLogic(num);
     }
 
     private void checkCode() {
@@ -28,4 +43,14 @@ public class GameHandler {
         }
     }
 
+    private void handleError(ErrorMessages errorMessages) {
+        System.out.println(errorMessages.getMessage());
+        this.code = GameCode.EXIT.getCode();
+    }
+
+    private void executeCheckStrikeAndBallLogic(int num) {
+        int[] guessResult = gameLogicHandler.checkStrikesAndBalls(randomNum, num);
+        code = gameUiHandler.printResultAndCheckContinue(guessResult);
+        checkCode();
+    }
 }
