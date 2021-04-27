@@ -35,7 +35,7 @@ public class GameManager {
 	}
 
 	private void start() throws IOException {
-		Game game = new Game(new RandomGenerator());
+		Game game = new Game();
 		while (!game.isFinished()) {
 			playGame(game);
 			System.out.println(Message.RESTART_OR_END.getMessage());

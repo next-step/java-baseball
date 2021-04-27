@@ -5,10 +5,8 @@ import com.baseball.woowahan.constant.Message;
 public class Game {
 	public static final int DEFAULT_LENGTH = 3;
 	public static int gameLength;
-	private RandomGenerator randomGenerator;
 	private ScoreCalculatorAndPrinter scoreCalculatorAndPrinter;
 	private UserInputValidator userInputValidator;
-	private String randomNumber;
 	private boolean completed;
 	private boolean finished;
 
@@ -20,16 +18,14 @@ public class Game {
 		return finished;
 	}
 
-	public Game(RandomGenerator randomGenerator) {
-		this(randomGenerator, DEFAULT_LENGTH);
+	public Game() {
+		this(DEFAULT_LENGTH);
 	}
 
-	public Game(RandomGenerator randomGenerator, int inputLength) {
+	public Game(int inputLength) {
 		gameLength = inputLength;
-		this.randomGenerator = randomGenerator;
 		this.userInputValidator = new UserInputValidator();
-		this.randomNumber = randomGenerator.makeRandomNumbers();
-		this.scoreCalculatorAndPrinter = new ScoreCalculatorAndPrinter(randomNumber);
+		this.scoreCalculatorAndPrinter = new ScoreCalculatorAndPrinter(new RandomGenerator());
 		completed = false;
 		finished = false;
 	}
@@ -43,7 +39,7 @@ public class Game {
 
 	public void choiceRestart(String restartFlag) {
 		if ("1".equals(restartFlag)) {
-			this.completed = false;
+			initGame();
 		}
 		if ("2".equals(restartFlag)) {
 			this.finished = true;
@@ -51,5 +47,10 @@ public class Game {
 		if (!"1".equals(restartFlag) && !"2".equals(restartFlag)) {
 			System.out.println(Message.INVALID_RESTART.getMessage());
 		}
+	}
+
+	private void initGame() {
+		this.completed = false;
+		scoreCalculatorAndPrinter.setNewRandomNumber();
 	}
 }

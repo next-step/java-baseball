@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class UserInputValidatorTest {
 	private UserInputValidator userInputValidator = new UserInputValidator();
-	private Game game = new Game(new RandomGenerator());
+	private Game game = new Game();
 	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", Game.DEFAULT_LENGTH, "}$");
 
 	@Test
