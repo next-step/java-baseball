@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Score {
     private final List<Pitching> pitchings;
 
     public Score(List<Pitching> pitchings) {
-        this.pitchings = pitchings;
+        this.pitchings = new ArrayList<>(pitchings);
     }
 
     public int countOfStrike() {
