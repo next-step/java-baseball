@@ -1,6 +1,7 @@
 package view;
 
-import java.util.Scanner;
+import util.UserNumberUtil;
+
 
 public class PlayView {
 
@@ -31,8 +32,7 @@ public class PlayView {
     public boolean restartGaemView(){
 
         System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
-        Scanner sc = new Scanner(System.in);
-        int choice = Integer.parseInt(sc.nextLine());
+        int choice = UserNumberUtil.inputUserNumber();
         if(choice == 1)
             return true;
 

@@ -12,7 +12,8 @@ class RandomNumberUtilTest {
 
     @Test
     public void duplicateTest(){
-        BaseBallNumberInfo baseBallNumberInfo = RandomNumberUtil.makeRandomBaseBallInfo();
+        BaseBallNumberInfo baseBallNumberInfo = new BaseBallNumberInfo();
+        RandomNumberUtil.makeBaseBall(baseBallNumberInfo);
 
         Set<Integer> checkHashSet = new HashSet<>();
 

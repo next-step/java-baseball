@@ -6,23 +6,13 @@ import java.util.List;
 
 public class RandomNumberUtil {
 
-    // TestCase 및 코드에서 제거 필요
-    public static BaseBallNumberInfo makeRandomBaseBallInfo(){
-
-        BaseBallNumberInfo baseBallNumberInfo = new BaseBallNumberInfo();
-
-        makeBaseBall(baseBallNumberInfo);
-
-        return baseBallNumberInfo;
-    }
-
     public static void makeBaseBall(BaseBallNumberInfo baseBallNumberInfo){
 
-        int numberSize = 0;
+        boolean numberCheck = false;
 
-        while(numberSize < 3) {
+        while(numberCheck == false) {
             makeRandomNumber(baseBallNumberInfo);
-            numberSize = CheckDuplicateUtil.checkDuplicateNumber(baseBallNumberInfo.getBaseBallRandomNumberList());
+            numberCheck = CheckDuplicateUtil.checkDuplicateNumber(baseBallNumberInfo.getBaseBallRandomNumberList());
         }
 
     }

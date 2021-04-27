@@ -30,13 +30,7 @@ public class UserController {
     public boolean generateUserNumberInfo(int inputNumber){
 
         inputUserNumberList(numberSeperaor(inputNumber));
-        int size = CheckDuplicateUtil.checkDuplicateNumber(userNumberInfo.getUserInputNumberList());
-
-        if(size < 3){
-            return false;
-        }
-
-        return true;
+        return CheckDuplicateUtil.checkDuplicateNumber(userNumberInfo.getUserInputNumberList());
     }
 
     private int inputUserNumber(){
@@ -45,8 +39,7 @@ public class UserController {
         int inputNumber = 0;
         while(numberCheck == false){
             System.out.print("숫자를 입력해주세요 : ");
-            Scanner sc = new Scanner(System.in);
-            inputNumber = Integer.parseInt(sc.nextLine());
+            inputNumber = UserNumberUtil.inputUserNumber();
             numberCheck = UserNumberUtil.checkNumberDigit(inputNumber);
         }
 

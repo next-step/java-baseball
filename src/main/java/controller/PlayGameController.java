@@ -22,7 +22,6 @@ public class PlayGameController {
 
     public void initGame(){
         RandomNumberUtil.makeBaseBall(baseBallNumberInfo);
-        testView(baseBallNumberInfo.getBaseBallRandomNumberList());
         playGame(baseBallNumberInfo.getBaseBallRandomNumberList());
     }
 
@@ -37,12 +36,6 @@ public class PlayGameController {
 
         if(playView.restartGaemView()) {
             initGame();
-        }
-    }
-
-    public static void testView(List<Integer> liatA){
-        for(int i=0; i<3; i++){
-            System.out.println(liatA.get(i));
         }
     }
 
