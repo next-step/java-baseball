@@ -12,6 +12,8 @@ public class Calculation {
         return strike;
     }
 
+    public int getBall() { return ball; }
+
     public int[] intToIntArray(int i) {
         int len = Integer.toString(i).length();
         int[] arr = new int[len];
@@ -55,7 +57,7 @@ public class Calculation {
             sb.append("낫싱");
         }
         if (strike > 0 && strike <= 3) {
-            sb.append(strike+" 스크라이크 ");
+            sb.append(strike+" 스트라이크 ");
         }
         if (ball > 0) {
             sb.append(ball+" 볼");

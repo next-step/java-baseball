@@ -16,10 +16,6 @@ public class Baseball {
             balls[2] = number.nextInt(9) + 1;
         }
 
-        System.out.println(balls[0]);
-        System.out.println(balls[1]);
-        System.out.println(balls[2]);
-
         return balls;
     }
 
