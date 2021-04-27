@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PlayerInputs {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public PlayerInputs() {
         this.scanner = new Scanner(System.in);
@@ -48,7 +48,7 @@ public class PlayerInputs {
             try {
                 return convert(raw);
             } catch (InvalidInputException e) {
-                System.out.println(">> 잘못 입력 했습니다 : " + e.getLocalizedMessage());
+                System.out.println(">> 잘못 입력 했습니다 : " + e.getMessage());
             }
         }
     }

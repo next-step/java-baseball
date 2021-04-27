@@ -1,4 +1,4 @@
-package com.bistros.game.domain.referee;
+package com.bistros.game.domain.game;
 
 import com.bistros.game.domain.ball.BallNumbers;
 

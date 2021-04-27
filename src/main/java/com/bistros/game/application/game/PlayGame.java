@@ -3,8 +3,8 @@ package com.bistros.game.application.game;
 import com.bistros.game.application.BallNumbersFactory;
 import com.bistros.game.application.cli.PlayerInputs;
 import com.bistros.game.domain.ball.BallNumbers;
-import com.bistros.game.domain.referee.GameReferee;
-import com.bistros.game.domain.referee.InningReport;
+import com.bistros.game.domain.game.GameReferee;
+import com.bistros.game.domain.game.InningReport;
 
 import java.util.List;
 import java.util.Random;
@@ -34,7 +34,7 @@ public class PlayGame {
         GameReferee referee = new GameReferee(gameBallNumbers);
         System.out.println(">> 새 게임을 시작합니다. 게임 정답 : " + gameBallNumbers);
 
-        InningReport report = null;
+        InningReport report;
         do {
             List<Integer> raw = inputs.fromGameInputByUser();
             report = referee.check(raw);

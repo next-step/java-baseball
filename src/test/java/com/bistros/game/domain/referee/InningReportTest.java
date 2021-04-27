@@ -1,13 +1,14 @@
 package com.bistros.game.domain.referee;
 
+import com.bistros.game.domain.game.InningReport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static com.bistros.game.domain.referee.InningReport.HIT.BALL;
-import static com.bistros.game.domain.referee.InningReport.HIT.STRIKE;
+import static com.bistros.game.domain.game.InningReport.HIT.BALL;
+import static com.bistros.game.domain.game.InningReport.HIT.STRIKE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InningReportTest {
