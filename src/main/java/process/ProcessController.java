@@ -4,7 +4,6 @@ import logic.Answer;
 import logic.BaseballGameCoreLogic;
 import ui.Presentator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessController {
@@ -17,13 +16,20 @@ public class ProcessController {
         this.logic = logic;
     }
 
-    public void runProcess() {
+    public void runProcess() throws Exception {
         boolean isWantPlayGame = true;
         while(isWantPlayGame) {
             init();
             run();
-            System.out.println("end game");
+            isWantPlayGame = endGame();
         }
+    }
+
+    private boolean endGame() throws Exception {
+        String inputValue = presentator.endGame();
+        if (inputValue.equals(Presentator.RESTART)) return true;
+        if (inputValue.equals(Presentator.QUIT)) return false;
+        throw new Exception("잘못된 접근입니다.");
     }
 
     private void init() {
