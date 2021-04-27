@@ -43,7 +43,17 @@ public class BaseBallGame implements Game {
 
 	public int callStrike(String numbers, String inputNumbers) {
 		int strike = 0;
+		for (int i = 0; i < numbers.length(); i++) {
+			strike += compareNumber(numbers.charAt(i), inputNumbers.charAt(i));
+		}
 		return strike;
+	}
+
+	public int compareNumber(char char1, char char2) {
+		if (char1 == char2) {
+			return 1;
+		}
+		return 0;
 	}
 
 	public int callBall(String numbers, String inputNumbers) {
