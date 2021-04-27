@@ -20,6 +20,7 @@ public class RefereeClient {
 	}
 
 	private void judgeAllNumbers(){
+		resetMatchResult();
 		for (Integer offenseNumber: offenseNumbers) {
 			addMatchResultCountByType(judgeOneNumber(offenseNumber));
 		}

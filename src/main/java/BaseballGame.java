@@ -24,7 +24,6 @@ public class BaseballGame {
 		ArrayList<Integer> defenseNumbers = defensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
 		refereeClient.setDefenseNumbers(defenseNumbers);
 		do{
-			refereeClient.resetMatchResult();
 			ArrayList<Integer> offenseNumbers = offensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
 			refereeClient.setOffenseNumbers(offenseNumbers);
 			refereeClient.printMatchResult();
