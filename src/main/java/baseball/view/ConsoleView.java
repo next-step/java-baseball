@@ -1,7 +1,7 @@
 package baseball.view;
 
 import baseball.domain.Game;
-import baseball.domain.Hint;
+import baseball.domain.Result;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -31,23 +31,23 @@ public class ConsoleView implements View, Closeable {
 	}
 
 	@Override
-	public void showHint(Hint hint) {
-		String message = makeHintText(hint);
+	public void showHint(Result result) {
+		String message = makeHint(result);
 		System.out.println(message);
 	}
 
-	private String makeHintText(Hint hint) {
-		if(hint.strike == 0 && hint.ball == 0) {
+	private String makeHint(Result result) {
+		if(result.isNothing()) {
 			return Constants.HINT_NOTHING;
 		}
 
 		StringBuilder builder = new StringBuilder();
-		if(hint.strike > 0) {
-			builder.append(String.format(Constants.HINT_STRIKE, hint.strike));
+		if(result.strike > 0) {
+			builder.append(String.format(Constants.HINT_STRIKE, result.strike));
 		}
 
-		if(hint.ball > 0) {
-			builder.append(String.format(Constants.HINT_BALL, hint.ball));
+		if(result.ball > 0) {
+			builder.append(String.format(Constants.HINT_BALL, result.ball));
 		}
 		return builder.toString();
 	}

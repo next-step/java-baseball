@@ -1,6 +1,6 @@
 package baseball.view;
 
-import baseball.domain.Hint;
+import baseball.domain.Result;
 
 public interface View {
 	void showInputNumberMessage();
@@ -9,7 +9,7 @@ public interface View {
 
 	void showRestartGameMessage();
 
-	void showHint(Hint hint);
+	void showHint(Result result);
 
 	String readInput();
 }

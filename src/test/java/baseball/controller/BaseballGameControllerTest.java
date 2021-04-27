@@ -23,9 +23,5 @@ public class BaseballGameControllerTest {
 
 		BaseballGameController controller = new BaseballGameController(game, view);
 		controller.start();
-
-
-
-
 	}
 }

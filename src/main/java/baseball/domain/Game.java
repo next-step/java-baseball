@@ -43,20 +43,19 @@ public class Game {
 			boolean isStrike = countStrikeAndMark(i, target, numbers);
 			if(isStrike) result.strike++;
 		}
-
-		if(result.strike == NUMBER_LENGTH) {
-			result.isSuccess = true;
-		}
 	}
 
-	private void countBall(int[] numbers, Result result) {
+	private Set<Integer> filterRemainNumbers(int[] numbers) {
 		Set<Integer> remainNumbers = new HashSet();
 
 		int len = numbers.length;
 		for (int i = 0; i < len; i++) {
 			if(numbers[i] != -1) remainNumbers.add(numbers[i]);
 		}
+		return remainNumbers;
+	}
 
+	private void countBall(Set<Integer> remainNumbers, Result result) {
 		for (int i = 0; i < NUMBER_LENGTH; i++) {
 			boolean isBall = remainNumbers.contains(target[i]);
 			if(isBall) result.ball++;
@@ -66,7 +65,9 @@ public class Game {
 	public Result judge(int[] numbers) {
 		Result result = new Result();
 		countStrike(numbers, result);
-		countBall(numbers, result);
+
+		Set<Integer> remainNumbers = filterRemainNumbers(numbers);
+		countBall(remainNumbers, result);
 
 		return result;
 	}
