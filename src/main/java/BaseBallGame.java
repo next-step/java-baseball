@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class BaseBallGame {
     char[] answer = new char[3];
@@ -21,6 +22,25 @@ public class BaseBallGame {
      * 게임 스타트
      */
     public void start() {
+        Scanner scanner = new Scanner(System.in);
+
+        while(true) {
+            round(scanner);
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+            String input = scanner.next();
+            if(input.equals("2")) {
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+
+
+    /**
+     * 한 라운드
+     */
+    private void round(Scanner scanner) {
 
     }
 
