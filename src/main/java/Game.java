@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Game {
 
     private static final String RESTART_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
-    private static final String RESTART_NUMBER_INPUT_ERROR_MESSAGE = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
     private static final Scanner scanner = new Scanner(System.in);
 
     private boolean isRunning = true;
@@ -38,7 +37,6 @@ public class Game {
             return;
         }
         if (number != 1) {
-            System.out.println(RESTART_NUMBER_INPUT_ERROR_MESSAGE);
             throw new BaseballException.RestartNumberInputOutOfRangeException();
         }
     }
