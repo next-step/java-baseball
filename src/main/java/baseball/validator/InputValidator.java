@@ -1,5 +1,6 @@
 package baseball.validator;
 
-public interface InputValidator {
-	boolean isValid(String input);
+public interface InputValidator<T> {
+	boolean isValid(T input);
 }
+
