@@ -32,6 +32,7 @@ public class Game {
 
 	public Result judge(int[] numbers) {
 		Result result = new Result();
+		result.isSuccess = true;
 
 		return result;
 	}

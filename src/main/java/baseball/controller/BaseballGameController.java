@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.Game;
+import baseball.domain.Result;
 import baseball.domain.Validator;
 import baseball.view.View;
 
@@ -16,10 +17,40 @@ public class BaseballGameController {
 
 	public void start() {
 		game.start();
+		play();
+	}
 
-		int[] numbers = readNumber();
+	private void play() {
+		boolean isSuccess;
+		do {
+			int[] numbers = readNumber();
+			Result result = game.judge(numbers);
+			isSuccess = result.isSuccess;
 
-		game.judge(numbers);
+		} while(!isSuccess);
+
+		view.showEndGameMessage();
+		view.showRestartGameMessage();
+
+		String cmd = view.readInput();
+		runCommand(cmd);
+	}
+
+	void runCommand(String cmd) {
+		if(cmd.equals("1")) {
+			game.start();
+			play();
+			return;
+		}
+
+		if(cmd.equals("2")) {
+			finishGame();
+			return;
+		}
+	}
+
+	void finishGame() {
+		System.exit(0);
 	}
 
 	private int[] readNumber() {
