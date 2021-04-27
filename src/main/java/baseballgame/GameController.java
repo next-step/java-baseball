@@ -15,8 +15,12 @@ public class GameController {
 
     private static void run() {
         final Player player = new Player();
-        final Game game = new Game();
-        player.play(game);
+        boolean isRunning = true;
+        while (isRunning) {
+            final Game game = new Game();
+            player.play(game);
+            isRunning = player.wantToRerun();
+        }
     }
 
 }

@@ -24,4 +24,8 @@ public class InputConverter {
         }
         return numberList;
     }
+
+    public static boolean convertToRerunCommand(String input, String rerunCommand, String finishCommand) {
+        return input.equals(rerunCommand);
+    }
 }
