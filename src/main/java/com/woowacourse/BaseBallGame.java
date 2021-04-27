@@ -44,6 +44,13 @@ public class BaseBallGame {
 		
 		Map<String, Integer> scores = getScoreCount(randomScore, inputString);
 		printScoreMessage(scores.get("strike"), scores.get("ball"));
+		
+		if (scores.get("strike") == 3) {
+			continueGame();
+			return;
+		}
+		
+		startGame(randomScore);
 	}
 	
 	/* 사용자데이터 입력 */
@@ -164,5 +171,40 @@ public class BaseBallGame {
 		}
 		
 		return msg = num + " 볼";
+	}
+	
+	/* 게임 시작, 종료 질의 */
+	public void continueGame() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		
+		try {
+			String cmd = selectCommand();
+			
+			if ("1".equals(cmd)) {
+				setInit();
+			}
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	/* 명령어 선택 */
+	public String selectCommand() {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String cmd = "";
+		
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		
+		try {
+			cmd = br.readLine();
+
+			if (!("1".equals(cmd) || "2".equals(cmd))) {
+				cmd = selectCommand();
+			}
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return cmd;
 	}
 }
