@@ -36,7 +36,6 @@ public class Main {
     }
 
     static void runGame() {
-
         boolean isGameRunning;
         String commRandomNum = getRandomNumStr();
         System.out.println("commRandomNum : " + commRandomNum);
@@ -66,26 +65,16 @@ public class Main {
         int strikeCount = getStrikeCount(userBaseballStr, commRandomNum);
 
         // Check Ball
-        int ballCount = getBallCount(userBaseballStr, commRandomNum);
-        ballCount -= strikeCount;
-
-        // Check Nothing
-        boolean isNothing = strikeCount + ballCount > 0 ? false : true;
+        int ballCount = getBallCount(userBaseballStr, commRandomNum) - strikeCount;
 
         if (strikeCount == commRandomNum.length()) {
             System.out.println(commRandomNum.length() + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return false;
-        } else if (strikeCount > 0) {
-            System.out.println(strikeCount + "스트라이크");
         }
 
-        if (ballCount > 0) {
-            System.out.println(ballCount + "볼");
-        }
-
-        if (isNothing) {
-            System.out.println("낫싱");
-        }
+        if (strikeCount > 0) System.out.println(strikeCount + "스트라이크");
+        if (ballCount > 0) System.out.println(ballCount + "볼");
+        if (strikeCount + ballCount == 0) System.out.println("낫싱");
 
         return true;
     }
@@ -112,7 +101,8 @@ public class Main {
         }
 
         if (isBall) return 1;
-        else return 0;
+
+        return 0;
     }
 
     private static boolean verifyBall(int userNum, int commNum) {
@@ -135,28 +125,9 @@ public class Main {
 
     private static int compareStrikeNum(int userNum, int commNum) {
         if (userNum == commNum) return 1;
-        else return 0;
+
+        return 0;
     }
-
-    private static boolean compareNum(int userNum, int index) {
-
-        String userRandomNum = getRandomNumStr();
-
-        for (int i = 0; i < userRandomNum.length(); i++) {
-            int comNum = userRandomNum.charAt(i) - '0';
-
-            verifyNum(comNum, i);
-        }
-
-        return false;
-    }
-
-    private static boolean verifyNum(int comNum, int i) {
-
-
-        return false;
-    }
-
 
     static String getRandomNumStr() {
         StringBuilder baseballNum = new StringBuilder();
