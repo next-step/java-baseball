@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SetTest {
     private Set<Integer> numbers;
-    private Set<Integer> tmp = new HashSet<>();
 
     @BeforeEach
     void setUp() {
@@ -28,7 +27,6 @@ public class SetTest {
 
     }
 
-
     @Test
     @DisplayName("Set Size를 확인하는 테스트")
     void SetSizeTest() {
@@ -40,13 +38,12 @@ public class SetTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     public void containsTest(int number) {
-        tmp.add(number);
-        assertThat(numbers.containsAll(tmp)).isTrue();
+        assertThat(numbers.contains(number)).isTrue();
     }
 
 
     @ParameterizedTest
-    @CsvSource(value = {"1:true", "2:true", "3:true", "true:false", "4:false", "5:false"}, delimiter = ':')
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
     void containsTestCsvSourceTest(int number, boolean result) {
         assertThat(numbers.contains(number)).isEqualTo(result);
     }
