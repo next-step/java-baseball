@@ -1,6 +1,8 @@
 package baseball.business;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import baseball.etc.Constants;
@@ -10,6 +12,7 @@ import baseball.model.BaseballResult;
 
 public class BaseballService {
 
+    private final Random random = new SecureRandom();
     private BaseNumbers baseNumbers;
     private int numberSize;
 
@@ -24,8 +27,6 @@ public class BaseballService {
 
         this.numberSize = size;
         this.baseNumbers = this.createRandomNumbers(size);
-
-        this.baseNumbers.getNumbers().forEach((data) -> {System.out.println(data);});
     }
 
     /**
@@ -38,14 +39,28 @@ public class BaseballService {
             throw new IllegalArgumentException(Message.LESS_THAN_1.getText());
         }
 
-        Random random = new SecureRandom();
-        String[] result = new String[size];
+        List<String> result = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            result[i] = String.valueOf(random.nextInt(10));
+            result.add(this.createDeduplicatedNumber(result));
         }
 
         return new BaseNumbers(result);
+    }
+
+    /**
+     * 중복 없는 숫자 생성.
+     * @param existNumbers 기존 숫자들.
+     * @return 중복 없는 숫자.
+     */
+    public String createDeduplicatedNumber(List<String> existNumbers) {
+        String numNumber;
+
+        do {
+            numNumber = String.valueOf(random.nextInt(10));
+        } while (existNumbers.contains(numNumber));
+
+        return numNumber;
     }
 
     /**

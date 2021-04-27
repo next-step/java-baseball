@@ -1,6 +1,5 @@
 package baseball.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 import baseball.etc.Utils;
@@ -8,8 +7,8 @@ import baseball.etc.Utils;
 public class BaseNumbers {
     private final List<String> numbers;
 
-    public BaseNumbers(String[] numbers) {
-        this.numbers = Arrays.asList(numbers);
+    public BaseNumbers(List<String> numbers) {
+        this.numbers = numbers;
     }
 
     /**
