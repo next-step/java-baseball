@@ -14,15 +14,16 @@ public class GamePlayerTest {
 	
 	@Test
 	@DisplayName("game start test")
-	void test_start() {
+	void startTest_shouldInitIsFinishAndDefendNumbers() {
 		ThreeNumbers defendNumbers = gamePlayer.startGame();
-		
 		assertNotNull(defendNumbers, "생성된 defend number은 null이어서는 안된다.");
+		assertEquals(gamePlayer.isFinish(), false, "startGame은 isFinish를 false로 초기화한다.");
+		//defendNumbers에 대한 테스트는 GameCoreTest.makeDefendNumbersTest_checkValidDefendNumbers 참조
 	}
 	
 	@Test
 	@DisplayName("game play test")
-	void test_play() {
+	void palyGameTest_checkReturnHintModel() {
 		
 		ThreeNumbers defendNumbers = gamePlayer.startGame();
 		

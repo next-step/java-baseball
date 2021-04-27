@@ -14,7 +14,7 @@ public class GameCoreTest {
 	
 	@Test
 	@DisplayName("strike or ball check test")
-	void test_attack_check() {
+	void attackTest_ShouldBeStrikeOrBallOrZero() {
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
 		// 1-strike test
@@ -58,8 +58,8 @@ public class GameCoreTest {
 	}
 	
 	@Test
-	@DisplayName("strike test")
-	void test_strike() {
+	@DisplayName("only strike test")
+	void strikeTest_checkNumberOfStrike() {
 		
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
@@ -82,7 +82,7 @@ public class GameCoreTest {
 	
 	@Test
 	@DisplayName("ball test")
-	void test_ball() {
+	void ballTest_checkNumberOfBall() {
 		
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 				
@@ -106,7 +106,7 @@ public class GameCoreTest {
 	
 	@Test
 	@DisplayName("nothing test")
-	void test_nothing() {
+	void nothingTest_shouldBeNothing() {
 		// nothing test
 		HintModel nothingResult = gameCore.attack(new ThreeNumbers(456), new ThreeNumbers(123));
 		assertEquals(0, nothingResult.getBallCount()+nothingResult.getBallCount(),
@@ -115,7 +115,7 @@ public class GameCoreTest {
 	
 	@Test
 	@DisplayName("all mixed hints test")
-	void test_strike_and_ball() {
+	void strikeAndBallTest_checkNumberOfstrikeAndBall() {
 		ThreeNumbers defendNumbers = new ThreeNumbers(123);
 		
 		// 1-strike, 1-ball test
@@ -135,7 +135,7 @@ public class GameCoreTest {
 	
 	@Test
 	@DisplayName("making defend number test")
-	void test_make_defend_number_array() {
+	void makeDefendNumbersTest_checkIsValidDefendNumbers() {
 		// range test & length test
 		ThreeNumbers defendNumbers = gameCore.makeDefendNumbers();
 		assertTrue(defendNumbers.getNumber(0)>0 && defendNumbers.getNumber(0)<10, "");

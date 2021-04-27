@@ -12,7 +12,7 @@ public class ThreeNumbersTest {
 	
 	@Test
 	@DisplayName("Three number object test")
-	void test_three_numbers() {
+	void ThreeNumbersTest_checkIsValidThreeNumbers() {
 		// ** ThreeNumbers(int numbers) ** //
 		// 양수, 3자리수 (정상)
 		ThreeNumbers threeNumbers = new ThreeNumbers(123);
@@ -110,7 +110,7 @@ public class ThreeNumbersTest {
 	
 	@Test
 	@DisplayName("Get one number of three number test")
-	void test_get_three_numbers() {
+	void getThreeNumbersTest_checkIndexOfThreeNumbers() {
 		ThreeNumbers threeNumbers = new ThreeNumbers(1,2,3);
 		// 2 이상 index
 		assertThatThrownBy(()->{
