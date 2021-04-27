@@ -16,7 +16,16 @@ public class BaseballGame {
     }
 
     public void start() {
+        int[] randomNumbers = getRandomNumbers();
+        int[] inputNumbers;
 
+        do {
+            String inputNumbersString = inputNumbersString();
+            inputNumbers = convertNumbersStringToArray(inputNumbersString);
+        } while (!compareNumbers(randomNumbers, inputNumbers));
+
+        if ("1".equals(inputContinueMessage()))
+            start();
     }
 
     public int[] getRandomNumbers() {
