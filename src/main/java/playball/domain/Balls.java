@@ -41,7 +41,6 @@ public class Balls {
 
     public static Balls createRandomBalls() {
         Set<Ball> balls = new HashSet<>();
-        Integer index = 1;
         while (balls.size() != BALLS_SIZE) {
             Integer generated = NumberGenerator.generateNumbers(UPPER_BOUND_OF_RANDOM_BALL_NUMBER);
             Ball ball = Ball.of(generated);

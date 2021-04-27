@@ -22,13 +22,13 @@ public class Ball {
     }
 
     private void validate(Integer ball) {
-        if (isValidBallNumber(ball)) {
+        if (!isValidBallNumber(ball)) {
             throw new PlayBallIllegalArgumentException();
         }
     }
 
     private Boolean isValidBallNumber(Integer ball) {
-        return !(ball >= MIN_OF_BALL_NUMBER && ball <= MAX_OF_BALL_NUMBER);
+        return ball >= MIN_OF_BALL_NUMBER && ball <= MAX_OF_BALL_NUMBER;
     }
 
     @Override
