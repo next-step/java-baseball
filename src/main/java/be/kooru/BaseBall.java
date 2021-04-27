@@ -1,12 +1,11 @@
 package be.kooru;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class BaseBall {
 
     public void start() {
-        int[] cValue = Util.generateRandomNumber(3, 1,9);
+        int[] cValue = Util.generateRandomNumber(3, 1, 9);
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.print("숫자를 입력해주세요 : ");
@@ -18,7 +17,7 @@ public class BaseBall {
                 System.out.println("3개의 숫자를 모두 맞히셨습니다. 게임 종료");
                 System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
                 int next = input.nextInt();
-                if (next == 1) cValue = Util.generateRandomNumber(3, 1,9);
+                if (next == 1) cValue = Util.generateRandomNumber(3, 1, 9);
                 if (next == 2) break;
             }
         }
@@ -26,7 +25,7 @@ public class BaseBall {
     }
 
 
-    private int scoreCalculator(int[] cValue, int[] uValue) {
+    protected int scoreCalculator(int[] cValue, int[] uValue) {
         int strike = 0;
         int ball = 0;
 
@@ -38,7 +37,7 @@ public class BaseBall {
         return strike * 10 + ball;
     }
 
-    private boolean verifyStrike(int cValue, int index, int[] uValue) {
+    protected boolean verifyStrike(int cValue, int index, int[] uValue) {
         for (int i = 0; i < uValue.length; i++) {
             if (cValue == uValue[i] && index == i) {
                 return true;
@@ -47,7 +46,7 @@ public class BaseBall {
         return false;
     }
 
-    private boolean verifyBall(int cValue, int index, int[] uValue) {
+    protected boolean verifyBall(int cValue, int index, int[] uValue) {
         for (int i = 0; i < uValue.length; i++) {
             if (cValue == uValue[i] && index != i) {
                 return true;
