@@ -13,9 +13,6 @@ public class BaseballResult {
     private boolean isComplete;
     private int size;
     private int radix;
-
-    private ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
-
     private BaseballNumber[] baseballNumbers;
 
     public static BaseballResult calcResult(BaseballNumber left, BaseballNumber right) {
@@ -67,13 +64,10 @@ public class BaseballResult {
 
     @Override
     public String toString() {
-        // TODO: SingleTon & Builder (BaseballConfig)
-        BaseballConfig config = BaseballConfig.builder().build();
-        return toString(config);
+        return toString(BaseballConfig.getDefaultConfig());
     }
 
     public String toString(BaseballConfig config) {
-        StringBuilder sb = new StringBuilder();
         if (this.strike == 0 && this.ball == 0) {
             return config.getMessage(MessageKey.noStrikeNoBallResultFormat);
         }
