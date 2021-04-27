@@ -62,10 +62,10 @@ class BaseballServiceTest {
 	@Test
 	@DisplayName("NotThing 판별, strike/ball 개수가 둘다 0 일 경우 true, 그 외 false")
 	void isNotThing() {
-		assertThat(baseballService.isNotThing(0, 0)).isTrue();
+		assertThat(baseballService.isNothing(0, 0)).isTrue();
 
-		assertThat(baseballService.isNotThing(1, 0)).isFalse();
-		assertThat(baseballService.isNotThing(0, 1)).isFalse();
+		assertThat(baseballService.isNothing(1, 0)).isFalse();
+		assertThat(baseballService.isNothing(0, 1)).isFalse();
 	}
 
 	@Test

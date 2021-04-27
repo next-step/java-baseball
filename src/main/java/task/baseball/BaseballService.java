@@ -53,9 +53,9 @@ public class BaseballService {
 		return ballCount;
 	}
 
-	public boolean isNotThing(int strikeCount, int ballCount) {
+	public boolean isNothing(int strikeCount, int ballCount) {
 
-		return false;
+		return strikeCount == 0 && ballCount == 0;
 	}
 
 	public String generateOutputMessage(int strikeCount, int ballCount) {
