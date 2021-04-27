@@ -13,14 +13,6 @@ public enum GameRules {
 		this.apply = apply;
 	}
 
-	public String getMsg() {
-		return this.msg;
-	}
-
-	public BiFunction<String, String, Integer> getApply() {
-		return this.apply;
-	}
-
 	private final String msg;
 	private final BiFunction<String, String, Integer> apply;
 
@@ -30,6 +22,14 @@ public enum GameRules {
 			cnt += isStrike(answer, userInput, i);
 		}
 		return cnt;
+	}
+
+	public String getMsg() {
+		return this.msg;
+	}
+
+	public BiFunction<String, String, Integer> getApply() {
+		return this.apply;
 	}
 
 	private static int isStrike(String answer, String userInput, int idx) {

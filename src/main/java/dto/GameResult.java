@@ -1,8 +1,8 @@
 package dto;
 
 public class GameResult {
-	private String msg;
-	private boolean successFlag;
+	private final String msg;
+	private final boolean successFlag;
 
 	public GameResult(String msg, boolean successFlag) {
 		this.msg = msg;

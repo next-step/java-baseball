@@ -13,7 +13,7 @@ public class NumberValidator {
 
 	private static boolean validateByCurrentFormat(NumberValidation validation, String number) {
 		if (!validation.getValidate().test(number)) {
-			System.out.printf("입력 값 오류: %s\n\n", validation.getErrorMsg());
+			System.out.printf("입력 값 오류: %s\n", validation.getErrorMsg());
 			return false;
 		}
 		return true;
