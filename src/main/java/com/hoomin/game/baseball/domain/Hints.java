@@ -1,9 +1,12 @@
 package com.hoomin.game.baseball.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import com.hoomin.game.baseball.enums.HintState;
+import com.hoomin.game.baseball.view.OutputView;
 
 /**
  * 힌트 자료구조
@@ -41,24 +44,5 @@ public class Hints {
 			count++;
 		}
 		return count;
-	}
-
-	@Override
-	public String toString() {
-		final Integer strikeCount = getStrikeCount();
-		final Integer ballCount = getBallCount();
-		if (strikeCount.equals(0) && ballCount.equals(0)) {
-			return "낫싱";
-		}
-		StringBuilder builder = new StringBuilder();
-		getStrikeAndBallMessage(builder, strikeCount, " 스트라이크 ");
-		getStrikeAndBallMessage(builder, ballCount, " 볼");
-		return builder.toString().trim();
-	}
-
-	private void getStrikeAndBallMessage(StringBuilder builder, Integer count, String message) {
-		if (count > 0) {
-			builder.append(count).append(message);
-		}
 	}
 }
