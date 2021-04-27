@@ -1,8 +1,8 @@
 package service;
 
 import domain.*;
-
 import java.util.*;
+import static utils.ValidCheck.*;
 
 public class UI {
     private static final Scanner scanner = new Scanner(System.in);
@@ -10,26 +10,14 @@ public class UI {
     public String getAnswerByNotice(Notice output, int size) {
         output.print();
         String string = scanner.nextLine();
-        if(!answerCondition(string, size)){
+        if(!validAnswer(string, size)){
             getAnswerByNotice(output, size);
         }
         return string;
     }
 
-    //todo 영문 캐치 필요
-    public boolean answerCondition(String s, int size){
-
-        HashSet hashSet = new HashSet<Character>();
-        for (char c : s.toCharArray()) {
-            int value = Character.getNumericValue(c);
-            if(!(Character.isDigit(c) || 1 <= value || value <= 9)){
-                return false;
-            }
-            hashSet.add(c);
-        }
-        if(s.length() != size || hashSet.size() != size)
-            return false;
-        return true;
+    public boolean validAnswer(String s, int size){
+        return isNumeric(s) && validLength(s, size) && !hasDuplicate(s);
     }
 
     public void printScore(Strike strike, Ball ball, Nothing nothing){
