@@ -51,9 +51,23 @@ public class FBGame {
 	 * @param matchResult 숫자 비교 결과
 	 * @return 결과에 따른 메시지
 	 */
-	private String ballStrikeCountMessage(FootballMatchResult matchResult) {
-		assert false;
-		return null;
+	protected String ballStrikeCountMessage(FootballMatchResult matchResult) {
+		if (matchResult.matched) {
+			return "3개의 숫자를 모두 맞히셨습니다! 게임 종료. 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+		}
+		if (matchResult.ball == 0 && matchResult.strike == 0) {
+			return "낫싱";
+		}
+		if (matchResult.strike > 0 && matchResult.ball == 0) {
+			return String.format("%d 스트라이크", matchResult.strike);
+		}
+		if (matchResult.strike == 0 && matchResult.ball > 0) {
+			return String.format("%d 볼", matchResult.ball);
+		}
+		if (matchResult.strike > 0 && matchResult.ball > 0) {
+			return String.format("%d 스트라이크 %d 볼", matchResult.strike, matchResult.ball);
+		}
+		throw new RuntimeException();
 	}
 
 	private void print(String message) {
