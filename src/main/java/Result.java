@@ -1,10 +1,12 @@
 public class Result {
+    private static final int ZERO = 0;
+
     private int strikeCount;
     private int ballCount;
 
     public Result() {
-        this.strikeCount = 0;
-        this.ballCount = 0;
+        this.strikeCount = ZERO;
+        this.ballCount = ZERO;
     }
 
     public int getStrikeCount() {
@@ -16,14 +18,15 @@ public class Result {
     }
 
     public void increaseStrikeCount() {
-        strikeCount += 1;
+        strikeCount++;
     }
 
     public void increaseBallCount() {
-        ballCount += 1;
+        ballCount++;
+    }
     }
 
     public boolean isNothing() {
-        return strikeCount == 0 && ballCount == 0;
+        return strikeCount == ZERO && ballCount == ZERO;
     }
 }
