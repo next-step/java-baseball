@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BaseBall implements Iterable<Ball> {
-    public static final int BALLS_LENGTH = 3;
+    private static final int BALLS_LENGTH = 3;
     private final List<Ball> balls;
 
     private BaseBall(List<Ball> balls) {

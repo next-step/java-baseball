@@ -3,7 +3,7 @@ package baseball.domain;
 import java.util.Random;
 
 public class RandomNumber implements OneDigitNumber {
-    public static final int BOUND = 8;
+    private static final int BOUND = 8;
 
     @Override
     public int value() {
