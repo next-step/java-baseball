@@ -1,6 +1,6 @@
 package baseball;
 
-public enum ProceedType {
+public enum GameExitCode {
 	RESTART,
 	EXIT
 }

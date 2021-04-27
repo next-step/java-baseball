@@ -13,7 +13,7 @@
   - [x] Player 가 예측한 숫자가 정답인지 확인
   - [x] Player 가 예측한 숫자로 스트라이크, 볼을 판단
   - [x] 스트라이크, 볼 숫자에 따라 출력할 메세지 반환
-- [x] Player, ProceedType
+- [x] Player, GameExitCode
   - [x] 사용자의 입력을 받아서 숫자 예측값을 반환
   - [x] 사용자의 입력을 받아서 게임이 끝난 뒤 재시작할지 종료할지 타입 반환
 - [x] Game, Input, Console

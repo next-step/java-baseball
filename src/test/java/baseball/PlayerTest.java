@@ -27,12 +27,12 @@ class PlayerTest {
 	}
 
 	@Test
-	void proceed() {
+	void exit() {
 		int numberLength = 3;
 		Player player = new Player(numberLength);
 
-		assertEquals(ProceedType.RESTART, player.proceed(1));
-		assertEquals(ProceedType.EXIT, player.proceed(2));
-		assertEquals(ProceedType.EXIT, player.proceed(7));
+		assertEquals(GameExitCode.RESTART, player.exit(1));
+		assertEquals(GameExitCode.EXIT, player.exit(2));
+		assertEquals(GameExitCode.EXIT, player.exit(7));
 	}
 }

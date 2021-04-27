@@ -17,13 +17,13 @@ class Player {
 		return guess;
 	}
 
-	ProceedType proceed(int input) {
+	GameExitCode exit(int input) {
 		if (input == 1)
-			return ProceedType.RESTART;
+			return GameExitCode.RESTART;
 
 		if (input == 2)
-			return ProceedType.EXIT;
+			return GameExitCode.EXIT;
 
-		return ProceedType.EXIT;
+		return GameExitCode.EXIT;
 	}
 }

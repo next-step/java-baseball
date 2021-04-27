@@ -7,6 +7,7 @@ class Game {
 	private Computer computer;
 	private Console console;
 	private Input input;
+	private int[] answer;
 
 	Game() {
 		player = new Player(NUMBER_LENGTH);
@@ -15,35 +16,31 @@ class Game {
 		input = new Input(NUMBER_LENGTH);
 	}
 
-	void start() {
-		int[] answer = computer.chooseNumbers();
-		int[] guess = new int[] {-1, -1, -1};
-		Judgement judgement = computer.judge(guess, answer);
-		while (!judgement.isAllStrike()) {
+	GameExitCode start() {
+		prepare();
+
+		play();
+
+		return end();
+	}
+
+	private void prepare() {
+		answer = computer.chooseNumbers();
+	}
+
+	private void play() {
+		Judgement judgement;
+
+		do {
 			console.printMessageOnBeforeGuess();
-			guess = player.guess(input.getGuessInput());
+			int[] guess = player.guess(input.getGuessInput());
 			judgement = computer.judge(guess, answer);
 			console.printJudgement(judgement);
-		}
-		end();
+		} while (!judgement.isAllStrike());
 	}
 
-	private void end() {
+	private GameExitCode end() {
 		console.printMessageOnEnd();
-		ProceedType proceedType = player.proceed(input.getProceedInput());
-
-		if (proceedType == ProceedType.RESTART)
-			restart();
-
-		if (proceedType == ProceedType.EXIT)
-			exit();
-	}
-
-	private void restart() {
-		start();
-	}
-
-	private void exit() {
-		System.exit(0);
+		return player.exit(input.getGameExitCodeInput());
 	}
 }

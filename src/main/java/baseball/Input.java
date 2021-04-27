@@ -24,7 +24,7 @@ class Input {
 		return input;
 	}
 
-	int getProceedInput() {
+	int getGameExitCodeInput() {
 		int input = getIntInput();
 
 		if (input != 1 && input != 2) {
