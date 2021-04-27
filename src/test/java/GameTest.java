@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameTest {
 
@@ -27,6 +29,19 @@ class GameTest {
 
         String inputNum2 = "231";
         assertThat(game.ball(computerNum, inputNum2)).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("strike 와 ball count의 합계가 0인경우 true, 아닌경우 false가 반환되는지를 검사한다")
+    void checkNothingTest(){
+        int strikeCount = 0;
+        int ballCount = 0;
+
+        Game game = new Game();
+        assertTrue(game.checkNothing(strikeCount, ballCount));
+
+        ballCount = 1;
+        assertFalse(game.checkNothing(strikeCount, ballCount));
     }
 
 
