@@ -65,10 +65,11 @@ public class Main {
         // Check Strike
         int strikeCount = getStrikeCount(userBaseballStr, commRandomNum);
 
-
         // Check Ball
         int ballCount = getBallCount(userBaseballStr, commRandomNum);
+        ballCount -= strikeCount;
 
+        // Check Nothing
         boolean isNothing = strikeCount + ballCount > 0 ? false : true;
 
         if (strikeCount == commRandomNum.length()) {
