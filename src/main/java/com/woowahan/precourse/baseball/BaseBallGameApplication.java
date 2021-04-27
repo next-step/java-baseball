@@ -33,10 +33,13 @@ public class BaseBallGameApplication {
         GameResult gameResult = baseBallGame.execute(userGameNumber.split(""));
         System.out.println(gameResult.getMessage());
 
-        if (gameResult.getVictory()) {
-
+        if (isVictory(gameResult)) {
             victoryGame(sc);
         }
+    }
+
+    private static boolean isVictory(GameResult gameResult) {
+        return gameResult.getVictory();
     }
 
     private static void victoryGame(Scanner sc) {
@@ -48,17 +51,6 @@ public class BaseBallGameApplication {
 
         if (endAnswer.equals(GameStatus.END.toString())) {
             gameContinue = false;
-        }
-    }
-
-    enum GameStatus {
-        RESTART("1"),
-        END("2");
-
-        private String status;
-
-        GameStatus(String status) {
-            this.status = status;
         }
     }
 }
