@@ -1,15 +1,14 @@
 package baseball.model;
 
-import java.util.Arrays;
 import java.util.List;
 
-import baseball.Utils;
+import baseball.etc.Utils;
 
 public class BaseNumbers {
     private final List<String> numbers;
 
-    public BaseNumbers(String[] numbers) {
-        this.numbers = Arrays.asList(numbers);
+    public BaseNumbers(List<String> numbers) {
+        this.numbers = numbers;
     }
 
     /**
@@ -39,7 +38,7 @@ public class BaseNumbers {
 
         return new BaseballResult(strike, ball, this.getNumbers().size());
     }
-    
+
     /**
      * 스트라이크 여부 확인.
      * @param inputData 사용자가 입력한 숫자 1자리.

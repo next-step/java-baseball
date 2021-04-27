@@ -1,4 +1,4 @@
-package baseball;
+package baseball.business;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -9,6 +9,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import baseball.etc.Constants;
+import baseball.etc.Message;
 import baseball.model.BaseNumbers;
 
 class BaseballServiceTest {
@@ -71,5 +73,5 @@ class BaseballServiceTest {
                     String.valueOf(Constants.BASEBALL_DEFAULT_NUMBER_SIZE)));
     }
 
-    
+
 }

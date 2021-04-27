@@ -2,13 +2,16 @@ package baseball.model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class BaseNumbersTest {
-    String[] dumyData = {"5","4","3"};
+class BaseNumbersTest {
+    List<String> dumyData = Arrays.asList("5","4","3");
     BaseNumbers baseNumbers = new BaseNumbers(dumyData);
 
     @Test
@@ -45,7 +48,7 @@ public class BaseNumbersTest {
 
         assertThat(result.getStrike()).isEqualTo(strike);
     }
-    
+
     @ParameterizedTest
     @CsvSource(value = {"345:2", "435:3", "126:0", "530:1"}, delimiter = ':')
     @DisplayName("사용자가 입력한 숫자에 볼 포함 수 확인.")
@@ -53,6 +56,6 @@ public class BaseNumbersTest {
         BaseballResult result = baseNumbers.checkNumbers(input);
 
         assertThat(result.getBall()).isEqualTo(ball);
-    }    
-    
+    }
+
 }
