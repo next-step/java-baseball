@@ -21,6 +21,10 @@ public class Computer {
 		return strikeCount;
 	}
 
+	public int getBallCount() {
+		return ballCount;
+	}
+
 	public void generateNumbers() {
 		Set<Integer> selectNumbers = new HashSet<>();
 		Random random = new Random();

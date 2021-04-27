@@ -10,6 +10,10 @@ public class User {
 
 	private List<Integer> userNumbers;
 
+	public void setUserNumbers(List<Integer> userNumbers) {
+		this.userNumbers = userNumbers;
+	}
+
 	public List<Integer> getUserNumbers() {
 		return userNumbers;
 	}
