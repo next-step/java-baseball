@@ -1,8 +1,9 @@
-import baseball.service.Console;
 import baseball.domain.Score;
-import org.junit.jupiter.api.*;
+import baseball.service.Console;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -24,12 +25,6 @@ class ConsoleTest {
     @AfterEach
     void finishAll() {
         scanner.close();
-    }
-
-    @Test
-    void input_number() {
-        systemInput("123");
-        assertThat(console.getNumber()).isEqualTo(123);
     }
 
     @Test
@@ -91,22 +86,10 @@ class ConsoleTest {
                 .hasToString(score.getStrike() + " 스트라이크" + NEW_LINE + "3개의 숫자를 모두 맞히셨습니다! 게임종료" + NEW_LINE);
     }
 
-    @Disabled
-    @Test
-    void start_game() {
-        systemInput("124");
-        console.play();
-    }
-
     private ByteArrayOutputStream systemOutput() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         return outputStream;
-    }
-
-    private void systemInput(String input) {
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(byteArrayInputStream);
     }
 
 }
