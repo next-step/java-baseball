@@ -59,4 +59,17 @@ public class BaseBallGameTest {
 			.as("Strike: %d", strike)
 			.isEqualTo(3);
 	}
+
+	@Test
+	@DisplayName("볼 확인")
+	void checkBall() {
+		int[] target = {1, 2, 3};
+		int[] userInputs = {3, 2, 1};
+
+		int ball = BaseBallGame.getBallCount(target, userInputs);
+
+		assertThat(ball)
+			.as("Ball: %d", ball)
+			.isEqualTo(2);
+	}
 }
