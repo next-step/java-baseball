@@ -4,23 +4,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 import constants.Messages;
 import constants.PlayRules;
 import exception.PitcherInputException;
+import utils.IoUtils;
 
 public class Pitcher {
-	private Scanner scanner = new Scanner(System.in);
+	private List<Integer> numbers;
 
-	public List<Integer> inputGameNumbers() {
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	public void inputGameNumbers() {
 		String inputText = null;
 		do {
-			inputText = scanner.nextLine();
+			inputText = IoUtils.input();
 		} while (!validInputNumber(inputText));
-		return convertStringToIntegerList(inputText);
+		this.numbers = convertStringToIntegerList(inputText);
 	}
 
 	private List<Integer> convertStringToIntegerList(String integerText) {
@@ -37,7 +41,7 @@ public class Pitcher {
 			checkNumberType(inputText);
 			checkDuplicateNumbers(inputText);
 		} catch (PitcherInputException e) {
-			System.out.println(e.getMessage());
+			IoUtils.output(e.getMessage());
 			return false;
 		}
 		return true;

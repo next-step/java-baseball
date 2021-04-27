@@ -9,13 +9,19 @@ import java.util.Set;
 import constants.PlayRules;
 
 public class Hitter {
-	private static Random random = new Random();
 
-	public List<Integer> generateNumber() {
+	private List<Integer> numbers;
+
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	public void generateNumber() {
+		Random random = new Random();
 		Set<Integer> numberSet = new HashSet<>();
 		while (numberSet.size() < PlayRules.BALL_LENGTH.value()) {
 			numberSet.add(random.nextInt(PlayRules.MAX_NUMBER.value()) + 1);
 		}
-		return new ArrayList<>(numberSet);
+		this.numbers = new ArrayList<>(numberSet);
 	}
 }
