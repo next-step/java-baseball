@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum Hint {
 
-    STRIKE {
+    STRIKE("스트라이크") {
         @Override
         public Integer calculateCount(Balls myBalls, Balls yourBalls) {
             int answer = 0;
@@ -23,7 +23,7 @@ public enum Hint {
             return mine.equals(your) ? 1 : 0;
         }
     },
-    BALL {
+    BALL("볼") {
         @Override
         public Integer calculateCount(Balls myBalls, Balls yourBalls) {
             int answer = 0;
@@ -50,7 +50,7 @@ public enum Hint {
             return (myIdx != yourIdx && myBall.equals(yourBall)) ? 1 : 0;
         }
     },
-    NOTHING {
+    NOTHING("낫싱") {
         @Override
         public Integer calculateCount(Balls myBalls, Balls yourBalls) {
             int answer = 0;
@@ -68,6 +68,12 @@ public enum Hint {
             return !yours.contains(myBall) ? 1 : 0;
         }
     };
+
+    private String description;
+
+    Hint(String description) {
+        this.description = description;
+    }
 
     public abstract Integer calculateCount(Balls myBalls, Balls yourBalls);
 
