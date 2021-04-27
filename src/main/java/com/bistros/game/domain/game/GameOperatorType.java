@@ -1,4 +1,4 @@
-package com.bistros.game.application.game;
+package com.bistros.game.domain.game;
 
 import java.util.Arrays;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.bistros.game.domain.referee;
 
-import com.bistros.game.domain.BallNumbers;
+import com.bistros.game.domain.ball.BallNumbers;
 
 import java.util.List;
 import java.util.function.Predicate;

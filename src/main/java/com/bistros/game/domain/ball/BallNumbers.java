@@ -1,12 +1,10 @@
-package com.bistros.game.domain;
+package com.bistros.game.domain.ball;
 
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.bistros.game.domain.exception.BallNumberRuleAgainstException;
 
 public class BallNumbers {
     public static final int LENGTH = 3;

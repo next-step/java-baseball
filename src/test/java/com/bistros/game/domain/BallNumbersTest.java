@@ -1,6 +1,7 @@
 package com.bistros.game.domain;
 
-import com.bistros.game.domain.exception.BallNumberRuleAgainstException;
+import com.bistros.game.domain.ball.BallNumbers;
+import com.bistros.game.domain.ball.BallNumberRuleAgainstException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

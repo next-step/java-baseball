@@ -1,6 +1,6 @@
 package com.bistros.game.application;
 
-import com.bistros.game.domain.BallNumbers;
+import com.bistros.game.domain.ball.BallNumbers;
 
 import java.util.Collections;
 import java.util.List;

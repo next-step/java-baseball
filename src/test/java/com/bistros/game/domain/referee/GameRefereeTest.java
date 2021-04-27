@@ -1,6 +1,6 @@
 package com.bistros.game.domain.referee;
 
-import com.bistros.game.domain.BallNumbers;
+import com.bistros.game.domain.ball.BallNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

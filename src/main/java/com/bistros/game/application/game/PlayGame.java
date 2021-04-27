@@ -1,8 +1,8 @@
 package com.bistros.game.application.game;
 
 import com.bistros.game.application.BallNumbersFactory;
-import com.bistros.game.cli.PlayerInputs;
-import com.bistros.game.domain.BallNumbers;
+import com.bistros.game.application.cli.PlayerInputs;
+import com.bistros.game.domain.ball.BallNumbers;
 import com.bistros.game.domain.referee.GameReferee;
 import com.bistros.game.domain.referee.InningReport;
 

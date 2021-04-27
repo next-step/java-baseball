@@ -1,7 +1,7 @@
-package com.bistros.game.cli;
+package com.bistros.game.application.cli;
 
-import com.bistros.game.application.game.GameOperatorType;
-import com.bistros.game.domain.BallNumbers;
+import com.bistros.game.domain.game.GameOperatorType;
+import com.bistros.game.domain.ball.BallNumbers;
 
 import java.util.List;
 import java.util.Optional;
