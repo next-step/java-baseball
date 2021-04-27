@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class User {
 	private final int INPUT_MAX_LENGTH = 3;
+	private final String REGEX = "[0-9]+";
 	private Scanner sc = new Scanner(System.in);
 
 	private List<Integer> userNumbers;
@@ -30,6 +31,10 @@ public class User {
 	}
 
 	public void validateNumber(String inputValue) {
+		if(!isNumber(inputValue)) {
+			throw new IllegalArgumentException("문자는 입력할 수 없습니다.");
+		}
+
 		if (inputValue.length() != INPUT_MAX_LENGTH) {
 			throw new IllegalArgumentException("세자리 숫자가 아닙니다.");
 		}
@@ -41,6 +46,10 @@ public class User {
 		}
 
 		userNumbers = new ArrayList<>(inputNumber);
+	}
+
+	private boolean isNumber(String inputValue) {
+		return inputValue.matches(REGEX);
 	}
 
 	private Set<Integer> separateNumber(String inputValue) {
