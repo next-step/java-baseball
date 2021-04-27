@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -49,6 +50,12 @@ public class BaseBallGameManager {
 		if (finalcheck) {
 			return userInputReader.requestReGame();
 		}
+
+		Set<String> compareSet = new HashSet<>(comNumberList);
+		int ballCount = countBalls(userNumberList, comNumberList, compareSet, 0, 0);
+		compareSet = null;
+
+		System.out.println(resultCountStrike + " 스트라이크 " + ballCount + " 볼");
 
 		return startGame(comNumberList, resultCountStrike);
 	}
