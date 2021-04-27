@@ -5,7 +5,7 @@ public class Referee {
 
 	private final String question;
 	private final String input;
-	private Map<Result, Integer> score;
+	private final Map<Result, Integer> score;
 
 	public Referee(int question, String input) {
 		this.question = String.valueOf(question);
@@ -30,11 +30,11 @@ public class Referee {
 	}
 
 	private Map<Result, Integer> scoreResult(int index, Map<Result, Integer> score) {
-		if (isStrike(question.charAt(index), input.charAt(index))) {
+		if (isStrike(index)) {
 			calculateMap(Result.STRIKE, score);
 			return score;
 		}
-		if (isBall(question, input.charAt(index))) {
+		if (isBall(index)) {
 			calculateMap(Result.BALL, score);
 		}
 		return score;
@@ -45,12 +45,12 @@ public class Referee {
 		score.computeIfPresent(resultType, (k, v) -> v + 1);
 	}
 
-	private boolean isStrike(char question, char input) {
-		return question == input;
+	private boolean isStrike(int index) {
+		return question.charAt(index) == input.charAt(index);
 	}
 
-	private boolean isBall(String question, char input) {
-		return question.contains(String.valueOf(input));
+	private boolean isBall(int index) {
+		return question.contains(String.valueOf(input.charAt(index)));
 	}
 
 }
