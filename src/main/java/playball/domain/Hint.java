@@ -69,7 +69,7 @@ public enum Hint {
         }
     };
 
-    private String description;
+    private final String description;
 
     Hint(String description) {
         this.description = description;
