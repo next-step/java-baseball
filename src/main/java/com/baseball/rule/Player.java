@@ -38,7 +38,9 @@ public class Player {
 		while (keepGoing) {
 			recieveScannerText();
 			keepGoing = !isThreeDigits();
-			System.out.println(ValidateMessage.THREE_DIGITS);
+			if(keepGoing){
+				System.out.println(ValidateMessage.THREE_DIGITS);
+			}
 		}
 		validatedText = inputedText;
 	}
