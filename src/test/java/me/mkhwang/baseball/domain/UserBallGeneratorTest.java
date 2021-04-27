@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Email : orange2652@gmail.com
  * Github : https://github.com/myeongkwonhwang
  */
-class UserTest {
+class UserBallGeneratorTest {
     ByteArrayInputStream bindData;
 
     //Scanner를 테스트 하기위한 method
@@ -25,7 +25,7 @@ class UserTest {
     void user_insert_text_test(){
         String expected = "1234";
         provideInput(expected);
-        User user = new User();
+        UserBallGenerator user = new UserBallGenerator();
         user.insertBallNumberForUser();
         assertEquals(expected, user.getBallNumber());
     }
@@ -34,7 +34,7 @@ class UserTest {
     void isValid_test() {
         String ballNumber = "122";
         provideInput(ballNumber);
-        User user = new User();
+        UserBallGenerator user = new UserBallGenerator();
         boolean valid = user.isValid(ballNumber);
         assertEquals(false, valid);
     }

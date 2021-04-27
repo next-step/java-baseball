@@ -10,16 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
  * Email : orange2652@gmail.com
  * Github : https://github.com/myeongkwonhwang
  */
-class ComputerTest {
+class ComputerBallGeneratorTest extends BaseballValid{
 
     @Test
     void computerDuplicationValid_test() {
-        Computer computer = new Computer();
-        BaseballValid baseballValid = new BaseballValid();
+        ComputerBallGenerator computer = new ComputerBallGenerator();
         String ballNumber = computer.getBallNumber();
-        boolean baseballDuplicateValid = baseballValid.isBaseballDuplicateValid(ballNumber);
-        boolean baseballLengthValid = baseballValid.isBaseballLengthValid(ballNumber);
-        boolean baseballTextValid = baseballValid.isBaseballTextValid(ballNumber);
+        boolean baseballDuplicateValid = isBaseballDuplicateValid(ballNumber);
+        boolean baseballLengthValid = isBaseballLengthValid(ballNumber);
+        boolean baseballTextValid = isBaseballTextValid(ballNumber);
         assertAll(
                 () -> assertEquals(true, baseballDuplicateValid),
                 () -> assertEquals(true, baseballLengthValid),
