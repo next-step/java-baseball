@@ -13,7 +13,7 @@ public class App {
             Game game = new Game();
 
             playGame(game);
-        }while(InputView.moreGame() == Continuable.CONTINUE);
+        } while (InputView.moreGame() == Continuable.CONTINUE);
     }
 
     private static void playGame(Game game) {
@@ -25,6 +25,6 @@ public class App {
             match = game.match(balls);
 
             OutputView.gameStatus(match);
-        }while(match.isNotAllStrike());
+        } while (match.isNotAllStrike());
     }
 }

@@ -29,7 +29,7 @@ class RandomBallGenerationStrategyTest {
         assertThat(generate.size())
                 .isEqualTo(maxBallSize);
 
-        for(int i = Ball.MINIMUM_NUMBER; i<=Ball.MAXIMUM_NUMBER; i++) {
+        for (int i = Ball.MINIMUM_NUMBER; i <= Ball.MAXIMUM_NUMBER; i++) {
             assertThat(generate.findPositionByBall(Ball.of(i)))
                     .isNotEqualTo(Position.NOT_FOUND);
         }

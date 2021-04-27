@@ -23,7 +23,7 @@ public class GameTest {
             isGenerateCalled.set(true);
 
             List<Ball> balls = new ArrayList<>();
-            for(int i = 0; i<size; i++) {
+            for (int i = 0; i < size; i++) {
                 balls.add(Ball.of(Ball.MINIMUM_NUMBER + i));
             }
 
@@ -57,5 +57,5 @@ public class GameTest {
         assertThat(match.countOfBall()).isEqualTo(matchingPackage.getCountOfBall());
         assertThat(match.countOfMissing()).isEqualTo(matchingPackage.getCountOfMissing());
     }
-    
+
 }

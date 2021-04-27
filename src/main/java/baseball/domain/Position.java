@@ -9,10 +9,11 @@ public class Position {
 
     private Integer position = Integer.MIN_VALUE;
 
-    private Position() {}
+    private Position() {
+    }
 
     public Position(int position) {
-        if(position < MINIMUM_POSITION) {
+        if (position < MINIMUM_POSITION) {
             throw new IllegalArgumentException("음수의 위치는 존재하지 않습니다.");
         }
 
@@ -20,10 +21,14 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position1 = (Position) o;
+    public boolean equals(Object target) {
+        if (this == target) {
+            return true;
+        }
+        if (target == null || getClass() != target.getClass()) {
+            return false;
+        }
+        Position position1 = (Position) target;
         return position == position1.position;
     }
 

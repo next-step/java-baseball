@@ -1,7 +1,7 @@
 package baseball.domain;
 
 public class Game {
-    public final static int BALL_SIZE = 3;
+    public static final int BALL_SIZE = 3;
 
     private final Balls computerBalls;
 
@@ -14,7 +14,7 @@ public class Game {
     }
 
     public Score match(Balls balls) {
-        if(balls.size() != BALL_SIZE) {
+        if (balls.size() != BALL_SIZE) {
             throw new IllegalArgumentException(String.format("매칭할 공의 개수는 %d개 여야 합니다.", BALL_SIZE));
         }
 

@@ -6,9 +6,9 @@ public enum GameRule {
     MISSING;
 
     public static GameRule of(Position ballPosition, Position destBallPosition) {
-        if(ballPosition.equals(destBallPosition)) {
+        if (ballPosition.equals(destBallPosition)) {
             return STRIKE;
-        }else if (destBallPosition.equals(Position.NOT_FOUND)) {
+        } else if (destBallPosition.equals(Position.NOT_FOUND)) {
             return MISSING;
         }
 

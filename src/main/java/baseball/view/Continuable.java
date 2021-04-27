@@ -7,7 +7,8 @@ public enum Continuable {
 
     private String keyword;
 
-    Continuable(){}
+    Continuable() {
+    }
 
     Continuable(String keyword) {
         this.keyword = keyword;

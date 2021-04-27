@@ -1,11 +1,11 @@
 package baseball.view;
 
-import baseball.domain.Ball;
-import baseball.domain.Balls;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import baseball.domain.Ball;
+import baseball.domain.Balls;
 
 public class InputView {
     public static Balls balls() {
@@ -26,8 +26,8 @@ public class InputView {
     public static Continuable moreGame() {
         System.out.println(
                 String.format("게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요",
-                Continuable.CONTINUE.getKeyword(),
-                Continuable.BREAK.getKeyword())
+                        Continuable.CONTINUE.getKeyword(),
+                        Continuable.BREAK.getKeyword())
         );
 
         String answer = new Scanner(System.in).nextLine();

@@ -7,7 +7,7 @@ public class Ball {
     private static final Ball[] BALLS = new Ball[MAXIMUM_NUMBER + 1];
 
     static {
-        for(int i = MINIMUM_NUMBER; i<BALLS.length; i++) {
+        for (int i = MINIMUM_NUMBER; i < BALLS.length; i++) {
             BALLS[i] = new Ball(i);
         }
     }
@@ -23,8 +23,10 @@ public class Ball {
     }
 
     public static Ball of(int number) {
-        if(number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
-            throw new IllegalArgumentException(String.format("공의 숫자는 %d 이상 %d 이하 입니다.", MINIMUM_NUMBER, MAXIMUM_NUMBER));
+        if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
+            throw new IllegalArgumentException(
+                    String.format("공의 숫자는 %d 이상 %d 이하 입니다.", MINIMUM_NUMBER, MAXIMUM_NUMBER)
+            );
         }
 
         return BALLS[number];

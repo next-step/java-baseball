@@ -1,13 +1,13 @@
 package baseball.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.ArrayList;
-import java.util.Collections;
 
-public class RandomBallGenerationStrategy implements BallGenerationStrategy{
+public class RandomBallGenerationStrategy implements BallGenerationStrategy {
     private static final int CALCULATE_PADDING = 1;
 
     @Override
@@ -15,9 +15,12 @@ public class RandomBallGenerationStrategy implements BallGenerationStrategy{
         Random random = new Random(System.currentTimeMillis());
 
         Set<Ball> balls = new HashSet<>();
-        while(balls.size() < length) {
+        while (balls.size() < length) {
             balls.add(
-                    Ball.of(random.nextInt(Ball.MAXIMUM_NUMBER - Ball.MINIMUM_NUMBER + CALCULATE_PADDING) + Ball.MINIMUM_NUMBER)
+                    Ball.of(
+                            random.nextInt(Ball.MAXIMUM_NUMBER - Ball.MINIMUM_NUMBER + CALCULATE_PADDING)
+                                    + Ball.MINIMUM_NUMBER
+                    )
             );
         }
 
