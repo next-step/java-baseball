@@ -30,7 +30,6 @@ public class BaseBallGame {
         } while (!judgement.isThreeStrike());
     }
 
-
     /**
      * 재시작, 종료 상태값 알림, 입력 및 반환
      * @return
@@ -41,8 +40,5 @@ public class BaseBallGame {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt() == 1;
     }
-
-
-
 
 }
