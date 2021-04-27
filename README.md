@@ -6,9 +6,9 @@
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
 
-## 구현 기능 목
+## 구현 기능 목록
 - 게임 시작을 위한 초기화
 - 게임 시작
-- 각 단계 진행
+- 각 단계 진
 - 게임 재시작
 - 게임 종료
