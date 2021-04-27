@@ -34,39 +34,7 @@ public class BaseballGameService {
         init();
     }
 
-    /**
-     * <pre>
-     *     정답(answer) 출력
-     *     테스트를 위한 임시 메서드
-     * </pre>
-     * @author 김재범
-     **/
-    public String getAnswer() {
-        return answer;
-    }
 
-    /**
-     * <pre>
-     *     정답(answer) 설정
-     *     테스트를 위한 임시 메서드
-     * </pre>
-     * @param answer
-     * @author 김재범
-     **/
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    /**
-     * <pre>
-     *     계속 진행 여부 리턴
-     *     테스트를 위한 임시 메서드
-     * </pre>
-     * @author 김재범
-     **/
-    public boolean isContinue() {
-        return isContinue;
-    }
     /**
      * <pre>
      *     숫자야구 정답 3자리 숫자 생성
@@ -167,8 +135,7 @@ public class BaseballGameService {
             return;
         }
         System.out.println((strike == 0 && ball == 0) ? "낫싱":
-                strike > 0 ? strike + " 스트라이크 ":
-                        ball > 0 ? ball + " 볼":""
+                ((strike > 0 ? strike + " 스트라이크 ": "") + (ball > 0 ? ball + " 볼":""))
         );
     }
 
@@ -191,6 +158,46 @@ public class BaseballGameService {
         }
         if("1".equals(in.trim())) {
             isContinue = true;
+            reset();
         }
+    }
+
+    /**
+     * <pre>
+     *     정답(answer) 출력
+     *     테스트를 위한 임시 메서드
+     * </pre>
+     * @author 김재범
+     **/
+    public String getAnswer() {
+        return answer;
+    }
+
+    /**
+     * <pre>
+     *     정답(answer) 설정
+     *     테스트를 위한 임시 메서드
+     * </pre>
+     * @param answer
+     * @author 김재범
+     **/
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    /**
+     * <pre>
+     *     계속 진행 여부 리턴
+     *     테스트를 위한 임시 메서드
+     * </pre>
+     * @author 김재범
+     **/
+    public boolean isContinue() {
+        return isContinue;
+    }
+
+    public static void main(String[] args) {
+        BaseballGameService service = new BaseballGameService();
+        service.run();
     }
 }
