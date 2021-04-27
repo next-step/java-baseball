@@ -19,6 +19,7 @@ public class InputNumber {
     }
 
     private static List<String> checkInput(String inputBallNumbers) {
+
         List<String> splitedStrings = new ArrayList<>();
         char[] splitedChars = inputBallNumbers.toCharArray();
         for (char splitedChar : splitedChars) {
@@ -28,6 +29,7 @@ public class InputNumber {
                 splitedStrings.add(String.valueOf(splitedChar));
             }
         }
+        isthreeNumberCheck(splitedStrings);
         return splitedStrings;
     }
 
@@ -46,6 +48,13 @@ public class InputNumber {
             return false;
         }
         return true;
+    }
+
+    private static void isthreeNumberCheck(List<String> splitedStrings) {
+
+        if (splitedStrings.subList(1,2).contains(splitedStrings.get(0))){
+            throw new IllegalArgumentException("연속 된 세개 수자를 입력하시면 안됩니다");
+        }
     }
 
     public static String inputBallNumbers() {

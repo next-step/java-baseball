@@ -15,9 +15,6 @@ public class MainApplication {
             BallNumberRandom computerNumbersInitial = new BallNumberRandom();
             List<Integer> computerNumbers = computerNumbersInitial.getBallNumber();
 
-            System.out.println("랜덤값은 다음과 같다");
-            System.out.println(computerNumbers);
-
             baseBallGame.play(baseballResult, computerNumbers);
         } while (baseBallGame.restart());
     }

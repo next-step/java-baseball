@@ -8,10 +8,13 @@ public class BallNumberRandom {
     private static final Random random = new Random();
 
     public List<Integer> getBallNumber() {
-        List<Integer> ballNumbers = new ArrayList<>();
-        while (ballNumbers.size() < RANDOM_LENGTH) {
-            ballNumbers.add(random.nextInt(9) + 1);
+
+        Set<Integer> set = new HashSet<>();
+        while (set.size() < RANDOM_LENGTH) {
+            set.add(random.nextInt(9) + 1);
         }
+        List<Integer> ballNumbers = new ArrayList<>(set);
+
         return ballNumbers;
     }
 }

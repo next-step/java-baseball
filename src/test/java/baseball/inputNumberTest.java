@@ -24,7 +24,7 @@ public class inputNumberTest {
     void inputWithCommaCharater(String input) {
         assertThatThrownBy(() -> {
             InputNumber.setBallNumber(input);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자만 입력 가능");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자가 아닙니다");
     }
 
     @DisplayName(value = "입력받은 숫자 문자열에서 split가 있는 경우 정수 리스트로 변환하는 테스트")
@@ -34,5 +34,14 @@ public class inputNumberTest {
         List<Integer> splitedList = InputNumber.setBallNumber(input);
         assertThat(splitedList).hasSize(3);
         assertThat(splitedList).containsExactly(3,5,7);
+    }
+
+    @DisplayName(value = "입력받은 숫자 문자열에서 split가 있는 경우 정수 리스트로 변환하는 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,1"})
+    void inputSameValue(String input) {
+        assertThatThrownBy(() -> {
+            InputNumber.setBallNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("연속 된 세개 수자를 입력하시면 안됩니다");
     }
 }
