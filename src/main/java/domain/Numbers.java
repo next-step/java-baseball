@@ -1,9 +1,11 @@
+package domain;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class Number {
+public class Numbers {
 
     public static final int INPUT_NUMBER_SIZE = 3;
     public static final int NOT_CONTAIN_SIGNATURE = -1;
@@ -11,7 +13,7 @@ public class Number {
 
     private final String number;
 
-    public Number(String number) {
+    public Numbers(String number) {
         validateInputNumberSize(number);
         validateInputNumberDuplicate(number);
 
@@ -41,11 +43,11 @@ public class Number {
         return number.length();
     }
 
-    public boolean haveValue(Number input, int index) {
+    public boolean haveValue(Numbers input, int index) {
         return number.indexOf(input.charAt(index)) != NOT_CONTAIN_SIGNATURE;
     }
 
-    public boolean isStrike(Number input, int index) {
+    public boolean isStrike(Numbers input, int index) {
         return number.charAt(index) == input.charAt(index);
     }
 
@@ -57,8 +59,8 @@ public class Number {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Number number1 = (Number) o;
-        return Objects.equals(number, number1.number);
+        Numbers numbers1 = (Numbers) o;
+        return Objects.equals(number, numbers1.number);
     }
 
     @Override

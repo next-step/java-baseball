@@ -1,23 +1,25 @@
+package domain;
+
 public class BaseBall {
 
-    private final Number answer;
+    private final Numbers answer;
 
-    public BaseBall(Number answer) {
+    public BaseBall(Numbers answer) {
         this.answer = answer;
     }
 
-    public JudgementCountPair play(Number input) {
+    public JudgementCountPair play(Numbers input) {
         return addCountByAllJudge(input, new JudgementCountPair());
     }
 
-    private JudgementCountPair addCountByAllJudge(Number input, JudgementCountPair hint) {
+    private JudgementCountPair addCountByAllJudge(Numbers input, JudgementCountPair hint) {
         hint = addCountByJudge(input, hint, new StrikeJudgement());
         hint = addCountByJudge(input, hint, new BallJudgement());
 
         return hint;
     }
 
-    private JudgementCountPair addCountByJudge(Number input, JudgementCountPair hint, Judgeable judgeable) {
+    private JudgementCountPair addCountByJudge(Numbers input, JudgementCountPair hint, Judgeable judgeable) {
         int sizeOfInput = getSizeOfInput(input);
 
         for (int index = 0; index < sizeOfInput; index++) {
@@ -27,7 +29,7 @@ public class BaseBall {
         return hint;
     }
 
-    private int getSizeOfInput(Number input) {
+    private int getSizeOfInput(Numbers input) {
         return input.length();
     }
 }

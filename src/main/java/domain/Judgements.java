@@ -1,3 +1,5 @@
+package domain;
+
 public enum Judgements {
 
     STRIKE('S'),

@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +30,6 @@ public class JudgementCountPair {
     }
 
     public Integer get(Judgements judgement) {
-        return judgementCounts.get(judgement);
+        return judgementCounts.getOrDefault(judgement, DEFAULT_VALUE);
     }
 }

@@ -1,7 +1,9 @@
+package domain;
+
 public class StrikeJudgement implements Judgeable {
 
     @Override
-    public JudgementCountPair addMatchCount(Number answer, Number input, JudgementCountPair hint, int index) {
+    public JudgementCountPair addMatchCount(Numbers answer, Numbers input, JudgementCountPair hint, int index) {
         if (isStrike(answer, input, index)) {
             return hint.createAddedMatchCount(Judgements.STRIKE);
         }
@@ -9,7 +11,7 @@ public class StrikeJudgement implements Judgeable {
         return hint;
     }
 
-    static boolean isStrike(Number answer, Number input, int index) {
+    static boolean isStrike(Numbers answer, Numbers input, int index) {
         return answer.isStrike(input, index);
     }
 }
