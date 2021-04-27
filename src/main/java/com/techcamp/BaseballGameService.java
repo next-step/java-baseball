@@ -1,12 +1,13 @@
-package com;
+package com.techcamp;
 
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * <pre>
- * com
+ * com.techcamp
  * ㄴ BaseballGameService.java
  * </pre>
  * @date : 2021-04-26 오후 5:03
@@ -22,8 +23,8 @@ public class BaseballGameService {
 
     /**
      * <pre>
-     * 숫자 야구 시작 전 초기화
-     * 정답 clear, 진행여부값 초기화, 정답 설정
+     *     숫자 야구 시작 전 초기화
+     *     정답 clear, 진행여부값 초기화, 정답 설정
      * </pre>
      * @author 김재범
      **/
@@ -35,8 +36,19 @@ public class BaseballGameService {
 
     /**
      * <pre>
-     * 숫자야구 정답 3자리 숫자 생성
-     * 0~9 숫자 3자리. 중복허용X
+     *     정답(answer) 출력
+     *     테스트를 위한 임시 메서드
+     * </pre>
+     * @author 김재범
+     **/
+    public String getAnswer() {
+        return answer;
+    }
+
+    /**
+     * <pre>
+     *     숫자야구 정답 3자리 숫자 생성
+     *     0~9 숫자 3자리. 중복허용X
      * </pre>
      * @author 김재범
      **/
@@ -50,7 +62,7 @@ public class BaseballGameService {
 
     /**
      * <pre>
-     * 숫자 야구 게임 시작 메서드
+     *     숫자 야구 게임 시작 메서드
      * </pre>
      * @author 김재범
      **/
@@ -65,19 +77,45 @@ public class BaseballGameService {
 
     /**
      * <pre>
-     * 숫자 야구 게임 진행
-     * 숫자 야구 게임을 위해 입력갑 입력 - 입력값 유효성 체크
+     *     숫자 야구 게임 진행
+     *     숫자 야구 게임을 위해 입력갑 입력
      * </pre>
      * @author 김재범
      **/
     private void input() {
-        //TODO 입력값을 입력 받고 유효성(숫자, 3자리) 검증
+        input(null);
+    }
+
+    private void input(String in) {
+        System.out.print("숫자를 입력해주세요 : ");
+        input = in;
+        if(in == null) {
+            input = new Scanner(System.in).next();
+        }
+        validation();
     }
 
     /**
      * <pre>
-     * 입력한 3자리 숫자에 대해 숫자야구 게임 검증
-     * 자리까지 동일 - 스트라이크, 숫자만 동일 - 볼
+     *      입력값 유효성 체크
+     * </pre>
+     * @author 김재범
+     **/
+    private void validation() {
+        if(!input.chars().allMatch(Character::isDigit)) {
+            System.out.println("숫자가 아닌값을 입력하셨습니다. 다시 입력해주십시요.");
+            input();
+        }
+        if(input.trim().length() != 3) {
+            System.out.println("입력한 값은 3자리 숫자여야 합니다. 다시 입력해주십시요.");
+            input();
+        }
+    }
+
+    /**
+     * <pre>
+     *     입력한 3자리 숫자에 대해 숫자야구 게임 검증
+     *     자리까지 동일 - 스트라이크, 숫자만 동일 - 볼
      * </pre>
      * @author 김재범
      **/
@@ -87,8 +125,8 @@ public class BaseballGameService {
 
     /**
      * <pre>
-     * 입력값 검증 결과에 따른 로그 출력
-     * ex> 1 스트라이크, 1 볼, 1스트라이크 2볼, 낫싱
+     *     입력값 검증 결과에 따른 로그 출력
+     *     ex> 1 스트라이크, 1 볼, 1스트라이크 2볼, 낫싱
      * </pre>
      * @author 김재범
      **/
@@ -98,8 +136,8 @@ public class BaseballGameService {
 
     /**
      * <pre>
-     * 숫자야구 맞추기 성공 후 게임재시작 여부 확인
-     * "게임을 새로 시작하려면 1,종료하려면 2를 입력하세요."  - 1:재시작, 2:종료
+     *     숫자야구 맞추기 성공 후 게임재시작 여부 확인
+     *     "게임을 새로 시작하려면 1,종료하려면 2를 입력하세요."  - 1:재시작, 2:종료
      * </pre>
      * @author 김재범
      **/

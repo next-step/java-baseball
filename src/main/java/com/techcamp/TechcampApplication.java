@@ -1,8 +1,8 @@
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+package com.techcamp;
 
-@SpringBootApplication(scanBasePackages = "com.*")
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication(scanBasePackages = "com.techcamp")
 public class TechcampApplication {
 
 }

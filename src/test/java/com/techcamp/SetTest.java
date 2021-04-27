@@ -1,4 +1,4 @@
-package com;
+package com.techcamp;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
