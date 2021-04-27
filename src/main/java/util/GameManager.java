@@ -5,14 +5,17 @@ import dto.GameResult;
 import view.GameView;
 
 public class GameManager {
-	private final String answer;
+	private String answer;
 
 	public GameManager() {
-		this.answer = GameUtil.getRandomNumber();
 	}
 
 	public String getAnswer() {
 		return this.answer;
+	}
+
+	private void setAnswer() {
+		this.answer = GameUtil.getRandomNumber();
 	}
 
 	public GameResult checkResult(String answer, String userInput) {
@@ -33,11 +36,21 @@ public class GameManager {
 		return new GameResult("낫싱", false);
 	}
 
-	public void gameStart() {
+	private void gameProcessing() {
 		String inputNumber;
 		do {
 			inputNumber = GameView.inputNumberView();
 		} while (!GameView.resultView(checkResult(inputNumber, this.answer)));
 	}
 
+	private void gameStart() {
+		this.setAnswer();
+		gameProcessing();
+	}
+
+	public void run() {
+		do {
+			gameStart();
+		} while (GameView.endView());
+	}
 }
