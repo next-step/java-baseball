@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/frostnight/java-baseball-precourse/compare/v2.3.0...v2.4.0) (2021-04-27)
+
+
+### Features
+
+* 게임 승리조건 및 재시작 커맨드 창 구현 ([4cf23d8](https://github.com/frostnight/java-baseball-precourse/commit/4cf23d817fbf386dbb2c676f8f1a4900103761f5))
+
 ## [2.3.0](https://github.com/frostnight/java-baseball-precourse/compare/v2.2.2...v2.3.0) (2021-04-27)
 
 
