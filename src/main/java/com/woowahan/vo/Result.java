@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResultVo {
+public class Result {
     int ball = 0;
     int strike = 0;
 }

@@ -1,6 +1,6 @@
 package com.woowahan;
 
-import com.woowahan.vo.ResultVo;
+import com.woowahan.vo.Result;
 
 import java.util.*;
 
@@ -20,19 +20,18 @@ public class BaseballGame {
         boolean isContinue = true;
         computerSet = getComputerSet();
         while (isContinue) {
-            isContinue = playGame();
+            isContinue = !playGame();
         }
-        System.out.println(END_MESSAGE);
         scanner.close();
     }
 
     private static boolean playGame() {
-        ResultVo resultVo = calculateScore(getValue());
-        int strike = resultVo.getStrike();
+        Result result = calculateScore(getPlayerSet());
+        int strike = result.getStrike();
         if (checkAllStrike(strike)) {
-            return false;
+            return isExitGame();
         }
-        printResult(resultVo.getBall(), strike);
+        printResult(result.getBall(), strike);
         return true;
     }
 
@@ -42,6 +41,7 @@ public class BaseballGame {
         while (computerSet.size() < 3) {
             computerSet.add(random.nextInt(10));
         }
+        System.out.println(computerSet);
         return computerSet;
     }
 
@@ -60,57 +60,60 @@ public class BaseballGame {
             return false;
         }
         System.out.println(GAME_END_MESSAGE);
-        System.out.println(NOTICE_MESSAGE);
-        return isExitGame();
+        return true;
     }
 
-    private static boolean isExitGame() {
+    private static boolean isExitGame(){
+        System.out.println(NOTICE_MESSAGE);
         try {
-            int input = scanner.nextInt();
-            if (!RETRY.isEqualTo(input) && !END.isEqualTo(input)) {
-                System.out.println(ERROR_MESSAGE);
-                return isExitGame();
-            }
-            if (END.isEqualTo(input)) {
-                return true;
-            }
+            if (isEnd()) return true;
             computerSet = getComputerSet();
             return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return true;
+        } catch (InputMismatchException | NumberFormatException e) {
+            System.out.println(ERROR_MESSAGE);
+            return isExitGame();
         }
     }
 
-    private static ResultVo calculateScore(Set<Integer> playerSet) {
+    private static boolean isEnd() throws InputMismatchException, NumberFormatException {
+        String input = scanner.nextLine();
+        System.out.println(input);
+        int value = Integer.parseInt(input);
+        if (!RETRY.isEqualTo(value) && !END.isEqualTo(value)) {
+            throw new InputMismatchException();
+        }
+        return END.isEqualTo(value);
+    }
+
+    private static Result calculateScore(Set<Integer> playerSet) {
         Iterator<Integer> computerIterator = computerSet.iterator();
         Iterator<Integer> playerIterator = playerSet.iterator();
-        ResultVo resultVo = new ResultVo();
+        Result result = new Result();
         while (computerIterator.hasNext()) {
-            getScore(computerIterator.next(), playerIterator.next(), resultVo);
+            getScore(computerIterator.next(), playerIterator.next(), result);
         }
-        return resultVo;
+        return result;
     }
 
-    private static void getScore(int computerValue, int playerValue, ResultVo resultVo) {
+    private static void getScore(int computerValue, int playerValue, Result result) {
         if (computerValue == playerValue) {
-            resultVo.setStrike(resultVo.getStrike() + 1);
+            result.setStrike(result.getStrike() + 1);
             return;
         }
         if (computerSet.contains(playerValue)) {
-            resultVo.setBall(resultVo.getBall() + 1);
+            result.setBall(result.getBall() + 1);
         }
     }
 
-    private static Set<Integer> getValue() throws NumberFormatException {
+    private static Set<Integer> getPlayerSet() throws NumberFormatException {
         System.out.println(INPUT_REQUIRE_MESSAGE);
         Set<Integer> playerSet = new LinkedHashSet<>();
         String[] splitValue = scanner.nextLine().split("");
         if (validateInput(playerSet, splitValue)) {
-            return getValueRetry();
+            return getPlayerSetRetry();
         }
         if (playerSet.size() != 3) {
-            return getValueRetry();
+            return getPlayerSetRetry();
         }
         return playerSet;
     }
@@ -126,8 +129,8 @@ public class BaseballGame {
         return false;
     }
 
-    private static Set<Integer> getValueRetry() {
+    private static Set<Integer> getPlayerSetRetry() {
         System.out.println(ERROR_MESSAGE);
-        return getValue();
+        return getPlayerSet();
     }
 }

@@ -1,0 +1,7 @@
+package com.woowahan;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class BaseballGameTest {
+
+}
