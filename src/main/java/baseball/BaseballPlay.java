@@ -5,10 +5,11 @@ import java.util.Scanner;
 import domain.Game;
 import domain.User;
 import template.BaseballTemplate;
+import util.CreateMessage;
 
 /**
  * 
- * @author ÀÌÃæ¼±
+ * @author ì´ì¶©ì„ 
  *
  */
 public class BaseballPlay extends BaseballTemplate {
@@ -38,8 +39,7 @@ public class BaseballPlay extends BaseballTemplate {
 
 	@Override
 	public boolean end() {
-		System.out.println("3°³ÀÇ ¼ıÀÚ¸¦ ¸ğµÎ ¸ÂÈ÷¼Ì½À´Ï´Ù! °ÔÀÓÁ¾·á");
-		System.out.println("°ÔÀÓÀ» »õ·Î ½ÃÀÛÇÏ·Á¸é 1, Á¾·áÇÏ·Á¸é 2¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		CreateMessage.printEndMsg();
 		
 		Scanner sc = new Scanner(System.in);
 		int statue = sc.nextInt();

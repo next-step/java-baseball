@@ -2,7 +2,14 @@ package baseball;
 
 import domain.Game;
 import domain.User;
+import util.CreateMessage;
 
+/**
+ * 
+ * @author 이충선
+ *
+ * @meno 스윙 결과 생성
+ */
 public class BaseballSwingRslt {
 	
 	public Game game = null;
@@ -29,13 +36,19 @@ public class BaseballSwingRslt {
 			strikeChk(idx);
 		}
 		
-		rtnMsg = makeMassage();
+		rtnMsg = CreateMessage.getMessage(strikeCnt, ballCnt);
+		isFinishYN(strikeCnt);
 		strikeCnt = 0;	
 		ballCnt = 0;
 		
 		return rtnMsg;
 	}
 	
+	/**
+	 * 
+	 * @param idx
+	 * @memo 스트라이크 판별
+	 */
 	public void strikeChk(int idx) {
 		int preStrikeCnt = strikeCnt;
 		
@@ -46,12 +59,22 @@ public class BaseballSwingRslt {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param idx
+	 * @memo 볼 판별
+	 */
 	public void ballChk(int idx) {
 		for(int npcIdx = 0; npcIdx < npcNumber.length; npcIdx++) {
 			ballCnt += sameChk(npcNumber[npcIdx], userNumber[idx]);
 		}
 	}
 	
+	/**
+	 * 
+	 * @param npc, user
+	 * @memo 같은 숫자인지 판별
+	 */
 	public int sameChk(int npc, int user) {
 		if(npc == user) {
 			return 1;
@@ -59,38 +82,9 @@ public class BaseballSwingRslt {
 		return 0;
 	}
 	
-	public String makeMassage() {
-		String massage = "";
-		massage += strikeMsg();
-		
-		if(strikeCnt == 3) {
+	public void isFinishYN(int strike) {
+		if(strike == 3) {
 			game.setGameStauts(0);
 		}
-		
-		if(ballCnt != 0) {
-			massage += ballMsg(massage);
-		}
-		
-		return massage.equals("") ? "����" : massage;
-	}
-	
-	public String strikeMsg() {
-		if(strikeCnt != 0) {
-			return strikeCnt + " ��Ʈ����ũ";
-		}
-		
-		return "";
-	}
-	
-	public String ballMsg(String massage) {
-		String rtnMsg = "";
-		
-		if(!"".equals(massage)) {
-			rtnMsg += " ";
-		}
-		
-		rtnMsg += ballCnt + " ��";
-		
-		return rtnMsg;
 	}
 }

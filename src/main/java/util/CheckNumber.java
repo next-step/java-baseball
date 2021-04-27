@@ -5,9 +5,9 @@ import java.util.Set;
 
 /**
  * 
- * @author ÀÌÃæ¼±
+ * @author ì´ì¶©ì„ 
  *
- * @memo »ç¿ëÀÚ Number check
+ * @memo ì‚¬ìš©ì Number check
  * 
  */
 public class CheckNumber {
@@ -26,9 +26,9 @@ public class CheckNumber {
 	
 	/**
 	 * 
-	 * @author ÀÌÃæ¼±
+	 * @author ì´ì¶©ì„ 
 	 *
-	 * @memo »ç¿ëÀÚ Number ¹®ÀÚ check
+	 * @memo ìˆ«ìë§Œ ì…ë ¥í–ˆëŠ”ì§€ ì—¬ë¶€
 	 * 
 	 */
 	public boolean stringCheck(String tempNumber) {
@@ -36,7 +36,7 @@ public class CheckNumber {
 		String regex = "[0-9]+";
 		
 		if(!tempNumber.matches(regex)) {
-			System.out.println("¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			System.out.println("ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			rslt = false;
 		}
 		
@@ -45,16 +45,16 @@ public class CheckNumber {
 	
 	/**
 	 * 
-	 * @author ÀÌÃæ¼±
+	 * @author ì´ì¶©ì„ 
 	 *
-	 * @memo »ç¿ëÀÚ Number ±æÀÌ check
+	 * @memo 3ìë¦¬ ì…ë ¥í–ˆëŠ”ì§€ ì—¬ë¶€
 	 * 
 	 */
 	public boolean lengthCheck(String tempNumber) {
 		boolean rslt = true;
 		
 		if(tempNumber.length() != 3) {
-			System.out.println("3ÀÚ¸®¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			System.out.println("3ìë¦¬ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
 			rslt = false;
 		}
 		
@@ -63,9 +63,9 @@ public class CheckNumber {
 	
 	/**
 	 * 
-	 * @author ÀÌÃæ¼±
+	 * @author ì´ì¶©ì„ 
 	 *
-	 * @memo »ç¿ëÀÚ Number Áßº¹ check
+	 * @memo ì¤‘ë³µ ìˆ«ì ìˆëŠ”ì§€ ì—¬ë¶€
 	 * 
 	 */
 	public boolean duplicateCheck(String tempNumber) {
@@ -77,7 +77,7 @@ public class CheckNumber {
 		}
 		
 		if(duplSet.size() != 3) {
-			System.out.println("Áßº¹µÈ ¼ıÀÚ´Â ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			System.out.println("ìˆ«ìê°€ ì¤‘ë³µë˜ë©´ ì•ˆë©ë‹ˆë‹¤.");
 			rslt = false;
 		}
 		

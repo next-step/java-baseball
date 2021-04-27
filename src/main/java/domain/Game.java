@@ -4,9 +4,9 @@ import util.GenerateNumber;
 
 /**
  * 
- * @author ���漱
+ * @author 이충선
  *
- * @memo Game domain
+ * @memo 게임 도메인
  * 
  */
 public class Game {
