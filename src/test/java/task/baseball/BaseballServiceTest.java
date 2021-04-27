@@ -89,7 +89,7 @@ class BaseballServiceTest {
 	}
 
 	@Test
-	@DisplayName("입력 데이터 검증 및 int to int[] 변경")
+	@DisplayName("입력 데이터 검증")
 	void validateInputAndConvert() {
 		assertThat(baseballService.validateInputAndConvert("123")).hasSize(3).containsExactly(1, 2, 3);
 	}
@@ -98,33 +98,27 @@ class BaseballServiceTest {
 	@DisplayName("입력 데이터 검증, 입력의 자리수가 3이 아닐 경우")
 	void validateInputAndConvert_failure() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> {
-				baseballService.validateInputAndConvert("1234");
-			})
-			.withMessage("잘못된 포맷 : 입력값은 3자리수 입니다.");
+				.isThrownBy(() -> baseballService.validateInputAndConvert("1234"))
+				.withMessage("잘못된 포맷 : 입력값은 3자리수 입니다.");
 
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> {
-				baseballService.validateInputAndConvert("14");
-			})
-			.withMessage("잘못된 포맷 : 입력값은 3자리수 입니다.");
+				.isThrownBy(() -> baseballService.validateInputAndConvert("14"))
+				.withMessage("잘못된 포맷 : 입력값은 3자리수 입니다.");
 	}
 
 	@Test
 	@DisplayName("입력 데이터 검증, 입력값에 숫자가 아닌 값이 포함되어 있는 경우")
 	void validateInputAndConvert_failure2() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> {
-				baseballService.validateInputAndConvert("12a");
-			})
-			.withMessage("잘못된 포맷 : 입력값은 숫자만 가능합니다.");
+				.isThrownBy(() -> baseballService.validateInputAndConvert("12a"))
+				.withMessage("잘못된 포맷 : 입력값은 숫자만 가능합니다.");
 	}
 
 	@Test
 	@DisplayName("입력 데이터 검증, 입력값에 중복된 숫자가 포함되어 있는 경우")
 	void validateInputAndConvert_failure3() {
 		assertThatIllegalArgumentException()
-			.isThrownBy(() -> baseballService.validateInputAndConvert("122"))
-			.withMessage("잘못된 포맷 : 입력값은 서로 중복되지 않아야 합니다.");
+				.isThrownBy(() -> baseballService.validateInputAndConvert("122"))
+				.withMessage("잘못된 포맷 : 입력값은 서로 중복되지 않아야 합니다.");
 	}
 }
