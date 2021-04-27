@@ -1,4 +1,4 @@
-package kr.aterilio.nextstep.techcamp.precourse.baseball.judge;
+package kr.aterilio.nextstep.techcamp.precourse.baseball;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,5 @@
 package kr.aterilio.nextstep.techcamp.precourse.baseball;
 
-import kr.aterilio.nextstep.techcamp.precourse.baseball.judge.Judgement;
-
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;

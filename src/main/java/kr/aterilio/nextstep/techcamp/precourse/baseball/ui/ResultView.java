@@ -1,6 +1,6 @@
 package kr.aterilio.nextstep.techcamp.precourse.baseball.ui;
 
-import kr.aterilio.nextstep.techcamp.precourse.baseball.judge.Judgement;
+import kr.aterilio.nextstep.techcamp.precourse.baseball.Judgement;
 
 public class ResultView {
 

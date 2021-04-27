@@ -1,6 +1,5 @@
 package kr.aterilio.nextstep.techcamp.precourse.baseball;
 
-import kr.aterilio.nextstep.techcamp.precourse.baseball.judge.Judgement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
