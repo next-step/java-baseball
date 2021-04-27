@@ -46,6 +46,6 @@
     5. 사용자와 주관사를 연결시켜줄 UI(BaseballUI) 클래스를 만들고 값 입력과 문구출력 기능을 구현한다.
     6. UI에서 사용자 값 입력 시 입력값 검증을 위한 기능을 UIUtil 클래스를 만들어 구현한다.
     7. 야구경기 주관사(BaseballGame) 클래스를 만들어 게임이 진행의 흐름을 구현한다.
-    8. NumberBaseballGameApplication 클래스의 main 메소드에서 야구경기가 시작될 수 있도록 구현한다.
+    8. BaseballGameApplication 클래스의 main 메소드에서 야구경기가 시작될 수 있도록 구현한다.
 
 ## TO-DO 

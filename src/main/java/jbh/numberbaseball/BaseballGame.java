@@ -18,7 +18,7 @@ public class BaseballGame {
 
 	public void playGame() {
 		ui.displayInputRequestMessage();
-		String userInputBall = ui.getUserInputText();
+		String userInputBall = ui.getUserInputBallNumbers();
 		GameResult gameResult = umpire.judgePitching(defenceTeam.getBall(), userInputBall);
 		ui.displayGameResult(gameResult);
 		if (gameResult.isOut()) {
@@ -29,9 +29,9 @@ public class BaseballGame {
 
 	public void choiceGamePlay() {
 		ui.displayMenu();
-		String input = ui.getUserInputText();
+		String input = ui.getUserInputMenuNumber();
 		if (input.equals("2")) {
-			this.playGame = false;
+			setPlayGame(false);
 			return;
 		}
 		requestNewDefenceBall();
@@ -39,6 +39,10 @@ public class BaseballGame {
 
 	public boolean isPlayGame() {
 		return playGame;
+	}
+
+	private void setPlayGame(boolean playGame) {
+		this.playGame = playGame;
 	}
 
 	private void requestNewDefenceBall() {

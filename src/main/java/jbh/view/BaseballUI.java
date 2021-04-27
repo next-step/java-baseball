@@ -3,13 +3,31 @@ package jbh.view;
 import java.util.Scanner;
 
 import jbh.numberbaseball.GameResult;
+import jbh.utils.UIUtil;
 
 public class BaseballUI {
 
 	private final Scanner scanner = new Scanner(System.in);
+	private UIUtil util;
 
-	public String getUserInputText() {
-		return scanner.nextLine().trim();
+	public BaseballUI() {
+		this.util = new UIUtil();
+	}
+
+	public String getUserInputBallNumbers() {
+		String input = "";
+		do {
+			input = scanner.nextLine().trim();
+		} while (util.isWrongBallNumbers(input, 3));
+		return input;
+	}
+
+	public String getUserInputMenuNumber() {
+		String input = "";
+		do {
+			input = scanner.nextLine().trim();
+		} while (util.isWrongMenuNumber(input));
+		return input;
 	}
 
 	public void displayInputRequestMessage() {
