@@ -27,7 +27,7 @@ public class BaseballGame {
 
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         Collections.shuffle(list);
-        
+                
         questions.addAll(list.subList(0, 3));
     }
 
@@ -35,7 +35,15 @@ public class BaseballGame {
         System.out.println("숫자를 입력하세요 : ");
         String numberString = scanner.nextLine();
 
+        // 숫자(1~9까지) 입력인가 확인
         if(!InputNumberUtil.checkInputNumber(numberString)) {
+            System.out.println("1에서 9까지의 숫자 중 3자리만 입력해 주세요.");
+            return;
+        }
+
+        // 3자리 입력인지 확인
+        if(!InputNumberUtil.overInputNumberLength(numberString)) {
+            System.out.println("1에서 9까지의 숫자 중 3자리만 입력해 주세요.");
             return;
         }
 
@@ -70,13 +78,13 @@ public class BaseballGame {
             System.out.println(playResult.getIsStrike() + " 스트라이크");
         } else if(playResult.getIsBall() != 0) {
             System.out.println(playResult.getIsBall() + " 볼");
-        }
+        }        
     }
 
     public void restart(){
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         String input = scanner.nextLine();
-        
+
         if (input.equals("1")) {
             isSolved = false;
             runGame();
