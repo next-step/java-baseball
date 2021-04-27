@@ -3,6 +3,7 @@ package gamelogic;
 import java.util.Random;
 
 public class GameAnswerGenerator {
+	
 	private final Random random = new Random();
 
 	public String generateAnswer() {
@@ -22,9 +23,9 @@ public class GameAnswerGenerator {
 	}
 
 	private boolean isValidAnswer(int candidate) {
-		int first = candidate / 100;
-		int second = (candidate / 10) % 10;
-		int third = candidate % 10;
-		return (first != second && second != third && third != first);
+		int firstDigit = candidate / 100;
+		int secondDigit = (candidate / 10) % 10;
+		int thirdDigit = candidate % 10;
+		return (firstDigit != secondDigit && secondDigit != thirdDigit && thirdDigit != firstDigit);
 	}
 }

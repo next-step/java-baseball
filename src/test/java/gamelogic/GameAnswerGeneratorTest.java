@@ -13,7 +13,6 @@ class GameAnswerGeneratorTest {
 
 	private static GameAnswerGenerator gameAnswerGenerator;
 	private static Method isValidAnswerMethod;
-	private static Method generateAnswerMethod;
 
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
@@ -21,16 +20,12 @@ class GameAnswerGeneratorTest {
 
 		isValidAnswerMethod = GameAnswerGenerator.class.getDeclaredMethod("isValidAnswer", int.class);
 		isValidAnswerMethod.setAccessible(true);
-
-		generateAnswerMethod = GameAnswerGenerator.class.getDeclaredMethod("generateAnswer");
-		generateAnswerMethod.setAccessible(true);
 	}
 
 	@ParameterizedTest
 	@ValueSource(ints = {331, 555, 949})
 	void isValidAnswer_withSameDigits_False(int input)
 		throws InvocationTargetException, IllegalAccessException {
-
 		boolean result = (boolean)isValidAnswerMethod.invoke(gameAnswerGenerator, input);
 		assertThat(result).isFalse();
 	}
@@ -39,7 +34,6 @@ class GameAnswerGeneratorTest {
 	@ValueSource(ints = {321, 546, 947})
 	void isValidAnswer_withValidAnswerFormat_True(int input)
 		throws InvocationTargetException, IllegalAccessException {
-
 		boolean result = (boolean)isValidAnswerMethod.invoke(gameAnswerGenerator, input);
 		assertThat(result).isTrue();
 	}
