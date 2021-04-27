@@ -25,17 +25,17 @@ public class Balls {
     }
 
     public Score match(Balls destBalls) {
-        List<GameRule> gameRules = new ArrayList<>();
+        List<Pitching> pitchings = new ArrayList<>();
         for (int i = 0; i < balls.size(); i++) {
             Ball ball = balls.get(i);
 
             Position ballPosition = new Position(i);
             Position destBallPosition = destBalls.findPositionByBall(ball);
 
-            gameRules.add(GameRule.of(ballPosition, destBallPosition));
+            pitchings.add(Pitching.of(ballPosition, destBallPosition));
         }
 
-        return new Score(gameRules);
+        return new Score(pitchings);
     }
 
     public Position findPositionByBall(Ball ball) {

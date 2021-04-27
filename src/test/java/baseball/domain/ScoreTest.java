@@ -12,8 +12,8 @@ public class ScoreTest {
     @Test
     @DisplayName("스트라이크 개수를 갖는다.")
     public void 스트라이크_개수를_갖는다() {
-        List<GameRule> gameRuleList = Arrays.asList(GameRule.STRIKE, GameRule.STRIKE);
-        Score score = new Score(gameRuleList);
+        List<Pitching> pitchingList = Arrays.asList(Pitching.STRIKE, Pitching.STRIKE);
+        Score score = new Score(pitchingList);
 
         assertThat(score.countOfStrike())
                 .isEqualTo(2);
@@ -22,8 +22,8 @@ public class ScoreTest {
     @Test
     @DisplayName("볼 개수를 갖는다.")
     public void 볼_개수를_갖는다() {
-        List<GameRule> gameRuleList = Arrays.asList(GameRule.BALL, GameRule.BALL, GameRule.BALL);
-        Score score = new Score(gameRuleList);
+        List<Pitching> pitchingList = Arrays.asList(Pitching.BALL, Pitching.BALL, Pitching.BALL);
+        Score score = new Score(pitchingList);
 
         assertThat(score.countOfBall())
                 .isEqualTo(3);
@@ -32,8 +32,8 @@ public class ScoreTest {
     @Test
     @DisplayName("미싱 개수를 갖는다.")
     public void 미싱_개수를_갖는다() {
-        List<GameRule> gameRuleList = Arrays.asList(GameRule.MISSING);
-        Score score = new Score(gameRuleList);
+        List<Pitching> pitchingList = Arrays.asList(Pitching.MISSING);
+        Score score = new Score(pitchingList);
 
         assertThat(score.countOfMissing())
                 .isEqualTo(1);

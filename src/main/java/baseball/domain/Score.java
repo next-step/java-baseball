@@ -4,22 +4,22 @@ import java.util.Collections;
 import java.util.List;
 
 public class Score {
-    private final List<GameRule> gameRules;
+    private final List<Pitching> pitchings;
 
-    public Score(List<GameRule> gameRules) {
-        this.gameRules = gameRules;
+    public Score(List<Pitching> pitchings) {
+        this.pitchings = pitchings;
     }
 
     public int countOfStrike() {
-        return countOf(GameRule.STRIKE);
+        return countOf(Pitching.STRIKE);
     }
 
     public int countOfBall() {
-        return countOf(GameRule.BALL);
+        return countOf(Pitching.BALL);
     }
 
     public int countOfMissing() {
-        return countOf(GameRule.MISSING);
+        return countOf(Pitching.MISSING);
     }
 
     public boolean isNotAllStrike() {
@@ -27,10 +27,10 @@ public class Score {
     }
 
     public boolean isAllStrike() {
-        return countOfStrike() == gameRules.size();
+        return countOfStrike() == pitchings.size();
     }
 
-    private int countOf(GameRule gameRule) {
-        return Collections.frequency(gameRules, gameRule);
+    private int countOf(Pitching pitching) {
+        return Collections.frequency(pitchings, pitching);
     }
 }

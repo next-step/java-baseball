@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameRuleTest {
+public class PitchingTest {
     @Test
     @DisplayName("같은 수가 같은 자리에 있으면 스트라이크")
     public void 같은_수가_같은_자리에_있으면_스트라이크() {
         Position source = new Position(1);
         Position dest = new Position(1);
 
-        assertThat(GameRule.of(source, dest))
-                .isEqualTo(GameRule.STRIKE);
+        assertThat(Pitching.of(source, dest))
+                .isEqualTo(Pitching.STRIKE);
     }
 
     @Test
@@ -22,8 +22,8 @@ public class GameRuleTest {
         Position source = new Position(1);
         Position dest = Position.NOT_FOUND;
 
-        assertThat(GameRule.of(source, dest))
-                .isEqualTo(GameRule.MISSING);
+        assertThat(Pitching.of(source, dest))
+                .isEqualTo(Pitching.MISSING);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class GameRuleTest {
         Position source = new Position(1);
         Position dest = new Position(2);
 
-        assertThat(GameRule.of(source, dest))
-                .isEqualTo(GameRule.BALL);
+        assertThat(Pitching.of(source, dest))
+                .isEqualTo(Pitching.BALL);
     }
 }
