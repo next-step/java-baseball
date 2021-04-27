@@ -35,27 +35,27 @@ class BallTest {
 
     @Test
     @DisplayName("Ball_생성실패_0포함")
-    void user_ball_fail_zero(){
+    void user_ball_fail_zero() {
         assertThatThrownBy(
-                () -> new Ball(Arrays.asList(0,9,7))
+                () -> new Ball(Arrays.asList(0, 9, 7))
         ).isInstanceOf(BallException.class)
                 .hasMessage("1 ~ 9 까지의 숫자를 입력하세요.");
     }
 
     @Test
     @DisplayName("Ball_생성실패_두자리수_입력")
-    void user_ball_fail_digit(){
+    void user_ball_fail_digit() {
         assertThatThrownBy(
-                () -> new Ball(Arrays.asList(23,9,7))
+                () -> new Ball(Arrays.asList(23, 9, 7))
         ).isInstanceOf(BallException.class)
                 .hasMessage("1 ~ 9 까지의 숫자를 입력하세요.");
     }
 
     @Test
     @DisplayName("Ball_생성실패_중복숫자_입력")
-    void user_ball_fail_duplicate(){
+    void user_ball_fail_duplicate() {
         assertThatThrownBy(
-                () -> new Ball(Arrays.asList(5,1,5))
+                () -> new Ball(Arrays.asList(5, 1, 5))
         ).isInstanceOf(BallException.class)
                 .hasMessage("중복되지 않는 숫자를 입력하세요.");
     }
@@ -64,7 +64,7 @@ class BallTest {
     @DisplayName("Ball_생성실패_4자리_입력")
     void user_ball_fail_size() {
         assertThatThrownBy(
-                () -> new Ball(Arrays.asList(1,2,3,4))
+                () -> new Ball(Arrays.asList(1, 2, 3, 4))
         ).isInstanceOf(BallException.class)
                 .hasMessage("숫자 3개를 입력하세요.");
     }
@@ -82,7 +82,7 @@ class BallTest {
     @DisplayName("Ball_생성성공_List")
     void user_ball_success_list() {
 
-        Ball ball = new Ball(Arrays.asList(3,7,4));
+        Ball ball = new Ball(Arrays.asList(3, 7, 4));
 
         assertEquals(ball.balls.size(), 3);
     }
@@ -91,7 +91,7 @@ class BallTest {
     @DisplayName("Ball_생성성공_Set")
     void user_ball_success_set() {
 
-        Ball ball = new Ball(new HashSet<>(Arrays.asList(1,2,3)));
+        Ball ball = new Ball(new HashSet<>(Arrays.asList(1, 2, 3)));
 
         assertEquals(ball.balls.size(), 3);
     }

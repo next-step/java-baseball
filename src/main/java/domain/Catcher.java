@@ -11,7 +11,7 @@ public class Catcher {
     private Ball chooseThreeBall() {
 
         Set<Integer> comBall = new LinkedHashSet<>();
-        while(comBall.size()<=2){
+        while (comBall.size() <= 2) {
             comBall.add(ThreadLocalRandom.current().nextInt(1, 10));
         }
 

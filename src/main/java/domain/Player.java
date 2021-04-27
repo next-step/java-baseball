@@ -6,7 +6,7 @@ public class Player {
 
     Ball ball;
 
-    public void inputBall(){
+    public void inputBall() {
         System.out.print("숫자를 입력하세요 : ");
         ball = new Ball(inputNumber());
     }

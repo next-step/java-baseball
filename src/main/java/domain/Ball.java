@@ -9,21 +9,21 @@ final class Ball {
 
     List<Integer> balls;
 
-    Ball(String balls){
+    Ball(String balls) {
         setBall(strToList(balls));
     }
 
-    Ball(List<Integer> balls){
+    Ball(List<Integer> balls) {
         setBall(balls);
     }
 
-    Ball(Set<Integer> balls){
+    Ball(Set<Integer> balls) {
         setBall(new ArrayList<>(balls));
     }
 
-    private void setBall(List<Integer> balls){
+    private void setBall(List<Integer> balls) {
         checkNull(balls);
-        for(int ball : balls){
+        for (int ball : balls) {
             checkNumberValidation(ball);
             checkDuplicate(balls, ball);
         }
@@ -31,19 +31,19 @@ final class Ball {
         this.balls = Collections.unmodifiableList(balls);
     }
 
-    private Boolean checkNumberValidation(int ball){
-        if(!Util.pattern.matcher(Integer.toString(ball)).find()){
+    private Boolean checkNumberValidation(int ball) {
+        if (!Util.pattern.matcher(Integer.toString(ball)).find()) {
             throw new BallException("1 ~ 9 까지의 숫자를 입력하세요.");
         }
         return true;
     }
 
-    private List<Integer> strToList(String input){
+    private List<Integer> strToList(String input) {
         checkNumber(input);
 
         List<Integer> ball = new ArrayList<>();
 
-        for(int i=0; i<input.length(); i++){
+        for (int i = 0; i < input.length(); i++) {
             ball.add(Character.getNumericValue(input.charAt(i)));
         }
         return ball;
@@ -52,13 +52,13 @@ final class Ball {
     private void checkNumber(String input) {
         try {
             Integer.parseInt(input);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new BallException("숫자만 입력 가능합니다.");
         }
     }
 
     private void checkNull(List<Integer> balls) {
-        if(balls == null){
+        if (balls == null) {
             throw new BallException("NullPointerException 발생");
         }
     }
@@ -66,7 +66,7 @@ final class Ball {
     private void checkDuplicate(List<Integer> balls, int ball) {
         int count = Collections.frequency(balls, ball);
 
-        if(count>1){
+        if (count > 1) {
             throw new BallException("중복되지 않는 숫자를 입력하세요.");
         }
     }
