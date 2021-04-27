@@ -34,4 +34,14 @@ public class Game {
 		} while (!player.isFinished());
 	}
 
+	public boolean getGameStatus() throws IOException {
+		PrintMessage.printAskOptionExitOrRestart();
+		String inputStr = InputReader.getInput();
+
+		if (!Validation.isExitOrRestart(inputStr)) {
+			return getGameStatus();
+		}
+		int input = Integer.parseInt(inputStr);
+		return input == GameStatus.RESTART.getStatus();
+	}
 }

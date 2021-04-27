@@ -46,5 +46,13 @@ public class Validation {
 		return true;
 	}
 
+	public static boolean isExitOrRestart(String InputStr) {
+		if (!InputStr.equals(Integer.toString(GameStatus.EXIT.getStatus()))
+			&& !InputStr.equals(Integer.toString(GameStatus.RESTART.getStatus()))) {
+			PrintMessage.printErrorOptionExitOrRestart();
+			return false;
+		}
+		return true;
+	}
 
 }
