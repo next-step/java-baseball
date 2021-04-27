@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BaseBallTest {
 
@@ -16,10 +15,12 @@ public class BaseBallTest {
 
     @Test
     @DisplayName("컴퓨터 숫자의 출력값 중복 체크")
-    public void checkDuplicateValueTest() {
+    public void checkDuplicateToLoopTest() {
+        assertThat(baseBall.validateNumber("3s")).isFalse();
         assertThat(baseBall.validateNumber("123")).isTrue();
         assertThat(baseBall.validateNumber("222")).isFalse();
-        assertThat(baseBall.validateNumber("090")).isFalse();
+        assertThat(baseBall.validateNumber("023")).isFalse();
+        assertThat(baseBall.validateNumber("1240")).isFalse();
     }
 
     @Test
@@ -27,17 +28,17 @@ public class BaseBallTest {
     public void playTest() {
         HashMap<GameResult, Integer> expected = new HashMap<>();
         expected.put(GameResult.STRIKE, 3);
-        HashMap<GameResult, Integer> actual = baseBall.play("123", "123");
+        HashMap<GameResult, Integer> actual = baseBall.run("123", "123");
         assertEquals(expected, actual);
 
-        actual = baseBall.play("192", "123");
+        actual = baseBall.run("192", "123");
         expected = new HashMap<>();
         expected.put(GameResult.STRIKE, 1);
         expected.put(GameResult.BALL, 1);
         expected.put(GameResult.NOTHING, 1);
         assertEquals(expected, actual);
 
-        actual = baseBall.play("576", "123");
+        actual = baseBall.run("576", "123");
         expected = new HashMap<>();
         expected.put(GameResult.NOTHING, 3);
         assertEquals(expected, actual);
@@ -55,15 +56,17 @@ public class BaseBallTest {
         expected.put(GameResult.BALL, 1);
         expected.put(GameResult.NOTHING, 1);
         assertThat(baseBall.judgeGameResult(expected)).isFalse();
+
+        expected = new HashMap<>();
+        expected.put(GameResult.BALL, 3);
+        assertThat(baseBall.judgeGameResult(expected)).isFalse();
     }
 
     @Test
     @DisplayName("게임 종료에 대한 값 테스트")
     public void isFinishTest() {
-        assertThat(baseBall.isFinish("1")).isTrue();
-        assertThat(baseBall.isFinish("2")).isFalse();
-
-        assertThrows(IllegalArgumentException.class, () -> assertThat(baseBall.isFinish("ddf")).isFalse());
-        assertThrows(IllegalArgumentException.class, () -> assertThat(baseBall.isFinish("3")).isFalse());
+        assertThat(baseBall.validateProcessValue("1")).isFalse();
+        assertThat(baseBall.validateProcessValue("2")).isFalse();
+        assertThat(baseBall.validateProcessValue("32")).isTrue();
     }
 }
