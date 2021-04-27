@@ -7,7 +7,6 @@ import baseball.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public final class ResultView {
   private static final String ALL_MISS_TYPE_NAME = "낫싱";
@@ -28,11 +27,7 @@ public final class ResultView {
 
   private static List<String> getRecordStrings(BallRecord record) {
     List<String> list = new ArrayList<>();
-    Set<StrikeZone> strikeZones = record.getValues().keySet();
-    for (StrikeZone strikeZone : strikeZones) {
-      if (strikeZone == StrikeZone.MISS) {
-        continue;
-      }
+    for (StrikeZone strikeZone : record.keySetFromIgnoreKeys(StrikeZone.MISS)) {
       list.add(getStrikeZoneToString(record, strikeZone));
     }
 

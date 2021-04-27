@@ -1,9 +1,11 @@
 package baseball.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class BallRecord {
   private static final int MAX_COUNT = 3;
@@ -35,8 +37,11 @@ public class BallRecord {
     return getCount(StrikeZone.STRIKE) == MAX_COUNT;
   }
 
-  public Map<StrikeZone, Integer> getValues() {
-    return values;
+  public Set<StrikeZone> keySetFromIgnoreKeys(StrikeZone... ignore) {
+    Map<StrikeZone, Integer> copy = new EnumMap<>(values);
+    Set<StrikeZone> result = copy.keySet();
+    result.removeAll(Arrays.asList(ignore));
+    return result;
   }
 
   @Override

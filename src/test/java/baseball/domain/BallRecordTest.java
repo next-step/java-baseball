@@ -7,6 +7,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BallRecordTest {
 
@@ -44,5 +45,31 @@ class BallRecordTest {
 
     // then
     assertThat(isStrikeOut).isTrue();
+  }
+
+  @Test
+  @DisplayName("특정 key를 제외하여 keySet을 반환한다.")
+  void keySetFromIgnoreKeys() {
+    // given
+    BallRecord ballRecord = BallRecord.create()
+            .plusCount(StrikeZone.STRIKE)
+            .plusCount(StrikeZone.BALL)
+            .plusCount(StrikeZone.MISS);
+
+    // when
+
+    // then
+    assertAll(
+            () -> assertThat(ballRecord.keySetFromIgnoreKeys())
+                    .containsExactly(StrikeZone.STRIKE, StrikeZone.BALL, StrikeZone.MISS),
+            () -> assertThat(ballRecord.keySetFromIgnoreKeys(StrikeZone.STRIKE))
+                    .containsExactly(StrikeZone.BALL, StrikeZone.MISS),
+            () -> assertThat(ballRecord.keySetFromIgnoreKeys(StrikeZone.BALL))
+                    .containsExactly(StrikeZone.STRIKE, StrikeZone.MISS),
+            () -> assertThat(ballRecord.keySetFromIgnoreKeys(StrikeZone.BALL, StrikeZone.MISS))
+                    .containsExactly(StrikeZone.STRIKE),
+            () -> assertThat(ballRecord.keySetFromIgnoreKeys(StrikeZone.STRIKE, StrikeZone.BALL, StrikeZone.MISS))
+                    .isEmpty()
+            );
   }
 }
