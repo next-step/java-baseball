@@ -4,11 +4,11 @@ public class Ball {
     public static final int MINIMUM_NUMBER = 1;
     public static final int MAXIMUM_NUMBER = 9;
 
-    private static final Ball[] BALLS = new Ball[MAXIMUM_NUMBER + 1];
+    private static final Ball[] balls = new Ball[MAXIMUM_NUMBER + 1];
 
     static {
-        for (int i = MINIMUM_NUMBER; i < BALLS.length; i++) {
-            BALLS[i] = new Ball(i);
+        for (int i = MINIMUM_NUMBER; i < balls.length; i++) {
+            balls[i] = new Ball(i);
         }
     }
 
@@ -29,6 +29,6 @@ public class Ball {
             );
         }
 
-        return BALLS[number];
+        return balls[number];
     }
 }
