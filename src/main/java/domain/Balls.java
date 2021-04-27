@@ -3,12 +3,16 @@ package domain;
 import util.RandomGenerator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Balls {
     private static final String SIZE_ERROR = "숫자볼 개수는 3 입니다";
     private static final String DUPLICATE_ERROR = "중복되는 숫자가 존재합니다.";
-    private static final int SIZE = 3;
+    private static final int BALLS_SIZE = 3;
+    private static final int ONE = 1;
+    private static final int ZERO = 0;
 
     private final List<Ball> balls;
 
@@ -21,29 +25,35 @@ public class Balls {
     }
 
     public Balls(List<Ball> balls) {
-        validSize(balls);
+        validBallsSize(balls);
         validDuplicate(balls);
         this.balls = balls;
     }
 
     public Score matchToScore(Balls inputBalls) {
-        int strike = 0;
-        int ball = 0;
+        int strikeCount = 0;
+        int ballCount = 0;
 
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < BALLS_SIZE; i++) {
             boolean isStrike = inputBalls.isStrike(i, balls.get(i));
-            strike = isStrike ? strike + 1 : strike;
-            ball = inputBalls.isBall(isStrike, balls.get(i)) ? ball + 1 : ball;
+            strikeCount += addStrikeCount(isStrike);
+            ballCount += inputBalls.addBallCount(isStrike, balls.get(i));
         }
-
-        return new Score(strike, ball);
+        return new Score(strikeCount, ballCount);
     }
 
-    private boolean isBall(boolean isStrike, Ball pitchBall) {
-        if (!isStrike) {
-            return balls.contains(pitchBall);
+    private int addStrikeCount(boolean isStrike) {
+        if (isStrike) {
+            return ONE;
         }
-        return false;
+        return ZERO;
+    }
+
+    private int addBallCount(boolean isStrike, Ball pitchBall) {
+        if (!isStrike && balls.contains(pitchBall)) {
+            return ONE;
+        }
+        return ZERO;
     }
 
     private boolean isStrike(int index, Ball pitchBall) {
@@ -54,8 +64,7 @@ public class Balls {
         List<Ball> result = new ArrayList<>();
 
         for (int i = 0; i < inputText.length(); i++) {
-            int number = Integer.parseInt(inputText.substring(i, i + 1));
-            result.add(new Ball(number));
+            result.add(new Ball(Integer.parseInt(inputText.substring(i, i + 1))));
         }
 
         return result;
@@ -64,29 +73,23 @@ public class Balls {
     private static List<Ball> createRandomBalls() {
         RandomGenerator randomGenerator = new RandomGenerator();
         List<Ball> result = new ArrayList<>();
-        for (int i = 0; i < SIZE; i++) {
+
+        for (int i = 0; i < BALLS_SIZE; i++) {
             result.add(new Ball(randomGenerator.indexToValue(i)));
         }
+
         return result;
     }
 
     private void validDuplicate(List<Ball> balls) {
-        int count = 0;
-        Ball firstBall = balls.get(0);
-        for (int i = 1; i < SIZE; i++) {
-            count = isDuplicate(firstBall, balls.get(i)) ? count + 1 : count;
-        }
-        if (count > 0) {
+        Set<Ball> nonDuplicateBalls = new HashSet<>(balls);
+        if (nonDuplicateBalls.size() != BALLS_SIZE) {
             throw new IllegalArgumentException(DUPLICATE_ERROR);
         }
     }
 
-    private boolean isDuplicate(Ball firstBall, Ball other) {
-        return firstBall.equals(other);
-    }
-
-    private void validSize(List<Ball> numberBalls) {
-        if (numberBalls.size() != SIZE) {
+    private void validBallsSize(List<Ball> numberBalls) {
+        if (numberBalls.size() != BALLS_SIZE) {
             throw new IllegalArgumentException(SIZE_ERROR);
         }
     }
