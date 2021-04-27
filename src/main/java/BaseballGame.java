@@ -11,7 +11,6 @@ public class BaseballGame {
 
 	public void startGame() {
 		do{
-			// TODO: play Baseball game
 			playBaseballGame();
 
 			// TODO: select to replay game
@@ -20,16 +19,18 @@ public class BaseballGame {
 	}
 
 	private void playBaseballGame(){
+		String randomNumbers = getRandomNumbers();
+		System.out.println("Random Numbers: " + randomNumbers);
 		while (true) {
-			String randomNumbers = getRandomNumbers();
+			System.out.print("숫자를입력해주세요: ");
 			String input = getInput();
-			System.out.println("Random Numbers: " + randomNumbers);
 
 			Score score = getScore(randomNumbers, input);
 			showScore(score);
-			// TODO: check Game status
-			isGamePass(score);
+			if(isGamePass(score))
+				break;
 		}
+		System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
 	}
 
 	public boolean isGamePass(Score score){
