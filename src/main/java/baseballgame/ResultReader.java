@@ -16,8 +16,13 @@ public class ResultReader {
 			}
 			redundancy.add(userInput.get(i));
 		}
-
+		combinateString(count, " 스트라이크 ");
 		return count;
 	}
 
+	private void combinateString(int successCount, String targetString) {
+		if (successCount != 0) {
+			result.append(successCount + targetString);
+		}
+	}
 }
