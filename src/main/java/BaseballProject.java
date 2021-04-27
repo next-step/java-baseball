@@ -22,6 +22,11 @@ public class BaseballProject {
                 // TODO : 1. input user answer
                 System.out.println("숫자를 입력해주세요");
                 String userAnswer = scanner.next();
+
+                // TODO : 2. check user' Answer & show resultMessage
+                int result = baseBallGame.checkAnswer(userAnswer);
+                String resultMessage = baseBallGame.makeResultMessage(baseBallGame.checkResultModel);
+                System.out.println(resultMessage);
             }
         }
     }
