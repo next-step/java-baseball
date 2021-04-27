@@ -41,4 +41,8 @@ public class HintResult {
     private boolean isNothing() {
         return hintResult.get(Hint.STRIKE) == DEFAULT_COUNT && hintResult.get(Hint.BALL) == DEFAULT_COUNT;
     }
+
+    public boolean isAllStrike() {
+        return hintResult.get(Hint.STRIKE) == Computer.NUMBERS_LENGTH;
+    }
 }
