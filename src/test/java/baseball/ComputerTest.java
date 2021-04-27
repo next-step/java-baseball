@@ -28,24 +28,24 @@ class ComputerTest {
 	@ParameterizedTest
 	@CsvSource(
 		value = {
-			"7,1,3:1,2,3:1:1",
-			"7,1,3:1,4,5:0:1",
-			"7,1,3:6,7,1:0:2",
-			"7,1,3:2,1,6:1:0",
-			"7,1,3:7,1,3:3:0",
+			"3:7,1,3:1,2,3:1:1",
+			"3:7,1,3:1,4,5:0:1",
+			"3:7,1,3:6,7,1:0:2",
+			"3:7,1,3:2,1,6:1:0",
+			"3:7,1,3:7,1,3:3:0",
 		},
 		delimiter = ':'
 	)
 	void judge(
+		int numberLength,
 		@ConvertWith(IntArrayConverter.class) int[] guess,
 		@ConvertWith(IntArrayConverter.class) int[] answer,
 		int expectedStrikeCount,
 		int expectedBallCount
 	) {
-		int numberLength = 3;
 		Computer computer = new Computer(numberLength);
 		Judgement actual = computer.judge(guess, answer);
-		Judgement expected = new Judgement.Builder(expectedStrikeCount, expectedBallCount).build();
+		Judgement expected = new Judgement.Builder(numberLength, expectedStrikeCount, expectedBallCount).build();
 
 		assertEquals(expected, actual);
 	}

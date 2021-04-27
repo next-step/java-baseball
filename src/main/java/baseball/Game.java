@@ -19,7 +19,7 @@ class Game {
 		int[] answer = computer.chooseNumbers();
 		int[] guess = new int[] {-1, -1, -1};
 		Judgement judgement = computer.judge(guess, answer);
-		while (!judgement.is3Strike()) {
+		while (!judgement.isAllStrike()) {
 			printer.printMessageOnBeforeGuess();
 			guess = player.guess(input.getGuessInput());
 			judgement = computer.judge(guess, answer);

@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Judgement {
+	private final int numberLength;
 	private final int strikeCount;
 	private final int ballCount;
 
 	static class Builder {
+		private final int numberLength;
 		private final int strikeCount;
 		private final int ballCount;
 
-		Builder(int strikeCount, int ballCount) {
+		Builder(int numberLength, int strikeCount, int ballCount) {
+			this.numberLength = numberLength;
 			this.strikeCount = strikeCount;
 			this.ballCount = ballCount;
 		}
@@ -22,6 +25,7 @@ class Judgement {
 	}
 
 	private Judgement(Builder builder) {
+		this.numberLength = builder.numberLength;
 		this.strikeCount = builder.strikeCount;
 		this.ballCount = builder.ballCount;
 
@@ -40,8 +44,8 @@ class Judgement {
 		return "낫싱";
 	}
 
-	boolean is3Strike() {
-		return strikeCount == 3;
+	boolean isAllStrike() {
+		return strikeCount == numberLength;
 	}
 
 	private void addMessageOnCountGreaterThanZero(int count, String format, List<String> messages) {

@@ -30,14 +30,14 @@ class Computer {
 		int strikeCount = getStrikeCount(guess, answer);
 		int ballCount = getBallCount(guess, answer);
 
-		return new Judgement.Builder(strikeCount, ballCount).build();
+		return new Judgement.Builder(numberLength, strikeCount, ballCount).build();
 	}
 
 	private int getStrikeCount(int[] guess, int[] answer) {
 		int count = 0;
 
 		for (int i = 0; i < numberLength; i++) {
-			count = isStrike(i, guess, answer) ? count + 1 : count;
+			count = incrementStrikeCount(guess, answer, i, count);
 		}
 
 		return count;
@@ -48,17 +48,33 @@ class Computer {
 		Set<Integer> answerSet = getNumberSet(answer);
 
 		for (int i = 0; i < numberLength; i++) {
-			count = isBall(i, guess, answer, answerSet) ? count + 1 : count;
+			count = incrementBallCount(guess, answer, i, count, answerSet);
 		}
 
 		return count;
 	}
 
-	private boolean isBall(int index, int[] guess, int[] answer, Set<Integer> answerSet) {
-		return !isStrike(index, guess, answer) && answerSet.contains(guess[index]);
+	private int incrementStrikeCount(int[] guess, int[] answer, int index, int count) {
+		if (isStrike(guess, answer, index)) {
+			count++;
+		}
+
+		return count;
 	}
 
-	private boolean isStrike(int index, int[] guess, int[] answer) {
+	private int incrementBallCount(int[] guess, int[] answer, int index, int count, Set<Integer> answerSet) {
+		if (isBall(guess, answer, index, answerSet)) {
+			count++;
+		}
+
+		return count;
+	}
+
+	private boolean isBall(int[] guess, int[] answer, int index, Set<Integer> answerSet) {
+		return !isStrike(guess, answer, index) && answerSet.contains(guess[index]);
+	}
+
+	private boolean isStrike(int[] guess, int[] answer, int index) {
 		return guess[index] == answer[index];
 	}
 
