@@ -27,4 +27,20 @@ class InputNumTest {
         assertThat(checkResult).isFalse();
     }
 
+    @Test
+    @DisplayName("두개이상의 중복된 숫자를 가지고 있는경우, true값을 반환하는지 확인한다")
+    void checkDuplicateNumTest() {
+        String testNum = "110";
+        Boolean checkResult = InputNum.checkDuplicateNum(testNum);
+        assertThat(checkResult).isTrue();
+    }
+
+    @Test
+    @DisplayName("중복된 숫자를 가지고 있지 않은경우, false값을 반환하는지 확인한다")
+    void checkDuplicateNumErrorTest() {
+        String testNum = "234";
+        Boolean checkResult = InputNum.checkDuplicateNum(testNum);
+        assertThat(checkResult).isFalse();
+    }
+
 }
