@@ -19,4 +19,12 @@ class InputNumTest {
         assertThat(checkResult).isTrue();
     }
 
+    @Test
+    @DisplayName("1과 9 사이에 해당하지 않는 숫자가 포함되어 있을때 false값을 반환하는지 확인한다")
+    void checkOneToNineTest() {
+        String testNum = "012";
+        Boolean checkResult = InputNum.checkOneToNine(testNum);
+        assertThat(checkResult).isFalse();
+    }
+
 }
