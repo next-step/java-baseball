@@ -29,4 +29,10 @@ public class Game {
 		}
 		return numbers;
 	}
+
+	public Result judge(int[] numbers) {
+		Result result = new Result();
+
+		return result;
+	}
 }

@@ -1,6 +1,6 @@
 package baseball.domain;
 
-public enum Result {
-	FAIL,
-	SUCCESS
+public class Result {
+	public boolean isSuccess;
+	public Hint hint;
 }
