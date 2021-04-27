@@ -1,13 +1,24 @@
 package task.baseball;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class BaseballService {
 
-	public List<Integer> generateRandomAnswer() {
+	private final int NUM_SIZE = 3;
 
-		return Collections.emptyList();
+	public List<Integer> generateRandomAnswer() {
+		Set<Integer> randomSet = new HashSet<>(3);
+
+		while (randomSet.size() < NUM_SIZE) {
+			Random rand = new Random();
+			randomSet.add(rand.nextInt(10));
+		}
+
+		return new ArrayList<>(randomSet);
 	}
 
 	public int getStrikeCount(int input, List<Integer> answer) {
