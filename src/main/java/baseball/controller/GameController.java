@@ -13,9 +13,10 @@ import java.util.List;
 import static baseball.view.input.InputMessages.PLEASE_INPUT_NUMBERS;
 
 public class GameController {
+    private final static int ZERO = 0;
+
     private final Input input;
     private final Output output;
-    private final int ZERO = 0;
     private Random randomGenerator;
     private Numbers randomNumbers;
 
