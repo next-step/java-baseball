@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,4 +82,25 @@ public class ComputerTest {
 
 		assertThat(computer.getStrikeCount()).isEqualTo(3);
 	}
+
+	@DisplayName("유저가 입력한 여러 숫자 매칭 테스트")
+	@ParameterizedTest(name = "[{0}, {1}, {2}] is {3} strike")
+	@CsvSource({"1,2,3,0", "4,2,8,1", "3,8,7,1", "4,2,6,2", "4,8,1,2", "4,8,6,3"})
+	public void 매칭_결과_테스트(int num1, int num2, int num3, int expected) {
+		List<Integer> computerNumber = new ArrayList<>();
+		computerNumber.add(4);
+		computerNumber.add(8);
+		computerNumber.add(6);
+		computer.setComputerNumbers(computerNumber);
+
+		List<Integer> userNumber = new ArrayList<>();
+		userNumber.add(num1);
+		userNumber.add(num2);
+		userNumber.add(num3);
+
+		computer.matchResult(userNumber);
+
+		assertThat(computer.getStrikeCount()).isEqualTo(expected);
+	}
+
 }
