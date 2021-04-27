@@ -1,10 +1,11 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Ball {
     private static final String INPUT_WITHOUT_DUPLICATE = "중복 없이 숫자를 3개 입력해주세요.";
@@ -23,16 +24,45 @@ public class Ball {
         if (set.size() != MAX_BALL_COUNT) {
             throw new IllegalArgumentException(INPUT_WITHOUT_DUPLICATE);
         }
-        return new TreeSet<>(ballNumbers);
+        return new LinkedHashSet<>(ballNumbers);
     }
 
-    // TODO : match count 를 만들기
-    public int getMatchCount(Ball ball) {
-        return 0;
+    public int getMatchCount(Bat bat) {
+        List<BallNumber> shots = bat.getShots();
+        List<BallNumber> ballList = getBallList();
+        int strikeCount = 0;
+        int ballCount = 0;
+        for (int i = 0; i < shots.size(); i++) {
+            BallNumber shot = shots.get(i);
+            BallNumber generated = ballList.get(i);
+
+            strikeCount = getMatchCount(strikeCount, shot, generated);
+        }
+
+        return strikeCount;
+    }
+
+    private int getMatchCount(int matchCount, BallNumber shot, BallNumber generated) {
+        if (shot.equals(generated)) {
+            matchCount++;
+        }
+        if (!shot.equals(generated) && isBallNumberMatch(shot)) {
+            // TODO : 점수 계산기에서 점수 계산
+        }
+
+        return matchCount;
     }
 
     private boolean isBallNumberMatch(BallNumber ballNumber) {
         return ballNumbers.contains(ballNumber);
+    }
+
+    public Set<BallNumber> getBallNumbers() {
+        return ballNumbers;
+    }
+
+    public List<BallNumber> getBallList() {
+        return new ArrayList<>(ballNumbers);
     }
 
     @Override

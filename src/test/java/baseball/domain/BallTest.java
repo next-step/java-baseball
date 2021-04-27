@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BallTest {
@@ -15,11 +16,17 @@ class BallTest {
     private List<Integer> duplicatedNumbers;
     private List<BallNumber> ballNumbers;
 
+    private List<BallNumber> ballNumber1;
+    private List<BallNumber> ballNumber2;
+
     @BeforeEach
     void setUp() {
         ballNumbers = new ArrayList<>();
         twoNumbers = Arrays.asList(1, 2);
         duplicatedNumbers = Arrays.asList(1, 1, 1);
+
+        ballNumber1 = Arrays.asList(new BallNumber(4), new BallNumber(5), new BallNumber(3));
+        ballNumber2 = Arrays.asList(new BallNumber(1), new BallNumber(2), new BallNumber(3));
     }
 
     @DisplayName("볼은 한 번에 숫자 3개로 생성된다.")
@@ -47,5 +54,15 @@ class BallTest {
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Ball(ballNumbers));
+    }
+
+    @Test
+    void getMatch() {
+        Bat bat = new Bat(ballNumber1);
+        Ball ball = new Ball(ballNumber2);
+
+        int matchCount = ball.getMatchCount(bat);
+
+        assertThat(matchCount).isEqualTo(1);
     }
 }
