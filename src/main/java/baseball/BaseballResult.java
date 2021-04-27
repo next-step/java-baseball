@@ -37,7 +37,7 @@ public class BaseballResult {
         return strikeCount;
     }
 
-    private String resultPrint() {
+    public String resultPrint() {
         StringBuilder sb = new StringBuilder();
         if (strikeCount > 0) {
             sb.append(strikeCount).append(MESSAGE_STRIKE);
@@ -45,7 +45,7 @@ public class BaseballResult {
         if (ballCount > 0) {
             sb.append(ballCount).append(MESSAGE_BALL);
         }
-        if (strikeCount == 0 && ballCount == 0){
+        if (strikeCount == 0 && ballCount == 0) {
             return MESSAGE_NOTHING;
         }
         return sb.toString();
