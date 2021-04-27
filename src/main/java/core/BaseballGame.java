@@ -23,6 +23,8 @@ public class BaseballGame {
     }
 
     public void makeQuestion() {
+        questions = new ArrayList<>(3);
+
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         Collections.shuffle(list);
         
@@ -58,6 +60,7 @@ public class BaseballGame {
         
         if(playResult.isSolved()) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            restart();
             return;
         }
 
@@ -68,6 +71,15 @@ public class BaseballGame {
         } else if(playResult.getIsBall() != 0) {
             System.out.println(playResult.getIsBall() + " 볼");
         }
+    }
+
+    public void restart(){
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        String input = scanner.nextLine();
         
+        if (input.equals("1")) {
+            isSolved = false;
+            runGame();
+        }
     }
 }
