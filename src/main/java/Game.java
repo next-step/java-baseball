@@ -40,4 +40,11 @@ public class Game {
         return ballResult;
     }
 
+    public Boolean checkNothing(int strikeCount, int ballCount) {
+        if (strikeCount + ballCount == 0) {
+            return true;
+        }
+        return false;
+    }
+
 }
