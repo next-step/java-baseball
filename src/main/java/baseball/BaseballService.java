@@ -26,6 +26,11 @@ public class BaseballService {
         int secondValue = readNumberByPosition(inputValue, 2);
         int thirdValue = readNumberByPosition(inputValue, 3);
 
+        if (String.valueOf(inputValue).contains("0")) {
+            System.out.println("숫자값에 0은 포함될 수 없습니다.");
+            return false;
+        }
+
         if (inputValue < 111 || inputValue > 999) {
             System.out.println("잘못된 숫자가 입력되었습니다.");
             return false;
