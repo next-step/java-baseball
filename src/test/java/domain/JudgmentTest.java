@@ -25,7 +25,7 @@ class JudgmentTest {
 
     @Test
     @DisplayName("3 스트라이크")
-    void baseball_three_strike() throws Exception {
+    void baseball_three_strike() {
         Ball playerBall = new Ball(Arrays.asList(1, 9, 5));
 
         Judgment.judge(catcherBall, playerBall);
@@ -36,7 +36,7 @@ class JudgmentTest {
 
     @Test
     @DisplayName("2 스트라이크")
-    void baseball_two_strike() throws Exception {
+    void baseball_two_strike() {
 
         Ball playerBall = new Ball(Arrays.asList(1, 3, 5));
 
@@ -48,7 +48,7 @@ class JudgmentTest {
 
     @Test
     @DisplayName("1 스트라이크 2 볼")
-    void baseball_one_strike_two_ball() throws Exception {
+    void baseball_one_strike_two_ball() {
 
         Ball playerBall = new Ball(Arrays.asList(1, 5, 9));
 
@@ -60,7 +60,7 @@ class JudgmentTest {
 
     @Test
     @DisplayName("1 스트라이크 1 볼")
-    void baseball_one_strike_one_ball() throws Exception {
+    void baseball_one_strike_one_ball() {
 
         Ball playerBall = new Ball(Arrays.asList(8, 9, 1));
 
@@ -72,7 +72,7 @@ class JudgmentTest {
 
     @Test
     @DisplayName("3 볼")
-    void baseball_three_ball() throws Exception {
+    void baseball_three_ball() {
         Ball playerBall = new Ball(Arrays.asList(5, 1, 9));
 
         Judgment.judge(catcherBall, playerBall);
@@ -83,7 +83,7 @@ class JudgmentTest {
 
     @Test
     @DisplayName("2 볼")
-    void baseball_two_ball() throws Exception {
+    void baseball_two_ball() {
         Ball playerBall = new Ball(Arrays.asList(5, 1, 3));
 
         Judgment.judge(catcherBall, playerBall);
