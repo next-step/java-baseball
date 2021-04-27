@@ -9,7 +9,7 @@ public class BaseballService {
     private BaseballNumberFactory baseballNumberFactory;
 
     public BaseballService() {
-        baseballNumberFactory = new BaseballNumberFactory();
+        this.baseballNumberFactory = new BaseballNumberFactory();
     }
 
     public BaseballNumbers generateAnswer() {
