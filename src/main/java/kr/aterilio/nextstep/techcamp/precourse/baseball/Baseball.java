@@ -1,5 +1,6 @@
 package kr.aterilio.nextstep.techcamp.precourse.baseball;
 
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
@@ -17,6 +18,10 @@ public class Baseball {
         createGame();
     }
 
+    public Baseball(Integer[] array) {
+        numbers.addAll(Arrays.asList(array));
+    }
+
     private void createGame() {
         for(int i = 0; i < MAX_PICK && numbers.size() < GAME_SIZE; ++i) {
             numbers.add(pick());
@@ -31,6 +36,10 @@ public class Baseball {
 
     public boolean isCreated() {
         return numbers.size() == GAME_SIZE;
+    }
+
+    public boolean isEqualTo(Integer[] input) {
+        return Arrays.deepEquals(numbers.toArray(), input);
     }
 
     @Override
