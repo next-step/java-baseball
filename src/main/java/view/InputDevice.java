@@ -27,7 +27,6 @@ public class InputDevice {
         try {
             Integer.parseInt(answerEntered);
         } catch (NumberFormatException numberFormatException) {
-            numberFormatException.printStackTrace();
             throw new NumberFormatException("숫자만 입력 가능합니다.");
         }
     }
