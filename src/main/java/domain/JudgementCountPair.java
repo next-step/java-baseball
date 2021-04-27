@@ -29,6 +29,15 @@ public class JudgementCountPair {
         return judgementCounts.getOrDefault(judgement, DEFAULT_VALUE) + MATCH_COUNT;
     }
 
+    public Integer retrieveCountOfBall() {
+        return judgementCounts.getOrDefault(Judgements.BALL, DEFAULT_VALUE);
+    }
+
+    public Integer retrieveCountOfStrike() {
+        return judgementCounts.getOrDefault(Judgements.STRIKE, DEFAULT_VALUE);
+    }
+
+
     public Integer get(Judgements judgement) {
         return judgementCounts.getOrDefault(judgement, DEFAULT_VALUE);
     }
