@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BaseballNumberFactory {
-    private final List<String> ALL_RANDOM_NUMBERS = new ArrayList();
+    private final List<String> ALL_RANDOM_NUMBERS = new ArrayList<String>();
 
     public BaseballNumberFactory() {
         for(int i = BaseballNumbers.MIN_RANDOM_NUMBER; i <= BaseballNumbers.MAX_RANDOM_NUMBER; ++i) {
