@@ -1,12 +1,18 @@
 package com.example.baseball;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BaseballGame {
     private static final int MAX_NUMBER = 9;
+    private final HashSet<Character> validNumberCharacterSet;
 
     public BaseballGame() {
-
+        validNumberCharacterSet = new HashSet<>();
+        for (int i = 1; i < 10; i++) {
+            validNumberCharacterSet.add(Character.forDigit(i, 10));
+        }
     }
 
     public void start() {
@@ -41,5 +47,27 @@ public class BaseballGame {
         } while (firstNumber == thirdNumber || secondNumber == thirdNumber);
 
         return thirdNumber;
+    }
+
+    public String inputNumbersString() {
+        String inputNumbers;
+
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("숫자를 입력해주세요 : ");
+            inputNumbers = sc.nextLine();
+        } while (!isValidInputNumbersString(inputNumbers));
+
+        return inputNumbers;
+    }
+
+    public boolean isValidInputNumbersString(String numbersString) {
+        return numbersString.length() == 3
+                && validNumberCharacterSet.contains(numbersString.charAt(0))
+                && validNumberCharacterSet.contains(numbersString.charAt(1))
+                && validNumberCharacterSet.contains(numbersString.charAt(2))
+                && numbersString.charAt(0) != numbersString.charAt(1)
+                && numbersString.charAt(0) != numbersString.charAt(2)
+                && numbersString.charAt(1) != numbersString.charAt(2);
     }
 }
