@@ -1,7 +1,10 @@
 package kr.aterilio.nextstep.techcamp.precourse.baseball;
 
+import kr.aterilio.nextstep.techcamp.precourse.baseball.judge.Judgement;
+
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -38,8 +41,8 @@ public class Baseball {
         return numbers.size() == GAME_SIZE;
     }
 
-    public boolean isEqualTo(Integer[] input) {
-        return Arrays.deepEquals(numbers.toArray(), input);
+    public Judgement judge(List<Integer> inputs) {
+        return new Judgement(numbers, inputs);
     }
 
     @Override
