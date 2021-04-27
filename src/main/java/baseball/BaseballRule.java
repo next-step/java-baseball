@@ -18,6 +18,8 @@ public class BaseballRule {
     }
 
     public void checkNumbers() {
+        strike = 0;
+        ball = 0;
         checkStrike();
         checkBall();
     }
