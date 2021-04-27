@@ -15,9 +15,9 @@ class PlayerInputsTest {
     @DisplayName("사용자 입력이 " + BallNumbers.LENGTH + "자리수가 안될 때 예외 발생")
     void when_user_input_not_enough_lengththen_throw_exception() {
         assertAll(
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput(null)),
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("12")),
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("1234"))
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert(null)),
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("12")),
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("1234"))
         );
     }
 
@@ -26,9 +26,9 @@ class PlayerInputsTest {
     @DisplayName("사용자 입력에 1-9가 아닌 다른 문자열이 있을 경우 예외 발생")
     void when_user_input_not_allow_char_then_throw_exception() {
         assertAll(
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("012")),
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("A12")),
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("가12"))
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("012")),
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("A12")),
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("가12"))
         );
     }
 
@@ -37,9 +37,9 @@ class PlayerInputsTest {
     @DisplayName("사용자 입력에 중복 숫자가 존재할 경우 예외 발생")
     void when_user_input_duplicate_char_then_throw_exception() {
         assertAll(
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("112")),
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("333")),
-            () -> assertThrows(InvalidInputException.class, () -> inputs.getDataFromUserInput("797"))
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("112")),
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("333")),
+            () -> assertThrows(InvalidInputException.class, () -> inputs.convert("797"))
         );
     }
 

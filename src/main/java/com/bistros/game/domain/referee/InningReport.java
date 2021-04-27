@@ -1,5 +1,7 @@
 package com.bistros.game.domain.referee;
 
+import com.bistros.game.domain.BallNumbers;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -28,6 +30,11 @@ public class InningReport {
     public boolean isNothing() {
         return strike + ball == 0;
     }
+
+    public boolean isSuccessGame() {
+        return strike == BallNumbers.LENGTH;
+    }
+
 
     public String getHint() {
         if (isNothing()) {

@@ -16,18 +16,41 @@ public class PlayerInputs {
         this.scanner = new Scanner(System.in);
     }
 
-    public String getInput() {
+    public String inputUserData() {
         return scanner.nextLine();
+    }
+
+    public boolean rerun() {
+        do {
+            System.out.println(">> 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            String raw = inputUserData();
+            try {
+                return getRestartOpinion(raw);
+            } catch (InvalidInputException e) {
+                System.out.println(">>  잘못 입력했습니다 - " + e.getMessage());
+            }
+        } while (true);
     }
 
     /**
      * 사용자로부터 새로운 게임을 시작하고 싶은지 입력을 받음
      */
     public boolean getRestartOpinion(String inputs) {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
         Optional<GameOperatorType> inputType = GameOperatorType.fromString(inputs);
 
         return inputType.orElseThrow(InvalidInputException::new) == GameOperatorType.RESTART;
+    }
+
+
+    public List<Integer> fromGameInputByUser() {
+        while (true) {
+            String raw = inputUserData();
+            try {
+                return convert(raw);
+            } catch (InvalidInputException e) {
+                System.out.println(">> 잘못 입력 했습니다 : " + e.getLocalizedMessage());
+            }
+        }
     }
 
     /**
@@ -36,7 +59,7 @@ public class PlayerInputs {
      * @param input
      * @return
      */
-    public List<Integer> getDataFromUserInput(String input) {
+    public List<Integer> convert(String input) {
         if (input == null || input.length() != BallNumbers.LENGTH) {
             throw new InvalidInputException("입력하신 길이가 3글자가 아닙니다");
         }
