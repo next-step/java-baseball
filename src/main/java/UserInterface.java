@@ -13,9 +13,9 @@ public class UserInterface {
 
 	public String interactUser() {
 		System.out.println(WELCOME_MESSAGE);
-		String input = scanner.next();
+		int input = scanner.nextInt();
 		NumberFormatValidator.validate(input);
-		return input;
+		return String.valueOf(input);
 	}
 
 	public int replayOnNot() {

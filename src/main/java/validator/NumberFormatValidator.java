@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class NumberFormatValidator {
 
-	public static void validate(String input) {
-		checkParseToInteger(input);
+	public static void validate(int input) {
+		checkHasZero(input);
 		checkDifferentNumber(input);
 		checkNumberLength(input);
 	}
@@ -15,14 +15,18 @@ public class NumberFormatValidator {
 		return !hasSameNumber(number) && !hasZero(number);
 	}
 
-	private static void checkParseToInteger(String input) {
-		if (!isParseInteger(input)) {
-			throw new IllegalArgumentException("입력은 숫자로만 구성되어야 합니다.");
+	private static void checkHasZero(int number) {
+		if (hasZero(number)) {
+			throw new IllegalArgumentException("0을 제외한 숫자를 입력해주세요");
 		}
 	}
 
+	private static boolean hasZero(String input) {
+		return input.contains("0");
+	}
+
 	private static boolean hasZero(int number) {
-		return String.valueOf(number).contains("0");
+		return hasZero(String.valueOf(number));
 	}
 
 	private static boolean isParseInteger(String input) {
@@ -43,14 +47,14 @@ public class NumberFormatValidator {
 		return numbers.size() != 3;
 	}
 
-	private static void checkDifferentNumber(String input) {
-		if (hasSameNumber(Integer.parseInt(input))) {
+	private static void checkDifferentNumber(int input) {
+		if (hasSameNumber(input)) {
 			throw new IllegalArgumentException("서로 다른 3자리 숫자로 구성되어야 합니다.");
 		}
 	}
 
-	private static void checkNumberLength(String input) {
-		if (input.length() != 3) {
+	private static void checkNumberLength(int input) {
+		if (String.valueOf(input).length() != 3) {
 			throw new IllegalArgumentException("3자리 숫자로 구성되어야 합니다.");
 		}
 	}
