@@ -37,7 +37,7 @@ public class BaseNumbers {
         // 볼의 경우 스트라이크 수와 겹치기 때문에 스트라이크 수 만큼 빼준다.
         ball = ball - strike;
 
-        return new BaseballResult(strike, ball);
+        return new BaseballResult(strike, ball, this.getNumbers().size());
     }
     
     /**
