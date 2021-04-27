@@ -4,36 +4,55 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BaseBall {
+	private final ScoreBoard scoreBoard = new ScoreBoard();
+	private final Scanner scanner;
+
+	private List<Integer> pitches;
+	private int inningCount;
+
+	public BaseBall(Scanner scanner) {
+		this.scanner = scanner;
+	}
 
 	public static void main(String[] args) {
-		ScoreBoard scoreBoard = new ScoreBoard();
+		Scanner sc = new Scanner(System.in);
+		BaseBall baseBall = new BaseBall(sc);
 		Pitcher pitcher = new Pitcher();
 		Batter batter = new Batter();
 
-		Scanner sc = new Scanner(System.in);
-
 		int playState = 1;
 		while (playState == 1) {
-			List<Integer> pitches = pitcher.pitch(3);
-			Score score = Score.nothing();
-			int count = 1;
+			baseBall.newGame(pitcher);
+			baseBall.playGame(batter);
 
-			System.out.println("Play Ball!!!");
-
-			while (!Score.threeStrike().equals(score)) {
-				try {
-					System.out.printf("[%d] 숫자를 입력해주세요: ", count);
-					List<Integer> swings = batter.swingBat(sc.next());
-					score = scoreBoard.countScore(swings, pitches);
-					System.out.println(score);
-					count++;
-				} catch (IllegalArgumentException e) {
-					System.out.println(e.getMessage());
-				}
-			}
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 			playState = sc.nextInt();
 		}
+	}
+
+	private void newGame(Pitcher pitcher) {
+		pitches = pitcher.pitch(3);
+		inningCount = 1;
+	}
+
+	private void playGame(Batter batter) {
+		System.out.println("Play Ball!!!");
+		Score lastScore = Score.nothing();
+		while (!Score.threeStrike().equals(lastScore)) {
+			try {
+				lastScore = playInning(batter);
+				System.out.println(lastScore);
+				inningCount++;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+	}
+
+	private Score playInning(Batter batter) {
+		System.out.printf("[%d] 숫자를 입력해주세요: ", inningCount);
+		List<Integer> swings = batter.swingBat(scanner.next());
+		return scoreBoard.countScore(swings, pitches);
 	}
 }
