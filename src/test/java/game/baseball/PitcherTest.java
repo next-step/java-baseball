@@ -10,24 +10,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PitcherTest {
 
-	private String pitch;
+	private Pitcher pitcher;
 
 	@BeforeEach
 	void setup() {
-		pitch = "1,2,3";
+		pitcher = new Pitcher();
 	}
 
 	@ParameterizedTest
 	@DisplayName("pitch 에 수가 제대로 들어가면 분할이 정확히 되는가.")
 	@ValueSource(strings = {"123"})
 	void isRight_ShouldSplit3DigitsFromString(String pitchNumbers) {
-		Pitcher pitcher = new Pitcher();
 		pitcher.setPitch(pitchNumbers);
 		pitcher.setPiches();
 
 		assertThat(pitcher.getPitches()[0]).isEqualTo(1);
 		assertThat(pitcher.getPitches()[1]).isEqualTo(2);
 		assertThat(pitcher.getPitches()[2]).isEqualTo(3);
-
 	}
 }
