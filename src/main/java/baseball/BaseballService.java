@@ -86,4 +86,24 @@ public class BaseballService {
 
     }
 
+    public String setResult(Referee referee) {
+
+        String result = "";
+
+        if (referee.getStrike() != 0) {
+            result = result + referee.getStrike() + "스트라이크 ";
+        }
+
+        if (referee.getBall() != 0) {
+            result = result + referee.getBall() + "볼 ";
+        }
+
+        if (result.equals("")) {
+            result = "낫싱";
+        }
+
+        return result;
+
+    }
+
 }
