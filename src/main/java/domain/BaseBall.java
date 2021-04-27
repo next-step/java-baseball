@@ -19,7 +19,6 @@ public class BaseBall {
         this.location = location;
     }
 
-
     public static BaseBall fromNumAndLocation(int number, int location) {
         Info info = new Info(number, location);
 
@@ -40,8 +39,9 @@ public class BaseBall {
         return FALSE;
     }
 
-    public boolean isSameLocation(int location) {
-        return this.location == location;
+    public boolean isSameLocation(BaseBall baseBall) {
+
+        return this.location == baseBall.location;
     }
 
 

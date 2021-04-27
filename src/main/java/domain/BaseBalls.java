@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BaseBalls {
     private static final int DIGIT = 3;
@@ -28,14 +29,22 @@ public class BaseBalls {
         return score;
     }
 
-    private int locationOf(BaseBall baseBall) {
-        return this.baseBalls.indexOf(baseBall);
+    private boolean isContaining(BaseBall opponent) {
+        AtomicBoolean value = new AtomicBoolean(false);
+        baseBalls.forEach((baseBall) -> {
+            if(baseBall.isEqualNumber(opponent) == 1) {
+                value.set(!baseBall.isSameLocation(opponent));
+            }
+        });
+
+       return value.get();
     }
 
     private int isBall(BaseBall baseball) {
-        if(baseball.isSameLocation(locationOf(baseball))) {
+        if(!isContaining(baseball)) {
             return 0;
         }
+
         return 1;
     }
 
