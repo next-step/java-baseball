@@ -1,6 +1,6 @@
-package src.baseball;
+package baseball;
 
-import src.baseball.Util.TypeConverter;
+import baseball.util.TypeConverter;
 
 public class Baseball {
 	

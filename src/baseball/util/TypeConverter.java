@@ -1,4 +1,4 @@
-package src.baseball.Util;
+package baseball.util;
 
 public class TypeConverter {
 	

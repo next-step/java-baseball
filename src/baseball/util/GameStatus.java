@@ -1,4 +1,4 @@
-package src.baseball.Util;
+package baseball.util;
 
 public class GameStatus {
 	public static final int BALL_SIZE = 3;
