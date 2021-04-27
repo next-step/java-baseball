@@ -1,5 +1,3 @@
-
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -13,25 +11,22 @@ public class BaseBall {
 	
 	
 	/* 입력수 */
-	public static String initNum;
+	private static String initNum;
 	
 	/* 컴퓨터 측 난수 */
-	public static String cpuNum;
+	private static String cpuNum;
 	
 	/* 볼카운트 변수 (첫번째 방이 스트라이크, 두번째 방이 볼) */
-	public static int[] ballCount = new int[2];
+	private static int[] ballCount = new int[2];
 	
 	/* 스캐너 변수 */
-	public static Scanner sc = new Scanner(System.in);
+	private static Scanner sc = new Scanner(System.in);
 	
 	/* 유효성 검증 실패 여부 */
-	public static boolean isError = false;
+	private static boolean isError = false;
 	
 	/* 유효성 검증 실패메시지 */
-	public static String errMsg;
-	
-	/* 유효성 검증 실패메시지 */
-	public static String ballCountMsg;
+	private static String errMsg;
 	
 	
 	
@@ -40,16 +35,15 @@ public class BaseBall {
 	 * @param inputStr
 	 * @return
 	 */
-	public static void start (String initNum, String cpuNum) {
+	public static void start () {
 		
-		ballCountMsg = "start";
-//		System.out.println("게임을 시작합니다.");
-//		
-//		/* 난수 셋팅 */
-//		setGenerateNum();
-//		
-//		/* 숫자를 입력받는다. */
-//		throwBalls(initNum, cpuNum);
+		System.out.println("게임을 시작합니다.");
+		
+		/* 난수 셋팅 */
+		setGenerateNum();
+		
+		/* 숫자를 입력받는다. */
+		throwBalls();
 		
 	}
 	
@@ -79,20 +73,19 @@ public class BaseBall {
 	/**
 	 * throwBalls : 스캐너로 숫자를 입력받는다.
 	 */
-	public static void throwBalls (String paramInitNum, String paramCpuNum) {
+	private static void throwBalls () {
 		
 		/* 전역변수 초기화 */
 		staticReset();
 		
 		/* 입력값 호출 */
-		initNum = paramInitNum;
-		//initNum = requestSc("숫자를 입력해주세요.");
+		initNum = requestSc("숫자를 입력해주세요.");
 		
 		/* 입력값 검증 */
 		valid();
 		
 		/* 게임 결과를 체크한다. */
-		referee(paramCpuNum);
+		referee();
 		
 	}
 	
@@ -117,6 +110,9 @@ public class BaseBall {
 			
 			/* 에러메시지 출력 및 초기화 */
 			System.out.println(errMsg);
+			
+			/* 재귀 호출 */
+			throwBalls();
 			
 		}
 		
@@ -238,30 +234,9 @@ public class BaseBall {
 	
 	
 	/**
-	 * requestSc : msg로 print를 하고 스캐너를 호출하여 입력받은 값을 리턴하는 메소드
-	 * @param msg
-	 * @return
-	 */
-	private static String requestSc (String msg) {
-		
-		String result = null;	// 결과 변수
-		
-		/* 입력받은 메시지로 프린트! */
-		System.out.println(msg);
-		
-		/* 입력값을 결과에 저장 */
-		result = sc.next();
-		
-		return result;
-		
-	}
-	
-	
-	
-	/**
 	 * referee : 인입된 문자열을 토대로 볼카운트를 호출하는 심판역활 메소드
 	 */
-	public static void referee (String cpuNum) {
+	private static void referee () {
 		
 		/* 입력된 넘버로 볼카운팅 한다. */
 		for (int i = 0; i < initNum.length(); i++) {
@@ -276,7 +251,7 @@ public class BaseBall {
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 			
 			/* 재시작 여부 확인 */
-			//reGame();
+			reGame();
 			
 		}
 		
@@ -331,10 +306,8 @@ public class BaseBall {
 		
 		System.out.println(prnt);
 		
-		ballCountMsg = prnt;
-		
 		/* 숫자를 재입력받는다. */
-		//throwBalls("123", "123");
+		throwBalls();
 		
 	}
 	
@@ -343,14 +316,14 @@ public class BaseBall {
 	/**
 	 * reGame : 변수를 클리어하고 새 게임을 결정하는 메소드
 	 */
-	public static void reGame (String initNum) {
+	private static void reGame () {
 		
-		//String initNum = requestSc("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		String initNum = requestSc("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
 		
 		if ("1".equals(initNum)) {
 			
 			/* 게임 재시작! */
-			start("123", "456");
+			start();
 			
 		}
 		
@@ -362,7 +335,28 @@ public class BaseBall {
 		}
 		
 		/* 그외 값 입력 시 재귀호출! */
-		//reGame();
+		reGame();
+		
+	}
+	
+	
+	
+	/**
+	 * requestSc : msg로 print를 하고 스캐너를 호출하여 입력받은 값을 리턴하는 메소드
+	 * @param msg
+	 * @return
+	 */
+	private static String requestSc (String msg) {
+		
+		String result = null;	// 결과 변수
+		
+		/* 입력받은 메시지로 프린트! */
+		System.out.println(msg);
+		
+		/* 입력값을 결과에 저장 */
+		result = sc.next();
+		
+		return result;
 		
 	}
 	
@@ -373,14 +367,14 @@ public class BaseBall {
 	 * @return
 	 */
 	private static void exit () {
-		ballCountMsg = "exit";
-//		System.out.println("굿바이.");
-//		
-//		/* 스캐너 크로징 */
-//		sc.close();
-//		
-//		/* 시스템 종료 */
-//		System.exit(0);
+		
+		System.out.println("굿바이.");
+		
+		/* 스캐너 크로징 */
+		sc.close();
+		
+		/* 시스템 종료 */
+		System.exit(0);
 		
 	}
 	

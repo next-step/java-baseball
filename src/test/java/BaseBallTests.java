@@ -149,23 +149,23 @@ public class BaseBallTests {
 //		
 //	}
 	
-	/**
-	 * 5. 재시작여부
-	 * 2) 입력값에 따라 재시작 여부를 결정짓는다
-	 */
-	@Test
-	public void restartTest() {
-		
-		BaseBall bb = new BaseBall();
-		bb.reGame("1");
-		/* 입력값이 1과 같을 시, 1. 게임의 시작 단계를 재호출하는지 검증 (S) */
-		Assertions.assertEquals("start", bb.ballCountMsg);
-		/* 입력값이 1과 같을 시, 1. 게임의 시작 단계를 재호출하는지 검증 (E) */
-		
-		bb.reGame("2");
-		/* 입력값이 2와 같을 시, 시스템을 종료시키는지 검증 (S) */
-		Assertions.assertEquals("exit", bb.ballCountMsg);
-		/* 입력값이 2와 같을 시, 시스템을 종료시키는지 검증 (E) */
-		
-	}
+//	/**
+//	 * 5. 재시작여부
+//	 * 2) 입력값에 따라 재시작 여부를 결정짓는다
+//	 */
+//	@Test
+//	public void restartTest() {
+//		
+//		BaseBall bb = new BaseBall();
+//		bb.reGame("1");
+//		/* 입력값이 1과 같을 시, 1. 게임의 시작 단계를 재호출하는지 검증 (S) */
+//		Assertions.assertEquals("start", bb.ballCountMsg);
+//		/* 입력값이 1과 같을 시, 1. 게임의 시작 단계를 재호출하는지 검증 (E) */
+//		
+//		bb.reGame("2");
+//		/* 입력값이 2와 같을 시, 시스템을 종료시키는지 검증 (S) */
+//		Assertions.assertEquals("exit", bb.ballCountMsg);
+//		/* 입력값이 2와 같을 시, 시스템을 종료시키는지 검증 (E) */
+//		
+//	}
 }
