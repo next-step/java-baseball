@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import com.nextstep.precourse.computer.BaseBallResult;
 import com.nextstep.precourse.computer.Referee;
@@ -25,27 +26,27 @@ public class RefereeTest {
 		referee = new Referee();
 	}
 
-	@Test
+	@ParameterizedTest
+	@CsvSource(value = {"134:1", "124:2", "123:3", "143:2", "423:2"}, delimiter = ':')
 	@DisplayName("User 가 입력한 숫자에 맞게 스트라이크 개수가 세어지는지 테스트.")
-	void countStrike() {
-		String userInput = "134";
-		BaseBallResult baseBallResult = referee.getResult(answerList, userInput);
-		assertEquals(baseBallResult.getStrikeCount(), 1);
+	void countStrike(String input, int expected) {
+		BaseBallResult baseBallResult = referee.getResult(answerList, input);
+		assertEquals(baseBallResult.getStrikeCount(), expected);
 	}
 
-	@Test
+	@ParameterizedTest
+	@CsvSource(value = {"345:1", "451:1", "321:2", "312:3", "456:0"}, delimiter = ':')
 	@DisplayName("User 가 입력한 숫자에 맞게 볼 개수가 세어지는지 테스트.")
-	void countBall() {
-		String userInput = "345";
-		BaseBallResult baseBallResult = referee.getResult(answerList, userInput);
-		assertEquals(baseBallResult.getBallCount(), 1);
+	void countBall(String input, int expected) {
+		BaseBallResult baseBallResult = referee.getResult(answerList, input);
+		assertEquals(baseBallResult.getBallCount(), expected);
 	}
 
-	@Test
+	@ParameterizedTest
+	@CsvSource(value = {"456:true", "145:false", "789:true", "387:false"}, delimiter = ':')
 	@DisplayName("User 가 입력한 숫자에 스트라이크와, 볼이 없으면 낫싱인지 테스트.")
-	void isZeroStrikeAndBallThenNothing() {
-		String userInput = "456";
-		BaseBallResult baseBallResult = referee.getResult(answerList, userInput);
-		assertTrue(baseBallResult.isNothing());
+	void isZeroStrikeAndBallThenNothing(String input, boolean expected) {
+		BaseBallResult baseBallResult = referee.getResult(answerList, input);
+		assertEquals(baseBallResult.isNothing(), expected);
 	}
 }

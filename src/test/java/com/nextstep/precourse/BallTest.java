@@ -30,8 +30,8 @@ public class BallTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = {0, 10})
-	@DisplayName("생성된 정답의 각 자리 숫자가 1부터 9까지를 만족하는지 테스트.")
+	@ValueSource(ints = {0, -1, -3, 10, 11})
+	@DisplayName("생성된 정답의 각 자리 숫자가 1~9까지의 숫자만 포함하는지 테스트.")
 	void isContainsZeroOrTen(int paramNumber) {
 		assertThat(answerList.contains(paramNumber)).isFalse();
 	}
