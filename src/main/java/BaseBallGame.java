@@ -94,29 +94,6 @@ public class BaseBallGame {
         return false;
     }
 
-    /**
-     * 결과값을 기반으로 성공 | 낫싱 | 스트라이크 | 볼 출력
-     *
-     * @param result    플레이어 값과 정답을 비교한 결과
-     */
-    private void printResult(Result result) {
-        if (result.isNothing()) {
-            Log.NOTHING.println();
-            return;
-        }
-
-        printResultCount(result);
-
-        if (computer.isCorrectAnswer()) {
-            setStatus(Status.SUCCESS);
-            Log.SUCCESS.printFormat(computer.getNumberSize());
-        }
-    }
-
-    private void printResultCount(Result result) {
-        Log.STRIKE.printCount(result.getStrikeCount());
-        Log.BALL.printCount(result.getBallCount());
-        System.out.println();
     }
 
     /**

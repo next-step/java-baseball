@@ -1,7 +1,5 @@
 public enum Log {
     REQUEST_ANSWER("숫자를 입력해주세요 : "),
-    INVALID_ANSWER_SIZE("숫자의 크기가 일치하지 않습니다.\n%d 자리의 숫자를 입력해주세요\n"),
-    INPUT_ERROR("입력 오류 발생"),
 
     STRIKE("%d 스트라이크 "),
     BALL("%d 볼"),
@@ -41,5 +39,33 @@ public enum Log {
         }
 
         System.out.printf(message, count);
+    }
+
+    /**
+     * 결과값을 기반으로 성공 | 낫싱 | 스트라이크 | 볼 출력
+     *
+     * @param result    플레이어 값과 정답을 비교한 결과
+     */
+    public static void printResult(Result result) {
+        if (result.isNothing()) {
+            Log.NOTHING.println();
+            return;
+        }
+
+        printResultCount(result);
+
+        if (result.isSuccess()) {
+            int strikeCount = result.getStrikeCount();
+            Log.SUCCESS.printFormat(strikeCount);
+        }
+    }
+
+    private static void printResultCount(Result result) {
+        int strikeCount = result.getStrikeCount();
+        int ballCount = result.getBallCount();
+
+        Log.STRIKE.printCount(strikeCount);
+        Log.BALL.printCount(ballCount);
+        System.out.println();
     }
 }
