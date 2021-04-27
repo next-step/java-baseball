@@ -11,13 +11,10 @@ class UITest {
     UI ui = new UI();
 
     @ParameterizedTest
-    @ValueSource(strings = {"123","2333","a2c"})
+    @ValueSource(strings = {"2333","abc","2뮻5"})
     void answerCondition(String s) {
-        assumingThat(s == "123", () ->
-                assertTrue(ui.answerCondition(s, 3)));
-        assumingThat(s == "2333", () ->
-                assertFalse(ui.answerCondition(s, 3)));
-        assumingThat(s == "a2c", () ->
-                assertFalse(ui.answerCondition(s, 3)));
+        assumingThat(
+                ui.validAnswer(s, 3) != false,
+                () -> System.out.println("test success!"));
     }
 }

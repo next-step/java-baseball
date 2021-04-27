@@ -40,9 +40,9 @@ class GameTest {
     @ValueSource(strings = {"2", "1"})
     void isGameOver(String input) {
         setSystemInputStream(input);
-        assumingThat(input == "2", () ->
-                assertTrue(Game.isGameOver()));
-        assumingThat(input == "1", () ->
-                assertFalse(Game.isGameOver()));
+        assumingThat(input == "2" && Game.isGameOver() == false
+                , () -> System.out.println("test success!"));
+        assumingThat(input == "1" && Game.isGameOver() == true
+                , () -> System.out.println("test success!"));
     }
 }
