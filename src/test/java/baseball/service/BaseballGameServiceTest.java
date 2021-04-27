@@ -1,11 +1,17 @@
 package baseball.service;
 
 import baseball.domain.BaseballGame;
+import baseball.domain.BaseballNumber;
+import baseball.domain.BaseballNumberFactory;
 import baseball.domain.BaseballNumbers;
+import baseball.infra.BaseballDatabase;
 import baseball.repository.BaseballNumberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -38,10 +44,11 @@ class BaseballGameServiceTest {
     @DisplayName("투구 실행")
     void pitch() {
         // given
-        BaseballNumberRepository repository = new BaseballNumberRepository();
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
+        List<BaseballNumber> baseballNumbers = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
+        BaseballDatabase.baseballNumbers = new BaseballNumbers(baseballNumbers);
 
         // when
-        repository.save(BaseballNumbers.pitchNumber("123"));
         BaseballGame baseballGame = service.pitch(BaseballNumbers.pitchNumber("132"));
 
         // then
@@ -55,10 +62,11 @@ class BaseballGameServiceTest {
     @DisplayName("투구실행 - 문자열 입력")
     void pitch_stringInput() {
         // given
-        BaseballNumberRepository repository = new BaseballNumberRepository();
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
+        List<BaseballNumber> baseballNumbers = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
+        BaseballDatabase.baseballNumbers = new BaseballNumbers(baseballNumbers);
 
         // when
-        repository.save(BaseballNumbers.pitchNumber("123"));
         BaseballGame baseballGame = service.pitch("132");
 
         // then
@@ -72,12 +80,11 @@ class BaseballGameServiceTest {
     @DisplayName("투구실행 - 유효하지 않은 입력")
     void pitch_invalidInput() {
         // given
-        BaseballNumberRepository repository = new BaseballNumberRepository();
+        BaseballNumberFactory numberFactory = new BaseballNumberFactory();
+        List<BaseballNumber> baseballNumbers = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
+        BaseballDatabase.baseballNumbers = new BaseballNumbers(baseballNumbers);
 
-        // when
-        repository.save(BaseballNumbers.pitchNumber("123"));
-
-        // then
+        // when then
         assertAll(
                 () -> assertThatIllegalArgumentException()
                         .isThrownBy(() -> service.pitch(" "))
