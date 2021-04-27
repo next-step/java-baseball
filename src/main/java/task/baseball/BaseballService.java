@@ -36,7 +36,7 @@ public class BaseballService {
 
 	public boolean isAnswer(int strikeCount) {
 
-		return false;
+		return strikeCount == NUM_SIZE;
 	}
 
 	public int getBallCount(int input, List<Integer> answer) {
