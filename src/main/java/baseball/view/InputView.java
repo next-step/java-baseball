@@ -10,7 +10,7 @@ public class InputView {
   private static final Scanner SCANNER = new Scanner(System.in);
 
   public static Balls inputNumbers() {
-    System.out.println(INPUT_NUMBER);
+    System.out.print(INPUT_NUMBER);
     return BallFactory.createBalls(SCANNER.next());
   }
 }

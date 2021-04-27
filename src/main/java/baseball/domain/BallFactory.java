@@ -6,12 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 
 public class BallFactory {
+
   private static final Integer MIN = 1;
   private static final Integer MAX = 9;
   private static final List<Ball> CACHE_BALLS = new ArrayList<>();
 
   static {
-    for (int i=MIN; i <= MAX ; i++) {
+    for (int i = MIN; i <= MAX; i++) {
       CACHE_BALLS.add(new Ball(i));
     }
   }
@@ -23,6 +24,9 @@ public class BallFactory {
   public static Balls createComputerBalls() {
     Collections.shuffle(CACHE_BALLS);
     HashSet<Ball> ballsSet = new HashSet<>(CACHE_BALLS.subList(0, 3));
+    for (Ball ball : ballsSet) {
+      System.out.printf(ball.getNumber());
+    }
     return new Balls(ballsSet);
   }
 

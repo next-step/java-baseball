@@ -3,6 +3,7 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Ball {
+
   private static final Integer MIN = 1;
   private static final Integer MAX = 9;
   private final Integer number;
@@ -16,6 +17,10 @@ public class Ball {
     if (number < MIN || number > MAX) {
       throw new IllegalArgumentException("1이상 9이하 숫자를 입력해주세요.");
     }
+  }
+
+  public String getNumber() {
+    return String.valueOf(number);
   }
 
   @Override

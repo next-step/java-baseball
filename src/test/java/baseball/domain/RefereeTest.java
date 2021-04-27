@@ -50,7 +50,7 @@ class RefereeTest {
     assertThat(map.get(Score.BALL)).isEqualTo(1);
   }
 
-  @DisplayName("포볼 테스트")
+  @DisplayName("낫싱 테스트")
   @Test
   void four_ball_test() {
     Referee referee = new Referee(new Balls("123"), new Balls("456"));

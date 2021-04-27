@@ -5,16 +5,17 @@ import baseball.domain.Balls;
 import baseball.domain.Referee;
 import baseball.domain.ScoreBoard;
 import baseball.view.InputView;
+import baseball.view.ResultView;
 
 public class BaseballController {
 
   public void gameStart() {
-    Balls userBalls = InputView.inputNumbers();
     Balls computerBalls = BallFactory.createComputerBalls();
+    Balls userBalls = InputView.inputNumbers();
 
-    //computerBalls.calculateScore(userBalls);
     Referee referee = new Referee(computerBalls, userBalls);
     ScoreBoard result = referee.judge();
+    ResultView.printScore(result);
 
 
   }
