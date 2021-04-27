@@ -30,51 +30,54 @@ NextStep PreCourse 구현 과제입니다.
 
 구현한 클래스는 아래와 같습니다.
 
-- Application
-- BaseBallGame
-- Computer
-- RightAnswer
-- Result
-- RandomNumberGenerator
-- Log
-
-<br>
-
 ### 4.1. Application
 
 - 프로그램을 실행하는 main 함수가 존재합니다.
-- `BaseBallGame` 객체를 생성해서 게임을 진행시킵니다.
-- 3 번에서 언급한 크게 세 가지의 플로우를 반복합니다.
+- `Player` 와 `InputHelper` 를 생성한 후 `BaseBallGame` 객체를 생성해서 게임을 시작합니다.
 
-### 4.2. BaseBallGame
+### 4.2. Player
+
+- 게임에 참여하는 플레이어입니다.
+- 게임의 진행 상황에 따라 `Player.Status` 가 변화합니다. 다음 라이프 사이클을 갖고 있습니다.
+    - 준비 (READY)
+    - 게임 플레이 진행중 (PLAYING)
+    - 정답 맞춤 (ANSWER_CORRECTLY)
+    - 종료 (EXIT)
+
+### 4.3. InputHelper
+
+- 입력만을 담당하는 `Helper` 클래스입니다.
+
+### 4.4. BaseBallGame
 
 - 숫자 게임을 이끌어가는 메인 클래스입니다.
-- 문제를 제출하는 `Computer` 클래스를 갖고 있습니다.
-- 사용자에게 보여주기 위한 UI 기능 (Input, Output) 을 담당합니다.
-- `Status` 라는 값으로 게임의 진행, 성공, 종료 상태를 나타냅니다.
+- 정답을 맞춰야 하는 `Player` 와 입력을 담당하는 `InputHelper` 를 주입받습니다.
+- 정답인 `RightAnswer` 클래스를 생성해서 문제를 채점하는 `Computer` 클래스에 주입합니다.
+- 3 번에서 언급한 총 3 가지의 핵심 플로우를 반복합니다.
+    - 문제 생성
+    - 사용자 입력 및 채점
+    - 재시작 혹은 종료 선택
 
-### 4.3. Computer
+### 4.5. Computer
 
-- 정답 (`RightAnswer`) 을 갖고 있는 클래스입니다.
-- 문제를 출제하며 사용자가 입력한 값과 정답을 비교한 결과 `Result` 를 반환합니다.
-
-### 4.4. RightAnswer
-
-- 사용자가 맞춰야 하는 정답 클래스입니다.
-- `Status` 로 정답이 맞춰진 상태인지 아닌지를 판단할 수 있습니다.
-- `RandomNumberGenerator` 를 사용하여 랜덤값을 생성해서 갖고 있습니다.
-
-### 4.5. Result
-
-- `Computer` 가 사용자가 입력한 값과 실제 정답을 비교한 결과값입니다.
-- 스트라이크, 볼 갯수를 갖고 있습니다.
+- 문제의 정답을 갖고 있으며 사용자 입력값을 검증, 비교한 뒤 결과를 반환해줍니다.
 
 ### 4.6. RandomNumberGenerator
 
 - 랜덤한 숫자를 생성해주는 클래스입니다.
 - 문제의 요구사항에 맞춰 한 자리의 숫자 9 개를 갖고 있으며 `Collections.shuffle()` 메소드를 사용하여 랜덤값을 내려줍니다.
 
-### 4.7. Log
+### 4.7. RightAnswer
 
+- 사용자가 맞춰야 하는 정답 클래스입니다.
+
+### 4.8. Result
+
+- `Computer` 가 사용자 입력값과 정답을 비교한 결과값 클래스입니다.
+- 스트라이크 갯수, 볼 갯수와 정답 맞추기 성공/실패 값을 갖고 있습니다.
+
+### 4.9. Log
+
+- 출력을 담당하는 클래스입니다.
 - 사용자에게 보여주는 출력값을 갖고 있습니다.
 - 때론 특정 숫자 값으로 포맷팅 해서 보여주기도 합니다.
