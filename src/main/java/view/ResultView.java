@@ -14,18 +14,24 @@ public class ResultView {
     private String scoreToString(Score score) {
         StringBuilder builder = new StringBuilder();
 
-        if (score.strike() > 0) {
-            builder.append(String.format("%d 스트라이크 ", score.strike()));
-        }
-
-        if (score.ball() > 0) {
-            builder.append(String.format("%d 볼", score.ball()));
-        }
+        strikeToString(builder, score.strike());
+        ballToString(builder, score.ball());
 
         if (builder.length() == 0) {
             builder.append("낫싱");
         }
-
         return builder.toString();
+    }
+
+    private void strikeToString(StringBuilder builder, int strike) {
+        if (strike > 0) {
+            builder.append(String.format("%d 스트라이크 ", strike));
+        }
+    }
+
+    private void ballToString(StringBuilder builder, int ball) {
+        if (ball > 0) {
+            builder.append(String.format("%d 볼", ball));
+        }
     }
 }
