@@ -11,4 +11,6 @@ public interface Presentator {
     void displayResult(GameResult gameResult);
 
     String endGame();
+
+    void displayInputError();
 }

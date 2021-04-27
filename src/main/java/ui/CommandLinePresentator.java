@@ -30,6 +30,11 @@ public class CommandLinePresentator implements Presentator {
         return scanner.next();
     }
 
+    @Override
+    public void displayInputError() {
+        System.out.println("잘못된 내용을 입력하였습니다. 다시 입력해주세요");
+    }
+
     private void displayStrikeAndBall(GameResult gameResult) {
         if (gameResult.getStrike() > 0)
             System.out.print(gameResult.getStrike() + "스트라이크 ");
