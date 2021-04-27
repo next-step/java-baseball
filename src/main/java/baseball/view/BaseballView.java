@@ -22,7 +22,8 @@ public class BaseballView {
 
     public void start() {
         boolean isContinued = true;
-        while (isContinued){
+
+        while (isContinued) {
             BaseballNumbers answer = this.baseballService.generateAnswer();
             deduceNumber(answer);
             isContinued = askAboutReGame();
@@ -31,7 +32,8 @@ public class BaseballView {
 
     private void deduceNumber(BaseballNumbers answer) {
         boolean isContinued = true;
-        while (isContinued){
+
+        while (isContinued) {
             String playerInput = enterPlayerInput();
             Score score = baseballService.scorePlayerInput(answer, playerInput);
             printScore(score);
@@ -41,6 +43,7 @@ public class BaseballView {
 
     private String enterPlayerInput() {
         System.out.print(MESSAGE_ENTER_NUMERIC);
+
         return sc.next();
     }
 
@@ -55,10 +58,11 @@ public class BaseballView {
         boolean result = false;
         int playerAnswer = sc.nextInt();
 
-        if (playerAnswer == ANSWER_RE_GAME)
+        if (playerAnswer == ANSWER_RE_GAME) {
             result = true;
-        else if (playerAnswer == ANSWER_EXIT)
+        } else if (playerAnswer == ANSWER_EXIT) {
             result = false;
+        }
         return result;
     }
 

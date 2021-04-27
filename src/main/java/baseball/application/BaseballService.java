@@ -17,7 +17,7 @@ public class BaseballService {
     }
 
     public Score scorePlayerInput(BaseballNumbers answer, String playerInput) {
-        Score score = new Score();
+        Score score = null;
 
         try {
             BaseballNumbers playerBaseballNumber = new BaseballNumbers(playerInput);

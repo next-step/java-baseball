@@ -42,8 +42,9 @@ public class BaseballNumbers {
             booleans.add(MIN_RANDOM_NUMBER <= parsedValue && parsedValue <= MAX_RANDOM_NUMBER);
         }
 
-        if(booleans.contains(false))
+        if(booleans.contains(false)) {
             throw new BaseballException.IllegalPlayerInputBoundary();
+        }
     }
 
     public void validateInputLength() {
@@ -59,7 +60,7 @@ public class BaseballNumbers {
     }
 
     public List<String> getValues() {
-        return this.values.subList(0, 3);
+        return this.values.subList(0, RANDOM_NUMBER_COUNT);
     }
 
     public int size() {

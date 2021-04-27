@@ -6,6 +6,7 @@ public class BaseballException extends RuntimeException {
     private BaseballException(String message) {
         super(message);
     }
+
     public static class IllegalPlayerInputType extends BaseballException {
         public IllegalPlayerInputType() {
             super(MESSAGE_NUMERIC_ONLY.getMessage());
@@ -29,6 +30,5 @@ public class BaseballException extends RuntimeException {
             super(MESSAGE_DUPLICATE_INPUT.getMessage());
         }
     }
-
 
 }
