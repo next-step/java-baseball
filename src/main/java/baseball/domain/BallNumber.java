@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BallNumber {
@@ -21,6 +23,18 @@ public class BallNumber {
 
     public int getNumber() {
         return number;
+    }
+
+    public static List<BallNumber> convertBallNumber(String value) {
+        List<BallNumber> ballNumbers = new ArrayList<>();
+        char[] numbers = value.toCharArray();
+        if (numbers.length != 3) {
+            throw new IllegalArgumentException("숫자를 3개 입력해야합니다.");
+        }
+        for (char number : numbers) {
+            ballNumbers.add(new BallNumber(number - '0'));
+        }
+        return new ArrayList<>(ballNumbers);
     }
 
     @Override

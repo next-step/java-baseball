@@ -26,7 +26,6 @@ public class ScoreCalculator {
         for (int i = 0; i < playerShots.size(); i++) {
             BallNumber playerNumber = playerShots.get(i);
             BallNumber computerNumber = computerNumbers.get(i);
-
             getMatchCount(playerNumber, computerNumber, computerNumbers);
         }
     }
