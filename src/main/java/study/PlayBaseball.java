@@ -170,24 +170,29 @@ public class PlayBaseball {
             //힌트 가져오기
             getHint();
 
-
             //종료여부 확인
             if(isEnd()){
-                Scanner scan = new Scanner(System.in);
-                System.out.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-                System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-                char isRestart = scan.next().charAt(0);
-
-
-                if(isRestart == '2'){
-                    System.exit(0);
-                }
-                startPlayBaseball();
+                isExit();
             }
 
         }
     }
 
+    /**
+     * 게임 종료 기능
+     */
+    public void isExit(){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        char isRestart = scan.next().charAt(0);
+
+
+        if(isRestart == '2'){
+            System.exit(0);
+        }
+        startPlayBaseball();
+    }
 
     public static void main(final String[] args) {
         PlayBaseball playbaseball = new PlayBaseball();
