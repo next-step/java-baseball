@@ -13,8 +13,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BallUtilTest {
 
-	@RepeatedTest(value = 100)
-	@DisplayName(" - 랜덤한 3자리 숫자 생성 검증 테스트 - 중복값, 값 범위 검증")
+	@RepeatedTest(value = 20)
+	@DisplayName("랜덤한_3자리숫자_생성_검증_테스트 - 중복값, 값 범위 검증")
 	public void makeRandomTextTest() {
 		String randomText = BallUtil.makeBall(3);
 		Set<Character> resultSet = new HashSet<>();
@@ -29,12 +29,9 @@ class BallUtilTest {
 
 	@ParameterizedTest
 	@CsvSource(value = {"3:123:true", "3:195:false", "9:126:false", "8:987:true", "1:123:true"}, delimiter = ':')
-	@DisplayName(" - 문자열 내 캐릭터 문자가 존재하는지 검증 테스트")
+	@DisplayName("문자열_내_캐릭터문자_존재_여부_검증_테스트")
 	public void containCharacterInStringTextTest(char numberChar, String numbersText, boolean exists) {
 		boolean result = BallUtil.containCharInText(numberChar, numbersText);
 		assertThat(result).isEqualTo(exists);
-
 	}
-
-
 }
