@@ -9,7 +9,7 @@ import static baseball.domain.BaseballNumbers.*;
 import static java.util.Collections.shuffle;
 
 public class BaseballNumberFactory {
-    private final List<String> ALL_RANDOM_NUMBERS = new ArrayList<String>();
+    private final List<String> ALL_RANDOM_NUMBERS = new ArrayList<>();
 
     public BaseballNumberFactory() {
         for(int i = MIN_RANDOM_NUMBER; i <= MAX_RANDOM_NUMBER; ++i) {

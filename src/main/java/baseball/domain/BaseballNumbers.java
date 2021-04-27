@@ -26,14 +26,6 @@ public class BaseballNumbers {
         validateDuplicateInput();
     }
 
-    private void validateInputIsInteger(String values) {
-        try {
-            Integer.parseInt(values);
-        } catch (NumberFormatException e) {
-            throw new BaseballException.IllegalPlayerInputType();
-        }
-    }
-
     public void validateInputBoundary() {
         ArrayList<Boolean> booleans = new ArrayList<>();
 
@@ -73,5 +65,13 @@ public class BaseballNumbers {
 
     public String getSpecificIndexValue(int index) {
         return values.get(index);
+    }
+
+    private void validateInputIsInteger(String values) {
+        try {
+            Integer.parseInt(values);
+        } catch (NumberFormatException e) {
+            throw new BaseballException.IllegalPlayerInputType();
+        }
     }
 }
