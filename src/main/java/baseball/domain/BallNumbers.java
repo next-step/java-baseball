@@ -6,6 +6,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 공의 숫자 모음.
+ */
 public class BallNumbers {
     private static final String INPUT_WITHOUT_DUPLICATE = "중복 없이 숫자를 3개 입력해주세요.";
     private static int MAX_BALL_COUNT = 3;

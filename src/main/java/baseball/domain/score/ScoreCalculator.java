@@ -6,6 +6,9 @@ import baseball.domain.Bat;
 
 import java.util.List;
 
+/**
+ * 공의 입력된 값을 점수로 계산합니다.
+ */
 public class ScoreCalculator {
     private static final int ZERO = 0;
     private static final int WIN_COUNT = 3;
@@ -18,6 +21,12 @@ public class ScoreCalculator {
         this.ballCount = ZERO;
     }
 
+    /**
+     * 점수를 계산합니다.
+     *
+     * @param bat  사용자가 입력한 숫자
+     * @param ball 컴퓨터가 생성한 숫자
+     */
     public void calculateScore(Bat bat, Ball ball) {
         List<BallNumber> playerShots = bat.getShots();
         List<BallNumber> computerNumbers = ball.getBallList();

@@ -2,6 +2,7 @@ package baseball.view;
 
 import baseball.domain.score.Score;
 
+
 public class OutputView {
 
     private OutputView() {

@@ -5,6 +5,9 @@ import baseball.domain.BallNumber;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 사용자의 입력을 받습니다.
+ */
 public class InputView {
     private static String NUMBER_QUESTION = "숫자를 입력해주세요:";
     private static String REPLAY_QUESTION = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";

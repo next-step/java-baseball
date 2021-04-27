@@ -3,6 +3,9 @@ package baseball.domain;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 컴퓨터가 생성한 볼.
+ */
 public class Ball {
     private final BallNumbers ballNumbers;
 

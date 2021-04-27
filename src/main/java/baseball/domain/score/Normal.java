@@ -1,5 +1,8 @@
 package baseball.domain.score;
 
+/**
+ * 볼이나 스트라이크가 존재하는 상태.
+ */
 public class Normal implements Score {
     private static final String TEXT_STRIKE = "스트라이크 ";
     private static final String TEXT_BALL = "볼";

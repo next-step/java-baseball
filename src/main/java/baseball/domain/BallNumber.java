@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 공의 숫자.
+ */
 public class BallNumber {
     public static final int MAXIMUM_BALL_NUMBER = 9;
     public static final int MINIMUM_BALL_NUMBER = 1;
