@@ -18,7 +18,10 @@ public class BallGame {
             List<Integer> playerInputNumbers = playerInputNumbersInitail.setBallNumber(result);
 
             baseballResult = getBallCount(baseballResult, computerNumbers, playerInputNumbers);
-            System.out.println(baseballResult.resultPrint());
+
+            ResultView resultView = new ResultView();
+            resultView.printBallCountResult(baseballResult);
+
         } while (!baseballResult.isEndGame());
     }
 
@@ -43,6 +46,7 @@ public class BallGame {
     }
 
     public static boolean restart() {
+        System.out.println(PLAY_RESTART);
         System.out.println(PLAY_RESTART);
         String result = scanner.next();
         if (result.equals("1")) return true;

@@ -2,9 +2,7 @@ package baseball;
 
 public class BaseballResult {
 
-    private static final String MESSAGE_STRIKE = "STRIKE";
-    private static final String MESSAGE_BALL = "BALL";
-    private static final String MESSAGE_NOTHING = "NOTHING";
+
 
     private int strikeCount;
     private int ballCount;
@@ -42,17 +40,4 @@ public class BaseballResult {
         return strikeCount;
     }
 
-    public String resultPrint() {
-        StringBuilder sb = new StringBuilder();
-        if (strikeCount > 0) {
-            sb.append(strikeCount).append(MESSAGE_STRIKE);
-        }
-        if (ballCount > 0) {
-            sb.append(ballCount).append(MESSAGE_BALL);
-        }
-        if (strikeCount == 0 && ballCount == 0) {
-            return MESSAGE_NOTHING;
-        }
-        return sb.toString();
-    }
 }
