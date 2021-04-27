@@ -27,7 +27,7 @@ public class BaseballCall {
     /*
         스트라이크 판정 메서드
     */
-    private static int cntStrike(String player, String counter){
+    public static int cntStrike(String player, String counter){
         int strike = 0;
         for(int i=0; i<3; i++){
             strike += player.charAt(i) == counter.charAt(i) ? 1 : 0;
@@ -38,7 +38,7 @@ public class BaseballCall {
     /*
         봂 판정 메서드
     */
-    private static int cntBall(String player, String counter, int strike){
+    public static int cntBall(String player, String counter, int strike){
         int ball = -strike;
         Set<Character> pitNum = new HashSet<Character>();
         for(int i=0; i<3; i++){

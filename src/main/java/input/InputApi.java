@@ -31,7 +31,7 @@ public class InputApi {
             1) 숫자가 입력 되었는지
             2) 3자리 숫자인지(0을 제외한 숫자)
      */
-    private static boolean checkValidIn(String input, String condition){
+    public static boolean checkValidIn(String input, String condition){
         boolean ret = condition.equals("number") ? gameInputValid(input) : input.matches("[1-2]{1}");
 
         return ret;
@@ -40,7 +40,7 @@ public class InputApi {
     /*
         게임 중 사용자 입력 값 유효성 체크
     */
-    private static boolean gameInputValid(String input){
+    public static boolean gameInputValid(String input){
         if(!input.matches("[1-9]{3}"))
             return false;
         Set<Integer> chkNum = new HashSet<Integer>();
