@@ -1,12 +1,14 @@
 package game;
 
 import number.BaseballNumbers;
+import rule.Rule;
 import ui.OutputManager;
 import ui.PrintOutputManager;
 
 public class StrikeAndBallState implements GameState {
 
 	private final OutputManager outputManager = PrintOutputManager.getInstance();
+	private final Rule rule = Rule.getInstance();
 
 	private static GameState gameState = new StrikeAndBallState();
 
@@ -22,31 +24,16 @@ public class StrikeAndBallState implements GameState {
 		BaseballNumbers computerBaseballNumbers = game.getComputer().getNumbers();
 		BaseballNumbers userBaseballNumbers = game.getUser().getNumbers();
 
-		if (isStrikeAndBall(computerBaseballNumbers, userBaseballNumbers)) {
-			game.setGameState(RunningState.getInstance());
+		if (rule.isNothing(computerBaseballNumbers, userBaseballNumbers)) {
+			game.setGameState(NothingState.getInstance());
 			game.progress();
 			return;
 		}
-		game.setGameState(NothingState.getInstance());
+
+		printStrikeAndBall(rule.countStrike(computerBaseballNumbers, userBaseballNumbers),
+				rule.countBall(computerBaseballNumbers, userBaseballNumbers));
+		game.setGameState(RunningState.getInstance());
 		game.progress();
-	}
-
-	private boolean isStrikeAndBall(BaseballNumbers computerBaseballNumbers, BaseballNumbers userBaseballNumbers) {
-		int strikeCount = 0;
-		int ballCount = 0;
-
-		for (int i = 0; i < computerBaseballNumbers.size(); i++) {
-			strikeCount += countEquals(computerBaseballNumbers.get(i), userBaseballNumbers.get(i));
-			ballCount += countContains(computerBaseballNumbers, userBaseballNumbers.get(i));
-		}
-		ballCount -= strikeCount;
-
-		if (strikeCount + ballCount > 0) {
-			printStrikeAndBall(strikeCount, ballCount);
-			return true;
-		}
-		return false;
-
 	}
 
 	private void printStrikeAndBall(int strikeCount, int ballCount) {
@@ -59,14 +46,6 @@ public class StrikeAndBallState implements GameState {
 		}
 
 		outputManager.print("\n");
-	}
-
-	private int countEquals(Integer computerNumber, Integer userNnumber) {
-		return computerNumber.equals(userNnumber) ? 1 : 0;
-	}
-
-	private int countContains(BaseballNumbers computerBaseballNumbers, Integer userNnumber) {
-		return computerBaseballNumbers.contains(userNnumber) ? 1 : 0;
 	}
 
 }

@@ -4,6 +4,16 @@ import number.BaseballNumbers;
 
 public class Rule {
 
+	private static Rule rule = new Rule();
+
+	private Rule() {
+
+	}
+
+	public static Rule getInstance() {
+		return rule;
+	}
+
 	public int countStrike(BaseballNumbers computerBaseballNumbers, BaseballNumbers userBaseballNumbers) {
 		int result = 0;
 

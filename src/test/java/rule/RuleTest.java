@@ -19,7 +19,7 @@ public class RuleTest {
 
 	@BeforeEach
 	void setIp() {
-		rule = new Rule();
+		rule = Rule.getInstance();
 		
 		baseballNumbers1 = BaseballNumbersFactory.getInstance().baseballNumbers(123);
 		baseballNumbers2 = BaseballNumbersFactory.getInstance().baseballNumbers(123);
