@@ -19,10 +19,14 @@ public class Quiz {
 
 	public Hints checkNumbers(Numbers inputNumbers) {
 		final Hints hints = rightNumbers.compareTo(inputNumbers);
-		if (hints.getStrikeCount() == THREE_COUNT) {
+		if (isSolved(hints)) {
 			this.quizState = QuizState.SOLVED;
 		}
 		return hints;
+	}
+
+	private boolean isSolved(Hints hints) {
+		return hints.getStrikeCount() == THREE_COUNT;
 	}
 
 	enum QuizState {
