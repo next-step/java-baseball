@@ -6,25 +6,37 @@ public class BaseballGame {
 
     private Scanner scanner;
     private GamerNumber gamerNumber;
-    boolean bExit = true;
+    private RandomNumber randomNumber;
+    private int[] makeNumbers;
+
 
     public BaseballGame() {
         scanner = new Scanner(System.in);
         gamerNumber = new GamerNumber();
+        randomNumber = new RandomNumber();
     }
 
     public void play(){
         scanner = new Scanner(System.in);
         System.out.print("숫자를 입력해주세요 : ");
         read();
+        makeRandomNumbers();
     }
 
     private void read(){
         gamerNumber.read(scanner.next());
-        int[] numbers = gamerNumber.getNumbers();
+        gamerNumber.getNumbers();
+    }
+
+    private void makeRandomNumbers(){
+        randomNumber.make();
+        makeNumbers = randomNumber.getNumbers();
+
+        String sNumbers = "";
         for(int i=0; i<3; i++){
-            System.out.println(numbers[i]);
+            sNumbers = sNumbers.concat(String.valueOf(makeNumbers[i]));
         }
+        System.out.println("makeNumbers : "+sNumbers);
     }
 
 }
