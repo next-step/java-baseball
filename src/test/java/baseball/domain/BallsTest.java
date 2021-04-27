@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -33,6 +34,18 @@ class BallsTest {
     assertThatThrownBy(() -> new Balls(input))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("서로 다른 공이어야 합니다.");
+  }
+
+  @DisplayName("하나의 숫자에 대해 계산하기")
+  @Test
+  void calculate_one_number_score() {
+    Balls balls = new Balls("123");
+    assertThat(balls.calculateScore(new Balls("123"), 0)).isEqualTo(Score.STRIKE);
+    assertThat(balls.calculateScore(new Balls("123"), 1)).isEqualTo(Score.STRIKE);
+    assertThat(balls.calculateScore(new Balls("123"), 2)).isEqualTo(Score.STRIKE);
+    assertThat(balls.calculateScore(new Balls("234"), 0)).isEqualTo(Score.BALL);
+    assertThat(balls.calculateScore(new Balls("234"), 1)).isEqualTo(Score.BALL);
+    assertThat(balls.calculateScore(new Balls("456"), 0)).isEqualTo(Score.NOTHING);
   }
 
 }
