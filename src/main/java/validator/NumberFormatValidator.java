@@ -15,6 +15,12 @@ public class NumberFormatValidator {
 		return !hasSameNumber(number) && !hasZero(number);
 	}
 
+	public static void checkParseToInteger(String input) {
+		if (!isParseInteger(input)) {
+			throw new IllegalArgumentException("입력은 숫자로만 구성되어야 합니다.");
+		}
+	}
+
 	private static boolean hasZero(int number) {
 		return String.valueOf(number).contains("0");
 	}
@@ -26,12 +32,6 @@ public class NumberFormatValidator {
 			}
 		}
 		return true;
-	}
-
-	public static void checkParseToInteger(String input) {
-		if (!isParseInteger(input)) {
-			throw new IllegalArgumentException("입력은 숫자로만 구성되어야 합니다.");
-		}
 	}
 
 	private static boolean hasSameNumber(int random) {
