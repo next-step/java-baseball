@@ -89,11 +89,14 @@ public class BaseBall {
     //결과값 텍스트 출력
     public void printTextResult(int[] result ){
         String resultText ="";
-        if(result[0] >0){
+        if(result[0] > 0){
             resultText = result[0]+" 스트라이크 ";
         }
-        if(result[1]>0){
+        if(result[1] > 0){
             resultText = resultText + result[1]+"볼";
+        }
+        if(result[0] == 0 && result[1] == 0){
+            resultText="아웃";
         }
         System.out.println(resultText);
     }
