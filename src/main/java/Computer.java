@@ -13,6 +13,10 @@ public class Computer {
 		return computerNumbers;
 	}
 
+	public void setComputerNumbers(List<Integer> computerNumbers) {
+		this.computerNumbers = computerNumbers;
+	}
+
 	public int getStrikeCount() {
 		return strikeCount;
 	}
