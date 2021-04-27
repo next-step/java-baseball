@@ -5,3 +5,8 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능
+* 플레이어 및 게임 생성
+* 게임 진행
+* CommanLine 입/출력
