@@ -10,7 +10,7 @@ import common.StringToNumberList;
 class NumbersTest {
 
     @Test
-    @DisplayName("같은 포지션과 숫자를 카운트")
+    @DisplayName("스트라이 카운트크")
     void countSamPosiAndNum() {
         //given
         WinningNumbers winningNumbers = new WinningNumbers(StringToNumberList.transform("713"));
@@ -24,16 +24,18 @@ class NumbersTest {
     }
 
     @Test
-    @DisplayName("같은 숫자 카운트")
+    @DisplayName("볼 카운트")
     void countSamNum() {
         //given
         WinningNumbers winningNumbers = new WinningNumbers(StringToNumberList.transform("713"));
-        Numbers numbers = StringToNumberList.transform("123");
+        Numbers numbers = StringToNumberList.transform("127");
 
         //when
-        int result = winningNumbers.getStrike(numbers);
+        int result = winningNumbers.getBall(numbers);
 
         //then
         assertThat(result).isEqualTo(2);
     }
+
+
 }
