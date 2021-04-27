@@ -4,10 +4,10 @@ public class Score {
 	private int ball;
 	private int strike;
 
-	public Score(int ball, int strike) {
+	public Score(int strike, int ball) {
 		super();
-		this.ball = ball;
 		this.strike = strike;
+		this.ball = ball;
 	}
 
 	public int getBall() {

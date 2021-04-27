@@ -14,10 +14,17 @@ public class BaseballRule {
 		this.correctAnswers = correctAnswer.split("");
 	}
 
+	public boolean isNotThreeStrike(String answer) {
+		if (answer == null || answer.isEmpty()) {
+			return true;
+		}
+		return checkStrike(answer) != 3;
+	}
+
 	public Score checkPitching(String answer) {
 		int strike = checkStrike(answer);
 		int ball = strike != 3 ? checkBall(answer) : 0;
-		return new Score(ball, strike);
+		return new Score(strike, ball);
 	}
 
 	int checkBall(String answer) {
@@ -51,19 +58,5 @@ public class BaseballRule {
 			return true;
 		}
 		return false;
-	}
-
-	public String makeHint(int strike, int ball) {
-		if (strike == 0 && ball == 0) {
-			return "낫싱";
-		}
-		String hint = "";
-		if (strike > 0) {
-			hint += String.format("%d 스트라이크", strike);
-		}
-		if (ball > 0) {
-			hint += String.format("%s%d 볼", (strike > 0 ? " " : ""), ball);
-		}
-		return hint;
 	}
 }
