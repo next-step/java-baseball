@@ -30,7 +30,7 @@ public class Validator {
         return inputValue.matches(isNumberInRangeRegEx);
     }
 
-    public static boolean isValidEndGameInput(String inputValue) throws Exception {
+    public static boolean isValidEndGameInput(String inputValue) {
         if (inputValue.equals(Presentator.RESTART)) return true;
         if (inputValue.equals(Presentator.QUIT)) return true;
         return false;
