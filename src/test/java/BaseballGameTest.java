@@ -1,39 +1,31 @@
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class BaseballGameTest {
+
+	private BaseballGame baseballGame;
+
+	@BeforeEach
+	public void setup() {
+		baseballGame = new BaseballGame();
+	}
 
 	@Nested
 	@DisplayName("Strike Test")
 	class StrikeTest {
-		@Test
-		@DisplayName("Strike Test 1")
-		void testIsStrike() {
-
-			BaseballGame baseballGame = new BaseballGame();
-			char input = '1';
-
-			char randomNumber = '5';
-
+		@ParameterizedTest
+		@CsvSource({
+			"1, 5, false",
+			"1, 1, true"
+		})
+		void testIsStrike(char input, char randomNumber, boolean actualResult) {
 			boolean result = baseballGame.isStrike(input, randomNumber);
 
-			assertThat(false).isEqualTo(result);
-		}
-
-		@Test
-		@DisplayName("Strike Test 2")
-		void testIsStrike2() {
-
-			BaseballGame baseballGame = new BaseballGame();
-			char input = '1';
-			char randomNumber = '1';
-
-			boolean result = baseballGame.isStrike(input, randomNumber);
-
-			assertThat(true).isEqualTo(result);
+			assertThat(actualResult).isEqualTo(result);
 		}
 	}
 
@@ -41,52 +33,18 @@ public class BaseballGameTest {
 	@Nested
 	@DisplayName("Ball Test")
 	class BallTest {
-		@Test
-		@DisplayName("Ball Test 1")
-		void testIsBall() {
-			BaseballGame baseballGame = new BaseballGame();
-			char input = '1';
-			String randomNumbers = "125";
+		@ParameterizedTest
+		@CsvSource({
+			"1, 125, true",
+			"9, 391, true",
+			"7, 247, true",
+			"1, 825, false"
+		})
+		void testIsBall(char input, String randomNumbers, boolean actualResult) {
 
 			boolean result = baseballGame.isBall(input, randomNumbers);
 
-			assertThat(true).isEqualTo(result);
-		}
-
-		@Test
-		@DisplayName("Ball Test 2")
-		void testIsBall2() {
-			BaseballGame baseballGame = new BaseballGame();
-			char input = '9';
-			String randomNumbers = "391";
-
-			boolean result = baseballGame.isBall(input, randomNumbers);
-
-			assertThat(true).isEqualTo(result);
-		}
-
-		@Test
-		@DisplayName("Ball Test 3")
-		void testIsBall3() {
-			BaseballGame baseballGame = new BaseballGame();
-			char input = '7';
-			String randomNumbers = "247";
-
-			boolean result = baseballGame.isBall(input, randomNumbers);
-
-			assertThat(true).isEqualTo(result);
-		}
-
-		@Test
-		@DisplayName("Ball Test 4")
-		void testIsBall4() {
-			BaseballGame baseballGame = new BaseballGame();
-			char input = '1';
-			String randomNumbers = "825";
-
-			boolean result = baseballGame.isBall(input, randomNumbers);
-
-			assertThat(false).isEqualTo(result);
+			assertThat(actualResult).isEqualTo(result);
 		}
 	}
 
@@ -94,56 +52,19 @@ public class BaseballGameTest {
 	@Nested
 	@DisplayName("GetScore Test")
 	class GetScoreTest {
-		@Test
-		@DisplayName("GetScore Test 1")
-		void testGetScore1() {
-			BaseballGame baseballGame = new BaseballGame();
-			String input = "123";
-			String randomNumbers = "825";
+		@ParameterizedTest
+		@CsvSource({
+			"123, 825, 0, 1",
+			"564, 456, 3, 0",
+			"623, 561, 1, 0",
+			"893, 893, 0, 3"
+		})
+		void testGetScore(String input, String randomNumbers, int ballCount, int strikeCount) {
 
 			Score result = baseballGame.getScore(input, randomNumbers);
 
-			assertThat(0).isEqualTo(result.getBallCount());
-			assertThat(1).isEqualTo(result.getStrikeCount());
-		}
-
-		@Test
-		@DisplayName("GetScore Test 2")
-		void testGetScore2() {
-			BaseballGame baseballGame = new BaseballGame();
-			String input = "564";
-			String randomNumbers = "456";
-
-			Score result = baseballGame.getScore(input, randomNumbers);
-
-			assertThat(3).isEqualTo(result.getBallCount());
-			assertThat(0).isEqualTo(result.getStrikeCount());
-		}
-
-		@Test
-		@DisplayName("GetScore Test 3")
-		void testGetScore3() {
-			BaseballGame baseballGame = new BaseballGame();
-			String input = "623";
-			String randomNumbers = "561";
-
-			Score result = baseballGame.getScore(input, randomNumbers);
-
-			assertThat(1).isEqualTo(result.getBallCount());
-			assertThat(0).isEqualTo(result.getStrikeCount());
-		}
-
-		@Test
-		@DisplayName("GetScore Test 4")
-		void testGetScore4() {
-			BaseballGame baseballGame = new BaseballGame();
-			String input = "893";
-			String randomNumbers = "893";
-
-			Score result = baseballGame.getScore(input, randomNumbers);
-
-			assertThat(0).isEqualTo(result.getBallCount());
-			assertThat(3).isEqualTo(result.getStrikeCount());
+			assertThat(ballCount).isEqualTo(result.getBallCount());
+			assertThat(strikeCount).isEqualTo(result.getStrikeCount());
 		}
 	}
 
@@ -151,40 +72,17 @@ public class BaseballGameTest {
 	@Nested
 	@DisplayName("GamePass Test")
 	class GamePassTest {
-		@Test
-		@DisplayName("isGamePass Test 1")
-		void testIsGamePass() {
-			BaseballGame baseballGame = new BaseballGame();
-			Score score = new Score(0,0);
+		@ParameterizedTest
+		@CsvSource({
+			"0, 0, false",
+			"1, 2, false",
+			"3, 0, false",
+			"0, 3, true"
+		})
+		void testIsGamePass(int ballCount, int strikeCount, boolean actualResult) {
+			Score score = new Score(ballCount,strikeCount);
 
-			assertThat(false).isEqualTo(baseballGame.isGamePass(score));
-		}
-
-		@Test
-		@DisplayName("isGamePass Test 2")
-		void testIsGamePass2() {
-			BaseballGame baseballGame = new BaseballGame();
-			Score score = new Score(1,2);
-
-			assertThat(false).isEqualTo(baseballGame.isGamePass(score));
-		}
-
-		@Test
-		@DisplayName("isGamePass Test3")
-		void testIsGamePass3() {
-			BaseballGame baseballGame = new BaseballGame();
-			Score score = new Score(3,0);
-
-			assertThat(false).isEqualTo(baseballGame.isGamePass(score));
-		}
-
-		@Test
-		@DisplayName("isGamePass Test4")
-		void testIsGamePass4() {
-			BaseballGame baseballGame = new BaseballGame();
-			Score score = new Score(0,3);
-
-			assertThat(true).isEqualTo(baseballGame.isGamePass(score));
+			assertThat(actualResult).isEqualTo(baseballGame.isGamePass(score));
 		}
 	}
 
