@@ -13,14 +13,14 @@ public class RandomGenerator {
 	private List<Integer> allNumbers;
 
 	public RandomGenerator() {
-		this.allNumbers = new ArrayList<>();
+		this.allNumbers = new ArrayList<>(MAX_NUMBER - MIN_NUMBER + 1);
 	}
 
 	public String makeRandomNumbers() {
 		initAllNumbers();
 		Random random = new Random();
 		StringBuilder stringBuilder = new StringBuilder();
-		while (stringBuilder.length() < GameManager.GAME_LENGTH) {
+		while (stringBuilder.length() < Game.GAME_LENGTH) {
 			int number = random.nextInt(allNumbers.size());
 			stringBuilder.append(allNumbers.get(number));
 			allNumbers.remove(number);
@@ -29,6 +29,7 @@ public class RandomGenerator {
 	}
 
 	private void initAllNumbers() {
+		allNumbers.clear();
 		for (int i = MIN_NUMBER; i < MAX_NUMBER; i++) {
 			allNumbers.add(i);
 		}

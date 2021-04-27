@@ -2,6 +2,8 @@ package com.baseball.woowahan;
 
 import java.util.Objects;
 
+import com.baseball.woowahan.constant.Message;
+
 /**
  * 점수 계산, 출력 모듈
  * @param : String randomNumber
@@ -20,7 +22,7 @@ public class ScoreCalculatorAndPrinter {
 	public void calculate(String inputNumber) {
 		initCounts();
 		String[] inputNumbers = inputNumber.split("");
-		for (int i = 0; i < GameManager.GAME_LENGTH; i++) {
+		for (int i = 0; i < Game.GAME_LENGTH; i++) {
 			checkStrike(i, inputNumbers[i]);
 			checkBall(i, inputNumbers[i]);
 		}
@@ -28,7 +30,11 @@ public class ScoreCalculatorAndPrinter {
 	}
 
 	public boolean isCompleted() {
-		return Objects.equals(this.strikeCount, GameManager.GAME_LENGTH);
+		if (Objects.equals(this.strikeCount, Game.GAME_LENGTH)) {
+			System.out.println(Message.COMPLETE.getMessage());
+			return true;
+		}
+		return false;
 	}
 
 	private void printMessage() {

@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class UserInputValidatorTest {
 	private UserInputValidator userInputValidator = new UserInputValidator();
-	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", GameManager.GAME_LENGTH, "}$");
+	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", Game.GAME_LENGTH, "}$");
 
 	@Test
 	@DisplayName("null 입력")
@@ -59,7 +59,7 @@ class UserInputValidatorTest {
 	private boolean isGameLengthAndAllOtherNumbers(String input) {
 		Set<String> set = new HashSet<>();
 		set.addAll(Arrays.asList(input.split("")));
-		return input.matches(NUMBER_PATTERN) && Objects.equals(GameManager.GAME_LENGTH, set.size());
+		return input.matches(NUMBER_PATTERN) && Objects.equals(Game.GAME_LENGTH, set.size());
 	}
 
 }
