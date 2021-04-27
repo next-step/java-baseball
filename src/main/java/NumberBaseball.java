@@ -63,10 +63,10 @@ public class NumberBaseball {
 	 */
 	private static String buildResultString(int strikeCount, int ballCount) {
 		StringBuilder result = new StringBuilder();
-		if (strikeCount > 0) {
+		if (strikeCount > 0 || (strikeCount == 0 && ballCount == 0)) {
 			result.append(String.format("%d 스트라이크 ", strikeCount));
 		}
-		if (ballCount > 0) {
+		if (ballCount > 0 || (strikeCount == 0 && ballCount == 0)) {
 			result.append(String.format("%d 볼", ballCount));
 		}
 		return result.toString();
