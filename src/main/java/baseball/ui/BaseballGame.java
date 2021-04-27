@@ -24,7 +24,6 @@ public class BaseballGame {
 	public static void main(String[] args) {
 		initGame();
 		while(gameState != GameState.GAME_END) {
-			//System.out.println(computer.getBallNumber().toString());
 			inputPlayerNumber();
 			printHint();
 			checkWin();
