@@ -18,7 +18,7 @@ public class Quiz {
 	}
 
 	public Hints checkNumbers(Numbers inputNumbers) {
-		final Hints hints = rightNumbers.compareNumbers(inputNumbers);
+		final Hints hints = rightNumbers.compareTo(inputNumbers);
 		if (hints.getStrikeCount() == THREE_COUNT) {
 			this.quizState = QuizState.SOLVED;
 		}
