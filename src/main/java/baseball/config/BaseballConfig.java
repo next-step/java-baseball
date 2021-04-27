@@ -1,7 +1,7 @@
 package baseball.config;
 
+import baseball.constants.BaseballConstant;
 import baseball.constants.MessageKey;
-import baseball.model.BaseballNumber;
 import lombok.Getter;
 
 import java.nio.charset.Charset;
@@ -30,8 +30,8 @@ public class BaseballConfig {
 
         public Builder() {
             this.config = new BaseballConfig();
-            this.config.size = BaseballNumber.DEFAULT_NUMBERS_SIZE;
-            this.config.radix = BaseballNumber.DEFAULT_NUMBER_RADIX;
+            this.config.size = BaseballConstant.DEFAULT_NUMBERS_SIZE;
+            this.config.radix = BaseballConstant.DEFAULT_NUMBER_RADIX;
             this.config.tryCount = 0;
             this.config.locale = Locale.getDefault();
             this.config.resourceBundle = ResourceBundle.getBundle("message", this.config.locale);
