@@ -1,12 +1,12 @@
 package baseball.domain.dto;
 
 import baseball.domain.PitchingResultStatus;
-import baseball.exceptions.InvalidBallNumbersSizeException;
+import baseball.exceptions.InvalidBallNumbersSummeryException;
 
-import java.util.Collection;
 import java.util.Map;
 
-import static baseball.domain.PitchingResultStatus.*;
+import static baseball.domain.PitchingResultStatus.NOTHING;
+import static baseball.domain.PitchingResultStatus.STRIKE;
 
 public class BaseballResultResponse {
     public static final int DEFAULT_VALUE = 0;
@@ -33,7 +33,7 @@ public class BaseballResultResponse {
         }
 
         if (sum != 3) {
-            throw new InvalidBallNumbersSizeException();
+            throw new InvalidBallNumbersSummeryException();
         }
     }
 
