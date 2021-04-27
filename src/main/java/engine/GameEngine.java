@@ -26,7 +26,6 @@ public class GameEngine {
 
 	public void resetGame() {
 		this.answer = new Ball(answerLength);
-		System.out.println(answer);
 	}
 
 	private void resetStage() {
