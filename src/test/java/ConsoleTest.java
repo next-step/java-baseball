@@ -1,5 +1,6 @@
 import baseball.Console;
 import baseball.domain.Score;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -9,28 +10,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleTest {
 
+    private Console console;
+
+    @BeforeEach
+    void setUp() {
+        console = new Console();
+    }
+
     @Test
     void input_number() {
-        Console console = new Console();
-
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("123".getBytes());
-        System.setIn(byteArrayInputStream);
-
+        systemInput("123");
         assertThat(console.getNumber()).isEqualTo(123);
     }
 
     @Test
     void result_three_strike() {
-        Console console = new Console();
-        Score score = new Score(3, 0);
-        assertThat(console.result(score)).isTrue();
+        assertThat(console.result(new Score(3, 0))).isTrue();
     }
 
     @Test
     void result_one_strike_one_ball() {
-        Console console = new Console();
-        Score score = new Score(1, 1);
-        assertThat(console.result(score)).isFalse();
+        assertThat(console.result(new Score(1, 1))).isFalse();
+    }
+
+    @Test
+    void print_score() {
+
     }
 
     @Disabled
@@ -40,6 +45,11 @@ class ConsoleTest {
 
         // TODO 3스트라이크 될때까지 숫자를 물어보는 기능
         console.play();
+    }
+
+    private void systemInput(String input) {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(byteArrayInputStream);
     }
 
 }
