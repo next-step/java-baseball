@@ -25,5 +25,4 @@ public class ComputerTest {
             assertThat(ball).isBetween(1, 9);
         }
     }
-
 }
