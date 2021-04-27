@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 
 import com.baseball.message.UIMessage;
 import com.baseball.message.ValidateMessage;
+import com.baseball.property.BaseBallSystem;
 
 public class Player {
 
-	private final static int LENGTH = 3;
 	private final Scanner scanner;
 
 	private String inputedText;
@@ -57,7 +57,7 @@ public class Player {
 	}
 
 	public boolean isThreeDigits() {
-		Pattern pattern = Pattern.compile("^[1-9]{" + LENGTH + ",}$");
+		Pattern pattern = Pattern.compile("^[1-9]{" + BaseBallSystem.NUMBER_LENGTH + ",}$");
 		Matcher matcher = pattern.matcher(inputedText);
 
 		return matcher.matches();

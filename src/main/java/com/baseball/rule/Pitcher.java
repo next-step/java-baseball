@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class Pitcher {
-	static int LENGTH = 3;
+import com.baseball.property.BaseBallSystem;
 
+public class Pitcher {
 	public int generateRandomDigit() {
 		return new Random().nextInt(9) + 1;
 	}
@@ -18,7 +18,7 @@ public class Pitcher {
 		while (true) {
 			int randomDigit = generateRandomDigit();
 			randomNumberSet.add(randomDigit);
-			if(randomNumberSet.size()>LENGTH-1) {
+			if (randomNumberSet.size() > BaseBallSystem.NUMBER_LENGTH - 1) {
 				break;
 			}
 		}
