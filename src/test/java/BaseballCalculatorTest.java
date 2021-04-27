@@ -43,4 +43,23 @@ public class BaseballCalculatorTest {
 			Arguments.of("123", "123", 3)
 		);
 	}
+
+	@DisplayName("Get ball count successfully")
+	@ParameterizedTest
+	@MethodSource("provideArgumentsForGetBallCountTest")
+	void getBallCountTest(String answer, String input, int expectedCount) {
+		int result = BaseballCalculator.getBallCount(answer, input);
+		assertThat(result).isEqualTo(expectedCount);
+	}
+
+	// a static method that returns a Stream of Arguments for getBallCountTest
+	private static Stream<Arguments> provideArgumentsForGetBallCountTest() {
+		return Stream.of(
+			Arguments.of("123", "231", 3),
+			Arguments.of("123", "132", 2),
+			Arguments.of("123", "124", 0),
+			Arguments.of("123", "123", 0),
+			Arguments.of("123", "134", 1)
+		);
+	}
 }

@@ -72,4 +72,36 @@ public class BaseballCalculator {
 		}
 		return 0;
 	}
+
+	/**
+	 * @methodName  : getBallCount
+	 * @author      : Sunghwa Lee
+	 * @description : Compare the answer with the input and return the number of balls
+	 * @param answer Answer string
+	 * @param input User input string
+	 * @return Count of balls
+	 */
+	public static int getBallCount(String answer, String input) {
+		int result = 0;
+		for (int i = 0; i < answer.length(); i++) {
+			result += isBall(answer, input.charAt(i), i);
+		}
+		return result;
+	}
+
+	/**
+	 * @methodName  : isBall
+	 * @author      : Sunghwa Lee
+	 * @description : Compare the answer with the input and return whether or not ball
+	 * @param answer Answer string
+	 * @param input User input character
+	 * @param position Position of character
+	 * @return If the input is ball, return 1 otherwise return 0
+	 */
+	private static int isBall(String answer, char input, int position) {
+		if (answer.charAt(position) != input && answer.contains(String.valueOf(input))) {
+			return 1;
+		}
+		return 0;
+	}
 }
