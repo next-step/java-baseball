@@ -3,7 +3,6 @@ package numberBaseball;
 import numberBaseball.domain.GameNumber;
 import numberBaseball.domain.MatchResult;
 import numberBaseball.exception.ContainsDuplicationException;
-import numberBaseball.exception.ContainsZeroException;
 import numberBaseball.exception.NotThreeDigitException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class GameNumberTest {
     @Test
     @DisplayName("랜덤으로 생성된 숫자가 예외를 발생시키지 않는다.")
-    void checkRandomGenerateTest() throws ContainsZeroException {
+    void checkRandomGenerateTest() throws RuntimeException {
         GameNumber.randomGenerate();
     }
 

@@ -2,7 +2,6 @@ package numberBaseball.domain;
 
 import numberBaseball.dto.ResultResponse;
 import numberBaseball.exception.ContainsDuplicationException;
-import numberBaseball.exception.ContainsZeroException;
 import numberBaseball.exception.NotSourceNumberException;
 import numberBaseball.exception.NotThreeDigitException;
 
@@ -38,7 +37,6 @@ public class GameNumber {
     private void validateGameNumber() {
         validateSourceNumber();
         validateThreeDigit();
-        validateContainsZero();
         validateDuplication();
     }
 
@@ -58,12 +56,6 @@ public class GameNumber {
         Set<Integer> gameNumberSet = new HashSet<>(gameNumber);
         if (gameNumberSet.size() != NUMBER_SIZE) {
             throw new ContainsDuplicationException(MESSAGE_CONTAINS_DUPLICATION);
-        }
-    }
-
-    private void validateContainsZero() {
-        if (gameNumber.contains(EXCLUDING_NUMBER)) {
-            throw new ContainsZeroException(MESSAGE_CONTAINS_ZERO);
         }
     }
 

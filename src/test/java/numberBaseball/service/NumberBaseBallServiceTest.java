@@ -3,6 +3,7 @@ package numberBaseball.service;
 import numberBaseball.domain.GameNumber;
 import numberBaseball.exception.NotSourceNumberException;
 import numberBaseball.exception.NotThreeDigitException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class NumberBaseBallServiceTest {
 
     @Test
-    void getResultResponseTest() {
+    @DisplayName("숫자가 아닌 문자가 입력된 경우를 테스트한다.")
+    void ofContainsSourceNumberTest() {
         //given
         NumberBaseBallService numberBaseBallService = new NumberBaseBallService();
         numberBaseBallService.generateTargetNumber();
