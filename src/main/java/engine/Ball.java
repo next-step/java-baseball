@@ -6,8 +6,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-import exception.BaseballException;
-
 public class Ball {
 	private String input;
 	private int numberOfLength;

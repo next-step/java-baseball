@@ -1,7 +1,5 @@
 package engine;
 
-import exception.BaseballException1;
-
 public class GameEngine {
 	private int strike;
 	private int ball;
@@ -15,7 +13,7 @@ public class GameEngine {
 		this.answer = new Ball(answerLength);
 	}
 
-	public boolean progressEachStage(Ball inputBall) throws BaseballException1 {
+	public boolean progressEachStage(Ball inputBall) throws IllegalArgumentException {
 		resetStage();
 		compareInputWithAnswer(inputBall);
 		if (strike == 3) {
