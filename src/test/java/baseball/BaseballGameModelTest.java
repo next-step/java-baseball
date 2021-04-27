@@ -73,13 +73,10 @@ class BaseballGameModelTest {
     void 사용자_숫자과_시스템_숫자_를_비교한다(String input, String target, int strikeResult, int ballResult) {
         init(input, target);
 
-        int[] countResult = sut.guessNumber();
+        GameResult gameResult = sut.guessNumber();
 
-        int strike = countResult[0];
-        int ball = countResult[1];
-
-        assertThat(strike).isEqualTo(strikeResult);
-        assertThat(ball).isEqualTo(ballResult);
+        assertThat(gameResult.getStrike()).isEqualTo(strikeResult);
+        assertThat(gameResult.getBall()).isEqualTo(ballResult);
     }
 
     private static Stream<Arguments> guessNumberResult() {

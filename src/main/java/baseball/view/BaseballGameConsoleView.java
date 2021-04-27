@@ -1,21 +1,21 @@
 package baseball.view;
 
 
+import baseball.GameResult;
+
 public class BaseballGameConsoleView implements BaseballGameView {
 
     @Override
-    public void showBallCountMessage(int[] result) {
+    public void showBallCountMessage(GameResult result) {
         StringBuilder sb = new StringBuilder();
-        int strike = result[0];
-        int ball = result[1];
+        int strike = result.getStrike();
+        int ball = result.getBall();
         if (hasNonCount(strike, ball)) {
             System.out.println(sb.append("낫씽"));
             return;
         }
-
         appendMessageIfExists(strike, ball, sb, strike + " 스트라이크");
         appendMessageIfExists(ball, sb, ball + " 볼");
-
         System.out.println(sb);
     }
 

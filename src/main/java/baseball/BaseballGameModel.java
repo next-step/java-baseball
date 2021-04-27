@@ -66,18 +66,17 @@ public final class BaseballGameModel {
         return numberStr.length() == NUMBER_SIZE;
     }
 
-    public int[] guessNumber() {
+    public GameResult guessNumber() {
         List<Character> inputList = convertStrToList(userInput());
         List<Character> targetList = convertStrToList(target());
-        int[] result = comparing(inputList, targetList);
-        int strike = result[0];
-        if (strike == NUMBER_SIZE) {
+        GameResult result = comparing(inputList, targetList);
+        if ((result.isFullStrike())) {
             isRoundFinished = true;
         }
         return result;
     }
 
-    private int[] comparing(List<Character> input, List<Character> targetList) {
+    private GameResult comparing(List<Character> input, List<Character> targetList) {
         int strike = 0, ball = 0;
 
         for (int i = 0; i < NUMBER_SIZE; i++) {
@@ -87,7 +86,7 @@ public final class BaseballGameModel {
             strike = addCountIfTrue(strike, inputChar == targetChar);
             ball = addCountIfTrue(ball, inputChar != targetChar && targetList.contains(inputChar));
         }
-        return new int[]{strike, ball};
+        return new GameResult(strike, ball);
     }
 
     private List<Character> convertStrToList(String str) {
