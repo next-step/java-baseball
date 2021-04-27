@@ -8,5 +8,9 @@ public class BaseBallApplication {
 		// 스트라이크/볼 확인
 
 		// 게임 계속 여부 판단
+		int gameCode = BaseBallGame.GameContinueCode;
+		while (gameCode != BaseBallGame.GameExitCode) {
+			gameCode = BaseBallGame.getGameCode();
+		}
 	}
 }

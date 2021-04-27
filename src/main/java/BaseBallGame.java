@@ -4,6 +4,9 @@ import java.util.Scanner;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class BaseBallGame {
+	public static final int GameContinueCode = 1;
+	public static final int GameExitCode = 2;
+
 	public static int getRandomNumber() {
 		return new Random().nextInt(9) + 1;
 	}
@@ -64,5 +67,11 @@ public class BaseBallGame {
 			userInputNumbers[i] = Integer.parseInt(userInputStringArray[i]);
 		}
 		return userInputNumbers;
+	}
+
+	public static int getGameCode() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("게임을 새로 시작하려면1, 종료하려면 2를 입력하세요");
+		return scanner.nextInt();
 	}
 }
