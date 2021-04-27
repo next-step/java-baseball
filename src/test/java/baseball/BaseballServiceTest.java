@@ -30,4 +30,22 @@ public class BaseballServiceTest {
 
     }
 
+    @Test
+    public void When_InputValueHas0AndNotIn111to999_Expect_ValidateInputValueAsFalse() {
+        softly = new SoftAssertions();
+
+        softly.assertThat(baseballService.validateInputValue(210)).as("InputValueHas0").isFalse();
+        softly.assertThat(baseballService.validateInputValue(97)).as("InputValueLessThan111").isFalse();
+        softly.assertThat(baseballService.validateInputValue(1052)).as("InputValueOverThan999").isFalse();
+        softly.assertAll();
+    }
+
+    @Test
+    public void When_InputValueHasDuplicateNumber_Expect_ValidateInputValueAsFalse() {
+        softly = new SoftAssertions();
+
+        softly.assertThat(baseballService.validateInputValue(112)).as("InputValueHasDuplicateNumber").isFalse();
+        softly.assertAll();
+    }
+
 }
