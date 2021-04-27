@@ -12,7 +12,4 @@ public class Main {
 			isRunning = menuUI.getMenuInput(scan.nextLine());
 		}
 	}
-
 }
-
-
