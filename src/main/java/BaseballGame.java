@@ -47,10 +47,10 @@ public class BaseballGame {
 		return score;
 	}
 
-	private boolean isStrike(char input, char randomNumber){
+	public boolean isStrike(char input, char randomNumber){
 		return false;
 	}
-	private boolean isBall(char input, String randomNumbers){
+	public boolean isBall(char input, String randomNumbers){
 		return false;
 	}
 
