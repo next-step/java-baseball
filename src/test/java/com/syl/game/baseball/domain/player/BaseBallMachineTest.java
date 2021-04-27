@@ -49,9 +49,9 @@ public class BaseBallMachineTest {
     }
 
     @Test
-    public void speakJudgementTest() {
+    public void judgeStrike() {
         BaseBallMachine baseBallMachine = new BaseBallMachine();
-        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.speakJudgement(machineNumbers, threeStrikeNumbers);
+        BaseBallJudgementStatus baseBallJudgementStatus = baseBallMachine.judgeStrike(machineNumbers, threeStrikeNumbers);
         assertSame(3, baseBallJudgementStatus.getStrike());
     }
 }

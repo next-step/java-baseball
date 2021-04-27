@@ -8,13 +8,17 @@ import java.util.Scanner;
 
 public abstract class BaseBallPlayer {
 
+    private Scanner scanner;
+    private BaseBallNumbers baseBallNumbers;
+    private BaseBallGameManager manager;
+
     /**
      * 임의의 수 3개 선택
      * @return
      */
     public BaseBallNumbers selectThreeNumbers() {
-        Scanner scanner = new Scanner(System.in);
-        BaseBallNumbers baseBallNumbers = new BaseBallNumbers();
+        scanner = new Scanner(System.in);
+        baseBallNumbers = new BaseBallNumbers();
         baseBallNumbers.setFirst(scanner.nextInt());
         baseBallNumbers.setSecond(scanner.nextInt());
         baseBallNumbers.setThird(scanner.nextInt());
@@ -26,8 +30,8 @@ public abstract class BaseBallPlayer {
      * @return
      */
     public BaseBallNumbers inputThreeNumbers() {
-        Scanner scanner = new Scanner(System.in);
-        BaseBallNumbers baseBallNumbers = new BaseBallNumbers();
+        scanner = new Scanner(System.in);
+        baseBallNumbers = new BaseBallNumbers();
         baseBallNumbers.setFirst(scanner.nextInt());
         baseBallNumbers.setSecond(scanner.nextInt());
         baseBallNumbers.setThird(scanner.nextInt());
@@ -41,7 +45,7 @@ public abstract class BaseBallPlayer {
      * @return
      */
     public BaseBallJudgementStatus judgeStrike(BaseBallNumbers answerNumbers, BaseBallNumbers inputNumbers) {
-        BaseBallGameManager manager = new BaseBallGameManager();
+        manager = new BaseBallGameManager();
         return manager.judgeStrikeOrBallOrNothing(answerNumbers, inputNumbers);
     }
 }

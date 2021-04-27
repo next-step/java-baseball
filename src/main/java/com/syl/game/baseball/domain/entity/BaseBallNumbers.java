@@ -26,16 +26,21 @@ public class BaseBallNumbers {
         return second;
     }
 
-    public void setSecond(int second) {
+    public boolean setSecond(int second) {
+        if (compareFirst(second)) return false;
         this.second = second;
+        return true;
     }
 
     public int getThird() {
         return third;
     }
 
-    public void setThird(int third) {
+    public boolean setThird(int third) {
+        System.out.println("third   "+third);
+        if (compareFirst(third) || compareSecond(third)) return false;
         this.third = third;
+        return true;
     }
 
     public int countStrike(BaseBallNumbers inputNumbers) {
