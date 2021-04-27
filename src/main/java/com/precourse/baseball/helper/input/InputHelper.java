@@ -36,8 +36,16 @@ public class InputHelper {
 	public static boolean continueGame() {
 		DisplayHelper.strikeOutMessage();
 		DisplayHelper.countinueMessage();	
-		
-		String input = sc.nextLine();
+				
+		String input = "";
+		while(true) {
+			input = sc.nextLine();
+			if( Validator.validGameContinueInput(input) ) {
+				break;
+			}
+			
+			DisplayHelper.countinueMessage();	
+		}
 		
 		return GAME_CONTINUE.equals(input);
 	}
