@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/frostnight/java-baseball-precourse/compare/v2.2.1...v2.2.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* 스트라이크 카운팅 구현 및 볼 카운팅 테스트 작성 ([65640db](https://github.com/frostnight/java-baseball-precourse/commit/65640dba5ae2285de43da2cb2b399d4994efe292))
+
 ### [2.2.1](https://github.com/frostnight/java-baseball-precourse/compare/v2.2.0...v2.2.1) (2021-04-27)
 
 
