@@ -75,6 +75,10 @@ public enum Hint {
         this.description = description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public abstract Integer calculateCount(Balls myBalls, Balls yourBalls);
 
     public static HintResults calculateResults(Balls myBalls, Balls yourBalls) {
