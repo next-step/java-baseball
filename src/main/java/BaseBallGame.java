@@ -141,26 +141,5 @@ public class BaseBallGame {
             setStatus(Status.EXIT);
         }
     }
-
-    public void exit() {
-        try {
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 공통 input
-     *
-     * @return 에러가 나면 "" 리턴
-     */
-    private String input() {
-        try {
-            return br.readLine();
-        } catch (Exception e) {
-            Log.INPUT_ERROR.println();
-            return EMPTY_STRING;
-        }
     }
 }
