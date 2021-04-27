@@ -15,11 +15,7 @@ public class BaseballPlayService implements GameService {
 	public void playGame() {
 		baseball.init();
 		List<Integer> userAnswer = userAnswerInputService.getUserInput();
-		getResult(baseball.getAnswer(), userAnswer);
-	}
-
-	private void getResult(List<Integer> answer, List<Integer> userAnswer) {
-		baseballGameService.getStrikeCount(answer, userAnswer);
-		baseballGameService.getStrikeCount(answer, userAnswer);
+		BaseballResult result = baseballGameService.getResult(baseball.getAnswer(), userAnswer);
+		resultOutputService.printResult(result);
 	}
 }
