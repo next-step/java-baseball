@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -22,7 +21,7 @@ class PitcherTest {
 	@ValueSource(strings = {"123"})
 	void isRight_ShouldSplit3DigitsFromString(String pitchNumbers) {
 		pitcher.setPitch(pitchNumbers);
-		pitcher.setPiches();
+		pitcher.splitPitches();
 
 		assertThat(pitcher.getPitches()[0]).isEqualTo(1);
 		assertThat(pitcher.getPitches()[1]).isEqualTo(2);
