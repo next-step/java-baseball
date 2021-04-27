@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +37,13 @@ public class BaseBallGame {
         scanner.close();
     }
 
+    /**
+     * 사용자 입력 validate
+     * @param input
+     */
+    protected boolean validateUserInput(String input) {
+        return input.length() != 3;
+    }
 
     /**
      * 한 라운드
@@ -46,11 +54,47 @@ public class BaseBallGame {
         while(true) {
             String input = scanner.next();
             // 3자리인지 체크
-            if (input.length() != 3) {
+            if (validateUserInput(input)) {
                 System.out.println("3자리의 숫자를 입력해주세요");
                 continue;
             }
+
+            int strikeCount = 0;
+            int ballCount = 0;
+            for (int i = 0; i < 3; i++) {
+                for(int ii = 0; ii < 3; ii++) {
+                    // 문자도 일치하고, 인덱스도 같으면 스트라이크
+                    if(input.charAt(i) == answer[ii] && i == ii) {
+                        strikeCount++;
+                        break;
+                    }
+                    // 다른자리라도 있으면 볼
+                    if(input.charAt(i) == answer[ii]) {
+                        ballCount++;
+                        break;
+                    }
+                }
+            }
+
+            if(strikeCount == 3) {
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                break;
+            } else if(strikeCount == 0 && ballCount == 0) {
+                System.out.println("포볼");
+                continue;
+            }
+
+            ArrayList<String> messages = new ArrayList<>();
+            if(strikeCount > 0) {
+                messages.add(strikeCount + " 스트라이크");
+            }
+            if(ballCount > 0) {
+                messages.add(ballCount + " 볼");
+            }
+            System.out.println(String.join(" ", messages));
         }
     }
+
+
 
 }
