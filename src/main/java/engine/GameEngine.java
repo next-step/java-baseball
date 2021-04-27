@@ -16,6 +16,7 @@ public class GameEngine {
 	}
 
 	public boolean progressEachStage(Ball1 inputBall) throws BaseballException1 {
+		resetStage();
 		compareInputWithAnswer(inputBall);
 		if (strike == 3) {
 			return true;
