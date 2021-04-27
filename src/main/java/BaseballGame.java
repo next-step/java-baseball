@@ -12,25 +12,21 @@ public class BaseballGame {
 	public void startGame() {
 		do{
 			playBaseballGame();
-			if(checkEnd())
-				break;
-		}while(true);
+		}while(!checkEnd());
 	}
 
 	private boolean checkEnd(){
 		System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
 		String input = getInput();
 		final String GameEnd = "2";
-		return input.toString().equals(GameEnd) ? true : false;
+		return input.equals(GameEnd);
 	}
 
 	private void playBaseballGame(){
 		String randomNumbers = getRandomNumbers();
-		System.out.println("Random Numbers: " + randomNumbers);
 		while (true) {
 			System.out.print("숫자를입력해주세요: ");
 			String input = getInput();
-
 			Score score = getScore(randomNumbers, input);
 			showScore(score);
 			if(isGamePass(score))
@@ -40,9 +36,8 @@ public class BaseballGame {
 	}
 
 	public boolean isGamePass(Score score){
-		return score.getStrikeCount() == 3 ? true : false;
+		return score.getStrikeCount() == 3;
 	}
-
 
 	public Score getScore(String input, String randomNumbers){
 		Score score = new Score();
@@ -53,17 +48,16 @@ public class BaseballGame {
 			}
 			if(isBall(input.charAt(i), randomNumbers)){
 				score.setBallCount(score.getBallCount() + 1);
-				continue;
 			}
 		}
 		return score;
 	}
 
 	public boolean isStrike(char input, char randomNumber){
-		return input == randomNumber ? true : false;
+		return input == randomNumber;
 	}
 	public boolean isBall(char input, String randomNumbers){
-		return randomNumbers.contains(input+"") ? true : false;
+		return randomNumbers.contains(input + "");
 	}
 
 	private void showScore(Score score){
@@ -72,7 +66,7 @@ public class BaseballGame {
 		if(score.getBallCount() > 0)
 			System.out.print(score.getBallCount() + " 볼");
 
-		System.out.println("");
+		System.out.println();
 	}
 
 	private String getRandomNumbers(){
