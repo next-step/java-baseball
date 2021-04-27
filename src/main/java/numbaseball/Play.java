@@ -125,4 +125,12 @@ public class Play<castArrayList> {
         return 0;
     }
 
+    public static boolean isEnd(Map<String, Object> playResult) {
+        String strikeCount = String.valueOf(playResult.get("strike"));
+        if ( "3".equals(strikeCount) ){
+            return false;
+        }
+        return true;
+    }
+
 }

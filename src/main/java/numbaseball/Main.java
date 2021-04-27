@@ -9,18 +9,18 @@ public class Main {
     }
 
     private static void startGame(){
-        //3자리 난수 arrayList 생성
         List<Integer> playNumber = Play.createPlayNumber();
-        playGame(playNumber);
+        while(playGame(playNumber));
+
     }
 
-    private static void playGame(List<Integer> playNumber) {
+    private static boolean playGame(List<Integer> playNumber) {
         Ui.startPlayGame();
         List<Integer> inputNumber = Play.getInputNumber();
         Map<String, Object> playResult = Play.judge(playNumber, inputNumber);
         Ui.judgePlayGame(playResult);
+        return Play.isEnd(playResult);
     }
-
 
 }
 
