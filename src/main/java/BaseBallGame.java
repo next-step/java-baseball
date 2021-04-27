@@ -6,6 +6,12 @@ import org.apache.commons.lang3.ArrayUtils;
 public class BaseBallGame {
 	public static final int GameContinueCode = 1;
 	public static final int GameExitCode = 2;
+	private static final String InputNumbersForUser = "숫자를 입력해주세요 : ";
+	private static final String GameContinueOrExit = "게임을 새로 시작하려면1, 종료하려면 2를 입력하세요";
+	private static final String AnswerAndExit = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
+	private static final String Strike = " 스트라이크";
+	private static final String Ball = "볼";
+	private static final String Nothing = "낫씽";
 
 	public static int getRandomNumber() {
 		return new Random().nextInt(9) + 1;
@@ -56,9 +62,9 @@ public class BaseBallGame {
 			? count + 1 : count;
 	}
 
-	public static int[] getUserInputNumbers() {
+	private static int[] getUserInputNumbers() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("숫자를 입력해주세요 : ");
+		System.out.print(InputNumbersForUser);
 		String userInput = scanner.nextLine();
 		String[] userInputStringArray = userInput.split("");
 		int len = userInputStringArray.length;
@@ -71,23 +77,23 @@ public class BaseBallGame {
 
 	public static int getGameCode() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("게임을 새로 시작하려면1, 종료하려면 2를 입력하세요");
+		System.out.println(GameContinueOrExit);
 		return scanner.nextInt();
 	}
 
-	public static void printStrikeAndBall(int strike, int ball) {
+	private static void printStrikeAndBall(int strike, int ball) {
 		if (strike > 0) {
-			System.out.print(strike + " 스트라이크");
+			System.out.print(strike + Strike);
 		}
 		if (ball > 0) {
-			System.out.print(ball + "볼");
+			System.out.print(ball + Ball);
 		}
 		if (strike == 0 && ball == 0) {
-			System.out.print("낫씽");
+			System.out.print(Nothing);
 		}
 		System.out.println();
 		if (strike == 3) {
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			System.out.println(AnswerAndExit);
 		}
 	}
 
