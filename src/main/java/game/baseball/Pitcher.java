@@ -5,13 +5,17 @@ public class Pitcher {
 
 	private Integer[] pitches = new Integer[3];
 
-	private void setPiches() {
+	public void setPiches() {
 		for (int i = 0; i < pitches.length; i++){
 			pitches[i] = Integer.parseInt(pitch.split("")[i]);
 		}
 	}
 
-	private void setPitch(String pitch) {
+	public void setPitch(String pitch) {
 		this.pitch = pitch;
+	}
+
+	public Integer[] getPitches() {
+		return pitches;
 	}
 }
