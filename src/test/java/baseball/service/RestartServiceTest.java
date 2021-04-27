@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class RestartServiceTest {
-
 	private RestartService restartService;
 
 	@BeforeEach
@@ -33,5 +32,4 @@ class RestartServiceTest {
 		nonRestartCharacters.isThrownBy(() -> restartService.isRestart(" "));
 		nonRestartCharacters.isThrownBy(() -> restartService.isRestart("A"));
 	}
-
 }

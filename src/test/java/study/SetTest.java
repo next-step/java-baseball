@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SetTest {
-
 	private Set<Integer> numbers;
 
 	@BeforeEach
@@ -56,5 +55,4 @@ public class SetTest {
 	void containsCsvParameterized(String input, String expected) {
 		assertEquals(numbers.contains(Integer.parseInt(input)), Boolean.parseBoolean(expected));
 	}
-
 }

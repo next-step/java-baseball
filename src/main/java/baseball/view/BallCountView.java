@@ -29,20 +29,12 @@ public class BallCountView {
 	public void responseBallCount(BallCount ballCount) {
 		List<String> list = new ArrayList<>();
 		addBallCountMessage(list, ballCount.getStrike(), "%d스트라이크");
-		addBallCountMessage(list, ballCount.getBall(), "d볼");
+		addBallCountMessage(list, ballCount.getBall(), "%d볼");
 		if (isNothingAndPrintMessage(list)) {
 			return;
 		}
 		printBallCountMessage(list);
 		printAllMatchMessage(ballCount.getStrike());
-	}
-
-	public void responseNonNumericCharacters() {
-		System.out.printf("%d~%d 사이의 %d자리 중복되지 않는 숫자를 입력해주세요.%s", MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER, RANDOM_NUMBER_LENGTH, LINE_SEPARATOR);
-	}
-
-	public void responseDuplicateCharacters() {
-		System.out.println("중복된 숫자가 존재합니다.");
 	}
 
 	private void addBallCountMessage(List<String> list, int value, String format) {
@@ -67,5 +59,13 @@ public class BallCountView {
 		if (RANDOM_NUMBER_LENGTH == strike) {
 			System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임종료%s", RANDOM_NUMBER_LENGTH, LINE_SEPARATOR);
 		}
+	}
+
+	public void responseNonNumericCharacters() {
+		System.out.printf("%d~%d 사이의 %d자리 중복되지 않는 숫자를 입력해주세요.%s", MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER, RANDOM_NUMBER_LENGTH, LINE_SEPARATOR);
+	}
+
+	public void responseDuplicateCharacters() {
+		System.out.println("중복된 숫자가 존재합니다.");
 	}
 }

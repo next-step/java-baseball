@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringTest {
-
 	@Test
 	@DisplayName("요구사항 1 - split test")
 	void contains() {
@@ -53,5 +52,4 @@ public class StringTest {
 				.isThrownBy(callable)
 				.withMessageMatching("String index out of range: \\d+");
 	}
-
 }

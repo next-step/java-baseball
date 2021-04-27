@@ -11,7 +11,6 @@ import java.io.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BallCountViewTest {
-
 	private BallCountView ballCountView;
 	private OutputStream out;
 

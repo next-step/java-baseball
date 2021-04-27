@@ -16,8 +16,7 @@ public class GameController {
 	private final BallCountView ballCountView;
 	private final RestartView restartView;
 
-	public GameController(BallCountService ballCountService, RestartService restartService,
-	                      BallCountView ballCountView, RestartView restartView) {
+	public GameController(BallCountService ballCountService, RestartService restartService, BallCountView ballCountView, RestartView restartView) {
 		this.ballCountService = ballCountService;
 		this.restartService = restartService;
 		this.ballCountView = ballCountView;

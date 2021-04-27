@@ -16,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class BallCountServiceTest {
-
 	private BallCountService ballCountService;
 
 	@BeforeEach
@@ -72,5 +71,4 @@ class BallCountServiceTest {
 		parseNumbers = Arrays.asList(9, 1, 8);
 		assertThat(ballCountService.compareNumbers(generateNumbers, parseNumbers)).isEqualTo(new BallCount(1, 2));
 	}
-
 }

@@ -33,12 +33,6 @@ public class BallCountService {
 		return convertNumericStringToIntegerList(input);
 	}
 
-	public BallCount compareNumbers(List<Integer> generateNumbers, List<Integer> parseNumbers) {
-		int strike = getStrike(generateNumbers, parseNumbers);
-		int ball = getBall(generateNumbers, parseNumbers);
-		return new BallCount(strike, ball);
-	}
-
 	private void validateNumericCharacters(String input) {
 		if (!input.matches(String.format("^[%d-%d]{%d}$", MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER, RANDOM_NUMBER_LENGTH))) {
 			throw new NonNumericCharactersException();
@@ -57,6 +51,12 @@ public class BallCountService {
 			numbers.add(Integer.parseInt(s));
 		}
 		return new ArrayList<>(numbers);
+	}
+
+	public BallCount compareNumbers(List<Integer> generateNumbers, List<Integer> parseNumbers) {
+		int strike = getStrike(generateNumbers, parseNumbers);
+		int ball = getBall(generateNumbers, parseNumbers);
+		return new BallCount(strike, ball);
 	}
 
 	private int getStrike(List<Integer> generateNumbers, List<Integer> parseNumbers) {

@@ -37,7 +37,6 @@
 * Controller
   * Game Controller: 게임의 진행상태에 따라 관련된 domain, service, domain control
 * Domain
-  * Game Model: 난수, 진행상태 값 저장
   * BallCount Model: 스트라이크, 볼 횟수 저장
 * Error
   * NonNumericCharacters: 1~9 사이 숫자가 아닐 경우 Exception

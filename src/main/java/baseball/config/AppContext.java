@@ -19,7 +19,7 @@ public class AppContext {
 
 	private AppContext() {
 		scanner = new Scanner(System.in);
-		appConfig = new AppConfig();
+		appConfig = new AppConfig(3, 1, 9, "1", "2");
 		ballCountService = new BallCountService(appConfig);
 		restartService = new RestartService(appConfig);
 		ballCountView = new BallCountView(appConfig, scanner);

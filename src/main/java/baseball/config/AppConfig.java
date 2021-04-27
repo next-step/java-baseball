@@ -1,11 +1,19 @@
 package baseball.config;
 
 public class AppConfig {
-	private final int randomNumberLength = 3;
-	private final int minRandomNumber = 1;
-	private final int maxRandomNumber = 9;
-	private final String restartCommand = "1";
-	private final String exitCommand = "2";
+	private final int randomNumberLength;
+	private final int minRandomNumber;
+	private final int maxRandomNumber;
+	private final String restartCommand;
+	private final String exitCommand;
+
+	public AppConfig(int randomNumberLength, int minRandomNumber, int maxRandomNumber, String restartCommand, String exitCommand) {
+		this.randomNumberLength = randomNumberLength;
+		this.minRandomNumber = minRandomNumber;
+		this.maxRandomNumber = maxRandomNumber;
+		this.restartCommand = restartCommand;
+		this.exitCommand = exitCommand;
+	}
 
 	public int getRandomNumberLength() {
 		return randomNumberLength;
