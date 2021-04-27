@@ -15,11 +15,9 @@ public class Main {
         init();
         setBettings(computer.setComputerValues());
         Bettings bettings = new Bettings(new ArrayList(Arrays.asList(1,2,3)));
-        setBettings(bettings);
-        playGame();
-        if(!isGameOver()){
-            init();
+        do{
+            setBettings(bettings);
             playGame();
-        }
+        } while(!isGameOver());
     }
 }
