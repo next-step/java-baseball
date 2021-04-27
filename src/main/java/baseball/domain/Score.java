@@ -37,12 +37,4 @@ public class Score {
 
         countOfRule.put(gameRule, ++count);
     }
-
-    public boolean isNotEndGame() {
-        return !isEndGame();
-    }
-
-    public boolean isEndGame() {
-        return countOfBall() == INIT_COUNT && countOfMissing() == INIT_COUNT;
-    }
 }
