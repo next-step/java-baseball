@@ -23,6 +23,10 @@ public class InputOutputUtil {
 		return scanner.next();
 	}
 
+	public void endGame() {
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+	}
+
 	private void printStrike(int strike) {
 		System.out.print(strike + " 스트라이크 ");
 	}

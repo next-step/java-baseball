@@ -22,6 +22,11 @@ public class GameManager {
 	public void startGame() {
 		while (!progressEachStage()) {
 		}
+		endGame();
+	}
+
+	public void endGame() {
+		inputOutputUtil.endGame();
 	}
 
 	public boolean progressEachStage() {
