@@ -56,20 +56,22 @@ public class BaseballLogic {
 	 * 				 strike / ball을 판독하는 method
 	 *
 	 * @param currentIdx 현재 idx(user input의)
-	 * @param answerArray 정답 배열
+	 * @param answer 정답 배열
 	 * @param userInput user input 배열
 	 * @param answerObject 현재 진행 중인 문제의 answer object class
 	 * @return AnswerObject
 	 */
-	private AnswerObject checkStrikeOrBall(int currentIdx, Integer[] answerArray, Integer userInput,
+	public AnswerObject checkStrikeOrBall(int currentIdx, Integer[] answer, Integer userInput,
 		AnswerObject answerObject) {
 
-		if (answerArray[currentIdx].equals(userInput)) {
+		// 완전 일치 -> 스트라이크
+		if (userInput.equals(answer[currentIdx])) {
 			answerObject.setStrike(answerObject.getStrike() + 1);
 			return answerObject;
 		}
 
-		if (Arrays.asList(answerArray).contains(userInput)) {
+		// 정답 배열과 현재 원소가
+		if (Arrays.asList(answer).contains(userInput)) {
 			answerObject.setBall(answerObject.getBall() + 1);
 		}
 

@@ -48,4 +48,22 @@ class BaseballLogicTest {
 		AnswerObject when = new AnswerObject(0, INPUT_SIZE);
 		assertThat(given).isNotEqualTo(when);
 	}
+
+	@Test
+	@DisplayName("정답 체크 관련 배열 테스트")
+	void checkStrikeOrBall() {
+
+		Integer[] answer = {5, 6, 9};
+		Integer[] input = {5, 9, 8};
+
+		AnswerObject given = new AnswerObject(1, 1);
+		AnswerObject when = new AnswerObject(0, 0);
+
+		for (int idx = 0; idx < answer.length; idx++) {
+			baseballLogic.checkStrikeOrBall(idx, answer, input[idx], when);
+		}
+
+		assertThat(when.getBall()).isEqualTo(given.getBall());
+		assertThat(when.getStrike()).isEqualTo(given.getStrike());
+	}
 }
