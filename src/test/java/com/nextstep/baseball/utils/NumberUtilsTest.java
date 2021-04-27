@@ -1,6 +1,7 @@
 package com.nextstep.baseball.utils;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,15 +12,26 @@ class NumberUtilsTest {
 	void getRandomThreeDigitNumber() {
 		String[] numbs = NumberUtils.getRandomThreeDigitNumber();
 		boolean isValid = true;
-		loop: for (int i = 0; i < numbs.length - 1; i++) {
+		loop:
+		for (int i = 0; i < numbs.length - 1; i++) {
 			String temp = numbs[i];
-			for (int j = i+1; j < numbs.length; j++) {
+			for (int j = i + 1; j < numbs.length; j++) {
 				if (temp.equals(numbs[j])) {
 					isValid = false;
 					break loop;
 				}
 			}
 		}
-		Assertions.assertThat(isValid).isTrue();
+		assertThat(isValid).isTrue();
 	}
+
+	@Test
+	@DisplayName("3자리 수에 대한 스트라이크 판정 확인")
+	void checkStrike() {
+		String computer = "123";
+		String input = "123";
+		boolean result = NumberUtils.checkStrike(computer, input);
+		assertThat(result).isTrue();
+	}
+
 }
