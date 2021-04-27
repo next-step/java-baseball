@@ -12,36 +12,36 @@ public class UserInterface {
 	private static final String RETRY_OR_NOT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 	public String interactUser() {
-		System.out.println(WELCOME_MESSAGE);
+		sendMessageToUser(WELCOME_MESSAGE);
 		int input = scanner.nextInt();
 		NumberFormatValidator.validate(input);
 		return String.valueOf(input);
 	}
 
 	public int replayOnNot() {
-		System.out.println(FINISH_MESSAGE);
+		sendMessageToUser(FINISH_MESSAGE);
 		int response = 0;
 		boolean isRetry = true;
 		while (isRetry) {
-			System.out.println(RETRY_OR_NOT);
+			sendMessageToUser(RETRY_OR_NOT);
 			response = scanner.nextInt();
 			isRetry = !isAcceptable(response);
 		}
 		return response;
 	}
 
-	public void answerTo(Map<Result, Integer> score) {
+	public void sendMessageToUser(Map<Result, Integer> score) {
 		if (score.size() == 0) {
-			System.out.println(Result.NOTHING.getMessage());
+			sendMessageToUser(Result.NOTHING.getMessage());
 			return;
 		}
-		answerTo(convertScoreToMessage(score));
+		sendMessageToUser(convertScoreToMessage(score));
 	}
 
 	protected String convertScoreToMessage(Map<Result, Integer> score) {
 		StringBuilder answer = new StringBuilder();
 		writeMessageBy(score, Result.STRIKE, answer);
-		if (!isInitMessage(answer) && hasNext(score)) {
+		if (!isInitMessage(answer) && hasBall(score)) {
 			answer.append(" ");
 		}
 		writeMessageBy(score, Result.BALL, answer);
@@ -52,7 +52,7 @@ public class UserInterface {
 		return code == 1 || code == 2;
 	}
 
-	private void answerTo(String message) {
+	private void sendMessageToUser(String message) {
 		if (message.length() == 0) {
 			return;
 		}
@@ -72,7 +72,7 @@ public class UserInterface {
 		return message.length() == 0;
 	}
 
-	private boolean hasNext(Map<Result, Integer> score) {
+	private boolean hasBall(Map<Result, Integer> score) {
 		return score.containsKey(Result.BALL);
 	}
 

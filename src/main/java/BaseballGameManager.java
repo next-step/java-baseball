@@ -21,7 +21,7 @@ public class BaseballGameManager {
 			String userInput = userInterface.interactUser();
 			Referee referee = new Referee(question, userInput);
 			retry = !referee.isFinish();
-			userInterface.answerTo(referee.getScore());
+			userInterface.sendMessageToUser(referee.getScore());
 		}
 		return userInterface.replayOnNot();
 	}
