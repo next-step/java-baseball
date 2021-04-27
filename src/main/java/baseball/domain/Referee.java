@@ -15,12 +15,13 @@ public class Referee {
         hitterNumberList = hitter.numbers().numbers();
     }
 
-    public void check(Numbers inputNumbers) {
+    public boolean check(Numbers inputNumbers) {
         this.strike = 0;
         this.ball = 0;
         List<Number> inputNumberList = inputNumbers.numbers();
         compareExactlyNumber(inputNumberList);
 
+        return strike == 3 ? true : false;
     }
 
     public int strike() {

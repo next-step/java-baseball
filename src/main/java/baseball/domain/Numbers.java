@@ -29,7 +29,7 @@ public class Numbers {
         Number number2 = new Number(numberIntegerList.get(SECOND_NUMBER_INDEX).intValue());
         Number number3 = new Number(numberIntegerList.get(THIRD_NUMBER_INDEX).intValue());
 
-        changeListNumber(number1, number2, number3);
+        this.numberList = changeListNumber(number1, number2, number3);
     }
 
     public List<Number> numbers() {
