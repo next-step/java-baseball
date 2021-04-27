@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class RandomBallGenerationStrategy implements BallGenerationStrategy{
-    private static final int RANDOM_PADDING = 1;
+    private static final int CALCULATE_PADDING = 1;
 
     @Override
     public Balls generate(int length) {
@@ -17,7 +17,7 @@ public class RandomBallGenerationStrategy implements BallGenerationStrategy{
         Set<Ball> balls = new HashSet<>();
         while(balls.size() < length) {
             balls.add(
-                    Ball.of(random.nextInt(Ball.MAXIMUM_NUMBER - Ball.MINIMUM_NUMBER + RANDOM_PADDING) + Ball.MINIMUM_NUMBER)
+                    Ball.of(random.nextInt(Ball.MAXIMUM_NUMBER - Ball.MINIMUM_NUMBER + CALCULATE_PADDING) + Ball.MINIMUM_NUMBER)
             );
         }
 
