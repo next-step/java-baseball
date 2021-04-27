@@ -10,6 +10,7 @@ import java.util.*;
 public class BaseballGame {
 
     private ViewLayer viewLayer = new ViewLayer();
+    private boolean playStatus = true;
 
     public void init() {
         do {
@@ -21,16 +22,13 @@ public class BaseballGame {
 
         List<Integer> randomNumbers = RandomNumberGenerator.makeBaseballNumber();
 
-        boolean playStatus = true;
-
         while (playStatus) {
             viewLayer.outValue("3자리 숫자 입력: ");
             String inputValue = viewLayer.inputValue();
 
             BaseballPlay baseballPlay = new BaseballPlay(randomNumbers);
-            List<Integer> inputNumbers = new InputValidators(inputValue).convert();
 
-            baseballPlay.play(inputNumbers);
+            baseballPlay.play(new InputValidators(inputValue).convert());
 
             BaseballResultMessage baseballResultMessage = new BaseballResultMessage(baseballPlay.getStrikeCount(), baseballPlay.getBallCount());
 
