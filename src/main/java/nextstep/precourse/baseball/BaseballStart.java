@@ -6,8 +6,9 @@ public class BaseballStart {
         int strike = 0;
 
         BaseballNewNumber baseballNewNumber = new BaseballNewNumber();
+        BaseballStrikeCheck baseballStrikeCheck = new BaseballStrikeCheck();
 
-        while(strike < 3) {
+        while(baseballStrikeCheck.baseballStrikeLoopCheck(strike)) {
             strike = baseballNewNumber.strikeResult();
         }
     }
