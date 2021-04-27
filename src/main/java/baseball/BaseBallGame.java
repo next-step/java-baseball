@@ -1,6 +1,6 @@
 package baseball;
 
-public class NumberBaseballGame {
+public class BaseBallGame {
     private static int randomNumber = 0;
 
     private static InputOutput io = new InputOutput();
@@ -15,7 +15,7 @@ public class NumberBaseballGame {
         io.println(message.START_GAME);
         io.println(message.ANSWER_CHECK);
         randomNumber = random.createNumber();
-        while(!judgmentNumber());
+        while (!judgmentNumber());
 
         isEnd();
     }
@@ -41,7 +41,7 @@ public class NumberBaseballGame {
     private static boolean judgmentNumber() {
         io.print(message.INPUT_NUMBER);
         int inputNumber = io.inputNumber();
-        if(!checkAnswer(inputNumber)) {
+        if (!checkAnswer(inputNumber)) {
             return false;
         }
 
