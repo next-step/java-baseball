@@ -1,10 +1,10 @@
-package com.tech.baseball;
+package com.tech.baseball.view;
 
 import java.util.Scanner;
 
 public class BaseballGameView {
 
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     //숫자 입력
     public String getUserNumber(){

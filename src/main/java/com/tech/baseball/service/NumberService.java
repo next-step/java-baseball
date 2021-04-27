@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class NumberService {
 
-    private Random random = new Random();
+    private final Random random = new Random();
     private HashSet<Integer> set = new HashSet<>();
 
     public int[] parseUserNumber(String input) {

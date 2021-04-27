@@ -1,8 +1,10 @@
 package com.tech.baseball;
 
+import com.tech.baseball.service.BaseballGameService;
+
 public class Main {
 
-    static BaseballGame game = new BaseballGame();
+    static BaseballGameService game = new BaseballGameService();
 
     public static void main(String[] args) {
         boolean isStartGame = true;

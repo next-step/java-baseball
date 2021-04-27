@@ -1,17 +1,16 @@
-package com.tech.baseball;
+package com.tech.baseball.service;
 
-import com.tech.baseball.service.NumberService;
 import com.tech.baseball.validator.BaseballGameValidator;
+import com.tech.baseball.view.BaseballGameView;
 import com.tech.baseball.vo.BaseballGameResult;
 
 import java.util.HashSet;
-import java.util.Random;
 
-public class BaseballGame {
+public class BaseballGameService {
 
-    private BaseballGameView gameView = new BaseballGameView();
-    private NumberService numberService = new NumberService();
-    private static BaseballGameValidator validator = new BaseballGameValidator();
+    private final BaseballGameView gameView = new BaseballGameView();
+    private final NumberService numberService = new NumberService();
+    private static final BaseballGameValidator validator = new BaseballGameValidator();
 
     HashSet<Integer> set = null;
 
@@ -28,7 +27,7 @@ public class BaseballGame {
         return restartGame();
     }
 
-    private void setComputerGameNumberHashSet(int[] computerGameNumber) {
+    public void setComputerGameNumberHashSet(int[] computerGameNumber) {
         set = new HashSet<>();
         for(int i : computerGameNumber) {
             set.add(i);
@@ -36,11 +35,12 @@ public class BaseballGame {
     }
 
     //게임 종료 후 재시작 유무 질의
-    private boolean restartGame() {
+    public boolean restartGame() {
         String input = gameView.getGameRestart().trim();
         boolean isValid = validator.checkRestartValid(input);
 
         while (!isValid){
+            gameView.printGameResult("1 또는 2가 입력되지 않았습니다. 다시 입력해 주세요");
             input = gameView.getGameRestart().trim();
             isValid = validator.checkRestartValid(input);
         }
@@ -49,12 +49,10 @@ public class BaseballGame {
     }
 
     //게임 진행 로직
-    private boolean progressGame(int[] computerGameNumber) {
+    public boolean progressGame(int[] computerGameNumber) {
         int[] userNumber = getUserNumber();
 
-        BaseballGameResult result = new BaseballGameResult();
-        result.setStrike(getStrike(computerGameNumber, userNumber));
-        result.setBall(getBall(computerGameNumber, userNumber));
+        BaseballGameResult result = checkBaseballGameResult(computerGameNumber, userNumber);
 
         if(isFinish(result)) return true;
 
@@ -62,11 +60,21 @@ public class BaseballGame {
         return false;
     }
 
-    private int[] getUserNumber() {
+    public BaseballGameResult checkBaseballGameResult(int[] computerGameNumber, int[] userNumber) {
+        BaseballGameResult result = new BaseballGameResult();
+
+        result.setStrike(getStrike(computerGameNumber, userNumber));
+        result.setBall(getBall(computerGameNumber, userNumber));
+
+        return result;
+    }
+
+    public int[] getUserNumber() {
         String input = gameView.getUserNumber().trim();
         boolean isValid = validator.checkNumberValid(input);
 
         while (!isValid) {
+            gameView.printGameResult("서로 다른 3자리 숫자가 입력되지 않았습니다.");
             input = gameView.getUserNumber().trim();
             isValid = validator.checkNumberValid(input);
         }
@@ -74,7 +82,7 @@ public class BaseballGame {
         return numberService.parseUserNumber(input);
     }
 
-    private int getBall(int[] computerGameNumber, int[] userNumber) {
+    public int getBall(int[] computerGameNumber, int[] userNumber) {
         int ball = 0;
         int idx = 0;
 
@@ -87,7 +95,7 @@ public class BaseballGame {
         return ball;
     }
 
-    private int getStrike(int[] computerGameNumber, int[] userNumber) {
+    public int getStrike(int[] computerGameNumber, int[] userNumber) {
         int strike = 0;
         int idx = 0;
 

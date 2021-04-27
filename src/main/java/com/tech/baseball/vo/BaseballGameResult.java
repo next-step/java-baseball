@@ -27,12 +27,11 @@ public class BaseballGameResult {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(strike);
-        sb.append(" 스트라이크 ");
-        sb.append(ball);
-        sb.append("볼");
-        return sb.toString();
+        String sb = strike +
+                " 스트라이크 " +
+                ball +
+                "볼";
+        return sb;
     }
 
 }
