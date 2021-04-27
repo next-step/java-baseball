@@ -2,8 +2,9 @@ package baseball;
 
 import baseball.numbergenerator.NumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static utils.ListUtil.convertStrToList;
 
 public final class BaseballGameModel {
 
@@ -76,27 +77,17 @@ public final class BaseballGameModel {
         return result;
     }
 
-    private GameResult comparing(List<Character> input, List<Character> targetList) {
+    private GameResult comparing(List<Character> input, List<Character> target) {
         int strike = 0, ball = 0;
 
         for (int i = 0; i < NUMBER_SIZE; i++) {
             Character inputChar = input.get(i);
-            Character targetChar = targetList.get(i);
+            Character targetChar = target.get(i);
 
             strike = addCountIfTrue(strike, inputChar == targetChar);
-            ball = addCountIfTrue(ball, inputChar != targetChar && targetList.contains(inputChar));
+            ball = addCountIfTrue(ball, inputChar != targetChar && target.contains(inputChar));
         }
         return new GameResult(strike, ball);
-    }
-
-    private List<Character> convertStrToList(String str) {
-        char[] chars = str.toCharArray();
-
-        ArrayList<Character> charList = new ArrayList<>();
-        for (char aChar : chars) {
-            charList.add(aChar);
-        }
-        return charList;
     }
 
     private int addCountIfTrue(int number, boolean condition) {
