@@ -1,4 +1,4 @@
-package jbh.domain;
+package jbh.numberbaseball;
 
 public class GameResult {
 
