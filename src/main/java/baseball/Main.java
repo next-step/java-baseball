@@ -1,10 +1,8 @@
 package baseball;
 
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
-        NumberBaseballGame baseball = new NumberBaseballGame();
+    public static void main(String[] args) {
+        BaseBallGame baseball = new BaseBallGame();
 
         baseball.runGame();
     }
