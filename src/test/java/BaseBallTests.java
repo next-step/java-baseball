@@ -46,6 +46,22 @@ public class BaseBallTests {
 		
 	}
 	
+	/**
+	 * 2. 사용자 숫자입력
+	 * 1) 숫자를 입력받는다.
+	 */
+	@Test
+	public void initPlayerNumTest() {
+		
+		BaseBall bb = new BaseBall();
+		bb.start("123");
+		
+		/* 숫자를 입력받았는지 검증 (S) */
+		Assertions.assertNotNull(bb.initNum);
+		/* 숫자를 입력받았는지 검증 (E) */
+		
+	}
+	
 	
 	
 }
