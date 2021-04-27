@@ -49,9 +49,7 @@ public class SetTest {
     @DisplayName("요구사항3 결과값 true, false로 존재 확인 테스트")
     void checkContainsNumber(int input, Boolean bool) {
         System.out.println(input);System.out.println(bool);
-
         assertThat(numbers.contains(input)).isEqualTo(bool);
-
     }
 
 }

@@ -39,7 +39,6 @@ public class StringStudyTest {
         assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(()->{
             Character result = stringStudy.charAtABC(stringStudy.getInput(),4);
         }).withMessageMatching("index는 2까지 입력 가능합니다.");
-
-
     }
+
 }
