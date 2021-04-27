@@ -1,5 +1,7 @@
 package nextstep.kht2199.precourse;
 
+import java.util.Random;
+
 /**
  *
  * @author heetaek.kim
@@ -7,6 +9,8 @@ package nextstep.kht2199.precourse;
 public final class FBGameNumber {
 
 	private final int computerNumber;
+
+	private final static Random random = new Random();
 
 	public FBGameNumber() {
 		computerNumber = generateNumber();
@@ -33,9 +37,15 @@ public final class FBGameNumber {
 	/**
 	 * @return 중복되지 않는 3자리 정수를 반환한다.
 	 */
-	private int generateNumber() {
-		assert false;
-		return 0;
+	protected int generateNumber() {
+		int number = random.nextInt(999 - 100) + 100;
+		String forCheck = String.valueOf(number);
+		if (forCheck.charAt(0) == forCheck.charAt(1) ||
+			forCheck.charAt(0) == forCheck.charAt(2) ||
+			forCheck.charAt(1) == forCheck.charAt(2)) {
+			return generateNumber();
+		}
+		return number;
 	}
 
 }
