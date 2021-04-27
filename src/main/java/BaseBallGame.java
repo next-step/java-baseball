@@ -54,6 +54,14 @@ public class BaseBallGame {
         return isEnd;
     }
 
+    // TODO : strike 여부 체크하여, checkModel의 strike에 표시
+    public void checkStrike(String answerUnit, int unitIndex){
+        int targetIndex = targetNumberList.indexOf(answerUnit);
+        if(targetIndex == unitIndex){
+            checkResultModel.strike++;
+        }
+    }
+
 
 
 }
