@@ -17,12 +17,8 @@ public abstract class BaseBallPlayer {
      * @return
      */
     public BaseBallNumbers selectThreeNumbers() {
-        scanner = new Scanner(System.in);
-        baseBallNumbers = new BaseBallNumbers();
-        baseBallNumbers.setFirst(scanner.nextInt());
-        baseBallNumbers.setSecond(scanner.nextInt());
-        baseBallNumbers.setThird(scanner.nextInt());
-        return baseBallNumbers;
+        return setNumbers();
+
     }
 
     /**
@@ -30,12 +26,7 @@ public abstract class BaseBallPlayer {
      * @return
      */
     public BaseBallNumbers inputThreeNumbers() {
-        scanner = new Scanner(System.in);
-        baseBallNumbers = new BaseBallNumbers();
-        baseBallNumbers.setFirst(scanner.nextInt());
-        baseBallNumbers.setSecond(scanner.nextInt());
-        baseBallNumbers.setThird(scanner.nextInt());
-        return baseBallNumbers;
+        return setNumbers();
     }
 
     /**
@@ -47,5 +38,17 @@ public abstract class BaseBallPlayer {
     public BaseBallJudgementStatus judgeStrike(BaseBallNumbers answerNumbers, BaseBallNumbers inputNumbers) {
         manager = new BaseBallGameManager();
         return manager.judgeStrikeOrBallOrNothing(answerNumbers, inputNumbers);
+    }
+
+    /**
+     * 숫자 세팅
+     */
+    private BaseBallNumbers setNumbers() {
+        scanner = new Scanner(System.in);
+        baseBallNumbers = new BaseBallNumbers();
+        while( baseBallNumbers.setFirst(scanner.nextInt()) );
+        while( baseBallNumbers.setSecond(scanner.nextInt()) );
+        while( baseBallNumbers.setThird(scanner.nextInt()) );
+        return baseBallNumbers;
     }
 }

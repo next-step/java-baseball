@@ -18,8 +18,12 @@ public class BaseBallNumbers {
         return first;
     }
 
-    public void setFirst(int first) {
-        this.first = first;
+    public boolean setFirst(int first) {
+        if (isValidNumber(first)) {
+            this.first = first;
+            return false;
+        }
+        return true;
     }
 
     public int getSecond() {
@@ -27,9 +31,11 @@ public class BaseBallNumbers {
     }
 
     public boolean setSecond(int second) {
-        if (compareFirst(second)) return true;
-        this.second = second;
-        return false;
+        if (isValidNumber(second)) {
+            this.second = second;
+            return false;
+        }
+        return true;
     }
 
     public int getThird() {
@@ -37,9 +43,11 @@ public class BaseBallNumbers {
     }
 
     public boolean setThird(int third) {
-        if (compareFirst(third) || compareSecond(third)) return true;
-        this.third = third;
-        return false;
+        if (isValidNumber(third)) {
+            this.third = third;
+            return false;
+        }
+        return true;
     }
 
     public int countStrike(BaseBallNumbers inputNumbers) {
@@ -78,6 +86,11 @@ public class BaseBallNumbers {
         return third == num;
     }
 
+    private boolean isValidNumber(int num) {
+        if (compareFirst(num) || compareSecond(num) || compareThird(num)) return false;
+        if (num <=1 || num >= 9) return false;
+        return true;
+    }
     @Override
     public String toString() {
         return "BaseBallNumbers{" +
