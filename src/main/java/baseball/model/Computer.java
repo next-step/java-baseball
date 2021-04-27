@@ -1,9 +1,9 @@
 package baseball.model;
 
-import baseball.value.Result;
 import baseball.config.BaseballConfig;
-import baseball.value.Code;
 import baseball.utils.NumberUtils;
+import baseball.value.Code;
+import baseball.value.Result;
 
 public class Computer {
 
@@ -33,5 +33,32 @@ public class Computer {
         return false;
     }
 
+    private int checkBall(int playerBall, int ballIndex) {
+        for (int i = 0; i < balls.length; i++) {
+            if (balls[i] == playerBall && i == ballIndex) {
+                return Code.STRIKE;
+            }
+
+            if (balls[i] == playerBall) {
+                return Code.BALL;
+            }
+        }
+        return Code.NOTHING;
+    }
+
+    public Result validate(int playerBalls) {
+        Result result = new Result();
+        int[] playerBallsArray = NumberUtils.splitToArray(playerBalls);
+
+        for (int i = 0; i < playerBallsArray.length; i++) {
+            result.setResultEntry(checkBall(playerBallsArray[i], i));
+        }
+
+        if (result.getStrike() == 0 && result.getBall() == 0) {
+            result.setNothing();
+        }
+
+        return result;
+    }
 }
 
