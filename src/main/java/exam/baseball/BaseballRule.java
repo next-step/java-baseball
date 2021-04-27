@@ -29,17 +29,19 @@ public class BaseballRule {
 
 	int checkBall(String answer) {
 		String[] splitted = answer.split("");
-		int count = containsOtherPosition(correctAnswers, splitted, 0) ? 1 : 0;
-		count += containsOtherPosition(correctAnswers, splitted, 1) ? 1 : 0;
-		count += containsOtherPosition(correctAnswers, splitted, 2) ? 1 : 0;
+		int count = 0;
+		for (int i = 0; i < splitted.length; i++) {
+			count += containsOtherPosition(correctAnswers, splitted, i) ? 1 : 0;
+		}
 		return count;
 	}
 
 	int checkStrike(String answer) {
 		String[] splitted = answer.split("");
-		int count = equalToSamePosition(correctAnswers, splitted, 0) ? 1 : 0;
-		count += equalToSamePosition(correctAnswers, splitted, 1) ? 1 : 0;
-		count += equalToSamePosition(correctAnswers, splitted, 2) ? 1 : 0;
+		int count = 0;
+		for (int i = 0; i < splitted.length; i++) {
+			count += equalToSamePosition(correctAnswers, splitted, i) ? 1 : 0;
+		}
 		return count;
 	}
 
