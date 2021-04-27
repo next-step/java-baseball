@@ -47,4 +47,22 @@ class FBGameNumberTest {
 		);
 	}
 
+	@ParameterizedTest
+	@DisplayName("3자리 숫자 2개를 비교해 자리는 일치하지 않지만 숫자가 일치하는 갯수 반환 (Ball)")
+	@MethodSource("countBallSource")
+	void countBallTest(int base, int target, int match) {
+		assertThat(number.countBall(base, target)).isEqualTo(match);
+	}
+
+	static Stream<Arguments> countBallSource() {
+		return Stream.of(
+			Arguments.of(123, 123, 0),
+			Arguments.of(123, 124, 0),
+			Arguments.of(123, 145, 0),
+			Arguments.of(123, 245, 1),
+			Arguments.of(123, 234, 2),
+			Arguments.of(123, 231, 3)
+		);
+	}
+
 }

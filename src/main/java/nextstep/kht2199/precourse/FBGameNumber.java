@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public final class FBGameNumber {
 
-	private int computerNumber;
+	private final int computerNumber;
 
 	private final static Random random = new Random();
 
@@ -25,12 +25,27 @@ public final class FBGameNumber {
 	}
 
 	protected int countBall(int base, int target) {
-		assert false;
-		return 0;
+		assertNumberParameters(base);
+		assertNumberParameters(target);
+		String s1 = String.valueOf(base);
+		String s2 = String.valueOf(target);
+		int sum = 0;
+		char[] charArray = s1.toCharArray();
+		char[] charArray2 = s2.toCharArray();
+		for (int i = 0, charArrayLength = charArray.length; i < charArrayLength; i++) {
+			for (int j = 0, charArray2Length = charArray2.length; j < charArray2Length; j++) {
+				if (i == j) {
+					continue;
+				}
+				sum += returnsOneIfMatched(charArray[i], charArray2[j]);
+			}
+		}
+		return sum;
 	}
 
 	protected int countStrike(int base, int target) {
-		assert base > 100 && base < 999;
+		assertNumberParameters(base);
+		assertNumberParameters(target);
 		assert target > 100 && target < 999;
 		String s1 = String.valueOf(base);
 		String s2 = String.valueOf(target);
@@ -38,9 +53,13 @@ public final class FBGameNumber {
 		char[] charArray = s1.toCharArray();
 		char[] charArray2 = s2.toCharArray();
 		for (int i = 0, charArrayLength = charArray.length; i < charArrayLength; i++) {
-			sum += (returnsOneIfMatched(charArray[i], charArray2[i]));
+			sum += returnsOneIfMatched(charArray[i], charArray2[i]);
 		}
 		return sum;
+	}
+
+	private void assertNumberParameters(int number) {
+		assert number > 100 && number < 999;
 	}
 
 	private int returnsOneIfMatched(char c1, char c2) {
