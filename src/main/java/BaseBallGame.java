@@ -1,5 +1,5 @@
 import java.util.LinkedHashSet;
-import java.util.Random;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BaseBallGame implements Game {
@@ -33,7 +33,9 @@ public class BaseBallGame implements Game {
 	}
 
 	public String inputNumbers() {
-		String numbers = null;
+		Scanner scan = new Scanner(System.in);
+		String numbers = String.valueOf(scan.nextInt());
+		scan.close();
 		return numbers;
 	}
 }
