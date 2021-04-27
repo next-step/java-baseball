@@ -41,7 +41,7 @@ public class Hints {
 	}
 
 	private void validateHintsSize() {
-		if (hintStateList.size() > 3) {
+		if (hintStateList.size() >= 3) {
 			throw new RuntimeException("한 질문에 힌트가 3개를 넘을 수 없습니다.");
 		}
 	}
