@@ -7,22 +7,22 @@ import com.hoomin.game.baseball.domain.Hints;
  */
 public class OutputView {
 	public static void printHints(Hints hints) {
-		final Integer strikeCount = hints.getStrikeCount();
-		final Integer ballCount = hints.getBallCount();
-		if (strikeCount.equals(0) && ballCount.equals(0)) {
+		final int strikeCount = hints.getStrikeCount();
+		final int ballCount = hints.getBallCount();
+		if (strikeCount == 0 && ballCount == 0) {
 			System.out.println("낫싱");
 		}
 		System.out.println(getStringBuilder(strikeCount, ballCount));
 	}
 
-	private static String getStringBuilder(Integer strikeCount, Integer ballCount) {
+	private static String getStringBuilder(Integer strikeCount, int ballCount) {
 		StringBuilder builder = new StringBuilder();
 		getHintMessage(builder, strikeCount, " 스트라이크 ");
 		getHintMessage(builder, ballCount, " 볼");
 		return builder.toString().trim();
 	}
 
-	private static void getHintMessage(StringBuilder builder, Integer count, String message) {
+	private static void getHintMessage(StringBuilder builder, int count, String message) {
 		if (count > 0) {
 			builder.append(count).append(message);
 		}

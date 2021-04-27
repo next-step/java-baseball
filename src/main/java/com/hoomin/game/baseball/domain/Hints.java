@@ -21,16 +21,16 @@ public class Hints {
 		hintStates.add(hintState);
 	}
 
-	public Integer getStrikeCount() {
+	public int getStrikeCount() {
 		return getCountByHintState(HintState.STRIKE);
 	}
 
-	public Integer getBallCount() {
+	public int getBallCount() {
 		return getCountByHintState(HintState.BALL);
 	}
 
-	private Integer getCountByHintState(HintState anotherHintState) {
-		Integer count = 0;
+	private int getCountByHintState(HintState anotherHintState) {
+		int count = 0;
 		for (HintState item : hintStates) {
 			count = increaseCountIfEquals(anotherHintState, item, count);
 		}
@@ -43,7 +43,7 @@ public class Hints {
 		}
 	}
 
-	private Integer increaseCountIfEquals(HintState anotherHintState, HintState  hintState, Integer count) {
+	private int increaseCountIfEquals(HintState anotherHintState, HintState  hintState, int count) {
 		if (hintState.equals(anotherHintState)) {
 			count++;
 		}
