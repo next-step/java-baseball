@@ -27,7 +27,22 @@ public class GameManager {
 
 	public void endGame() {
 		inputOutputUtil.endGame();
+		restartGame();
 	}
+
+	public void restartGame() {
+		try {
+			int isRestart = inputOutputUtil.restartGame();
+			if (isRestart == RESTART_GAME) {
+				gameEngine.resetGame();
+				this.startGame();
+			}
+		} catch (Exception e) {
+			inputOutputUtil.printError();
+			this.restartGame();
+		}
+	}
+
 
 	public boolean progressEachStage() {
 		try {

@@ -23,6 +23,16 @@ public class GameEngine {
 		return false;
 	}
 
+	public void resetGame() {
+		this.answer = new Ball1(answerLength);
+		System.out.println(answer);
+	}
+
+	private void resetStage() {
+		this.strike = 0;
+		this.ball = 0;
+	}
+
 	public int getStrike() {
 		return strike;
 	}
