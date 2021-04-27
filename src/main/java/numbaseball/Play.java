@@ -3,7 +3,7 @@ package numbaseball;
 
 import java.util.*;
 
-public class Play<castArrayList> {
+public class Play {
 
     private static int MIN_RANDOM_NUMBER = 1;
     private static int MAX_RANDOM_NUMBER = 9;
@@ -11,13 +11,11 @@ public class Play<castArrayList> {
 
     private static String VALIDATE_MSG_NUMBER_SIZE = "반드시 3자리 숫자만 입력 가능합니다.. 다시 입력 해주세요.";
     private static String VALIDATE_MSG_DUPLICATION_NUMBER = "중복된 숫자가 존재합니다.. 다시 입력 해주세요.";
+    private static String VALIDATE_MSG_RESTART = "1 또는 2를 입력해 주세요.";
 
-    private static Scanner sc = new Scanner(System.in);
 
-
-    public static ArrayList<Integer> createPlayNumber() {
-        ArrayList<Integer> arrPlayNumber = new ArrayList<Integer>();
-
+    public static List<Integer> createPlayNumber() {
+        List<Integer> arrPlayNumber = new ArrayList<Integer>();
         int nRandNumber;
         while (arrPlayNumber.size() < NUMBER_SIZE) {
             nRandNumber = (int) Math.floor((Math.random() * MAX_RANDOM_NUMBER) + MIN_RANDOM_NUMBER);    //1-9 범위의 난수 생성
@@ -26,30 +24,27 @@ public class Play<castArrayList> {
         return arrPlayNumber;
     }
 
-    private static ArrayList<Integer> addPlayNumber(ArrayList<Integer> arrPlayNumber, int nRandNumber) {
+    private static List<Integer> addPlayNumber(List<Integer> arrPlayNumber, int nRandNumber) {
         boolean isContain = arrPlayNumber.contains(nRandNumber);
         if (!isContain) {
-            //arrayList에 포함 되지 않은 난수일 경우 add
             arrPlayNumber.add(nRandNumber);
         }
         return arrPlayNumber;
     }
 
-    //리턴을 List로 변경..
     public static List<Integer> getInputNumber() {
         try {
+            Scanner sc = new Scanner(System.in);
             String sInputNumber = sc.next();
             validateInputNumber(sInputNumber);
+            sc.close();
             return castStrToList(sInputNumber);
-
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
             return getInputNumber();
-
         } catch (Exception e) {
             System.out.println(VALIDATE_MSG_NUMBER_SIZE);
             return getInputNumber();
-
         }
     }
 
@@ -86,7 +81,6 @@ public class Play<castArrayList> {
         }
         return inputNumber;
     }
-
 
     public static Map<String,Object> judge(List<Integer> playNumber, List<Integer> inputNumber) {
         int strikeCount = getStrikeCount(playNumber, inputNumber);
@@ -125,7 +119,7 @@ public class Play<castArrayList> {
         return 0;
     }
 
-    public static boolean isEnd(Map<String, Object> playResult) {
+    public static boolean isEndGame(Map<String, Object> playResult) {
         String strikeCount = String.valueOf(playResult.get("strike"));
         if ( "3".equals(strikeCount) ){
             return false;
@@ -133,4 +127,28 @@ public class Play<castArrayList> {
         return true;
     }
 
+    public static boolean IsRestartGame() {
+        try {
+            Scanner sc = new Scanner(System.in);
+            String restartNumber = sc.next();
+            validateRestart(restartNumber);
+            if ("1".equals(restartNumber)) {
+                return true;
+            }
+            return false;
+        } catch (IllegalArgumentException iae) {
+            System.out.println(iae.getMessage());
+            return IsRestartGame();
+        } catch (Exception e){
+            System.out.println(VALIDATE_MSG_RESTART);
+            return IsRestartGame();
+        }
+    }
+
+    private static void validateRestart(String restartNumber) {
+        if (!"1".equals(restartNumber) && !"2".equals(restartNumber)) {
+            throw new IllegalArgumentException(VALIDATE_MSG_RESTART);
+        }
+    }
 }
+

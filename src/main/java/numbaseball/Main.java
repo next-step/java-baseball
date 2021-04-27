@@ -12,14 +12,21 @@ public class Main {
         List<Integer> playNumber = Play.createPlayNumber();
         while(playGame(playNumber));
 
+        Ui.endPlayGame();
+        if ( Play.IsRestartGame() ){
+            startGame();
+        }
+
     }
 
     private static boolean playGame(List<Integer> playNumber) {
         Ui.startPlayGame();
         List<Integer> inputNumber = Play.getInputNumber();
         Map<String, Object> playResult = Play.judge(playNumber, inputNumber);
-        Ui.judgePlayGame(playResult);
-        return Play.isEnd(playResult);
+        String ballCount = String.valueOf(playResult.get("ball"));
+        String strikeCount = String.valueOf(playResult.get("strike"));
+        Ui.judgePlayGame(strikeCount, ballCount);
+        return Play.isEndGame(playResult);
     }
 
 }

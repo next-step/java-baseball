@@ -11,22 +11,20 @@ public class Ui {
         System.out.print("숫자를 입력해주세요 : ");
     }
 
-    public static void judgePlayGame(Map<String, Object> playResult) {
-        String ballCount = String.valueOf(playResult.get("ball"));
-        String strikeCount = String.valueOf(playResult.get("strike"));
-        if ( "0".equals(ballCount) && "0".equals(strikeCount) ){
-            System.out.print("낫싱");
+    public static void judgePlayGame(String strikeCount, String ballCount) {
+        String judgeMessage = "";
+        if ( !"0".equals(strikeCount) ) {
+            judgeMessage += strikeCount+"스트라이크 ";
         }
-
-        if ( !"0".equals(strikeCount) ){
-            System.out.print(playResult.get("strike")+"스트라이크 ");
+        if ( !"0".equals(ballCount) ) {
+            judgeMessage += ballCount+"볼 ";
         }
-
-        if ( !"0".equals(ballCount) ){
-            System.out.print(playResult.get("ball")+"볼 ");
-        }
-        System.out.println("");
-
+        judgeMessage = "".equals(judgeMessage) ? "낫싱" : judgeMessage;
+        System.out.println(judgeMessage);
     }
 
+    public static void endPlayGame() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+    }
 }
