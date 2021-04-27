@@ -10,6 +10,7 @@ public class Main {
         int inputValue = in.nextInt();
         List<Integer> inputValues = getUserInputValue(inputValue);
         int ballCount = getBallCount(goalValues, inputValues);
+        int strikeCount = getStrikeCount(goalValues, inputValues);
     }
 
     private static List<Integer> generateGoalValue(){
@@ -43,5 +44,16 @@ public class Main {
             }
         }
         return ballCount;
+    }
+
+    private static int getStrikeCount(List<Integer> goalValues, List<Integer> inputValues) {
+        int strike = 0;
+        for (int i = 0; i < inputValues.size(); i++){
+            int value = inputValues.get(i);
+            if (value == goalValues.get(i)){
+                strike += 1;
+            }
+        }
+        return strike;
     }
 }
