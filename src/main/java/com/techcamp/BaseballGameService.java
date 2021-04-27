@@ -1,8 +1,12 @@
+package com;
+
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 /**
  * <pre>
- * com.techcamp
+ * com
  * ㄴ BaseballGameService.java
  * </pre>
  * @date : 2021-04-26 오후 5:03
@@ -23,7 +27,7 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void reset() {
+    public void reset() {
         answer = "";
         isContinue = true;
         init();
@@ -36,8 +40,12 @@ public class BaseballGameService {
      * </pre>
      * @author 김재범
      **/
-    private void init() {
-        //TODO 숫자야구 정답 3자리 숫자 생성
+    public void init() {
+        String r = String.valueOf(1 + (new Random()).nextInt(9));
+        if(answer.contains(r)) init();
+        if(answer.length() == 3) return;
+        answer += r;
+        init();
     }
 
     /**
