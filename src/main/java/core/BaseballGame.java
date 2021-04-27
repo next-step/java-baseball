@@ -12,30 +12,35 @@ public class BaseballGame {
     private List<Integer> questions = new ArrayList<>(3);
     private List<Integer> answer = new ArrayList<>(3);
     private Scanner scanner = new Scanner(System.in);
+    private boolean isSolved = false;
 
     public void runGame() {
         makeQuestion();
         System.out.println(questions);
-        playGame();
+        while(!isSolved) {
+            playGame();
+        }
     }
 
-    public void makeQuestion(){
+    public void makeQuestion() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         Collections.shuffle(list);
-
+        
         questions.addAll(list.subList(0, 3));
     }
-    
+
     public void playGame() {
         System.out.println("숫자를 입력하세요 : ");
         String numberString = scanner.nextLine();
 
-
+        if(!InputNumberUtil.checkInputNumber(numberString)) {
+            return;
+        }
 
         answer = InputNumberUtil.toIntegerList(numberString);
         playGameResult();
     }
-
+    
     public void playGameResult() {
         PlayResult playResult = new PlayResult();
         for(int i = 0; i < 3; i++) {
@@ -51,17 +56,17 @@ public class BaseballGame {
             return;
         } 
         
-        if(playResult.isSolved()){
+        if(playResult.isSolved()) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return;
-}
+        }
 
-        if(playResult.getIsStrike() != 0 && playResult.getIsBall() != 0){
+        if(playResult.getIsStrike() != 0 && playResult.getIsBall() != 0) {
             System.out.println(playResult.getIsStrike() + " 스트라이크 " + playResult.getIsBall() + " 볼");
         } else if(playResult.getIsStrike() != 0) {
             System.out.println(playResult.getIsStrike() + " 스트라이크");
         } else if(playResult.getIsBall() != 0) {
-            System.out.println(playResult.getIsBall() + " 볼 ");
+            System.out.println(playResult.getIsBall() + " 볼");
         }
         
     }
