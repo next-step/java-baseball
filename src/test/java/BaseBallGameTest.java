@@ -34,7 +34,7 @@ public class BaseBallGameTest {
 
 	@Test
 	public void compareNumberTest(){
-		assertThat(baseBallGame.compareNumber('1','2') == 0).isTrue();
-		assertThat(baseBallGame.compareNumber('1','1') == 1).isTrue();
+		assertThat(baseBallGame.compareStrike('1','2') == 0).isTrue();
+		assertThat(baseBallGame.compareStrike('1','1') == 1).isTrue();
 	}
 }
