@@ -3,10 +3,9 @@ package baseball;
 
 import baseball.domain.Inning;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class play {
+public class PlayGame {
 
     public static void main(String[] args) {
 
@@ -32,17 +31,17 @@ public class play {
     }
 
     private static String inputNum(Scanner sc) {
-        boolean rightNumber = false;
+        boolean isRightNumber = false;
         String inputNumbers = "";
-        while (!rightNumber) {
+        while (!isRightNumber) {
             inputNumbers = sc.next();
-            rightNumber = checkInput(inputNumbers);
+            isRightNumber = checkInput(inputNumbers);
         }
 
         return inputNumbers;
     }
 
-    private static boolean checkInput(String input) {
+    public static boolean checkInput(String input) {
 
         if (input.matches("^\\d{3}")) {
             return true;

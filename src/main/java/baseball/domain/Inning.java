@@ -11,15 +11,13 @@ public class Inning {
     private int strike;
     private int ball;
 
-    private Inning(int[] pickedNum) {
+    public Inning(int[] pickedNum) {
         this.answer = pickedNum;
     }
 
     public static Inning newInning(){
 
-        int[] pickedNumbers = pickNumbers();
-
-        return new Inning(pickedNumbers);
+        return new Inning(pickNumbers());
     }
 
     private static int[] pickNumbers() {
@@ -39,7 +37,7 @@ public class Inning {
         strike = 0;
         ball = 0;
         for (int i = 0; i < guess.length(); i++) {
-            countPitch(answer,guess.charAt(i) - '0', i);
+            countPitch(answer, guess.charAt(i) - '0', i);
         }
         printMessage();
 
@@ -82,5 +80,9 @@ public class Inning {
             return;
         }
         ball++;
+    }
+
+    public int[] getAnswer() {
+        return answer;
     }
 }
