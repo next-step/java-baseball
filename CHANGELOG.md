@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/frostnight/java-baseball-precourse/compare/v2.2.2...v2.3.0) (2021-04-27)
+
+
+### Features
+
+* 게임 로직 구현 ([e7cf2cb](https://github.com/frostnight/java-baseball-precourse/commit/e7cf2cb27f5fa38261ef859d82d40312ff02b18f))
+
 ### [2.2.2](https://github.com/frostnight/java-baseball-precourse/compare/v2.2.1...v2.2.2) (2021-04-27)
 
 
