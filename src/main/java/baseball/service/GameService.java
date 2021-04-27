@@ -2,6 +2,8 @@ package baseball.service;
 
 import baseball.domain.*;
 
+import java.util.Scanner;
+
 public class GameService {
 
     public void start(){
@@ -11,7 +13,7 @@ public class GameService {
             ComNumber comNum = new ComNumber();
             newGame(comNum);
 
-            runFlag = JudgeGame.chkContinueGame();
+            runFlag = finishGame();
         }
     }
 
@@ -25,11 +27,18 @@ public class GameService {
 
             JudgeGame judgeGame = new JudgeGame();
             judgeGame.compareNum(comNum.ball, userNumber.ball);
-            judgeGame.resultMsg();
 
             continueFlag = judgeGame.chkFinishGame();
         }
     }
 
 
+    public boolean finishGame(){
+        Scanner scanner = new Scanner(System.in);
+        String inputNum = scanner.nextLine();
+
+        boolean rtnFlag = JudgeGame.chkInputNum(inputNum);
+
+        return rtnFlag;
+    }
 }
