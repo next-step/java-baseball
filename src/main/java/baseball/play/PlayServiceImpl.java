@@ -1,5 +1,6 @@
 package baseball.play;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,9 +36,7 @@ public class PlayServiceImpl implements PlayService {
 	}
 
 	private void reTry() {
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-		Scanner scanner = new Scanner(System.in);
-		int selectNumber = scanner.nextInt();
+		int selectNumber = getSelectNumber();
 		if (selectNumber == 1) {
 			playBall();
 			return;
@@ -48,4 +47,15 @@ public class PlayServiceImpl implements PlayService {
 		reTry();
 	}
 
+	private int getSelectNumber() {
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		int selectNumber;
+		try {
+			Scanner scanner = new Scanner(System.in);
+			selectNumber = scanner.nextInt();
+		} catch (InputMismatchException ime) {
+			selectNumber = 0;
+		}
+		return selectNumber;
+	}
 }
