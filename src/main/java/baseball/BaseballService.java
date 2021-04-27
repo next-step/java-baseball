@@ -2,6 +2,24 @@ package baseball;
 
 public class BaseballService {
 
+    public Number createRandomNumber() {
+
+        int firstNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+        int secondNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+        int thirdNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+
+        while (secondNumber == firstNumber) {
+            secondNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+        }
+
+        while (thirdNumber == firstNumber || thirdNumber == secondNumber) {
+            thirdNumber = (int)Math.floor(Math.random() * (9 - 1) + 1);
+        }
+
+        return new Number(firstNumber, secondNumber, thirdNumber);
+
+    }
+
     public boolean validateInputValue(int inputValue) {
 
         int firstValue = readNumberByPosition(inputValue, 1);

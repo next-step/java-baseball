@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class BaseballUI {
 
-    private Number generateNumbers = new Number();
     private BaseballService baseballService = new BaseballService();
+    private Number generateNumbers = baseballService.createRandomNumber();
     private Referee referee;
     private Scanner sc = new Scanner(System.in);
 
@@ -38,7 +38,7 @@ public class BaseballUI {
         int continueButton = sc.nextInt();
 
         if (continueButton == 1) {
-            generateNumbers = new Number();
+            generateNumbers = baseballService.createRandomNumber();
             return true;
         }
 
