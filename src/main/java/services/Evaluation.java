@@ -19,6 +19,10 @@ public class Evaluation {
 		return ballCount;
 	}
 
+	public boolean doesHitAnswer() {
+		return this.strikeCount == 3;
+	}
+
 	public void evaluate(String answerNumber, List<Integer> problemNumber) {
 		int strikeCount = 0;
 		int ballCount = 0;
