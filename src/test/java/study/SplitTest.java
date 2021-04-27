@@ -11,9 +11,9 @@ class SplitTest {
 
     @Test
     @DisplayName("한글자 이상 입력 안되었을 때 테스트")
-    void inputOneMoreTextTest(){
+    void inputOneMoreTextTest() {
         this.inputText = "";
-        assertThatIllegalArgumentException().isThrownBy(()->{
+        assertThatIllegalArgumentException().isThrownBy(() -> {
             Split split = new Split(inputText);
         }).withMessageMatching("입력한 문자는 1글자 이상이어야합니다.");
     }
@@ -50,7 +50,7 @@ class SplitTest {
 
     @Test
     @DisplayName("정규식 사용하여서 괄호 제거하는 테스트")
-    void removeParenthesisTest(){
+    void removeParenthesisTest() {
         this.inputText = "(1,2)";
         Split split = new Split(inputText);
         assertThat(split.removeParenthesis()).isEqualTo("1,2");
@@ -58,7 +58,7 @@ class SplitTest {
 
     @Test
     @DisplayName("SubString 사용하여서 괄호 제거하는 테스트")
-    void removeParenthesisTest2(){
+    void removeParenthesisTest2() {
         this.inputText = "(1,2,3,4)";
         Split split = new Split(inputText);
         assertThat(split.removeParenthesis2()).isEqualTo("1,2,3,4");
