@@ -6,8 +6,8 @@ import java.util.List;
 
 public class JudgeGame {
 
-    private int STRIKE_CNT;
-    private int BALL_CNT;
+    public static int STRIKE_CNT;
+    public static int BALL_CNT;
 
     public void compareNum(Ball comNumber, Ball userNumber){
         STRIKE_CNT = 0;
