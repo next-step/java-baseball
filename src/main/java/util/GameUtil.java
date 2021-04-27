@@ -9,6 +9,9 @@ import java.util.Set;
 
 import validator.NumberValidator;
 
+/**
+ * 게임 흐름에 필요한 부가적인 기능을 담당하는 클래스
+ */
 public class GameUtil {
 	public static final int LIMIT_DIGIT = 3;
 	public static final int MIN_DIGIT = 1;

@@ -5,6 +5,9 @@ import java.util.function.Function;
 
 import util.GameUtil;
 
+/**
+ * 게임 룰을 Enum으로 관리
+ */
 public enum GameRules {
 	Success(GameRules::getSuccessMsg, (strikeCnt, ballCnt) -> strikeCnt == GameUtil.LIMIT_DIGIT),
 	Strike(GameRules::getStrikeMsg, (strikeCnt, ballCnt) -> strikeCnt > 0),

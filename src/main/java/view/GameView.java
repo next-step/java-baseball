@@ -5,9 +5,13 @@ import java.util.Scanner;
 import dto.GameResult;
 import validator.NumberValidator;
 
+/**
+ * UI 로직을 관리하는 클래스
+ */
 public class GameView {
 	private static final NumberValidator numberValidator = new NumberValidator();
 
+	// 사용자로부터 수 입력 화면
 	public static String inputNumberView() {
 		Scanner scanner = new Scanner(System.in);
 		String inputNumber;
@@ -18,11 +22,13 @@ public class GameView {
 		return inputNumber;
 	}
 
+	// 사용자의 입력한 수에 대한 결과 출력 화면
 	public static boolean resultView(GameResult gameResult) {
 		System.out.println(gameResult.getMsg());
 		return gameResult.getSuccessFlag();
 	}
 
+	// 게임에 이겼을 때 이 후의 선택지 결과 화면
 	public static boolean endView() {
 		Scanner scanner = new Scanner(System.in);
 		String inputNumber;

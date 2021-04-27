@@ -5,6 +5,9 @@ import dto.GameResult;
 import validator.GameRulesValidator;
 import view.GameView;
 
+/**
+ * 전체적인 게임 흐름을 관리하는 클래스
+ */
 public class GameManager {
 	private String answer;
 	private GameRulesValidator gameRulesValidator;

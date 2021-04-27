@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 
 import util.GameUtil;
 
+/**
+ * 입력한 수가 알맞게 들어왔는 지 Enum으로 관리
+ */
 public enum NumberValidation {
 	IsNotEmptyString("입력 값이 비어있습니다", number -> number != null && !number.isEmpty()),
 	IsRightNumberLength("수의 길이가 옳지 않습니다", number -> number.length() == GameUtil.LIMIT_DIGIT),
