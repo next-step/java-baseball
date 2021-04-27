@@ -5,3 +5,11 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 랜덤숫자 생성
+* 사용자 숫자 입력
+* 숫자 정합성 확인
+    * 숫자길이 확인
+    * 숫자 중복여부 확인
+* 스트라이크/볼 여부 확인
