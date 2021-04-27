@@ -43,17 +43,17 @@ class NumberBaseBallGameTest {
 
 	@Test
 	@DisplayName("컴퓨터가 생성한 배열과 게임 플레이어가 입력한 배열을 비교하여 스트라이크 리턴")
-	public void checkStrikesTest() {
+	public void checkStrikeTest() {
 		int[] playerInputNumbers = {1,2,3};
 		int[] gameNumbers = {1,4,3};
-		assertEquals(2, NumberBaseBallGame.checkStrikes(playerInputNumbers, gameNumbers));
+		assertEquals(2, NumberBaseBallGame.checkStrike(playerInputNumbers, gameNumbers));
 	}
 
 	@Test
 	@DisplayName("컴퓨터가 생성한 배열과 게임 플레이어가 입력한 배열을 비교하여 볼을 리턴")
-	public void checkBalls() {
+	public void checkBallTest() {
 		int[] playerInputNumbers = {1,2,3};
-		int[] gameNumbers = {1,4,3};
-		assertEquals(0, NumberBaseBallGame.checkBalls(playerInputNumbers, gameNumbers));
+		int[] gameNumbers = {2,4,3};
+		assertEquals(1, NumberBaseBallGame.checkBall(playerInputNumbers, gameNumbers));
 	}
 }

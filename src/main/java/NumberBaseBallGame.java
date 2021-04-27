@@ -40,17 +40,17 @@ public class NumberBaseBallGame {
 		return playerInputNumbers;
 	}
 
-	public static int checkStrikes(int[] playerInputNumbers, int[] gameNumbers) {
-		int strikes = 0;
+	public static int checkStrike(int[] playerInputNumbers, int[] gameNumbers) {
+		int strike = 0;
 		for (int i = 0; i < playerInputNumbers.length; i++) {
 			if (playerInputNumbers[i] == gameNumbers[i]) {
-				strikes++;
+				strike++;
 			}
 		}
-		return strikes;
+		return strike;
 	}
 
-	public static int checkBalls(int[] playerInputNumbers, int[] gameNumbers) {
+	public static int checkBall(int[] playerInputNumbers, int[] gameNumbers) {
 		int ball = 0;
 		for (int i = 0; i < playerInputNumbers.length; i++) {
 			for (int j = 0; j < gameNumbers.length; j++) {
@@ -60,9 +60,5 @@ public class NumberBaseBallGame {
 			}
 		}
 		return ball;
-	}
-
-	public static void main(String[] args) {
-
 	}
 }
