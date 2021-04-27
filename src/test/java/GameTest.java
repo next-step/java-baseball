@@ -1,7 +1,13 @@
 import baseball.domain.Score;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import baseball.service.Game;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,10 +21,12 @@ class GameTest {
     }
 
     @Test
-    void create_game_and_random_three_digits() {
-        Game game = new Game();
+    void random_three_digits() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = game.getClass().getDeclaredMethod("createRandomNumber");
+        method.setAccessible(true);
         for (int i = 0; i <100000; i++) {
-            assertThat(String.valueOf(game.getOpponent())).hasSize(3);
+            int number = (int) method.invoke(game);
+            assertThat(String.valueOf(number)).hasSize(3);
         }
     }
 
@@ -52,6 +60,33 @@ class GameTest {
     @Test
     void one_strike_two_ball() {
         assertPlay(game.play(132), 1, 2);
+    }
+
+    @Disabled
+    @Test
+    void check_duplicate_random_number() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = game.getClass().getDeclaredMethod("createRandomNumber");
+        method.setAccessible(true);
+        for (int i = 0; i < 1000000; i++) {
+            int number = (int) method.invoke(game);
+            System.out.println(number);
+            Set<Integer> sets = new HashSet<>();
+            sets.add(number / 100);
+            sets.add(number / 10 % 10);
+            sets.add(number % 10);
+            assertThat(sets).hasSize(3);
+        }
+    }
+
+    @Test
+    void first_number_range_between_one_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = game.getClass().getDeclaredMethod("createRandomNumber");
+        method.setAccessible(true);
+        for (int i = 0; i < 1000000; i++) {
+            int number = (int) method.invoke(game);
+            assertThat(number / 100).isBetween(1, 9);
+            assertThat(number / 100).isNotZero();
+        }
     }
 
     private void assertPlay(Score score, int strike, int ball) {

@@ -3,22 +3,16 @@ package baseball.service;
 import baseball.domain.Score;
 import baseball.exception.IllegalPositionException;
 
-import java.util.Random;
-
 public class Game {
 
     private final int opponent;
 
     public Game() {
-        opponent = createRandomNumber(new Random());
+        opponent = createRandomNumber();
     }
 
     public Game(int opponent) {
         this.opponent = opponent;
-    }
-
-    public int getOpponent() {
-        return opponent;
     }
 
     public Score play(int numbers) {
@@ -31,8 +25,17 @@ public class Game {
         return new Score(strike, ball);
     }
 
-    private int createRandomNumber(Random random) {
-        return random.nextInt(900) + 100;
+    private int createRandomNumber() {
+        int[] numbers = new int[3];
+
+        numbers[0] = (int) (Math.random() * 8) + 1;
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(numbers[0]);
+        builder.append(0);
+        builder.append(0);
+
+        return Integer.valueOf(builder.toString());
     }
 
     private int getBall(int numbers) {
