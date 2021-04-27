@@ -9,7 +9,7 @@ public class InputDevice {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public List<BaseballNumber> inputNumber() {
+    public static List<BaseballNumber> inputNumber() {
         String answerEntered = SCANNER.nextLine().trim();
         checkInputValidRange(answerEntered);
         checkInputValidValue(answerEntered);
@@ -51,8 +51,8 @@ public class InputDevice {
         return baseballNumbers;
     }
 
-    public void checkProcessCodeRange(int processCode) {
-        if (GameProgress.RESTART.getValue() == processCode || processCode == GameProgress.EXIT.getValue()) {
+    public static void checkProcessCodeRange(int processCode) {
+        if (GameProgress.RESTART.getValue() > processCode || processCode > GameProgress.EXIT.getValue()) {
             throw new IllegalArgumentException("잘못 입력하셨습니다.");
         }
     }
