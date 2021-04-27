@@ -41,7 +41,16 @@ public class BaseBallGame {
      * 한 라운드
      */
     private void round(Scanner scanner) {
-
+        generateAnswer();
+        System.out.print("숫자를 입력해주세요 : ");
+        while(true) {
+            String input = scanner.next();
+            // 3자리인지 체크
+            if (input.length() != 3) {
+                System.out.println("3자리의 숫자를 입력해주세요");
+                continue;
+            }
+        }
     }
 
 }
