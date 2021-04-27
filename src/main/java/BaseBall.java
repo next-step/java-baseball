@@ -37,7 +37,7 @@ public class BaseBall {
 	 * @param inputStr
 	 * @return
 	 */
-	public static void start (String initNum) {
+	public static void start (String initNum, String cpuNum) {
 		
 		System.out.println("게임을 시작합니다.");
 		
@@ -45,7 +45,7 @@ public class BaseBall {
 		setGenerateNum();
 		
 		/* 숫자를 입력받는다. */
-		throwBalls(initNum);
+		throwBalls(initNum, cpuNum);
 		
 	}
 	
@@ -75,17 +75,20 @@ public class BaseBall {
 	/**
 	 * throwBalls : 스캐너로 숫자를 입력받는다.
 	 */
-	public static void throwBalls (String testNum) {
+	public static void throwBalls (String paramInitNum, String paramCpuNum) {
 		
 		/* 전역변수 초기화 */
 		staticReset();
 		
 		/* 입력값 호출 */
-		initNum = testNum;
+		initNum = paramInitNum;
 		//initNum = requestSc("숫자를 입력해주세요.");
 		
 		/* 입력값 검증 */
 		valid();
+		
+		/* 게임 결과를 체크한다. */
+		referee(paramCpuNum);
 		
 	}
 	
@@ -248,6 +251,81 @@ public class BaseBall {
 		return result;
 		
 	}
+	
+	
+	
+	/**
+	 * referee : 인입된 문자열을 토대로 볼카운트를 호출하는 심판역활 메소드
+	 */
+	public static void referee (String cpuNum) {
+		
+		/* 입력된 넘버로 볼카운팅 한다. */
+		for (int i = 0; i < initNum.length(); i++) {
+			
+			count(cpuNum.indexOf(initNum.substring(i, (i+1))), i);
+			
+		}
+		
+		/* 볼카운트가 3스트라이크일 경우 경기 종료 선언 */
+		if (ballCount[0] == 3) {
+			
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			
+		}
+		
+		/* 볼카운트 결과 선언 */
+		declare();
+	
+	}
+	
+	
+	
+	/**
+	 * count : 볼카운트를 하는 메소드
+	 * @param idxOf
+	 * @param digit
+	 */
+	private static void count (int idxOf, int digit) {
+		
+		/* 숫자가 아얘 미포함된 경우 */
+		if (idxOf == -1) {
+			
+			return;
+		}
+		
+		/* 숫자가 포함되었고 위치가 정확한 경우 스트라이크 칸에 카운트 */
+		if (idxOf == digit) {
+			
+			ballCount[0] += 1;
+			return;
+			
+		}
+		
+		/* 숫자가 포함되었고 위치가 정확한 경우 볼 칸에 카운트 */
+		ballCount[1] += 1;
+		
+	}
+	
+	
+	
+	/**
+	 * declare : 볼카운트를 선언하는 메소드
+	 */
+	private static void declare () {
+		
+		String prnt = ballCount[0] + "스트라이크 " + ballCount[1] + "볼";
+		
+		/* 아무 번호도 매칭이 안 되었을때 */
+		if (ballCount[0] + ballCount[1] == 0) {
+			
+			prnt = "낫싱";
+			
+		}
+		
+		System.out.println(prnt);
+		
+	}
+	
 	
 	
 }

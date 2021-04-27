@@ -14,7 +14,7 @@ public class BaseBallTests {
 	public void makeGenerateTest() {
 		
 		BaseBall bb = new BaseBall();
-		bb.start("123");
+		bb.start("123", "456");
 		
 		String cpuNum = bb.cpuNum;
 		
@@ -24,7 +24,7 @@ public class BaseBallTests {
 		
 		/* 생성된 난수가 매번 다른 값을 지니는지 검증 (S) */
 		BaseBall bb2 = new BaseBall();
-		bb2.start("123");
+		bb2.start("123", "456");
 		
 		String cpuNum2 = bb2.cpuNum;
 		
@@ -54,7 +54,7 @@ public class BaseBallTests {
 	public void initPlayerNumTest() {
 		
 		BaseBall bb = new BaseBall();
-		bb.start("123");
+		bb.start("123", "456");
 		
 		/* 숫자를 입력받았는지 검증 (S) */
 		Assertions.assertNotNull(bb.initNum);
@@ -70,7 +70,7 @@ public class BaseBallTests {
 	public void validPlayerNumTest() {
 		
 		BaseBall bb = new BaseBall();
-		bb.start("123");
+		bb.start("123", "456");
 		
 		/* 입력값이 유효한지 검증 (S) */
 		Assertions.assertTrue(!bb.isError);
