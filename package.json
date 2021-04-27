@@ -19,7 +19,7 @@
     ]
   },
   "name": "java-baseball-precourse",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "index.js",
   "repository": "https://github.com/frostnight/java-baseball-precourse.git",
   "author": "frostnight <frostnightsong@gmail.com>",
