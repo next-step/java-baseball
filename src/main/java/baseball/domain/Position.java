@@ -20,6 +20,18 @@ public class Position {
         this.position = position;
     }
 
+
+
+    public Pitching compare(Position destBallPosition) {
+        if (this.equals(destBallPosition)) {
+            return Pitching.STRIKE;
+        } else if (destBallPosition.equals(Position.NOT_FOUND)) {
+            return Pitching.MISSING;
+        }
+
+        return Pitching.BALL;
+    }
+
     @Override
     public boolean equals(Object target) {
         if (this == target) {

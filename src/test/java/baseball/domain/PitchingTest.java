@@ -12,7 +12,7 @@ public class PitchingTest {
         Position source = new Position(1);
         Position dest = new Position(1);
 
-        assertThat(Pitching.of(source, dest))
+        assertThat(source.compare(dest))
                 .isEqualTo(Pitching.STRIKE);
     }
 
@@ -22,7 +22,7 @@ public class PitchingTest {
         Position source = new Position(1);
         Position dest = Position.NOT_FOUND;
 
-        assertThat(Pitching.of(source, dest))
+        assertThat(source.compare(dest))
                 .isEqualTo(Pitching.MISSING);
     }
 
@@ -32,7 +32,7 @@ public class PitchingTest {
         Position source = new Position(1);
         Position dest = new Position(2);
 
-        assertThat(Pitching.of(source, dest))
+        assertThat(source.compare(dest))
                 .isEqualTo(Pitching.BALL);
     }
 }

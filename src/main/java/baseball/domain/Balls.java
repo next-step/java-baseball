@@ -32,7 +32,7 @@ public class Balls {
             Position ballPosition = new Position(i);
             Position destBallPosition = destBalls.findPositionByBall(ball);
 
-            pitchings.add(Pitching.of(ballPosition, destBallPosition));
+            pitchings.add(ballPosition.compare(destBallPosition));
         }
 
         return new Score(pitchings);
