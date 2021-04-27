@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/frostnight/java-baseball-precourse/compare/v2.1.0...v2.2.0) (2021-04-27)
+
+
+### Features
+
+* 숫자야구 숫자생성 클래스 구현 ([6eb628a](https://github.com/frostnight/java-baseball-precourse/commit/6eb628abdb83ab4f3b19812265e7d6cf59b113eb))
+
 ## [2.1.0](https://github.com/frostnight/java-baseball-precourse/compare/v1.1.4...v2.1.0) (2021-04-27)
 
 
