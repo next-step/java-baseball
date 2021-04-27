@@ -25,4 +25,12 @@ public class NumberUtils {
 
         return result;
     }
+
+    public static int placeSize(int number) {
+        return splitToArray(number).length;
+    }
+
+    public static boolean checkPlace(int number, int place) {
+        return placeSize(number) == place;
+    }
 }
