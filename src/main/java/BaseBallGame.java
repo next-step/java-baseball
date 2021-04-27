@@ -85,6 +85,13 @@ public class BaseBallGame {
         return stringBuilder.toString();
     }
 
+    // TODO: checkModel의 strike 개수를 파악하여, 3이면 isEnd = 1로 변경
+    public void checkEndGame(CheckResultModel model){
+        if(model.strike == 3){
+            isEnd = 1;
+        }
+    }
+
 
 
 
