@@ -11,7 +11,7 @@ import static baseball.domain.BaseballNumbers.RANDOM_NUMBER_COUNT;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("야구 게임 서비스")
+@DisplayName("야구_게임_서비스")
 class BaseballServiceTest {
 
     BaseballService baseballService = new BaseballService();
