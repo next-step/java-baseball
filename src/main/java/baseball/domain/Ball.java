@@ -14,6 +14,12 @@ public class Ball {
     }
 
 
+    public Ball(String ballStr){
+        List<Integer> ball = strToListBall(ballStr);
+        setBall(ball);
+    }
+
+
     public void setBall(List<Integer> ball){
         this.ball = ball;
     }
@@ -30,5 +36,15 @@ public class Ball {
         List<Integer> catcherNum  = numList.subList(0,3);
 
         return catcherNum;
+    }
+
+    public List<Integer> strToListBall(String ballStr){
+
+        List<Integer> ballList = new ArrayList<>();
+        for(int i=0;i<ballStr.length();i++){
+            ballList.add(i, Integer.parseInt(ballStr.substring(i,i+1)));
+        }
+
+        return ballList;
     }
 }
