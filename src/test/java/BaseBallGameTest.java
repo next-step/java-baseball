@@ -7,7 +7,7 @@ import org.junit.jupiter.api.TestInstance;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseBallGameTest {
 
-    static BaseBallGame baseBallGame = new BaseBallGame();
+    BaseBallGame baseBallGame = new BaseBallGame();
 
     @BeforeAll
     @Test
@@ -19,10 +19,13 @@ public class BaseBallGameTest {
     @DisplayName("숫자 풀 생성 로직 테스트")
     @Test
     void createTargetNumberTest(){
-        String unit = baseBallGame.createTargetNumber(baseBallGame.numberPool.size());
+        BaseBallGame baseBallGame = new BaseBallGame();
+        baseBallGame.createNumberPool();
+        baseBallGame.createTargetNumber(baseBallGame.numberPool.size());
         Assertions.assertThat(baseBallGame.numberPool.size()).isEqualTo(8);
     }
 
+    @DisplayName("target 숫자 생성 테스트")
     @Test
     void makeTargetNumberListTest(){
         int digit = 3;
