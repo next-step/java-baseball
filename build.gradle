@@ -1,8 +1,14 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id 'org.ec4j.editorconfig' version '0.0.3'
+    id 'java'
+    id 'eclipse'
+}
 
 version = '1.0.0'
 sourceCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
@@ -15,4 +21,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+editorconfig {
+    excludes = ['build']
 }
