@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.domain.fixture.MatchingBalls;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,8 +49,8 @@ public class GameTest {
     }
 
     @ParameterizedTest
-    @MethodSource("createMatchingPackageSource")
-    public void 공을_받아_게임결과를_볼_수_있다(MatchingPackage matchingPackage) {
+    @MethodSource("baseball.domain.fixture.MatchingBalls#createMatchingPackageSource")
+    public void 공을_받아_게임결과를_볼_수_있다(MatchingBalls.MatchingPackage matchingPackage) {
         Game game = new Game((size) -> new Balls(Ball.of(7), Ball.of(1), Ball.of(3)));
 
         Score match = game.match(matchingPackage.getDest());
@@ -57,77 +58,6 @@ public class GameTest {
         assertThat(match.countOfStrike()).isEqualTo(matchingPackage.getCountOfStrike());
         assertThat(match.countOfBall()).isEqualTo(matchingPackage.getCountOfBall());
         assertThat(match.countOfMissing()).isEqualTo(matchingPackage.getCountOfMissing());
-    }
-
-    private static List<MatchingPackage> createMatchingPackageSource() {
-        List<MatchingPackage> matchingPackages = new ArrayList<>();
-
-        matchingPackages.add(new MatchingPackage(
-                Arrays.asList(1, 2, 3),
-                1,
-                1,
-                1
-        ));
-
-        matchingPackages.add(new MatchingPackage(
-                Arrays.asList(1, 4, 5),
-                0,
-                1,
-                2
-        ));
-
-        matchingPackages.add(new MatchingPackage(
-                Arrays.asList(6, 7, 1),
-                0,
-                2,
-                1
-        ));
-
-        matchingPackages.add(new MatchingPackage(
-                Arrays.asList(2, 1, 6),
-                1,
-                0,
-                2
-        ));
-
-        matchingPackages.add(new MatchingPackage(
-                Arrays.asList(7, 1, 3),
-                3,
-                0,
-                0
-        ));
-
-        return matchingPackages;
-    }
-
-    private static class MatchingPackage {
-        private Balls dest;
-        private int countOfStrike;
-        private int countOfBall;
-        private int countOfMissing;
-
-        public MatchingPackage(List<Integer> dest, int countOfStrike, int countOfBall, int countOfMissing) {
-            this.dest = new Balls(dest.stream().map(Ball::of).collect(Collectors.toList()));
-            this.countOfStrike = countOfStrike;
-            this.countOfBall = countOfBall;
-            this.countOfMissing = countOfMissing;
-        }
-
-        public Balls getDest() {
-            return dest;
-        }
-
-        public int getCountOfStrike() {
-            return countOfStrike;
-        }
-
-        public int getCountOfBall() {
-            return countOfBall;
-        }
-
-        public int getCountOfMissing() {
-            return countOfMissing;
-        }
     }
     
 }
