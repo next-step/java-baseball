@@ -13,7 +13,7 @@ public class Console {
     }
 
     public void play() {
-        Game game = new Game(123);
+        Game game = new Game();
 
         while (true) {
             int number = getNumber();
