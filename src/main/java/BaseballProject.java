@@ -13,6 +13,16 @@ public class BaseballProject {
 
             // TODO : 0. init
             BaseBallGame baseBallGame = new BaseBallGame();
+            baseBallGame.init();
+            isCorrect = false;
+//            System.out.println("target : " + baseBallGame.targetNumberArray.get(0) + baseBallGame.targetNumberArray.get(1) + baseBallGame.targetNumberArray.get(2));
+            Scanner scanner = new Scanner(System.in);
+            while(!isCorrect){
+
+                // TODO : 1. input user answer
+                System.out.println("숫자를 입력해주세요");
+                String userAnswer = scanner.next();
+            }
         }
     }
 }
