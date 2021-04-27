@@ -5,3 +5,19 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+
+## 기능 목록
+
+BaseBallGameService 
+* 입출력에 따른 기능 게임 스타트
+* 게임 완료 여부 체크
+* 게임 메시지 전달
+* 게임의 진행되는 TURN 기능
+* 컴퓨터에게 임의의 숫자 3개 를 전달
+
+BaseBallGameValidator 
+* 유저의 입력값 SIZE 체크
+* 유저의 입력값 숫자인지 체크
+* 게임 시작시 1,2 체크
+
