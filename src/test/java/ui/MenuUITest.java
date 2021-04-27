@@ -18,6 +18,10 @@ class MenuUITest {
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
 		menuUI = new MenuUI();
+		setReflectionForMethod();
+	}
+
+	private static void setReflectionForMethod() throws NoSuchMethodException {
 		getMenuInput = MenuUI.class.getDeclaredMethod("getMenuInput", String.class);
 		getMenuInput.setAccessible(true);
 	}

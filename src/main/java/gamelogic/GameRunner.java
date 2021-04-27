@@ -21,15 +21,15 @@ public class GameRunner {
 		if (answer.equals(userInput)) {
 			return true;
 		}
-		int strikeCount = printAndReturnStrike(answer, userInput);
-		int ballCount = printAndReturnBall(answer, userInput, strikeCount);
+		int strikeCount = checkStrike(answer, userInput);
+		int ballCount = checkBall(answer, userInput, strikeCount);
 		if (strikeCount == 0 && ballCount == 0) {
 			gameplayUI.printNothing();
 		}
 		return false;
 	}
 
-	private int printAndReturnStrike(String answer, String userInput) {
+	private int checkStrike(String answer, String userInput) {
 		int count = countStrike(answer, userInput);
 		gameplayUI.printStrike(count);
 		return count;
@@ -43,7 +43,7 @@ public class GameRunner {
 		return count;
 	}
 
-	private int printAndReturnBall(String answer, String userInput, int strikeCount) {
+	private int checkBall(String answer, String userInput, int strikeCount) {
 		int[] answerDigit = new int[11];
 		int[] userInputDigit = new int[11];
 		for (int i = 0; i < 3; ++i) {

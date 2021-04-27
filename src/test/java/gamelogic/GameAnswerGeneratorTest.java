@@ -17,7 +17,10 @@ class GameAnswerGeneratorTest {
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
 		gameAnswerGenerator = new GameAnswerGenerator();
+		setReflectionForMethod();
+	}
 
+	private static void setReflectionForMethod() throws NoSuchMethodException {
 		isValidAnswerMethod = GameAnswerGenerator.class.getDeclaredMethod("isValidAnswer", int.class);
 		isValidAnswerMethod.setAccessible(true);
 	}

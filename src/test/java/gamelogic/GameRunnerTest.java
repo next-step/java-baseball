@@ -13,20 +13,24 @@ class GameRunnerTest {
 
 	private static GameRunner gameRunner;
 	private static Method checkUserInput;
-	private static Method printAndReturnStrike;
-	private static Method printAndReturnBall;
+	private static Method checkStrike;
+	private static Method checkBall;
 
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
 		gameRunner = new GameRunner();
+		setReflectionForMethod();
+	}
+
+	private static void setReflectionForMethod() throws NoSuchMethodException {
 		checkUserInput = GameRunner.class.getDeclaredMethod("checkUserInput", String.class, String.class);
 		checkUserInput.setAccessible(true);
-		printAndReturnStrike =
-			GameRunner.class.getDeclaredMethod("printAndReturnStrike", String.class, String.class);
-		printAndReturnStrike.setAccessible(true);
-		printAndReturnBall =
-			GameRunner.class.getDeclaredMethod("printAndReturnBall", String.class, String.class, int.class);
-		printAndReturnBall.setAccessible(true);
+
+		checkStrike = GameRunner.class.getDeclaredMethod("checkStrike", String.class, String.class);
+		checkStrike.setAccessible(true);
+
+		checkBall = GameRunner.class.getDeclaredMethod("checkBall", String.class, String.class, int.class);
+		checkBall.setAccessible(true);
 	}
 
 	@ParameterizedTest
@@ -49,7 +53,7 @@ class GameRunnerTest {
 	@CsvSource(value = {"'123','456', 0", "'964','694',1", "'528','538',2", "'348','348',3"})
 	void PrintAndReturnStrike_ValidInputs_ReturnTrueStrike(String answer, String userInput, int strike) throws
 		InvocationTargetException, IllegalAccessException {
-		int result = (int)printAndReturnStrike.invoke(gameRunner, answer, userInput);
+		int result = (int)checkStrike.invoke(gameRunner, answer, userInput);
 		assertThat(result).isEqualTo(strike);
 	}
 
@@ -57,7 +61,7 @@ class GameRunnerTest {
 	@CsvSource(value = {"'123','456', 0, 0", "'964','694', 1, 2", "'528','583', 1, 1", "'348','834', 0, 3"})
 	void PrintAndReturnBall_ValidInputs_ReturnTrueBall(String answer, String userInput, int strike, int ball) throws
 		InvocationTargetException, IllegalAccessException {
-		int result = (int)printAndReturnBall.invoke(gameRunner, answer, userInput, strike);
+		int result = (int)checkBall.invoke(gameRunner, answer, userInput, strike);
 		assertThat(result).isEqualTo(ball);
 	}
 }

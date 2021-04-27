@@ -18,7 +18,10 @@ class GameplayUITest {
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
 		gameplayUI = new GameplayUI();
+		setReflectionForMethod();
+	}
 
+	private static void setReflectionForMethod() throws NoSuchMethodException {
 		hasSameNumber = GameplayUI.class.getDeclaredMethod("hasSameNumber", String.class);
 		hasSameNumber.setAccessible(true);
 
