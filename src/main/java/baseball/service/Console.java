@@ -14,7 +14,6 @@ public class Console {
 
     public int getNumber() {
         System.out.print("숫자를 입력해주세요 : ");
-        scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
