@@ -16,10 +16,6 @@ public class BallNumber {
 		this.number = number;
 	}
 
-	public int getNumber() {
-		return number;
-	}
-
 	private void validate(int number) {
 		if(number > MAX_NUMBER || number < MIN_NUMBER) {
 			throw new IllegalArgumentException("볼의 사이즈는 1 이상 9 이하 입니다.");
