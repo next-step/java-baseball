@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.domain.exception.NoAllowNumberException;
 import java.util.Objects;
 
 public class Ball {
@@ -13,7 +14,7 @@ public class Ball {
 
     public static Ball of(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new NoAllowNumber("숫자는 " + MIN_NUMBER + "~" + MAX_NUMBER + " 사이어야 합니다.");
+            throw new NoAllowNumberException("숫자는 " + MIN_NUMBER + "~" + MAX_NUMBER + " 사이어야 합니다.");
         }
         return new Ball(number);
     }
