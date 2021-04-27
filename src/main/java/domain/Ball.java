@@ -44,7 +44,7 @@ final class Ball {
         List<Integer> ball = new ArrayList<>();
 
         for(int i=0; i<input.length(); i++){
-            ball.add(input.charAt(i)-'0');
+            ball.add(Character.getNumericValue(input.charAt(i)));
         }
         return ball;
     }
