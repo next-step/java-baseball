@@ -22,7 +22,7 @@ public class PlayBall {
         }
     }
 
-    private void gameStart(List<Integer> computerBall) {
+    public void gameStart(List<Integer> computerBall) {
         while (compareBall.getStatus()) {
             List<Integer> userNumber = userInput.InputNumber();
             compareBall.checkStart(userNumber, computerBall);
