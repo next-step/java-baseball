@@ -38,6 +38,10 @@ public class Judgement {
         }
     }
 
+    public boolean isNothing() {
+        return strike == NOTHING && ball == NOTHING;
+    }
+
     public boolean isClear() {
         return strike == CLEAR_STRIKE;
     }
