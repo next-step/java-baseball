@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.assertj.core.util.Lists;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ComputerTest {
 
@@ -46,5 +50,34 @@ public class ComputerTest {
 
         // then
         assertThat(numberList.size()).isEqualTo(numberSet.size());
+    }
+
+//    @ParameterizedTest
+//    @ValueSource(strings = { "123", "724", "826" })
+//    @DisplayName("스트라이크, 볼, 낫싱 판별이 정상적으로 이루어져야 한다.")
+//    void isHintResultCorrectTest(String answer1, String answer2, String answer3) { }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "12", "7243", "15326" })
+    @DisplayName("제시된 숫자의 길이가 3자리가 아니면 예외가 발생한다.")
+    void answerLengthExceptionTest(String answer) {
+        // when, then
+        assertThatThrownBy(() -> computer.generateResult(answer)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "103", "049", "000" })
+    @DisplayName("제시된 숫자가 자연수로 이루어지지 않으면 예외가 발생한다.")
+    void answerNaturalNumberExceptionTest(String answer) {
+        // when, then
+        assertThatThrownBy(() -> computer.generateResult(answer)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "133", "494", "777" })
+    @DisplayName("제시된 숫자가 서로 다른 숫자로 이루어지지 않으면 예외가 발생한다.")
+    void answerUniqueNumberExceptionTest(String answer) {
+        // when, then
+        assertThatThrownBy(() -> computer.generateResult(answer)).isInstanceOf(IllegalArgumentException.class);
     }
 }
