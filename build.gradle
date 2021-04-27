@@ -1,4 +1,6 @@
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'main.java.play.GamePlayController'
 apply plugin: 'eclipse'
 
 version = '1.0.0'
