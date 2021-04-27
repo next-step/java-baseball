@@ -4,34 +4,21 @@ import baseball.exception.BaseballNumberFormatException;
 import baseball.util.random.RandomNumberGenerator;
 import lombok.Getter;
 
+import static baseball.constants.BaseballConstant.*;
+
 // TODO: Random Number Generator (Strategy Pattern)
 @Getter
 public class BaseballNumber {
-    public static final int DEFAULT_NUMBERS_SIZE = 3;
-    public static final int DEFAULT_NUMBER_RADIX = 10;
-    public static final int MAX_RADIX = 'z' - 'a' + 10;
-    public static final int MIN_RADIX = 2;
-    public static final int MAX_SIZE = MAX_RADIX - 1;
-    public static final int MIN_SIZE = MIN_RADIX - 1;
-
     private final int[] numbers;
     private final int size;
     private final int radix;
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     private BaseballNumber(int size, int radix) {
-        if (size <= 0) {
-            size = DEFAULT_NUMBERS_SIZE;
+        if (!checkSizeAndRadixValid(size, radix)) {
+            throw new BaseballNumberFormatException(size, radix);
         }
 
-        if (radix < MIN_RADIX || radix > MAX_RADIX) {
-            radix = DEFAULT_NUMBER_RADIX;
-        }
-
-        this.size = size >= radix ? radix - 1 : size;
+        this.size = size;
         this.radix = radix;
         this.numbers = new int[this.size];
     }
@@ -43,32 +30,44 @@ public class BaseballNumber {
     public BaseballNumber(String input, int size, int radix) {
         this(size, radix);
 
-        if (input == null || input.length() != this.size) {
+        if (!checkStringInputValid(input, size, radix)) {
             throw new BaseballNumberFormatException(input);
         }
 
+        this.saveFromInputString(input);
+
+        if (!this.checkValid()) {
+            throw new BaseballNumberFormatException(input);
+        }
+    }
+
+    private void saveFromInputString(String input) {
         for (int i = 0; i < this.size; i++) {
             char c = input.charAt(i);
-            if (!Character.isDigit(c) && !Character.isAlphabetic(c)) {
-                throw new BaseballNumberFormatException(input);
-            }
-
             numbers[i] = Character.isDigit(c) ? c - '0' : Character.toUpperCase(c) - 'A' + 10;
         }
-
-        if (!checkValid()) {
-            throw new BaseballNumberFormatException(input);
-        }
     }
 
-    private boolean checkValid() {
-        return checkValid(0, this.size);
+    public boolean checkValid() {
+        return checkRadixValid() && checkSizeValid() && checkNumberValid();
     }
 
-    private boolean checkValid(int startIndex, int endIndex) {
+    private boolean checkSizeValid() {
+        return this.size >= MIN_SIZE && this.size <= MAX_SIZE && this.size < this.radix;
+    }
+
+    private boolean checkRadixValid() {
+        return this.radix >= MIN_RADIX && this.radix <= MAX_RADIX && this.radix > this.size;
+    }
+
+    private boolean checkNumberValid() {
+        return checkNumberValid(0, this.size);
+    }
+
+    private boolean checkNumberValid(int startIndex, int endIndex) {
         boolean[] isChecked = new boolean[this.radix];
         for (int i = startIndex; i < endIndex; i++) {
-            if (numbers[i] < 0 || numbers[i] >= this.radix || isChecked[numbers[i]] || numbers[i] == 0) {
+            if (numbers[i] <= 0 || numbers[i] >= this.radix || isChecked[numbers[i]]) {
                 return false;
             }
 
@@ -78,6 +77,33 @@ public class BaseballNumber {
         return true;
     }
 
+    public static boolean checkSizeAndRadixValid(int size, int radix) {
+        return size < radix && size >= MIN_SIZE && radix <= MAX_RADIX;
+    }
+
+    public static boolean checkStringInputValid(String input, int size, int radix) {
+        if (input == null || input.length() != size) {
+            return false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (!checkCharacterValid(input.charAt(i), radix)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean checkCharacterValid(char c, int radix) {
+        int number = convertToInteger(c, radix);
+        return Character.isDigit(c) || Character.isAlphabetic(c) && (number > 0 && number < radix);
+    }
+
+    private static int convertToInteger(char c, int radix) {
+        return Character.isDigit(c) ? c - '0' : Character.toUpperCase(c) - 'A' + 10;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i : numbers) {
@@ -85,6 +111,10 @@ public class BaseballNumber {
         }
 
         return sb.toString();
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder {
@@ -101,6 +131,7 @@ public class BaseballNumber {
             this.size = 0;
             this.radix = 0;
             isChecked = new boolean[MAX_RADIX];
+            isChecked[0] = true;
             this.rng = RandomNumberGenerator.getDefault();
         }
 
@@ -119,24 +150,25 @@ public class BaseballNumber {
             return this;
         }
 
-        private Builder addRandomNumber() {
+        public Builder addRandomNumber() {
             this.checkNullNumberThenInit();
 
-            if (this.index >= this.number.size) {
+            if (this.isReadyForBuild()) {
                 return this;
             }
 
             do {
                 this.number.numbers[this.index] = (this.rng.generateRandomNumber(this.number.radix) % (this.number.radix - 1)) + 1;
-            } while(this.number.numbers[this.index] == 0
-                    || this.isChecked[this.number.numbers[this.index]]);
+            } while(this.isChecked[this.number.numbers[this.index]]);
 
             this.isChecked[this.number.numbers[this.index++]] = true;
             return this;
         }
 
         public Builder addRandomNumber(int count) {
-            for (int i = 0; i < count; i++) {
+            this.checkNullNumberThenInit();
+
+            for (int i = 0; i < count && !this.isReadyForBuild(); i++) {
                 this.addRandomNumber();
             }
 
@@ -152,9 +184,7 @@ public class BaseballNumber {
         public BaseballNumber build() {
             this.checkNullNumberThenInit();
 
-            this.isChecked = new boolean[this.number.radix];
-
-            if (this.index < this.number.size) {
+            if (!this.isReadyForBuild()) {
                 this.addAll();
             }
 
@@ -165,6 +195,10 @@ public class BaseballNumber {
             if (this.number == null) {
                 this.number = new BaseballNumber(this.size, this.radix);
             }
+        }
+
+        private boolean isReadyForBuild() {
+            return this.number != null && this.index >= this.number.size;
         }
     }
 }
