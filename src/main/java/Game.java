@@ -1,8 +1,8 @@
 public class Game {
-    private static String computerNum;
-    private static String inputNum;
+    private String computerNum;
+    private String inputNum;
 
-    public static void setComputerNum() {
+    public void setComputerNum() {
         ComputerNum computer = new ComputerNum();
         computerNum = computer.getComputerNum();
     }
@@ -11,13 +11,25 @@ public class Game {
         return computerNum;
     }
 
-    public static void setInputNum() {
+    public void setInputNum() {
         InputNum input = new InputNum();
         inputNum = input.getInputNum();
     }
     public String getInputNum(){
         setInputNum();
         return inputNum;
+    }
+
+    public void play(boolean isNew) {
+        if(isNew){ computerNum = getComputerNum(); }
+        inputNum = getInputNum();
+        Integer strikeCount = strike(computerNum, inputNum);
+        Integer ballCount = Math.max((ball(computerNum, inputNum) - strikeCount),0);
+
+        System.out.println(setResultMsg(strikeCount, ballCount));
+
+        if (strikeCount != computerNum.length()){ play(false); }
+        if (strikeCount == computerNum.length()){ return; }
     }
 
     public Integer strike(String computerNum, String inputNum) {
@@ -67,7 +79,6 @@ public class Game {
         if(checkNothing(strikeCount, ballCount)){
             resultMsg.append("낫싱");
         }
-
         if (checkStrike(strikeCount)) {
             resultMsg.append(strikeCount+" 스트라이크");
         }
