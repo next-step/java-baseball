@@ -21,4 +21,8 @@ public class BaseballGameService {
         BaseballNumbers defenceNumbers = repository.find();
         return new BaseballGame(defenceNumbers, pitchNumbers);
     }
+
+    public BaseballGame pitch(String pitchNumbers) {
+        return pitch(BaseballNumbers.pitchNumber(pitchNumbers));
+    }
 }
