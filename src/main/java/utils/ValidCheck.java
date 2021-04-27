@@ -21,6 +21,6 @@ public class ValidCheck {
         for (char c : str.toCharArray()) {
             hashSet.add(c);
         }
-        return (hashSet.size() != str.length()) ? false : true;
+        return (hashSet.size() != str.length()) ? true : false;
     }
 }
