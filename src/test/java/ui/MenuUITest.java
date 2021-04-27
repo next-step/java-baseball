@@ -17,11 +17,6 @@ class MenuUITest {
 	}
 
 	@Test
-	void getMenuInput_EnterOne_True() {
-		assertThat(menuUI.getMenuInput("1")).isTrue();
-	}
-
-	@Test
 	void getMenuInput_EnterTwo_False() {
 		assertThat(menuUI.getMenuInput("2")).isFalse();
 	}
