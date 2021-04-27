@@ -13,7 +13,7 @@ import com.baseball.woowahan.constant.Message;
  * 입력 값 유효성 체크 모듈
  */
 class UserInputValidator {
-	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", Game.GAME_LENGTH, "}$");
+	private final String NUMBER_PATTERN = StringUtils.join("^[1-9]{", Game.gameLength, "}$");
 
 	public boolean isValid(String input) {
 		return isNotNull(input) && isGameLengthAndAllOtherNumbers(input);
@@ -30,7 +30,7 @@ class UserInputValidator {
 	private boolean isGameLengthAndAllOtherNumbers(String input) {
 		Set<String> set = new HashSet<>();
 		set.addAll(Arrays.asList(input.split("")));
-		if (input.matches(NUMBER_PATTERN) && Objects.equals(Game.GAME_LENGTH, set.size())) {
+		if (input.matches(NUMBER_PATTERN) && Objects.equals(Game.gameLength, set.size())) {
 			return true;
 		}
 		System.out.println(Message.INVALID_INPUT.getMessage());

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class GameTest {
 	@Test
 	void isGameLength_Three() {
-		assertThat(Game.GAME_LENGTH).isEqualTo(3);
+		assertThat(Game.DEFAULT_LENGTH).isEqualTo(3);
 	}
 
 }

@@ -22,7 +22,7 @@ public class ScoreCalculatorAndPrinter {
 	public void calculate(String inputNumber) {
 		initCounts();
 		String[] inputNumbers = inputNumber.split("");
-		for (int i = 0; i < Game.GAME_LENGTH; i++) {
+		for (int i = 0; i < Game.gameLength; i++) {
 			checkStrike(i, inputNumbers[i]);
 			checkBall(i, inputNumbers[i]);
 		}
@@ -30,7 +30,7 @@ public class ScoreCalculatorAndPrinter {
 	}
 
 	public boolean isCompleted() {
-		if (Objects.equals(this.strikeCount, Game.GAME_LENGTH)) {
+		if (Objects.equals(this.strikeCount, Game.gameLength)) {
 			System.out.println(Message.COMPLETE.getMessage());
 			return true;
 		}

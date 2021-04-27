@@ -51,7 +51,7 @@ class ScoreCalculatorAndPrinterTest {
 	public void calculate(String inputNumber) {
 
 		String[] inputNumbers = inputNumber.split("");
-		for (int i = 0; i < Game.GAME_LENGTH; i++) {
+		for (int i = 0; i < Game.DEFAULT_LENGTH; i++) {
 			checkStrike(i, inputNumbers[i]);
 			checkBall(i, inputNumbers[i]);
 		}

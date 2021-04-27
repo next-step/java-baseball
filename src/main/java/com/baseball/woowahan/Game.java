@@ -3,7 +3,8 @@ package com.baseball.woowahan;
 import com.baseball.woowahan.constant.Message;
 
 public class Game {
-	public static final int GAME_LENGTH = 3;
+	public static final int DEFAULT_LENGTH = 3;
+	public static int gameLength;
 	private RandomGenerator randomGenerator;
 	private ScoreCalculatorAndPrinter scoreCalculatorAndPrinter;
 	private UserInputValidator userInputValidator;
@@ -20,6 +21,11 @@ public class Game {
 	}
 
 	public Game(RandomGenerator randomGenerator) {
+		this(randomGenerator, DEFAULT_LENGTH);
+	}
+
+	public Game(RandomGenerator randomGenerator, int inputLength) {
+		gameLength = inputLength;
 		this.randomGenerator = randomGenerator;
 		this.userInputValidator = new UserInputValidator();
 		this.randomNumber = randomGenerator.makeRandomNumbers();
