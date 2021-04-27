@@ -31,12 +31,12 @@ class ConsoleTest {
 
     @Test
     void result_three_strike() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        assertThat((boolean) getMethod("isFinish").invoke(console, new Score(3, 0))).isTrue();
+        assertThat((boolean) getMethod("isFinish", Score.class).invoke(console, new Score(3, 0))).isTrue();
     }
 
     @Test
     void result_one_strike_one_ball() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        assertThat((boolean) getMethod("isFinish").invoke(console, new Score(1, 1))).isFalse();
+        assertThat((boolean) getMethod("isFinish", Score.class).invoke(console, new Score(1, 1))).isFalse();
     }
 
     @Test
@@ -75,15 +75,22 @@ class ConsoleTest {
         assertThat(outputStream.toString()).hasToString(new Score(3, 0).getStrike() + " 스트라이크" + NEW_LINE + "3개의 숫자를 모두 맞히셨습니다! 게임종료" + NEW_LINE);
     }
 
+    @Test
+    void check_duplicate_number() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = getMethod("isDuplicateNumber", int.class);
+        assertThat((boolean) method.invoke(console, 333)).isTrue();
+        assertThat((boolean) method.invoke(console, 123)).isFalse();
+    }
+
     private ByteArrayOutputStream printMethod(Score score) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         ByteArrayOutputStream outputStream = systemOutput();
-        Method method = getMethod("print");
+        Method method = getMethod("print", Score.class);
         method.invoke(console, score);
         return outputStream;
     }
 
-    private Method getMethod(String name) throws NoSuchMethodException {
-        Method method = console.getClass().getDeclaredMethod(name, Score.class);
+    private Method getMethod(String name, Class<?> aClass) throws NoSuchMethodException {
+        Method method = console.getClass().getDeclaredMethod(name, aClass);
         method.setAccessible(true);
         return method;
     }

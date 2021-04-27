@@ -31,6 +31,21 @@ class GameTest {
     }
 
     @Test
+    void third_number_range_between_one_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        assertThat(getIntegers(3)).containsExactly(1, 2, 3, 4, 5, 6, 7, 8, 9).doesNotContain(0);
+    }
+
+    @Test
+    void second_number_range_between_zero_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        assertThat(getIntegers(2)).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    }
+
+    @Test
+    void first_number_range_between_zero_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        assertThat(getIntegers(1)).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    }
+
+    @Test
     void all_strike() {
         assertPlay(game.play(123), 3, 0);
     }
@@ -74,24 +89,6 @@ class GameTest {
             sets.add(number % 10);
             assertThat(sets).hasSize(3);
         }
-    }
-
-    @Test
-    void third_number_range_between_one_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Set<Integer> sets = getIntegers(3);
-        assertThat(sets).containsExactly(1, 2, 3, 4, 5, 6, 7, 8, 9).doesNotContain(0);
-    }
-
-    @Test
-    void second_number_range_between_zero_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Set<Integer> sets = getIntegers(2);
-        assertThat(sets).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-    }
-
-    @Test
-    void first_number_range_between_zero_and_nine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Set<Integer> sets = getIntegers(1);
-        assertThat(sets).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     }
 
     private Set<Integer> getIntegers(int pos) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {

@@ -2,7 +2,9 @@ package baseball.service;
 
 import baseball.domain.Score;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Console {
 
@@ -17,20 +19,33 @@ public class Console {
 
         while (true) {
             int number = getNumber();
-            if (checkOutOfRangeNumber(number)) continue;
 
+            if (isOutOfRangeNumber(number)) {
+                System.out.println("잘못된 숫자를 입력하였습니다. 다시 입력해주세요.");
+                continue;
+            }
+
+            if (isDuplicateNumber(number)) {
+                System.out.println("중복된 숫자를 입력하였습니다. 다시 입력해주세요.");
+                continue;
+            }
             Score score = game.play(number);
             print(score);
+
             if (isFinish(score)) return;
         }
     }
 
-    private boolean checkOutOfRangeNumber(int number) {
-        if (number < 100 || number > 999) {
-            System.out.println("잘못된 숫자를 입력하였습니다. 다시 입력해주세요.");
-            return true;
-        }
-        return false;
+    private boolean isOutOfRangeNumber(int number) {
+        return number < 100 || number > 999;
+    }
+
+    private boolean isDuplicateNumber(int number) {
+        Set<Integer> sets = new HashSet<>();
+        sets.add(number / 100);
+        sets.add(number / 10 % 10);
+        sets.add(number % 10);
+        return sets.size() != 3;
     }
 
     private int getNumber() {
