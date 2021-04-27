@@ -10,6 +10,7 @@ public class InputNumberProcess {
 
 	public static final int MIN_VALUE = 123;
 	public static final int MAX_VALUE = 987;
+	public static final int INPUT_NUM_SIZE = 4;
 	
 	public static void inputWaitingProcess(Map<Integer, Integer> inNumMap, Set<Integer> inNumSet) {
 		System.out.print(MessagesCommon.INPUT_MSG);
@@ -57,10 +58,20 @@ public class InputNumberProcess {
 
 	public static void numOverlapCheck(int inputNum, Map<Integer, Integer> inNumMap, Set<Integer> inNumSet) {
 		inNumSet.clear();
+		numOfDigits(inputNum, inNumMap, inNumSet, INPUT_NUM_SIZE);
 
 		if (inNumSet.size() != 3) {
 			System.out.print(MessagesCommon.ERROR_OVERLAP_MSG);
 			inputWaitingProcess(inNumMap, inNumSet);
+		}
+	}
+
+	public static void numOfDigits(int num, Map<Integer, Integer> inNumMap, Set<Integer> inNumSet, int i) {
+		i--;
+		if (num > 0) {
+			numOfDigits(num / 10, inNumMap, inNumSet, i);
+			inNumMap.put(i, num % 10);
+			inNumSet.add(num % 10);
 		}
 	}
 }
