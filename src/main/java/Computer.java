@@ -24,7 +24,7 @@ public class Computer {
         return result;
     }
 
-    private void validateInput(String input) {
+    public void validateInput(String input) {
         if (!input.matches(regularExpression)) {
             String message = String.format(ERROR_FORMAT, input);
             throw new IllegalArgumentException(message);
