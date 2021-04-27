@@ -14,7 +14,7 @@ public class BaseBallTests {
 	public void makeGenerateTest() {
 		
 		BaseBall bb = new BaseBall();
-		bb.start();
+		bb.start("123");
 		
 		String cpuNum = bb.cpuNum;
 		
@@ -24,7 +24,7 @@ public class BaseBallTests {
 		
 		/* 생성된 난수가 매번 다른 값을 지니는지 검증 (S) */
 		BaseBall bb2 = new BaseBall();
-		bb2.start();
+		bb2.start("123");
 		
 		String cpuNum2 = bb2.cpuNum;
 		
