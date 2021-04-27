@@ -23,9 +23,8 @@ public class Main {
         Ui.startPlayGame();
         List<Integer> inputNumber = Play.getInputNumber();
         Map<String, Object> playResult = Play.judge(playNumber, inputNumber);
-        String ballCount = String.valueOf(playResult.get("ball"));
-        String strikeCount = String.valueOf(playResult.get("strike"));
-        Ui.judgePlayGame(strikeCount, ballCount);
+
+        Ui.judgePlayGame(playResult);
         return Play.isEndGame(playResult);
     }
 

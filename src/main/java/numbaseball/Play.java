@@ -7,7 +7,10 @@ public class Play {
 
     private static int MIN_RANDOM_NUMBER = 1;
     private static int MAX_RANDOM_NUMBER = 9;
-    private static int NUMBER_SIZE = 3;
+    private static int PLAY_NUMBER_SIZE = 3;
+    private static String RESTART_GAME_FLAG = "1";
+    private static String END_GAME_FLAG = "1";
+
 
     private static String VALIDATE_MSG_NUMBER_SIZE = "반드시 3자리 숫자만 입력 가능합니다.. 다시 입력 해주세요.";
     private static String VALIDATE_MSG_DUPLICATION_NUMBER = "중복된 숫자가 존재합니다.. 다시 입력 해주세요.";
@@ -17,7 +20,7 @@ public class Play {
     public static List<Integer> createPlayNumber() {
         List<Integer> arrPlayNumber = new ArrayList<Integer>();
         int nRandNumber;
-        while (arrPlayNumber.size() < NUMBER_SIZE) {
+        while (arrPlayNumber.size() < PLAY_NUMBER_SIZE) {
             nRandNumber = (int) Math.floor((Math.random() * MAX_RANDOM_NUMBER) + MIN_RANDOM_NUMBER);    //1-9 범위의 난수 생성
             addPlayNumber(arrPlayNumber, nRandNumber);
         }
@@ -54,7 +57,7 @@ public class Play {
     }
 
     private static void validateNumberSize(String sInputNumber) {
-        if (sInputNumber.length() != NUMBER_SIZE) {
+        if (sInputNumber.length() != PLAY_NUMBER_SIZE) {
             throw new IllegalArgumentException(VALIDATE_MSG_NUMBER_SIZE);
         }
     }
@@ -119,9 +122,9 @@ public class Play {
         return 0;
     }
 
-    public static boolean isEndGame(Map<String, Object> playResult) {
+    public static boolean isEndGame(Map<String,Object> playResult) {
         String strikeCount = String.valueOf(playResult.get("strike"));
-        if ( "3".equals(strikeCount) ){
+        if ( PLAY_NUMBER_SIZE == Integer.parseInt(strikeCount) ){
             return false;
         }
         return true;
@@ -132,7 +135,7 @@ public class Play {
             Scanner sc = new Scanner(System.in);
             String restartNumber = sc.next();
             validateRestart(restartNumber);
-            if ("1".equals(restartNumber)) {
+            if (RESTART_GAME_FLAG.equals(restartNumber)) {
                 return true;
             }
             return false;
@@ -146,7 +149,7 @@ public class Play {
     }
 
     private static void validateRestart(String restartNumber) {
-        if (!"1".equals(restartNumber) && !"2".equals(restartNumber)) {
+        if (!RESTART_GAME_FLAG.equals(restartNumber) && !END_GAME_FLAG.equals(restartNumber)) {
             throw new IllegalArgumentException(VALIDATE_MSG_RESTART);
         }
     }

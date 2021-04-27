@@ -11,7 +11,9 @@ public class Ui {
         System.out.print("숫자를 입력해주세요 : ");
     }
 
-    public static void judgePlayGame(String strikeCount, String ballCount) {
+    public static void judgePlayGame(Map<String,Object> playResult) {
+        String ballCount = String.valueOf(playResult.get("ball"));
+        String strikeCount = String.valueOf(playResult.get("strike"));
         String judgeMessage = "";
         if ( !"0".equals(strikeCount) ) {
             judgeMessage += strikeCount+"스트라이크 ";
