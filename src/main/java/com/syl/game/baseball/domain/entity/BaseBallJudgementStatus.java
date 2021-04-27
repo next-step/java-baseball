@@ -23,6 +23,10 @@ public class BaseBallJudgementStatus {
         return nothing;
     }
 
+    public boolean isThreeStrike() {
+        return strike == 3;
+    }
+
     @Override
     public String toString() {
         if (nothing == 3) return "포볼";
