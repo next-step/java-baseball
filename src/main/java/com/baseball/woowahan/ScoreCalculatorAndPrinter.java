@@ -11,12 +11,18 @@ import com.baseball.woowahan.constant.Message;
 public class ScoreCalculatorAndPrinter {
 	private int strikeCount;
 	private int ballCount;
+	private RandomGenerator randomGenerator;
 	private String randomNumber;
 
-	public ScoreCalculatorAndPrinter(String randomNumber) {
+	public ScoreCalculatorAndPrinter(RandomGenerator randomGenerator) {
 		this.strikeCount = 0;
 		this.ballCount = 0;
-		this.randomNumber = randomNumber;
+		this.randomGenerator = randomGenerator;
+		this.randomNumber = randomGenerator.makeRandomNumbers();
+	}
+
+	public void setNewRandomNumber() {
+		randomNumber = randomGenerator.makeRandomNumbers();
 	}
 
 	public void calculate(String inputNumber) {
