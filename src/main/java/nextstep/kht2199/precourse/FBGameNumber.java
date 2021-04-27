@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public final class FBGameNumber {
 
-	private final int computerNumber;
+	private int computerNumber;
 
 	private final static Random random = new Random();
 
@@ -24,14 +24,27 @@ public final class FBGameNumber {
 		);
 	}
 
-	private int countBall(int base, int target) {
+	protected int countBall(int base, int target) {
 		assert false;
 		return 0;
 	}
 
-	private int countStrike(int base, int target) {
-		assert false;
-		return 0;
+	protected int countStrike(int base, int target) {
+		assert base > 100 && base < 999;
+		assert target > 100 && target < 999;
+		String s1 = String.valueOf(base);
+		String s2 = String.valueOf(target);
+		int sum = 0;
+		char[] charArray = s1.toCharArray();
+		char[] charArray2 = s2.toCharArray();
+		for (int i = 0, charArrayLength = charArray.length; i < charArrayLength; i++) {
+			sum += (returnsOneIfMatched(charArray[i], charArray2[i]));
+		}
+		return sum;
+	}
+
+	private int returnsOneIfMatched(char c1, char c2) {
+		return c1 == c2 ? 1 : 0;
 	}
 
 	/**
@@ -47,5 +60,4 @@ public final class FBGameNumber {
 		}
 		return number;
 	}
-
 }
