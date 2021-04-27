@@ -44,5 +44,28 @@ class GameTest {
         assertFalse(game.checkNothing(strikeCount, ballCount));
     }
 
+    @Test
+    @DisplayName("strikeCount가 1이상인 경우 true, 아닌 경우 false를 반환하는지 검사한다")
+    void checkStrikeTest(){
+        Game game = new Game();
 
+        int strikeCount1 = 1;
+        assertTrue(game.checkStrike(strikeCount1));
+
+        int strikeCount2 = 0;
+        assertFalse(game.checkStrike(strikeCount2));
+
+    }
+
+    @Test
+    @DisplayName("ballCount가 1이상인 경우 true, 아닌 경우 false를 반환하는지 검사한다")
+    void checkBallTest(){
+        Game game = new Game();
+
+        int ballCount1 = 1;
+        assertTrue(game.checkBall(ballCount1));
+
+        int ballCount2 = 0;
+        assertFalse(game.checkStrike(ballCount2));
+    }
 }
