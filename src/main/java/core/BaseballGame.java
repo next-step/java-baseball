@@ -16,7 +16,6 @@ public class BaseballGame {
 
     public void runGame() {
         makeQuestion();
-        System.out.println(questions);
         while(!isSolved) {
             playGame();
         }
@@ -29,6 +28,10 @@ public class BaseballGame {
         Collections.shuffle(list);
                 
         questions.addAll(list.subList(0, 3));
+    }
+    
+    public List<Integer> getQuestions(){
+        return questions;
     }
 
     public void playGame() {
