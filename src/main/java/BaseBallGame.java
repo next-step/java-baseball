@@ -78,20 +78,6 @@ public class BaseBallGame {
 
         return input;
     }
-
-    /**
-     * 플레이어가 입력한 값이 올바른지 검증
-     *
-     * @param input 플레이어의 입력값
-     * @return      invalid 한 값이면 true, 아니면 false
-     */
-    private boolean invalidAnswerSize(String input) {
-        if (input.length() != computer.getNumberSize()) {
-            Log.INVALID_ANSWER_SIZE.printFormat(computer.getNumberSize());
-            return true;
-        }
-
-        return false;
     }
 
     }

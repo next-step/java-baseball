@@ -1,15 +1,20 @@
 public class Computer {
+    private final static String ERROR_FORMAT = "정확한 값을 입력해주세요. 현재 입력값 : %s";
     private final RightAnswer answer;
+    private final String regularExpression;
 
-    public Computer(int numberSize) {
-        this.answer = new RightAnswer(RandomNumberGenerator.generate(numberSize));
+    public Computer(RightAnswer answer, String regularExpression) {
+        this.answer = answer;
+        this.regularExpression = regularExpression;
     }
 
     public int getNumberSize() {
-        return answer.getNumber().length();
+        String number = answer.getNumber();
+        return number.length();
     }
 
     public Result compareNumberWith(String input) {
+        validateInput(input);
         Result result = new Result();
 
         for (int i = 0; i < getNumberSize(); i++) {
@@ -17,6 +22,13 @@ public class Computer {
         }
 
         return result;
+    }
+
+    private void validateInput(String input) {
+        if (!input.matches(regularExpression)) {
+            String message = String.format(ERROR_FORMAT, input);
+            throw new IllegalArgumentException(message);
+        }
     }
 
     private void calculate(Result result, char singleDigit, int index) {
