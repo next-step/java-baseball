@@ -33,11 +33,24 @@ public class BaseballGame {
 		String answer = generateNumbers();
 		String guess = "";
 		while(running){
-			System.out.print("숫자를 입력해주세요:");
-			guess = sc.next();
-			System.out.println(guess);
-			System.out.println(guess(answer,guess));
+			print("숫자를 입력해주세요:");
+			guess = getGuessAndPrint(sc);
+			println(guess(answer,guess));
 		}
+	}
+
+	public void print(String output){
+		System.out.print(output);
+	}
+
+	public void println(String output){
+		System.out.println(output);
+	}
+
+	private String getGuessAndPrint(Scanner sc){
+		String guess = sc.next();
+		println(guess);
+		return guess;
 	}
 
 	public String generateNumbers(){
@@ -54,11 +67,12 @@ public class BaseballGame {
 
 		String[] splitedGuessNumbers = guessNumbers.split("");
 
-		for(String guessNumber : guessNumbers.split("")){
+		for(String guessNumber : splitedGuessNumbers){
 			count = checkNumbers(guessNumber, answerNumbers, index++, count);
 		}
 		return count;
 	}
+
 
 	private String generateNumbers(String all,int length){
 		if(all==null) all="";
@@ -129,7 +143,6 @@ public class BaseballGame {
 		}
 		count[1]+=1;
 		return count;
-
 	}
 
 }
