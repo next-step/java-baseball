@@ -19,11 +19,15 @@ public class BaseballGame {
 	}
 
 	public void start(){
-		do {
-			List<Integer> candidates = candidateFactory.getNumbers();
-			ArrayList<Integer> defenseNumbers = defensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+		List<Integer> candidates = candidateFactory.getNumbers();
+		RefereeClient refereeClient = new RefereeClient();
+		ArrayList<Integer> defenseNumbers = defensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
+		refereeClient.setDefenseNumbers(defenseNumbers);
+		do{
+			refereeClient.resetMatchResult();
 			ArrayList<Integer> offenseNumbers = offensingUser.pickNumbers(candidates, Constant.NUM_DIGIT);
-			//TODO: 결과 판단
-		} while (InputDispatcher.askContinue());
+			refereeClient.setOffenseNumbers(offenseNumbers);
+			refereeClient.printMatchResult();
+		} while(refereeClient.isGameEnd() == false);
 	}
 }
