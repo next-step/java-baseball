@@ -50,9 +50,13 @@ class BaseballGameServiceTest {
             service.check();
         }
 
-        @Test
-        void 숫자야구_성공후재시작_테스트() {
-            //TODO
+        @ParameterizedTest
+        @ValueSource(strings = {"123", "456", "789", "648", "486"})
+        void 숫자야구_성공후재시작_테스트(String in) {
+            service.input(in);
+            service.check();
+            service.restart("2");
+            assertThat(service.isContinue()).isTrue();
         }
     }
 }

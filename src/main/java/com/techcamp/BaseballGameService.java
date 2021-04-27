@@ -59,6 +59,16 @@ public class BaseballGameService {
 
     /**
      * <pre>
+     *     계속 진행 여부 리턴
+     *     테스트를 위한 임시 메서드
+     * </pre>
+     * @author 김재범
+     **/
+    public boolean isContinue() {
+        return isContinue;
+    }
+    /**
+     * <pre>
      *     숫자야구 정답 3자리 숫자 생성
      *     0~9 숫자 3자리. 중복허용X
      * </pre>
@@ -170,6 +180,17 @@ public class BaseballGameService {
      * @author 김재범
      **/
     public void restart() {
-        //TODO 재시작 여부 문의 로직
+        restart(null);
+    }
+    public void restart(String in) {
+        if(isContinue) return;
+        System.out.println("게임을 새로 시작하려면 1,종료하려면 2를 입력하세요.");
+        if(in == null) {
+            Scanner scan = new Scanner(System.in);
+            in = scan.next();
+        }
+        if("1".equals(in.trim())) {
+            isContinue = true;
+        }
     }
 }
