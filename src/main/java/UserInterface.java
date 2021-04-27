@@ -4,22 +4,23 @@ import java.util.Scanner;
 import validator.NumberFormatValidator;
 
 public class UserInterface {
+
 	private final Scanner scanner = new Scanner(System.in);
 
-	private final String[] messages = {
+	private final String[] MESSAGES = {
 		"숫자를 입력해 주세요",
 		"3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."
 	};
 
 	public String interactUser() {
-		System.out.println(messages[0]);
+		System.out.println(MESSAGES[0]);
 		String input = scanner.next();
 		NumberFormatValidator.validate(input);
 		return input;
 	}
 
 	public int replayOnNot() {
-		System.out.println(messages[1]);
+		System.out.println(MESSAGES[1]);
 		String code = scanner.next();
 		NumberFormatValidator.checkParseToInteger(code);
 		return Integer.parseInt(code);
@@ -33,13 +34,6 @@ public class UserInterface {
 		answerTo(convertScoreToMessage(score));
 	}
 
-	private void answerTo(String message) {
-		if (message.length() == 0) {
-			return;
-		}
-		System.out.println(message);
-	}
-
 	protected String convertScoreToMessage(Map<Result, Integer> score) {
 		StringBuilder answer = new StringBuilder();
 		writeMessageBy(score, Result.STRIKE, answer);
@@ -47,6 +41,13 @@ public class UserInterface {
 			answer.append(" ");
 		writeMessageBy(score, Result.BALL, answer);
 		return answer.toString();
+	}
+
+	private void answerTo(String message) {
+		if (message.length() == 0) {
+			return;
+		}
+		System.out.println(message);
 	}
 
 	private void writeMessageBy(Map<Result, Integer> score, Result resultType, StringBuilder message) {
