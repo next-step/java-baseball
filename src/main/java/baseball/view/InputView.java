@@ -15,7 +15,7 @@ public class InputView {
         return toIntegers(number);
     }
 
-    public String inputChooseType() {
+    public String inputChooseEndType() {
         System.out.println(CHOOSE_TYPE_MESSAGE);
         return scanner.nextLine();
     }

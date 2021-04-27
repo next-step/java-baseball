@@ -22,7 +22,7 @@ public class BaseballController {
             resultView.printScore(computer);
         }
         resultView.printEndMessage();
-        chooseEndType(inputView.inputChooseType());
+        chooseEndType(inputView.inputChooseEndType());
     }
 
     private void chooseEndType(final String type) {
