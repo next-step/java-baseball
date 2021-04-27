@@ -92,6 +92,12 @@ public class BaseBallGame {
         }
     }
 
+    // TODO : 게임 재시작시 checkModel을 초기화
+    public void resetModel(CheckResultModel model){
+        model.strike = 0;
+        model.ball = 0;
+    }
+
 
 
 

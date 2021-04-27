@@ -27,6 +27,7 @@ public class BaseballProject {
                 int result = baseBallGame.checkAnswer(userAnswer);
                 String resultMessage = baseBallGame.makeResultMessage(baseBallGame.checkResultModel);
                 System.out.println(resultMessage);
+                baseBallGame.resetModel(baseBallGame.checkResultModel);
             }
         }
     }
