@@ -39,9 +39,18 @@ public class BaseballService {
 		return strikeCount == NUM_SIZE;
 	}
 
-	public int getBallCount(int input, List<Integer> answer) {
+	public int getBallCount(int[] input, List<Integer> answer) {
 
-		return 0;
+		int ballCount = 0;
+
+		for (int i = 0; i < NUM_SIZE; i++) {
+			int inputItem = input[i];
+			if (inputItem != answer.get(i) && answer.contains(inputItem)) {
+				ballCount++;
+			}
+		}
+
+		return ballCount;
 	}
 
 	public boolean isNotThing(int strikeCount, int ballCount) {

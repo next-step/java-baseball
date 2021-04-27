@@ -53,10 +53,10 @@ class BaseballServiceTest {
 	void getBallCount() {
 		List<Integer> answer = Arrays.asList(1, 2, 3);
 
-		assertThat(baseballService.getBallCount(123, answer)).isEqualTo(0);
-		assertThat(baseballService.getBallCount(561, answer)).isEqualTo(1);
-		assertThat(baseballService.getBallCount(235, answer)).isEqualTo(2);
-		assertThat(baseballService.getBallCount(312, answer)).isEqualTo(3);
+		assertThat(baseballService.getBallCount(new int[] {1, 2, 3}, answer)).isEqualTo(0);
+		assertThat(baseballService.getBallCount(new int[] {5, 6, 1}, answer)).isEqualTo(1);
+		assertThat(baseballService.getBallCount(new int[] {2, 3, 5}, answer)).isEqualTo(2);
+		assertThat(baseballService.getBallCount(new int[] {3, 1, 2}, answer)).isEqualTo(3);
 	}
 
 	@Test
