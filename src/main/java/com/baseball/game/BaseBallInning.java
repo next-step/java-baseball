@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.baseball.message.UIMessage;
-import com.baseball.rule.BallComparator;
-import com.baseball.rule.BallGenerator;
-import com.baseball.rule.BallPlayer;
+import com.baseball.rule.Referee;
+import com.baseball.rule.Pitcher;
+import com.baseball.rule.Player;
 
 public class BaseBallInning {
 
@@ -14,42 +14,37 @@ public class BaseBallInning {
 
 	boolean strikeout = false;
 
-	public BaseBallInning() {
-	}
+	public BaseBallInning() { }
 
 	public void onInning() {
-		// 3자리 숫자 생성
 		generateBall();
 		System.out.println(generatedNumbers); // Debuggin시 확인
 
 		while (!strikeout) {
-			// 입력값 받기( 유효성 검증 포함 )
 			ArrayList<Integer> inputNumbers = convertList(inputNumbers());
-
-			// 정답 여부 확인
 			decideBall(inputNumbers);
 		}
 	}
 
-	private BallComparator decideBall(ArrayList<Integer> inputNumbers) {
-		BallComparator ballComparator = new BallComparator(generatedNumbers, inputNumbers);
-		ballComparator.compareNumbers();
+	private Referee decideBall(ArrayList<Integer> inputNumbers) {
+		Referee referee = new Referee(generatedNumbers, inputNumbers);
+		referee.compareNumbers();
 
-		System.out.println(ballComparator.getResultMessage());
+		System.out.println(referee.getResultMessage());
 
-		if (ballComparator.isStrikeOut()) {
+		if (referee.isStrikeOut()) {
 			strikeout = true;
 		}
 
-		return ballComparator;
+		return referee;
 	}
 
 	private ArrayList<Integer> convertList(String inputText) {
-		BallPlayer ballPlayer = new BallPlayer(inputText);
-		ballPlayer.validateInputText();
-		ballPlayer.convertStringToIntList();
+		Player player = new Player(inputText);
+		player.validateInputText();
+		player.convertStringToIntList();
 
-		return ballPlayer.getInputNumbers();
+		return player.getInputNumbers();
 	}
 
 	private String inputNumbers() {
@@ -62,7 +57,7 @@ public class BaseBallInning {
 	}
 
 	private void generateBall() {
-		BallGenerator ballGenerator = new BallGenerator();
-		this.generatedNumbers = (ArrayList<Integer>)ballGenerator.generateNumber();
+		Pitcher pitcher = new Pitcher();
+		this.generatedNumbers = (ArrayList<Integer>)pitcher.generateNumber();
 	}
 }

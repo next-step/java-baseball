@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class BallGenerator {
+public class Pitcher {
 	static int LENGTH = 3;
 
 	public int generateRandomDigit() {

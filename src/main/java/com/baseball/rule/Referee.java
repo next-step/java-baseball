@@ -2,7 +2,7 @@ package com.baseball.rule;
 
 import java.util.ArrayList;
 
-public class BallComparator {
+public class Referee {
 
 	private ArrayList<Integer> generatorNumbers;
 	private ArrayList<Integer> playerNumbers;
@@ -10,7 +10,7 @@ public class BallComparator {
 	private int strike;
 	private int ball;
 
-	public BallComparator(ArrayList<Integer> generatorNumbers, ArrayList<Integer> playerNumbers) {
+	public Referee(ArrayList<Integer> generatorNumbers, ArrayList<Integer> playerNumbers) {
 		this.generatorNumbers = generatorNumbers;
 		this.playerNumbers = playerNumbers;
 

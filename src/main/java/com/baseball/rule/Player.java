@@ -7,18 +7,18 @@ import java.util.regex.Pattern;
 import com.baseball.exception.GameException;
 import com.baseball.message.ValidateMessage;
 
-public class BallPlayer {
+public class Player {
 
 	private final static int LENGTH = 3;
 
 	private String inputText;
 	private ArrayList<Integer> inputNumbers;
 
-	public BallPlayer() {
+	public Player() {
 		this("");
 	}
 
-	public BallPlayer(String inputText) {
+	public Player(String inputText) {
 		this.inputText = inputText.trim();
 
 		validateInputText();

@@ -27,7 +27,8 @@ public class BaseBallGame {
 
 		if ("1".equals(resumeText)) {
 			onGame = true;
-		} else if ("2".equals(resumeText)) {
+		}
+		if ("2".equals(resumeText)) {
 			onGame = false;
 		}
 	}
