@@ -1,4 +1,4 @@
-package com.baseball.pre;
+package pre.test;
 
 public class StringDrill {
 }

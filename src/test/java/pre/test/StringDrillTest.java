@@ -1,4 +1,4 @@
-package com.baseball.pre;
+package pre.test;
 
 import static org.assertj.core.api.Assertions.*;
 
