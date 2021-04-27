@@ -9,4 +9,15 @@ class UtilTest {
         assertThat(Util.checkEqualChar('c', 'a')).isZero();
         assertThat(Util.checkEqualChar('c', 'c')).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("2개의 문자열을 입력받아 두번째 문자가 첫번째 문자에 포함되는 경우 1, 아닌경우 0을 반환하는지 검사한다")
+    void checkContains(){
+        String sampleStr = "abc";
+        String sampleWord1 = "c";
+        assertThat(Util.checkContains(sampleStr, sampleWord1)).isEqualTo(1);
+
+        String sampleWord2 = "z";
+        assertThat(Util.checkContains(sampleStr, sampleWord2)).isZero();
+    }
 }
