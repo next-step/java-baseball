@@ -23,4 +23,14 @@ public class Console {
         }
         return false;
     }
+
+    public void print(Score score) {
+        StringBuilder result = new StringBuilder();
+        if (score.getStrike() > 0)
+            result.append(score.getStrike()).append(" 스트라이크 ");
+        if (score.getBall() > 0)
+            result.append(score.getBall()).append(" 볼");
+        System.out.println(result.toString().trim());
+    }
+
 }
