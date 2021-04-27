@@ -8,7 +8,10 @@ import java.util.Scanner;
 
 public abstract class BaseBallPlayer {
 
-    // Select 3 numbers
+    /**
+     * 임의의 수 3개 선택
+     * @return
+     */
     public BaseBallNumbers selectThreeNumbers() {
         Scanner scanner = new Scanner(System.in);
         BaseBallNumbers baseBallNumbers = new BaseBallNumbers();
@@ -18,7 +21,10 @@ public abstract class BaseBallPlayer {
         return baseBallNumbers;
     }
 
-    // Input numbers
+    /**
+     * 임의의 수 3개 입력
+     * @return
+     */
     public BaseBallNumbers inputThreeNumbers() {
         Scanner scanner = new Scanner(System.in);
         BaseBallNumbers baseBallNumbers = new BaseBallNumbers();
@@ -28,7 +34,12 @@ public abstract class BaseBallPlayer {
         return baseBallNumbers;
     }
 
-    // return Strike / ball / nothing
+    /**
+     * 스트라이크 / 볼 / 포볼 판정
+     * @param selectedNumbers
+     * @param inputNumbers
+     * @return
+     */
     public BaseBallJudgementStatus speakJudgement(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
         BaseBallJudgementStatus baseBallJudgementStatus = BaseBallGameManager.getInstance().judgeStrikeOrBallOrNothing(selectedNumbers, inputNumbers);
         return baseBallJudgementStatus;
