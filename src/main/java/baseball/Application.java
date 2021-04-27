@@ -2,18 +2,20 @@ package baseball;
 
 import baseball.config.BaseballConfig;
 import baseball.model.Computer;
+import baseball.value.Result;
 import baseball.view.Monitor;
 
 public class Application {
 
+    private int remainChance;
     private Computer computer;
     private Monitor monitor;
 
     public Application() {
-        init();
     }
 
     private void init() {
+        remainChance = BaseballConfig.CHANCES;
         createComputer();
         createMonitor();
     }
@@ -28,9 +30,19 @@ public class Application {
     }
 
     private void start() {
-        int answer = monitor.askAnswer();
-        System.out.println(answer);
+        while (remainChance > 0) {
+            int answer = monitor.askAnswer();
+            Result result = computer.validate(answer);
+            monitor.showResult(result);
+
+            if (result.getStrike() == BaseballConfig.BALL_COUNT) {
+                monitor.showWin();
+                break;
+            }
+            remainChance--;
+        }
     }
+
 
     public static void main(String[] args) {
         Application app = new Application();
