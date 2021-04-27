@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## 기능 목록
+* 입출력 UI 로직
+* 서로 다른 임의의 수 3개 생성 로직  
+* 스트라이크 확인 로직
+* 볼 확인 로직
+* 메인 게임 구현
