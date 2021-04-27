@@ -26,7 +26,8 @@ class ScoreTest {
 			Arguments.of(Score.ball().sumScore(Score.strike()), Score.strike(), false),
 			Arguments.of(Score.ball().sumScore(Score.strike()), Score.ball(), false),
 			Arguments.of(Score.ball().sumScore(Score.strike()), Score.nothing(), false),
-			Arguments.of(Score.strike().sumScore(Score.strike()), Score.strike(), false)
+			Arguments.of(Score.strike().sumScore(Score.strike()), Score.strike(), false),
+			Arguments.of(Score.strike().sumScore(Score.strike()).sumScore(Score.strike()), Score.threeStrike(), true)
 		);
 	}
 

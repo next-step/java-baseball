@@ -1,9 +1,12 @@
 package study;
 
+import java.text.MessageFormat;
+
 public class Score {
 	private static final Score NOTHING = new Score(0, 0);
 	private static final Score STRIKE = new Score(1, 0);
 	private static final Score BALL = new Score(0, 1);
+	private static final Score THREE_STRIKE = new Score(3, 0);
 
 	private final int strike;
 	private final int ball;
@@ -11,6 +14,10 @@ public class Score {
 	private Score(int strike, int ball) {
 		this.strike = strike;
 		this.ball = ball;
+	}
+
+	static Score threeStrike() {
+		return THREE_STRIKE;
 	}
 
 	static Score strike() {
@@ -39,7 +46,10 @@ public class Score {
 
 	@Override
 	public String toString() {
-		return "Score{strike=" + strike + ", ball=" + ball + '}';
+		if (Score.nothing().equals(this)) {
+			return "포볼";
+		}
+		return MessageFormat.format("{0} 스트라이크 {1} 볼", strike, ball);
 	}
 
 	@Override
