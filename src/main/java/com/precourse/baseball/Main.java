@@ -12,6 +12,24 @@ public class Main {
 	
 	public static void main(String[] args) {
 		mainObj = new Main();
+		mainObj.startGame(); // 게임 시작
+	}
+	public void startGame() {
+		// 1) 1~9까지 서로 다른 수로 이루어진 3자리의 수를 생성한다.
+		int comNumArr[] = mainObj.getRandomDigitNum();
+		
+		boolean isExit = false;
+		
+		while(!isExit) { 
+			isExit = mainObj.compareDigitNum(comNumArr); // 3스트라이크가 나오기 전까지 반복
+		}
+		
+		// 5) 입력받은 수와 생성한 수가 동일한 경우 게임을 종료한 후, 다시 시작하거나 프로그램을 완전히 종료한다.
+		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+		int isPlaying  = scan.nextInt();
+		if(isPlaying == 1) {
+			startGame();
+		}
 	}
 	
 	//1) 1~9까지 서로 다른 수로 이루어진 수를 생성하는 메소드
@@ -76,6 +94,9 @@ public class Main {
 			}
 		}
 		
+		// 4) 스트라이크, 볼, 낫싱(or 포볼)을 출력한다.
+		mainObj.printBaseBallResult(strike, ball);
+				
 		if(strike == 3) {
 			return true;
 		}
