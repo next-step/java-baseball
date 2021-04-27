@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PlayerTest {
@@ -22,6 +23,19 @@ class PlayerTest {
             .containsExactly(Number.create(1),
                     Number.create(2),
                     Number.create(3));
+  }
+
+  @Test
+  @DisplayName("게임 플레이어는 중복된 숫자 또는 3 자릿수로 된 문자열만 허용한다.")
+  void generateNumberString_error() {
+    assertAll(
+            () -> assertThatIllegalArgumentException()
+                    .isThrownBy(() -> Player.generateNumberString("111"))
+                    .withMessageMatching("\\d+ 자릿수가 아닙니다."),
+            () -> assertThatIllegalArgumentException()
+                    .isThrownBy(() -> Player.generateNumberString("1234"))
+                    .withMessageMatching("\\d+ 자릿수가 아닙니다.")
+    );
   }
 
   @Test
@@ -51,6 +65,6 @@ class PlayerTest {
     int digit = player.getDigit(Number.create(1));
 
     // then
-    assertThat(digit).isEqualTo(0);
+    assertThat(digit).isZero();
   }
 }

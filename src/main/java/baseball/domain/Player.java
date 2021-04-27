@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.util.CollectionUtil;
 import baseball.util.StringUtil;
 
 import java.util.ArrayList;
@@ -8,18 +9,30 @@ import java.util.List;
 import java.util.Objects;
 
 public class Player {
+  private final static int DIGIT = 3;
+  private static final String ERROR_DIGIT_FORMAT = "%d 자릿수가 아닙니다.";
+
   private final List<Number> values;
 
   private Player(List<Number> values) {
     this.values = Collections.unmodifiableList(values);
   }
 
-  public static Player generateNumberString(String numberString) {
-    List<Number> result = new ArrayList<>();
-    for (Integer number : StringUtil.toIntegerList(numberString)) {
-      result.add(Number.create(number));
+  public static Player generateNumberString(String inputNumberString) {
+    List<Number> numbers = new ArrayList<>();
+    List<Integer> inputNumbers = CollectionUtil.distinctList(StringUtil.toIntegerList(inputNumberString));
+    for (Integer input : inputNumbers) {
+      numbers.add(Number.create(input));
     }
-    return new Player(result);
+
+    checkDigit(numbers);
+    return new Player(numbers);
+  }
+
+  private static void checkDigit(List<Number> values) {
+    if (values == null || values.size() != DIGIT) {
+      throw new IllegalArgumentException(String.format(ERROR_DIGIT_FORMAT, DIGIT));
+    }
   }
 
   public boolean existNumber(Number number) {
