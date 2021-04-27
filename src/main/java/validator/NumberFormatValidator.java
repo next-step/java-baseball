@@ -15,7 +15,7 @@ public class NumberFormatValidator {
 		return !hasSameNumber(number) && !hasZero(number);
 	}
 
-	public static void checkParseToInteger(String input) {
+	private static void checkParseToInteger(String input) {
 		if (!isParseInteger(input)) {
 			throw new IllegalArgumentException("입력은 숫자로만 구성되어야 합니다.");
 		}

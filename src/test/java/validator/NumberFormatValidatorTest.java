@@ -14,7 +14,6 @@ class NumberFormatValidatorTest {
 	@ValueSource(strings = {"1l1", "숫자아님", "/12", "3:5"})
 	void inputIsNumber(String input) {
 		assertIllegalArgumentException(() -> NumberFormatValidator.validate(input));
-		assertIllegalArgumentException(() -> NumberFormatValidator.checkParseToInteger(input));
 	}
 
 	@DisplayName(value = "숫자에 같은 수가 있을 경우 IllegalArgumentException 을 일으킨다")

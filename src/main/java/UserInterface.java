@@ -8,7 +8,8 @@ public class UserInterface {
 	private Scanner scanner = new Scanner(System.in);
 
 	private static final String WELCOME_MESSAGE = "숫자를 입력해 주세요";
-	private static final String FINISH_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+	private static final String FINISH_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	private static final String RETRY_OR_NOT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
 
 	public String interactUser() {
 		System.out.println(WELCOME_MESSAGE);
@@ -19,9 +20,14 @@ public class UserInterface {
 
 	public int replayOnNot() {
 		System.out.println(FINISH_MESSAGE);
-		String code = scanner.next();
-		NumberFormatValidator.checkParseToInteger(code);
-		return Integer.parseInt(code);
+		int response = 0;
+		boolean isRetry = true;
+		while (isRetry) {
+			System.out.println(RETRY_OR_NOT);
+			response = scanner.nextInt();
+			isRetry = !isAcceptable(response);
+		}
+		return response;
 	}
 
 	public void answerTo(Map<Result, Integer> score) {
@@ -40,6 +46,10 @@ public class UserInterface {
 		}
 		writeMessageBy(score, Result.BALL, answer);
 		return answer.toString();
+	}
+
+	private boolean isAcceptable(int code) {
+		return code == 1 || code == 2;
 	}
 
 	private void answerTo(String message) {
