@@ -7,25 +7,29 @@ public class BaseballGame {
     private Scanner scanner;
     private GamerNumber gamerNumber;
     private RandomNumber randomNumber;
-    private int[] makeNumbers;
+    private Score score;
 
+    private int[] makeNumbers;
+    private int[] inputNumbers;
 
     public BaseballGame() {
         scanner = new Scanner(System.in);
         gamerNumber = new GamerNumber();
         randomNumber = new RandomNumber();
+        score = new Score();
     }
 
     public void play(){
         scanner = new Scanner(System.in);
         System.out.print("숫자를 입력해주세요 : ");
-        read();
+        readInputNumbers();
         makeRandomNumbers();
+        checkCompare();
     }
 
-    private void read(){
+    private void readInputNumbers(){
         gamerNumber.read(scanner.next());
-        gamerNumber.getNumbers();
+        inputNumbers = gamerNumber.getNumbers();
     }
 
     private void makeRandomNumbers(){
@@ -37,6 +41,11 @@ public class BaseballGame {
             sNumbers = sNumbers.concat(String.valueOf(makeNumbers[i]));
         }
         System.out.println("makeNumbers : "+sNumbers);
+    }
+
+    private void checkCompare(){
+        score.compare(makeNumbers,inputNumbers);
+        System.out.println(score.getScore());
     }
 
 }
