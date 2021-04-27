@@ -3,11 +3,9 @@ package baseball;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class InputNumber {
     private static final String PLAY_START = "숫자를 입력해주세요 :  ";
-    private static final String PLAY_RESTART = "게임을 다시 시작하려면 1, 종료하려면 2를 입력하세요 :  ";
     private static final String PATTERN_FILTER = "{}()[]<>,";
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -55,13 +53,4 @@ public class InputNumber {
         String result = scanner.next();
         return result;
     }
-
-    public static boolean restart() {
-        System.out.println(PLAY_RESTART);
-        String result = scanner.next();
-        if (result.equals("1")) return true;
-        if (result.equals("2")) return false;
-        return false;
-    }
-
 }

@@ -10,6 +10,11 @@ public class BaseballResult {
     private int ballCount;
     private boolean isFinished = false;
 
+    public void initial() {
+        this.ballCount = 0;
+        this.strikeCount = 0;
+    }
+
     public void isBall() {
         this.ballCount++;
     }

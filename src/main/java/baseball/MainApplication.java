@@ -5,22 +5,20 @@ import java.util.List;
 public class MainApplication {
 
     public static void main(String[] args) {
-        //1. get computer random value
-        BallNumberRandom computerNumbersInitial = new BallNumberRandom();
-        List<Integer> computerNumbers = computerNumbersInitial.getBallNumber();
 
-        //2. get customer value
-        InputNumber playerInputNumbersInitail = new InputNumber();
-        String result = playerInputNumbersInitail.inputBallNumbers();
-        List<Integer> playerInputNumbers = playerInputNumbersInitail.setBallNumber(result);
-
-        //3. result
+        //1. get result
+        BallGame baseBallGame = new BallGame();
         BaseballResult baseballResult = new BaseballResult();
 
-        //   do {
-            BallGame baseBallGame = new BallGame();
-            baseBallGame.play(baseballResult, computerNumbers, playerInputNumbers);
+        do {
+            //2. get computer random value
+            BallNumberRandom computerNumbersInitial = new BallNumberRandom();
+            List<Integer> computerNumbers = computerNumbersInitial.getBallNumber();
 
-    //    } while (InputNumber.restart());
+            System.out.println("랜덤값은 다음과 같다");
+            System.out.println(computerNumbers);
+
+            baseBallGame.play(baseballResult, computerNumbers);
+        } while (baseBallGame.restart());
     }
 }
