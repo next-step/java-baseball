@@ -24,113 +24,113 @@ public class BaseballNumberTest {
         assertBaseballNumber(baseballNumber);
     }
 
-    @DisplayName(value = "BaseballNumber Builder Test_1_1 Exception Case")
+    @DisplayName(value = "BaseballNumber Builder Test_1_2 Exception Case")
     @ParameterizedTest(name =  "BaseballNumber.builder().size(size).radix(radix).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
     @MethodSource(value = {
             "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
             "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
     })
-    public void test1_1_baseballNumber_builder_exception_case(int size, int radix) {
+    public void test1_2_baseballNumber_builder_exception_case(int size, int radix) {
         assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).build());
     }
 
-    @DisplayName(value = "BaseballNumber Builder Test_1_2 Success Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).radix(radix).addAll().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
-    @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideSizeAndRadix",
-    })
-    public void test1_2_baseballNumber_builder_generate_number(int size, int radix) {
-        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addAll().build();
-        assertBaseballNumber(baseballNumber);
-    }
-
-    @DisplayName(value = "BaseballNumber Builder Test_1_2 Exception Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).radix(radix).addAll().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
-    @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
-            "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
-    })
-    public void test1_2_baseballNumber_builder_exception_case(int size, int radix) {
-        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).addAll().build());
-    }
-
     @DisplayName(value = "BaseballNumber Builder Test_1_3 Success Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addRandomNumber(size).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).radix(radix).addAll().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
     @MethodSource(value = {
             "baseball.model.TestParametersProvider#provideSizeAndRadix",
     })
     public void test1_3_baseballNumber_builder_generate_number(int size, int radix) {
-        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addRandomNumber(size).build();
-        assertBaseballNumber(baseballNumber);
-    }
-
-    @DisplayName(value = "BaseballNumber Builder Test_1_3 Exception Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addRandomNumber(size).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
-    @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
-            "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
-    })
-    public void test1_3_baseballNumber_builder_exception_case(int size, int radix) {
-        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).addRandomNumber(size).build());
-    }
-
-    @DisplayName(value = "BaseballNumber Builder Test_1_4 Success Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
-    @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideSizeAndRadix",
-    })
-    public void test1_4_baseballNumber_builder_generate_number(int size, int radix) {
-        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).random(r -> new Random().nextInt(r)).build();
+        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addAll().build();
         assertBaseballNumber(baseballNumber);
     }
 
     @DisplayName(value = "BaseballNumber Builder Test_1_4 Exception Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).radix(radix).addAll().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
     @MethodSource(value = {
             "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
             "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
     })
     public void test1_4_baseballNumber_builder_exception_case(int size, int radix) {
-        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).random(r -> new Random().nextInt(r)).build());
+        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).addAll().build());
     }
 
     @DisplayName(value = "BaseballNumber Builder Test_1_5 Success Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addRandomNumber(size).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
     @MethodSource(value = {
             "baseball.model.TestParametersProvider#provideSizeAndRadix",
     })
     public void test1_5_baseballNumber_builder_generate_number(int size, int radix) {
-        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addAll().addRandomNumber(5).build();
-        assertBaseballNumber(baseballNumber);
-    }
-
-    @DisplayName(value = "BaseballNumber Builder Test_1_5 Exception Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
-    @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
-            "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
-    })
-    public void test1_5_baseballNumber_builder_exception_case(int size, int radix) {
-        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).addAll().build());
-    }
-
-    @DisplayName(value = "BaseballNumber Builder Test_1_6 Success Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addAll().addRandomNumber().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
-    @MethodSource(value = {
-            "baseball.model.TestParametersProvider#provideSizeAndRadix",
-    })
-    public void test1_6_baseballNumber_builder_generate_number(int size, int radix) {
-        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addAll().addRandomNumber().build();
+        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addRandomNumber(size).build();
         assertBaseballNumber(baseballNumber);
     }
 
     @DisplayName(value = "BaseballNumber Builder Test_1_6 Exception Case")
-    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addAll().addRandomNumber().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addRandomNumber(size).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
     @MethodSource(value = {
             "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
             "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
     })
     public void test1_6_baseballNumber_builder_exception_case(int size, int radix) {
+        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).addRandomNumber(size).build());
+    }
+
+    @DisplayName(value = "BaseballNumber Builder Test_1_7 Success Case")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @MethodSource(value = {
+            "baseball.model.TestParametersProvider#provideSizeAndRadix",
+    })
+    public void test1_7_baseballNumber_builder_generate_number(int size, int radix) {
+        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).random(r -> new Random().nextInt(r)).build();
+        assertBaseballNumber(baseballNumber);
+    }
+
+    @DisplayName(value = "BaseballNumber Builder Test_1_8 Exception Case")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @MethodSource(value = {
+            "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
+            "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
+    })
+    public void test1_8_baseballNumber_builder_exception_case(int size, int radix) {
+        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).random(r -> new Random().nextInt(r)).build());
+    }
+
+    @DisplayName(value = "BaseballNumber Builder Test_1_9 Success Case")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @MethodSource(value = {
+            "baseball.model.TestParametersProvider#provideSizeAndRadix",
+    })
+    public void test1_9_baseballNumber_builder_generate_number(int size, int radix) {
+        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addAll().addRandomNumber(5).build();
+        assertBaseballNumber(baseballNumber);
+    }
+
+    @DisplayName(value = "BaseballNumber Builder Test_1_10 Exception Case")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).random(r->...).build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @MethodSource(value = {
+            "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
+            "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
+    })
+    public void test1_10_baseballNumber_builder_exception_case(int size, int radix) {
+        assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().size(size).radix(radix).addAll().build());
+    }
+
+    @DisplayName(value = "BaseballNumber Builder Test_1_11 Success Case")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addAll().addRandomNumber().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @MethodSource(value = {
+            "baseball.model.TestParametersProvider#provideSizeAndRadix",
+    })
+    public void test1_11_baseballNumber_builder_generate_number(int size, int radix) {
+        BaseballNumber baseballNumber = BaseballNumber.builder().size(size).radix(radix).addAll().addRandomNumber().build();
+        assertBaseballNumber(baseballNumber);
+    }
+
+    @DisplayName(value = "BaseballNumber Builder Test_1_12 Exception Case")
+    @ParameterizedTest(name = "BaseballNumber.builder().size(size).raid(radix).addAll().addRandomNumber().build() [" + ParameterizedTest.ARGUMENTS_WITH_NAMES_PLACEHOLDER + "]")
+    @MethodSource(value = {
+            "baseball.model.TestParametersProvider#provideNonPositiveSizeOrNonPositiveSizeRadix",
+            "baseball.model.TestParametersProvider#provideTooMuchSizeOrTooMuchRadix"
+    })
+    public void test1_12_baseballNumber_builder_exception_case(int size, int radix) {
         assertThatExceptionOfType(BaseballNumberFormatException.class).isThrownBy(() -> BaseballNumber.builder().addAll().addRandomNumber().radix(radix).addRandomNumber(size).build());
     }
 

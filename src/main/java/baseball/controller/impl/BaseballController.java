@@ -19,9 +19,6 @@ public class BaseballController extends BaseballControllerTemplate {
                 .size(size)
                 .radix(radix)
                 .build();
-        
-        // TODO: remove print answer before deployment.
-        System.out.println(this.answer);
     }
 
     @Override

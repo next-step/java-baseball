@@ -5,7 +5,6 @@ import baseball.constants.BaseballConstant;
 import baseball.model.BaseballNumber;
 import baseball.model.BaseballResult;
 
-// TODO: remove baseballNumber, BaseballResult dependency in Controller
 public abstract class BaseballControllerTemplate {
 
     public void run() {
@@ -27,11 +26,11 @@ public abstract class BaseballControllerTemplate {
         } while (this.askReGame());
     }
 
-    public void initGame() {
+    private void initGame() {
         this.initGame(BaseballConstant.DEFAULT_NUMBERS_SIZE, BaseballConstant.DEFAULT_NUMBER_RADIX);
     }
 
-    public BaseballResult startGame() {
+    private BaseballResult startGame() {
         // Infinite Loop
         BaseballResult result;
         do {
@@ -42,7 +41,7 @@ public abstract class BaseballControllerTemplate {
         return result;
     }
 
-    public BaseballResult startGame(int tryCount) {
+    private BaseballResult startGame(int tryCount) {
         if (tryCount <= 0) {
             return this.startGame();
         }
@@ -58,7 +57,7 @@ public abstract class BaseballControllerTemplate {
         return result;
     }
 
-    public BaseballResult unitProcessGame() {
+    private BaseballResult unitProcessGame() {
         try {
             // 1. User Input Read
             BaseballNumber baseballNumber = this.readInputBaseballNumber();
@@ -80,19 +79,18 @@ public abstract class BaseballControllerTemplate {
         }
     }
 
-    abstract public void initGame(int size, int radix);
+    abstract protected void initGame(int size, int radix);
 
-    abstract public BaseballNumber readInputBaseballNumber();
+    abstract protected BaseballNumber readInputBaseballNumber();
 
-    abstract public BaseballResult checkTrial(BaseballNumber baseballNumber);
+    abstract protected BaseballResult checkTrial(BaseballNumber baseballNumber);
 
-    abstract public void printBaseballResult(BaseballResult baseballResult);
+    abstract protected void printBaseballResult(BaseballResult baseballResult);
 
-    abstract public void printGameResult(BaseballResult baseballResult);
+    abstract protected void printGameResult(BaseballResult baseballResult);
 
-    abstract public void printExceptionInProcess(Exception e);
+    abstract protected void printExceptionInProcess(Exception e);
 
-    abstract public boolean askReGame();
-
-
+    abstract protected boolean askReGame();
+    
 }

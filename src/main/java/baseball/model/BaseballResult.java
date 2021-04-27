@@ -4,8 +4,6 @@ import baseball.config.BaseballConfig;
 import baseball.constants.MessageKey;
 import lombok.Getter;
 
-import java.util.ResourceBundle;
-
 @Getter
 public class BaseballResult {
     private int strike;

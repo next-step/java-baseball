@@ -6,6 +6,8 @@ import baseball.controller.impl.BaseballController;
 import baseball.view.BaseballView;
 import baseball.view.impl.BaseballViewImpl;
 
+import java.util.Locale;
+
 public class BaseballApplication {
     public static void main(String[] args) {
         BaseballConfig config = BaseballConfig.builder().build();

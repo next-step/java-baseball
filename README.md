@@ -57,16 +57,12 @@
   - [BaseballApplication](./src/main/java/baseball/BaseballApplication.java)
     ```java
     public class BaseballApplication {
-    private static BaseballView baseballView = new BaseballViewImpl();
-    private static BaseballControllerTemplate baseballControllerTemplate = new BaseballController(baseballView);
-    private static BaseballConfig config = new BaseballConfig(3, 10, 0);    // size, radix, tryCount
-    
         public static void main(String[] args) {
-            BaseballApplication.run(BaseballApplication.class, args);
-        }
+            BaseballConfig config = BaseballConfig.builder().build();
+            BaseballView baseballView = new BaseballViewImpl(config);
+            BaseballControllerTemplate baseballController = new BaseballController(baseballView);
     
-        static public <T> void run(Class<T> clazz, String[] args) {
-            baseballControllerTemplate.run(config);
+            baseballController.run(config);
         }
     }
     ```
@@ -78,10 +74,10 @@
     > Config Bean
 - [X] Bridge Pattern in View (InputStream, OutputStream)
 - [X] Message Properties  
-- [ ] JUnit5, AssertJ Unit Test
+- [X] JUnit5, AssertJ Unit Test
 - [ ] Class Diagram, Activity Diagram
 - [ ] remove dependency between controller and model vo.
-- [ ] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
+- [X] Segregation Random Interface from BaseballNumber class (Strategy Pattern)
 
 ---
 ## Functionality Requirements

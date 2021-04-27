@@ -16,6 +16,7 @@ public class TestParametersProvider {
     private static final String[] CHARACTERS = "`1234567890-=~!@#$%^&*()_+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ[]{};'\":,./<>?".split("");
     private static final int DEFAULT_TEST_CASE_COUNT = 100;
 
+    // All valid "size" parameters
     public static List<Arguments> provideSize() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <= MAX_RADIX; radix++) {
@@ -24,6 +25,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // All valid "radix" parameters
     public static List<Arguments> provideRadix() {
         List<Arguments> list = new ArrayList<>();
         for (int size = MIN_SIZE; size < MAX_SIZE; size++) {
@@ -32,6 +34,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // All valid "size" and "radix" parameters
     public static List<Arguments> provideSizeAndRadix() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <= MAX_RADIX; radix++) {
@@ -42,18 +45,45 @@ public class TestParametersProvider {
         return list;
     }
 
+    // Non positive "size" or non positive "radix" parameters
     public static List<Arguments> provideNonPositiveSizeOrNonPositiveSizeRadix() {
         List<Arguments> list = new ArrayList<>();
+        for (int radix = -MAX_RADIX; radix <= 1; radix++) {
+            for (int size = MIN_SIZE; size <= MAX_SIZE; size++) {
+                list.add(Arguments.of(size, radix));
+            }
+        }
+
+        for (int radix = MIN_RADIX; radix <= MAX_RADIX; radix++) {
+            for (int size = -MAX_RADIX; size <= 0; size++) {
+                list.add(Arguments.of(size, radix));
+            }
+        }
+
         for (int radix = -MAX_RADIX; radix <= 1; radix++) {
             for (int size = -MAX_RADIX; size <= 0; size++) {
                 list.add(Arguments.of(size, radix));
             }
         }
+
         return list;
     }
 
+    // Overflow "size" or overflow "radix" parameters
     public static List<Arguments> provideTooMuchSizeOrTooMuchRadix() {
         List<Arguments> list = new ArrayList<>();
+        for (int radix = MIN_RADIX; radix <= MAX_RADIX; radix++) {
+            for (int size = 2 * radix; size >= radix; size--) {
+                list.add(Arguments.of(size, radix));
+            }
+        }
+
+        for (int radix = MAX_RADIX * 2; radix > MAX_RADIX; radix--) {
+            for (int size = MIN_SIZE; size <= MAX_SIZE; size++) {
+                list.add(Arguments.of(size, radix));
+            }
+        }
+
         for (int radix = MAX_RADIX * 2; radix > MAX_RADIX; radix--) {
             for (int size = 2 * radix; size >= radix; size--) {
                 list.add(Arguments.of(size, radix));
@@ -62,6 +92,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // All valid "Random Baseball Number String", "size", "radix" parameters
     public static List<Arguments> provideRandomBaseballNumberOfAllSizeAndAllRadix() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <=  MAX_RADIX; radix++) {
@@ -78,6 +109,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // All valid "Random Baseball Number String" parameters (size = 3, radix = 10)
     public static List<Arguments> provideRandomBaseballNumberOfDefaultSizeAndDefaultRadix() {
         List<Arguments> list = new ArrayList<>();
         for (int i = 0; i < DEFAULT_TEST_CASE_COUNT; i++) {
@@ -90,6 +122,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // Invalid "Random Baseball Number String", "size", "radix" parameters (Radix Out of Bound)
     public static List<Arguments> provideRandomBaseballRadixOutBoundExceptionCase() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <=  MAX_RADIX; radix++) {
@@ -107,6 +140,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // Invalid "Random Baseball Number String", "size", "radix" parameters (Contains zero)
     public static List<Arguments> provideRandomBaseballContainsZeroExceptionCase() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <=  MAX_RADIX; radix++) {
@@ -124,6 +158,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // Invalid "Random Baseball Number String", "size", "radix" parameters (Duplicated)
     public static List<Arguments> provideRandomBaseballDuplicatedExceptionCase() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX + 1; radix <=  MAX_RADIX; radix++) {
@@ -141,6 +176,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // Invalid "Random Baseball Number String", "size", "radix" parameters (Wrong Length)
     public static List<Arguments> provideRandomBaseballHavingWrongLengthExceptionCase() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX + 1; radix <=  MAX_RADIX; radix++) {
@@ -159,6 +195,7 @@ public class TestParametersProvider {
         return list;
     }
 
+    // Invalid "Random Baseball Number String", "size", "radix" parameters (Not Digital, Alphabetic Character)
     public static List<Arguments> provideRandomBaseballNotValidCharacterExceptionCase() {
         List<Arguments> list = new ArrayList<>();
         for (int radix = MIN_RADIX; radix <=  MAX_RADIX; radix++) {
@@ -179,7 +216,7 @@ public class TestParametersProvider {
     private static Character generateRandomCharacter(Function<Character, Boolean> filter) {
         Random random = new Random();
 
-        String result = "";
+        String result;
         do {
             result = CHARACTERS[random.nextInt(CHARACTERS.length)];
         } while(!filter.apply(result.charAt(0)));

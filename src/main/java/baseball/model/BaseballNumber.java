@@ -6,7 +6,6 @@ import lombok.Getter;
 
 import static baseball.constants.BaseballConstant.*;
 
-// TODO: Random Number Generator (Strategy Pattern)
 @Getter
 public class BaseballNumber {
     private final int[] numbers;
