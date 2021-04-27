@@ -5,6 +5,22 @@ import java.util.List;
 
 import common.code.HintType;
 
+
+/**
+ * @brief
+ * HintModel
+ * @details HintModel을 서술합니다.
+ * @author SUNJU
+ * @since 2021. 4. 25.
+ * @version 1.0
+ * @see
+ * <pre>
+ *     since          author              description
+ *  ===========    =============    ===========================
+ *  2021. 4. 27.     SUNJU         최초 생성
+ * </pre>
+
+ */
 public class HintModel {
 
 	private int strikeCount = 0;
@@ -23,6 +39,7 @@ public class HintModel {
 		this.ballCount = ballCount;
 	}
 	
+	//hintType에 따른 카운팅
 	public void calculateCount(HintType hintType) {
 		if (hintType == null) {
 			return;
@@ -37,6 +54,7 @@ public class HintModel {
 		}
 	}
 	
+	//결과 출력
 	@Override
 	public String toString() {
 		if(strikeCount+ballCount==0) {

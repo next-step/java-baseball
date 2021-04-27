@@ -3,6 +3,22 @@ package common.models;
 import common.code.GameErrorCode;
 import common.exception.GameException;
 
+
+/**
+ * @brief
+ * 3자리 숫자 관리 object
+ * @details 3자리 숫자(attack, defend number)를 관리하는 obejct를 기술합니다..
+ * @author SUNJU
+ * @since 2021. 4. 27.
+ * @version 1.0
+ * @see
+ * <pre>
+ *     since          author              description
+ *  ===========    =============    ===========================
+ *  2021. 4. 27.     SUNJU         최초 생성
+ * </pre>
+
+ */
 public class ThreeNumbers {
 	public static final int NUMBERS_SIZE = 3;
 	private int[] numbers;

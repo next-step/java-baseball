@@ -1,5 +1,21 @@
 package common.code;
 
+
+/**
+ * @brief
+ * Game 공통 에러 코드
+ * @details Game에서 사용할 공통 에러 코드를 서술합니다.
+ * @author SUNJU
+ * @since 2021. 4. 27.
+ * @version 1.0
+ * @see
+ * <pre>
+ *     since          author              description
+ *  ===========    =============    ===========================
+ *  2021. 4. 27.     SUNJU         최초 생성
+ * </pre>
+
+ */
 public enum GameErrorCode {
 	
 	NUMBER_RANGE_ERROR("0001","Range of number is wrong."),

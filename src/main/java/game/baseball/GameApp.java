@@ -7,15 +7,24 @@ import common.code.GameErrorCode;
 import common.exception.GameException;
 import common.models.ThreeNumbers;
 
+
 /**
+ * @brief
+ * Game application
+ * @details user가 사용할 Game application입니다.
  * @author SUNJU
- *
+ * @since 2021. 4. 26.
+ * @version 1.0
+ * @see
+ * <pre>
+ *     since          author              description
+ *  ===========    =============    ===========================
+ *  2021. 4. 27.     SUNJU         최초 생성
+ * </pre>
+
  */
 public class GameApp {
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Scanner inputScanner = new Scanner(System.in);
 		GamePlayer gamePlayer = new GamePlayer();
@@ -29,6 +38,12 @@ public class GameApp {
 		}
 	}
 	
+	/**
+	 * @brief 메시지 출력 및 사용자 값 입력
+	 * @param message 출력 할 메시지
+	 * @param inputScanner
+	 * @return
+	 */
 	private static int takeNumber(String message, Scanner inputScanner) {
 		System.out.print(message);
 		int intputNumber = 0;
@@ -41,12 +56,23 @@ public class GameApp {
 		return intputNumber;
 	}
 	
+	/**
+	 * @brief 게임 플레이
+	 * @param gamePlayer
+	 * @param inputNumber attackNumber
+	 */
 	private static void playGame(GamePlayer gamePlayer, int inputNumber) {
 		String resultMessage = gamePlayer.playGame(new ThreeNumbers(inputNumber));
 		
 		System.out.println(resultMessage);
 	}
 	
+	/**
+	 * @brief 게임 종료 여부 확인
+	 * @param gamePlayer
+	 * @param inputScanner
+	 * @return
+	 */
 	static private boolean finishGame(GamePlayer gamePlayer, Scanner inputScanner) {
 		if (!gamePlayer.isFinish()) {
 			return false;
