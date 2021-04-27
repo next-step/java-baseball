@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class MainTest {
 
-	//@Test
+	@Test
 	public void testRandomDigitNum(){
 		//랜덤한 서로 다른 수를 배열로 출력
 		Main mainObj = new Main();
@@ -22,7 +22,7 @@ public class MainTest {
 		System.out.println("");
 	}
 	
-	//@Test
+	@Test
 	public void testInputDigitNum(){
 		//입력받은 수를 배열로 출력
 		Main mainObj = new Main();
@@ -44,6 +44,15 @@ public class MainTest {
 		assertEquals((char)mainObj.findStrikeBall(new int[]{1,2,3}, 3, 1), 'B');
 		assertEquals(mainObj.findStrikeBall(new int[]{1,2,3}, 3, 2), 'S');
 		assertEquals(mainObj.findStrikeBall(new int[]{1,2,3}, 5, 2), ' ');
+	}
+	
+	@Test
+	public void testPrintBaseBallResult(){
+		//입력받은 수와 생성한 수를 비교하여 스트라이크와 볼의 개수를 구한다.
+		Main mainObj = new Main();
+		
+		mainObj.printBaseBallResult(0, 0); //낫싱
+		mainObj.printBaseBallResult(1, 1); //1 스트라이크 1 볼
 	}
 	
 }
