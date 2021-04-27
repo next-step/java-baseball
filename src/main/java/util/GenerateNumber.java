@@ -4,9 +4,9 @@ import java.util.Random;
 
 /**
  * 
- * @author ÀÌÃæ¼±
+ * @author ì´ì¶©ì„ 
  *
- * @memo 3ÀÚ¸® ³­¼ö »ı¼º
+ * @memo 3ìë¦¬ ë‚œìˆ˜ ìƒì„±
  * 
  */
 public class GenerateNumber {

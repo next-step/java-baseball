@@ -4,9 +4,15 @@ import java.util.Scanner;
 
 import util.CheckNumber;
 
+/**
+ * 
+ * @author 이충선
+ *
+ * @memo 사용자 도메인
+ */
 public class User {
 
-	private final static String INSERT_MESSAGE = "���ڸ� �Է��ϼ��� : ";
+	private final static String INSERT_MESSAGE = "숫자를 입력해 주세요 : ";
 	private final static int NUMBER_LENGTH = 3;
 	
 	private int[] userNumber = null;
