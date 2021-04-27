@@ -94,6 +94,22 @@ public class BaseBallTests {
 		
 	}
 	
+	/**
+	 * 3. 볼카운팅
+	 * 2) 입력값 중 숫자가 난수에 포함되어 있으나, 위치는 상이할 시 배열의 볼 방에 +1을 시킨다.
+	 */
+	@Test
+	public void ballBallCountingTest() {
+		
+		BaseBall bb = new BaseBall();
+		bb.start("123", "256");
+		
+		/* 하나의 스트라이크가 들어왔는지 검증 (S) */
+		Assertions.assertEquals(1, bb.ballCount[1]);
+		/* 하나의 스트라이크가 들어왔는지 검증 (E) */
+		
+	}
+	
 	
 	
 }
