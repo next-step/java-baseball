@@ -23,15 +23,16 @@ class BaseballGameTest {
     void strike() {
         // given
         List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
-        BaseballNumbers defenceNumbers = new BaseballNumbers(numbersBase);
-        BaseballGame baseballGame = new BaseballGame(defenceNumbers);
-
+        BaseballNumbers defence = new BaseballNumbers(numbersBase);
         List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("124");
-        BaseballNumbers attackNumbers = new BaseballNumbers(numbersTarget);
+        BaseballNumbers pitch = new BaseballNumbers(numbersTarget);
 
-        // when then
-        assertThat(2).isEqualTo(baseballGame.getStrikeCount(attackNumbers));
-        assertThat(baseballGame.isFinish(attackNumbers)).isFalse();
+        // when
+        BaseballGame baseballGame = new BaseballGame(defence, pitch);
+
+        // when
+        assertThat(2).isEqualTo(baseballGame.getStrikeCount());
+        assertThat(baseballGame.isFinish()).isFalse();
     }
 
     @Test
@@ -39,15 +40,16 @@ class BaseballGameTest {
     void ball() {
         // given
         List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
-        BaseballNumbers defenceNumbers = new BaseballNumbers(numbersBase);
-        BaseballGame baseballGame = new BaseballGame(defenceNumbers);
-
+        BaseballNumbers defence = new BaseballNumbers(numbersBase);
         List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("352");
-        BaseballNumbers attackNumbers = new BaseballNumbers(numbersTarget);
+        BaseballNumbers pitch = new BaseballNumbers(numbersTarget);
 
-        // when then
-        assertThat(2).isEqualTo(baseballGame.getBallCount(attackNumbers));
-        assertThat(baseballGame.isFinish(attackNumbers)).isFalse();
+        // when
+        BaseballGame baseballGame = new BaseballGame(defence, pitch);
+
+        // then
+        assertThat(2).isEqualTo(baseballGame.getBallCount());
+        assertThat(baseballGame.isFinish()).isFalse();
     }
 
     @Test
@@ -55,16 +57,17 @@ class BaseballGameTest {
     void strikeAndBall() {
         // given
         List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
-        BaseballNumbers defenceNumbers = new BaseballNumbers(numbersBase);
-        BaseballGame baseballGame = new BaseballGame(defenceNumbers);
-
+        BaseballNumbers defence = new BaseballNumbers(numbersBase);
         List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("132");
-        BaseballNumbers attackNumbers = new BaseballNumbers(numbersTarget);
+        BaseballNumbers pitch = new BaseballNumbers(numbersTarget);
 
-        // when then
-        assertThat(1).isEqualTo(baseballGame.getStrikeCount(attackNumbers));
-        assertThat(2).isEqualTo(baseballGame.getBallCount(attackNumbers));
-        assertThat(baseballGame.isFinish(attackNumbers)).isFalse();
+        // when
+        BaseballGame baseballGame = new BaseballGame(defence, pitch);
+
+        // then
+        assertThat(1).isEqualTo(baseballGame.getStrikeCount());
+        assertThat(2).isEqualTo(baseballGame.getBallCount());
+        assertThat(baseballGame.isFinish()).isFalse();
     }
 
     @Test
@@ -72,15 +75,16 @@ class BaseballGameTest {
     void finishGame() {
         // given
         List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
-        BaseballNumbers defenceNumbers = new BaseballNumbers(numbersBase);
-        BaseballGame baseballGame = new BaseballGame(defenceNumbers);
-
+        BaseballNumbers defence = new BaseballNumbers(numbersBase);
         List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("123");
-        BaseballNumbers attackNumbers = new BaseballNumbers(numbersTarget);
+        BaseballNumbers pitch = new BaseballNumbers(numbersTarget);
 
-        // when then
-        assertThat(3).isEqualTo(baseballGame.getStrikeCount(attackNumbers));
-        assertThat(baseballGame.isFinish(attackNumbers)).isTrue();
+        // when
+        BaseballGame baseballGame = new BaseballGame(defence, pitch);
+
+        // then
+        assertThat(3).isEqualTo(baseballGame.getStrikeCount());
+        assertThat(baseballGame.isFinish()).isTrue();
     }
 
     @Test
@@ -88,16 +92,17 @@ class BaseballGameTest {
     void nothing() {
         // given
         List<BaseballNumber> numbersBase = numberFactory.generateBaseballNumbers(() -> Arrays.asList(1, 2, 3));
-        BaseballNumbers defenceNumbers = new BaseballNumbers(numbersBase);
-        BaseballGame baseballGame = new BaseballGame(defenceNumbers);
-
+        BaseballNumbers defence = new BaseballNumbers(numbersBase);
         List<BaseballNumber> numbersTarget = numberFactory.generateBaseballNumbers("789");
-        BaseballNumbers attackNumbers = new BaseballNumbers(numbersTarget);
+        BaseballNumbers pitch = new BaseballNumbers(numbersTarget);
+
+        // then
+        BaseballGame baseballGame = new BaseballGame(defence, pitch);
 
         // when then
-        assertThat(0).isEqualTo(baseballGame.getStrikeCount(attackNumbers));
-        assertThat(0).isEqualTo(baseballGame.getBallCount(attackNumbers));
-        assertThat(baseballGame.isFinish(attackNumbers)).isFalse();
-        assertThat(baseballGame.isNothing(attackNumbers)).isTrue();
+        assertThat(0).isEqualTo(baseballGame.getStrikeCount());
+        assertThat(0).isEqualTo(baseballGame.getBallCount());
+        assertThat(baseballGame.isFinish()).isFalse();
+        assertThat(baseballGame.isNothing()).isTrue();
     }
 }

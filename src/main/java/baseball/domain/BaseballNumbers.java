@@ -14,32 +14,32 @@ public class BaseballNumbers implements Iterable<BaseballNumber> {
         this.baseballNumbers = baseballNumbers;
     }
 
-    public int equalsCount(BaseballNumbers attackNumbers) {
+    public int equalsCount(BaseballNumbers pitchNumbers) {
         int equalsCount = 0;
         int index = 0;
-        for (BaseballNumber attackNumber : attackNumbers) {
-            equalsCount += getEqualsCount(attackNumber, index++);
+        for (BaseballNumber pitchNumber : pitchNumbers) {
+            equalsCount += getEqualsCount(pitchNumber, index++);
         }
         return equalsCount;
     }
 
-    private int getEqualsCount(BaseballNumber attackNumber, int index) {
-        if (attackNumber.equals(this.baseballNumbers.get(index))) {
+    private int getEqualsCount(BaseballNumber pitchNumber, int index) {
+        if (pitchNumber.equals(this.baseballNumbers.get(index))) {
             return 1;
         }
         return 0;
     }
 
-    public int containsCount(BaseballNumbers attackNumbers) {
+    public int containsCount(BaseballNumbers pitchNumbers) {
         int containsCount = 0;
-        for (BaseballNumber attackNumber : attackNumbers) {
-            containsCount += getContainsCount(attackNumber);
+        for (BaseballNumber pitchNumber : pitchNumbers) {
+            containsCount += getContainsCount(pitchNumber);
         }
         return containsCount;
     }
 
-    private int getContainsCount(BaseballNumber attackNumber) {
-        if (this.baseballNumbers.contains(attackNumber)) {
+    private int getContainsCount(BaseballNumber pitchNumbers) {
+        if (this.baseballNumbers.contains(pitchNumbers)) {
             return 1;
         }
         return 0;

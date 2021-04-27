@@ -4,25 +4,27 @@ public class BaseballGame {
 
     private static final int NOTHING_COUNT = 0;
 
-    private final BaseballNumbers baseballNumbers;
+    private final BaseballNumbers defence;
+    private final BaseballNumbers pitch;
 
-    public BaseballGame(BaseballNumbers baseballNumbers) {
-        this.baseballNumbers = baseballNumbers;
+    public BaseballGame(BaseballNumbers defence, BaseballNumbers pitch) {
+        this.defence = defence;
+        this.pitch = pitch;
     }
 
-    public int getStrikeCount(BaseballNumbers attack) {
-        return baseballNumbers.equalsCount(attack);
+    public int getStrikeCount() {
+        return defence.equalsCount(this.pitch);
     }
 
-    public int getBallCount(BaseballNumbers attack) {
-        return baseballNumbers.containsCount(attack) - baseballNumbers.equalsCount(attack);
+    public int getBallCount() {
+        return defence.containsCount(this.pitch) - defence.equalsCount(this.pitch);
     }
 
-    public boolean isFinish(BaseballNumbers attack) {
-        return baseballNumbers.size() == getStrikeCount(attack);
+    public boolean isFinish() {
+        return defence.size() == getStrikeCount();
     }
 
-    public boolean isNothing(BaseballNumbers attack) {
-        return baseballNumbers.containsCount(attack) == NOTHING_COUNT;
+    public boolean isNothing() {
+        return defence.containsCount(this.pitch) == NOTHING_COUNT;
     }
 }
