@@ -1,18 +1,23 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
-version = '1.0.0'
-sourceCompatibility = 1.8
+plugins {
+    id 'application'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
-    testCompile('org.assertj:assertj-core:3.19.0')
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testImplementation 'junit:junit:4.13.1'
+    testCompile 'org.assertj:assertj-core:3.6.2'
+
+
 }
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass = 'JavaBaseballGame'
 }
