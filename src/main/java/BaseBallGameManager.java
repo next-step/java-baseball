@@ -41,6 +41,15 @@ public class BaseBallGameManager {
 		}
 
 		int resultCountStrike = countStrike(userNumberList, comNumberList, 0, 0);
+
+		boolean finalcheck = false;
+		if (endGame(resultCountStrike)) {
+			finalcheck = true;
+		}
+		if (finalcheck) {
+			return userInputReader.requestReGame();
+		}
+
 		return startGame(comNumberList, resultCountStrike);
 	}
 
@@ -66,5 +75,14 @@ public class BaseBallGameManager {
 			result++;
 		}
 		return countBalls(targetList, compareList, compareSet, ++index, result);
+	}
+
+	public boolean endGame(int countStrike) {
+		if (countStrike == NUMBER_LIMIT) {
+			System.out.println(countStrike + "스트라이크");
+			System.out.println(NUMBER_LIMIT + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+			return true;
+		}
+		return false;
 	}
 }

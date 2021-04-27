@@ -31,4 +31,10 @@ class BaseBallGameManagerTest {
 		assertThat(countStrike).isEqualTo(0);
 	}
 
+	@DisplayName("게임 승리조건 테스트")
+	@Test
+	public void endGameTest() {
+		assertThat(baseBallGameManager.endGame(3));
+	}
+
 }
