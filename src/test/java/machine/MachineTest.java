@@ -1,0 +1,5 @@
+package machine;
+
+class MachineTest {
+
+}
