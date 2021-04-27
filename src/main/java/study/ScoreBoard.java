@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class ScoreBoard {
 	public Score countScore(List<Integer> swings, List<Integer> pitches) {
-		Score result = Score.zero();
+		Score result = Score.nothing();
 		for (int i = 0; i < 3; i++) {
 			Score score = getScore(swings, pitches, i);
 			result = result.sumScore(score);
@@ -20,7 +20,7 @@ public class ScoreBoard {
 		if (isBall(swings.get(index), pitches, index)) {
 			return Score.ball();
 		}
-		return Score.zero();
+		return Score.nothing();
 	}
 
 	private boolean isStrike(int swing, int pitch) {

@@ -17,7 +17,7 @@ public class Score {
 		return new Score(0, 1);
 	}
 
-	static Score zero() {
+	static Score nothing() {
 		return new Score(0, 0);
 	}
 
