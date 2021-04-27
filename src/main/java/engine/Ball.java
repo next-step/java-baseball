@@ -16,10 +16,10 @@ public class Ball {
 		this.numberOfLength = numberOfLength;
 		Integer.valueOf(input);
 		if (input.length() != numberOfLength) {
-			throw new BaseballException(numberOfLength + "의 길이여야 합니다.");
+			throw new IllegalArgumentException(numberOfLength + "의 길이여야 합니다.");
 		}
 		if (numberOfLength > 10) {
-			throw new BaseballException("10보다 작은 길이여야 합니다.");
+			throw new IllegalArgumentException("10보다 작은 길이여야 합니다.");
 		}
 		this.input = input;
 	}
