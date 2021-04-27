@@ -8,6 +8,12 @@ public class BaseballNewNumber {
 
     Set<Integer> newRightNumber = new HashSet<>();
 
+    BaseballUserInputNumberCompare baseballUserInputNumberCompare = new BaseballUserInputNumberCompare();
+
+    public int strikeResult() {
+        return baseballUserInputNumberCompare.rightArrayAndUserInputCompare(randomNumberArrayInput());
+    }
+
     public void newRandomNumber() {
         while(newRightNumber.size() < 3) {
             newRightNumber.add((int) (Math.random() * 9 + 1));
