@@ -6,8 +6,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RoundTest {
@@ -19,47 +21,38 @@ public class RoundTest {
 		round = new Round(123);
 	}
 
-	@Test
 	@DisplayName("0이상 양수에 자릿수 확인")
-	public void round_numberLength() {
-		assertEquals(1, round.numberLength(1));
-		assertEquals(2, round.numberLength(12));
-		assertEquals(3, round.numberLength(123));
-		assertEquals(4, round.numberLength(1234));
-		assertEquals(5, round.numberLength(12345));
+	@ParameterizedTest
+	@CsvSource({"1,1", "12,2", "123,3", "1234,4", "12345,5"})
+	public void round_numberLength(int input, int expected) {
+		assertThat(round.numberLength(input)).isEqualTo(expected);
 	}
 
-	@Test
 	@DisplayName("첫번째 인덱스에 해당하는 자릿에 해당하는 값 추출")
-	public void round_getPlaceValue1() {
+	@ParameterizedTest
+	@CsvSource({"1,1", "12,1", "123,1", "9,9", "98,9", "987,9"})
+	public void round_getPlaceValue1(int input, int expected) {
 		int index = 0;
 
-		assertEquals(1, round.getPlaceValue(1, index));
-		assertEquals(1, round.getPlaceValue(12, index));
-		assertEquals(1, round.getPlaceValue(123, index));
-		assertEquals(9, round.getPlaceValue(9, index));
-		assertEquals(9, round.getPlaceValue(98, index));
-		assertEquals(9, round.getPlaceValue(987, index));
+		assertEquals(expected, round.getPlaceValue(input, index));
 	}
 
-	@Test
 	@DisplayName("두번째 인덱스에 해당하는 자릿에 해당하는 값 추출")
-	public void round_getPlaceValue2() {
+	@ParameterizedTest
+	@CsvSource({"12,2", "123,2", "98,8", "987,8"})
+	public void round_getPlaceValue2(int input, int expected) {
 		int index = 1;
 
-		assertEquals(2, round.getPlaceValue(12, index));
-		assertEquals(2, round.getPlaceValue(123, index));
-		assertEquals(8, round.getPlaceValue(98, index));
-		assertEquals(8, round.getPlaceValue(987, index));
+		assertEquals(expected, round.getPlaceValue(input, index));
 	}
 
-	@Test
 	@DisplayName("세번째 인덱스에 해당하는 자릿에 해당하는 값 추출")
-	public void round_getPlaceValue3() {
+	@ParameterizedTest
+	@CsvSource({"123,3", "987,7"})
+	public void round_getPlaceValue3(int input, int expected) {
 		int index = 2;
 
-		assertEquals(3, round.getPlaceValue(123, index));
-		assertEquals(7, round.getPlaceValue(987, index));
+		assertEquals(expected, round.getPlaceValue(input, index));
 	}
 
 	@Test
@@ -69,71 +62,41 @@ public class RoundTest {
 		Assertions.assertThatIllegalArgumentException().isThrownBy(() -> round.getPlaceValue(123, 3));
 	}
 
-	@Test
 	@DisplayName("특정한 값이 랜덤값 3자리에 포함하는지 여부")
-	public void isExsit() {
+	@ParameterizedTest
+	@CsvSource({"1,true", "2,true", "3,true", "4,false", "5,false", "6,false", "7,false", "8,false", "9,false"})
+	public void isExsit(int input, boolean expected) {
 		Round round = new Round(123);
 
-		assertTrue(round.isExsit(1));
-		assertTrue(round.isExsit(2));
-		assertTrue(round.isExsit(3));
-		assertFalse(round.isExsit(4));
-		assertFalse(round.isExsit(5));
-		assertFalse(round.isExsit(6));
-		assertFalse(round.isExsit(7));
-		assertFalse(round.isExsit(8));
-		assertFalse(round.isExsit(9));
+		assertThat(round.isExsit(input)).isEqualTo(expected);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = {0})
+
 	@DisplayName("첫번째 자릿값이 특정한 값과 같은지 여부")
-	public void isPlaceExsit1(int index) {
+	@ParameterizedTest
+	@CsvSource({"1,true", "2,false", "3,false", "4,false", "5,false", "6,false", "7,false", "8,false", "9,false"})
+	public void isPlaceExsit1(int input, boolean expected) {
 		Round round = new Round(123);
 
-		assertTrue(round.isPlaceExsit(1, index));
-		assertFalse(round.isPlaceExsit(2, index));
-		assertFalse(round.isPlaceExsit(3, index));
-		assertFalse(round.isPlaceExsit(4, index));
-		assertFalse(round.isPlaceExsit(5, index));
-		assertFalse(round.isPlaceExsit(6, index));
-		assertFalse(round.isPlaceExsit(7, index));
-		assertFalse(round.isPlaceExsit(8, index));
-		assertFalse(round.isPlaceExsit(9, index));
+		assertThat(round.isPlaceExsit(input, 0)).isEqualTo(expected);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = {1})
 	@DisplayName("두번째 자릿값이 특정한 값과 같은지 여부")
-	public void isPlaceExsit2(int index) {
+	@ParameterizedTest
+	@CsvSource({"1,false", "2,true", "3,false", "4,false", "5,false", "6,false", "7,false", "8,false", "9,false"})
+	public void isPlaceExsit2(int input, boolean expected) {
 		Round round = new Round(123);
 
-		assertFalse(round.isPlaceExsit(1, index));
-		assertTrue(round.isPlaceExsit(2, index));
-		assertFalse(round.isPlaceExsit(3, index));
-		assertFalse(round.isPlaceExsit(4, index));
-		assertFalse(round.isPlaceExsit(5, index));
-		assertFalse(round.isPlaceExsit(6, index));
-		assertFalse(round.isPlaceExsit(7, index));
-		assertFalse(round.isPlaceExsit(8, index));
-		assertFalse(round.isPlaceExsit(9, index));
+		assertThat(round.isPlaceExsit(input, 1)).isEqualTo(expected);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = {2})
 	@DisplayName("세번째 자릿값이 특정한 값과 같은지 여부")
-	public void isPlaceExsit3(int index) {
+	@ParameterizedTest
+	@CsvSource({"1,false", "2,false", "3,true", "4,false", "5,false", "6,false", "7,false", "8,false", "9,false"})
+	public void isPlaceExsit3(int input, boolean expected) {
 		Round round = new Round(123);
 
-		assertFalse(round.isPlaceExsit(1, index));
-		assertFalse(round.isPlaceExsit(2, index));
-		assertTrue(round.isPlaceExsit(3, index));
-		assertFalse(round.isPlaceExsit(4, index));
-		assertFalse(round.isPlaceExsit(5, index));
-		assertFalse(round.isPlaceExsit(6, index));
-		assertFalse(round.isPlaceExsit(7, index));
-		assertFalse(round.isPlaceExsit(8, index));
-		assertFalse(round.isPlaceExsit(9, index));
+		assertThat(round.isPlaceExsit(input, 2)).isEqualTo(expected);
 	}
 
 	@Test
@@ -150,24 +113,35 @@ public class RoundTest {
 	public void getGameStatusCountMap1(int num) {
 		Map<GameStatus, Integer> resultCountMap = round.getGameStatusCountMap(num);
 
-		assertEquals(resultCountMap.get(GameStatus.STRIKE), 0);
-		assertEquals(resultCountMap.get(GameStatus.BOLL), 0);
+		assertThat(0).isEqualTo(resultCountMap.get(GameStatus.STRIKE));
+		assertThat(0).isEqualTo(resultCountMap.get(GameStatus.BOLL));
 	}
 
 	@Test
 	@DisplayName("제시한 값에 점수확인")
 	public void getGameStatusCountMap2() {
 		resultCountMap = round.getGameStatusCountMap(123);
-		assertEquals(resultCountMap.get(GameStatus.STRIKE), 3);
-		assertEquals(resultCountMap.get(GameStatus.BOLL), 0);
 
+		assertThat(3).isEqualTo(resultCountMap.get(GameStatus.STRIKE));
+		assertThat(0).isEqualTo(resultCountMap.get(GameStatus.BOLL));
+	}
+
+	@Test
+	@DisplayName("제시한 값에 점수확인")
+	public void getGameStatusCountMap3() {
 		resultCountMap = round.getGameStatusCountMap(231);
-		assertEquals(resultCountMap.get(GameStatus.STRIKE), 0);
-		assertEquals(resultCountMap.get(GameStatus.BOLL), 3);
 
+		assertThat(0).isEqualTo(resultCountMap.get(GameStatus.STRIKE));
+		assertThat(3).isEqualTo(resultCountMap.get(GameStatus.BOLL));
+	}
+
+	@Test
+	@DisplayName("제시한 값에 점수확인")
+	public void getGameStatusCountMap4() {
 		resultCountMap = round.getGameStatusCountMap(142);
-		assertEquals(resultCountMap.get(GameStatus.STRIKE), 1);
-		assertEquals(resultCountMap.get(GameStatus.BOLL), 1);
+
+		assertThat(1).isEqualTo(resultCountMap.get(GameStatus.STRIKE));
+		assertThat(1).isEqualTo(resultCountMap.get(GameStatus.BOLL));
 	}
 
 }
