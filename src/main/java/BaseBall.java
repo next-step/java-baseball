@@ -30,6 +30,9 @@ public class BaseBall {
 	/* 유효성 검증 실패메시지 */
 	public static String errMsg;
 	
+	/* 유효성 검증 실패메시지 */
+	public static String ballCountMsg;
+	
 	
 	
 	/**
@@ -323,6 +326,11 @@ public class BaseBall {
 		}
 		
 		System.out.println(prnt);
+		
+		ballCountMsg = prnt;
+		
+		/* 숫자를 재입력받는다. */
+		throwBalls("123", "123");
 		
 	}
 	
