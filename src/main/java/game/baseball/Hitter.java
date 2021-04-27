@@ -27,4 +27,9 @@ public class Hitter {
 	public void setHittingNumbers(Set<Integer> hittingNumbers) {
 		this.hittingNumbers = hittingNumbers;
 	}
+
+	public void resetHittingNumbers() {
+		hittingNumbers.clear();
+		this.makeHittingNumbers();
+	}
 }

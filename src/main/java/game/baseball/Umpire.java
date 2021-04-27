@@ -21,7 +21,7 @@ public class Umpire {
 	}
 
 	public boolean isOut() {
-		return strikes == 3;
+		return this.getStrikes() == 3;
 	}
 
 	public Hitter getHitter() {
@@ -65,26 +65,30 @@ public class Umpire {
 		return 0;
 	}
 
-	public String speakJudge() {
+	public void speakJudge() {
 		if (strikes > 0 && balls == 0) {
-			return String.format("%o 스트라이크", strikes);
+			System.out.println(String.format("%o 스트라이크", strikes));
 		}
 
 		if (strikes == 0 && balls > 0) {
-			return String.format("%o 볼", balls);
+			System.out.println(String.format("%o 볼", balls));
 		}
 
 		if (strikes > 0 && balls > 0) {
-			return String.format("%o 스트라이크 %o 볼", strikes, balls);
+			System.out.println(String.format("%o 스트라이크 %o 볼", strikes, balls));
 		}
 
 		if (strikes == 0 && balls == 0) {
-			return "낫싱";
+			System.out.println("낫싱");
 		}
 
 		if (strikes == 3) {
-			return "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 		}
-		return "";
+	}
+
+	public void resetBallsAndStrikes() {
+		this.balls = 0;
+		this.strikes = 0;
 	}
 }
