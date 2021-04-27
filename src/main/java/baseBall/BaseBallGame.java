@@ -1,3 +1,5 @@
+package baseBall;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,6 +25,9 @@ public class BaseBallGame {
 		}
 	}
 
+	/*
+	 * 게임 종료 확인
+	 * */
 	public static void checkMatch() {
 		if (computer.getStrikeCount() == 3) {
 			endGame();
@@ -30,12 +35,18 @@ public class BaseBallGame {
 		computer.showHint();
 	}
 
+	/*
+	* 게임 종료
+	* */
 	public static void endGame() {
 		System.out.println("3개의숫자를모두맞히셨습니다!게임종료");
 		System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
 		restart();
 	}
 
+	/*
+	 * 다시 시작
+	 * */
 	public static void restart() {
 		int restartValue = sc.nextInt();
 		if (restartValue == 1) {

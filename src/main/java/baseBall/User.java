@@ -1,3 +1,5 @@
+package baseBall;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -15,6 +17,9 @@ public class User {
 		return userNumbers;
 	}
 
+	/*
+	* User 숫자 입력
+	* */
 	public void generateNumbers() {
 		try {
 			System.out.print("세자리 수를 입력하세요 : ");
@@ -26,6 +31,9 @@ public class User {
 		}
 	}
 
+	/*
+	* User 입력값 검증
+	* */
 	public void validateNumber(String inputValue) {
 		if(!isNumber(inputValue)) {
 			throw new IllegalArgumentException("문자는 입력할 수 없습니다.");
@@ -44,10 +52,16 @@ public class User {
 		userNumbers = new ArrayList<>(inputNumber);
 	}
 
+	/*
+	* 숫자만 존재하는지 확인
+	* */
 	private boolean isNumber(String inputValue) {
 		return inputValue.matches(REGEX);
 	}
 
+	/*
+	* 숫자로 분리하여 Set 으로 변환
+	* */
 	private Set<Integer> separateNumber(String inputValue) {
 		int intInput = Integer.parseInt(inputValue);
 		Set<Integer> inputNumber = new LinkedHashSet<>();
