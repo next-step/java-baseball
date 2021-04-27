@@ -10,7 +10,7 @@ public class Ball {
 	private String input;
 	private int numberOfLength;
 
-	public Ball(String input, int numberOfLength) throws Exception {
+	public Ball(String input, int numberOfLength) throws IllegalArgumentException {
 		this.numberOfLength = numberOfLength;
 		Integer.valueOf(input);
 		if (input.length() != numberOfLength) {
@@ -33,6 +33,10 @@ public class Ball {
 			this.input += candidate.remove(ThreadLocalRandom.current().nextInt(0, candidate.size()));
 		}
 
+	}
+
+	public int getBallLength() {
+		return input.length();
 	}
 
 	@Override

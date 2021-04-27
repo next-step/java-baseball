@@ -13,6 +13,17 @@ public class GameEngine {
 		this.answer = new Ball(answerLength);
 	}
 
+	public GameEngine(String input, int answerLength) throws IllegalArgumentException {
+		this.strike = 0;
+		this.ball = 0;
+		this.answerLength = answerLength;
+		this.answer = new Ball(input, answerLength);
+	}
+
+	public Ball getAnswer() {
+		return answer;
+	}
+
 	public boolean progressEachStage(Ball inputBall) throws IllegalArgumentException {
 		resetStage();
 		compareInputWithAnswer(inputBall);

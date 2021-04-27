@@ -27,6 +27,17 @@ public class BallTest {
 		assertThat(new Ball(input, ANSWER_LENGTH)).isEqualTo(new Ball(answer, ANSWER_LENGTH));
 	}
 
+	@DisplayName("지정된 길이의 볼을 생성하는지Test")
+	@ParameterizedTest
+	@CsvSource(value = {
+		"3",
+		"4",
+		"5"
+	})
+	void newBall_WhenConstructedWithNumberOfLength_ShouldReturnInt(int numberOfLength) throws Exception {
+		assertThat(new Ball(numberOfLength).getBallLength()).isEqualTo(numberOfLength);
+	}
+
 	@DisplayName("정확한 갯수의 strike 갯수를 반환하는지 Test")
 	@ParameterizedTest
 	@CsvSource(value = {
