@@ -1,4 +1,4 @@
-package baseball.controller;
+package baseball.application;
 
 import baseball.enums.GameStatus;
 import baseball.service.InputSupplier;
@@ -7,10 +7,10 @@ import baseball.service.ResultChecker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseBallGameController {
+public class BaseBallGame {
     private ResultChecker checker;
 
-    public BaseBallGameController() {
+    public BaseBallGame() {
         this.checker = new ResultChecker();
     }
 
@@ -19,15 +19,13 @@ public class BaseBallGameController {
             ResultChecker.gameStatus.printMessage();
 
             String userInput = InputSupplier.getInput();
-            List<Integer> userNumbers = this.getUserNumbers(userInput);
-            checker.notifyMatchResult(userNumbers);
+            List<Integer> userNumbers = this.getNumbersByUser(userInput);
+            checker.showMatchCount(userNumbers);
             checker.checkAllMatches();
         }
     }
 
-    public List<Integer> getUserNumbers(String userInput) {
-        // TODO : 사용자가 중복되는 숫자를 입력 못하게 막아야 함.
-        // TODO : 반드시 세자리 숫자를 입력받도록 체크 해야함
+    public List<Integer> getNumbersByUser(String userInput) {
         List<Integer> userNumbers = new ArrayList<>();
         for (String strNum : userInput.trim().split("")) {
             userNumbers.add(Integer.parseInt(strNum));
