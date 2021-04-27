@@ -86,6 +86,5 @@ public class BaseballGame {
             baseballGame.gameStage(randomGenerated);
             isEnd = baseballGame.endInput();
         }
-
     }
 }
