@@ -28,7 +28,7 @@ public class Strike {
         }
     }
 
-    private void plusCount(boolean isStrike) {
+    private void plusCount(final boolean isStrike) {
         if (isStrike) {
             this.count++;
         }

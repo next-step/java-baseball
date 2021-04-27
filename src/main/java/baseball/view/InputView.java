@@ -20,7 +20,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    private List<Integer> toIntegers(String number) {
+    private List<Integer> toIntegers(final String number) {
         String[] digits = number.split("");
         List<Integer> numbers = new ArrayList<>();
         for (String digit : digits) {

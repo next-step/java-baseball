@@ -18,7 +18,7 @@ public class ResultView {
         System.out.println(END_MESSAGE);
     }
 
-    private String makeScoreMessage(Computer computer) {
+    private String makeScoreMessage(final Computer computer) {
         if (computer.isNothing()) {
             return NOTHING_MESSAGE;
         }
@@ -28,15 +28,15 @@ public class ResultView {
         return builder.toString();
     }
 
-    private String strikeToString(int strike) {
+    private String strikeToString(final int strike) {
         return isZeroScore(strike) ? EMPTY_MESSAGE : String.format(STRIKE_MESSAGE, strike);
     }
 
-    private String ballToString(int ball) {
+    private String ballToString(final int ball) {
         return isZeroScore(ball) ? EMPTY_MESSAGE : String.format(BALL_MESSAGE, ball);
     }
 
-    private boolean isZeroScore(int score) {
+    private boolean isZeroScore(final int score) {
         return score == ZERO_SCORE;
     }
 }

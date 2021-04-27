@@ -20,7 +20,7 @@ public class Answer {
         return new Answer(answer);
     }
 
-    public BaseballNumber getAnswer(int index) {
+    public BaseballNumber getAnswer(final int index) {
         return answer.get(index);
     }
 }

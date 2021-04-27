@@ -27,7 +27,7 @@ public class Ball {
         }
     }
 
-    private void plusCount(boolean isBall) {
+    private void plusCount(final boolean isBall) {
         if (isBall) {
             this.count++;
         }
