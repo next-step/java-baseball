@@ -39,6 +39,8 @@ public class BaseBallGame {
 	/* 게임시작 */
 	public void startGame(Map<Integer, Integer> randomScore) {
 		String inputString = receiveNumber();
+		
+		Map<String, Integer> scores = getScoreCount(randomScore, inputString);
 	}
 	
 	/* 사용자데이터 입력 */
@@ -97,5 +99,44 @@ public class BaseBallGame {
 		}
 		
 		return false;
+	}
+	
+	public Map<String, Integer> getScoreCount(Map<Integer, Integer> randomScore, String inputString) {
+		Map<String, Integer> scores = new HashMap<String, Integer>();
+		scores.put("strike", 0);
+		scores.put("ball", 0);
+		
+		for (int index = 0; index < inputString.length(); index++) {
+			int target = inputString.charAt(index) - '0';
+			
+			scores.put("strike", scores.getOrDefault("strike", 0) + getStrikeCount(randomScore, target, index));
+			scores.put("ball", scores.getOrDefault("ball", 0) + getBallCount(randomScore, target, index));
+		}
+		
+		return scores;
+	}
+	
+	/* 스트라이크 점수 계산 */
+	public int getStrikeCount(Map<Integer, Integer> randomScore, int target, int index) {
+		int score = 0;
+		
+		if (randomScore.containsKey(target) && randomScore.get(target) == index) {
+			score += 1;
+			return score;
+		}
+		
+		return score;
+	}
+	
+	/* 볼 점수 계산 */
+	public int getBallCount(Map<Integer, Integer> randomScore, int target, int index) {
+		int score = 0;
+		
+		if (randomScore.containsKey(target) && randomScore.get(target) != index) {
+			score += 1;
+			return score;
+		}
+		
+		return score;
 	}
 }
