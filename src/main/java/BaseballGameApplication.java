@@ -8,7 +8,6 @@ public class BaseballGameApplication {
         boolean gameOver = false;
         do{
             String counter = NumGenerator.numGenerator();
-            System.out.println("상대방 숫자 : " + counter);
             gameStart(counter);
         }while(newGame());
 
