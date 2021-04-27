@@ -12,10 +12,16 @@ public class BaseballGame {
 	public void startGame() {
 		do{
 			playBaseballGame();
-
-			// TODO: select to replay game
-			break;
+			if(checkEnd())
+				break;
 		}while(true);
+	}
+
+	private boolean checkEnd(){
+		System.out.println("게임을새로시작하려면1,종료하려면2를입력하세요.");
+		String input = getInput();
+		final String GameEnd = "2";
+		return input.toString().equals(GameEnd) ? true : false;
 	}
 
 	private void playBaseballGame(){
