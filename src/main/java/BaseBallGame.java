@@ -12,13 +12,18 @@ public class BaseBallGame {
 
 		int count = 0;
 		while (count < 3) {
-			int number = getRandomNumber();
-			if (!ArrayUtils.contains(targetNumber, number)) {
-				targetNumber[count] = number;
-				count++;
-			}
+			count = createRandomNumber3Length(targetNumber, count);
 		}
 
 		return targetNumber;
+	}
+
+	private static int createRandomNumber3Length(int[] target, int count) {
+		int number = getRandomNumber();
+		if (!ArrayUtils.contains(target, number)) {
+			target[count] = number;
+			count++;
+		}
+		return count;
 	}
 }
