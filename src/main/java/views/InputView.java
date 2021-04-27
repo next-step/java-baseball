@@ -13,4 +13,9 @@ public class InputView {
 		System.out.print(Constants.INPUT_ANSWER);
 		return scanner.next();
 	}
+
+	public int selectGameMenu() {
+		System.out.println(Constants.GAME_MENU_SELECTION);
+		return scanner.nextInt();
+	}
 }
