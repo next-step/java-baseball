@@ -74,4 +74,33 @@ public class BaseBallGame {
 		System.out.println("게임을 새로 시작하려면1, 종료하려면 2를 입력하세요");
 		return scanner.nextInt();
 	}
+
+	public static void printStrikeAndBall(int strike, int ball) {
+		if (strike > 0) {
+			System.out.print(strike + " 스트라이크");
+		}
+		if (ball > 0) {
+			System.out.print(ball + "볼");
+		}
+		if (strike == 0 && ball == 0) {
+			System.out.print("낫씽");
+		}
+		System.out.println();
+		if (strike == 3) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+		}
+	}
+
+	public static void start(int[] target) {
+		int strike = 0;
+		int ball = 0;
+		while (strike < 3) {
+			// 사용자 입력
+			int[] userInputNumbers = getUserInputNumbers();
+			// 스트라이크/볼 확인
+			strike = getStrikeCount(target, userInputNumbers);
+			ball = getBallCount(target, userInputNumbers);
+			printStrikeAndBall(strike, ball);
+		}
+	}
 }
