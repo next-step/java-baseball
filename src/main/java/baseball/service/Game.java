@@ -10,8 +10,7 @@ public class Game {
     private final int opponent;
 
     public Game() {
-        Random random = new Random();
-        opponent = random.nextInt(900) + 100;
+        opponent = createRandomNumber(new Random());
     }
 
     public Game(int opponent) {
@@ -30,6 +29,10 @@ public class Game {
             return new Score(strike, 4);
 
         return new Score(strike, ball);
+    }
+
+    private int createRandomNumber(Random random) {
+        return random.nextInt(900) + 100;
     }
 
     private int getBall(int numbers) {
