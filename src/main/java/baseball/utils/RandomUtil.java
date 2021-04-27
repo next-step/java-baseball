@@ -6,9 +6,9 @@ import java.util.List;
 
 public class RandomUtil {
 	/**
-	 *
+	 * create non duplicated 1-9 random numbers
 	 * @param size : list size
-	 * @return List<Integer> with non duplicated 1-9 random numbers
+	 * @return List<Integer>
 	 */
 	public static List<Integer> createNonDuplicatedNumberList(int size) {
 		List<Integer> intList = new ArrayList<>();
