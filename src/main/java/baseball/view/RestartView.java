@@ -5,7 +5,6 @@ import baseball.config.AppConfig;
 import java.util.Scanner;
 
 public class RestartView {
-
 	private final int RANDOM_NUMBER_LENGTH;
 	private final String RESTART_COMMAND;
 	private final String EXIT_COMMAND;
@@ -20,11 +19,11 @@ public class RestartView {
 	}
 
 	public String requestRestartCommand() {
-		System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임종료%s" +
-						"게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요.%s",
-				RANDOM_NUMBER_LENGTH, LINE_SEPARATOR,
-				RESTART_COMMAND, EXIT_COMMAND, LINE_SEPARATOR);
+		System.out.printf("게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요.%s", RESTART_COMMAND, EXIT_COMMAND, LINE_SEPARATOR);
 		return scanner.nextLine();
 	}
 
+	public void responseNonRestartCharacters() {
+		System.out.println("입력값이 올바르지 않습니다.");
+	}
 }

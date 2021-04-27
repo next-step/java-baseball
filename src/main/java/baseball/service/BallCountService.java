@@ -8,7 +8,6 @@ import baseball.error.NonNumericCharactersException;
 import java.util.*;
 
 public class BallCountService {
-
 	private final int RANDOM_NUMBER_LENGTH;
 	private final int MAX_RANDOM_NUMBER;
 	private final int MIN_RANDOM_NUMBER;
@@ -80,5 +79,4 @@ public class BallCountService {
 		}
 		return ball;
 	}
-
 }

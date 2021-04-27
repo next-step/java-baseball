@@ -4,7 +4,6 @@ import baseball.config.AppConfig;
 import baseball.error.NonRestartCharactersException;
 
 public class RestartService {
-
 	private final String RESTART_COMMAND;
 	private final String EXIT_COMMAND;
 
@@ -19,5 +18,4 @@ public class RestartService {
 		}
 		return RESTART_COMMAND.equals(input);
 	}
-
 }
