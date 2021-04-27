@@ -17,16 +17,19 @@ public class Game {
 	public void start() throws IOException {
 		RandomGenerator generator = new RandomGenerator();
 		answer = generator.makeRandomNumbers();
+		PrintMessage.printStart();
 		play();
 	}
 
 	private void play() throws IOException {
 		Player player = new Player();
 		do {
+			PrintMessage.printAskNumber();
 			String InputStr = InputReader.getInput();
 			if (Validation.checkInputNumber(InputStr)) {
 				List<Integer> input = Converter.convertStringToIntegerList(InputStr, "");
 				player.calculate(answer, input);
+				PrintMessage.printResult(player.getResult());
 			}
 		} while (!player.isFinished());
 	}

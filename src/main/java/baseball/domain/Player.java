@@ -60,4 +60,20 @@ public class Player {
 		}
 	}
 
+	/*
+	 * Result
+	 */
+	public String getResult() {
+		if (strikeCount == 0 && ballCount == 0) {
+			return "낫싱";
+		}
+		StringBuilder sb = new StringBuilder();
+		if (strikeCount > 0) {
+			sb.append(strikeCount).append(" 스트라이크 ");
+		}
+		if (ballCount > 0) {
+			sb.append(ballCount).append(" 볼");
+		}
+		return sb.toString().trim();
+	}
 }
