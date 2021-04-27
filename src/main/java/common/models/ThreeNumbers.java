@@ -59,7 +59,7 @@ public class ThreeNumbers {
 	private void throwNumberRangeError(int number, int max, int min) {
 		if (number > max || number < min) {
 			throw new GameException(GameErrorCode.NUMBER_RANGE_ERROR
-					,GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage() + " ("+min + " to " + max + ")");
+					,GameErrorCode.NUMBER_RANGE_ERROR.getErrorMessage());
 		}
 	}
 	
