@@ -29,15 +29,14 @@ public class Referee {
 		return score;
 	}
 
-	private Map<Result, Integer> scoreResult(int index, Map<Result, Integer> score) {
+	private void scoreResult(int index, Map<Result, Integer> score) {
 		if (isStrike(index)) {
 			calculateMap(Result.STRIKE, score);
-			return score;
+			return;
 		}
 		if (isBall(index)) {
 			calculateMap(Result.BALL, score);
 		}
-		return score;
 	}
 
 	private void calculateMap(Result resultType, Map<Result, Integer> score) {
