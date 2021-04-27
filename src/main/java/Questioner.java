@@ -13,7 +13,7 @@ public class Questioner {
 	}
 
 	private int generate() {
-		return ThreadLocalRandom.current().nextInt(100, 1000);
+		return ThreadLocalRandom.current().nextInt(123, 988);
 	}
 
 }
