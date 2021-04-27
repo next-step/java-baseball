@@ -45,7 +45,7 @@ public class BaseBall implements Iterable<Ball> {
         }
     }
 
-    public static BaseBall ofRandom(OneDigitNumber oneDigitNumber) {
+    public static BaseBall of(OneDigitNumber oneDigitNumber) {
         List<Ball> balls = new ArrayList<>();
         while (balls.size() < BALLS_LENGTH) {
             Ball ball = Ball.of(oneDigitNumber);

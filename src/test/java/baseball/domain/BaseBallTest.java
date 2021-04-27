@@ -11,9 +11,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BaseBallTest {
     @Test
-    void createRandom() {
-        assertThatCode(() -> BaseBall.ofRandom(new RandomNumber())).doesNotThrowAnyException();
-        assertThat(BaseBall.ofRandom(new IncrementsNumber())).isEqualTo(BaseBall.of("123"));
+    void create() {
+        assertThatCode(() -> BaseBall.of(new RandomNumber())).doesNotThrowAnyException();
+        assertThat(BaseBall.of(new IncrementsNumber())).isEqualTo(BaseBall.of("123"));
     }
 
     @Test

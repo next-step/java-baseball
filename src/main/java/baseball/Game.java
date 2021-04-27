@@ -13,7 +13,7 @@ public class Game {
     }
 
     private static void start() {
-        BaseBall baseBall = BaseBall.ofRandom(new RandomNumber());
+        BaseBall baseBall = BaseBall.of(new RandomNumber());
         int countStrike;
         do {
             BaseBall inputBaseBall = BaseBall.of(InputView.numbers());
