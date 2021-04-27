@@ -45,14 +45,10 @@ public class BaseballGame implements Game {
 		int[] inputNumber;
 
 		do {
-			try {
-				System.out.print("숫자를 입력해주세요 : ");
-				inputNumber = validNumberConverter.convert(scanner.nextLine());
+			System.out.print("숫자를 입력해주세요 : ");
+			inputNumber = validNumberConverter.convert(scanner.nextLine());
 
-				break;
-			} catch (RuntimeException e) {
-				System.out.println(e.getMessage());
-			}
+			break;
 		} while (true);
 
 		return inputNumber;
