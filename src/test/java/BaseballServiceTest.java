@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BaseballServiceTest {
@@ -39,5 +40,25 @@ class BaseballServiceTest {
     void createRandomNumbers_sizeTest(int size) {
         assertThat(service.createRandomNumbers(size))
             .hasSize(size);
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("사용자가 빈값을 넣었을때 exception을 발생 시키는지 확인.")
+    void validate_nullAndEmpty(String numbers) {
+        assertThatThrownBy(() -> {service.validate(numbers);})
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(Message.NUMBER_REQUIRED.getText());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2345", "25"})
+    @DisplayName("사용자가 게임에 사용 하기로한 숫자 갯수에 맞쳐서 입력하지 않았을때 exception을 발생 시키는지 확인.")
+    void validate_limitLength(String numbers) {
+        service.startGame(Constants.BASEBALL_DEFAULT_NUMBER_SIZE);
+
+        assertThatThrownBy(() -> {service.validate(numbers);})
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(Message.ONLY_LIMIT_CHARACTERS.getText());
     }
 }
