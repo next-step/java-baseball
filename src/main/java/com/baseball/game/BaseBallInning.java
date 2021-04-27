@@ -1,9 +1,7 @@
 package com.baseball.game;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import com.baseball.message.UIMessage;
 import com.baseball.rule.Referee;
 import com.baseball.rule.Pitcher;
 import com.baseball.rule.Player;
@@ -14,14 +12,15 @@ public class BaseBallInning {
 
 	boolean strikeout = false;
 
-	public BaseBallInning() { }
+	public BaseBallInning() {
+	}
 
 	public void onInning() {
 		generateBall();
 		System.out.println(generatedNumbers); // Debuggin시 확인
 
 		while (!strikeout) {
-			ArrayList<Integer> inputNumbers = convertList(inputNumbers());
+			ArrayList<Integer> inputNumbers = convertList();
 			decideBall(inputNumbers);
 		}
 	}
@@ -39,21 +38,12 @@ public class BaseBallInning {
 		return referee;
 	}
 
-	private ArrayList<Integer> convertList(String inputText) {
-		Player player = new Player(inputText);
-		player.validateInputText();
+	private ArrayList<Integer> convertList() {
+		Player player = new Player();
+		player.setValidatedText();
 		player.convertStringToIntList();
 
-		return player.getInputNumbers();
-	}
-
-	private String inputNumbers() {
-
-		System.out.print(UIMessage.TRY_INFO);
-
-		Scanner scanner = new Scanner(System.in);
-
-		return scanner.nextLine();
+		return player.getValidatedNumbers();
 	}
 
 	private void generateBall() {
