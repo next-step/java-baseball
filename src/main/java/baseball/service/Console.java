@@ -17,17 +17,20 @@ public class Console {
 
         while (true) {
             int number = getNumber();
-
-            if (number < 100 || number > 999) {
-                System.out.println("잘못된 숫자를 입력하였습니다. 다시 입력해주세요.");
-                continue;
-            }
+            if (checkOutOfRangeNumber(number)) continue;
 
             Score score = game.play(number);
             print(score);
-            if (isFinish(score))
-                return;
+            if (isFinish(score)) return;
         }
+    }
+
+    private boolean checkOutOfRangeNumber(int number) {
+        if (number < 100 || number > 999) {
+            System.out.println("잘못된 숫자를 입력하였습니다. 다시 입력해주세요.");
+            return true;
+        }
+        return false;
     }
 
     private int getNumber() {

@@ -46,11 +46,11 @@ public class Game {
     private int getStrike(int numbers) {
         int strike = 0;
         for (int i = 1; i <= 3; i++)
-            strike = checkStrike(numbers, strike, i);
+            strike = checkStrikeCount(numbers, strike, i);
         return strike;
     }
 
-    private int checkStrike(int numbers, int count, int pos) {
+    private int checkStrikeCount(int numbers, int count, int pos) {
         if (match(getNumber(numbers, pos) , pos))
             count++;
         return count;
