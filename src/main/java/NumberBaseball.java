@@ -6,9 +6,29 @@ import java.util.Scanner;
  * @description     : Class in charge of user interface logic of the game
  */
 public class NumberBaseball {
+	private static final int maxDigit = 3;
 	private static final String replayCommand = "1";
 	private static final String terminateCommand = "2";
 	private static final Scanner scanner = new Scanner(System.in);
+	private static String answer;
+
+	/**
+	 * @methodName  : scoreInput
+	 * @author      : Sunghwa Lee
+	 * @description : Scoring the input string
+	 * @return Return true if the input is correct
+	 */
+	private static boolean scoreInput() {
+		String input = scanner.next();
+		int strikeCount = BaseballCalculator.getStrikeCount(answer, input);
+		if (strikeCount == maxDigit) {
+			System.out.printf("%d개의 숫자를 모두 맞히셨습니다! 게임 종료.%n", maxDigit);
+			return true;
+		}
+		int ballCount = BaseballCalculator.getBallCount(answer, input);
+		System.out.println(buildResultString(strikeCount, ballCount));
+		return false;
+	}
 
 	/**
 	 * @methodName  : buildResultString
