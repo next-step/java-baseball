@@ -25,8 +25,14 @@ public class InputValidators {
     }
 
     public void validators() {
-        if (inputNumber.length() > Const.INPUT_NUMBER_SIZE) {
-            throw new IllegalArgumentException("3자리를 입력해주세요");
+        if (inputNumber.length() != Const.INPUT_NUMBER_SIZE) {
+            throw new IllegalArgumentException("3자리를 입력해주세요.");
+        }
+
+        try {
+            Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자를 입력해주세요.");
         }
     }
 }
