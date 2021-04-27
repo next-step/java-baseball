@@ -28,6 +28,17 @@ public class BaseballProject {
                 String resultMessage = baseBallGame.makeResultMessage(baseBallGame.checkResultModel);
                 System.out.println(resultMessage);
                 baseBallGame.resetModel(baseBallGame.checkResultModel);
+
+                // TODO : 3. control isContinue to restart or stop game
+                if(result == 1){
+                    isCorrect = true;
+                    System.out.println("게임을 새로 시작하시려면 1, 아니면 2를 입력해주세요");
+                    String willContinue = scanner.next();
+                    if(willContinue.equals("2") ){
+                        isContinue = false;
+                        System.out.println("게임이 종료되었습니다.");
+                    }
+                }
             }
         }
     }
