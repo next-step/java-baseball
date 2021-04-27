@@ -19,10 +19,15 @@ public class BaseBallGame {
 			user.generateNumbers();
 			userNumbers = user.getUserNumbers();
 			computer.matchResult(userNumbers);
-			if (computer.getStrikeCount() != 3) {
-				computer.showHint();
-			}
+			checkMatch();
 		}
+	}
+
+	public static void checkMatch() {
+		if (computer.getStrikeCount() == 3) {
+			endGame();
+		}
+		computer.showHint();
 	}
 
 	public static void endGame() {

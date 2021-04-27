@@ -38,9 +38,6 @@ public class Computer {
 
 	public void matchResult(List<Integer> userNumbers) {
 		countStrike(userNumbers);
-		if (strikeCount == 3) {
-			BaseBallGame.endGame();
-		}
 		countBall(userNumbers);
 	}
 
