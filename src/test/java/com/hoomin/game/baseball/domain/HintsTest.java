@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -19,7 +20,7 @@ import com.hoomin.game.baseball.enums.HintState;
 public class HintsTest {
 
 	@ParameterizedTest
-	@MethodSource("getHintStateAndCount")
+	@MethodSource("getHintStatesAndHintCount")
 	public void getStrikeCount_HaveHintState_GetHintCount(List<HintState> hintStates, Integer strikeCount, Integer ballCount) {
 		Hints hints = new Hints();
 		for (HintState hintState : hintStates) {
@@ -29,7 +30,17 @@ public class HintsTest {
 		assertThat(hints.getBallCount()).isEqualTo(ballCount);
 	}
 
-	private static Stream<Arguments> getHintStateAndCount() {
+	@Test
+	public void add_AddMoreThan3_RuntimeExceptionThrown() {
+		Hints hints = new Hints();
+		hints.add(HintState.STRIKE);
+		hints.add(HintState.STRIKE);
+		hints.add(HintState.STRIKE);
+		assertThatThrownBy(() -> hints.add(HintState.STRIKE))
+			.isInstanceOf(RuntimeException.class);
+	}
+
+	private static Stream<Arguments> getHintStatesAndHintCount() {
 		return Stream.of(
 			arguments(Collections.singletonList(HintState.STRIKE), 1, 0),
 			arguments(Arrays.asList(HintState.STRIKE, HintState.STRIKE), 2, 0),
