@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class HumanUser implements User {
 	private ArrayList<Integer> chosenNumbers;
@@ -11,7 +10,7 @@ public class HumanUser implements User {
 
 	@Override
 	public ArrayList<Integer> pickNumbers(List<Integer> numbers, int numNeedToPick) {
-		String userExpect = InputDispatcher.askUserExpect();
+		String userExpect = UserInterface.askUserExpect();
 		setChosenNumbers(parseNumericString(userExpect));
 		return this.chosenNumbers;
 	}

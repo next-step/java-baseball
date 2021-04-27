@@ -9,7 +9,7 @@ public class Main {
 			baseballGame.setDefensingUser(new ComputerUser());
 			baseballGame.setOffensingUser(new HumanUser());
 			baseballGame.start();
-		} while (InputDispatcher.askContinue());
+		} while (UserInterface.askContinue());
 		System.out.println("program end!");
 	}
 }

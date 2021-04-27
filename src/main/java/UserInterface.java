@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class InputDispatcher {
+public class UserInterface {
 
 	public static boolean askContinue(){
 		while(true) {

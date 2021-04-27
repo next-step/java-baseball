@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RefereeClient {
-	private HashMap<BaseballResult, Integer> matchResult;
+	private HashMap<BaseballResultType, Integer> matchResult;
 	private ArrayList<Integer> defenseNumbers;
 	private ArrayList<Integer> offenseNumbers;
 
@@ -25,23 +25,23 @@ public class RefereeClient {
 		}
 	}
 
-	private BaseballResult judgeOneNumber(Integer offenseNumber){
+	private BaseballResultType judgeOneNumber(Integer offenseNumber){
 		if(defenseNumbers.contains(offenseNumber)){
 			return isStrikeOrBall(offenseNumber);
 		}
-		return BaseballResult.NO_COUNT;
+		return BaseballResultType.NO_COUNT;
 	}
 
-	private BaseballResult isStrikeOrBall(Integer offenseNumber){
+	private BaseballResultType isStrikeOrBall(Integer offenseNumber){
 		int offenseNumberIdx = offenseNumbers.indexOf(offenseNumber);
 		if(offenseNumber.equals(defenseNumbers.get(offenseNumberIdx))){
-			return BaseballResult.STRIKE;
+			return BaseballResultType.STRIKE;
 		}
-		return BaseballResult.BALL;
+		return BaseballResultType.BALL;
 	}
 
-	private void addMatchResultCountByType(BaseballResult baseballResult){
-		matchResult.put(baseballResult, matchResult.get(baseballResult) + 1);
+	private void addMatchResultCountByType(BaseballResultType baseballResultType){
+		matchResult.put(baseballResultType, matchResult.get(baseballResultType) + 1);
 	}
 
 	public void printMatchResult(){
@@ -50,18 +50,18 @@ public class RefereeClient {
 		});
 	}
 
-	private String getResultStatement(BaseballResult baseballResult, Integer count){
-		if(baseballResult.equals(BaseballResult.STRIKE)){
+	private String getResultStatement(BaseballResultType baseballResultType, Integer count){
+		if(baseballResultType.equals(BaseballResultType.STRIKE)){
 			return count.toString() + " " + "스트라이크\n";
 		}
-		if(baseballResult.equals(BaseballResult.BALL)){
+		if(baseballResultType.equals(BaseballResultType.BALL)){
 			return count.toString() + " " + "볼\n";
 		}
 		return "";
 	}
 
 	public boolean isGameEnd() {
-		if(matchResult.get(BaseballResult.STRIKE).equals(Constant.NUM_GAMEEND_CONDITION)){
+		if(matchResult.get(BaseballResultType.STRIKE).equals(Constant.NUM_GAMEEND_CONDITION)){
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 			return true;
 		}
@@ -69,10 +69,10 @@ public class RefereeClient {
 	}
 
 	public void resetMatchResult() {
-		this.matchResult = new HashMap<BaseballResult, Integer>(){{
-			put(BaseballResult.STRIKE, 0);
-			put(BaseballResult.BALL, 0);
-			put(BaseballResult.NO_COUNT, 0);
+		this.matchResult = new HashMap<BaseballResultType, Integer>(){{
+			put(BaseballResultType.STRIKE, 0);
+			put(BaseballResultType.BALL, 0);
+			put(BaseballResultType.NO_COUNT, 0);
 		}};
 	}
 }
