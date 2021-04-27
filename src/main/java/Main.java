@@ -9,16 +9,15 @@ public class Main {
         List<Integer> goalValues = generateGoalValue();
         int inputValue = in.nextInt();
         List<Integer> inputValues = getUserInputValue(inputValue);
+        int ballCount = getBallCount(goalValues, inputValues);
     }
 
     private static List<Integer> generateGoalValue(){
         List<Integer> goalValueSet = new ArrayList<>();
-
         do {
             int randomValue = random.nextInt(9);
             if (!goalValueSet.contains(randomValue)) {
                 goalValueSet.add(randomValue);
-
             }
         } while (goalValueSet.size() < 3);
         return goalValueSet;
@@ -26,7 +25,6 @@ public class Main {
 
     private static List<Integer> getUserInputValue(int userInput){
         List<Integer> userInputList = new ArrayList<>();
-
         int modifyNumber = 100;
         do {
             int value = userInput / modifyNumber;
@@ -37,4 +35,13 @@ public class Main {
         return userInputList;
     }
 
+    private static int getBallCount(List<Integer> goalValues, List<Integer> inputValues){
+        int ballCount = 0;
+        for (int value : inputValues){
+            if (goalValues.contains(value)){
+                ballCount += 1;
+            }
+        }
+        return ballCount;
+    }
 }
