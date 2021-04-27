@@ -20,6 +20,17 @@ public class ResultReader {
 		return count;
 	}
 
+	public int validateBall(List<Integer> answer) {
+		int count = 0;
+		for (int i = 0; i < redundancy.size(); i++) {
+			if (answer.contains(redundancy.get(i))) {
+				count++;
+			}
+		}
+		combinateString(count, " 볼");
+		return count;
+	}
+
 	private void combinateString(int successCount, String targetString) {
 		if (successCount != 0) {
 			result.append(successCount + targetString);

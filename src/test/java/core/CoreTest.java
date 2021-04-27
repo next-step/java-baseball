@@ -65,4 +65,23 @@ public class CoreTest {
 		}
 		assertEquals(1, count);
 	}
+
+	@CsvSource({"321,53"})
+	@ParameterizedTest
+	public void number_contain_test(String answer, String userInput) {
+		int count = 0;
+		String[] splitAnswer = answer.split("{1}");
+		ArrayList<Integer> answerList = new ArrayList<Integer>();
+		for (int i = 0; i < 3; i++) {
+			answerList.add(Integer.parseInt(splitAnswer[i]));
+		}
+
+		String[] userInputArray = userInput.split("{1}");
+		for (int i = 0; i < userInputArray.length; i++) {
+			if (answerList.contains(Integer.parseInt(userInputArray[i]))) {
+				count++;
+			}
+		}
+		assertEquals(1, count);
+	}
 }
