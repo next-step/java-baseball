@@ -103,23 +103,23 @@ class GameTest {
         assertPlay(game.play(132), 1, 2);
     }
 
-    private Set<Integer> getIntegers(int pos) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private Set<Integer> getIntegers(int position) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Method method = game.getClass().getDeclaredMethod("createRandomNumber");
         method.setAccessible(true);
         Set<Integer> sets = new HashSet<>();
         for (int i = 0; i < 1000000; i++) {
             int number = (int) method.invoke(game);
-            sets.add(getNumberAtPos(number, pos));
+            sets.add(getNumberAtPos(number, position));
         }
         return sets;
     }
 
-    private int getNumberAtPos(int number, int pos) {
-        if (pos == 3)
+    private int getNumberAtPos(int number, int position) {
+        if (position == 3)
             return number / 100;
-        else if ((pos == 2))
+        else if ((position == 2))
             return number / 10 % 10;
-        else if (pos == 1)
+        else if (position == 1)
             return number % 10;
         throw new IllegalPositionException();
     }

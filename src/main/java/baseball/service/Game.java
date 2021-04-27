@@ -65,24 +65,24 @@ public class Game {
         return strike;
     }
 
-    private int countStrike(int numbers, int count, int pos) {
-        if (match(getNumber(numbers, pos) , pos))
+    private int countStrike(int numbers, int count, int position) {
+        if (match(getNumber(numbers, position) , position))
             count++;
         return count;
     }
 
-    private int getNumber(int numbers, int pos) {
-        if (pos == 3)
+    private int getNumber(int numbers, int position) {
+        if (position == 3)
             return numbers / 100;
-        else if ((pos == 2))
+        else if ((position == 2))
             return numbers / 10 % 10;
-        else if (pos == 1)
+        else if (position == 1)
             return numbers % 10;
         throw new IllegalPositionException();
     }
 
-    private boolean match(int number, int pos) {
-        return number == getNumber(opponent, pos);
+    private boolean match(int number, int position) {
+        return number == getNumber(opponent, position);
     }
 
 }
