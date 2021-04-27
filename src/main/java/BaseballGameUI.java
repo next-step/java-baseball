@@ -19,7 +19,7 @@ public class BaseballGameUI {
 				continue;
 			}
 
-			System.out.println(baseballGameNumber.getNumber() + " / " + baseballGameLogic.getScore(baseballGameNumber.getNumber(), guessNumbers));
+			System.out.println(baseballGameLogic.getScore(baseballGameNumber.getNumber(), guessNumbers));
 			isContinue = isContinue(isCorrect(baseballGameLogic.getScore(baseballGameNumber.getNumber(), guessNumbers)));
 		}
 	}
