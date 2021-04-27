@@ -66,6 +66,10 @@ public class Computer {
 	}
 
 	public void showHint() {
+		if (strikeCount == 0 && ballCount == 0) {
+			System.out.println("낫싱");
+			return;
+		}
 		System.out.println(strikeCount + " 스트라이크 " + ballCount + "볼");
 	}
 }
