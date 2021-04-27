@@ -16,7 +16,6 @@ public class Numbers {
     private static final int SECOND_NUMBER_INDEX = 1;
     private static final int THIRD_NUMBER_INDEX = 2;
     private Set<Integer> duplicateCheckNumberSet;
-    private int number;
 
     Numbers(int number) {
         checkSize(number);
@@ -24,7 +23,7 @@ public class Numbers {
         checkDuplicateNumber(numberList);
     }
 
-    Numbers(List<Integer> numberIntegerList) {
+    public Numbers(List<Integer> numberIntegerList) {
         checkSize(numberIntegerList);
         Number number1 = new Number(numberIntegerList.get(FIRST_NUMBER_INDEX).intValue());
         Number number2 = new Number(numberIntegerList.get(SECOND_NUMBER_INDEX).intValue());
