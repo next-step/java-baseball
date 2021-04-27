@@ -10,8 +10,9 @@ import org.junit.jupiter.api.Test;
 
 class BallTest {
     @Test
-    void equals() {
-        assertThat(Ball.of(1)).isEqualTo(Ball.of("1"));
+    void create() {
+        assertThatCode(() -> Ball.of(new RandomNumber())).doesNotThrowAnyException();
+        assertThat(Ball.of(new IncrementsNumber())).isEqualTo(Ball.of("1"));
     }
 
     @Test
@@ -20,10 +21,5 @@ class BallTest {
         assertThatThrownBy(() -> Ball.of(10))
             .hasMessageMatching("숫자는 1~9 사이어야 합니다.")
             .isInstanceOf(NoAllowNumberException.class);
-    }
-
-    @Test
-    void createRandomBall() {
-        assertThatCode(() -> Ball.of(new RandomNumber())).doesNotThrowAnyException();
     }
 }
