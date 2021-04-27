@@ -25,7 +25,6 @@ public class InputNumberUtil {
         for(int i=0; i < numberString.length(); i++) {
             answer.add(Integer.parseInt(numberString.substring(i, i+1)));
         }
-        System.out.println(answer);
         
         return answer;
     }
