@@ -1,4 +1,4 @@
-package numberBaseBallGame.generater;
+package numberBaseBallGame.generator;
 
 import org.junit.jupiter.api.*;
 

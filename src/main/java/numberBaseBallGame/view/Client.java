@@ -1,7 +1,7 @@
 package numberBaseBallGame.view;
 
 import numberBaseBallGame.domain.BallNumberMatchResult;
-import numberBaseBallGame.generater.GenerateGame;
+import numberBaseBallGame.generator.GenerateGame;
 import numberBaseBallGame.ValidationCheckUtils;
 
 import java.util.Scanner;

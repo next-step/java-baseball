@@ -16,25 +16,25 @@
         f. '종료'시 프로세스 종료
 
 2. 대결 준비
-   - 작업 클래스 명 : numberBaseBallGame.generater.GenerateGameNumber.class
+   - 작업 클래스 명 : numberBaseBallGame.generator.GenerateGameNumber.class
    - 상세 : 대결용 임의의 수 1 ~ 9 사이 서로다른 Random 수 3개 생성
           클라이언트와 대화할 DTO 인터페이스 생성
    
 3. 게임
-   - 작업 클래스 명 : numberBaseBallGame.generater.GenerateGame.class
+   - 작업 클래스 명 : numberBaseBallGame.generator.GenerateGame.class
    - 상세 : 클라이언트 입력한 1 ~ 9 사이 서로다른 3자리의 수 비교.
         a. 결과값은 모두 맞춘 경우와 그렇지 못한 경우로 힌트 메세지와 모두 맞춘 여부가 반환된다.
     
 4. 스트라이크
-   - 작업 클래스 명 : numberBaseBallGame.generater.BallNumberMatcher.class
+   - 작업 클래스 명 : numberBaseBallGame.generator.BallNumberMatcher.class
    - 상세 : 같은 수, 같은 자리 '스트라이크' 힌트 기능
     
 5. 볼
-    - 작업 클래스 명 : numberBaseBallGame.generater.BallNumberMatcher.class
+    - 작업 클래스 명 : numberBaseBallGame.generator.BallNumberMatcher.class
     - 상세 : 같은 수, 다른 자리 '볼' 힌트 기능
 
 6. 포볼 / 낫싱
-    - 작업 클래스 명 : numberBaseBallGame.generater.BallNumberMatcher.class
+    - 작업 클래스 명 : numberBaseBallGame.generator.BallNumberMatcher.class
     - 상세 : 같은 수 0 '포볼', '낫싱' 기능
 
 인터페이스는 BallNumberMatchResult 로 클라이언트와 대화한다.
