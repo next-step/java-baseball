@@ -36,4 +36,21 @@ public class Score {
 	public Score sumScore(Score other) {
 		return new Score(this.strike + other.getStrike(), this.ball + other.getBall());
 	}
+
+	@Override
+	public String toString() {
+		return "Score{strike=" + strike + ", ball=" + ball + '}';
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (other == null || getClass() != other.getClass()) {
+			return false;
+		}
+		Score score = (Score)other;
+		return strike == score.strike && ball == score.ball;
+	}
 }
