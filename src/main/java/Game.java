@@ -47,4 +47,18 @@ public class Game {
         return false;
     }
 
+    public Boolean checkStrike(int strikeCount){
+        if(strikeCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean checkBall(int ballCount){
+        if(ballCount > 0){
+            return true;
+        }
+        return false;
+    }
+
 }
