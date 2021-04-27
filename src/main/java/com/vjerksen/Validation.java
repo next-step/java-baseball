@@ -5,18 +5,6 @@ import java.util.Set;
 
 public class Validation {
 
-    public boolean isValidate(String stringNum) {
-        if (chkLength(stringNum) == false) {
-            return false;
-        }
-
-        if (chkDuplicate(stringNum) == false) {
-            return false;
-        }
-
-        return true;
-    }
-
     public boolean chkLength(String stringNum) {
         if (stringNum.length() != 3) {
             return false;
@@ -25,7 +13,7 @@ public class Validation {
         return true;
     }
 
-    public boolean chkDuplicate(String stringNum) {
+    public boolean chkDuplication(String stringNum) {
         Set<Character> set = new HashSet<>();
 
         for (int i = 0; i < stringNum.length(); i++) {
