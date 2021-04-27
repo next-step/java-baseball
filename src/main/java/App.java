@@ -11,22 +11,26 @@ public class App {
     public void start() {
         boolean success = false;
         List<Integer> initNum = this.getInitNum();
-        System.out.println("initNum : "+initNum);
+        System.out.println("initNum : " + initNum);
         while (!success) {
-            // get Input
-            System.out.println("숫자를 입력해주세요 :");
-            int input = scanner.nextInt(10);
-            inputHandler.isValidateInputRange(input);
-            List<Integer> inputList = inputHandler.splitInput(input);
-
-            // do compare
-            int strike = gameLogic.compareSameIndex(initNum, inputList);
-            int ball = gameLogic.compareDiffIndex(initNum, inputList);
-            String output = this.getOutputString(strike, ball);
-            System.out.println(output);
-
-            success = this.getResult(strike);
+            List<Integer> inputList = this.getUserInput();
+            success = this.compareLogic(initNum, inputList);
         }
+    }
+
+    private List<Integer> getUserInput() {
+        System.out.println("숫자를 입력해주세요 :");
+        int input = scanner.nextInt(10);
+        inputHandler.isValidateInputRange(input);
+        return inputHandler.splitInput(input);
+    }
+
+    private boolean compareLogic(List<Integer> initNum, List<Integer> inputList) {
+        int strike = gameLogic.compareSameIndex(initNum, inputList);
+        int ball = gameLogic.compareDiffIndex(initNum, inputList);
+        String output = this.getOutputString(strike, ball);
+        System.out.println(output);
+        return this.getResult(strike);
     }
 
     private List<Integer> getInitNum() {
@@ -43,22 +47,14 @@ public class App {
     }
 
     private String getOutputString(int strike, int ball) {
-        if (strike == 0 && ball == 0) {
-            return "낫싱";
-        }
-        if (strike == 0) {
-            return ball + " 볼";
-        }
-        if (ball == 0) {
-            return strike + " 스트라이크";
-        }
+        if (strike == 0 && ball == 0) return "낫싱";
+        if (strike == 0) return ball + " 볼";
+        if (ball == 0) return strike + " 스트라이크";
         return strike + " 스트라이크" + ball + " 볼";
     }
 
     private boolean getResult(int strike) {
-        if (strike == 3) {
-            return true;
-        }
+        if (strike == 3) return true;
         return false;
     }
 }
