@@ -1,19 +1,27 @@
 package domain;
 
+import view.ResultView;
+
 import java.util.List;
 
-public class Ball {
-    public static int checkBall(List<Integer> input, List<Integer> randomNumber) {
-        int count = 0;
+public class Ball extends GameRule {
 
-        for (int i = 0; i < randomNumber.size(); i++) {
-            count = calculateCount(input, randomNumber, count, i);
-        }
+    private static Ball instance = new Ball();
 
-        return count;
+    public static Ball getInstance() {
+        return instance;
     }
 
-    private static int calculateCount(List<Integer> input, List<Integer> randomNumber, int count, int i) {
+    public boolean isRule(int strikeNum, int ballNum) {
+        if (strikeNum == 0) {
+            ResultView.printBall(ballNum);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected int calculateCount(List<Integer> input, List<Integer> randomNumber, int count, int i) {
         if (input.contains(randomNumber.get(i)) && !input.get(i).equals(randomNumber.get(i))) {
             count++;
         }

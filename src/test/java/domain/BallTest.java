@@ -14,7 +14,7 @@ class BallTest {
         final List<Integer> randomNumber = RandomNumber.createRandomNumber();
         final List<Integer> input = RandomNumber.createRandomNumber();
 
-        final int count = Ball.checkBall(input, randomNumber);
+        final int count = Ball.getInstance().checkCount(input, randomNumber);
 
         assertThat(count).isBetween(0, 3);
         System.out.println("input: " + input + " randomNumber: " + randomNumber);

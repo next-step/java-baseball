@@ -14,7 +14,7 @@ class StrikeTest {
         final List<Integer> randomNumber = RandomNumber.createRandomNumber();
         final List<Integer> input = RandomNumber.createRandomNumber();
 
-        final int count = Strike.checkStrike(input, randomNumber);
+        final int count = Strike.getInstance().checkCount(input, randomNumber);
 
         assertThat(count).isBetween(0, 3);
         System.out.println("input: " + input + " randomNumber: " + randomNumber);
