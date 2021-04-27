@@ -9,9 +9,7 @@ public class BaseballApplication {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int command = 1;
-
         do {
-
             if (command == 1) {
                 Console console = new Console(scanner);
                 console.play();
@@ -22,9 +20,7 @@ public class BaseballApplication {
 
             if (command > 2 || command < 1)
                 System.out.println("잘못된 명령어 입니다.");
-
         } while (command != 2);
-
         scanner.close();
     }
 

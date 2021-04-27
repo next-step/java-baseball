@@ -12,31 +12,34 @@ public class Console {
         this.scanner = scanner;
     }
 
-    public int getNumber() {
-        System.out.print("숫자를 입력해주세요 : ");
-        return scanner.nextInt();
-    }
-
     public void play() {
         Game game = new Game(123);
 
         while (true) {
             int number = getNumber();
-            Score score = game.play(number);
 
-            print(score);
-
-            if (isFinish(score)) {
-                return;
+            if (number < 100 || number > 999) {
+                System.out.println("잘못된 숫자를 입력하였습니다. 다시 입력해주세요.");
+                continue;
             }
+
+            Score score = game.play(number);
+            print(score);
+            if (isFinish(score))
+                return;
         }
     }
 
-    public boolean isFinish(Score score) {
+    private int getNumber() {
+        System.out.print("숫자를 입력해주세요 : ");
+        return scanner.nextInt();
+    }
+
+    private boolean isFinish(Score score) {
         return score.getStrike() == 3;
     }
 
-    public void print(Score score) {
+    private void print(Score score) {
         StringBuilder result = new StringBuilder();
         if (score.getStrike() > 0)
             result.append(score.getStrike()).append(" 스트라이크 ");
