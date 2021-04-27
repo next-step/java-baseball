@@ -61,4 +61,20 @@ public class Game {
         return false;
     }
 
+    public String setResultMsg(Integer strikeCount, Integer ballCount) {
+        StringBuilder resultMsg = new StringBuilder();
+
+        if(checkNothing(strikeCount, ballCount)){
+            resultMsg.append("낫싱");
+        }
+
+        if (checkStrike(strikeCount)) {
+            resultMsg.append(strikeCount+" 스트라이크");
+        }
+        if (checkBall(ballCount)) {
+            resultMsg = Util.setEmptyMsg(resultMsg).append(ballCount+" 볼");
+        }
+        return resultMsg.toString();
+    }
+
 }
