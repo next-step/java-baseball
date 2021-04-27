@@ -24,4 +24,17 @@ public class BaseBallGameTest {
 			System.out.println(number);
 		}
 	}
+
+	@Test
+	public void callStrikeTest() {
+		assertThat(baseBallGame.callStrike("123", "123") == 3).isTrue();
+		assertThat(baseBallGame.callStrike("124","125") == 2).isTrue();
+		assertThat(baseBallGame.callStrike("111", "112") == 3).isFalse();
+	}
+
+	@Test
+	public void compareNumberTest(){
+		assertThat(baseBallGame.compareNumber('1','2') == 0).isTrue();
+		assertThat(baseBallGame.compareNumber('1','1') == 1).isTrue();
+	}
 }
