@@ -2,33 +2,53 @@ import java.util.Scanner;
 
 public class BaseballGameUI {
 	private static Scanner scanner;
+	private static BaseballGameLogic baseballGameLogic;
+	private static BaseballGameNumber baseballGameNumber;
 
 	public static void main(String[] args) {
-		String input;
+		init();
+		baseballGame();
+	}
+
+	private static void baseballGame() {
+		String guessNumbers;
 		boolean isContinue = true;
-		scanner = new Scanner(System.in);
-		BaseballGameLogic baseballGameLogic = new BaseballGameLogic();
-		baseballGameLogic.makeNumber();
 
 		while (isContinue) {
-			if (inputValidation(input = askNumbers(scanner))) {
+			if (!isInputValid(guessNumbers = askNumbers())) {
 				continue;
 			}
-			System.out.println(baseballGameLogic.getScore(input));
-			isContinue = isCorrect(baseballGameLogic.getScore(input), baseballGameLogic);
+
+			System.out.println(baseballGameNumber.getNumber() + " / " + baseballGameLogic.getScore(baseballGameNumber.getNumber(), guessNumbers));
+			isContinue = isContinue(isCorrect(baseballGameLogic.getScore(baseballGameNumber.getNumber(), guessNumbers)));
 		}
 	}
 
-	private static boolean isCorrect(String score, BaseballGameLogic baseballGameLogic) {
-		if ("3 스트라이크 ".equals(score)) {
-			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
-			return isFinished(baseballGameLogic);
+	private static boolean isContinue(boolean isCorrect) {
+		if (isCorrect) {
+			return !isFinished();
 		}
 
 		return true;
 	}
 
-	private static boolean isFinished(BaseballGameLogic baseballGameLogic) {
+	private static void init() {
+		scanner = new Scanner(System.in);
+		baseballGameLogic = new BaseballGameLogic();
+		baseballGameNumber = new BaseballGameNumber();
+		baseballGameNumber.makeNumber();
+	}
+
+	private static boolean isCorrect(String score) {
+		if ("3 스트라이크 ".equals(score)) {
+			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+			return true;
+		}
+
+		return false;
+	}
+
+	private static boolean isFinished() {
 		String input;
 
 		do {
@@ -37,23 +57,23 @@ public class BaseballGameUI {
 		} while (BaseballGameValidator.isAllowedNumbers(input));
 
 		if ("1".equals(input)) {
-			baseballGameLogic.makeNumber();
-			return true;
+			baseballGameNumber.makeNumber();
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 
-	private static String askNumbers(Scanner scanner) {
+	private static String askNumbers() {
 		System.out.print("숫자를입력해주세요 : ");
 		return scanner.nextLine();
 	}
 
-	private static boolean inputValidation(String input) {
+	private static boolean isInputValid(String input) {
 		if (!BaseballGameValidator.isLengthThree(input) || !BaseballGameValidator.isNumbers(input)) {
-			return true;
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 }
