@@ -1,4 +1,7 @@
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +23,14 @@ public class InputNum {
         Pattern pattern = Pattern.compile("(^[1-9]*$)");
         Matcher matcher = pattern.matcher(num);
         return matcher.find();
+    }
+
+    public static Boolean checkDuplicateNum(String num){
+        String[] numList = num.split("");
+        Set<?> numSet = new HashSet<>(Arrays.asList(numList));
+
+        if(numSet.size() < 3){ return true; }
+        return false;
     }
 
 }
