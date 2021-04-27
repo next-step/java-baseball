@@ -28,7 +28,7 @@ public class BaseBallGame {
     }
 
     // TODO : targetNumberList 생성
-    public void makeTargetNumberArray(int digit){
+    public void makeTargetNumberList(int digit){
         for(int i=0; i<digit; i++){
             int range = numberPool.size() - 1;
             targetNumberList.add(i, createTargetNumber(range));
