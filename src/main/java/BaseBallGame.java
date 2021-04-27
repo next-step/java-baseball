@@ -18,6 +18,15 @@ public class BaseBallGame {
         }
     }
 
+    // TODO : pool에서 뽑고 지우기 반복 방식
+    public String createTargetNumber(int range){
+        Random random = new Random();
+        int randomIndex = random.nextInt(range);
+        int targetNumber = numberPool.get(randomIndex);
+        numberPool.remove(randomIndex);
+        return Integer.toString(targetNumber);
+    }
+
 
 
 }
