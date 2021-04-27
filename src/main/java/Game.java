@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Game {
     private String computerNum;
     private String inputNum;
@@ -29,7 +31,16 @@ public class Game {
         System.out.println(setResultMsg(strikeCount, ballCount));
 
         if (strikeCount != computerNum.length()){ play(false); }
-        if (strikeCount == computerNum.length()){ return; }
+        if (strikeCount == computerNum.length()){ successGame(); }
+    }
+
+    private void successGame() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        Scanner scan = new Scanner(System.in);
+        if(scan.nextInt() == 1){
+            play(true);
+        }
     }
 
     public Integer strike(String computerNum, String inputNum) {
@@ -87,5 +98,4 @@ public class Game {
         }
         return resultMsg.toString();
     }
-
 }
