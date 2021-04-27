@@ -24,4 +24,26 @@ public class BaseBallGameTest {
 			.isGreaterThan(0)
 			.isLessThan(10);
 	}
+
+	@Test
+	@DisplayName("세자리 랜덤 수 생성 테스트")
+	void generateRandomNumber3Length() {
+		int[] target = BaseBallGame.getRandomNumber3Length();
+
+		assertThat(target)
+			.as("getRandomNumber3Length 배열 길이 %d", target.length)
+			.hasSize(3);
+		assertThat(target[0])
+			.as("0번째 자리 숫자 %d", target[0])
+			.isNotEqualTo(target[1])
+			.isNotEqualTo(target[2]);
+		assertThat(target[1])
+			.as("1번째 자리 숫자 %d", target[1])
+			.isNotEqualTo(target[0])
+			.isNotEqualTo(target[2]);
+		assertThat(target[2])
+			.as("2번째 자리 숫자 %d", target[2])
+			.isNotEqualTo(target[0])
+			.isNotEqualTo(target[1]);
+	}
 }
