@@ -35,7 +35,7 @@ class RefereeTest {
     void compareInputsWithValues(int strikeCount, List<Integer> computerValues) {
         char[] userInputs = {'1', '2', '3'};
         Bettings bettings = new Bettings(userInputs, computerValues);
-        Strike strike = REFEREE.compareInputsWithValues(bettings);
+        Strike strike = REFEREE.manageScore(bettings);
         assertTrue(strike.getCount() == strikeCount);
     }
 }

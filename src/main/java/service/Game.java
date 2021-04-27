@@ -23,7 +23,7 @@ public class Game {
         Strike strike;
         do{
             setUserInputs();
-            strike = referee.compareInputsWithValues(bettings);
+            strike = referee.manageScore(bettings);
         } while(!strike.isWin());
     }
 

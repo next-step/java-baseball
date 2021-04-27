@@ -23,7 +23,7 @@ public class Referee {
         this.nothing = new Nothing();
     }
 
-    public Strike compareInputsWithValues(Bettings bettings) {
+    public Strike manageScore(Bettings bettings) {
         createScore();
 
         char[] userInputs = bettings.getUserInputs();
