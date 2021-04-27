@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class BaseballService {
 
-	private final int NUM_SIZE = 3;
+	private static final int NUM_SIZE = 3;
 
 	public List<Integer> generateRandomAnswer() {
 		Set<Integer> randomSet = new HashSet<>(3);
@@ -21,9 +21,17 @@ public class BaseballService {
 		return new ArrayList<>(randomSet);
 	}
 
-	public int getStrikeCount(int input, List<Integer> answer) {
+	public int getStrikeCount(int[] input, List<Integer> answer) {
 
-		return 0;
+		int strikeCount = 0;
+
+		for (int i = 0; i < NUM_SIZE; i++) {
+			if (input[i] == answer.get(i)) {
+				strikeCount++;
+			}
+		}
+
+		return strikeCount;
 	}
 
 	public boolean isAnswer(int strikeCount) {

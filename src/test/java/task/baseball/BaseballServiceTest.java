@@ -31,10 +31,10 @@ class BaseballServiceTest {
 	void getStrikeCount() {
 		List<Integer> answer = Arrays.asList(1, 2, 3);
 
-		assertThat(baseballService.getStrikeCount(123, answer)).isEqualTo(3);
-		assertThat(baseballService.getStrikeCount(125, answer)).isEqualTo(2);
-		assertThat(baseballService.getStrikeCount(156, answer)).isEqualTo(1);
-		assertThat(baseballService.getStrikeCount(567, answer)).isEqualTo(0);
+		assertThat(baseballService.getStrikeCount(new int[] {1, 2, 3}, answer)).isEqualTo(3);
+		assertThat(baseballService.getStrikeCount(new int[] {1, 2, 5}, answer)).isEqualTo(2);
+		assertThat(baseballService.getStrikeCount(new int[] {1, 5, 6}, answer)).isEqualTo(1);
+		assertThat(baseballService.getStrikeCount(new int[] {5, 6, 7}, answer)).isEqualTo(0);
 	}
 
 	@Test
