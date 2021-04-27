@@ -33,10 +33,14 @@ public class BaseBallMachine extends BaseBallPlayer implements BaseBallAi {
      * @return
      */
     @Override
-    public BaseBallJudgementStatus speakJudgement(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
-        return super.speakJudgement(selectedNumbers, inputNumbers);
+    public BaseBallJudgementStatus judgeStrike(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
+        return super.judgeStrike(selectedNumbers, inputNumbers);
     }
 
+    /**
+     * 임의의 수 3개 생성
+     * @return
+     */
     @Override
     public BaseBallNumbers GenerateRandomNumbers() {
         Random random = new Random();

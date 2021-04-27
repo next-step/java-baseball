@@ -16,7 +16,7 @@ public class BaseBallPerson extends BaseBallPlayer {
     }
 
     @Override
-    public BaseBallJudgementStatus speakJudgement(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
-        return super.speakJudgement(selectedNumbers, inputNumbers);
+    public BaseBallJudgementStatus judgeStrike(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
+        return super.judgeStrike(selectedNumbers, inputNumbers);
     }
 }

@@ -36,13 +36,12 @@ public abstract class BaseBallPlayer {
 
     /**
      * 스트라이크 / 볼 / 포볼 판정
-     * @param selectedNumbers
+     * @param answerNumbers
      * @param inputNumbers
      * @return
      */
-    public BaseBallJudgementStatus speakJudgement(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
-        BaseBallGameManager baseBallGameManager = new BaseBallGameManager();
-        BaseBallJudgementStatus baseBallJudgementStatus = baseBallGameManager.judgeStrikeOrBallOrNothing(selectedNumbers, inputNumbers);
-        return baseBallJudgementStatus;
+    public BaseBallJudgementStatus judgeStrike(BaseBallNumbers answerNumbers, BaseBallNumbers inputNumbers) {
+        BaseBallGameManager manager = new BaseBallGameManager();
+        return manager.judgeStrikeOrBallOrNothing(answerNumbers, inputNumbers);
     }
 }

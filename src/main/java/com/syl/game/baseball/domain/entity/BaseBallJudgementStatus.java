@@ -15,24 +15,12 @@ public class BaseBallJudgementStatus {
         return strike;
     }
 
-    public void setStrike(int strike) {
-        this.strike = strike;
-    }
-
     public int getBall() {
         return ball;
     }
 
-    public void setBall(int ball) {
-        this.ball = ball;
-    }
-
     public int getNothing() {
         return nothing;
-    }
-
-    public void setNothing(int nothing) {
-        this.nothing = nothing;
     }
 
     @Override

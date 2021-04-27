@@ -33,7 +33,7 @@ public class BaseBallGame {
             BaseBallNumbers inputNumbers = person.inputThreeNumbers();
             System.out.println(inputNumbers.toString());
 
-            BaseBallJudgementStatus judgement = machine.speakJudgement(machineAnswers ,inputNumbers);
+            BaseBallJudgementStatus judgement = machine.judgeStrike(machineAnswers ,inputNumbers);
             System.out.println("스트라이크   " + judgement.getStrike());
             System.out.println("볼   " + judgement.getBall());
             System.out.println("낫싱  " + judgement.getNothing());

@@ -11,10 +11,10 @@ public class BaseBallGameManager {
      * @param inputNumbers
      * @return 판정 상태값
      */
-    public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(BaseBallNumbers selectedNumbers, BaseBallNumbers inputNumbers) {
-        int strike = selectedNumbers.countStrike(inputNumbers);
-        int ball = selectedNumbers.countBall(inputNumbers);
-        int nothing = selectedNumbers.countNothing(inputNumbers);
+    public BaseBallJudgementStatus judgeStrikeOrBallOrNothing(BaseBallNumbers answerNumbers, BaseBallNumbers inputNumbers) {
+        int strike = answerNumbers.countStrike(inputNumbers);
+        int ball = answerNumbers.countBall(inputNumbers);
+        int nothing = answerNumbers.countNothing(inputNumbers);
         return new BaseBallJudgementStatus(strike, ball, nothing);
     }
 
