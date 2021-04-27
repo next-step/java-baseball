@@ -13,27 +13,6 @@ class BaseballGameTest {
 	private BaseballGame baseballGame = new BaseballGame();
 
 	@Test
-	@DisplayName("초기화된 문제의 숫자가 3개")
-	public void initialize_rightAnswer_Test() throws
-		NoSuchMethodException,
-		InvocationTargetException,
-		IllegalAccessException,
-		NoSuchFieldException {
-
-		//given
-		final int ANSWER_LENGTH = 3;
-		baseballGame.play();
-		Field field = baseballGame.getClass().getDeclaredField("rightAnswer");
-		field.setAccessible(true);
-
-		//when
-		List<Integer> rightAnswer = (List<Integer>)field.get(baseballGame);
-
-		//then
-		assertThat(rightAnswer).hasSize(ANSWER_LENGTH);
-	}
-
-	@Test
 	@DisplayName("랜덤으로 생성된 숫자가 0~9 사이")
 	public void getRandomNumber_return_from_zero_to_nine_Test() throws
 		NoSuchMethodException,
@@ -111,7 +90,7 @@ class BaseballGameTest {
 
 	@Test
 	@DisplayName("stringToIntegers 메소드에 '123' 입력시 arrayList 반환")
-	public void stringToIntegers_input123_returnArrayList_Test()throws
+	public void stringToIntegers_input123_returnArrayList_Test() throws
 		NoSuchMethodException,
 		InvocationTargetException,
 		IllegalAccessException {
@@ -128,4 +107,110 @@ class BaseballGameTest {
 		//then
 		assertThat(integers).isEqualTo(EXPECTED_LIST);
 	}
+
+	@Test
+	@DisplayName("isCorrectAnswer에 요소가 같은 List 입력했을 때 true 반환")
+	public void isCorrectAnswer_inputSameList_returnTrue_Test() throws
+		NoSuchMethodException,
+		InvocationTargetException,
+		IllegalAccessException {
+
+		final List<Integer> LIST_A = Arrays.asList(1, 2, 3);
+		final List<Integer> LIST_B = Arrays.asList(1, 2, 3);
+
+		//given
+		Method method = baseballGame.getClass().getDeclaredMethod("isCorrectAnswer", List.class, List.class);
+		method.setAccessible(true);
+
+		//when
+		boolean flag = (boolean)method.invoke(baseballGame, LIST_A, LIST_B);
+
+		//then
+		assertThat(flag).isTrue();
+	}
+
+	@Test
+	@DisplayName("isCorrectAnswer 메소드에 요소가 다른 List 입력했을 때 false 반환")
+	public void isCorrectAnswer_inputDifferentList_returnFalse_Test() throws
+		NoSuchMethodException,
+		InvocationTargetException,
+		IllegalAccessException {
+
+		final List<Integer> LIST_A = Arrays.asList(1, 2, 3);
+		final List<Integer> LIST_B = Arrays.asList(2, 3, 4);
+
+		//given
+		Method method = baseballGame.getClass().getDeclaredMethod("isCorrectAnswer", List.class, List.class);
+		method.setAccessible(true);
+
+		//when
+		boolean flag = (boolean)method.invoke(baseballGame, LIST_A, LIST_B);
+
+		//then
+		assertThat(flag).isFalse();
+	}
+
+	@Test
+	@DisplayName("containValueAndNotSameIndex 메소드에서 리스트에 포함된 요소지만 같은 인덱스를 가지면 0 반환")
+	public void containValueAndNotSameIndex_inputConatinValueButSameIndex_return0_Test() throws
+		NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+		final List<Integer> LIST = Arrays.asList(1, 2, 3);
+		final Integer VALUE = 1;
+		final Integer IDX = 0;
+
+		//given
+		Method method = baseballGame.getClass().
+			getDeclaredMethod("containValueAndNotSameIndex", List.class, Integer.class, int.class);
+		method.setAccessible(true);
+
+		//when
+		int num = (int)method.invoke(baseballGame, LIST, VALUE, IDX);
+
+		//then
+		assertThat(num).isSameAs(0);
+	}
+
+	@Test
+	@DisplayName("containValueAndNotSameIndex 메소드에서 리스트에 포함된 요소가 아니면 0 반환")
+	public void containValueAndNotSameIndex_inputNotContainValue_return0_Test() throws
+		NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+		final List<Integer> LIST = Arrays.asList(1, 2, 3);
+		final Integer VALUE = 4;
+		final Integer IDX = 0;
+
+		//given
+		Method method = baseballGame.getClass().
+			getDeclaredMethod("containValueAndNotSameIndex", List.class, Integer.class, int.class);
+		method.setAccessible(true);
+
+		//when
+		int num = (int)method.invoke(baseballGame, LIST, VALUE, IDX);
+
+		//then
+		assertThat(num).isSameAs(0);
+	}
+
+	@Test
+	@DisplayName("containValueAndNotSameIndex 메소드에서 리스트에 포함된 요소이고 다른 인덱스를 가지면 1 반환")
+	public void containValueAndNotSameIndex_inputConatinValueAndOtherIndex_return1_Test() throws
+		NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+		final List<Integer> LIST = Arrays.asList(1, 2, 3);
+		final Integer VALUE = 1;
+		final Integer IDX = 2;
+
+		//given
+		Method method = baseballGame.getClass().
+			getDeclaredMethod("containValueAndNotSameIndex", List.class, Integer.class, int.class);
+		method.setAccessible(true);
+
+		//when
+		int num = (int)method.invoke(baseballGame, LIST, VALUE, IDX);
+
+		//then
+		assertThat(num).isSameAs(1);
+	}
+
 }

@@ -20,6 +20,16 @@ public class BaseballGame implements Game {
 	@Override
 	public void play() {
 		initQuestion();
+		System.out.println(rightAnswer);
+
+		List<Integer> answer;
+		while (!isCorrectAnswer(rightAnswer, answer = receiveAnswer())) {
+			howManyStrikes(rightAnswer, answer);
+			howManyBalls(rightAnswer, answer);
+			isNothing(rightAnswer, answer);
+			System.out.println();
+		}
+		System.out.print("3개의 숫자를 모두 맞히셨습니다! ");
 	}
 
 	private void initQuestion() {
@@ -75,5 +85,65 @@ public class BaseballGame implements Game {
 		}
 
 		return integers;
+	}
+
+	//---------------------------------------------------------
+
+	private boolean isCorrectAnswer(List<Integer> rightAnswer, List<Integer> answer) {
+		return rightAnswer.equals(answer);
+	}
+
+	private void howManyStrikes(List<Integer> rightAnswer, List<Integer> answer) {
+		int cnt = 0;
+
+		for (int i = 0; i < ANSWER_LENGTH; i++) {
+			cnt += ifSameValueReturnOne(rightAnswer.get(i), answer.get(i));
+		}
+
+		if (cnt != 0) {
+			System.out.print(cnt + " 스트라이크 ");
+		}
+	}
+
+	private int ifSameValueReturnOne(Integer a, Integer b) {
+		if (a == b) {
+			return 1;
+		}
+
+		return 0;
+	}
+
+	private void howManyBalls(List<Integer> rightAnswer, List<Integer> answer) {
+		int cnt = 0;
+
+		for (int i = 0; i < ANSWER_LENGTH; i++) {
+			cnt += containValueAndNotSameIndex(rightAnswer, answer.get(i), i);
+		}
+
+		if (cnt != 0) {
+			System.out.print(cnt + " 볼 ");
+		}
+	}
+
+	private int containValueAndNotSameIndex(List<Integer> list, Integer value, int idx) {
+		int findIdx = list.indexOf(value);
+
+		if (findIdx == -1 || findIdx == idx) {
+			return 0;
+		}
+
+		return 1;
+	}
+
+	private void isNothing(List<Integer> rightAnswer, List<Integer> answer) {
+		boolean flag = false;
+
+		for (Integer value : answer) {
+			flag |= rightAnswer.contains(value);
+		}
+
+		if (!flag) {
+			System.out.print("낫싱 ");
+		}
 	}
 }
