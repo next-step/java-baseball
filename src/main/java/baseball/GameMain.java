@@ -1,6 +1,9 @@
 package baseball;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import util.RandomUtil;
 import util.ScannerUtil;
@@ -11,6 +14,7 @@ public class GameMain {
         int[] user = ScannerUtil.getUserInputAsArray();
         boolean isAnswer = isAnswer(com, user);
         int strikeCount = getStrikeCount(com, user);
+        int ballCount = getBallCount(com, user);
     }
 
     static boolean isAnswer(int[] com, int[] user) {
@@ -27,5 +31,22 @@ public class GameMain {
 
     private static boolean isStrike(int com, int user) {
         return com == user;
+    }
+
+    static int getBallCount(int[] com, int[] user) {
+        int ballCount = 0;
+        for (int i=0; i<3; i++) {
+            ballCount = isBall(com, user[i], i) ? ++ballCount : ballCount;
+        }
+        return ballCount;
+    }
+
+    private static boolean isBall(int[] com, int num, int originIndex) {
+        for (int i=0; i<3; i++) {
+            if (com[i] == num && i != originIndex) {
+                return true;
+            }
+        }
+        return false;
     }
 }

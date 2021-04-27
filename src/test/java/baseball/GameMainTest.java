@@ -29,4 +29,17 @@ public class GameMainTest {
 		assertThat(getStrikeCount(com, user3)).isEqualTo(3);
 	}
 
+	@Test
+	public void isCorrectBallCount() {
+		int[] com = {7, 1, 3};
+		int[] user1 = {1, 4, 5};
+		assertThat(getBallCount(com, user1)).isEqualTo(1);
+
+		int[] user2 = {2, 4, 6};
+		assertThat(getBallCount(com, user2)).isEqualTo(0);
+
+		int[] user3 = {3, 7, 1};
+		assertThat(getBallCount(com, user3)).isEqualTo(3);
+	}
+
 }
