@@ -70,6 +70,22 @@ public class BaseBallGame {
         }
     }
 
+    // TODO : 게임 결과에 따른 메시지 생성
+    public String makeResultMessage(CheckResultModel model){
+        StringBuilder stringBuilder = new StringBuilder();
+        if(model.strike > 0){
+            stringBuilder.append(model.strike + " 스트라이크");
+        }
+        if(model.ball > 0){
+            stringBuilder.append(" " + model.ball + " 볼");
+        }
+        if(model.strike == 0 && model.ball == 0){
+            stringBuilder.append("포볼");
+        }
+        return stringBuilder.toString();
+    }
+
+
 
 
 }
