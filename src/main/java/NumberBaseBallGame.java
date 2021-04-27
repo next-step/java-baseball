@@ -28,7 +28,6 @@ public class NumberBaseBallGame {
 
 		if (duplicateRemovedGameNumbers.size() < 3)
 			return false;
-
 		return true;
 	}
 
@@ -39,5 +38,31 @@ public class NumberBaseBallGame {
 			playerInputNumbers[i] = Integer.parseInt(numbers.substring(i, i + 1));
 		}
 		return playerInputNumbers;
+	}
+
+	public static int checkStrikes(int[] playerInputNumbers, int[] gameNumbers) {
+		int strikes = 0;
+		for (int i = 0; i < playerInputNumbers.length; i++) {
+			if (playerInputNumbers[i] == gameNumbers[i]) {
+				strikes++;
+			}
+		}
+		return strikes;
+	}
+
+	public static int checkBalls(int[] playerInputNumbers, int[] gameNumbers) {
+		int ball = 0;
+		for (int i = 0; i < playerInputNumbers.length; i++) {
+			for (int j = 0; j < gameNumbers.length; j++) {
+				if (playerInputNumbers[i] == gameNumbers[j] && i != j) {
+					ball++;
+				}
+			}
+		}
+		return ball;
+	}
+
+	public static void main(String[] args) {
+
 	}
 }

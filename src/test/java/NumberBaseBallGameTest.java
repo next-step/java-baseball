@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +37,23 @@ class NumberBaseBallGameTest {
 	@DisplayName("플레이어가 입력한 숫자를 숫자 배열로 생성한다")
 	public void playerInputNumbersToArrayTest() {
 		int input = 543;
-		int[] intArray = {5,4,3};
+		int[] intArray = {5, 4, 3};
 		assertArrayEquals(intArray, NumberBaseBallGame.playerInputNumbersToArray(input));
+	}
+
+	@Test
+	@DisplayName("컴퓨터가 생성한 배열과 게임 플레이어가 입력한 배열을 비교하여 스트라이크 리턴")
+	public void checkStrikesTest() {
+		int[] playerInputNumbers = {1,2,3};
+		int[] gameNumbers = {1,4,3};
+		assertEquals(2, NumberBaseBallGame.checkStrikes(playerInputNumbers, gameNumbers));
+	}
+
+	@Test
+	@DisplayName("컴퓨터가 생성한 배열과 게임 플레이어가 입력한 배열을 비교하여 볼을 리턴")
+	public void checkBalls() {
+		int[] playerInputNumbers = {1,2,3};
+		int[] gameNumbers = {1,4,3};
+		assertEquals(0, NumberBaseBallGame.checkBalls(playerInputNumbers, gameNumbers));
 	}
 }
