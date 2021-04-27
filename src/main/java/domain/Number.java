@@ -1,13 +1,11 @@
 package domain;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Number {
     private static final int NUMBER_RANGE_MIN = 1;
     private static final int NUMBER_RANGE_MAX = 9;
-    private static final int NUMBER_COUNT = 3;
+    private static final int NUMBER_RANGE_COUNT = 3;
     private static Map<Integer, Number> numbers = new HashMap<>();
     private final int number;
 
@@ -30,6 +28,16 @@ public class Number {
         return num;
     }
 
+    public static List<Number> randomList() {
+        List<Integer> keys= new ArrayList<>(numbers.keySet());
+        Collections.shuffle(keys);
+        List<Number> auto = new ArrayList<>();
+        for(Integer key : keys){
+            auto.add(numbers.get(key));
+        }
+        return auto.subList(0 , NUMBER_RANGE_COUNT);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,5 +49,10 @@ public class Number {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 }
