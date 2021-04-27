@@ -1,9 +1,6 @@
 package baseball;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import util.RandomUtil;
 import util.ScannerUtil;
@@ -48,5 +45,18 @@ public class GameMain {
             }
         }
         return false;
+    }
+
+    static void printStrikeAndBallCount(int strikeCount, int ballCount) {
+        StringBuilder sb = new StringBuilder();
+        if (strikeCount > 0) {
+            sb.append(strikeCount).append(" 스트라이크 ");
+        }
+
+        if (ballCount > 0) {
+            sb.append(ballCount).append("볼");
+        }
+
+        System.out.print(sb.toString());
     }
 }
