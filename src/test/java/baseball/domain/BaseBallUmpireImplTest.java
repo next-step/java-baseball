@@ -11,6 +11,24 @@ import baseball.domain.internal.BaseballUmpireImpl;
 
 class BaseBallUmpireImplTest {
 
+	@DisplayName("게임이 끝났는지 여부 확인")
+	@Test
+	void checkIsFinished() {
+		Umpire umpire = new BaseballUmpireImpl();
+		Map<BallNumber, Integer> mockDataMap = new HashMap<>();
+		mockDataMap.put(new BallNumber(1), 0);
+		mockDataMap.put(new BallNumber(2), 1);
+		mockDataMap.put(new BallNumber(3), 2);
+
+		Player p1 = new mockPlayer(mockDataMap);
+		Player p2 = new mockPlayer(mockDataMap);
+
+		umpire.judge(p1, p2);
+
+		Assertions.assertTrue(umpire.isFinished());
+
+	}
+
 	@DisplayName("스트라이크 3개 검사")
 	@Test
 	void checkStrike() {
@@ -35,6 +53,7 @@ class BaseBallUmpireImplTest {
 		Assertions.assertEquals(result, expectedResult);
 
 	}
+
 
 	@DisplayName("ball 3개 검사")
 	@Test
