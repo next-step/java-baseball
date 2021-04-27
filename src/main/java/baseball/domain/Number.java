@@ -3,9 +3,9 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Number {
+  public static final int MIN = 1;
+  public static final int MAX = 9;
   private static final String ERROR_NUMBER_ALLOWABLE_RANGE_OVER_FORMAT = "%d 는 허용된 숫자 범위(%d ~ %d)가 아닙니다.";
-  private static final int MIN = 1;
-  private static final int MAX = 9;
 
   private final int value;
 
@@ -19,9 +19,13 @@ public class Number {
   }
 
   private static void checkAllowableRange(int value) {
-    if (!( MIN <= value && value <= MAX )) {
+    if (!isAvailableRange(value)) {
       throw new IllegalArgumentException(String.format(ERROR_NUMBER_ALLOWABLE_RANGE_OVER_FORMAT, value, MIN, MAX));
     }
+  }
+
+  private static boolean isAvailableRange(int value) {
+    return MIN <= value && value <= MAX;
   }
 
   @Override
