@@ -20,8 +20,6 @@ public class Position {
         this.position = position;
     }
 
-
-
     public Pitching compare(Position destBallPosition) {
         if (this.equals(destBallPosition)) {
             return Pitching.STRIKE;
