@@ -1,10 +1,9 @@
 package com.hoomin.game.baseball;
 
-import java.util.function.Function;
-
 import com.hoomin.game.baseball.domain.Computer;
 import com.hoomin.game.baseball.domain.Hints;
 import com.hoomin.game.baseball.domain.Quiz;
+import com.hoomin.game.baseball.enums.GameOption;
 import com.hoomin.game.baseball.view.InputView;
 import com.hoomin.game.baseball.view.OutputView;
 
@@ -15,14 +14,19 @@ import com.hoomin.game.baseball.view.OutputView;
 public class BaseBallGame {
 
 	public void start() {
+		Computer computer = new Computer();
 		do {
-			Computer computer = new Computer();
 			Quiz quiz = new Quiz(computer.makeRightNumbers());
 			solveQuiz(quiz);
-		} while (InputView.getGameOption().isOnGoing());
+		} while (isOnGoing());
 	}
 
-	private void solveQuiz(Quiz quiz) {
+	private boolean isOnGoing() {
+		final GameOption gameOption = InputView.getGameOption();
+		return gameOption.isOnGoing();
+	}
+
+	public void solveQuiz(Quiz quiz) {
 		do {
 			final Hints hints = quiz.checkNumbers(InputView.getNumbers());
 			OutputView.printHints(hints);
