@@ -33,3 +33,6 @@
 5. 게임 계속 or 종료 기능 구현
 
 ## 기록
+
+1. Gradle 실행 오류  
+    https://devkingdom.tistory.com/146 참고로 intellij 설정 변경 후 해결
