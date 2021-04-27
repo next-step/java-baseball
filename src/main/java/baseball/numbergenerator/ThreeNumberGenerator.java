@@ -10,7 +10,7 @@ public class ThreeNumberGenerator implements NumberGenerator {
 
     @Override
     public Target create() {
-        char[] numbers = new char[]{'1', '2', '3', '4', '5', '6', '7','8', '9'};
+        char[] numbers = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
         shuffling(numbers);
         return getThreeNumbersFrom(numbers);
     }

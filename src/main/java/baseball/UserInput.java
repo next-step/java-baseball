@@ -18,11 +18,11 @@ public class UserInput {
     }
 
     private void setValue(List<Character> value) {
-        if (ListUtil.hasUniqueNumber(value) == false){
+        if (ListUtil.hasUniqueNumber(value) == false) {
             throw new IllegalArgumentException("중복 숫자를 입력할 수 없습니다.");
         }
 
-        if (value.size() != BaseballGameModel.NUMBER_SIZE || ListUtil.hasOnlyNumber(value) == false){
+        if (value.size() != BaseballGameModel.NUMBER_SIZE || ListUtil.hasOnlyNumber(value) == false) {
             throw new IllegalArgumentException("3자리 숫자만 허용합니다.");
         }
         this.value = value;

@@ -53,6 +53,4 @@ public class BaseballGameConsoleView implements BaseballGameView {
     private boolean hasNonCount(int strike, int ball) {
         return strike == 0 && ball == 0;
     }
-
-
 }

@@ -9,14 +9,9 @@ public class RandomUtils {
     }
 
     public static int nextInt(final int startInclusive, final int endInclusive) {
-        if (startInclusive > endInclusive) {
+        if (startInclusive > endInclusive || startInclusive < 0) {
             throw new IllegalArgumentException();
         }
-
-        if (startInclusive < 0) {
-            throw new IllegalArgumentException();
-        }
-
         if (startInclusive == endInclusive) {
             return startInclusive;
         }
