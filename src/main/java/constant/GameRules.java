@@ -1,22 +1,49 @@
 package constant;
 
-import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
 
 import util.GameUtil;
 
 public enum GameRules {
-	Strike("스트라이크", GameRules::getStrikeCnt),
-	Ball("볼", GameRules::getBallCnt);
+	Success(GameRules::getSuccessMsg, (strikeCnt, ballCnt) -> strikeCnt == GameUtil.LIMIT_DIGIT),
+	Strike(GameRules::getStrikeMsg, (strikeCnt, ballCnt) -> strikeCnt > 0),
+	Ball(GameRules::getBallMsg, (strikeCnt, ballCnt) -> ballCnt > 0),
+	Nothing(GameRules::getNothingMsg, (strikeCnt, ballCnt) -> strikeCnt < 1 && ballCnt < 1);
 
-	GameRules(String msg, BiFunction<String, String, Integer> apply) {
+	GameRules(Function<Integer, String> msg, BiPredicate<Integer, Integer> check) {
 		this.msg = msg;
-		this.apply = apply;
+		this.check = check;
 	}
 
-	private final String msg;
-	private final BiFunction<String, String, Integer> apply;
+	private final Function<Integer, String> msg;
+	private final BiPredicate<Integer, Integer> check;
 
-	private static int getStrikeCnt(String answer, String userInput) {
+	public Function<Integer, String> getMsg() {
+		return this.msg;
+	}
+
+	public BiPredicate<Integer, Integer> getCheck() {
+		return this.check;
+	}
+
+	private static String getSuccessMsg(Integer strikeCnt) {
+		return String.format("%s\n%d개의 숫자를 모두 맞히셨습니다! 게임 종료", getStrikeMsg(strikeCnt).trim(), strikeCnt);
+	}
+
+	private static String getStrikeMsg(Integer strikeCnt) {
+		return String.format("%d 스트라이크 ", strikeCnt);
+	}
+
+	private static String getBallMsg(Integer ballCnt) {
+		return String.format("%d 볼 ", ballCnt);
+	}
+
+	private static String getNothingMsg(Integer strikeCnt) {
+		return "낫싱";
+	}
+
+	public static int getStrikeCnt(String answer, String userInput) {
 		int cnt = 0;
 		for (int i = 0; i < GameUtil.LIMIT_DIGIT; i++) {
 			cnt += isStrike(answer, userInput, i);
@@ -24,19 +51,11 @@ public enum GameRules {
 		return cnt;
 	}
 
-	public String getMsg() {
-		return this.msg;
-	}
-
-	public BiFunction<String, String, Integer> getApply() {
-		return this.apply;
-	}
-
 	private static int isStrike(String answer, String userInput, int idx) {
 		return answer.charAt(idx) == userInput.charAt(idx) ? 1 : 0;
 	}
 
-	private static int getBallCnt(String answer, String userInput) {
+	public static int getBallCnt(String answer, String userInput) {
 		int cnt = 0;
 		for (int i = 0; i < GameUtil.LIMIT_DIGIT; i++) {
 			cnt += containSameChar(answer, userInput, i);

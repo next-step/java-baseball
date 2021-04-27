@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import constant.NumberValidation;
-import util.GameManager;
+import util.GameUtil;
 
 @DisplayName("야구 게임에 이용되는 수에 대한 검증 테스트")
 public class ValidationTest {
@@ -82,9 +82,8 @@ public class ValidationTest {
 	@Test
 	public void madeNumberDifferentTest() {
 		Predicate<String> validate = NumberValidation.IsDiffertNumber.getValidate();
-		GameManager gameManager = new GameManager();
 		for (int i = 0; i < 100; i++) {
-			Assertions.assertTrue(validate.test(gameManager.getAnswer()));
+			Assertions.assertTrue(validate.test(GameUtil.getRandomNumber()));
 		}
 	}
 }

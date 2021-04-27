@@ -1,5 +1,3 @@
-import java.util.function.BiFunction;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,28 +15,26 @@ public class GameResultTest {
 	@DisplayName("스트라이크 갯수 체크 테스트")
 	@Test
 	public void isRightStrikeCntTest() {
-		BiFunction<String, String, Integer> strike = GameRules.Strike.getApply();
 		answer = "123";
 		userNumber = "146";
-		Assertions.assertEquals(1, strike.apply(answer, userNumber));
+		Assertions.assertEquals(1, GameRules.getStrikeCnt(answer, userNumber));
 		answer = "234";
 		userNumber = "345";
-		Assertions.assertEquals(0, strike.apply(answer, userNumber));
+		Assertions.assertEquals(0, GameRules.getStrikeCnt(answer, userNumber));
 	}
 
 	@DisplayName("볼 갯수 체크 테스트")
 	@Test
 	public void isRightBallCntTest() {
-		BiFunction<String, String, Integer> ball = GameRules.Ball.getApply();
 		answer = "123";
 		userNumber = "256";
-		Assertions.assertEquals(1, ball.apply(answer, userNumber));
+		Assertions.assertEquals(1, GameRules.getBallCnt(answer, userNumber));
 		answer = "125";
 		userNumber = "256";
-		Assertions.assertEquals(2, ball.apply(answer, userNumber));
+		Assertions.assertEquals(2, GameRules.getBallCnt(answer, userNumber));
 		answer = "123";
 		userNumber = "312";
-		Assertions.assertEquals(3, ball.apply(answer, userNumber));
+		Assertions.assertEquals(3, GameRules.getBallCnt(answer, userNumber));
 	}
 
 	@DisplayName("정답 출력 테스트")
