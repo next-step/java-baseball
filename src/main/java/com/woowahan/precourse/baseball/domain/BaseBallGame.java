@@ -5,6 +5,9 @@ import com.woowahan.precourse.baseball.record.BaseBallRecord;
 import com.woowahan.precourse.baseball.rule.BaseBallRule;
 import com.woowahan.precourse.baseball.view.GameMessage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BaseBallGame {
 
     private final String[] gameNumbers;  // 컴퓨터가 선택한 세자리 수 - Game 생성 시 같이 생성되어야 함.
@@ -81,14 +84,51 @@ public class BaseBallGame {
     }
 
     private void countBall(int position) {
-        if (BaseBallRule.isBall(this.gameNumbers, this.inputNumbers[position], position)) {
+        if (isBall(position)) {
             baseBallRecord.doBall();
         }
     }
 
     private void countStrike(int position) {
-        if (BaseBallRule.isStrike(this.gameNumbers[position], this.inputNumbers[position])) {
+        if (isStrike(this.gameNumbers[position], this.inputNumbers[position])) {
             baseBallRecord.doStrike();
+        }
+    }
+
+
+    private boolean isStrike(String gameNumber, String inputNumber) {
+        return gameNumber.equals(inputNumber);
+    }
+
+    private boolean isBall(int targetPosition) {
+
+        Map<String, Integer> noneStrikePositions = new HashMap<>();
+
+        for(int i = 0; i < 3; i++) {
+            putNoneStrikePosition(noneStrikePositions, i);
+        }
+
+        noneStrikePositions.remove(String.valueOf(targetPosition));
+
+        boolean ball = false;
+
+        for (String noneStrikePosition : noneStrikePositions.keySet()) {
+            ball = isBall(targetPosition, ball, noneStrikePosition);
+        }
+
+        return ball;
+    }
+
+    private boolean isBall(int targetPosition, boolean ball, String noneStrikePosition) {
+        if (gameNumbers[Integer.parseInt(noneStrikePosition)].equals(inputNumbers[targetPosition])) {
+            ball = true;
+        }
+        return ball;
+    }
+
+    private void putNoneStrikePosition(Map<String, Integer> noneStrikePosition, int i) {
+        if (!isStrike(gameNumbers[i], inputNumbers[i])) {
+            noneStrikePosition.put(String.valueOf(i), i);
         }
     }
 }
