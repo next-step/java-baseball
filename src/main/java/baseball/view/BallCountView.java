@@ -1,6 +1,5 @@
 package baseball.view;
 
-import baseball.config.AppConfig;
 import baseball.domain.BallCount;
 
 import java.util.ArrayList;
@@ -9,12 +8,9 @@ import java.util.Scanner;
 
 public class BallCountView {
 
-	private final int RANDOM_NUMBER_LENGTH;
-	private final String LINE_SEPARATOR = System.lineSeparator();
 	private final Scanner scanner;
 
-	public BallCountView(AppConfig appConfig, Scanner scanner) {
-		this.RANDOM_NUMBER_LENGTH = appConfig.getRandomNumberLength();
+	public BallCountView(Scanner scanner) {
 		this.scanner = scanner;
 	}
 

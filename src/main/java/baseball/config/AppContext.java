@@ -22,7 +22,7 @@ public class AppContext {
 		appConfig = new AppConfig();
 		ballCountService = new BallCountService(appConfig);
 		restartService = new RestartService(appConfig);
-		ballCountView = new BallCountView(appConfig, scanner);
+		ballCountView = new BallCountView(scanner);
 		restartView = new RestartView(appConfig, scanner);
 		gameController = new GameController(ballCountService, restartService, ballCountView, restartView);
 	}
