@@ -8,7 +8,6 @@ public class Main {
 
         while (true) {
             List<Integer> goalValues = generateGoalValue();
-            System.out.println(goalValues);
 
             while (true) {
                 System.out.print("숫자를 입력해주세요 :");
@@ -29,7 +28,7 @@ public class Main {
                 }
                 printResult(ballCount, strikeCount);
             }
-            System.out.print("게임을 새로 시작하려면1, 종료하려면 2를 입력하세요.");
+            System.out.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
             int flag = in.nextInt();
 
             if (flag == 2){
@@ -41,7 +40,7 @@ public class Main {
     private static List<Integer> generateGoalValue(){
         List<Integer> goalValueSet = new ArrayList<>();
         do {
-            int randomValue = random.nextInt(9);
+            int randomValue = random.nextInt(8) + 1;
             if (!goalValueSet.contains(randomValue)) {
                 goalValueSet.add(randomValue);
             }
