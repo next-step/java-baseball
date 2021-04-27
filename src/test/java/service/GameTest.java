@@ -41,8 +41,8 @@ class GameTest {
     void isGameOver(String input) {
         setSystemInputStream(input);
         assumingThat(input == "2", () ->
-                assertFalse(Game.isGameOver()));
-        assumingThat(input == "1", () ->
                 assertTrue(Game.isGameOver()));
+        assumingThat(input == "1", () ->
+                assertFalse(Game.isGameOver()));
     }
 }

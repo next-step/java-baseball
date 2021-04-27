@@ -7,15 +7,16 @@ import java.util.*;
 public class UI {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public String getAnswerByNotice(Notice output) {
+    public String getAnswerByNotice(Notice output, int size) {
         output.print();
         String string = scanner.nextLine();
-        if(!answerCondition(string, Bettings.bettingSize())){
-            getAnswerByNotice(output);
+        if(!answerCondition(string, size)){
+            getAnswerByNotice(output, size);
         }
         return string;
     }
 
+    //todo 영문 캐치 필요
     public boolean answerCondition(String s, int size){
 
         HashSet hashSet = new HashSet<Character>();
