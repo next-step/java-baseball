@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import util.InputNumberUtil;
+
 public class BaseballGame {
     
     private List<Integer> questions = new ArrayList<>(3);
@@ -28,12 +30,10 @@ public class BaseballGame {
         System.out.println("숫자를 입력하세요 : ");
         String numberString = scanner.nextLine();
 
-        answer = new ArrayList<>(3);
 
-        for(int i=0; i < numberString.length(); i++){
-            answer.add(Integer.parseInt(numberString.substring(i, i+1)));
-        }
-        System.out.println(answer);
+
+        answer = InputNumberUtil.toIntegerList(numberString);
+        playGameResult();
     }
 
     public void playGameResult() {
