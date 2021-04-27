@@ -18,6 +18,8 @@ public class BaseBallGame {
 	public void setInit() {
 		Map<Integer, Integer> randomNumber = new LinkedHashMap<Integer, Integer>(); 
 		setRandomNumber(randomNumber);
+		
+		startGame(randomNumber);
 	}
 	
 	/* 랜덤숫자 생성 */
@@ -41,6 +43,7 @@ public class BaseBallGame {
 		String inputString = receiveNumber();
 		
 		Map<String, Integer> scores = getScoreCount(randomScore, inputString);
+		printScoreMessage(scores.get("strike"), scores.get("ball"));
 	}
 	
 	/* 사용자데이터 입력 */
@@ -138,5 +141,28 @@ public class BaseBallGame {
 		}
 		
 		return score;
+	}
+	
+	/* 결과 출력 */
+	public void printScoreMessage(int strikeCnt, int ballCnt) {
+		if (strikeCnt == 0 && ballCnt == 0) {
+			System.out.println("낫싱");
+		}
+		
+		String answerMsg = (getAnswerMsg(strikeCnt, "S") + " " + getAnswerMsg(ballCnt, "B")).trim();
+		System.out.println(answerMsg);
+	}
+	
+	/* 점수별 메세지 반환 */
+	public String getAnswerMsg(int num, String dvsCd) {
+		String msg = "";
+		if (num == 0) return msg;
+		
+		if (dvsCd == "S") {
+			msg = num + " 스트라이크";
+			return msg;
+		}
+		
+		return msg = num + " 볼";
 	}
 }
