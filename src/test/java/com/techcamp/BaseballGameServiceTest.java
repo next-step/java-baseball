@@ -1,8 +1,6 @@
 package com.techcamp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -25,7 +23,7 @@ class BaseballGameServiceTest {
         service.reset();
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(value = 10, name = "{displayName} : {currentRepetition} / {totalRepetitions}")
     void 숫자야구_초기화_테스트() {
         logger.info("ANSWER:" + service.getAnswer());
     }
@@ -37,11 +35,24 @@ class BaseballGameServiceTest {
         service.input(in);
     }
 
-    @Test
-    void 숫자야구_숫자야구게임진행_테스트() {
-    }
+    @Nested
+    class PlayGame {
+        @BeforeEach
+        void before() {
+            service.reset();
+            service.setAnswer("486");
+        }
 
-    @Test
-    void 숫자야구_성공후재시작_테스트() {
+        @ParameterizedTest
+        @ValueSource(strings = {"123", "456", "789", "648", "486"})
+        void 숫자야구_숫자야구게임진행_테스트(String in) {
+            service.input(in);
+            service.check();
+        }
+
+        @Test
+        void 숫자야구_성공후재시작_테스트() {
+            //TODO
+        }
     }
 }

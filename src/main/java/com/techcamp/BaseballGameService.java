@@ -47,6 +47,18 @@ public class BaseballGameService {
 
     /**
      * <pre>
+     *     정답(answer) 설정
+     *     테스트를 위한 임시 메서드
+     * </pre>
+     * @param answer
+     * @author 김재범
+     **/
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    /**
+     * <pre>
      *     숫자야구 정답 3자리 숫자 생성
      *     0~9 숫자 3자리. 중복허용X
      * </pre>
@@ -120,7 +132,15 @@ public class BaseballGameService {
      * @author 김재범
      **/
     public void check() {
-        //TODO 입력한 3자리 숫자에 대해 숫자야구 게임 검증
+        int strike  = 0;
+        int ball    = 0;
+        if(answer.charAt(0) == input.charAt(0)) strike++;
+        if(answer.charAt(0) != input.charAt(0) && answer.contains(String.valueOf(input.charAt(0)))) ball++;
+        if(answer.charAt(1) == input.charAt(1)) strike++;
+        if(answer.charAt(1) != input.charAt(1) && answer.contains(String.valueOf(input.charAt(1)))) ball++;
+        if(answer.charAt(2) == input.charAt(2)) strike++;
+        if(answer.charAt(2) != input.charAt(2) && answer.contains(String.valueOf(input.charAt(2)))) ball++;
+        result(strike, ball);
     }
 
     /**
@@ -131,7 +151,15 @@ public class BaseballGameService {
      * @author 김재범
      **/
     public void result(int strike, int ball) {
-        //TODO 입력값 검증 결과에 따른 로그 출력
+        if(strike == 3) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            isContinue = false;
+            return;
+        }
+        System.out.println((strike == 0 && ball == 0) ? "낫싱":
+                strike > 0 ? strike + " 스트라이크 ":
+                        ball > 0 ? ball + " 볼":""
+        );
     }
 
     /**
