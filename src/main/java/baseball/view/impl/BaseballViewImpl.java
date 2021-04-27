@@ -20,21 +20,24 @@ public class BaseballViewImpl extends BaseballView {
         super(io, config);
     }
 
+    @Override
     public void printInputPrompt() {
         this.printMessage(MessageKey.inputPrompt.getKey());
     }
 
+    @Override
     public void printBaseballResult(BaseballResult baseballResult) {
-        // TODO: SingleTon & Builder (BaseballConfig)
         this.print(baseballResult.toString(this.config));
     }
 
+    @Override
     public void printGameResult(BaseballResult baseballResult) {
         MessageKey messageKey = baseballResult.isComplete() ? MessageKey.successGameResultFormat : MessageKey.failedGameResultFormat;
 
         this.printFormatMessage(messageKey.getKey(), baseballResult.getStrike());
     }
 
+    @Override
     public void printAskingReGame() {
         this.printMessage(MessageKey.askingReGamePrompt.getKey());
     }
@@ -44,6 +47,7 @@ public class BaseballViewImpl extends BaseballView {
         this.printFormatMessage(MessageKey.exceptionMessageFormat.getKey(), e);
     }
 
+    @Override
     public String readInputPrompt() {
         return this.read();
     }
