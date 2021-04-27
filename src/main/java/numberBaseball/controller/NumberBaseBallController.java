@@ -19,7 +19,7 @@ public class NumberBaseBallController {
         do {
             playOneGame();
             wantToReplay = askToReplay();
-        } while(wantToReplay);
+        } while (wantToReplay);
     }
 
     private boolean askToReplay() {

@@ -3,6 +3,7 @@ package numberBaseball.domain;
 import numberBaseball.dto.ResultResponse;
 import numberBaseball.exception.ContainsDuplicationException;
 import numberBaseball.exception.ContainsZeroException;
+import numberBaseball.exception.NotSourceNumberException;
 import numberBaseball.exception.NotThreeDigitException;
 
 import java.util.*;
@@ -10,12 +11,13 @@ import java.util.*;
 public class GameNumber {
     public static final int FROM_INDEX = 0;
     public static final int TO_INDEX = 3;
-    private static final Integer[] sourceNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    private static final String MESSAGE_CONTAINS_DUPLICATION = "숫자가 중복되어서는 안됩니다.";
-    private static final String MESSAGE_NOT_THREE_DIGIT = "세 자리 수만 입력할 수 있습니다.";
     public static final String MESSAGE_CONTAINS_ZERO = "숫자에 0을 포함해서는 안됩니다.";
     public static final int NUMBER_SIZE = 3;
     public static final int EXCLUDING_NUMBER = 0;
+    public static final String MESSAGE_NOT_SOURCE_NUMBER = "1-9 사이의 정수만 입력할 수 있습니다.";
+    private static final Integer[] sourceNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private static final String MESSAGE_CONTAINS_DUPLICATION = "숫자가 중복되어서는 안됩니다.";
+    private static final String MESSAGE_NOT_THREE_DIGIT = "세 자리 수만 입력할 수 있습니다.";
     private final List<Integer> gameNumber;
 
     public GameNumber(List<Integer> gameNumber) {
@@ -34,9 +36,16 @@ public class GameNumber {
     }
 
     private void validateGameNumber() {
+        validateSourceNumber();
         validateThreeDigit();
         validateContainsZero();
         validateDuplication();
+    }
+
+    private void validateSourceNumber() {
+        if (!Arrays.asList(sourceNumbers).containsAll(gameNumber)) {
+            throw new NotSourceNumberException(MESSAGE_NOT_SOURCE_NUMBER);
+        }
     }
 
     private void validateThreeDigit() {

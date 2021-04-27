@@ -21,21 +21,6 @@ class GameNumberTest {
     }
 
     @Test
-    @DisplayName("0이 포함되면 ContainsZeroException을 출력한다.")
-    void ofContainsZeroTest() {
-        //given
-        Integer[] inputContainsZero = new Integer[]{0, 1, 2};
-
-        assertThatThrownBy(() -> {
-            // when
-            GameNumber.of(Arrays.asList(inputContainsZero));
-        })
-                // then
-                .isInstanceOf(ContainsZeroException.class)
-                .hasMessageContaining("숫자에 0을 포함해서는 안됩니다.");
-    }
-
-    @Test
     @DisplayName("서로 다른 수가 아닌 값을 입력하였을 때 예외를 출력한다.")
     void ofDuplicationTest() {
         //given
