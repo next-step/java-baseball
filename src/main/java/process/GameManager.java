@@ -2,6 +2,7 @@ package process;
 
 import java.util.Scanner;
 
+import engine.Ball1;
 import engine.GameEngine;
 import ui.InputOutputUtil;
 
@@ -16,6 +17,27 @@ public class GameManager {
 	public GameManager(Scanner scanner) {
 		this.gameEngine = new GameEngine(ANSWER_LENGTH);
 		this.inputOutputUtil = new InputOutputUtil(scanner);
+	}
+
+	public void startGame() {
+		while (!progressEachStage()) {
+		}
+	}
+
+	public boolean progressEachStage() {
+		try {
+			if (gameEngine.progressEachStage(new Ball1(inputOutputUtil.nextInput(), ANSWER_LENGTH))) {
+				return true;
+			}
+			printCurrentStatus(gameEngine.getStrike(), gameEngine.getBall());
+		} catch (Exception e) {
+			inputOutputUtil.printError(e.getMessage());
+		}
+		return false;
+	}
+
+	public void printCurrentStatus(int strike, int ball) {
+		inputOutputUtil.printStatus(strike, ball);
 	}
 
 }
