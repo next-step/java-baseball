@@ -1,18 +1,37 @@
+plugins {
+    id 'org.ec4j.editorconfig' version '0.0.3'
+}
+
+apply plugin: 'checkstyle'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
     testCompile('org.junit.jupiter:junit-jupiter:5.7.1')
     testCompile('org.assertj:assertj-core:3.19.0')
 }
-
 test {
     useJUnitPlatform()
+}
+
+editorconfig {
+    excludes = ['build']
+}
+check.dependsOn editorconfigCheck
+
+checkstyle {
+    maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
+    configFile = file("${rootDir}/naver-checkstyle-rules.xml")
+    toolVersion = "8.24"  // checkstyle 버전 8.24 이상 선언
 }
