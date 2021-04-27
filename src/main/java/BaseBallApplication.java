@@ -1,5 +1,8 @@
 public class BaseBallApplication {
 	public static void main(String[] args) {
-		System.out.println("start");
+		int[] userInputNumbers = BaseBallGame.getUserInputNumbers();
+		for (int a : userInputNumbers) {
+			System.out.print(a);
+		}
 	}
 }

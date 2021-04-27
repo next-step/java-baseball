@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -50,5 +51,18 @@ public class BaseBallGame {
 	private static int getBallCountCondition(int[] target, int[] inputNumbers, int index, int count) {
 		return (ArrayUtils.indexOf(target, inputNumbers[index]) > -1 && target[index] != inputNumbers[index])
 			? count + 1 : count;
+	}
+
+	public static int[] getUserInputNumbers() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("숫자를 입력해주세요 : ");
+		String userInput = scanner.nextLine();
+		String[] userInputStringArray = userInput.split("");
+		int len = userInputStringArray.length;
+		int[] userInputNumbers = new int[len];
+		for (int i = 0; i < len; i++) {
+			userInputNumbers[i] = Integer.parseInt(userInputStringArray[i]);
+		}
+		return userInputNumbers;
 	}
 }
