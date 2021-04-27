@@ -26,4 +26,18 @@ class GameLogicTest {
         assertThat(gameLogic.compareSameIndex(standardList, sameList)).isEqualTo(3);
     }
 
+    @Test()
+    void assertDiffIndex() {
+        List standerList = Lists.newArrayList(1, 2, 3);
+
+        List someSameList = Lists.newArrayList(1, 4, 2);
+        assertThat(gameLogic.compareDiffIndex(standerList, someSameList)).isEqualTo(1);
+        List noSameList = Lists.newArrayList(6, 7, 8);
+        assertThat(gameLogic.compareDiffIndex(standerList, noSameList)).isEqualTo(0);
+        List sameList = Lists.newArrayList(1, 2, 3);
+        assertThat(gameLogic.compareDiffIndex(standerList, sameList)).isEqualTo(0);
+        List mixedList = Lists.newArrayList(2, 3, 1);
+        assertThat(gameLogic.compareDiffIndex(standerList, mixedList)).isEqualTo(3);
+    }
+
 }
