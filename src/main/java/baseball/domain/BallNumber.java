@@ -10,10 +10,6 @@ public class BallNumber {
 		this.num = num;
 	}
 
-	public int getNum(){
-		return num;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
