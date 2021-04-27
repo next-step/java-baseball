@@ -8,12 +8,16 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class BaseBallGame {
+	private static final String STR_STKIE = "스트라이트";
+    private static final String STR_BALL = "볼";
+    private static final String STR_NOTHING = "낫싱";
+
     int[] comNum = new int[3];
     int[] userNum = new int[3];
 
     int strike;	// 스트라이크 개수
 	int ball;	// 볼 개수
-
+ 
     Scanner sc = new Scanner(System.in);
 
     // 컴퓨터의 수를 생성한다.
@@ -41,11 +45,19 @@ public class BaseBallGame {
 		}
     }
 
+	
+
     public void inputUserNum(){
 		int inputUser, cnt = 0;  // 입력한 값을 저장할 변수
 		
 		do{
 			System.out.print("숫자를 입력해주세요 : ");
+
+			while(!sc.hasNextInt()){
+				sc.next();
+				System.out.print("숫자만 입력해주세요!");
+			}
+
 			inputUser = sc.nextInt();
 			
             if (inputUser > 99 && inputUser <= 999){
@@ -98,19 +110,19 @@ public class BaseBallGame {
 		sb.append(userNum[0]).append(userNum[1]).append(userNum[2]).append(" 을 제시한 경우 : ");
 		
 		if (strike != 0 && ball == 0){
-			sb.append(strike).append("스트라이크");
+			sb.append(strike).append(STR_STKIE);
 		}
 
 		if (strike == 0 && ball != 0){
-			sb.append(ball).append("볼");
+			sb.append(ball).append(STR_BALL);
 		}
 
 		if (strike != 0 && ball != 0){
-			sb.append(strike).append("스트라이크 ").append(ball).append("볼");
+			sb.append(strike).append(STR_STKIE).append(" ").append(ball).append(STR_BALL);
 		}
 		
 		if (strike == 0 && ball == 0){
-			sb.append("낫싱");
+			sb.append(STR_NOTHING);
 		}
 
 		System.out.println(sb.toString());
@@ -127,10 +139,13 @@ public class BaseBallGame {
 			System.out.println("Game Over");
 			System.exit(0);
 		} 
+
 		if (c == 'n' || c == 'N') {
 			System.out.println("게임을 다시 시작합니다!");
 			gameStart();
 		}
+
+		scan.close();
 	}
 
     public void gameStart(){
@@ -139,7 +154,7 @@ public class BaseBallGame {
 		createComNum();
 		
 		// 확인용
-		System.out.println("난수값 => " + comNum[0] + " " + comNum[1] + " " + comNum[2]);
+		//System.out.println("난수값 => " + comNum[0] + " " + comNum[1] + " " + comNum[2]);
 		
 		while(true){
 			inputUserNum(); 	// 사용자 입력 메서드 호출
