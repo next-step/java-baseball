@@ -7,23 +7,25 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         List<Integer> goalValues = generateGoalValue();
+        System.out.println(goalValues);
 
-        while (true){
+        while (true) {
+            System.out.println("숫자를 입력해주세요 :");
             int inputValue = in.nextInt();
             List<Integer> inputValues = getUserInputValue(inputValue);
-            int ballCount = getBallCount(goalValues, inputValues);
-            int strikeCount = getStrikeCount(goalValues, inputValues);
+            Map<String, Integer> result = getResult(goalValues, inputValues);
+            int strikeCount = result.get("strike");
+            int ballCount = result.get("ball");
+
+            if (ballCount == 0 && strikeCount == 0) {
+                System.out.println("낫싱");
+                continue;
+            }
 
             if (strikeCount == 3){
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료");
                 break;
             }
-
-            if (ballCount == 0 && strikeCount == 0){
-                System.out.println("낫싱");
-                continue;
-            }
-
             printResult(ballCount, strikeCount);
         }
     }
@@ -51,32 +53,23 @@ public class Main {
         return userInputList;
     }
 
-    private static int getBallCount(List<Integer> goalValues, List<Integer> inputValues){
-        int ballCount = 0;
-        for (int value : inputValues){
-            if (goalValues.contains(value)){
-                ballCount += 1;
-            }
-        }
-        return ballCount;
-    }
-
-    private static int getStrikeCount(List<Integer> goalValues, List<Integer> inputValues) {
-        int strike = 0;
+    private static Map<String, Integer> getResult(List<Integer> goalValues, List<Integer> inputValues) {
+        Map<String, Integer> result = new HashMap<String, Integer>(){{ put("strike", 0); put("ball", 0);}};
         for (int i = 0; i < inputValues.size(); i++){
-            int value = inputValues.get(i);
-            if (value == goalValues.get(i)){
-                strike += 1;
+            if (inputValues.get(i).equals(goalValues.get(i))) {
+                result.compute("strike", (k, v) -> v += 1);
+                continue;
             }
+            if (goalValues.contains(inputValues.get(i)))
+                result.compute("ball", (k, v) -> v += 1);
         }
-        return strike;
+        return result;
     }
-
 
     private static void printResult(int ballCount, int strikeCount){
         String result = "";
         if (strikeCount > 0){
-            result += String.format("%d 스트라이크", strikeCount);
+            result += String.format("%d 스트라이크 ", strikeCount);
         }
         if (ballCount > 0){
             result += String.format("%d볼", ballCount);
