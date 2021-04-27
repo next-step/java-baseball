@@ -15,56 +15,59 @@ public class CompareBall {
         return this.complete;
     }
 
-    public void checkStart(List<Integer> userBall, List<Integer> computerBall) {
-        sb = new StringBuffer();
+    public String checkStart(List<Integer> userBall, List<Integer> computerBall) {
         checkStrike(userBall, computerBall);
         checkBall(userBall, computerBall);
-        result(userBall);
-        if (strike == 3) {
-            complete = false;
-            strike = 0;
+        System.out.println(sb.toString());
+        if (this.strike == 3) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            this.complete = false;
+            this.strike = 0;
         }
+        return sb.toString();
     }
 
-    private int checkStrike(List<Integer> userBall, List<Integer> computerBall) {
-        strike = 0;
+    public int checkStrike(List<Integer> userBall, List<Integer> computerBall) {
+        this.strike = 0;
         for (int i = 0; i < userBall.size(); i++) {
             compareStrike(userBall, computerBall, i);
         }
-        if (strike > 0) {
-            sb.append(strike + " 스트라이크 ");
-        }
-        return strike;
+        result();
+        return this.strike;
     }
 
     private void compareStrike(List<Integer> userBall, List<Integer> computerBall, int count) {
         if (userBall.get(count).equals(computerBall.get(count))) {
             userBall.set(count, 0);
-            strike++;
+            this.strike++;
         }
     }
 
-    private int checkBall(List<Integer> userBall, List<Integer> computerBall) {
-        ball = 0;
+    public int checkBall(List<Integer> userBall, List<Integer> computerBall) {
+        this.ball = 0;
         for (int i = 0; i < userBall.size(); i++) {
             compareBall(userBall.get(i), computerBall);
         }
-        if (ball > 0) {
-            sb.append(ball + " 볼");
-        }
-        return ball;
+        result();
+        return this.ball;
     }
 
     private void compareBall(int userBall, List<Integer> computerBall) {
         if (computerBall.contains(userBall)) {
-            ball++;
+            this.ball++;
         }
     }
 
-    private void result(List<Integer> userBall) {
-        if (strike == 0 && ball == 0) {
+    private void result() {
+        sb = new StringBuffer();
+        if (this.strike == 0 && this.ball == 0) {
             sb.append("Nothing");
         }
-        System.out.println(sb.toString());
+        if (this.strike > 0) {
+            sb.append(this.strike + " 스트라이크 ");
+        }
+        if (this.ball > 0) {
+            sb.append(this.ball + " 볼");
+        }
     }
 }
