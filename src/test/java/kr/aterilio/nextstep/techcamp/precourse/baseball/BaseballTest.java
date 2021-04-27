@@ -41,10 +41,14 @@ public class BaseballTest {
 
     @DisplayName("판정 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"1,2,3/3"}, delimiter = '/')
-    public void test_judge(@ConvertWith(IntegerArrayConverter.class) Integer[] arrInputs, int strike) {
+    @CsvSource(value = {
+            "1,5,7/1/0", "1,2,8/2/0", "1,2,3/3/0",
+            "5,7,1/0/1", "8,1,2/0/2", "3,1,2/0/3"
+    }, delimiter = '/')
+    public void test_judge(@ConvertWith(IntegerArrayConverter.class) Integer[] arrInputs, int strike, int ball) {
         final List<Integer> inputs = Arrays.asList(arrInputs);
         Judgement judgement = baseball.judge(inputs);
         assertThat(judgement.strike()).isEqualTo(strike);
+        assertThat(judgement.ball()).isEqualTo(ball);
     }
 }

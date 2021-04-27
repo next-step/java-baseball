@@ -19,7 +19,7 @@ public class Judgement {
         for (int number : game) {
             int input = Optional.of(inputs.get(i++))
                                 .orElse(NOT_FOUND);
-            judgeStrike(number, input);
+            judgeStrikeOrBall(game, number, input);
         }
     }
 
@@ -28,9 +28,13 @@ public class Judgement {
         ball = 0;
     }
 
-    private void judgeStrike( int number, int input) {
+    private void judgeStrikeOrBall(Set<Integer> game, int number, int input) {
         if (number == input) {
             strike++;
+            return;
+        }
+        if (game.contains(input)) {
+            ball++;
         }
     }
 
@@ -40,5 +44,9 @@ public class Judgement {
 
     public int strike() {
         return strike;
+    }
+
+    public int ball() {
+        return ball;
     }
 }
