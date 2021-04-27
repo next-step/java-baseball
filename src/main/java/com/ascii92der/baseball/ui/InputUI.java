@@ -1,6 +1,5 @@
 package com.ascii92der.baseball.ui;
 
-import java.lang.reflect.Member;
 import java.util.*;
 
 public class InputUI {
@@ -12,7 +11,7 @@ public class InputUI {
     }
 
     public String inputNumber() {
-        System.out.print(Massage.REQUEST_INPUT_MUNER);
+        System.out.print(Message.REQUEST_INPUT_MUNER);
         String result = scanner.nextLine();
         if (!inputNumberValid(result) || duplicateNumber(result)) {
             result = inputNumber();
@@ -21,10 +20,10 @@ public class InputUI {
     }
 
     public String inputCommand() {
-        System.out.println(Massage.REQUEST_INPUT_COMMAND);
+        System.out.println(Message.REQUEST_INPUT_COMMAND);
         String result = scanner.nextLine();
         if (!inputCommandValid(result)) {
-            System.out.print(Massage.INVALID_COMMAND);
+            System.out.println(Message.INVALID_COMMAND);
             result = inputCommand();
         }
         return result;
@@ -41,7 +40,7 @@ public class InputUI {
             isValid = false;
         }
         if (!isValid) {
-            System.out.print(Massage.INVALID_INPUT);
+            System.out.print(Message.INVALID_INPUT);
         }
         return isValid;
     }
@@ -54,7 +53,7 @@ public class InputUI {
             stringSet.add(inputString.charAt(i) + "");
         }
         if (stringList.size() != stringSet.size()) {
-            System.out.print(Massage.DUPLICATED_INPUT);
+            System.out.print(Message.DUPLICATED_INPUT);
             return true;
         }
         return false;
