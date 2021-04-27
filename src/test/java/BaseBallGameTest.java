@@ -21,7 +21,6 @@ public class BaseBallGameTest {
 
 		for(String number : numbers){
 			assertTrue(number.matches("[1-9]"));
-			System.out.println(number);
 		}
 	}
 
@@ -29,7 +28,7 @@ public class BaseBallGameTest {
 	public void callStrikeTest() {
 		assertThat(baseBallGame.callStrike("123", "123") == 3).isTrue();
 		assertThat(baseBallGame.callStrike("124","125") == 2).isTrue();
-		assertThat(baseBallGame.callStrike("111", "112") == 3).isFalse();
+		assertThat(baseBallGame.callStrike("156", "651") == 3).isFalse();
 	}
 
 	@Test
@@ -56,5 +55,11 @@ public class BaseBallGameTest {
 		assertEquals("낫싱", baseBallGame.makeGameResult(0, 0));
 		assertEquals("1 스트라이크 ", baseBallGame.makeGameResult(1, 0));
 		assertEquals("1 스트라이크 2 볼 ", baseBallGame.makeGameResult(1, 2));
+	}
+
+	@Test
+	public void judgeGameTest(){
+		assertTrue(baseBallGame.judgeGame("123", "123"));
+		assertFalse(baseBallGame.judgeGame("345", "357"));
 	}
 }
