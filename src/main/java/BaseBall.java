@@ -280,7 +280,7 @@ public class BaseBall {
 		}
 		
 		/* 볼카운트 결과 선언 */
-		// declare();
+		declare();
 	
 	}
 	
@@ -333,7 +333,7 @@ public class BaseBall {
 		ballCountMsg = prnt;
 		
 		/* 숫자를 재입력받는다. */
-		throwBalls("123", "123");
+		//throwBalls("123", "123");
 		
 	}
 	

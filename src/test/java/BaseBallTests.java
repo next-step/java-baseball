@@ -109,20 +109,43 @@ public class BaseBallTests {
 //		/* 하나의 스트라이크가 들어왔는지 검증 (E) */
 //		
 //	}
+//	
+//	/**
+//	 * 4. 결과 선언
+//	 * 1) 스트라이크 방의 수가 3일 시 4. 재시작여부 단계로 넘어간다.
+//	 */
+//	@Test
+//	public void restartConfirmingTest() {
+//		
+//		BaseBall bb = new BaseBall();
+//		bb.start("123", "123");
+//		
+//		/* 하나의 스트라이크가 들어왔는지 검증 (S) */
+//		Assertions.assertEquals("reGame", bb.ballCountMsg);
+//		/* 하나의 스트라이크가 들어왔는지 검증 (E) */
+//		
+//	}
 	
 	/**
 	 * 4. 결과 선언
-	 * 1) 스트라이크 방의 수가 3일 시 4. 재시작여부 단계로 넘어간다.
+	 * •2) 스트라이크 방의 수가 3이 아닐 시 볼카운트를 출력한다.
 	 */
 	@Test
-	public void restartConfirmingTest() {
+	public void ballCountingPringTest() {
 		
 		BaseBall bb = new BaseBall();
-		bb.start("123", "123");
+		bb.start("123", "456");
 		
-		/* 하나의 스트라이크가 들어왔는지 검증 (S) */
-		Assertions.assertEquals("reGame", bb.ballCountMsg);
-		/* 하나의 스트라이크가 들어왔는지 검증 (E) */
+		/* 스트라이크 방의 수와 볼 방의 수의 합이 0일시 "낫싱"을 출력하는지 검증 (S) */
+		Assertions.assertEquals("낫싱", bb.ballCountMsg);
+		/* 스트라이크 방의 수와 볼 방의 수의 합이 0일시 "낫싱"을 출력하는지 검증 (E) */
+		
+		bb = new BaseBall();
+		bb.start("123", "192");
+		
+		/* ◦스트라이크 방의 수와 볼 방의 수의 합이 0 이상일 시 스트라이크 방의 수 + "스트라이크, " + 볼 방의 수 + "볼"을 출력하는지 검증 (S) */
+		Assertions.assertEquals("1스트라이크 1볼", bb.ballCountMsg);
+		/* ◦스트라이크 방의 수와 볼 방의 수의 합이 0 이상일 시 스트라이크 방의 수 + "스트라이크, " + 볼 방의 수 + "볼"을 출력하는지 검증 (E) */
 		
 	}
 	
