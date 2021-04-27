@@ -41,4 +41,35 @@ public class BaseballCalculator {
 		} while (result.equals("0") || existingNumber.contains(result));
 		return result;
 	}
+
+	/**
+	 * @methodName  : getStrikeCount
+	 * @author      : Sunghwa Lee
+	 * @description : Compare the answer with the input and return the number of strikes
+	 * @param answer Answer string
+	 * @param input User input string
+	 * @return Count of strikes
+	 */
+	public static int getStrikeCount(String answer, String input) {
+		int result = 0;
+		for (int i = 0; i < answer.length(); i++) {
+			result += isStrike(answer.charAt(i), input.charAt(i));
+		}
+		return result;
+	}
+
+	/**
+	 * @methodName  : isStrike
+	 * @author      : Sunghwa Lee
+	 * @description : Compare the answer with the input and return whether or not strike
+	 * @param answer Answer character
+	 * @param input User input character
+	 * @return If the input is strike, return 1 otherwise return 0
+	 */
+	private static int isStrike(char answer, char input) {
+		if (answer == input) {
+			return 1;
+		}
+		return 0;
+	}
 }
