@@ -65,12 +65,12 @@ public class BaseballView {
             System.out.println(MESSAGE_PASS);
         } else if (score.isNothing()) {
             System.out.println(MESSAGE_NOTHING);
-        } else if (score.hasStrike() || score.hasStrike()) {
+        } else if (score.hasStrike() || score.hasBall()) {
             printStrikeBallMessage(score);
         }
     }
 
-    private String printStrikeBallMessage(Score score) {
+    private void printStrikeBallMessage(Score score) {
         List<String> result = new ArrayList<>();
 
         if (score.hasStrike()) {
@@ -80,7 +80,7 @@ public class BaseballView {
             result.add(format(MESSAGE_BALL, score.getBall()));
         }
 
-        return String.join(" ", result);
+        System.out.println(String.join(" ", result));
     }
 
     private boolean askAboutReGame() {
