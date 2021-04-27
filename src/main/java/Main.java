@@ -12,7 +12,30 @@ public class Main {
         startBaseballGame();
     }
 
-    static void startBaseballGame() {
+    public static boolean startBaseballGame() {
+        boolean isGameRunning;
+        do {
+            runGame();
+            isGameRunning = getGameRunningStatus();
+        } while (isGameRunning);
+
+        return isGameRunning;
+    }
+
+    public static boolean getGameRunningStatus() {
+
+        int newgameFlag;
+
+        do {
+            System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+            Scanner sc = new Scanner(System.in);
+            newgameFlag = sc.nextInt();
+        } while (newgameFlag < 1 || newgameFlag > 2);
+
+        return newgameFlag == 1;
+    }
+
+    static void runGame() {
 
         boolean isGameRunning;
         String commRandomNum = getRandomNumStr();
@@ -21,9 +44,8 @@ public class Main {
         do {
             String userBaseballStr = scanUserInput(commRandomNum);
             isGameRunning = verifyBaseballNum(userBaseballStr, commRandomNum);
-        } while (isGameRunning);
 
-        System.out.println(getRandomNumStr());
+        } while (isGameRunning);
     }
 
     private static String scanUserInput(String commRandomNum) {
@@ -40,24 +62,31 @@ public class Main {
 
     private static boolean verifyBaseballNum(String userBaseballStr, String commRandomNum) {
 
-        boolean isGameRunning = true;
-
         // Check Strike
         int strikeCount = getStrikeCount(userBaseballStr, commRandomNum);
-        System.out.println(strikeCount + "스트라이크");
+
 
         // Check Ball
         int ballCount = getBallCount(userBaseballStr, commRandomNum);
-        System.out.println(ballCount + "볼");
 
         boolean isNothing = strikeCount + ballCount > 0 ? false : true;
 
-        if(isNothing) {
+        if (strikeCount == commRandomNum.length()) {
+            System.out.println(commRandomNum.length() + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return false;
+        } else if (strikeCount > 0) {
+            System.out.println(strikeCount + "스트라이크");
+        }
+
+        if (ballCount > 0) {
+            System.out.println(ballCount + "볼");
+        }
+
+        if (isNothing) {
             System.out.println("낫싱");
         }
 
-
-        return isGameRunning;
+        return true;
     }
 
     public static int getBallCount(String userBaseballStr, String commRandomNum) {

@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -126,10 +126,42 @@ class MainTest {
         System.out.println(ballCount + "볼");
 
         boolean isNothing = strikeCount + ballCount > 0 ? false : true;
-        if(isNothing) {
+        if (isNothing) {
             System.out.println("낫싱");
         }
 
         assertThat(isNothing).isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("Test Baseball Game restart")
+    void TEST_startBaseballGame() {
+
+        String userBaseballNum = "1";
+        InputStream in = new ByteArrayInputStream(userBaseballNum.getBytes());
+        System.setIn(in);
+
+        boolean gameRunningStatus = Main.getGameRunningStatus();
+        System.out.println("userBaseballNum : " + userBaseballNum);
+        System.out.println("gameRunningStatus : " + gameRunningStatus);
+
+
+        assertThat(gameRunningStatus).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("Test Baseball Game restart")
+    void TEST_startBaseballGame2() {
+
+        String userBaseballNum = "2";
+        InputStream in = new ByteArrayInputStream(userBaseballNum.getBytes());
+        System.setIn(in);
+
+        boolean gameRunningStatus = Main.getGameRunningStatus();
+        System.out.println("userBaseballNum : " + userBaseballNum);
+        System.out.println("gameRunningStatus : " + gameRunningStatus);
+
+        assertThat(gameRunningStatus).isEqualTo(false);
+    }
+
 }
