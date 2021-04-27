@@ -1,40 +1,36 @@
 package baseball.domain;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class Score {
-    private static final int INIT_COUNT = 0;
-
-    private final Map<GameRule, Integer> countOfRule = new HashMap<>();
+    private final List<GameRule> gameRules;
 
     public Score(List<GameRule> gameRules) {
-        GameRule[] values = GameRule.values();
-        for(GameRule rule : values) {
-            countOfRule.put(rule, INIT_COUNT);
-        }
-
-        for(GameRule rule : gameRules) {
-            increase(rule);
-        }
+        this.gameRules = gameRules;
     }
 
     public int countOfStrike() {
-        return countOfRule.get(GameRule.STRIKE);
+        return countOf(GameRule.STRIKE);
     }
 
     public int countOfBall() {
-        return countOfRule.get(GameRule.BALL);
+        return countOf(GameRule.BALL);
     }
 
     public int countOfMissing() {
-        return countOfRule.get(GameRule.MISSING);
+        return countOf(GameRule.MISSING);
     }
 
-    private void increase(GameRule gameRule) {
-        Integer count = countOfRule.get(gameRule);
+    public boolean isNotAllStrike() {
+        return !isAllStrike();
+    }
 
-        countOfRule.put(gameRule, ++count);
+    public boolean isAllStrike() {
+        return countOfStrike() == gameRules.size();
+    }
+
+    private int countOf(GameRule gameRule) {
+        return Collections.frequency(gameRules, gameRule);
     }
 }

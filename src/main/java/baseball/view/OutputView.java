@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OutputView {
     public static void gameStatus(Score score) {
-        if(score.isEndGame()) {
+        if(score.isAllStrike()) {
             endGame();
             return;
         }

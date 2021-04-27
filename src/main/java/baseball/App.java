@@ -25,6 +25,6 @@ public class App {
             match = game.match(balls);
 
             OutputView.gameStatus(match);
-        }while(match.isNotEndGame());
+        }while(match.isNotAllStrike());
     }
 }
