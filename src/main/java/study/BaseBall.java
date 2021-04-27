@@ -4,54 +4,41 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BaseBall {
+	private static final Scanner SCANNER = new Scanner(System.in);
 	private final ScoreBoard scoreBoard = new ScoreBoard();
-	private final Scanner scanner;
+	private final Batter batter = new Batter();
 
 	private List<Integer> pitches;
 	private int inningCount;
+	private Score lastScore;
 
-	public BaseBall(Scanner scanner) {
-		this.scanner = scanner;
+	void newGame() {
+		this.pitches = Pitcher.pitch(3);
+		this.lastScore = Score.nothing();
+		this.inningCount = 1;
 	}
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		BaseBall baseBall = new BaseBall(sc);
-		Batter batter = new Batter();
-
-		int playState = 1;
-		while (playState == 1) {
-			baseBall.newGame();
-			baseBall.playGame(batter);
-
-			System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-			playState = sc.nextInt();
+	void playGame() {
+		while (isGameEnd()) {
+			playInning();
 		}
 	}
 
-	private void newGame() {
-		pitches = Pitcher.pitch(3);
-		inningCount = 1;
-	}
+	private void playInning() {
+		try {
+			System.out.printf("[%d] 숫자를 입력해주세요: ", this.inningCount);
 
-	private void playGame(Batter batter) {
-		System.out.println("Play Ball!!!");
-		Score lastScore = Score.nothing();
-		while (!Score.threeStrike().equals(lastScore)) {
-			try {
-				lastScore = playInning(batter);
-				System.out.println(lastScore);
-				inningCount++;
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
+			List<Integer> swings = batter.swingBat(SCANNER.next());
+			this.lastScore = this.scoreBoard.countScore(swings, this.pitches);
+
+			System.out.println(this.lastScore);
+			inningCount++;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 	}
 
-	private Score playInning(Batter batter) {
-		System.out.printf("[%d] 숫자를 입력해주세요: ", inningCount);
-		List<Integer> swings = batter.swingBat(scanner.next());
-		return scoreBoard.countScore(swings, pitches);
+	private boolean isGameEnd() {
+		return !Score.threeStrike().equals(this.lastScore);
 	}
 }
