@@ -19,5 +19,6 @@ public class Main {
             setBettings(bettings);
             playGame();
         } while(!isGameOver());
+        System.exit(0);
     }
 }
