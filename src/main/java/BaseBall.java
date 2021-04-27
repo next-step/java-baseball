@@ -274,10 +274,13 @@ public class BaseBall {
 			
 			System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 			
+			/* 재시작 여부 확인 */
+			reGame();
+			
 		}
 		
 		/* 볼카운트 결과 선언 */
-		declare();
+		// declare();
 	
 	}
 	
@@ -331,6 +334,55 @@ public class BaseBall {
 		
 		/* 숫자를 재입력받는다. */
 		throwBalls("123", "123");
+		
+	}
+	
+	
+	
+	/**
+	 * reGame : 변수를 클리어하고 새 게임을 결정하는 메소드
+	 */
+	private static void reGame () {
+		
+		ballCountMsg = "reGame";
+		System.out.println(ballCountMsg);
+		
+//		String initNum = requestSc("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+//		
+//		if ("1".equals(initNum)) {
+//			
+//			/* 게임 재시작! */
+//			start("123", "456");
+//			
+//		}
+//		
+//		if ("2".equals(initNum)) {
+//			
+//			/* 게임 종료! */
+//			exit();
+//			
+//		}
+//		
+//		/* 그외 값 입력 시 재귀호출! */
+//		reGame();
+		
+	}
+	
+	
+	
+	/**
+	 * exit : 종료함수
+	 * @return
+	 */
+	private static void exit () {
+		
+		System.out.println("굿바이.");
+		
+		/* 스캐너 크로징 */
+		sc.close();
+		
+		/* 시스템 종료 */
+		System.exit(0);
 		
 	}
 	
