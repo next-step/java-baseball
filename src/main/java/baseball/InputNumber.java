@@ -1,5 +1,8 @@
 package baseball;
 
+import exception.NotContinuedException;
+import exception.NumberOnlyException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +21,7 @@ public class InputNumber {
         return ballNumbers;
     }
 
-    private static List<String> checkInput(String inputBallNumbers) {
+    private static List<String> checkInput(String inputBallNumbers) throws NotContinuedException, NumberOnlyException {
 
         List<String> splitedStrings = new ArrayList<>();
         char[] splitedChars = inputBallNumbers.toCharArray();
@@ -36,7 +39,7 @@ public class InputNumber {
     private static boolean isPatternCheck(char splitedChar, boolean isNumber) {
         String inputString = String.valueOf(splitedChar);
         if (!isNumber && !PATTERN_FILTER.contains(inputString)) {
-            throw new IllegalArgumentException("숫자가 아닙니다");
+            throw new NumberOnlyException();
         }
         return false;
     }
@@ -53,7 +56,7 @@ public class InputNumber {
     private static void isthreeNumberCheck(List<String> splitedStrings) {
 
         if (splitedStrings.subList(1,2).contains(splitedStrings.get(0))){
-            throw new IllegalArgumentException("연속 된 세개 수자를 입력하시면 안됩니다");
+            throw new NotContinuedException();
         }
     }
 

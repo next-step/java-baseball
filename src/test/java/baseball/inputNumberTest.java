@@ -1,5 +1,7 @@
 package baseball;
 
+import exception.NotContinuedException;
+import exception.NumberOnlyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,7 +26,7 @@ public class inputNumberTest {
     void inputWithCommaCharater(String input) {
         assertThatThrownBy(() -> {
             InputNumber.setBallNumber(input);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("숫자가 아닙니다");
+        }).isInstanceOf(NumberOnlyException.class).hasMessageContaining("숫자만 입력 가능합니다.");
     }
 
     @DisplayName(value = "입력받은 숫자 문자열에서 split가 있는 경우 정수 리스트로 변환하는 테스트")
@@ -42,6 +44,6 @@ public class inputNumberTest {
     void inputSameValue(String input) {
         assertThatThrownBy(() -> {
             InputNumber.setBallNumber(input);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("연속 된 세개 수자를 입력하시면 안됩니다");
+        }).isInstanceOf(NotContinuedException.class).hasMessageContaining("연속 된 숫자는 입력 불가합니다.");
     }
 }

@@ -1,5 +1,8 @@
 package baseball;
 
+import exception.NotContinuedException;
+import exception.NumberOnlyException;
+
 import java.util.List;
 
 public class MainApplication {
@@ -13,9 +16,16 @@ public class MainApplication {
         do {
             //2. get computer random value
             BallNumberRandom computerNumbersInitial = new BallNumberRandom();
-            List<Integer> computerNumbers = computerNumbersInitial.getBallNumber();
 
-            baseBallGame.play(baseballResult, computerNumbers);
+            try {
+                List<Integer> computerNumbers = computerNumbersInitial.getBallNumber();
+                baseBallGame.play(baseballResult, computerNumbers);
+            } catch (NotContinuedException notContinuedException){
+                notContinuedException.getMessage();
+            } catch (NumberOnlyException numberOnlyException){
+                numberOnlyException.getMessage();
+            }
+
         } while (baseBallGame.restart());
     }
 }
