@@ -23,15 +23,19 @@ public class Answer {
     public void generateAnswer() {
         answer = new ArrayList<>();
         answerSet = new HashSet<>();
-        for (int i = 0;i<ANSWER_SIZE;i++) {
-            int generatedRandomValue = generateRandomValue(ANSWER_LOWER_BOUND_NUMBER, ANSWER_UPPER_BOUND_NUMBER);
+        for (int i = 0; i < ANSWER_SIZE; i++) {
+            int generatedRandomValue = generateNotDuplicatedRandomValue(ANSWER_LOWER_BOUND_NUMBER, ANSWER_UPPER_BOUND_NUMBER, answerSet);
             answer.add(generatedRandomValue);
             answerSet.add(generatedRandomValue);
         }
     }
 
-    private int generateRandomValue(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
+    private int generateNotDuplicatedRandomValue(int min, int max, Set<Integer> answerSet) {
+        int number;
+        do {
+            number = ThreadLocalRandom.current().nextInt(min, max + 1);
+        } while (answerSet.contains(number));
+        return number;
     }
 
     public List<Integer> getAnswer() {
@@ -40,7 +44,7 @@ public class Answer {
 
     public GameResult calculateResult(List<Integer> question) {
         GameResult gameResult = new GameResult();
-        for (int i=0;i<Answer.ANSWER_SIZE;i++) {
+        for (int i = 0; i < Answer.ANSWER_SIZE; i++) {
             gameResult.applyJudgment(judge(question, i));
         }
         return gameResult;
@@ -62,7 +66,7 @@ public class Answer {
 
     public static List<Integer> convertStringToAnswerFormat(String inputValue) {
         List<Integer> formattedValue = new ArrayList<>();
-        for (int i=0;i<inputValue.length();i++) {
+        for (int i = 0; i < inputValue.length(); i++) {
             formattedValue.add(Integer.parseInt(String.valueOf(inputValue.charAt(i))));
         }
         return formattedValue;
