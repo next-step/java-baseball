@@ -9,6 +9,9 @@ public class CompareProcess {
 	public static final String STRIKE_CNT = "STRIKE_CNT";
 	public static final String BALL_CNT = "BALL_CNT";
 	public static final String STRIKE_MSG = " 스트라이크 ";
+	public static final String BALL_MSG = " 볼 ";
+	public static final String NOTHING_MSG = "낫싱";
+	public static final int GAME_END_CNT = 3;
 
 	public static boolean gameProcess(Map<Integer, Integer> ranNumMap, Map<Integer, Integer> inNumMap) {
 		Map<String, Integer> resultMap = new HashMap<String, Integer>();
@@ -21,7 +24,9 @@ public class CompareProcess {
 
 		compareProcess(tmpRanNumMap, inNumMap, resultMap, seatNum);
 
-		return true;
+		resultViewPrint(resultMap);
+
+		return resultMap.get(STRIKE_CNT) == GAME_END_CNT;
 
 	}
 
@@ -109,5 +114,23 @@ public class CompareProcess {
 		tmpMap.remove(seatNum);
 
 		return tmpMap;
+	}
+
+	public static void resultViewPrint(Map<String, Integer> resultMap) {
+		StringBuilder sb = new StringBuilder();
+
+		if (resultMap.get(STRIKE_CNT) > 0) {
+			sb.append(resultMap.get(STRIKE_CNT)).append(STRIKE_MSG);
+		}
+
+		if (resultMap.get(BALL_CNT) > 0) {
+			sb.append(resultMap.get(BALL_CNT)).append(BALL_MSG);
+		}
+
+		if ((resultMap.get(STRIKE_CNT) + resultMap.get(BALL_CNT)) == 0) {
+			sb.append(NOTHING_MSG);
+		}
+
+		System.out.println(sb.toString());
 	}
 }
