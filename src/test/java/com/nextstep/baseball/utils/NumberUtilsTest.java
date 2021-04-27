@@ -1,9 +1,5 @@
 package com.nextstep.baseball.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Random;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
