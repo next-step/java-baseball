@@ -2,14 +2,14 @@ public class Application {
     private static final int DEFAULT_NUMBER_SIZE = 3;
 
     public static void main(String[] args) {
-        BaseBallGame game = new BaseBallGame();
+        Player player = new Player();
+        InputHelper inputHelper = new InputHelper();
 
-        while (game.canPlay()) {
-            game.init(DEFAULT_NUMBER_SIZE);
-            game.inputNumberAndGuess();
-            game.afterSuccess();
+        while (player.isReady()) {
+            BaseBallGame game = new BaseBallGame(player, inputHelper, DEFAULT_NUMBER_SIZE);
+            game.start();
         }
 
-        game.exit();
+        inputHelper.destroy();
     }
 }
