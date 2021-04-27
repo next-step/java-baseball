@@ -28,6 +28,7 @@ public class BaseBallGame implements Game {
 	}
 
 	public String inputNumbers() {
+		printMsg("숫자를 입력해 주세요 : ");
 		Scanner scan = new Scanner(System.in);
 		String numbers = String.valueOf(scan.nextInt());
 		scan.close();
