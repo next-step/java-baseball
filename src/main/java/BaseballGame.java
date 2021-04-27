@@ -33,7 +33,7 @@ public class BaseballGame {
 	}
 
 	public boolean isGamePass(Score score){
-		return false;
+		return score.getStrikeCount() == 3 ? true : false;
 	}
 
 
