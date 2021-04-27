@@ -1,6 +1,6 @@
 package baseball;
 
-class Printer {
+class Console {
 	private void print(String message) {
 		System.out.print(message);
 	}

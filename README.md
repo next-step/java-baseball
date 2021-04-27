@@ -16,7 +16,7 @@
 - [x] Player, ProceedType
   - [x] 사용자의 입력을 받아서 숫자 예측값을 반환
   - [x] 사용자의 입력을 받아서 게임이 끝난 뒤 재시작할지 종료할지 타입 반환
-- [x] Game, Input, Printer
+- [x] Game, Input, Console
   - [x] 게임 시작
   - [x] 게임 재시작
   - [x] 게임 종료

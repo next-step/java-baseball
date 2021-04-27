@@ -5,13 +5,13 @@ class Game {
 
 	private Player player;
 	private Computer computer;
-	private Printer printer;
+	private Console console;
 	private Input input;
 
 	Game() {
 		player = new Player(NUMBER_LENGTH);
 		computer = new Computer(NUMBER_LENGTH);
-		printer = new Printer();
+		console = new Console();
 		input = new Input(NUMBER_LENGTH);
 	}
 
@@ -20,16 +20,16 @@ class Game {
 		int[] guess = new int[] {-1, -1, -1};
 		Judgement judgement = computer.judge(guess, answer);
 		while (!judgement.isAllStrike()) {
-			printer.printMessageOnBeforeGuess();
+			console.printMessageOnBeforeGuess();
 			guess = player.guess(input.getGuessInput());
 			judgement = computer.judge(guess, answer);
-			printer.printJudgement(judgement);
+			console.printJudgement(judgement);
 		}
 		end();
 	}
 
 	private void end() {
-		printer.printMessageOnEnd();
+		console.printMessageOnEnd();
 		ProceedType proceedType = player.proceed(input.getProceedInput());
 
 		if (proceedType == ProceedType.RESTART)
