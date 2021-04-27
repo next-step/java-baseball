@@ -25,12 +25,7 @@ public class BaseballGame {
 	private static void gameStart() {
 		String baseballNumber = getBaseballNumber();
 		challenge(baseballNumber);
-		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-		String inputExitFlagNumber = getInputString("");
-		if ("1".equals(inputExitFlagNumber)) {
-			gameStart();
-		}
+		gameExitDecision();
 	}
 
 	/**
@@ -39,21 +34,31 @@ public class BaseballGame {
 	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
 	 */
 	public static void challenge(String baseballNumber) {
-		String inputNumber = getInputString("숫자를 입력해주세요 : ");
-		//TODO 입력값 체크 구현
-		System.out.println("3 스트라이크");
+		String inputNumber = getInputString("숫자를 입력해주세요 : ", 3);
+		int strikeCount = getStrike(baseballNumber, inputNumber);
+		int ballCount = getBall(baseballNumber, inputNumber) - strikeCount;
+		String challengeResult = getChallengeResult(strikeCount, ballCount);
+		System.out.println(challengeResult);
+		if (strikeCount < 3) {
+			challenge(baseballNumber);
+		}
 	}
 
 	/**
-	 * 문자입력.
+	 * 사용자 문자입력.
 	 *
 	 * @param prefix 문자 입력 전 출력할 문구
+	 * @param inputLength 입력받아야 할 글자 사이즈
 	 * @return the input string
 	 */
-	public static String getInputString(String prefix) {
+	public static String getInputString(String prefix, int inputLength) {
 		System.out.print(prefix);
 		Scanner in = new Scanner(System.in);
-		return in.nextLine().trim();
+		String inputString = in.nextLine().trim();
+		if (inputString.length() == inputLength && inputString.replaceAll("[1-9]", "").equals("")) {
+			return inputString;
+		}
+		return getInputString(prefix, inputLength);
 	}
 
 	/**
@@ -116,5 +121,97 @@ public class BaseballGame {
 			baseballNumber.append(number);
 		}
 		return baseballNumber.toString();
+	}
+
+	/**
+	 * 스트라이크 개수 조회.
+	 *
+	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
+	 * @param inputNumber    사용자에게 입력받은 3자리 숫자
+	 * @return the strike
+	 */
+	public static int getStrike(String baseballNumber, String inputNumber) {
+		int strike = 0;
+		strike += strikeCount(baseballNumber.charAt(0), inputNumber.charAt(0));
+		strike += strikeCount(baseballNumber.charAt(1), inputNumber.charAt(1));
+		strike += strikeCount(baseballNumber.charAt(2), inputNumber.charAt(2));
+		return strike;
+	}
+
+	/**
+	 * 두개의 숫자를 비교하여 같을 경우 1 (strike), 다를 경우 0을 리턴.
+	 *
+	 * @param baseballNumberChar 컴퓨터가 생성한 3자리 야구게임 숫자 중 비교할 숫자 한자리
+	 * @param inputNumberChar    사용자에게 입력받은 3자리 숫자 중 비교할 숫자 한자리
+	 * @return the int
+	 */
+	public static int strikeCount(char baseballNumberChar, char inputNumberChar) {
+		if (baseballNumberChar == inputNumberChar) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * 볼 개수 조회.
+	 *
+	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
+	 * @param inputNumber    사용자에게 입력받은 3자리 숫자
+	 * @return the ball
+	 */
+	public static int getBall(String baseballNumber, String inputNumber) {
+		int ball = 0;
+		ball += ballCount(baseballNumber, inputNumber.substring(0, 1));
+		ball += ballCount(baseballNumber, inputNumber.substring(1, 2));
+		ball += ballCount(baseballNumber, inputNumber.substring(2, 3));
+		return ball;
+	}
+
+	/**
+	 * 숫자를 비교하여 같을 경우 1 (ball), 다를 경우 0을 리턴.
+	 *
+	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
+	 * @param inputNumber    사용자에게 입력받은 3자리 숫자 중 비교할 숫자 한자리
+	 * @return the int
+	 */
+	public static int ballCount(String baseballNumber, String inputNumber) {
+		if (baseballNumber.contains(inputNumber)) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * 입력 결과 (게임 결과) 메시지 조회.
+	 *
+	 * @param strikeCount strike 개수
+	 * @param ballCount   ball 개수
+	 * @return the challenge result
+	 */
+	public static String getChallengeResult(int strikeCount, int ballCount) {
+		if (strikeCount > 0 && ballCount > 0) {
+			return strikeCount + " 스트라이크 " + ballCount + "볼";
+		}
+		if (strikeCount > 0) {
+			return strikeCount + " 스트라이크";
+		}
+		if (ballCount > 0) {
+			return ballCount + "볼";
+		}
+		return "낫싱";
+	}
+
+	/**
+	 * 게임 성공 후 종료 여부 결정
+	 */
+	public static void gameExitDecision() {
+		String inputExitFlagNumber = getInputString("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n"
+			+ "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요\n", 1);
+		if (!"1".equals(inputExitFlagNumber) && !"2".equals(inputExitFlagNumber)) {
+			gameExitDecision();
+		}
+		if ("1".equals(inputExitFlagNumber)) {
+			gameStart();
+		}
 	}
 }

@@ -30,6 +30,49 @@ class BaseballGameTest {
 		assertThat(baseballNumber.charAt(1)).as("두번째/세번째 숫자 동일").isNotEqualTo(baseballNumber.charAt(2));
 	}
 
+	@ParameterizedTest
+	@CsvSource({"123,123,3", "123,345,0"})
+	@DisplayName("스트라이크 개수 조회")
+	void getStrike(String baseballNumber, String inputNumber, int strike) {
+		assertThat(BaseballGame.getStrike(baseballNumber, inputNumber)).isEqualTo(strike);
+	}
+
+	@ParameterizedTest
+	@CsvSource({"123,312,3", "123,345,1"})
+	@DisplayName("볼 개수 조회")
+	void getBall(String baseballNumber, String inputNumber, int ball) {
+		assertThat(BaseballGame.getBall(baseballNumber, inputNumber)).isEqualTo(ball);
+	}
+
+	@ParameterizedTest
+	@CsvSource({"1,2", "2,1"})
+	@DisplayName("야구게임결과 - x 스트라이크 y볼")
+	void getChallengeResultStrikeAndBall(int strikeCount, int ballCount) {
+		assertThat(BaseballGame.getChallengeResult(strikeCount, ballCount))
+			.isEqualTo(strikeCount+" 스트라이크 "+ballCount+"볼");
+	}
+
+	@ParameterizedTest
+	@CsvSource({"1,0", "3,0"})
+	@DisplayName("야구게임결과 - x 스트라이크")
+	void getChallengeResultStrike(int strikeCount, int ballCount) {
+		assertThat(BaseballGame.getChallengeResult(strikeCount, ballCount)).isEqualTo(strikeCount+" 스트라이크");
+	}
+
+	@ParameterizedTest
+	@CsvSource({"0,2", "0,1"})
+	@DisplayName("야구게임결과 - y볼")
+	void getChallengeResultBall(int strikeCount, int ballCount) {
+		assertThat(BaseballGame.getChallengeResult(strikeCount, ballCount)).isEqualTo(ballCount+"볼");
+	}
+
+	@ParameterizedTest
+	@CsvSource({"0,0"})
+	@DisplayName("야구게임결과 - 낫싱")
+	void getChallengeResultNothing(int strikeCount, int ballCount) {
+		assertThat(BaseballGame.getChallengeResult(strikeCount, ballCount)).isEqualTo("낫싱");
+	}
+
 	private static Stream<Arguments> numberArrayParameter() {
 		return Stream.of(
 			Arguments.of(new int[]{1,0}),
