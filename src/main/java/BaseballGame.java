@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class BaseballGame {
     public static final int DEFAULT_LEN = 3;
@@ -38,11 +39,43 @@ public class BaseballGame {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
     }
 
-    private int endInput() {
+    private boolean isValidatedLength(String compareStr) {
+        return compareStr.length() == 1;
+    }
+
+    private boolean isValidatedDigital(String compareStr) {
+        return Pattern.matches("^[1-2]", compareStr);
+    }
+
+    private boolean validateInput(String userInput) {
+        if (!isValidatedLength(userInput))
+            return false;
+        if (!isValidatedDigital(userInput))
+            return false;
+        return true;
+    }
+
+    public String endInputRead(String userInput) {
+        if(validateInput(userInput))
+            return userInput;
+        return "FALSE";
+    }
+
+    private String endInputRead() {
         Scanner sc = new Scanner(System.in);
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-        int input = sc.nextInt();
-        return input;
+        String input = sc.next();
+        if(validateInput(input))
+            return input;
+        System.out.println("형식에 맞게 다시 입력해주세요.");
+        return "FALSE";
+    }
+
+    private int endInput() {
+        String userInputRead = "FALSE";
+        while(userInputRead == "FALSE")
+            userInputRead = endInputRead();
+        return Integer.parseInt(userInputRead);
     }
 
     public static void main(String[] args) {
