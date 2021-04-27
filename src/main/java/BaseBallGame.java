@@ -58,11 +58,19 @@ public class BaseBallGame implements Game {
 
 	public int callBall(String numbers, String inputNumbers) {
 		int ball = 0;
-
+		for (int i = 0; i < inputNumbers.length(); i++) {
+			ball += compareBall(inputNumbers.charAt(i), numbers, i);
+		}
 		return ball;
 	}
 
-	public int compareBall(char inputNumber, String numbers) {
+	public int compareBall(char inputNumber, String numbers, int index) {
+		if (numbers.indexOf(String.valueOf(inputNumber)) == index) {
+			return 0;
+		}
+		if (numbers.contains(String.valueOf(inputNumber))) {
+			return 1;
+		}
 		return 0;
 	}
 }
