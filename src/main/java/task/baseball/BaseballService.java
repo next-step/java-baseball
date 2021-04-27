@@ -21,12 +21,12 @@ public class BaseballService {
 		return new ArrayList<>(randomSet);
 	}
 
-	public int getStrikeCount(int[] input, List<Integer> answer) {
+	public int getStrikeCount(List<Integer> input, List<Integer> answer) {
 
 		int strikeCount = 0;
 
 		for (int i = 0; i < NUM_SIZE; i++) {
-			if (input[i] == answer.get(i)) {
+			if (input.get(i) == answer.get(i)) {
 				strikeCount++;
 			}
 		}
@@ -39,13 +39,13 @@ public class BaseballService {
 		return strikeCount == NUM_SIZE;
 	}
 
-	public int getBallCount(int[] input, List<Integer> answer) {
+	public int getBallCount(List<Integer> input, List<Integer> answer) {
 
 		int ballCount = 0;
 
 		for (int i = 0; i < NUM_SIZE; i++) {
-			int inputItem = input[i];
-			if (inputItem != answer.get(i) && answer.contains(inputItem)) {
+			Integer inputItem = input.get(i);
+			if (!inputItem.equals(answer.get(i)) && answer.contains(inputItem)) {
 				ballCount++;
 			}
 		}
