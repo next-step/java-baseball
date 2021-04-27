@@ -1,5 +1,6 @@
 package baseball.util.random;
 
+import baseball.exception.BaseballNumberFormatException;
 import baseball.model.BaseballNumber;
 
 public class RandomBaseballNumberGenerator {
@@ -13,12 +14,8 @@ public class RandomBaseballNumberGenerator {
     }
 
     protected int[] generateRandomBaseballNumberArray(int size, int radix) {
-        if (radix < BaseballNumber.MIN_RADIX || radix > BaseballNumber.MAX_RADIX) {
-            radix = BaseballNumber.DEFAULT_NUMBER_RADIX;
-        }
-
-        if (size < BaseballNumber.MIN_SIZE || size >= radix) {
-            size = radix - 1;
+        if (!BaseballNumber.checkSizeAndRadixValid(size, radix)) {
+            throw new BaseballNumberFormatException(size, radix);
         }
 
         boolean[] isChecked = new boolean[radix];
