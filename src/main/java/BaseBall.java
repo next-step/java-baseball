@@ -20,13 +20,19 @@ public class BaseBall {
         //랜덤 정답 생성
         baseBall.answer = baseBall.getAnswer();
         Scanner sc = new Scanner(System.in);
+        //스트라이크 3개 이상일시 종료
         while(baseBall.result[0]<3){
+            //야구 게임 초기화
             baseBall = baseBall.initResult(baseBall);
             System.out.println("숫자를 입력해주세요.");
             String input = sc.nextLine();
+            //예상 정답 배열로 분리
             String[] question = input.split("");
+            //결과 확인
             baseBall.result = baseBall.updateResult(baseBall, question);
+            //결과 메시지 출력
             baseBall.printTextResult(baseBall.result);
+            //게임 종료 여부 확인
             baseBall = baseBall.checkEnd(baseBall, sc);
         }
         sc.close();
@@ -94,8 +100,7 @@ public class BaseBall {
 
     //결과값 초기화
     public BaseBall initResult(BaseBall baseBall){
-        int[] initResult = {0,0};
-        baseBall.result = initResult;
+        baseBall.result = new int[]{0, 0};
         return baseBall;
     }
 
