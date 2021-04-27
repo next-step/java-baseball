@@ -1,10 +1,14 @@
 package nextstep.kht2199.precourse;
 
+import java.util.Scanner;
+
 /**
  *
  * @author heetaek.kim
  */
 public class FBGame {
+
+	private static final Scanner scanner = new Scanner(System.in);
 
 	private FBGameState state;
 
@@ -40,9 +44,8 @@ public class FBGame {
 		return number.match(userNumber);
 	}
 
-	private String acceptUserInput() {
-		assert false;
-		return null;
+	protected String acceptUserInput() {
+		return scanner.nextLine();
 	}
 
 	/**
