@@ -1,11 +1,25 @@
 package baseballgame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultReader {
 	private final static int NUMBER_OF_DIGIT = 3;
 	private static StringBuilder result = null;
 	private static List<Integer> redundancy = null;
+
+	public StringBuilder deriveResult(List<Integer> answer, List<Integer> userInput) {
+		result = new StringBuilder();
+		redundancy = new ArrayList<Integer>();
+		int strikeCount = validateStrike(answer, userInput);
+		if (strikeCount != NUMBER_OF_DIGIT) {
+			int ballCount = validateBall(answer);
+			if (strikeCount == 0 && ballCount == 0) {
+				result.append("낫싱");
+			}
+		}
+		return result;
+	}
 
 	public int validateStrike(List<Integer> answer, List<Integer> userInput) {
 		int count = 0;

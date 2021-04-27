@@ -84,4 +84,21 @@ public class CoreTest {
 		}
 		assertEquals(1, count);
 	}
+
+	@CsvSource({"321,531"})
+	@ParameterizedTest
+	public void result_validation_test(String rawAnswer, String rawUserInput) {
+		ArrayList<Integer> answerList = new ArrayList<Integer>();
+		ArrayList<Integer> userInfoList = new ArrayList<Integer>();
+		String[] splitAnswer = rawAnswer.split("{1}");
+		String[] splitUserInfo = rawUserInput.split("{1}");
+
+		for (int i = 0; i < 3; i++) {
+			answerList.add(Integer.parseInt(splitAnswer[i]));
+			userInfoList.add(Integer.parseInt(splitUserInfo[i]));
+		}
+
+		StringBuilder result = resultReader.deriveResult(answerList, userInfoList);
+		assertEquals("1 스트라이크 1 볼", result.toString());
+	}
 }
