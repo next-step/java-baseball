@@ -49,24 +49,24 @@ public class BaseBallTest {
     public void winOrLoseTest() {
         HashMap<GameResult, Integer> expected = new HashMap<>();
         expected.put(GameResult.STRIKE, 3);
-        assertThat(baseBall.judgeGameResult(expected)).isTrue();
+        assertThat(baseBall.confirmResult(expected)).isTrue();
 
         expected = new HashMap<>();
         expected.put(GameResult.STRIKE, 1);
         expected.put(GameResult.BALL, 1);
         expected.put(GameResult.NOTHING, 1);
-        assertThat(baseBall.judgeGameResult(expected)).isFalse();
+        assertThat(baseBall.confirmResult(expected)).isFalse();
 
         expected = new HashMap<>();
         expected.put(GameResult.BALL, 3);
-        assertThat(baseBall.judgeGameResult(expected)).isFalse();
+        assertThat(baseBall.confirmResult(expected)).isFalse();
     }
 
     @Test
     @DisplayName("게임 종료에 대한 값 테스트")
     public void isFinishTest() {
-        assertThat(baseBall.validateProcessValue("1")).isFalse();
-        assertThat(baseBall.validateProcessValue("2")).isFalse();
-        assertThat(baseBall.validateProcessValue("32")).isTrue();
+        assertThat(baseBall.checkFinishValue("1")).isFalse();
+        assertThat(baseBall.checkFinishValue("2")).isFalse();
+        assertThat(baseBall.checkFinishValue("32")).isTrue();
     }
 }

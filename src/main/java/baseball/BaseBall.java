@@ -11,87 +11,88 @@ public class BaseBall {
     Scanner scanner = new Scanner(System.in);
 
     public void playGame() {
-        String defenceNumber = getRandomValue();
-        boolean isWinOrLose;
+        String defenceNumber = getDefenceNumber();
+        boolean isWinOrLose = true;
 
-        do {
-            String attackNumber = inputAttackNumber();
+        while (isWinOrLose) {
+            String attackNumber = setAttackNumber();
             HashMap<GameResult, Integer> gameResult = run(attackNumber, defenceNumber);
-            isWinOrLose = judgeGameResult(gameResult);
-        } while (!isWinOrLose);
+            printGameResult(gameResult);
+            isWinOrLose = !confirmResult(gameResult);
+        }
     }
 
-    public String getRandomValue() {
-        String randomValue;
-        boolean validateValue;
+    public String getDefenceNumber() {
+        String defenceValue = null;
+        boolean isValidateValue = true;
 
-        do {
-            randomValue = String.valueOf((int) (Math.random() * 999 + 100));
-            validateValue = !validateNumber(randomValue);
-        } while (validateValue);
+        while (isValidateValue) {
+            defenceValue = String.valueOf((int) (Math.random() * 999 + 100));
+            isValidateValue = !validateNumber(defenceValue);
+        }
 
-        return randomValue;
+        return defenceValue;
     }
 
-    public String inputAttackNumber() {
-        String inputNumber = null;
+    public String setAttackNumber() {
+        String inputAttackValue = null;
         boolean isValid = true;
 
         while (isValid) {
             System.out.print("숫자를 입력해주세요 : ");
-            inputNumber = scanner.next();
-            isValid = !validateNumber(inputNumber);
-            printValidate(isValid);
+            inputAttackValue = scanner.next();
+            isValid = !validateNumber(inputAttackValue);
+            printWrongValue(isValid);
         }
 
-        return inputNumber;
+        return inputAttackValue;
     }
 
-    public boolean validateNumber(String validateToData) {
-        boolean isValidateNumber = true;
-        int i = 0, size = validateToData.length();
+    public boolean validateNumber(String valueToCheck) {
+        boolean isValidateYN = true;
+        int i = 0, size = valueToCheck.length();
 
-        if (!Pattern.matches("^[1-9]{3}", validateToData)) {
+        if (!Pattern.matches("^[1-9]{3}", valueToCheck)) {
             return false;
         }
 
-        while (isValidateNumber && i < size - 1) {
-            isValidateNumber = validateInLoop(i++, validateToData);
+        while (isValidateYN && i < size - 1) {
+            isValidateYN = checkDuplicateValue(i++, valueToCheck);
         }
 
-        return isValidateNumber;
+        return isValidateYN;
     }
 
-    private boolean validateInLoop(int i, String validateToData) {
-        boolean checkDuplicateData = true;
-        int j = i + 1, size = validateToData.length();
+    private boolean checkDuplicateValue(int i, String valueToCheck) {
+        boolean isDuplicate = true;
+        int j = i + 1, size = valueToCheck.length();
 
-        while (checkDuplicateData && j < size) {
-            checkDuplicateData = validateToData.charAt(i) != validateToData.charAt(j++);
+        while (isDuplicate && j < size) {
+            isDuplicate = valueToCheck.charAt(i) != valueToCheck.charAt(j++);
         }
 
-        return checkDuplicateData;
+        return isDuplicate;
     }
 
-    private void printValidate(boolean validate) {
-        if (validate) {
+    private void printWrongValue(boolean isWrongValue) {
+        if (isWrongValue) {
             System.out.println("올바른 입력값이 아닙니다.");
         }
     }
 
-    public HashMap<GameResult, Integer> run(String attack, String defence) {
+    public HashMap<GameResult, Integer> run(String attackNumber, String defenceNumber) {
         HashMap<GameResult, Integer> resultMap = new HashMap<>();
+        int numberLength = attackNumber.length();
 
-        for (int i = 0; i < attack.length(); i++) {
-            GameResult key = getGameResult(i, attack, defence);
+        for (int i = 0; i < numberLength; i++) {
+            GameResult key = getResultForPlate(i, attackNumber, defenceNumber);
             resultMap.put(key, resultMap.getOrDefault(key, 0) + 1);
         }
-
-        printGameResult(resultMap);
+        
         return resultMap;
     }
 
-    private GameResult getGameResult(int i, String attack, String defence) {
+    private GameResult getResultForPlate(int i, String attack, String defence) {
         if (attack.charAt(i) == defence.charAt(i)) {
             return STRIKE;
         }
@@ -121,31 +122,32 @@ public class BaseBall {
         System.out.println(sb.toString());
     }
 
-    public boolean judgeGameResult(HashMap<GameResult, Integer> resultGameMap) {
-        boolean gameResult = false;
+    public boolean confirmResult(HashMap<GameResult, Integer> resultGameMap) {
+        boolean confirmResult = false;
         if (resultGameMap.containsKey(STRIKE) && resultGameMap.get(STRIKE) == 3) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            gameResult = true;
+            confirmResult = true;
         }
 
-        return gameResult;
+        return confirmResult;
     }
 
-    public boolean requestContinue() {
+    public boolean askContinue() {
         boolean isContinue = true;
-        String processValue = null;
+        String finishValue = null;
+
         while (isContinue) {
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
-            processValue = scanner.next();
-            isContinue = validateProcessValue(processValue);
+            finishValue = scanner.next();
+            isContinue = checkFinishValue(finishValue);
         }
 
-        return "1".equals(processValue);
+        return "1".equals(finishValue);
     }
 
-    public boolean validateProcessValue(String processValue) {
+    public boolean checkFinishValue(String finishValue) {
         try {
-            isFinish(processValue);
+            validateFinishValue(finishValue);
             return false;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -153,8 +155,8 @@ public class BaseBall {
         return true;
     }
 
-    private void isFinish(String processValue) {
-        switch (processValue) {
+    private void validateFinishValue(String finishValue) {
+        switch (finishValue) {
             case "1":
             case "2":
                 break;
