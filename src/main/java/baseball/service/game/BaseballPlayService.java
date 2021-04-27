@@ -20,5 +20,6 @@ public class BaseballPlayService implements GameService {
 
 	private void getResult(List<Integer> answer, List<Integer> userAnswer) {
 		baseballGameService.getStrikeCount(answer, userAnswer);
+		baseballGameService.getStrikeCount(answer, userAnswer);
 	}
 }

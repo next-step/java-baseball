@@ -12,4 +12,12 @@ public class BaseballGameService {
 		}
 		return count;
 	}
+
+	public int getBallCount(List<Integer> answer, List<Integer> userAnswer) {
+		int count = 0;
+		for (int i = 0; i < answer.size(); ++i) {
+			count += IntegerUtil.containsValueNotOnSameIndex(userAnswer, answer.get(i), i) ? 1 : 0;
+		}
+		return count;
+	}
 }
