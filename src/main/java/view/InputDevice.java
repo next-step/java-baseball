@@ -9,7 +9,7 @@ public class InputDevice {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static List<BaseballNumber> inputNumber() {
+    public List<BaseballNumber> inputNumber() {
         String answerEntered = SCANNER.nextLine().trim();
         checkInputValidRange(answerEntered);
         checkInputValidValue(answerEntered);
@@ -44,8 +44,10 @@ public class InputDevice {
 
     public static List<BaseballNumber> stringToBaseballNumbers(String answerEntered) {
         List<BaseballNumber> baseballNumbers = new ArrayList<>();
+        int charToInt = 0;
         for(int i = 0; i < answerEntered.length(); i++) {
-            baseballNumbers.add(new BaseballNumber(answerEntered.charAt(i)));
+            charToInt = (answerEntered.charAt(i) - '0');
+            baseballNumbers.add(new BaseballNumber(charToInt));
         }
         return baseballNumbers;
     }
