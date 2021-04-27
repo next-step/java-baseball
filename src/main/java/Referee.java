@@ -5,18 +5,23 @@ public class Referee {
 
 	private final String question;
 	private final String input;
+	private Map<Result, Integer> score;
 
 	public Referee(int question, String input) {
 		this.question = String.valueOf(question);
 		this.input = input;
+		this.score = judge();
 	}
 
 	public boolean isFinish() {
-		Map<Result, Integer> judge = judge();
-		return judge.containsKey(Result.STRIKE) && judge.get(Result.STRIKE) == 3;
+		return score.containsKey(Result.STRIKE) && score.get(Result.STRIKE) == 3;
 	}
 
-	public Map<Result, Integer> judge() {
+	public Map<Result, Integer> getScore() {
+		return score;
+	}
+
+	private Map<Result, Integer> judge() {
 		Map<Result, Integer> score = new HashMap<>();
 		for (int i = input.length() - 1; i >= 0; i--) {
 			scoreResult(i, score);
