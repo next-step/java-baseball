@@ -3,14 +3,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class BaseballGame {
     
     private List<Integer> questions = new ArrayList<>(3);
+    private List<Integer> answer = new ArrayList<>(3);
+    private Scanner scanner = new Scanner(System.in);
 
-    public void playGame() {
+    public void runGame() {
         makeQuestion();
-       
+        System.out.println(questions);
+        playGame();
     }
 
     public void makeQuestion(){
@@ -22,4 +26,13 @@ public class BaseballGame {
         questions.add(list.get(2));
     }
     
+    public void playGame(){
+        System.out.println("숫자를 입력하세요 : ");
+        String numberString = scanner.nextLine();
+
+        for(int i=0; i < numberString.length(); i++){
+            answer.add(Integer.parseInt(numberString.substring(i, i+1)));
+        }
+        System.out.println(answer);
+    }
 }
