@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class BaseballGame {
 
-    private List answerList;
-    private List inputList;
+    private static List answerList;
+    private static List inputList;
 
-    private Scanner scan;
+    private static Scanner scan;
 
     BaseballGame(){
         scan = new Scanner(System.in);
@@ -51,7 +51,7 @@ public class BaseballGame {
         }
     }
 
-    public int getMenuNum() {
+    private int getMenuNum() {
 
         int menuNum = -1;
         while (true) {
@@ -71,14 +71,14 @@ public class BaseballGame {
     }
 
 
-    public boolean isOneOrTwo(int input) {
+    private boolean isOneOrTwo(int input) {
         if(input == 1 || input == 2){
             return true;
         }
         return false;
     }
 
-    public int getInputNumber(){
+    private int getInputNumber(){
         System.out.print("숫자를 입력해 주세요 : ");
 
         int input = -1;
@@ -104,14 +104,14 @@ public class BaseballGame {
         }
     }
 
-    public boolean isThreeDigit(int input){
+    private boolean isThreeDigit(int input){
         if(input >= 100 && input < 1000){
             return true;
         }
         return false;
     }
 
-    public boolean isDifferentDigit(int input){
+    private boolean isDifferentDigit(int input){
         int first = input / 100;
         int second = (input - (first * 100) )/ 10;
         int third = input - (first * 100) - (second * 10);
@@ -123,7 +123,7 @@ public class BaseballGame {
         return false;
     }
 
-    public int generateRandomNumber() {
+    private int generateRandomNumber() {
         Random random = new Random();
         while(true){
             int result = random.nextInt(10);
@@ -134,7 +134,7 @@ public class BaseballGame {
         }
     }
 
-    public int getAnswer(){
+    private int getAnswer(){
         int first = generateRandomNumber();
 
         int second = -1;
@@ -200,7 +200,7 @@ public class BaseballGame {
         return result;
     }
 
-    public void printResult(int ballNum, int strikeNum){
+    private void printResult(int ballNum, int strikeNum){
         if(ballNum <= 0 && strikeNum <= 0){
             System.out.println("낫싱");
             return;
