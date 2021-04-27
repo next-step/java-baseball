@@ -22,4 +22,9 @@ public final class NumberUtils {
 
 		return sb.toString().split("");
 	}
+
+	public static boolean checkStrike(String computer, String input) {
+		return false;
+	}
+
 }
