@@ -9,44 +9,49 @@ import org.apache.commons.lang3.StringUtils;
 public class Batter {
 	public List<Integer> swingBat(String numbersStr) {
 		validateInput(numbersStr);
+		List<Integer> numbers = parse(numbersStr);
+		validateResult(numbers);
+		return numbers;
+	}
 
+	private List<Integer> parse(String numbersStr) {
 		List<Integer> numbers = new ArrayList<>(3);
+
 		for (int i = 0; i < numbersStr.length(); i++) {
 			int num = getNumber(numbersStr, i);
-
-			if (num < 1 || 9 < num) {
-				throw new IllegalArgumentException("invalid number: " + num);
-			}
-
-			addNumber(numbers, num);
+			validateNumberRange(num);
+			addNumberIfNotContains(numbers, num);
 		}
-
-		validateResult(numbers);
-
 		return Collections.unmodifiableList(numbers);
 	}
 
+	private int getNumber(String numbersStr, int index) {
+		String numStr = numbersStr.substring(index, index + 1);
+		return Integer.parseInt(numStr);
+	}
+
+	private void addNumberIfNotContains(List<Integer> numbers, int number) {
+		if (numbers.contains(number)) {
+			return;
+		}
+		numbers.add(number);
+	}
+
 	private void validateInput(String numbersStr) {
-		if (StringUtils.isBlank(numbersStr) || StringUtils.length(numbersStr) != 3) {
-			throw new IllegalArgumentException("input length must be 3 characters");
+		if (StringUtils.length(numbersStr) != 3 || !StringUtils.isNumeric(numbersStr)) {
+			throw new IllegalArgumentException("3자리의 숫자를 입력해주세요.");
+		}
+	}
+
+	private void validateNumberRange(int num) {
+		if (num < 1 || 9 < num) {
+			throw new IllegalArgumentException("1 ~ 9 범위의 숫자를 입력해주세요. 입력값=" + num);
 		}
 	}
 
 	private void validateResult(List<Integer> numbers) {
 		if (numbers.size() != 3) {
-			throw new IllegalArgumentException("detected duplicate number");
+			throw new IllegalArgumentException("각 자리마다 서로 다른 숫자를 입력하세요.");
 		}
-	}
-
-	private int getNumber(String numbersStr, int i) {
-		String numStr = numbersStr.substring(i, i + 1);
-		return Integer.parseInt(numStr);
-	}
-
-	private void addNumber(List<Integer> numbers, int number) {
-		if (numbers.contains(number)) {
-			return;
-		}
-		numbers.add(number);
 	}
 }
