@@ -8,9 +8,9 @@ public class BaseBallNumbers {
 
     public BaseBallNumbers(int numbers) {
         if ( 123 <= numbers && numbers <= 987 ) {
-            this.first = numbers / 100;
-            this.second = (numbers % 100) / 10;
-            this.third = (numbers % 100) % 10;
+            setFirst(numbers / 100);
+            setSecond((numbers % 100) / 10);
+            setThird((numbers % 100) % 10);
         }
     }
 
@@ -18,7 +18,7 @@ public class BaseBallNumbers {
         return first;
     }
 
-    public boolean setFirst(int first) {
+    private boolean setFirst(int first) {
         if (isValidNumber(first)) {
             this.first = first;
             return false;
@@ -30,7 +30,7 @@ public class BaseBallNumbers {
         return second;
     }
 
-    public boolean setSecond(int second) {
+    private boolean setSecond(int second) {
         if (isValidNumber(second)) {
             this.second = second;
             return false;
@@ -42,7 +42,7 @@ public class BaseBallNumbers {
         return third;
     }
 
-    public boolean setThird(int third) {
+    private boolean setThird(int third) {
         if (isValidNumber(third)) {
             this.third = third;
             return false;
