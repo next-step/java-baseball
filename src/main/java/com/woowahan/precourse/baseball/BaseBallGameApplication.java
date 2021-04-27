@@ -4,6 +4,8 @@ import com.woowahan.precourse.baseball.domain.BaseBallGame;
 import com.woowahan.precourse.baseball.domain.GameResult;
 import com.woowahan.precourse.baseball.domain.GameStatus;
 import com.woowahan.precourse.baseball.view.GameMessage;
+import com.woowahan.precourse.baseball.view.InputValidation;
+import jdk.internal.util.xml.impl.Input;
 
 
 import java.util.Scanner;
@@ -32,6 +34,13 @@ public class BaseBallGameApplication {
 
         String userGameNumber = sc.nextLine();
 
+        if (InputValidation.isValidRange(userGameNumber) && InputValidation.isNumber(userGameNumber)) {
+
+            execute(sc, userGameNumber);
+        }
+    }
+
+    private static void execute(Scanner sc, String userGameNumber) {
         GameResult gameResult = baseBallGame.execute(userGameNumber.split(""));
         System.out.println(gameResult.getMessage());
 
@@ -46,7 +55,10 @@ public class BaseBallGameApplication {
 
     private static void victoryGame(Scanner sc) {
         String endAnswer = sc.nextLine();
+        executeEnd(endAnswer);
+    }
 
+    private static void executeEnd(String endAnswer) {
         if (endAnswer.equals(GameStatus.RESTART.getValue())) {
             baseBallGame = new BaseBallGame();
         }
