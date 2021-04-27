@@ -4,18 +4,35 @@ import java.util.List;
 import java.util.Objects;
 
 public class ScoreBoard {
-	public Score countScore(List<Integer> pitches, List<Integer> swings) {
-		int strike = 0;
+	public Score countScore(List<Integer> swings, List<Integer> pitches) {
+		Score result = Score.zero();
 		for (int i = 0; i < 3; i++) {
-			strike += isStrike(pitches, swings, i);
+			Score score = getScore(swings, pitches, i);
+			result = result.sumScore(score);
 		}
-		return new Score(strike, 0);
+		return result;
 	}
 
-	private int isStrike(List<Integer> pitches, List<Integer> swings, int index) {
-		if (Objects.equals(swings.get(index), pitches.get(index))) {
-			return 1;
+	private Score getScore(List<Integer> swings, List<Integer> pitches, int index) {
+		if (isStrike(swings.get(index), getPitch(pitches, index))) {
+			return Score.strike();
 		}
-		return 0;
+		if (isBall(swings.get(index), pitches, index)) {
+			return Score.ball();
+		}
+		return Score.zero();
+	}
+
+	private boolean isStrike(int swing, int pitch) {
+		return Objects.equals(swing, pitch);
+	}
+
+	private boolean isBall(int swing, List<Integer> pitches, int index) {
+		return Objects.equals(swing, getPitch(pitches, index + 1))
+			|| Objects.equals(swing, getPitch(pitches, index + 2));
+	}
+
+	private int getPitch(List<Integer> pitches, int index) {
+		return pitches.get(index % 3);
 	}
 }

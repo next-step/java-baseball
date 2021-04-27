@@ -16,7 +16,7 @@ class ScoreBoardTest {
 	@ParameterizedTest
 	@MethodSource({"baseballScenario1", "baseballScenario2"})
 	void testStrike(List<Integer> pitches, List<Integer> swings, int expectedStrike, int expectedBall) {
-		Score score = scoreBoard.countScore(pitches, swings);
+		Score score = scoreBoard.countScore(swings, pitches);
 		assertThat(score.getStrike()).isEqualTo(expectedStrike);
 		assertThat(score.getBall()).isEqualTo(expectedBall);
 	}
