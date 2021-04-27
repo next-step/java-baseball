@@ -45,6 +45,7 @@ class GameTest {
         int[] userTest2 = {8, 6, 3};
         List<Integer> strikeResult = new ArrayList<>();
         List<Integer> ballResult = new ArrayList<>();
+        List<String> gameResult = new ArrayList<>();
 
         //when
         score.init();
@@ -54,6 +55,9 @@ class GameTest {
         }
         strikeResult.add(score.getStrike());
         ballResult.add(score.getBall());
+        score.judge();
+        gameResult.add(score.getFinalScore());
+
 
         score.init();
         for (int i = 0; i < ballCount; i++) {
@@ -62,10 +66,13 @@ class GameTest {
         }
         strikeResult.add(score.getStrike());
         ballResult.add(score.getBall());
+        score.judge();
+        gameResult.add(score.getFinalScore());
 
         //then
         assertThat(strikeResult.get(0)).isEqualTo(3);
         assertThat(ballResult.get(0)).isEqualTo(0);
+        assertThat(gameResult.get(0)).isEqualTo(Message.WIN.getMessage());
 
         assertThat(strikeResult.get(1)).isEqualTo(1);
         assertThat(ballResult.get(1)).isEqualTo(2);
