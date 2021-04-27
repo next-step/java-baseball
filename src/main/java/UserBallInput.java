@@ -80,4 +80,11 @@ public class UserBallInput {
         System.out.println("올바른 입력값이 아닙니다.");
         return "FALSE";
     }
+
+    public String userBallInput() {
+        String userInputRead = "FALSE";
+        while(userInputRead == "FALSE")
+            userInputRead = userBallInputRead();
+        return userInputRead;
+    }
 }

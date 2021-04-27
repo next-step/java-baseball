@@ -30,7 +30,7 @@ public class BaseballGame {
     private void gameStage(String randomGenerated) {
         boolean isWin = false;
         while(!isWin) {
-            String userInput = this.userBallInput.userBallInputRead();
+            String userInput = this.userBallInput.userBallInput();
             int[] calRes = this.gameCalculator.calculateResult(randomGenerated, userInput);
             System.out.println(this.baseballGameResultPrinter.baseballGameResultPrint(calRes));
             isWin = isWin || (calRes[0] == 3);
