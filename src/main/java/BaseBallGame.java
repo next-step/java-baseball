@@ -27,6 +27,14 @@ public class BaseBallGame {
         return Integer.toString(targetNumber);
     }
 
+    // TODO : targetNumberList 생성
+    public void makeTargetNumberArray(int digit){
+        for(int i=0; i<digit; i++){
+            int range = numberPool.size() - 1;
+            targetNumberList.add(i, createTargetNumber(range));
+        }
+    }
+
 
 
 }
