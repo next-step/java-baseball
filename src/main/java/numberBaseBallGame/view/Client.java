@@ -10,7 +10,6 @@ public class Client {
 	private static GenerateGame generateGame;
 	private static final Scanner scanner = new Scanner(System.in);
 
-
 	public static void main(String[] args) {
 		generateGame = new GenerateGame();
 
@@ -28,7 +27,7 @@ public class Client {
 			BallNumberMatchResult gameHintAndResults = generateGame.playGame(gameNumbers);
 
 			if(!gameHintAndResults.isAllMatch()){
-				System.out.println(setHintMessage(gameHintAndResults));
+				System.out.println(HintMessage.setHintMessage(gameHintAndResults));
 				continue;
 			}
 
@@ -47,21 +46,5 @@ public class Client {
 		}
 	}
 
-	private static String setHintMessage(BallNumberMatchResult matchResult){
-		String message = "";
 
-		if(matchResult.isNothing()){
-			return BaseBallStatus.NOTHING.getMessage();
-		}
-
-		if(matchResult.getStrikeCount()>0){
-			message += (BaseBallStatus.STRIKE.getMessage()+matchResult.getStrikeCount()+"볼");
-		}
-
-		if(matchResult.getBallCount()>0){
-			message += (matchResult.getBallCount()+BaseBallStatus.BALL.getMessage());
-		}
-
-		return message;
-	}
 }
