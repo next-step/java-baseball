@@ -1,6 +1,7 @@
 package junhan;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * 숫자 야구 게임
@@ -18,15 +19,41 @@ public class BaseballGame {
 	 * @param args the input arguments
 	 */
 	public static void main(String[] args) {
-		System.out.println("숫자를 입력해주세요 : 123");
-		String inputNumber = "123"; // TODO: 입력 구현
+		gameStart();
+	}
 
+	private static void gameStart() {
 		String baseballNumber = getBaseballNumber();
-		System.out.println(baseballNumber);
-
-		// TODO: 입력값 체크 로직 생성
-
+		challenge(baseballNumber);
+		System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+		String inputExitFlagNumber = getInputString("");
+		if ("1".equals(inputExitFlagNumber)) {
+			gameStart();
+		}
+	}
+
+	/**
+	 * 숫자를 입력받아 결과 출력.
+	 *
+	 * @param baseballNumber 컴퓨터가 생성한 3자리 야구게임 숫자
+	 */
+	public static void challenge(String baseballNumber) {
+		String inputNumber = getInputString("숫자를 입력해주세요 : ");
+		//TODO 입력값 체크 구현
+		System.out.println("3 스트라이크");
+	}
+
+	/**
+	 * 문자입력.
+	 *
+	 * @param prefix 문자 입력 전 출력할 문구
+	 * @return the input string
+	 */
+	public static String getInputString(String prefix) {
+		System.out.print(prefix);
+		Scanner in = new Scanner(System.in);
+		return in.nextLine().trim();
 	}
 
 	/**
