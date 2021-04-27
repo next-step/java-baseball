@@ -18,8 +18,6 @@ public class BaseBall {
         Scanner scanner = new Scanner(System.in);
         boolean status = true;
 
-        System.out.println(question.getNumbers().toString());
-
         while(status) {
             status = calculateResult(scanner, question);
         }

@@ -23,6 +23,7 @@ public class Question {
         this.numbers = numbers;
     }
 
+    //==비즈니스 메서드==//
     private List<Integer> generatedNumbers() {
         List<Integer> newNumbers = new ArrayList<>();
         Random random = new Random();
