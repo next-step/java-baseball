@@ -1,6 +1,10 @@
 package study;
 
 public class Score {
+	private static final Score NOTHING = new Score(0, 0);
+	private static final Score STRIKE = new Score(1, 0);
+	private static final Score BALL = new Score(0, 1);
+
 	private final int strike;
 	private final int ball;
 
@@ -10,15 +14,15 @@ public class Score {
 	}
 
 	static Score strike() {
-		return new Score(1, 0);
+		return STRIKE;
 	}
 
 	static Score ball() {
-		return new Score(0, 1);
+		return BALL;
 	}
 
 	static Score nothing() {
-		return new Score(0, 0);
+		return NOTHING;
 	}
 
 	public int getStrike() {
