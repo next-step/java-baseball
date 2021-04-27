@@ -1,3 +1,5 @@
+package baseball;
+
 public enum Message {
     LESS_THAN_1("1 이상 입력해 주세요."),
     NUMBER_REQUIRED("숫자는 필수값 입니다."),

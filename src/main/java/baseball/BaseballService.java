@@ -1,9 +1,14 @@
+package baseball;
+
 import java.security.SecureRandom;
 import java.util.Random;
 
+import baseball.model.BaseNumbers;
+import baseball.model.BaseballResult;
+
 public class BaseballService {
 
-    private String[] targetNumbers;
+    private BaseNumbers baseNumbers;
     private int numberSize;
 
     /**
@@ -16,15 +21,15 @@ public class BaseballService {
         }
 
         this.numberSize = size;
-        targetNumbers = this.createRandomNumbers(size);
+        this.baseNumbers = this.createRandomNumbers(size);
     }
 
-    /**
+    /** 
      * 야구 게임에 사용할 숫자 생성.
      * @param size 야구 게임에 사용할 숫자 사이즈.
      * @return 야구 게임에 사용할 숫자 객체.
      */
-    public String[] createRandomNumbers(int size) {
+    public BaseNumbers createRandomNumbers(int size) {
         if (size <= 0) {
             throw new IllegalArgumentException(Message.LESS_THAN_1.getText());
         }
@@ -36,25 +41,24 @@ public class BaseballService {
             result[i] = String.valueOf(random.nextInt(10));
         }
 
-        return result;
+        return new BaseNumbers(result);
     }
 
     /**
      * 야구 게임에 사용할 숫자 객체 반환.
      * @return 야구 게임에 사용할 숫자 객체.
      */
-    public String[] getTargetNumbers() {
-        return this.targetNumbers;
+    public BaseNumbers getBaseNumbers() {
+        return this.baseNumbers;
     }
 
     /**
-     * 입력 받은 숫자들과 가지고 있는 숫자들과 비교.
+     * 사용자가 입력한 숫자들과 가지고 있는 숫자들과 비교.
      * @param input 입력 받은 숫자.
      */
-    public void checkNumbers(String input) {
-        if (!validate(input)) {
-            return;
-        }
+    public BaseballResult checkNumbers(String input) {
+        validate(input);
+        return this.baseNumbers.checkNumbers(input);
     }
 
     /**
@@ -69,9 +73,9 @@ public class BaseballService {
         }
 
         // 값이 허용 사이즈와 다르다면.
-        if (input.length() != numberSize) {
+        if (input.length() != this.numberSize) {
             throw new IllegalArgumentException(
-                Message.ONLY_LIMIT_CHARACTERS.getTextWithWord(String.valueOf(numberSize)));
+                Message.ONLY_LIMIT_CHARACTERS.getTextWithWord(String.valueOf(this.numberSize)));
         }
 
         return true;

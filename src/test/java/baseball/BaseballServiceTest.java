@@ -1,3 +1,5 @@
+package baseball;
+
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -6,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import baseball.model.BaseNumbers;
 
 class BaseballServiceTest {
 
@@ -20,8 +24,9 @@ class BaseballServiceTest {
     @DisplayName("숫자 게임 길이가 0 이라면 디폴트 값이 입력 되는지 확인.")
     void start_argsIsZero() {
         service.startGame(0);
+        BaseNumbers baseNumbers = service.getBaseNumbers();
 
-        assertThat(service.getTargetNumbers())
+        assertThat(baseNumbers.getNumbers())
             .hasSize(Constants.BASEBALL_DEFAULT_NUMBER_SIZE);
     }
 
@@ -38,7 +43,9 @@ class BaseballServiceTest {
     @ValueSource(ints = {1, 2, 3, 4})
     @DisplayName("createRandomNumbers의 매개변수로 전달할 값 만큼 Array 사이즈를 생성하는지 확인.")
     void createRandomNumbers_sizeTest(int size) {
-        assertThat(service.createRandomNumbers(size))
+        BaseNumbers baseNumbers = service.createRandomNumbers(size);
+
+        assertThat(baseNumbers.getNumbers())
             .hasSize(size);
     }
 
@@ -59,6 +66,10 @@ class BaseballServiceTest {
 
         assertThatThrownBy(() -> {service.validate(numbers);})
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Message.ONLY_LIMIT_CHARACTERS.getText());
+            .hasMessageContaining(
+                Message.ONLY_LIMIT_CHARACTERS.getTextWithWord(
+                    String.valueOf(Constants.BASEBALL_DEFAULT_NUMBER_SIZE)));
     }
+
+    
 }
