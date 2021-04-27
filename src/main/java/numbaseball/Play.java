@@ -9,7 +9,7 @@ public class Play {
     private static int MAX_RANDOM_NUMBER = 9;
     private static int PLAY_NUMBER_SIZE = 3;
     private static String RESTART_GAME_FLAG = "1";
-    private static String END_GAME_FLAG = "1";
+    private static String END_GAME_FLAG = "2";
 
 
     private static String VALIDATE_MSG_NUMBER_SIZE = "반드시 3자리 숫자만 입력 가능합니다.. 다시 입력 해주세요.";
