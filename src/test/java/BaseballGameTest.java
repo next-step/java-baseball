@@ -31,4 +31,51 @@ public class BaseballGameTest {
 		assertThat(true).isEqualTo(result);
 	}
 
+	@Test
+	@DisplayName("Ball Test 1")
+	void testIsBall() {
+		BaseballGame baseballGame = new BaseballGame();
+		char input = '1';
+		String randomNumbers = "125";
+
+		boolean result = baseballGame.isBall(input, randomNumbers);
+
+		assertThat(true).isEqualTo(result);
+	}
+
+	@Test
+	@DisplayName("Ball Test 2")
+	void testIsBall2() {
+		BaseballGame baseballGame = new BaseballGame();
+		char input = '9';
+		String randomNumbers = "391";
+
+		boolean result = baseballGame.isBall(input, randomNumbers);
+
+		assertThat(true).isEqualTo(result);
+	}
+
+	@Test
+	@DisplayName("Ball Test 3")
+	void testIsBall3() {
+		BaseballGame baseballGame = new BaseballGame();
+		char input = '7';
+		String randomNumbers = "247";
+
+		boolean result = baseballGame.isBall(input, randomNumbers);
+
+		assertThat(true).isEqualTo(result);
+	}
+
+	@Test
+	@DisplayName("Ball Test 4")
+	void testIsBall4() {
+		BaseballGame baseballGame = new BaseballGame();
+		char input = '1';
+		String randomNumbers = "825";
+
+		boolean result = baseballGame.isBall(input, randomNumbers);
+
+		assertThat(false).isEqualTo(result);
+	}
 }
