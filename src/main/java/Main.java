@@ -50,6 +50,13 @@ public class Main {
         int ballCount = getBallCount(userBaseballStr, commRandomNum);
         System.out.println(ballCount + "볼");
 
+        boolean isNothing = strikeCount + ballCount > 0 ? false : true;
+
+        if(isNothing) {
+            System.out.println("낫싱");
+        }
+
+
         return isGameRunning;
     }
 

@@ -108,4 +108,28 @@ class MainTest {
         System.out.println(ballCount + "볼");
         assertThat(ballCount).isEqualTo(3);
     }
+
+
+    @Test
+    @DisplayName("Test Baseball Nothing Number")
+    void TEST_getNothingCount() {
+
+        String userBaseballStr = "987";
+        String commRandomNum = "123";
+
+        // Check Strike
+        int strikeCount = Main.getStrikeCount(userBaseballStr, commRandomNum);
+        System.out.println(strikeCount + "스트라이크");
+
+        // Check Ball
+        int ballCount = Main.getBallCount(userBaseballStr, commRandomNum);
+        System.out.println(ballCount + "볼");
+
+        boolean isNothing = strikeCount + ballCount > 0 ? false : true;
+        if(isNothing) {
+            System.out.println("낫싱");
+        }
+
+        assertThat(isNothing).isEqualTo(true);
+    }
 }
