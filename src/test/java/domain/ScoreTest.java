@@ -30,7 +30,7 @@ public class ScoreTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0,4", "1,3", "4,0"})
-    @DisplayName("스트라이크 + 볼은 3이 최대")
+    @DisplayName("스트라이크 + 볼은 3이 최대, 초과 시 에러")
     public void maxCountException(int strike, int ball) throws Exception {
         assertThatThrownBy(() -> new Score(strike, ball))
                 .isInstanceOf(IllegalArgumentException.class);
