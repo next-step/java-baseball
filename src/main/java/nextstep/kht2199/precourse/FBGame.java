@@ -19,7 +19,7 @@ public class FBGame {
 	}
 
 	public void init() {
-		state = FBGameState.INITIATED;
+		state = FBGameState.ON_GOING;
 		number = new FBGameNumber();
 	}
 
@@ -27,11 +27,24 @@ public class FBGame {
 	 * 게임 시작
 	 */
 	public void start() {
-		while(state != FBGameState.ENDED) {
+		state = FBGameState.ON_GOING;
+		while(state != FBGameState.TERMINATED) {
 			print(state.message());
 			String response = acceptUserInput();
 			state.handleUserResponse(this, response);
 		}
+	}
+
+	public void restart() {
+		init();
+	}
+
+	public void end() {
+		this.state = FBGameState.TERMINATED;
+	}
+
+	public void onSucceed() {
+		this.state = FBGameState.ENDED;
 	}
 
 	/**
@@ -40,7 +53,7 @@ public class FBGame {
 	 * @param userNumber 사용자 입력 숫자
 	 * @return 비교 결과
 	 */
-	private FootballMatchResult matchResult(int userNumber) {
+	protected FootballMatchResult matchResult(int userNumber) {
 		return number.match(userNumber);
 	}
 
@@ -73,7 +86,14 @@ public class FBGame {
 		throw new RuntimeException();
 	}
 
-	private void print(String message) {
+	protected void print(String message) {
+		if (message == null) {
+			return;
+		}
+		System.out.print(message);
+	}
+
+	protected void println(String message) {
 		System.out.println(message);
 	}
 
