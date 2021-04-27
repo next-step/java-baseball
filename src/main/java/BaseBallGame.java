@@ -14,11 +14,6 @@ public class BaseBallGame implements Game {
 	}
 
 	@Override
-	public void judgeGame() {
-
-	}
-
-	@Override
 	public void printMsg(String msg) {
 		System.out.println(msg);
 	}
@@ -37,5 +32,22 @@ public class BaseBallGame implements Game {
 		String numbers = String.valueOf(scan.nextInt());
 		scan.close();
 		return numbers;
+	}
+
+	public boolean judgeGame(String numbers, String inputNumbers) {
+		boolean result = false;
+		int strike = callStrike(numbers, inputNumbers);
+		int ball = callBall(numbers, inputNumbers);
+		return result;
+	}
+
+	public int callStrike(String numbers, String inputNumbers) {
+		int strike = 0;
+		return strike;
+	}
+
+	public int callBall(String numbers, String inputNumbers) {
+		int ball = 0;
+		return ball;
 	}
 }

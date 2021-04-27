@@ -3,8 +3,6 @@ public interface Game {
 
 	public void endGame();
 
-	public void judgeGame();
-
 	public void printMsg(String msg);
 }
 
