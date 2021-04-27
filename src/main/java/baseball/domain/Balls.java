@@ -1,9 +1,7 @@
 package baseball.domain;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Balls {
   private static final int BALL_SIZE = 3;
@@ -11,9 +9,10 @@ public class Balls {
 
   public Balls(String balls) {
     validateInput(balls);
-    ballSet = Arrays.stream(balls.split(""))
-        .map(ball -> new Ball(Integer.parseInt(ball)))
-        .collect(Collectors.toSet());
+    ballSet = new HashSet<>();
+    for (String number : balls.split("")) {
+      ballSet.add(new Ball(Integer.parseInt(number)));
+    }
     validateSize(ballSet.size(), "서로 다른 공이어야 합니다.");
   }
 
