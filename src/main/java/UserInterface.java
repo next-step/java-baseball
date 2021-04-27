@@ -1,0 +1,79 @@
+import java.util.Map;
+import java.util.Scanner;
+
+import validator.NumberFormatValidator;
+
+public class UserInterface {
+
+	private Scanner scanner = new Scanner(System.in);
+
+	private static final String WELCOME_MESSAGE = "숫자를 입력해 주세요";
+	private static final String FINISH_MESSAGE = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
+	private static final String RETRY_OR_NOT = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+
+	public String interactUser() {
+		sendMessageToUser(WELCOME_MESSAGE);
+		int input = scanner.nextInt();
+		NumberFormatValidator.validate(input);
+		return String.valueOf(input);
+	}
+
+	public int replayOnNot() {
+		sendMessageToUser(FINISH_MESSAGE);
+		int response = 0;
+		boolean isRetry = true;
+		while (isRetry) {
+			sendMessageToUser(RETRY_OR_NOT);
+			response = scanner.nextInt();
+			isRetry = !isAcceptable(response);
+		}
+		return response;
+	}
+
+	public void sendMessageToUser(Map<Result, Integer> score) {
+		if (score.size() == 0) {
+			sendMessageToUser(Result.NOTHING.getMessage());
+			return;
+		}
+		sendMessageToUser(convertScoreToMessage(score));
+	}
+
+	protected String convertScoreToMessage(Map<Result, Integer> score) {
+		StringBuilder answer = new StringBuilder();
+		writeMessageBy(score, Result.STRIKE, answer);
+		if (!isInitMessage(answer) && hasBall(score)) {
+			answer.append(" ");
+		}
+		writeMessageBy(score, Result.BALL, answer);
+		return answer.toString();
+	}
+
+	private boolean isAcceptable(int code) {
+		return code == 1 || code == 2;
+	}
+
+	private void sendMessageToUser(String message) {
+		if (message.length() == 0) {
+			return;
+		}
+		System.out.println(message);
+	}
+
+	private void writeMessageBy(Map<Result, Integer> score, Result resultType, StringBuilder message) {
+		if (!score.containsKey(resultType)) {
+			return;
+		}
+		message.append(score.get(resultType))
+			.append(" ")
+			.append(resultType.getMessage());
+	}
+
+	private boolean isInitMessage(StringBuilder message) {
+		return message.length() == 0;
+	}
+
+	private boolean hasBall(Map<Result, Integer> score) {
+		return score.containsKey(Result.BALL);
+	}
+
+}
