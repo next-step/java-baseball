@@ -8,11 +8,19 @@
 
 ## 구현계획 
 
+0. init 
+    1. baseballGame Class 생성 
+    2. 게임 기본 값 세팅 
 1. 1-9로 이루어진 중복되지 않는 무작위 3자리 수 생성 
-    1. random class 활용, 중복일 경우 재귀 처리 (x)
-    2. 1-9 pool에서 뽑고 삭제 후 뽑기 반복 (v) 
-2. 입력받은 숫자를 배열로 저장한다. 
+    1. 1-9 pool에서 뽑고 삭제 후 뽑기 반복 (v) 
+        1. pool 생성 
+        2. 뽑기 로직 작성 
+2. Scanner를 통해 유저의 answer를 입력받는다 
 3. 저장된 target 배열과 입력받은 answer 배열을 비교한다 
-    1. strike check - strike 개수 체크 한 후 3개면 return 
-    2. ball check - ball 이 3개면 return, strike/ball이 0개면 nothing  
-4. while을 사용해 답이 나오기 전까지 로직을 반복한다 
+    1. strike check - strike 개수 체크 
+    2. ball check - ball 개수 체크 
+    3. end check - strike 개수가 3이면 게임 종료     
+4. while을 사용해 게임종료 변수가 1이 나올 때까지 반복 
+5. 게임종료 변수 1일 경우, 종료 여부 확인후 진행 
+    1. 1 입력, 게임 재시작 
+    2. 2 입력, 게임종료 
