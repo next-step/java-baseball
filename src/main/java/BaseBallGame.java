@@ -74,4 +74,18 @@ public class BaseBallGame implements Game {
 		}
 		return 0;
 	}
+
+	public String makeGameResult(int strike, int ball) {
+		String msg = "";
+		if (strike == 0 && ball == 0) {
+			return "낫싱";
+		}
+		if (strike > 0) {
+			msg += strike + " 스트라이크 ";
+		}
+		if (ball > 0) {
+			msg += ball + " 볼 ";
+		}
+		return msg;
+	}
 }
