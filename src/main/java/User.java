@@ -39,7 +39,7 @@ public class User {
 		userNumbers = new ArrayList<>(inputNumber);
 	}
 
-	public Set<Integer> separateNumber(String inputValue) {
+	private Set<Integer> separateNumber(String inputValue) {
 		int intInput = Integer.parseInt(inputValue);
 		Set<Integer> inputNumber = new LinkedHashSet<>();
 

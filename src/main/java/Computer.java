@@ -36,26 +36,26 @@ public class Computer {
 		countBall(userNumbers);
 	}
 
-	public void countStrike(List<Integer> userNumbers) {
+	private void countStrike(List<Integer> userNumbers) {
 		for (int i = 0; i < userNumbers.size(); i++) {
 			strikeCount += matchStrikeNumber(computerNumbers.get(i), userNumbers.get(i));
 		}
 	}
 
-	public void countBall(List<Integer> userNumbers) {
+	private void countBall(List<Integer> userNumbers) {
 		for (int i = 0; i < userNumbers.size(); i++) {
 			ballCount += matchBallNumber(computerNumbers.get(i), userNumbers.get(i));
 		}
 	}
 
-	public int matchStrikeNumber(int comNum, int userNum) {
+	private int matchStrikeNumber(int comNum, int userNum) {
 		if (comNum == userNum) {
 			return 1;
 		}
 		return 0;
 	}
 
-	public int matchBallNumber(int comNum, int userNum) {
+	private int matchBallNumber(int comNum, int userNum) {
 		if (comNum == userNum) {
 			return 0;
 		}
