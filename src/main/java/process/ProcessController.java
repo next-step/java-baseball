@@ -1,5 +1,6 @@
 package process;
 
+import logic.Answer;
 import logic.BaseballGameCoreLogic;
 import ui.Presentator;
 
@@ -16,20 +17,38 @@ public class ProcessController {
         this.logic = logic;
     }
 
-    //todo : initPhase를 생성
-
-    public void inputPhase() {
-        String inputValue = presentator.presentInputNumber();
-        List<Integer> question = convertStringToAnswerFormat(inputValue);
-        GameResult gameResult = logic.calculateResult(question);
-    }
-
-    private List<Integer> convertStringToAnswerFormat(String inputValue) {
-        List<Integer> formattedValue = new ArrayList<>();
-        for (int i=0;i<inputValue.length();i++) {
-            formattedValue.add((int) inputValue.charAt(i));
+    public void runProcess() {
+        boolean isWantPlayGame = true;
+        while(isWantPlayGame) {
+            init();
+            run();
+            System.out.println("end game");
         }
-        return formattedValue;
     }
+
+    private void init() {
+        logic.generateAnswer();
+    }
+
+    public void run() {
+        boolean isEndGame = false;
+        while(!isEndGame) {
+            List<Integer> question = inputPhase();
+            isEndGame = showResultPhase(question);
+        }
+    }
+
+    public List<Integer> inputPhase() {
+        String inputValue = presentator.presentInputNumber();
+        List<Integer> question = Answer.convertStringToAnswerFormat(inputValue);
+        return question;
+    }
+
+    private boolean showResultPhase(List<Integer> question) {
+        GameResult gameResult = logic.calculateResult(question);
+        presentator.displayResult(gameResult);
+        return gameResult.isGameEnd();
+    }
+
 
 }

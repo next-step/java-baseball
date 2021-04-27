@@ -52,14 +52,23 @@ public class Answer {
         return GameResult.NOTHING;
     }
 
-    private boolean isValueExist(int i) {
-        return answerSet.contains(i);
+    private boolean isValueExist(int value) {
+        return answerSet.contains(value);
     }
 
     private boolean isCompletelySame(List<Integer> question, int i) {
-        if (question.get(i).equals(answer.get(i))) {
+        if (question.get(i) == (answer.get(i))) {
             return true;
         }
         return false;
     }
+
+    public static List<Integer> convertStringToAnswerFormat(String inputValue) {
+        List<Integer> formattedValue = new ArrayList<>();
+        for (int i=0;i<inputValue.length();i++) {
+            formattedValue.add(Integer.parseInt(String.valueOf(inputValue.charAt(i))));
+        }
+        return formattedValue;
+    }
+
 }

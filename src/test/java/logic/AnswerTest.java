@@ -24,4 +24,22 @@ class AnswerTest {
         assertEquals(gameResult.isGameEnd(), true);
 
     }
+
+    @Test
+    void 숫자_문자열이_들어오면_정상적으로_answer_format으로_변경한다() {
+        // given
+
+        Answer answer = new Answer();
+        answer.generateAnswer();
+
+        //when
+        StringBuilder answerString = new StringBuilder();
+        for (int v : answer.getAnswer()) {
+            answerString.append(v);
+        }
+        List<Integer> formattedAnswer = Answer.convertStringToAnswerFormat(answerString.toString());
+
+        // then
+        assertEquals(formattedAnswer, answer.getAnswer());
+    }
 }

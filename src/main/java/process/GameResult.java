@@ -6,8 +6,8 @@ public class GameResult {
     public static final int STRIKE = 1;
     public static final int BALL = 2;
     public static final int NOTHING = 3;
-    int strike;
-    int ball;
+    private int strike;
+    private int ball;
 
     public GameResult() {
         this.strike = 0;
@@ -34,5 +34,18 @@ public class GameResult {
 
     public boolean isGameEnd() {
         return strike == Answer.ANSWER_SIZE && ball == 0;
+    }
+
+    public boolean isNothing() {
+        return strike == 0 && ball == 0;
+    }
+
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
     }
 }
