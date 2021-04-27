@@ -4,8 +4,9 @@
 * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 과제를 제출한다.
 
 ## 기능 목록 
-* 컴퓨터 볼 객체 생성
-* 사용자가 입력하는 볼 객체 생성
+* 공통 사용 볼 객체 생성
+* 컴퓨터 랜덤생성하는 볼 class 생성
+* 사용자가 입력하는 볼 class 생성
 * 야구게임 시작하는 서비스/어플리케이션 class 생성
   - GameService.java
   - BaseballApplication.java
