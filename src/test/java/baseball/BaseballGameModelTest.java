@@ -6,11 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import utils.ListUtil;
-
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,7 +29,17 @@ class BaseballGameModelTest {
     }
 
     @ParameterizedTest(name = "사용자입력: {0}, 시스템 입력: {1} > 결과: {2}스{3}볼")
-    @MethodSource("guessNumberResult")
+    @CsvSource(value = {
+            "123:123:3:0:세 자리 모두 일치",
+            "123:312:0:3:세 자리 모두 자리 불일치",
+            "123:132:1:2:한 자리 일치, 나머지 두자리 위치 불일치",
+            "124:125:2:0:두자리 일치",
+            "123:134:1:1:한 자리 일치, 한 자리 위치 불일치",
+            "123:342:0:2:두 자리 위치 불일치",
+            "134:125:1:0:한 자리 일치",
+            "134:356:0:1:한 자리 위치 불일치",
+            "134:677:0:0:모든 자리 불일치",
+    }, delimiter = ':')
     @DisplayName("사용자 숫자과 시스템 숫자 비교")
     void 사용자_숫자과_시스템_숫자_를_비교한다(String input, String target, int strikeResult, int ballResult) {
         init(input, target);
@@ -41,20 +48,6 @@ class BaseballGameModelTest {
 
         assertThat(gameResult.getStrike()).isEqualTo(strikeResult);
         assertThat(gameResult.getBall()).isEqualTo(ballResult);
-    }
-
-    private static Stream<Arguments> guessNumberResult() {
-        return Stream.of(
-                Arguments.of("123", "123", "3", "0", "세 자리 모두 일치"),
-                Arguments.of("123", "312", "0", "3", "세 자리 모두 자리 불일치"),
-                Arguments.of("123", "132", "1", "2", "한 자리 일치, 나머지 두자리 위치 불일치"),
-                Arguments.of("124", "125", "2", "0", "두자리 일치"),
-                Arguments.of("123", "134", "1", "1", "한 자리 일치, 한 자리 위치 불일치"),
-                Arguments.of("123", "342", "0", "2", "두 자리 위치 불일치"),
-                Arguments.of("134", "125", "1", "0", "한 자리 일치"),
-                Arguments.of("134", "356", "0", "1", "한 자리 위치 불일치"),
-                Arguments.of("134", "677", "0", "0", "모든 자리 불일치")
-        );
     }
 
     @Test
