@@ -11,6 +11,25 @@ public class NumberBaseball {
 	private static final Scanner scanner = new Scanner(System.in);
 
 	/**
+	 * @methodName  : buildResultString
+	 * @author      : Sunghwa Lee
+	 * @description : Build the result string to be displayed
+	 * @param strikeCount Count of strikes to be displayed
+	 * @param ballCount Count of balls to be displayed
+	 * @return Built result string
+	 */
+	private static String buildResultString(int strikeCount, int ballCount) {
+		StringBuilder result = new StringBuilder();
+		if (strikeCount > 0) {
+			result.append(String.format("%d 스트라이크 ", strikeCount));
+		}
+		if (ballCount > 0) {
+			result.append(String.format("%d 볼", ballCount));
+		}
+		return result.toString();
+	}
+
+	/**
 	 * @methodName  : askReplay
 	 * @author      : Sunghwa Lee
 	 * @description : Ask the user if the want to replay
