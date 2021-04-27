@@ -77,4 +77,12 @@ public class ResultScore {
 
     return message;
   }
+
+  public int getStrike() {
+    return strike;
+  }
+
+  public int getBall() {
+    return ball;
+  }
 }
