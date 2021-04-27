@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.exception.InputException;
+
 import java.util.List;
 
 public class JudgeGame {
@@ -69,6 +71,10 @@ public class JudgeGame {
 
     public static boolean chkInputNum(String inputNum){
         boolean chkFlag = false;
+
+        if(!"1".equals(inputNum) && !"2".equals(inputNum)){
+            throw new InputException("'1' 또는 '2'를 입력해주세요.");
+        }
 
         if("1".equals(inputNum)){
             return true;
