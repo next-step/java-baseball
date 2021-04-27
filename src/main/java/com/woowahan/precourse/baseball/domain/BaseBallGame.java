@@ -1,5 +1,6 @@
 package com.woowahan.precourse.baseball.domain;
 
+import com.woowahan.precourse.baseball.GameResult;
 import com.woowahan.precourse.baseball.record.BaseBallRecord;
 import com.woowahan.precourse.baseball.rule.BaseBallRule;
 import com.woowahan.precourse.baseball.view.GameMessage;
@@ -9,9 +10,11 @@ public class BaseBallGame {
     private final String[] gameNumbers;  // 컴퓨터가 선택한 세자리 수 - Game 생성 시 같이 생성되어야 함.
     private String[] inputNumbers;
     private BaseBallRecord baseBallRecord;
+    private GameResult gameResult;
 
     public BaseBallGame() {
         this.gameNumbers = createBallGameNumber();
+        this.gameResult = new GameResult();
     }
 
     public String[] getGameNumber() {
@@ -39,7 +42,7 @@ public class BaseBallGame {
         return new String[] { firstNumber, secondNumber, thirdNumber };
     }
 
-    public String execute(String[] inputNumbers) {
+    public GameResult execute(String[] inputNumbers) {
 
         baseBallRecord = new BaseBallRecord();
 
@@ -54,26 +57,27 @@ public class BaseBallGame {
         int ballCount = baseBallRecord.getBallCount();
 
         if (BaseBallRule.isNothingAndFourBall(strikeCount, ballCount)) {
-            return GameMessage.NOTHING;
+            this.gameResult.setMessage(GameMessage.NOTHING);
+            return this.gameResult;
         }
 
         if (BaseBallRule.isVictory(strikeCount)) {
-            return GameMessage.VICTORY;
+            this.gameResult.setVictory(true);
+            this.gameResult.setMessage(GameMessage.VICTORY);
+            return this.gameResult;
         }
 
         StringBuilder sb = new StringBuilder();
 
         if (strikeCount > 0) {
-            sb.append(strikeCount)
-                    .append(GameMessage.STRIKE);
+            this.gameResult.setMessage(sb.append(strikeCount).append(GameMessage.STRIKE).toString());
         }
 
         if (ballCount > 0) {
-            sb.append(ballCount)
-                    .append(GameMessage.BALL);
+            this.gameResult.setMessage(sb.append(ballCount).append(GameMessage.BALL).toString());
         }
 
-        return sb.toString();
+        return this.gameResult;
     }
 
     private void countBall(int position) {
