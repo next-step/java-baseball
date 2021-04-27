@@ -11,6 +11,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class BaseBallTest {
     @Test
+    void createRandom() {
+        assertThatCode(() -> BaseBall.ofRandom(new RandomNumber())).doesNotThrowAnyException();
+        assertThat(BaseBall.ofRandom(new IncrementsNumber())).isEqualTo(BaseBall.of("123"));
+    }
+
+    @Test
     void equals() {
         assertThat(BaseBall.of(Arrays.asList(Ball.of(1), Ball.of(5), Ball.of(9)))).isEqualTo(BaseBall.of("159"));
     }
@@ -20,11 +26,6 @@ class BaseBallTest {
         assertThatThrownBy(() -> BaseBall.of("15"))
             .hasMessageMatching("세자리 숫자를 입력해주세요.")
             .isInstanceOf(NoThreeDigitException.class);
-    }
-
-    @Test
-    void createRandom() {
-        assertThatCode(() -> BaseBall.ofRandom(new RandomNumber())).doesNotThrowAnyException();
     }
 
     @Test
