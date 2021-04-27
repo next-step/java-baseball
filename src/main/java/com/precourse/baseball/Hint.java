@@ -45,16 +45,12 @@ public class Hint {
 	 * @return 힌트 문자열
 	 */
 	public String getHint() {
-		if (strike == 0 && ball == 0) {
+		if (strike == 0 && ball == 0)
 			return Constants.NO_BALL_NO_STRIKE;
-		}
-		if (strike == 0) {
+		if (strike == 0)
 			return String.format(Constants.BALL_ONLY, ball);
-		}
-		if (ball == 0) {
+		if (ball == 0)
 			return String.format(Constants.STRIKE_ONLY, strike);
-		}
 		return String.format(Constants.STRIKE_N_BALL, strike, ball);
 	}
-
 }

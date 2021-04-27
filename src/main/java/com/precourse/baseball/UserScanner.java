@@ -14,13 +14,11 @@ public class UserScanner {
 	 * @return 입력받은 수 반환
 	 */
 	public List<Integer> scanNumber() {
-		String input;
-		List<Integer> numberList;
-		while (true) {
-			input = sc.next();
+		List<Integer> numberList = new ArrayList<>();
+		while (numberList.isEmpty()) {
+			String input = sc.next();
 			try {
 				numberList = generateList(input);
-				break;
 			} catch (RuntimeException re) {
 				System.out.print(Constants.INPUT_EXCEPTION_MESSAGE);
 			}
@@ -78,30 +76,31 @@ public class UserScanner {
 	}
 
 	/**
-	 * 1 또는 2가 아닐경우 예외발생
+	 * "1" 또는 "2"만 int 형으로 반환
 	 * @param input : 메뉴 번호
+	 * @return 1 또는 2를 반환
 	 */
-	public void checkMenuNum(String input) {
+	public int getMenuNum(String input) {
 		if (!input.equals("1") && !input.equals("2")) {
 			throw new RuntimeException(Constants.ERR_RANGE_VALUE);
 		}
+		return Integer.parseInt(input);
 	}
 
 	/**
 	 * 다시시작 및 종료 선택번호 입력
 	 * @return 1 또는 2
 	 */
-	public String scanMenuNumber() {
-		String input;
-		while (true) {
-			input = sc.next();
+	public int scanMenuNumber() {
+		int number = 0;
+		while (number == 0) {
+			String input = sc.next();
 			try {
-				checkMenuNum(input);
-				break;
+				number = getMenuNum(input);
 			} catch (RuntimeException re) {
 				System.out.print(Constants.INPUT_EXCEPTION_MESSAGE);
 			}
 		}
-		return input;
+		return number;
 	}
 }
