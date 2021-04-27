@@ -31,6 +31,16 @@ class InputUtilsTest {
 	}
 
 	@Test
+	@DisplayName("input str -> Integer[] 정상 입력 케이스")
+	void parseInput2() {
+
+		String given = "654";
+		Integer[] when = inputUtils.parseInput(given, 3);
+		Integer[] then = new Integer[] {4, 5, 6};
+		assertThat(when).isEqualTo(then);
+	}
+
+	@Test
 	@DisplayName("input에 [1-9]숫자 외의 문자 들어가서 지정된 자리 수 넘어갔을 경우 iae")
 	void parseInputThrowException() {
 

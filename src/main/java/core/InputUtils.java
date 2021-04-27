@@ -1,7 +1,7 @@
 package core;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Description : input 관련 util class
@@ -15,11 +15,11 @@ public class InputUtils {
 	 * @param input user input
 	 * @return (T / F)
 	 */
-	public boolean isGameRestart(Integer input) {
+	public boolean isGameRestart(String input) {
 
 		boolean result = false;
 
-		if (input.equals(1)) {
+		if (input.equals("1")) {
 			result = true;
 		}
 
@@ -30,13 +30,13 @@ public class InputUtils {
 	 * Description: input str을 받아서 int[]로 변환하는 method
 	 *
 	 * @param input input str(from scanner)`
-	 * @param inputSize 게임 내 input size (3)
+	 * @param inputSize 게임 내 input size
 	 * @return (int[]) 입력된 숫자들의 배열
 	 * @throws IllegalArgumentException 잘못된 포맷 혹은 잘못된 길이의 input이 올 경우 iae
 	 */
 	public Integer[] parseInput(String input, Integer inputSize) throws IllegalArgumentException {
 
-		Set<Integer> resultSet = new TreeSet<>();
+		Set<Integer> resultSet = new HashSet<>();
 		Integer[] result = new Integer[inputSize];
 
 		for (int idx = 0; idx < input.trim().length(); idx++) {
