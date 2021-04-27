@@ -21,11 +21,14 @@ public class OutputView {
 
         if (score.countOfStrike() > 0) {
             messages.add(String.format("%d 스트라이크", score.countOfStrike()));
-        } else if (score.countOfBall() > 0) {
+        }
+        if (score.countOfBall() > 0) {
             messages.add(String.format("%d 볼", score.countOfBall()));
         }
 
-        System.out.println(String.join(" ", messages));
+        if (!messages.isEmpty()) {
+            System.out.println(String.join(" ", messages));
+        }
     }
 
     public static void endGame() {
