@@ -16,7 +16,11 @@ public class BaseBallGame implements Game {
 
 	@Override
 	public void endGame() {
-
+		printMsg("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+		String flag = inputNumbers("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+		if (flag.equals("1")) {
+			playGame();
+		}
 	}
 
 	@Override
