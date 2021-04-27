@@ -17,4 +17,8 @@ public class GameResult {
     public String printHint() {
         return hint.getMessage();
     }
+
+    public boolean isAnswer() {
+        return hint.isThreeStrike();
+    }
 }

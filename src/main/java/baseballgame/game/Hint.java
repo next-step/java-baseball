@@ -9,6 +9,7 @@ public class Hint {
     private static final int MATCHED_SCORE = 1;
     private static final int UNMATCHED_SCORE = 0;
     private static final int NO_COUNT = 0;
+    private static final int FULL_COUNT = 3;
 
     private static final String NO_MESSAGE = "";
     private static final String NOTHING_MESSAGE = "낫싱";
@@ -57,5 +58,9 @@ public class Hint {
 
     private boolean noStrike() {
         return matchResultCounts.get(MatchResult.STRIKE) == NO_COUNT;
+    }
+
+    public boolean isThreeStrike() {
+        return matchResultCounts.get(MatchResult.STRIKE) == FULL_COUNT;
     }
 }
