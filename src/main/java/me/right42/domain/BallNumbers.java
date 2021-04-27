@@ -3,6 +3,7 @@ package me.right42.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import me.right42.domain.type.BallMatchType;
 import me.right42.exception.BallNumberDuplicationException;
@@ -81,5 +82,20 @@ public class BallNumbers {
 		if(balls.contains(ballNumber)) {
 			throw new BallNumberDuplicationException("볼 값은 중복불가 입니다.");
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		BallNumbers that = (BallNumbers)o;
+		return Objects.equals(balls, that.balls);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(balls);
 	}
 }

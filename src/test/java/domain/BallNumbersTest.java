@@ -76,4 +76,27 @@ class BallNumbersTest {
 		assertThat(ballMatchResult.getBallCount()).isEqualTo(1);
 		assertThat(ballMatchResult.getNothingCount()).isEqualTo(1);
 	}
+
+	@Test
+	@DisplayName("같은 BallNumbers equals 테스트")
+	void equalsTest(){
+		String ballNumbers = "123";
+
+		BallNumbers ballNumbers1 = BallNumbers.create(ballNumbers);
+		BallNumbers ballNumbers2 = BallNumbers.create(ballNumbers);
+
+		assertThat(ballNumbers1).isEqualTo(ballNumbers2);
+	}
+
+	@Test
+	@DisplayName("다른 BallNumbers equals 테스트")
+	void NotEqualsTest(){
+		String numbers1 = "123";
+		String numbers2 = "456";
+
+		BallNumbers ballNumbers1 = BallNumbers.create(numbers1);
+		BallNumbers ballNumbers2 = BallNumbers.create(numbers2);
+
+		assertThat(ballNumbers1).isNotEqualTo(ballNumbers2);
+	}
 }
