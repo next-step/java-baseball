@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,7 +53,7 @@ public class BaseballNumbersTest {
 
 	@Test
 	void getBaseballNumbers() {
-		assertThat(baseballNumbers.getBaseballNumbers()).isEqualTo(baseballNumbers.getBaseballNumbers());
+		assertThat(baseballNumbers.getBaseballNumbers()).isInstanceOf(List.class).isNotNull();
 	}
 
 	@Test
