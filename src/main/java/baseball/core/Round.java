@@ -12,18 +12,18 @@ public class Round {
 			throw new IllegalArgumentException(String.format("%d자리 자릿수에 해당하는 숫자를 넘겨주시기 바랍니다.", MAX_DIGITS));
 		}
 
-		numberMap = new HashMap<>();
+		initNumber(value);
+	}
 
+	private void initNumber(int value) {
+		numberMap = new HashMap<>();
 		for (int i = 0; i < MAX_DIGITS; i++) {
 			numberMap.put(getPlaceValue(value, i), i);
 		}
 	}
 
 	public Map<GameStatus, Integer> getGameStatusCountMap(int num) {
-		Map<GameStatus, Integer> countMap = new HashMap<GameStatus, Integer>(){{
-			put(GameStatus.STRIKE, 0);
-			put(GameStatus.BOLL, 0);
-		}};
+		Map<GameStatus, Integer> countMap = initCoutMap();
 
 		for (int i = 0; i < Round.MAX_DIGITS; i++) {
 			int number = getPlaceValue(num, i);
@@ -31,6 +31,15 @@ public class Round {
 		}
 
 		return countMap;
+	}
+
+	private Map<GameStatus, Integer> initCoutMap() {
+		return new HashMap<GameStatus, Integer>(){
+			{
+				put(GameStatus.STRIKE, 0);
+				put(GameStatus.BOLL, 0);
+			}
+		};
 	}
 
 	protected boolean isExsit(int number) {

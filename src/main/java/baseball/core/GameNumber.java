@@ -16,9 +16,15 @@ public class GameNumber {
 		if (digits < DIGITS_MIN || digits > DIGITS_MAX) {
 			throw new IllegalArgumentException(String.format("파라미터의 값은 %d~%d까지 지원합니다.", DIGITS_MIN, DIGITS_MAX));
 		}
+
 		registNumbers();
 
+		return calcResult(digits);
+	}
+
+	private int calcResult(int digits) {
 		int result = 0;
+
 		for (int i = 0; i < digits; i++) {
 			result += getRandom() * Math.pow(10, i);
 		}
