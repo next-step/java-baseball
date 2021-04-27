@@ -25,11 +25,6 @@ public class OutputView {
             messages.add(String.format("%d 볼", score.countOfBall()));
         }
 
-        if (messages.isEmpty()) {
-            System.out.println("실패!!");
-            return;
-        }
-
         System.out.println(String.join(" ", messages));
     }
 
