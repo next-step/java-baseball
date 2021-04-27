@@ -12,40 +12,36 @@ import org.junit.jupiter.params.provider.CsvSource;
 class GameRunnerTest {
 
 	private static GameRunner gameRunner;
-	private static Method checkAnswerIsTrueMethod;
-	private static Method printAndReturnStrikeMethod;
-	private static Method printAndReturnBallMethod;
+	private static Method checkUserInput;
+	private static Method printAndReturnStrike;
+	private static Method printAndReturnBall;
 
 	@BeforeAll
 	public static void beforeAll() throws NoSuchMethodException {
 		gameRunner = new GameRunner();
-
-		checkAnswerIsTrueMethod =
-			GameRunner.class.getDeclaredMethod("checkAnswerIsTrue", String.class, String.class);
-		checkAnswerIsTrueMethod.setAccessible(true);
-
-		printAndReturnStrikeMethod =
+		checkUserInput = GameRunner.class.getDeclaredMethod("checkUserInput", String.class, String.class);
+		checkUserInput.setAccessible(true);
+		printAndReturnStrike =
 			GameRunner.class.getDeclaredMethod("printAndReturnStrike", String.class, String.class);
-		printAndReturnStrikeMethod.setAccessible(true);
-
-		printAndReturnBallMethod =
+		printAndReturnStrike.setAccessible(true);
+		printAndReturnBall =
 			GameRunner.class.getDeclaredMethod("printAndReturnBall", String.class, String.class, int.class);
-		printAndReturnBallMethod.setAccessible(true);
+		printAndReturnBall.setAccessible(true);
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"'123','123'", "'964','964'", "'528','528'"})
-	void checkAnswerIsTrue_InputsAreTrue_True(String answer, String userInput) throws
+	void checkUserInputIsTrue_InputsAreTrue_True(String answer, String userInput) throws
 		InvocationTargetException, IllegalAccessException {
-		boolean result = (boolean)checkAnswerIsTrueMethod.invoke(gameRunner, answer, userInput);
+		boolean result = (boolean)checkUserInput.invoke(gameRunner, answer, userInput);
 		assertThat(result).isTrue();
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"'123','456'", "'964','649'", "'528','538'"})
-	void checkAnswerIsTrue_InputsAreFalse_False(String answer, String userInput) throws
+	void checkUserInputIsTrue_InputsAreFalse_False(String answer, String userInput) throws
 		InvocationTargetException, IllegalAccessException {
-		boolean result = (boolean)checkAnswerIsTrueMethod.invoke(gameRunner, answer, userInput);
+		boolean result = (boolean)checkUserInput.invoke(gameRunner, answer, userInput);
 		assertThat(result).isFalse();
 	}
 
@@ -53,7 +49,7 @@ class GameRunnerTest {
 	@CsvSource(value = {"'123','456', 0", "'964','694',1", "'528','538',2", "'348','348',3"})
 	void PrintAndReturnStrike_ValidInputs_ReturnTrueStrike(String answer, String userInput, int strike) throws
 		InvocationTargetException, IllegalAccessException {
-		int result = (int)printAndReturnStrikeMethod.invoke(gameRunner, answer, userInput);
+		int result = (int)printAndReturnStrike.invoke(gameRunner, answer, userInput);
 		assertThat(result).isEqualTo(strike);
 	}
 
@@ -61,7 +57,7 @@ class GameRunnerTest {
 	@CsvSource(value = {"'123','456', 0, 0", "'964','694', 1, 2", "'528','583', 1, 1", "'348','834', 0, 3"})
 	void PrintAndReturnBall_ValidInputs_ReturnTrueBall(String answer, String userInput, int strike, int ball) throws
 		InvocationTargetException, IllegalAccessException {
-		int result = (int)printAndReturnBallMethod.invoke(gameRunner, answer, userInput, strike);
+		int result = (int)printAndReturnBall.invoke(gameRunner, answer, userInput, strike);
 		assertThat(result).isEqualTo(ball);
 	}
 }

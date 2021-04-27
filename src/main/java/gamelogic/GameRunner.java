@@ -3,23 +3,21 @@ package gamelogic;
 import ui.GameplayUI;
 
 public class GameRunner {
-	String answer;
-	String userInput;
 
-	GameAnswerGenerator gameAnswerGenerator = new GameAnswerGenerator();
-	GameplayUI gameplayUI = new GameplayUI();
+	private final GameAnswerGenerator gameAnswerGenerator = new GameAnswerGenerator();
+	private final GameplayUI gameplayUI = new GameplayUI();
 
-	public void runNewGame() {
-		answer = gameAnswerGenerator.generateAnswer();
-		boolean isCorrect = false;
-		while (!isCorrect) {
-			userInput = gameplayUI.getAnswerInput();
-			isCorrect = checkAnswerIsTrue(answer, userInput);
+	public void runNewRound() {
+		String answer = gameAnswerGenerator.generateAnswer();
+		boolean isUserInputCorrect = false;
+		while (!isUserInputCorrect) {
+			String userInput = gameplayUI.getUserInput();
+			isUserInputCorrect = checkUserInput(answer, userInput);
 		}
-		gameplayUI.printAnswer();
+		gameplayUI.printRoundEndMessage();
 	}
 
-	private boolean checkAnswerIsTrue(String answer, String userInput) {
+	private boolean checkUserInput(String answer, String userInput) {
 		if (answer.equals(userInput)) {
 			return true;
 		}
