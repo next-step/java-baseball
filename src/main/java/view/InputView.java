@@ -17,7 +17,7 @@ public class InputView {
 
     public static List<Integer> inputNumbers() {
         System.out.print(START_MESSAGE);
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);인
         try {
             String numbers = scanner.next();
             return UserInputBaseballNumber.userBaseballNumber(numbers);
