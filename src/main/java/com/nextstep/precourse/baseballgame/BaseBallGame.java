@@ -17,16 +17,16 @@ public class BaseBallGame {
 		do {
 			ball.makeRandomlyThreeDigitAnswer();
 			startGame();
-		} while (printMessage.isGameOver());
+		} while (printMessage.printGameOver());
 	}
 
 	private void startGame() {
 		boolean progressStatus = true;
 		while (progressStatus) {
 			String userInput = user.getUserInputNumber();
-			BaseBallResult baseBallResult = referee.getResult(ball.getAnswerList(), userInput);
-			printMessage.printMessage(baseBallResult);
-			progressStatus = generateResult.isCountinue(baseBallResult.getStrikeCount());
+			BaseBallResult result = referee.getResult(ball.getAnswerList(), userInput);
+			printMessage.printMessage(result);
+			progressStatus = generateResult.isContinue(result.getStrikeCount());
 			printMessage.printThreeStrike(progressStatus);
 			referee.initCount();
 		}

@@ -1,7 +1,5 @@
 package com.nextstep.precourse.util;
 
-import java.util.Scanner;
-
 import com.nextstep.precourse.baseballgame.GenerateResult;
 import com.nextstep.precourse.computer.BaseBallResult;
 
@@ -13,15 +11,14 @@ public class PrintMessage {
 		System.out.println(generateResult.getResult(result));
 	}
 
-	public boolean isGameOver() {
+	public boolean printGameOver() {
 		System.out.println(PrintMessageEnum.RESTART_GAME.getMessage());
-		Scanner scanner = new Scanner(System.in);
-		int inputValue = scanner.nextInt();
-		return inputValue == 1;
+		return generateResult.isGameOver();
 	}
 
 	public void printThreeStrike(boolean progressStatus) {
-		if (!progressStatus)
+		if (!progressStatus){
 			System.out.println(PrintMessageEnum.GOT_RIGHT_ANSWER.getMessage());
+		}
 	}
 }

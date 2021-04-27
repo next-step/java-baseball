@@ -1,24 +1,22 @@
 package com.nextstep.precourse.baseballgame;
 
+import java.util.Scanner;
+
 import com.nextstep.precourse.computer.BaseBallResult;
 import com.nextstep.precourse.util.PrintMessageEnum;
 
 public class GenerateResult {
 
 	public String getResult(BaseBallResult result) {
-		StringBuilder stringBuilder = new StringBuilder();
-
 		if (result.getErrorMessage() != null) {
 			return result.getErrorMessage();
 		}
-
 		if (result.isNothing()) {
 			return getNothingString();
 		}
-
+		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(getStrikeString(result.getStrikeCount()));
 		stringBuilder.append(getBallString(result.getBallCount()));
-
 		return stringBuilder.toString();
 	}
 
@@ -42,10 +40,13 @@ public class GenerateResult {
 		return ballString;
 	}
 
-	public boolean isCountinue(int strikeCount) {
-		if (strikeCount == 3) {
-			return false;
-		}
-		return true;
+	public boolean isContinue(int strikeCount) {
+		return strikeCount != 3;
+	}
+
+	public boolean isGameOver(){
+		Scanner scanner = new Scanner(System.in);
+		int inputValue = scanner.nextInt();
+		return inputValue == 1;
 	}
 }
