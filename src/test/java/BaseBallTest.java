@@ -2,9 +2,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,12 +23,26 @@ class BaseBallTest {
         result = new Result();
         result.setBalls(2);
         result.setStrikes(1);
-        Field answerField = baseball.getClass().getDeclaredField("answer");
-        answerField.setAccessible(true);
-        answer = new int[]{3, 4, 5};
-        answerField.set(baseball, answer);
+
         gameOutput =GameOutput.getInstance();
         gameInput =GameInput.getInstance();
+        gameInput.setGameLength(3);
+        gameInput.setLowerBound(1);
+        gameInput.setUpperBound(9);
+
+        Field answerField = baseball.getClass().getDeclaredField("answer");
+        answerField.setAccessible(true);
+        answerField.set(baseball, new int[]{3, 4, 5});
+        answer = (int[]) answerField.get(baseball);
+
+        Field outputField = baseball.getClass().getDeclaredField("gameOutput");
+        outputField.setAccessible(true);
+        outputField.set(baseball, gameOutput);
+
+        Field inputField = baseball.getClass().getDeclaredField("gameInput");
+        inputField.setAccessible(true);
+        inputField.set(baseball, gameInput);
+
     }
 
     @Test
@@ -38,15 +54,15 @@ class BaseBallTest {
 
         Field answerField = baseball.getClass().getDeclaredField("answer");
         answerField.setAccessible(true);
-        int[] answerArr = (int[]) answerField.get(baseball);
+        answer = (int[]) answerField.get(baseball);
 
-        assertNotNull(answerArr);
-        assertEquals(answerArr.length, 3);
-        assertNotEquals(answerArr[0], answerArr[1]);
-        assertNotEquals(answerArr[1], answerArr[2]);
-        assertTrue(answerArr[0] >= 1 && answerArr[0] <= 9);
-        assertTrue(answerArr[1] >= 1 && answerArr[1] <= 9);
-        assertTrue(answerArr[2] >= 1 && answerArr[2] <= 9);
+        assertNotNull(answer);
+        assertEquals(answer.length, 3);
+        assertNotEquals(answer[0], answer[1]);
+        assertNotEquals(answer[1], answer[2]);
+        assertTrue(answer[0] >= 1 && answer[0] <= 9);
+        assertTrue(answer[1] >= 1 && answer[1] <= 9);
+        assertTrue(answer[2] >= 1 && answer[2] <= 9);
     }
 
     @Test
@@ -80,11 +96,7 @@ class BaseBallTest {
 
     @Test
     @DisplayName("입력에 따라 판단 Method와 Hints 출력 Method를 부른다")
-    void check_shouldCallJudgeCallShowHints() throws NoSuchFieldException, IllegalAccessException {
-        Field outField = baseball.getClass().getDeclaredField("gameOutput");
-        outField.setAccessible(true);
-        outField.set(baseball, gameOutput);
-
+    void check_shouldCallJudgeCallShowHints() {
         baseball.check("435");
         baseball.check("789");
     }
@@ -104,5 +116,18 @@ class BaseBallTest {
         assertEquals(result.getStrikes(), 2);
         baseball.judge("345", result, 2);
         assertEquals(result.getStrikes(), 3);
+    }
+    @Test
+    @DisplayName("입력에 따라 게임을 진행한다.")
+    void playGames_shouldPlayGame() throws NoSuchFieldException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        System.setIn(new ByteArrayInputStream("1234\n045\nabc\n789\n345\n2".getBytes()));
+
+        Field scannerField = gameInput.getClass().getDeclaredField("s");
+        scannerField.setAccessible(true);
+        scannerField.set(gameInput, new Scanner(System.in));
+
+        Method playMethod = baseball.getClass().getDeclaredMethod("playGame");
+        playMethod.setAccessible(true);
+        playMethod.invoke(baseball);
     }
 }
