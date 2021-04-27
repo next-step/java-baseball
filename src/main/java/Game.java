@@ -34,13 +34,19 @@ public class Game {
         System.out.println(RESTART_MESSAGE);
         int number = scanner.nextInt();
 
-        if (number == 2) {
-            isRunning = false;
+        if (isFinishNumber(number)) {
             return;
         }
         if (number != 1) {
             System.out.println(RESTART_NUMBER_INPUT_ERROR_MESSAGE);
             throw new BaseballException.RestartNumberInputOutOfRangeException();
         }
+    }
+
+    private boolean isFinishNumber(Integer number) {
+        if (number == 2) {
+            isRunning = false;
+        }
+        return !isRunning;
     }
 }
