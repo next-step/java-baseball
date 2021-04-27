@@ -45,4 +45,9 @@ public class Score {
         return sMessage;
     }
 
+    public boolean isSuccess(){
+        if(strike == 3) return true;
+        return false;
+    }
+
 }
