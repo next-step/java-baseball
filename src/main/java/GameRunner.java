@@ -24,5 +24,14 @@ public class GameRunner {
 			evaluation.evaluate(inputView.inputAnswerNumber(), problemNumber);
 			outputView.printEvaluation(evaluation.getStrikeCount(), evaluation.getBallCount());
 		}
+		handleGameMenu();
+	}
+
+	private void handleGameMenu() {
+		int selectedNumber = inputView.selectGameMenu();
+
+		if (GameMenuEnum.doesRestart(selectedNumber)) {
+			play();
+		}
 	}
 }
