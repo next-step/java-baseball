@@ -21,9 +21,7 @@ public class BaseballGame {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         Collections.shuffle(list);
 
-        questions.add(list.get(0));
-        questions.add(list.get(1));
-        questions.add(list.get(2));
+        questions.addAll(list.subList(0, 3));
     }
     
     public void playGame(){
