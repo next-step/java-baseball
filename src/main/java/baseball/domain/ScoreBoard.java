@@ -61,4 +61,8 @@ public class ScoreBoard {
     }
     return EMPTY;
   }
+
+  public boolean isThreeStrike() {
+    return THREE.equals(scoreMap.get(Score.STRIKE));
+  }
 }

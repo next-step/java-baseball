@@ -13,4 +13,8 @@ public class InputView {
     System.out.print(INPUT_NUMBER);
     return BallFactory.createBalls(SCANNER.next());
   }
+
+  public static int insertCoin() {
+    return SCANNER.nextInt();
+  }
 }

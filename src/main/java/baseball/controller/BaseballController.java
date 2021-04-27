@@ -11,12 +11,16 @@ public class BaseballController {
 
   public void gameStart() {
     Balls computerBalls = BallFactory.createComputerBalls();
-    Balls userBalls = InputView.inputNumbers();
+    boolean numberMatched = true;
 
-    Referee referee = new Referee(computerBalls, userBalls);
-    ScoreBoard result = referee.judge();
-    ResultView.printScore(result);
+    do {
+      Balls userBalls = InputView.inputNumbers();
 
+      Referee referee = new Referee(computerBalls, userBalls);
+      ScoreBoard scoreBoard = referee.judge();
 
+      ResultView.printScore(scoreBoard);
+      numberMatched = scoreBoard.isThreeStrike();
+    } while (!numberMatched);
   }
 }
