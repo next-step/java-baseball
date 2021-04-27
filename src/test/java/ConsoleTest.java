@@ -1,12 +1,11 @@
-import baseball.Console;
+import baseball.service.Console;
 import baseball.domain.Score;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,10 +13,17 @@ class ConsoleTest {
 
     private static final String NEW_LINE = "\r\n";
     private Console console;
+    private Scanner scanner;
 
     @BeforeEach
     void setUp() {
-        console = new Console();
+        scanner = new Scanner(System.in);
+        console = new Console(scanner);
+    }
+
+    @AfterEach
+    void finishAll() {
+        scanner.close();
     }
 
     @Test
@@ -28,12 +34,12 @@ class ConsoleTest {
 
     @Test
     void result_three_strike() {
-        assertThat(console.result(new Score(3, 0))).isTrue();
+        assertThat(console.isFinish(new Score(3, 0))).isTrue();
     }
 
     @Test
     void result_one_strike_one_ball() {
-        assertThat(console.result(new Score(1, 1))).isFalse();
+        assertThat(console.isFinish(new Score(1, 1))).isFalse();
     }
 
     @Test
@@ -88,9 +94,7 @@ class ConsoleTest {
     @Disabled
     @Test
     void start_game() {
-        Console console = new Console();
-
-        // TODO 3스트라이크 될때까지 숫자를 물어보는 기능
+        systemInput("124");
         console.play();
     }
 

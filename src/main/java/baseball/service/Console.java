@@ -1,4 +1,4 @@
-package baseball;
+package baseball.service;
 
 import baseball.domain.Score;
 
@@ -6,22 +6,35 @@ import java.util.Scanner;
 
 public class Console {
 
+    private Scanner scanner;
+
+    public Console(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     public int getNumber() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("숫자를 입력해주세요 : ");
-        int number = scanner.nextInt();
-        scanner.close();
-        return number;
+        scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 
     public void play() {
+        Game game = new Game(123);
+
+        while (true) {
+            int number = getNumber();
+            Score score = game.play(number);
+
+            print(score);
+
+            if (isFinish(score)) {
+                return;
+            }
+        }
     }
 
-    public boolean result(Score score) {
-        if (score.getStrike() == 3) {
-            return true;
-        }
-        return false;
+    public boolean isFinish(Score score) {
+        return score.getStrike() == 3;
     }
 
     public void print(Score score) {
