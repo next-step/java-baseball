@@ -9,6 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import com.baseball.woowahan.constant.Message;
+
 class ScoreCalculatorAndPrinterTest {
 	private int strikeCount;
 	private int ballCount;
@@ -49,7 +51,7 @@ class ScoreCalculatorAndPrinterTest {
 	public void calculate(String inputNumber) {
 
 		String[] inputNumbers = inputNumber.split("");
-		for (int i = 0; i < GameManager.GAME_LENGTH; i++) {
+		for (int i = 0; i < Game.DEFAULT_LENGTH; i++) {
 			checkStrike(i, inputNumbers[i]);
 			checkBall(i, inputNumbers[i]);
 		}
