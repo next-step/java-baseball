@@ -63,13 +63,29 @@ public class NumberBaseball {
 	 */
 	private static String buildResultString(int strikeCount, int ballCount) {
 		StringBuilder result = new StringBuilder();
-		if (strikeCount > 0 || (strikeCount == 0 && ballCount == 0)) {
+		if (strikeCount > 0) {
 			result.append(String.format("%d 스트라이크 ", strikeCount));
 		}
-		if (ballCount > 0 || (strikeCount == 0 && ballCount == 0)) {
+		if (ballCount > 0) {
 			result.append(String.format("%d 볼", ballCount));
 		}
+		result.append(buildNothingCaseString(strikeCount, ballCount));
 		return result.toString();
+	}
+
+	/**
+	 * @methodName  : buildNothingCaseString
+	 * @author      : Sunghwa Lee
+	 * @description : Build the nothing case result string to be displayed
+	 * @param strikeCount Count of strikes to be displayed
+	 * @param ballCount Count of balls to be displayed
+	 * @return Built result string for nothing case
+	 */
+	private static String buildNothingCaseString(int strikeCount, int ballCount) {
+		if (strikeCount == 0 && ballCount == 0) {
+			return "낫싱";
+		}
+		return "";
 	}
 
 	/**
