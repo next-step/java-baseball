@@ -6,6 +6,12 @@ public class BaseBallGame implements Game {
 	@Override
 	public void playGame() {
 		LinkedHashSet<String> numbers = makeNumbers();
+		String stringNumbers = linkedHashSetToString(numbers);
+		String inputNumbers = inputNumbers("숫자를 입력해주세요 : ");
+		while (!judgeGame(stringNumbers, inputNumbers)) {
+			inputNumbers = inputNumbers("숫자를 입력해주세요 : ");
+		}
+		endGame();
 	}
 
 	@Override
@@ -27,11 +33,12 @@ public class BaseBallGame implements Game {
 		return numbers;
 	}
 
-	public String inputNumbers() {
-		printMsg("숫자를 입력해 주세요 : ");
+	public String inputNumbers(String msg) {
+		if (msg != null && msg.length() > 0) {
+			printMsg(msg);
+		}
 		Scanner scan = new Scanner(System.in);
 		String numbers = String.valueOf(scan.nextInt());
-		scan.close();
 		return numbers;
 	}
 
