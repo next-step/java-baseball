@@ -1,16 +1,21 @@
 package com.bistros.game.domain;
 
-import com.bistros.game.domain.exception.BallNumberRuleAgainstException;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.bistros.game.domain.exception.BallNumberRuleAgainstException;
+
 public class BallNumbers {
     public static final int LENGTH = 3;
 
     private final List<Integer> nums;
+
+    public List<Integer> getNums() {
+        return nums;
+    }
 
     public BallNumbers(List<Integer> nums) {
         validate(nums);
@@ -35,4 +40,11 @@ public class BallNumbers {
             .collect(Collectors.joining());
     }
 
+    public int isStrike(Integer userInput) {
+        return nums.indexOf(userInput);
+    }
+
+    public boolean isNothing(Integer userInput) {
+        return !nums.contains(userInput);
+    }
 }
