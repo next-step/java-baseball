@@ -4,6 +4,7 @@ import baseball.judgment.Ball;
 import baseball.judgment.JudgmentStrikeOrBall;
 import baseball.judgment.JudgmentService;
 import baseball.judgment.Strike;
+import common.Constants;
 import common.ShuffleNumbers;
 
 public class BaseBallGame {
@@ -17,7 +18,7 @@ public class BaseBallGame {
     }
 
     public void runGame() {
-        setShuffledNumbers(ShuffleNumbers.getSuffledThreeNumbers(NUMBERS, MAX_LENGTH));
+        setShuffledNumbers(ShuffleNumbers.getShuffledThreeNumbers(NUMBERS, MAX_LENGTH));
         String userAnswer;
 
         do {
@@ -29,6 +30,8 @@ public class BaseBallGame {
         if(shuffledNumbers.equals(answer)) {
             System.out.println(MAX_LENGTH + "개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return true;
+        } else if(Constants.INPUT_NUMBER_ERROR.equals(answer)) {
+            return false;
         }
         makeHint(answer);
         return false;
@@ -36,7 +39,7 @@ public class BaseBallGame {
 
     public boolean isContinueGame(String answer) {
         if(CONTINUE_GAME.equals(answer)) {
-            setShuffledNumbers(ShuffleNumbers.getSuffledThreeNumbers(NUMBERS, MAX_LENGTH));
+            setShuffledNumbers(ShuffleNumbers.getShuffledThreeNumbers(NUMBERS, MAX_LENGTH));
             return true;
         }
         return false;

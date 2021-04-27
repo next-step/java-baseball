@@ -1,14 +1,21 @@
 package baseball;
 
+import common.Constants;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
-    public static String inputThreeNumbers() throws InputMismatchException {
+    public static String inputThreeNumbers() {
         Scanner sc = new Scanner(System.in);
         int numbers;
-        System.out.print("숫자를 입해주세요 : ");
-        numbers = sc.nextInt();
+        System.out.print("숫자를 입력해주세요 : ");
+        try {
+            numbers = sc.nextInt();
+        } catch (InputMismatchException exception) {
+            System.out.println("숫자만 입력해주세요!");
+            return Constants.INPUT_NUMBER_ERROR;
+        }
         return String.valueOf(numbers);
     }
 
