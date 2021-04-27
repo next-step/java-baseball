@@ -8,7 +8,7 @@ package util;
  */
 public class CreateMessage {
 	
-	private final static String STRIKE = "스트라이크 ";
+	private final static String STRIKE = "스트라이크";
 	private final static String BALL = "볼";
 	private final static String NOTHING = "낫싱";
 	private final static String END_GAME = "3개의 숫자를 모두 맞히셨습니다! 게임종료";
@@ -41,14 +41,14 @@ public class CreateMessage {
 	
 	public static String strikeMsg(int strikeCnt) {
 		if(strikeCnt != 0) {
-			return strikeCnt + "  " + STRIKE;
+			return strikeCnt + " " + STRIKE;
 		}
 		return "";
 	}
 	
 	public static String ballMsg(int ballCnt) {
 		if(ballCnt != 0) {
-			return ballCnt + "  " + BALL;
+			return ballCnt + " " + BALL;
 		}
 		
 		return "";
