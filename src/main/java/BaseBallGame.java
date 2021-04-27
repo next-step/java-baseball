@@ -62,6 +62,14 @@ public class BaseBallGame {
         }
     }
 
+    // TODO : ball 여부 체크하여, checkModel의 ball에 표시
+    public void checkBall(String answerUnit, int unitIndex){
+        int targetIndex = targetNumberList.indexOf(answerUnit);
+        if(targetIndex != -1 && targetIndex != unitIndex){
+            checkResultModel.ball++;
+        }
+    }
+
 
 
 }
