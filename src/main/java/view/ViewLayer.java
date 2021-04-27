@@ -1,14 +1,7 @@
 package view;
 
-import java.util.Scanner;
+public interface ViewLayer {
+    public String inputValue();
 
-public class ViewLayer {
-
-    public String inputValue() {
-        return new Scanner(System.in).nextLine();
-    }
-
-    public void outValue(String value) {
-        System.out.println(value);
-    }
+    public void outValue(String value);
 }
