@@ -10,12 +10,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import static baseball.domain.BaseballNumbers.*;
+
 @DisplayName("야구번호_생성_테스트")
 class BaseballNumberFactoryTest {
     private BaseballNumberFactory baseballNumberFactory;
-
-    BaseballNumberFactoryTest() {
-    }
 
     @BeforeEach
     void setUp() {
@@ -25,29 +24,34 @@ class BaseballNumberFactoryTest {
     @Test
     @DisplayName("야구번호_수가_세_개인지_테스트")
     void verifyThreeBaseballNumbersGenerated() {
+        // When
         BaseballNumbers baseballNumbers = this.baseballNumberFactory.generateNumbers();
-        Assertions.assertEquals(3, baseballNumbers.size());
+
+        // Then
+        Assertions.assertEquals(RANDOM_NUMBER_COUNT, baseballNumbers.size());
     }
 
     @Test
     @DisplayName("야구번호_수의_범위가_1~9인지_테스트")
     void verifyBaseballNumbersBoundary() {
+        // When
         BaseballNumbers baseballNumbers = this.baseballNumberFactory.generateNumbers();
-        Iterator var2 = baseballNumbers.getValues().iterator();
 
-        while(var2.hasNext()) {
-            String baseballNumber = (String)var2.next();
-            Assertions.assertTrue(Integer.parseInt(baseballNumber) >= 1);
-            Assertions.assertTrue(Integer.parseInt(baseballNumber) <= 9);
+        // Then
+        for (String baseballNumber : baseballNumbers.getValues()) {
+            Assertions.assertTrue(Integer.parseInt(baseballNumber) >= MIN_RANDOM_NUMBER);
+            Assertions.assertTrue(Integer.parseInt(baseballNumber) <= MAX_RANDOM_NUMBER);
         }
-
     }
 
     @Test
     @DisplayName("야구번호가_중복되지_않았는지_테스트")
     void verifyBaseballNumbersNonDuplicate() {
+        // When
         BaseballNumbers baseballNumbers = this.baseballNumberFactory.generateNumbers();
-        Set<String> baseballNumbersSet = new HashSet<String>(baseballNumbers.getValues());
+        Set<String> baseballNumbersSet = new HashSet<>(baseballNumbers.getValues());
+
+        // Then
         Assertions.assertEquals(baseballNumbers.size(), baseballNumbersSet.size());
     }
 }
