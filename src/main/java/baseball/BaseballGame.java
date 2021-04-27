@@ -1,0 +1,55 @@
+package baseball;
+
+import java.util.List;
+
+import customtypes.Decision;
+import customtypes.GameResult;
+import customtypes.UserInputValidation;
+import custommodel.DecisionResult;
+
+public class BaseballGame {
+    private static final int BALL_COUNT = 3;
+
+    private BaseballReferee baseballReferee;
+    private RandomGenerator randomGenerator;
+
+    private InputValidator inputValidator;
+    private DecisionCounter decisionCounter;
+
+    private String computerInput;
+
+    public BaseballGame(
+            BaseballReferee baseballReferee,
+            RandomGenerator randomGenerator) {
+        this.baseballReferee = baseballReferee;
+        this.randomGenerator = randomGenerator;
+
+        this.inputValidator = new InputValidator(
+                new AbnormalInputChecker(),
+                new DuplicationInputChecker(), BALL_COUNT);
+        this.decisionCounter = new DecisionCounter();
+
+        // [ 210425 praivesi ] Baseball game must have 3 trial, so pass digitCount parameter as 3
+        this.computerInput = this.randomGenerator.getRandomDigits(BALL_COUNT);
+    }
+
+    public GameResult play(String playerInput) {
+        UserInputValidation valResult = this.inputValidator.validate(playerInput);
+
+        if (valResult != UserInputValidation.VALID) { return GameResult.INVALID_INPUT; }
+
+        DecisionResult decisionResult = this.pitching(playerInput);
+
+        System.out.println(decisionResult);
+
+        return decisionResult.getStrikeCount() == BALL_COUNT ? GameResult.WIN : GameResult.LOSE;
+    }
+
+    private DecisionResult pitching(String playerInput) {
+        List<Decision> decisions = this.baseballReferee.decide(playerInput.toCharArray(), this.computerInput);
+
+        DecisionResult decisionResult = this.decisionCounter.countDecisions(decisions);
+
+        return decisionResult;
+    }
+}
