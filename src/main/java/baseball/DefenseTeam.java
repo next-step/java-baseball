@@ -9,8 +9,7 @@ public class DefenseTeam {
 
 	public void prepareDefenseNumbers() {
 		Game.printMessage("숫자를 입력해주세요 : ");
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
+		String input = Game.receiveUserInput();
 
 		Pattern pattern = Pattern.compile("\\d{3}");
 		Matcher matcher = pattern.matcher(input);

@@ -3,6 +3,12 @@ package baseball;
 import java.util.Scanner;
 
 public class Game {
+	private static final Scanner scanner = new Scanner(System.in);
+
+	public static String receiveUserInput() {
+		return scanner.nextLine();
+	}
+
 	public static void printMessage(String message) {
 		System.out.println(message);
 	}
@@ -30,9 +36,7 @@ public class Game {
 
 	public boolean isFinish() {
 		Game.printMessage("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
-
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
+		String input = Game.receiveUserInput();
 
 		return input.equals("1");
 	}
