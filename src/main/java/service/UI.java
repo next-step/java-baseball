@@ -8,11 +8,11 @@ public class UI {
     private static final Scanner scanner = new Scanner(System.in);
 
     public String getAnswerByNotice(Notice output, int size) {
+        String string;
+        do {
         output.print();
-        String string = scanner.nextLine();
-        if(!validAnswer(string, size)){
-            getAnswerByNotice(output, size);
-        }
+        string = scanner.nextLine();
+        } while(!validAnswer(string, size));
         return string;
     }
 
