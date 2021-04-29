@@ -15,7 +15,7 @@ public class HintMessage {
 		}
 
 		if(matchResult.getStrikeCount()>0){
-			message += (BaseBallStatus.STRIKE.getMessage()+matchResult.getStrikeCount()+"볼");
+			message += (BaseBallStatus.STRIKE.getMessage()+matchResult.getStrikeCount() + "볼");
 		}
 
 		if(matchResult.getBallCount()>0){

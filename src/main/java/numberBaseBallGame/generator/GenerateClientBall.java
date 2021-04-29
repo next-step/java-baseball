@@ -13,12 +13,14 @@ public class GenerateClientBall {
 	}
 
 	public List<Ball> generateBall(String getClientNumber){
+		if(getClientNumber.length() != gameBallLength){
+			throw new IllegalArgumentException(gameBallLength+"글자만 입력해주세요. example : 123, 456 ");
+		}
 		List<Ball> balls = new ArrayList<>();
-
 		for (char item : getClientNumber.toCharArray()){
 
-			Ball aBall = new Ball(Integer.parseInt(String.valueOf(item)));
-			balls.add(aBall);
+			Ball ball = new Ball(Integer.parseInt(String.valueOf(item)));
+			balls.add(ball);
 
 		}
 		return balls;

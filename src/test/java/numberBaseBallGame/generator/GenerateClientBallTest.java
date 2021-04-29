@@ -19,7 +19,7 @@ class GenerateClientBallTest {
 		// than
 		assertThat(balls)
 				.extracting("valueNumber")
-				.contains(1,2,3);
+				.contains(1, 2, 3);
 	}
 
 }
