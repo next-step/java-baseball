@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class UserBallNumbers {
@@ -17,6 +18,7 @@ public class UserBallNumbers {
 
 	private void validateUserBallNumbers(List<Integer> userBallNumbers) {
 		validateSize(userBallNumbers);
+		validateDuplicate(userBallNumbers);
 
 		for (int userBallNumber : userBallNumbers) {
 			validateRange(userBallNumber);
@@ -32,6 +34,12 @@ public class UserBallNumbers {
 	private void validateRange(int userBallNumber) {
 		if (userBallNumber < USER_BALL_MIN_NUMBER || userBallNumber > USER_BALL_MAX_NUMBER) {
 			throw new IllegalArgumentException("입력한 수가 1부터 9까지 정수가 아닙니다");
+		}
+	}
+
+	private void validateDuplicate(List<Integer> userBallNumbers) {
+		if (new HashSet<>(userBallNumbers).size() < USER_BALL_NUMBER_SIZE) {
+			throw new IllegalArgumentException("중복된 숫자를 입력하셨습니다");
 		}
 	}
 

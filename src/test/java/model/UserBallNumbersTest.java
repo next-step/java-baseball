@@ -37,6 +37,15 @@ class UserBallNumbersTest {
 		});
 	}
 
+	@ParameterizedTest
+	@ValueSource(strings = {"112", "122", "121", "111"})
+	@DisplayName("입력한 3자리 수가 중복일 경우 테스트")
+	void duplicateUserBallNumberTest(String userInputNumber) {
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+			createUserBallNumbers(userInputNumber);
+		});
+	}
+
 	private UserBallNumbers createUserBallNumbers(String userInputNumber) {
 		return new UserBallNumbers(InputView.stringToListConvert(userInputNumber));
 	}
