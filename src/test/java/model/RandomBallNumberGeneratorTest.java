@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import view.InputView;
 
-public class RandomBallNumbersTest {
+public class RandomBallNumberGeneratorTest {
 
 	public static final int RANDOM_BALL_NUMBER_SIZE = 3;
 
@@ -18,12 +18,12 @@ public class RandomBallNumbersTest {
 	@ValueSource(strings = {"123", "456", "789"})
 	@DisplayName("서로 1부터 9까지 서로다른 임의의 수 3자리 생성 테스트")
 	void createRandomBallNumberTest(String randomBallNumber) {
-		RandomBallNumbers randomBallNumbers = createRandomBallNumbers(randomBallNumber);
+		RandomBallNumberGenerator randomBallNumberGenerator = createRandomBallNumbers(randomBallNumber);
 
-		int distinctNumberSize = new HashSet<>(randomBallNumbers.getRandomBallNumbers()).size();
+		int distinctNumberSize = new HashSet<>(randomBallNumberGenerator.getRandomBallNumbers()).size();
 
-		assertThat(randomBallNumbers.getRandomBallNumbers().size()).isEqualTo(distinctNumberSize);
-		assertThat(randomBallNumbers.getRandomBallNumbers().size()).isEqualTo(RANDOM_BALL_NUMBER_SIZE);
+		assertThat(randomBallNumberGenerator.getRandomBallNumbers().size()).isEqualTo(distinctNumberSize);
+		assertThat(randomBallNumberGenerator.getRandomBallNumbers().size()).isEqualTo(RANDOM_BALL_NUMBER_SIZE);
 	}
 
 	@ParameterizedTest
@@ -53,7 +53,7 @@ public class RandomBallNumbersTest {
 		});
 	}
 
-	private RandomBallNumbers createRandomBallNumbers(String randomBallNumber) {
-		return new RandomBallNumbers(InputView.stringToListConvert(randomBallNumber));
+	private RandomBallNumberGenerator createRandomBallNumbers(String randomBallNumber) {
+		return new RandomBallNumberGenerator(InputView.stringToListConvert(randomBallNumber));
 	}
 }

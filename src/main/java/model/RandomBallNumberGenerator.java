@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomBallNumbers {
+public class RandomBallNumberGenerator {
 
 	public static final int RANDOM_MIN_NUMBER = 1;
 	public static final int RANDOM_MAX_NUMBER = 9;
@@ -12,11 +12,10 @@ public class RandomBallNumbers {
 
 	private List<Integer> randomBallNumbers = new ArrayList<>();
 
-	public RandomBallNumbers() {
+	public RandomBallNumberGenerator() {
 		while (randomBallNumbers.size() < RANDOM_BALL_NUMBER_SIZE) {
 			createRandomNumber();
 		}
-
 		validateLength();
 	}
 
@@ -51,7 +50,7 @@ public class RandomBallNumbers {
 	}
 
 	// 테스트 코드에서 사용하는 코드
-	protected RandomBallNumbers(List<Integer> inputRandomBallNumbers) {
+	protected RandomBallNumberGenerator(List<Integer> inputRandomBallNumbers) {
 		for (Integer inputRandomBallNumber : inputRandomBallNumbers) {
 			createRandomNumbers(inputRandomBallNumber);
 		}
