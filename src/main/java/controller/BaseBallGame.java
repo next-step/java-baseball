@@ -1,8 +1,8 @@
 package controller;
 
+import model.Balls;
 import model.BaseBallGameResult;
-import model.RandomBallNumbers;
-import model.UserBallNumbers;
+import model.RandomBallNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -12,11 +12,12 @@ public class BaseBallGame {
 	private static boolean isRestart = true;
 
 	public void gameStart() {
-		RandomBallNumbers randomBallNumbers = new RandomBallNumbers();
+		RandomBallNumberGenerator randomBallNumberGenerator = new RandomBallNumberGenerator();
 
 		while (isRestart) {
-			BaseBallGameResult baseBallGameResult = new BaseBallGameResult(randomBallNumbers,
-				new UserBallNumbers(InputView.scannerUserInputNumber()));
+			BaseBallGameResult baseBallGameResult = new BaseBallGameResult(
+				new Balls(randomBallNumberGenerator.getRandomBallNumbers()),
+				new Balls(InputView.scannerUserInputNumber()));
 
 			answerCheck(baseBallGameResult);
 		}
