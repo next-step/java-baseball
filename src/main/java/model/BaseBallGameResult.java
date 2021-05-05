@@ -6,45 +6,30 @@ public class BaseBallGameResult {
 
 	private int strikeCount = 0;
 	private int ballCount = 0;
-	private RandomBallNumbers randomBallNumbers;
-	private UserBallNumbers userBallNumbers;
+	private Balls randomBallNumbers;
+	private Balls userBallNumbers;
 
-	public BaseBallGameResult(RandomBallNumbers randomBallNumbers, UserBallNumbers userBallNumbers) {
+	public BaseBallGameResult(Balls randomBallNumbers, Balls userBallNumbers) {
 		this.randomBallNumbers = randomBallNumbers;
 		this.userBallNumbers = userBallNumbers;
 		calculateResult();
 	}
 
 	private void calculateResult() {
-		for (int i = 0; i < userBallNumbers.getUserBallNumbers().size(); i++) {
-			calculateBallCount(i);
+		for (int i = 0; i < randomBallNumbers.getBalls().size(); i++) {
+			Ball ball = userBallNumbers.getBalls().get(i);
+			plusBallCount(ball);
 		}
 	}
 
-	private void calculateBallCount(int index) {
-		int randomBallNumber = randomBallNumbers.getRandomBallNumbers().get(index);
-		int userBallNumber = userBallNumbers.getUserBallNumbers().get(index);
-
-		if (calculateStrikeCount(randomBallNumber, userBallNumber)) {
-			return;
+	private void plusBallCount(Ball ball) {
+		if (randomBallNumbers.play(ball).isStrike()) {
+			strikeCount++;
 		}
 
-		calculateBallCount(randomBallNumbers, userBallNumber);
-	}
-
-	private void calculateBallCount(RandomBallNumbers randomBallNumbers, int userBallNumber) {
-		if (randomBallNumbers.getRandomBallNumbers().contains(userBallNumber)) {
+		if (randomBallNumbers.play(ball).isBall()) {
 			ballCount++;
 		}
-	}
-
-	private boolean calculateStrikeCount(int randomBallNumber, int userBallNumber) {
-		if (randomBallNumber == userBallNumber) {
-			strikeCount++;
-			return true;
-		}
-
-		return false;
 	}
 
 	public boolean isAnswer() {
@@ -62,5 +47,4 @@ public class BaseBallGameResult {
 	public int getBallCount() {
 		return ballCount;
 	}
-
 }
