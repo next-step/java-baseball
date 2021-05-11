@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "husky": "^6.0.0",
+    "standard-version": "^9.2.0"
+  },
+  "scripts": {
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "name": "java-baseball-precourse",
+  "version": "2.5.0",
+  "main": "index.js",
+  "repository": "https://github.com/frostnight/java-baseball-precourse.git",
+  "author": "frostnight <frostnightsong@gmail.com>",
+  "license": "MIT"
+}
