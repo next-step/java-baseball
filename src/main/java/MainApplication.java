@@ -1,9 +1,9 @@
-import game.GameRunner;
-import game.baseball.application.BaseballGame;
-import game.baseball.domain.rule.NormalModeRule;
+import application.BaseballGame;
+import application.Game;
 
 public class MainApplication {
     public static void main(String[] args) {
-        GameRunner.run(new BaseballGame(new NormalModeRule()));
+        Game game = new BaseballGame();
+        game.run();
     }
 }
