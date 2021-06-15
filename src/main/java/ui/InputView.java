@@ -1,7 +1,7 @@
 package ui;
 
 public class InputView {
-    public String inputString() {
+    public static String inputString() {
         return System.in.toString();
     }
 }
